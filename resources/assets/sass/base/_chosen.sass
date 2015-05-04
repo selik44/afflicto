@@ -1,0 +1,44 @@
+.chosen-container
+	.chosen-choices, .chosen-single
+		@extend select
+		background-image: none
+		box-shadow: none
+
+		input
+			color: $base-color
+
+	.chosen-single
+		height: 36px
+	
+	.chosen-drop
+		@extend select
+		padding: 0
+		border-top-left-radius: 0
+		border-top-right-radius: 0
+
+		li
+			color: $base-color
+			&.highlighted
+				background-image: none
+				background: $color-primary
+				color: color-contrast($color-primary, #333, #fff)
+
+	&.chosen-with-drop
+		.chosen-choices
+			border-bottom-width: 0
+			border-bottom-left-radius: 0
+			border-bottom-right-radius: 0
+
+
+.chosen-container-single .chosen-search
+	border-color: $base-border-color
+
+.chosen-container-active
+	&.chosen-with-drop .chosen-single
+		background-image: none
+		box-shadow: none
+
+	ul.chosen-choices
+		li.search-field
+			input[type="text"]
+				color: $base-color !important

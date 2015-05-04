@@ -1,0 +1,47 @@
+.slider
+	@extend .clearfix
+	position: relative
+	overflow: hidden
+	height: 400px
+	width: 100%
+	border-radius: $base-radius
+	border: 1px solid $base-border-color
+
+	.container
+		width: 99999px
+		height: 100%
+		position: absolute
+		top: 0px
+		left: 0px
+	
+		.slide
+			float: left
+			height: 100%
+			background-position: center
+			background-size: cover
+			background-repeat: no-repeat
+	
+	.slide-links
+		position: absolute
+		bottom: 0.5rem
+		text-align: center
+		font-size: 1.2rem
+		width: 100%
+
+		li
+			a
+				color: $base-color
+				text-shadow: 1px 1px 2px rgba(0,0,0,0.5)
+
+			a:hover
+				color: stronger($base-color, 20%)
+				text-shadow: 1px 1px 2px rgba(0,0,0,0.8)
+
+			a.current
+				color: $color-primary
+
+
+//contain
+.slider.contain
+	.container .slide
+		background-size: contain

@@ -1,0 +1,71 @@
+.products-grid
+	float: left
+	width: 100%
+	
+	.product
+		width: 50%
+		padding: 1rem
+		margin-bottom: 1rem
+		
+		> .preview
+			position: relative
+			display: block
+			width: 100%
+			height: 300px
+			text-align: center
+			
+			> .image
+				display: block
+				width: 100%
+				height: 100%
+				background-position: center
+				background-size: cover
+				background-repeat: no-repeat
+
+				transition: all $base-transition-duration * 2
+				transition-timing-function: ease-out
+				filter: saturate(50%)
+				-webkit-filter: saturate(50%)
+				-moz-filter: saturate(50%)
+				-o-filter: saturate(50%)
+				-ms-filter: saturate(50%)
+
+
+			> .quick-peek
+				position: absolute
+				top: 60%
+				transition: all $base-transition-duration * 2
+				transition-timing-function: ease-out
+				opacity: 0
+				margin-left: -20%
+
+		> .divider
+			margin: 1rem 0
+			background-color: weaker($base-background, 15%)
+		
+		> .footer
+			vertical-align: middle
+
+			.title
+				max-width: 70%
+				min-height: 50px
+
+				&:hover
+					color: $color-primary
+
+		&:hover
+			> .preview
+				> .image
+					transition-duration: $base-transition-duration * 0.5
+					filter: saturate(100%)
+					-webkit-filter: saturate(100%)
+					-moz-filter: saturate(100%)
+					-o-filter: saturate(100%)
+					-ms-filter: saturate(100%)
+
+				> .quick-peek
+					opacity: 1
+
+
+		@include breakpoint('sm-')
+			width: 100%

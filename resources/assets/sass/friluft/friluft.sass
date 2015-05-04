@@ -1,0 +1,18 @@
+@import ../base/settings
+
+@import settings
+
+@import ../../../../node_modules/@afflicto/gentlestyle/src/sass/gentlestyle
+
+@import ../base/all
+
+button, input[type="submit"], input[type="reset"], .button
+	&.primary
+		//color: black
+
+#front
+	#header
+		#nav
+			#logo
+				@include breakpoint('m-')
+					max-width: 100px

@@ -1,0 +1,5 @@
+suites:
+    main:
+        namespace: Friluft
+        psr4_prefix: Friluft
+        src_path: app

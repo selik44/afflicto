@@ -1,0 +1,328 @@
+body, #front #footer
+	background: weaker($base-background, 5%)
+
+body.with-menu
+	//-------------------------------
+	//	With menu (sm and xs)
+	//-------------------------------
+	@include breakpoint('sm-')
+		overflow: hidden
+		height: 100%
+
+		#front #header
+			position: fixed
+			height: 100%
+			width: 100%
+			overflow-y: auto
+			z-index: 100
+			background: weaker($base-background, 5%)
+
+#front
+	//-------------------------------
+	//	Scrolled
+	//-------------------------------
+	&.scrolled
+		#header
+			position: fixed
+			top: 0px
+			width: 100%
+			z-index: 10
+		
+			#nav
+				#logo
+					@include breakpoint('m+')
+						max-width: 140px
+
+				ul.nav
+					margin-top: 0px + $base-logo-height !important
+
+				#search
+					margin-top: 0px + $base-logo-height
+
+				.search-and-cart
+					margin-top: 2px + $base-logo-height
+
+				.cart-toggle
+					margin-top: 0px + $base-logo-height
+
+
+	//center the main components
+	#header, #page, #footer, #nav, #nav-top, .nav-dropdown, #breadcrumbs
+		> .inner:first-child
+			margin: 0 auto
+			max-width: $base-width
+
+		&:not(:last-child)
+			border-bottom: 1px solid $base-border-color
+	
+	#header
+		position: relative
+		background: weaker($base-background, 5%)
+
+		#nav-top
+			background: stronger($base-background, 5%)
+
+			.nav li
+				a
+					color: weaker($base-color, 15%)
+
+		//-------------------------------
+		//	main navigation
+		//-------------------------------
+		#nav
+			padding: 1rem
+			
+			.nav-toggle
+				float: left
+				margin-right: 1rem
+				font-size: 1.5rem
+				margin-bottom: 0
+			
+			.cart-toggle-top
+				font-size: 1.5rem
+
+			#logo
+				float: left
+				margin-right: 1rem
+				display: block
+				max-width: 260px
+				transition: all $base-transition-duration * 2
+				
+				img
+					width: 100%
+				
+				@include breakpoint('l')
+					max-width: 200px
+
+				@include breakpoint('m')
+					max-width: 140px
+
+				@include breakpoint('sm-')
+					max-width: 200px
+
+			ul.navigation
+				font-size: 1rem
+				float: left
+				margin-top: 12px + $base-logo-height
+				margin-right: 1rem
+				transition: all $base-transition-duration * 2
+				
+				> li.heading, > li > a
+					text-transform: uppercase
+
+
+				@include breakpoint('l')
+					margin-top: 6px + $base-logo-height
+
+				@include breakpoint('m')
+					margin-top: 0px + $base-logo-height
+					margin-right: 0
+			
+
+				@include breakpoint('sm-')
+					border-top: 1px solid $base-border-color
+					clear: both
+					float: left
+					width: 100%
+					padding: 0
+					margin-right: 0
+					margin-top: 0
+					background: stronger($base-background, 10%)
+
+					li
+						clear: both
+						width: 100%
+
+					> li
+						&.heading
+							padding-left: 0
+
+						&:not(:last-child)
+							border-bottom: 1px solid $base-border-color
+
+						> a
+							background: stronger($base-background, 10%)
+							font-size: 1.2rem
+							padding: 0.8rem
+
+						> a.current
+							background: $color-primary
+							color: stronger($base-background, 20%)
+
+						.nav-dropdown
+							padding-left: 1rem
+		
+				.nav-dropdown
+					@include breakpoint('m+')
+						padding-left: 0 !important
+						padding: 1rem
+						width: 100%
+						position: absolute
+						z-index: 50
+						top: 100%
+						left: 0px
+						background: weaker($base-background, 4%)
+						border-top: 1px solid $base-border-color
+						border-bottom: 1px solid $base-border-color
+						box-shadow: 0px 6px 11px 0px rgba(0,0,0,0.3)
+						transition: all $base-transition-duration * 2
+						opacity: 0
+						pointer-events: none
+
+						&.visible
+							opacity: 1
+							pointer-events: auto
+					
+					@include breakpoint('sm-')
+						.nav
+							padding-left: 1rem
+
+					ul.nav
+						li a
+							padding: 0.1rem 0.4rem
+			
+			.nav-extra
+				float: right
+
+				@include breakpoint('sm-')
+					float: left
+					width: 100%
+					border-top: 1px solid $base-border-color
+					padding: 1rem
+
+			#search
+				float: left
+				margin-top: 10px + $base-logo-height
+				transition: all $base-transition-duration * 2
+				
+				input[name="terms"]
+					width: 100px
+					height: 34px
+					transition: all $base-transition-duration * 2
+
+					&:focus
+						width: 160px
+						transition: all $base-transition-duration * 2
+				
+				input[type="reset"]
+					display: none
+
+				.buttons
+					display: inline
+				
+				@include breakpoint('l')
+					margin-top: 6px + $base-logo-height
+
+				@include breakpoint('m')
+					display: none
+					position: absolute
+					margin-top: 8px + $base-logo-height
+					top: 100%
+					left: 0px
+					width: 100%
+					background: weaker($base-background, 4%)
+					text-align: center
+					padding: 2rem
+					border-bottom: 1px solid $base-border-color
+					
+					&.visible
+						display: block
+
+					input[name="terms"], input[name="terms"]:focus
+						width: 50%
+
+					input[type="submit"], input[type="reset"]
+						font-size: 1.2rem
+						padding: 0.8rem 1.2rem
+
+				@include breakpoint('sm-')
+					margin-top: 0
+
+			.search-and-cart
+				float: left
+				margin-top: 16px + $base-logo-height
+				margin-left: 1rem
+				transition: all $base-transition-duration * 2
+
+				@include breakpoint('m')
+					margin-top: 6px + $base-logo-height
+					margin-left: 0
+
+				@include breakpoint('sm-')
+					display: none
+					margin: 0
+
+			.cart-toggle
+				float: left
+				margin-top: 11px + $base-logo-height
+				margin-left: 1rem
+
+				@include breakpoint('l')
+					margin-top: 7px + $base-logo-height
+
+			.nav-contents
+				@include breakpoint('sm-')
+					float: left
+					width: 100%
+					height: 100%
+					clear: both
+					transition: all $base-transition-duration * 2
+					overflow: hidden
+
+					&:not(.visible)
+						display: none
+						transition: all $base-transition-duration * 2
+		
+		#cart
+			display: none
+			position: absolute
+			top: 100%
+			left: 0px
+			width: 100%
+			background: weaker($base-background, 4%)
+			padding: 2rem
+			border-bottom: 1px solid $base-border-color
+			transition: all $base-transition-duration * 2
+
+			&.visible
+				display: block
+
+	
+	#breadcrumbs
+		background: darken($base-background, 2%)
+		text-transform: uppercase;
+		font-size: 0.8rem
+
+		> .inner
+			padding: 0.4rem 1rem
+	
+	#alerts
+		> .alerts
+			.alert:first-child
+				margin-top: 1rem
+			.alert
+				margin-top: 1rem
+			.alert:last-child
+				margin-top: 0
+				margin-bottom: 1rem
+
+	#page
+		border-bottom: 1px solid stronger($base-border-color, 10%)
+		background: $base-background
+
+		> .inner
+			padding: 2rem 0rem
+	
+		#aside
+			> .inner
+				> .block
+					padding: 1rem
+					margin-bottom: 1rem
+					border-bottom: 1px solid $base-border-color
+
+
+		#article
+			> .inner
+				padding: 1rem
+
+	#footer
