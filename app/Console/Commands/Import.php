@@ -208,7 +208,7 @@ class Import extends Command {
 	protected function getOptions()
 	{
 		return [
-			['delete', null, InputOption::VALUE_OPTIONAL, '.', null],
+			//['download', null, InputOption::VALUE_OPTIONAL, 'download images from mystore', null],
 		];
 	}
 
