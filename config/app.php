@@ -145,7 +145,6 @@ return [
 		'Friluft\Providers\ConfigServiceProvider',
 		'Friluft\Providers\EventServiceProvider',
 		'Friluft\Providers\RouteServiceProvider',
-        'Friluft\Providers\DatatableServiceProvider',
 
         /*
          * Libs

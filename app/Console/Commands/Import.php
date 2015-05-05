@@ -40,6 +40,8 @@ class Import extends Command {
 
 	private $idMap = [];
 
+	private $imagesStartID = 1072;
+
 	/**
 	 * Create a new command instance.
 	 */
@@ -78,6 +80,7 @@ class Import extends Command {
 	private function importProducts() {
 		$page = 1;
 		$products = Mystore::products($page);
+		$imageID = 1072;
 		while(count($products) > 0) {
 			foreach($products as $product) {
 				$p = new Product();
@@ -99,7 +102,27 @@ class Import extends Command {
 
 				$p->save();
 
+				# get the images for this product
+				$images = [];		# array of image paths (relative to public/images/products)
+				foreach(glob(public_path() .'/images/products/product_' .$imageID .'_image_*') as $img) {
+					$info = pathinfo($img);
+					$images[] = $info['basename'];
+				}
+
+				# save the images array on the model as JSON.
+				$p->images = $images;
+
+				# save it again
+				$p->save();
+
+				//sync categories
+				$p->categories()->sync($catids);
+
+				//increment the imagesID for the next product
+				$imageID++;
+				
 				# download the images from mystore
+				/*
 				$i = 0;
 				$images = [];
 				if (isset($product['products_images']) && is_array($product['products_images'])) {
@@ -129,16 +152,8 @@ class Import extends Command {
 
 						$i++;
 					}
-				}
+				}*/
 
-				# save the images array on the model as JSON.
-				$p->images = $images;
-
-				# save it again
-				$p->save();
-
-				//set categories
-				$p->categories()->sync($catids);
 			}
 			$page++;
 			$products = Mystore::products($page);
@@ -160,7 +175,7 @@ class Import extends Command {
 		    DB::table('category_product')->delete();
 
 		    $this->comment('Deleting product images...');
-		    array_map('unlink', glob(public_path() .'/images/products/*'));
+		    //array_map('unlink', glob(public_path() .'/images/products/*'));
 
 		    $this->comment('Ok.');
 		}

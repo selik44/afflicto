@@ -7,7 +7,6 @@ use Friluft\Product;
 use Illuminate\Http\Request;
 use Input;
 use Redirect;
-use Datatable;
 use Carbon\Carbon;
 
 class ProductsController extends Controller {
@@ -20,6 +19,7 @@ class ProductsController extends Controller {
 	public function index($page = 1, $column = 'id', $direction = 'asc')
 	{
 
+		/*
 		$table = Datatable::make('products', 'Friluft\Product', [
 			'id' => '#',
 			'name' => 'Name',
@@ -45,7 +45,9 @@ class ProductsController extends Controller {
 			$c = new Carbon($row['updated_at']);
 			return $c->diffForHumans();
 		});
-
+		*/
+		
+		return 'products.index :)';
 		return $this->view('admin.products_index')->with('table', $table->display());
 	}
 

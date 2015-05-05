@@ -9,3 +9,4 @@ Built on Laravel 5, levereging GentleStyle SASS Framework.
 - Leverage Request objects.
 - Implement Shopping cart, user management, klarna etc.
 - Refactor the Datatable class to make use of Eloquent.
+- !! Move the Mystore API key out of the code and into .env

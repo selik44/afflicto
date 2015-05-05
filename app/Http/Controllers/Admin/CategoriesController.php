@@ -3,7 +3,6 @@
 use Illuminate\Http\Request;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
-use Friluft\Utils\Datatable;
 use Friluft\Category;
 use Input;
 use DB;
@@ -17,22 +16,7 @@ class CategoriesController extends Controller {
 	 */
 	public function index($page = 1, $column = 'id', $direction = 'asc')
 	{
-		$table = Datatable::make('categories', 'Friluft\Category', [
-			'id' => '#',
-			'name' => 'Name',
-			'slug' => 'Slug',
-			'parent_id' => 'Parent',
-		]);
-
-		$table->option('url', url() .'/admin/categories/{page}/{column}/{direction}');
-		$table->paginate(15, $page);
-
-		$table->sort(['id', 'name', 'slug', 'parent'], $column, $direction);
-
-		$table->destroyable('admin/categories/destroy/{id}');
-		$table->editable('admin/categories/edit/{id}');
-
-		return $this->view('admin.categories_index')->with('table', $table->display());
+		return 'admin.categories.index :)';
 	}
 
 
