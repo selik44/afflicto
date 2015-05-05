@@ -41,14 +41,14 @@ class DatabaseSeeder extends Seeder {
 			'lastname' => 'Thowsen',
 			'email' => 'me@afflicto.net',
 			'password' => bcrypt('kake'),
-			'role_id' => 2,
+			'role_id' => Role::where('name', '=', 'admin')->first()->id,
 		]);
 
 		User::create([
 			'firstname' => 'John',
 			'lastname' => 'Doe',
 			'email' => 'john@johndoe.com',
-			'role_id' => 1,
+			'role_id' => Role::where('name', '=', 'user')->first()->id,
 			'password' => bcrypt('kake'),
 		]);
 
@@ -59,13 +59,13 @@ class DatabaseSeeder extends Seeder {
 		Store::create([
 			'machine' => 'friluft',
 			'name' => '123Friluft',
-			'url' => '123friluft.dev',
+			'url' => getenv('STORE_FRILUFT_URL'),
 		]);
 
 		Store::create([
 			'machine' => 'highpulse',
 			'name' => 'Highpulse',
-			'url' => 'highpulse.dev',
+			'url' => getenv('STORE_HIGHPULSE_URL'),
 		]);
 	}
 

@@ -15,8 +15,13 @@ class StoreDetector {
 	public function handle($request, Closure $next)
 	{
 		$serverName = strtolower($_SERVER['SERVER_NAME']);
-		Store::setCurrentStore($serverName);
-		return $next($request);
+		$store = Store::where('url', '=', $serverName)->first();
+		if ($store) {
+			Store::setCurrentStore($store);
+			return $next($request);
+		}else {
+			throw new Exception("Store not found for server_name: " .$serverName ."!", 1);
+		}
 	}
 
 }

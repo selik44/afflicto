@@ -10,8 +10,8 @@ class Store extends Model {
 
 	private static $currentStore = null;
 
-	public static function setCurrentStore($name) {
-		static::$currentStore = Store::where('url', '=', $name)->first();
+	public static function setCurrentStore(Store $store) {
+		static::$currentStore = $store;
 	}
 
 	public static function current() {
