@@ -29,6 +29,13 @@ class Product extends Model {
 			'model' => 20,
 		],
 	];
+
+	/**
+	 * This is the full path to this product which includes the entire depth of the category tree.
+	 * It's stored here as a simple "cache" mechanism, for performance reasons.
+	 *
+	 */
+	public $path = null;
 	
 	public function scopeEnabled($query) {
 		return $query->where('enabled', '=', '1');
@@ -50,12 +57,16 @@ class Product extends Model {
 	}
 
 	public function getPath() {
-		$parent = $this->categories()->first();
-		if ($parent) {
-			return $parent->getPath() .'/' .$this->slug;
+		if (!isset($this->path)) {
+			$parent = $this->categories()->first();
+			if ($parent) {
+				$this->path = $parent->getPath() .'/' .$this->slug;
+			}
+
+			$this->path = $this->slug;
 		}
 
-		return $this->slug;
+		return $this->path;
 	}
 
 	public function getImagePath($index = 0) {

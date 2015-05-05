@@ -52,26 +52,29 @@
 		</div>
 	</header>
 	
-	<div id="breadcrumbs">
-		<div class="inner">
-			@yield('breadcrumbs')
+	@if(isset($slider) && $slider)
+		<div id="slider" class="clearfix">
+			<div class="inner clearfix">
+				@yield('slider')
+			</div>
 		</div>
-	</div>
+	@endif
+
+	@if(!isset($breadcrumbs) || $breadcrumbs == true)
+		<div id="breadcrumbs">
+			<div class="inner">
+				@yield('breadcrumbs')
+			</div>
+		</div>
+	@endif
 	
 	<div id="alerts">
 		@include('partial.alerts')
 	</div>
+	
 
 	<div id="page" class="clearfix">
 		<div class="inner clearfix">
-				<?php
-					$c = (isset($aside) && $aside) ? 'col-m-8 col-l-9' : '';
-				?>
-				<article id="article" class="tight {{$c}}">
-					<div class="inner">
-						@yield('article')
-					</div>
-				</article>
 
 				@if(isset($aside) && $aside)
 					<hr class="hidden-m-up">
@@ -83,6 +86,15 @@
 						</div>
 					</aside>
 				@endif
+
+				<?php
+					$c = (isset($aside) && $aside) ? 'col-m-8 col-l-9' : '';
+				?>
+				<article id="article" class="tight {{$c}}">
+					<div class="inner">
+						@yield('article')
+					</div>
+				</article>
 		</div>
 	</div>
 

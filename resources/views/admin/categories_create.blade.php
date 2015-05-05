@@ -6,7 +6,8 @@
 
 @section('page')
 	<h2>New Category</h2>
-	<form class="vertical" action="{{url('admin/categories/store')}}" method="post">
+	<form class="vertical" action="{{url('admin/categories')}}" method="POST">
+		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<label for="name">Name <span class="color-error">*</span>
 			<input type="text" name="name" maxlength="255" required>
 		</label>
@@ -16,7 +17,7 @@
 		</label>
 
 		<label for="parent">Parent
-			<select id="categories-select" name="parent">
+			<select id="categories-select" name="parent_id">
 				<option value="null">None</option>
 				@foreach($categories as $cat)
 					<option value="{{$cat->id}}">{{$cat->name}}</option>

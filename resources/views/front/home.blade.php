@@ -1,11 +1,37 @@
 @extends('front.layout')
 
+
 @section('breadcrumbs')
 	{!! Breadcrumbs::render('home') !!}
 @stop
 
+
+@section('slider')
+	<div class="slider">
+		<div class="container">
+			<div style="background-image: url('{{asset('/images/slides/highpulse_compression.jpg')}}');" class="slide"></div>
+			<div style="background-image: url('{{asset('/images/slides/neon_compression.jpg')}}');" class="slide"></div>
+		</div>
+	</div>
+@stop
+
+
+@section('scripts')
+	@parent
+
+	<script>
+		$("#slider .slider").friluftSlider({
+			delay: 4000,
+			transitionSpeed: 600,
+			autoHeight: true,
+			heightRatio: 7 / 16,
+		});
+	</script>
+@stop
+
+
 @section('article')
-	<h2>Welcome to <?=Friluft\Store::current()->name?>.no</h2>
+	<h2>@lang('store.welcome') <?=Friluft\Store::current()->name?></h2>
 	<p class="lead">
 		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non incidunt commodi ab doloribus aliquid distinctio enim at ex, optio quis blanditiis facere velit. Eius facilis quas, at unde ratione, cumque excepturi. Veritatis error delectus eum saepe vitae explicabo eius, porro.
 	</p>

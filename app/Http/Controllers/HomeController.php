@@ -4,7 +4,11 @@ class HomeController extends Controller {
 
 	public function index()
 	{
-		return $this->view('front.home');
+		return $this->view('front.home')
+			->with([
+				'slider' => true,
+				'breadcrumbs' => false,
+			]);
 	}
 
 }

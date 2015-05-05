@@ -19,6 +19,8 @@ class Navigation {
 		'Contact' => 'contact',
 	];
 
+	public $hideMenus = false;
+
 	/**
 	 * Make a new navigation instance, with items.
 	 */
@@ -60,8 +62,15 @@ class Navigation {
 
 		# build the string
 		$str = '<li class="' .$active .'">';
+			# get link
+			if ($path == '#') {
+				$link = $path;
+			}else {
+				$link = url($this->prefix .'/' .trim($path, '/'));
+			}
+
 			# a tag
-			$str .= '<a href="' .URL::to($this->prefix .'/' .trim($path, '/')) .'">';
+			$str .= '<a href="' .$link .'">';
 				# icon?
 				if ($icon != null) $str .= '<i class="fa ' .$icon .'"></i> ';
 

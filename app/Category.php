@@ -6,6 +6,8 @@ class Category extends Model {
 
 	protected $table = 'categories';
 
+	protected $fillable = ['name', 'slug', 'parent_id'];
+
 	public function getLevel() {
 		$level = 0;
 		$p = $this->parent;
@@ -15,6 +17,10 @@ class Category extends Model {
 		}
 
 		return $level;
+	}
+
+	public function scopeRoot($query) {
+		return $query->where('parent_id', '=', null);
 	}
 
 	public function getRoot() {
@@ -35,7 +41,12 @@ class Category extends Model {
 	public function nestedProducts() {
 		$array = [];
 
+		$path = $this->getPath();
+
 		foreach($this->products as $p) {
+			# help the model with calculating it's path
+			# otherwise, each model needs to traverse up to their root category.
+			$p->path = $path .'/' .$p->slug;
 			$array[$p->id] = $p;
 		}
 
@@ -82,7 +93,7 @@ class Category extends Model {
 
 		$path = trim($path, '/') .'/' .$this->slug;
 
-		if (\Request::is($path)) {
+		if (\Request::is($path .'*')) {
 			$classes[] = 'current';
 		}
 
@@ -98,7 +109,7 @@ class Category extends Model {
 		return \Request::is($this->getPath());
 	}
 
-	private function renderChildren($path = '/store', $levels = 0) {
+	private function renderChildren($path = '/store', $levels = 0, $children = null) {
 		$path = rtrim($path, '/') .'/' .$this->slug;
 
 		$classes = '';
@@ -107,14 +118,13 @@ class Category extends Model {
 		}
 
 		$str = '';
-		foreach($this->children as $item) {
+		foreach($this->children()->orderBy('order', 'asc')->get() as $item) {
 
 			$str .= '<li>';
 			$str .= $item->renderMenuItem($path);
 			
 			if ($levels > 0) {
-				$children = $item->children;
-				if (count($children) > 0) {
+				if ($item->children()->count() > 0) {
 					$str .= '<ul class="submenu ' .$classes .'">' .$item->renderChildren($path, $levels - 1) .'</ul>';
 				}
 			}
@@ -122,6 +132,24 @@ class Category extends Model {
 		}
 
 		return $str;
+	}
+
+	public function renderSortableList() {
+		$str = '<li data-id="' .$this->id .'">';
+		$str .= '<div class="item">';
+			$str .= '<div class="line"></div>';
+			$str .= '<span class="handle"><i class="fa fa-bars"></i></span>';
+			$str .= '<div class="info"><a class="name" href="' .url('admin/categories/edit/' .$this->id) .'">' .htmlentities($this->name) .'</a> <code class="slug" title="slug">' .htmlentities($this->slug) .'</code></div>';
+			$str .= '<span class="arrow"><i class="fa fa-chevron-up"></i></span>';
+		$str .= '</div>';
+
+		$str .= '<ul class="flat sortable"><div class="dummy-item"></div>';
+		foreach($this->children()->orderBy('order', 'asc')->get() as $child) {
+			$str .= $child->renderSortableList();
+		}
+		$str .= '</ul>';
+
+		return $str .'</li>';
 	}
 
 }

@@ -47,8 +47,8 @@ body.with-menu
 
 
 	//center the main components
-	#header, #page, #footer, #nav, #nav-top, .nav-dropdown, #breadcrumbs
-		> .inner:first-child
+	#header, #page, #footer, #nav, #nav-top, .nav-dropdown, #breadcrumbs, #slider
+		> .inner
 			margin: 0 auto
 			max-width: $base-width
 
@@ -276,6 +276,7 @@ body.with-menu
 		#cart
 			display: none
 			position: absolute
+			z-index: 10
 			top: 100%
 			left: 0px
 			width: 100%
@@ -305,6 +306,15 @@ body.with-menu
 			.alert:last-child
 				margin-top: 0
 				margin-bottom: 1rem
+	
+	#slider
+		> .inner
+			max-width: 1440px
+
+			.slider
+				border: none
+				border-radius: 0
+				height: 500px
 
 	#page
 		border-bottom: 1px solid stronger($base-border-color, 10%)
@@ -326,3 +336,7 @@ body.with-menu
 				padding: 1rem
 
 	#footer
+
+
+ul.nav.tabs
+	background: none

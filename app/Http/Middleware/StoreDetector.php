@@ -16,7 +16,6 @@ class StoreDetector {
 	{
 		$serverName = strtolower($_SERVER['SERVER_NAME']);
 		Store::setCurrentStore($serverName);
-
 		return $next($request);
 	}
 

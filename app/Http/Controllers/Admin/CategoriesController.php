@@ -5,6 +5,8 @@ use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Friluft\Utils\Datatable;
 use Friluft\Category;
+use Input;
+use DB;
 
 class CategoriesController extends Controller {
 
@@ -19,7 +21,7 @@ class CategoriesController extends Controller {
 			'id' => '#',
 			'name' => 'Name',
 			'slug' => 'Slug',
-			'parent' => 'Parent',
+			'parent_id' => 'Parent',
 		]);
 
 		$table->option('url', url() .'/admin/categories/{page}/{column}/{direction}');
@@ -33,6 +35,7 @@ class CategoriesController extends Controller {
 		return $this->view('admin.categories_index')->with('table', $table->display());
 	}
 
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -40,7 +43,7 @@ class CategoriesController extends Controller {
 	 */
 	public function create()
 	{
-		return $this->view('admin.categories_create')->with('categories', Category::all());
+		return $this->view('admin.categories_create')->with('categories', Category::orderBy('order', 'asc')->get());
 	}
 
 	/**
@@ -50,7 +53,7 @@ class CategoriesController extends Controller {
 	 */
 	public function store()
 	{
-		$category = new Category(Input::all());
+		$category = new Category(Input::only('name', 'slug', 'parent_id'));
 		$category->save();
 
 		if (Input::has('continue')) {
@@ -106,4 +109,29 @@ class CategoriesController extends Controller {
 		return Redirect::to('admin/categories')->with('success', 'Category deleted.');
 	}
 
+
+	public function tree() {
+		return $this->view('admin.categories_tree')->with('categories', Category::root()->get());
+	}
+
+	private function updateItem($item, $parent = null) {
+		DB::table('categories')
+			->where('id', '=', $item->id)
+			->update([
+				'parent_id' => $parent,
+				'order' => $item->order,
+			]);
+
+		foreach($item->children as $child) {
+			$this->updateItem($child, $item->id);
+		}
+	}
+
+	public function tree_update() {
+		$tree = json_decode(Input::get('tree'));
+		foreach($tree as $item) {
+			$this->updateItem($item, null);
+		}
+		return redirect('admin/categories/tree')->with('success', 'Categories updated!');
+	}
 }

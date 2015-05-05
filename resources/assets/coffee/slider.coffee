@@ -2,14 +2,19 @@
 	class FriluftSlider
 
 		defaults:
-			pingPong: off
+			pingPong: no
 			delay: 2000
 			transitionSpeed: 400
 
-			slideLinks: on
-			nextLink: off
-			prevLink: off
-			touchControls: off
+			slideLinks: yes
+			nextLink: no
+			prevLink: no
+			touchControls: yes
+
+			autoHeight: yes
+			heightRatio: 0.7
+			stopOnMouseEnter: no
+			startOnMouseLeave: no
 
 		constructor: (el, options) ->
 			@options = $.extend({}, @defaults, options)
@@ -23,6 +28,28 @@
 
 			if @options.slideLinks
 				@createSlideLinks()
+			
+			# reLayout on resize
+			$(window).resize _.debounce((() => @reLayout()), 30)
+
+			# stop on mouse enter?
+			if @options.stopOnMouseEnter
+				@$el.mouseenter () =>
+					@stop()
+
+			# stop on mouse leave?
+			if @options.startOnMouseLeave
+				@$el.mouseleave () =>
+					@start()
+
+			# initialize touch control?
+			if @options.touchControls is on
+				@$el.swipe
+					swipeStatus: @swipeStatus
+					swipeLeft: @swipeLeft
+					swipeRight: @swipeRight
+					threshold: 200
+
 
 			# relayout
 			@reLayout()
@@ -30,17 +57,44 @@
 			# start
 			@start()
 
-			# setup some event listeners
-			$(window).resize () =>
-				@reLayout()
+			return @
 
-			@$el.mouseenter () =>
+		swipeStatus: (event, phase, direction, distance, duration, fingers) =>
+			if phase is 'start'
+				# stop the interval
 				@stop()
 
-			@$el.mouseleave () =>
+				# stop animating
+				@$container.stop true, false
+
+				# set the initial swipe position
+				@initialSwipePosition = parseInt(@$container.css('left').replace(/[^-\d\.]/g, ''))
+				return
+			else if phase is 'cancel'
+				# slide back
+				@slide()
 				@start()
 
-			return @
+				return
+			else if phase is 'end'
+				# slide back
+				@slide()
+				@start()
+				return
+
+			left = @initialSwipePosition
+
+			if direction is 'left' then dist = -distance else dist = distance
+
+			# follow fingers!
+			@$container.css 'left': @initialSwipePosition + dist
+
+
+		swipeRight: (event, direction, distance, fingerCount, fingerData) =>
+			@goTo @currentIndex - 1
+
+		swipeLeft: (event, direction, distance, fingerCount, fingerData) =>
+			@goTo @currentIndex + 1
 
 		createSlideLinks: ->
 			self = @
@@ -62,7 +116,6 @@
 				self.goTo($(this).attr('data-id'))
 
 		goTo: (index) ->
-			console.log 'going to ' + index
 			@currentIndex = index
 			@updateIndex()
 			@setCurrentSlideLink()
@@ -106,16 +159,25 @@
 
 			return @
 
-		slide: ->
+		slide: (speed = @options.transitionSpeed) ->
 			left = -@$el.width() + (@$el.width() * @currentIndex)
 
-			@$container.animate {
+			@$container.stop(true, false).animate {
 					left: '-' + left
-				}, @options.transitionSpeed
+				}, speed
 			
 		reLayout: ->
 			# set the width of each slide to the slider width
 			@$slides.css 'width', @$el.width()
+
+
+			# autoHeight?
+			if @options.autoHeight
+				width = @$el.width()
+				height = width * @options.heightRatio
+				@$el.css 'height', height
+
+			@slide(0)
 
 
 	# Define the plugin

@@ -1,4 +1,32 @@
+<div class="products-grid-options clearfix">
+	<div class="col-xs-2 filter-header tight-left tight-vertical">
+		<h5>Filter:</h5>
+	</div>
+	
+	<div class="col-xs-10 filters tight-right tight-vertical">
+		<div class="col-xs-6 filter-price">
+			<div class="price-slider"></div>
+		</div>
+
+		<div class="col-xs-6 filter-attribute">
+			
+		</div>
+	</div>
+	
+</div>
+
+<hr>
+
 <div class="products-grid">
+	<?php
+		$mostExpensive = 0;
+		foreach($products as $product) {
+			if ($product->price > $mostExpensive) {
+				$mostExpensive = $product->price;
+			}
+		}
+	?>
+
 	@foreach($products as $product)
 		<div class="product">
 			<?php
@@ -7,12 +35,16 @@
 					$img = '';
 				}
 
-				$link = url(\Request::path() .'/' .$product->slug);
+				$link = url($product->getPath());
 			?>
 			<div class="preview">
 				<a href="{{$link}}" style="background-image: url('{{$img}}');" class="image">
 				</a>
-				<button data-product-id="{{{$product->id}}}" class="button large primary quick-peek end"><i class="fa fa-search"></i> @lang('Quick Peek')</button>
+				<div class="overlay">
+					<button data-product-id="{{{$product->id}}}" class="button large primary quick-peek end">
+						<i class="fa fa-search"></i> @lang('Quick Peek')
+					</button>
+				</div>
 			</div>
 
 			<hr class="divider shadow">
@@ -43,6 +75,16 @@
 	@parent
 
 	<script type="text/javascript">
+		// initialize filtering
+		var options = $(".products-grid-options");
+		options.find('.filter-price .price-slider').noUiSlider({
+			start: [0, {{$mostExpensive}}],
+			range: {
+				min: 0, 
+				max: {{$mostExpensive}},
+			},
+		});
+
 		// initialize isotope
 		imagesLoaded(document.querySelector('.products-grid'), function() {
 			$(".products-grid").isotope({

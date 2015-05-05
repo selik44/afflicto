@@ -1,117 +1,120 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
-
 use Friluft\Category;
 use Friluft\Product;
 
-#Session::flash("success", "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem, doloribus!");
+$languages = ['en', 'no', 'se'];
 
-/*---------------------------
-*	Front routes
-*--------------------------*/
-Route::get('/', 'HomeController@index');
+$locale = Request::segment(1);
 
-Route::controllers([
-	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
-]);
+if (in_array($locale, $languages)) {
+	App::setLocale($locale);
+}else {
+	$locale = '';
+}
 
 
-
-/*---------------------------
-*	Search route
-*--------------------------*/
-Route::get('search', function() {
-
-	if (Input::has('terms')) {
-		return view('front.search')
-			->with([
-				'products' => Product::enabled()->search(Input::get('terms'))->get(),
-				'aside' => true
-			]);
-	}
-
-	return redirect('search')->with('error', 'A search term is required!');
+Route::get('/', function() {
+	return 'hello world';
 });
 
+Route::group(['prefix' => $locale], function() {
 
+	# home
+	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
-Route::get('html/product/{product}', function($product) {
-	return view('front.partial.product_modal')->with('product', $product);
-});
-
-
-
-/*---------------------------
-*	Store
-*--------------------------*/
-Route::get('store/{path}', function($path) {
-	$path = explode('/', $path);
-	$slug = array_pop($path);
-
-	$cat = Category::where('slug', '=', $slug)->first();
-
-	if ($cat) {
-		return view('front.store_category')->with('category', $cat)->with('aside', true);
-	}
-
-	$product = Product::where('slug', '=', $slug)->first();
-
-	if ($product) {
-		$slug = array_pop($path);
 		
-		if ($slug) {
-			$category = Category::where('slug', '=', $slug)->first();
+	# auth
+	Route::controllers([
+		'auth' => 'Auth\AuthController',
+		'password' => 'Auth\PasswordController',
+	]);
+
+
+	# search
+	Route::get('search', ['as' => 'search', function() {
+
+		if (Input::has('terms')) {
+			return view('front.search')
+				->with([
+					'products' => Product::enabled()->search(Input::get('terms'))->get(),
+					'aside' => true
+				]);
 		}
 
-		return view('front.store_product')
-			->with([
-				'category' => $category,
-				'product' => $product,
-				'aside' => true
-			]);
-	}
-
-	abort(404);
-
-})->where('path', '[a-z0-9/-]+');
+		return redirect('search')->with('error', 'A search term is required!');
+	}]);
 
 
+	Route::get('html/product/{product}', ['as' => 'html.product', function($product) {
+		return view('front.partial.product_modal')->with('product', $product);
+	}]);
 
 
-/*---------------------------
-*	Admin routes
-*--------------------------*/
-Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
+	# store
+	Route::get('store/{path}', ['as' => 'store', function($path) {
+		$path = explode('/', $path);
+		$slug = array_pop($path);
 
-	Route::get('/', function() {
-		return redirect('admin/dashboard');
+		$cat = Category::where('slug', '=', $slug)->first();
+
+		if ($cat) {
+			return view('front.store_category')->with('category', $cat)->with('aside', true);
+		}
+
+		$product = Product::where('slug', '=', $slug)->first();
+
+		if ($product) {
+			$slug = array_pop($path);
+			
+			if ($slug) {
+				$category = Category::where('slug', '=', $slug)->first();
+			}
+
+			return view('front.store_product')
+				->with([
+					'category' => $category,
+					'product' => $product,
+					'aside' => true
+				]);
+		}
+
+		abort(404);
+
+	}])->where('path', '[a-z0-9/-]+');
+
+
+
+
+	/*---------------------------
+	*	Admin routes
+	*--------------------------*/
+	Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
+
+		Route::get('/', ['as' => 'admin', function() {
+			return redirect('admin/dashboard');
+		}]);
+
+		Route::get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'Admin\DashboardController@index']);
+
+		# Products
+		Route::get('products/show/{id}', ['as' => 'admin.products.show', 'uses' => 'Admin\ProductsController@show']);
+		Route::get('products/create', ['as' => 'admin.products.create', 'uses' => 'Admin\ProductsController@create']);
+		Route::post('products', ['as' => 'admin.products.store', 'uses' => 'Admin\ProductsController@store']);
+		Route::get('products/destroy/{id}', ['as' => 'admin.products.destroy', 'uses' => 'Admin\ProductsController@destroy']);
+		Route::get('products/{page?}/{column?}/{direction?}', ['as' => 'admin.products', 'uses' => 'Admin\ProductsController@index']);
+
+		# Categories
+		Route::get('categories/tree', ['as' => 'admin.categories.tree', 'uses' => 'Admin\CategoriesController@tree']);
+		Route::put('categories/tree', ['as' => 'admin.categories.tree_update', 'uses' => 'Admin\CategoriesController@tree_update']);
+
+		
+
+		Route::get('categories/show/{id}', ['as' => 'admin.categories.show', 'uses' => 'Admin\CategoriesController@show']);
+		Route::get('categories/create', ['as' => 'admin.categories.create', 'uses' => 'Admin\CategoriesController@create']);
+		Route::post('categories', ['as' => 'admin.categories.store', 'uses' => 'Admin\CategoriesController@store']);
+		Route::get('categories/destroy/{id}', ['as' => 'admin.categories.destroy', 'uses' => 'Admin\CategoriesController@destroy']);
+		Route::get('categories/{page?}/{column?}/{direction?}', ['as' => 'admin.categories', 'uses' => 'Admin\CategoriesController@index']);
+		
 	});
-
-	Route::get('dashboard', 'Admin\DashboardController@index');
-
-	# Products
-	Route::get('products/{page?}/{column?}/{direction?}', 'Admin\ProductsController@index');
-	Route::get('products/show/{id}', 'Admin\ProductsController@show');
-	Route::get('products/create', 'Admin\ProductsController@create');
-	Route::post('products', 'Admin\ProductsController@store');
-	Route::get('products/destroy/{id}', 'Admin\ProductsController@destroy');
-
-	# Categories
-	Route::get('categories/{page?}/{column?}/{direction?}', 'Admin\CategoriesController@index');
-	Route::get('categories/show/{id}', 'Admin\CategoriesController@show');
-	Route::get('categories/create', 'Admin\CategoriesController@create');
-	Route::post('categories', 'Admin\CategoriesController@store');
-	Route::get('categories/destroy/{id}', 'Admin\CategoriesController@destroy');
-	
 });

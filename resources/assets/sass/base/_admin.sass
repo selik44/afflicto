@@ -5,6 +5,9 @@ $headerHeight: 40px
 html,body, #admin
 	height: 100%
 
+body
+	background: $base-background
+
 #admin
 	#header
 		height: $headerHeight
@@ -26,6 +29,16 @@ html,body, #admin
 		left: 0px
 		background: stronger($base-background, 5%)
 		border-right: 1px solid weaker($base-border-color, 10%)
+
+		#navigation
+			li
+				a
+
+			//submenus
+			> li > ul
+				display: none
+
+
 
 	#page
 		background: $base-background
@@ -61,6 +74,96 @@ html,body, #admin
 			padding-right: 10px;
 			padding-top: 10px;
 			padding-bottom: 10px;
+	
+	.categories-tree
+		
+		//------ROOT------//
+		> ul.sortable
+			background: none !important
+			overflow: hidden
+			float: left
+			width: 100%
+			border: none !important
+			padding: 1rem
+			margin: 0
+
+			> li
+				margin-left: 0 !important
+
+				> .item
+					> .line
+						display: none
+
+		ul.sortable
+			@extend .clearfix
+			background: weaker($base-background, 5%)
+			border-left: 1px solid weaker($base-border-color, 3%)
+			
+			//the dummy item
+			.dummy-item
+				height: 2rem
+			
+			//list item
+			li
+				margin-left: 2rem
+				transition: all 400ms
+
+				&:not(.visible)
+					margin-bottom: 2rem
+
+				&.visible > .item
+					background-color: stronger($base-background, 5%)
+
+				.item
+					position: relative
+					background-color: weaker($base-background, 3%)
+					border: 1px solid $base-border-color
+					padding: 1rem
+					width: 100%
+					@extend .clearfix
+	
+					//horizontal branch line
+					.line
+						position: absolute
+						left: -2rem
+						width: 2rem
+						height: 1px
+						top: 50%
+						background-color: weaker($base-border-color, 3%)
+
+					.handle
+						float: left
+						margin-right: 1rem
+						font-size: 1.4rem
+						color: $base-color
+						cursor: move
+
+						&:hover
+							color: $color-primary
+
+					.info
+						float: left
+						.name
+							margin-right: 1rem
+	
+					.arrow
+						float: right
+						font-size: 1.4rem
+						color: $base-color
+						cursor: pointer
+
+						&:hover
+							color: $color-primary
+					
+				ul.sortable
+					margin-left: 2rem
+			
+			//placeholder
+			.sortable-placeholder
+				border: 2px dotted $color-primary
+				@extend .clearfix
+			
+
 
 
 

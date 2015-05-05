@@ -20,10 +20,14 @@ gulp.task 'scripts', ->
 	jsFiles = gulp
 		.src [
 			'resources/assets/vendor/jquery/dist/jquery.min.js'
+			'resources/assets/vendor/underscore/underscore-min.js'
+			'resources/assets/vendor/jquery-touchswipe/jquery.touchSwipe.min.js'
 			'resources/assets/vendor/isotope/dist/isotope.pkgd.min.js'
 			'resources/assets/vendor/isotope-packery/packery-mode.pkgd.min.js'
 			'resources/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js'
+			'resources/assets/vendor/nouislider/distribute/jquery.nouislider.all.min.js'
 			'resources/assets/vendor/chosen/chosen.jquery.min.js'
+			'resources/assets/vendor/html.sortable/dist/html.sortable.min.js'
 			'node_modules/@afflicto/gentlestyle/dist/gentlestyle.js'
 		]
 
