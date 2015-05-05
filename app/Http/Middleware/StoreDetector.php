@@ -14,7 +14,7 @@ class StoreDetector {
 	 */
 	public function handle($request, Closure $next)
 	{
-		$serverName = strtolower($_SERVER['SERVER_NAME']);
+		$serverName = strtolower($_SERVER['HTTP_HOST']);
 		$store = Store::where('url', '=', $serverName)->first();
 		if ($store) {
 			Store::setCurrentStore($store);
