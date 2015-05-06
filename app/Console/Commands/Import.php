@@ -167,21 +167,17 @@ class Import extends Command {
 	 */
 	public function fire()
 	{
-		$opts = $this->getOptions();
-		if (in_array('delete', $opts[0])) {
+		if ($this->confirm('delete all categories and products?')) {
 			$this->comment('Truncating "categories" and "products" table...');
 		    DB::table('categories')->delete();
 		    DB::table('products')->delete();
 		    DB::table('category_product')->delete();
-
-		    $this->comment('Deleting product images...');
-		    //array_map('unlink', glob(public_path() .'/images/products/*'));
-
-		    $this->comment('Ok.');
-		}
+	    	$this->comment('Ok.');
+	    }
 
         $this->comment('Importing categories...');
         $this->importCategories();
+        $this->comment('Ok.');
 
         $this->comment('Importing products...');
         $this->importProducts();
