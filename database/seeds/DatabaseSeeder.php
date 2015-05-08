@@ -17,9 +17,6 @@ class DatabaseSeeder extends Seeder {
 	public function run()
 	{
 		Model::unguard();
-		DB::delete('delete from stores');
-		DB::delete('delete from roles');
-		DB::delete('delete from users');
 
 		/*---------------------------
 		*	Roles
@@ -40,18 +37,17 @@ class DatabaseSeeder extends Seeder {
 			'firstname' => 'Petter',
 			'lastname' => 'Thowsen',
 			'email' => 'me@afflicto.net',
-			'password' => bcrypt('kake'),
+			'password' => bcrypt(str_random(20)),
 			'role_id' => Role::where('name', '=', 'admin')->first()->id,
 		]);
 
 		User::create([
-			'firstname' => 'John',
-			'lastname' => 'Doe',
-			'email' => 'john@johndoe.com',
-			'role_id' => Role::where('name', '=', 'user')->first()->id,
-			'password' => bcrypt('kake'),
+			'firstname' => 'David',
+			'lastname' => 'Thowsen',
+			'email' => 'david@123friluft.no',
+			'password' => bcrypt(str_random(20)),
+			'role_id' => Role::where('name', '=', 'admin')->first()->id,
 		]);
-
 
 		/*---------------------------
 		*	Stores

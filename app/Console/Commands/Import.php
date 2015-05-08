@@ -102,11 +102,7 @@ class Import extends Command {
 				$p->save();
 
 				# get the images for this product
-				$images = [];		# array of image paths (relative to public/images/products)
-				foreach(glob(public_path() .'/images/products/product_' .$imageID .'_image_*') as $img) {
-					$info = pathinfo($img);
-					$images[] = $info['basename'];
-				}
+				$images = [];
 								
 				# download the images from mystore
 				$i = 0;
