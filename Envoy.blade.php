@@ -2,6 +2,7 @@
 
 @task('staging', ['on' => 'staging'])
     cd /usr/share/nginx/html
+    git reset --hard
     git pull origin master
     composer update
     php artisan migrate
