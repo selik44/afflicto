@@ -20,7 +20,7 @@ class Field extends Model {
 		$options = $this->options;
 
 		if ($this->type == 'textfield') {
-			$str .= '<input type="text" name="' .$name .'" value="' .$value .'">'
+			$str .= '<input type="text" name="' .$name .'" value="' .$value .'">';
 		}
 		else if ($this->type == 'dropdown') {
 			$str .= '<select name="' .$name .'">';

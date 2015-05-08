@@ -43,8 +43,6 @@
 		var sortable = $(".categories-tree ul.sortable");
 		var form = $("#categories-save-form");
 
-
-
 		//init form
 		$('.save-tree-button').click(function(e) {
 			var serialize = function(ul) {

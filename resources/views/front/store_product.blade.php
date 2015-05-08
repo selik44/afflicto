@@ -25,9 +25,9 @@
 		</div>
 
 		<div class="product-actions col-l-4 col-m-5 col-sm-6 tight-right">
-			<h3>Buy</h3>
-			<form class="vertical" action="{{url('cart/add')}}" method="POST">
-				<input type="hidden" name="_method" value="PUT">
+			<h3>kr {{$product->price}},-</h3>
+
+			<form class="vertical" action="{{url('cart')}}" method="POST">
 				<input type="hidden" name="_token" value="{{csrf_token()}}">
 
 				<input type="hidden" name="product_id" value="{{$product->id}}">

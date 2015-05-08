@@ -48,7 +48,9 @@
 		</nav>
 
 		<div id="cart">
-			@include('front.partial.cart')
+			<div class="inner">
+				@include('front.partial.cart', ['items' => Cart::getItemsWithModels(true), 'total' => Cart::getTotal()])
+			</div>
 		</div>
 	</header>
 	
@@ -181,12 +183,11 @@
 			}
 		});
 
-
 		$("[data-hide='#search']").click(function() {
 			search.removeClass('visible');
 		});
 
-		$("[data-hide='#search']").click(function() {
+		$("[data-show='#search']").click(function() {
 			search.addClass('visible');
 			cart.removeClass('visible');
 		});

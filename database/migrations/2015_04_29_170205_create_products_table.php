@@ -16,6 +16,7 @@ class CreateProductsTable extends Migration {
 		{
 			$t->increments('id');
 			$t->timestamps();
+			$t->softDeletes();
 			$t->string('name');
 			$t->string('brand');
 			$t->string('model');

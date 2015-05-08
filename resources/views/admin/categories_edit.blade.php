@@ -1,32 +1,35 @@
 @extends('admin.layout')
 
 @section('title')
-	Edit - @parent
+	{{$category->name}} - Categories - @parent
 @stop
 
 @section('page')
 	<h2 class="end">Categories</h2>
-	@if($edit)
-		<h2 class="subtitle">{{{$category->name}}}</h2>
-	@else
-		<h2 class="subtitle"></h2>
-	@endif
+	<h4 class="subtitle">{{{$category->name}}}</h4>
+
+	<hr>
 	
-	<form class="vertical" action="{{url('admin/categories')}}" method="POST">
+	<form class="vertical" action="{{route('admin.categories.update', $category)}}" method="POST">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
+		<input type="hidden" name="_method" value="PUT">
 		<label for="name">Name <span class="color-error">*</span>
-			<input type="text" name="name" maxlength="255" required>
+			<input type="text" name="name" value="{{$category->name}}" maxlength="255" required>
 		</label>
 
 		<label for="slug">Slug <span class="color-error">*</span>
-			<input type="text" name="slug" maxlength="255" required>
+			<input type="text" name="slug" value="{{$category->value}}" maxlength="255" required>
 		</label>
 
 		<label for="parent">Parent
 			<select id="categories-select" name="parent_id">
 				<option value="null">None</option>
 				@foreach($categories as $cat)
-					<option value="{{$cat->id}}">{{$cat->name}}</option>
+					@if($category->parent != null && $category->parent->id == $cat->id)
+						<option selected value="{{$cat->id}}">{{$cat->name}}</option>
+					@else
+						<option value="{{$cat->id}}">{{$cat->name}}</option>
+					@endif
 				@endforeach
 			</select>
 		</label>
@@ -36,8 +39,7 @@
 		<footer id="footer">
 			<div class="inner">
 				<div class="button-group">
-					<input type="submit" class="primary" name="create" value="Create">
-					<input type="submit" class="secondary" name="continue" value="Create & Continue">
+					<input type="submit" class="primary" value="Save">
 				</div>
 			</div>
 		</footer>

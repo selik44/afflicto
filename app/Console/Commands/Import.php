@@ -51,7 +51,7 @@ class Import extends Command {
 	}
 
 	private function importCategories() {
-		//create categories
+		# create categories
 		$cats = Mystore::categories();
 		foreach($cats as $cat) {
 			$c = new Category();
@@ -65,9 +65,9 @@ class Import extends Command {
 
 		$this->comment('Creating relationships...');
 		foreach($cats as $cat) {
-			//is this a child?
+			# is this a child?
 			if ($cat['type'] == 'child') {
-				//get the category model
+				# get the category model
 				$model = Category::find($this->idMap[$cat['id']]);
 				$model->parent()->associate(Category::find($this->idMap[$cat['parent']]));
 				$model->save();
@@ -80,7 +80,6 @@ class Import extends Command {
 	private function importProducts() {
 		$page = 1;
 		$products = Mystore::products($page);
-		$imageID = 1072;
 		while(count($products) > 0) {
 			foreach($products as $product) {
 				$p = new Product();
@@ -108,21 +107,8 @@ class Import extends Command {
 					$info = pathinfo($img);
 					$images[] = $info['basename'];
 				}
-
-				# save the images array on the model as JSON.
-				$p->images = $images;
-
-				# save it again
-				$p->save();
-
-				//sync categories
-				$p->categories()->sync($catids);
-
-				//increment the imagesID for the next product
-				$imageID++;
-				
+								
 				# download the images from mystore
-				/*
 				$i = 0;
 				$images = [];
 				if (isset($product['products_images']) && is_array($product['products_images'])) {
@@ -152,7 +138,16 @@ class Import extends Command {
 
 						$i++;
 					}
-				}*/
+				}
+
+				# save the images array on the model as JSON.
+				$p->images = $images;
+
+				# save it again
+				$p->save();
+
+				# sync categories
+				$p->categories()->sync($catids);
 
 			}
 			$page++;
@@ -168,10 +163,13 @@ class Import extends Command {
 	public function fire()
 	{
 		if ($this->confirm('delete all categories and products?')) {
-			$this->comment('Truncating "categories" and "products" table...');
+			$this->comment('Truncating "categories" and "products" table, as well as deleting all images in public/images/products...');
 		    DB::table('categories')->delete();
 		    DB::table('products')->delete();
 		    DB::table('category_product')->delete();
+		    foreach(glob(public_path() .'/images/products/*') as $img) {
+		    	@unlink($img);
+		    }
 	    	$this->comment('Ok.');
 	    }
 

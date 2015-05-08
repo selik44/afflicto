@@ -6,8 +6,10 @@ use Friluft\Category;
 use Friluft\Product;
 use Illuminate\Http\Request;
 use Input;
+use Laratable;
 use Redirect;
 use Carbon\Carbon;
+use DB;
 
 class ProductsController extends Controller {
 
@@ -16,39 +18,31 @@ class ProductsController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index($page = 1, $column = 'id', $direction = 'asc')
+	public function index()
 	{
-
-		/*
-		$table = Datatable::make('products', 'Friluft\Product', [
-			'id' => '#',
-			'name' => 'Name',
-			'brand' => 'Brand',
-			'model' => 'Model',
-			'price' => 'Price',
-			'stock' => 'Stock',
-			'enabled' => 'Enabled',
-			'updated_at' => 'Updated',
+		$table = Laratable::make(Product::query(), [
+			'#' => 'id',
+			'Name' => 'name',
+			'Price' => 'price',
+			'Stock' => 'stock',
+			'Enabled' => ['enabled', function($model, $column, $value) {
+				return ($model->enabled) ? '<span class="color-success">Yes</span>' : '<span class="color-error">no</span>';
+			}],
+			'Updated' => 'updated_at diffForHumans',
 		]);
 
-		$table->option('url', url() .'/admin/products/{page}/{column}/{direction}');
+		$table->editable(true, url('admin/products/{id}/edit'));
+		$table->destroyable(true, url('admin/products/{id}'));
 
-		$table->paginate(15, $page);
-		$table->sort(['id', 'name', 'brand', 'model', 'price', 'stock', 'enabled', 'updated_at'], $column, $direction);
+		$table->sortable(true, [
+			'name','price','stock','enabled','updated_at'
+		]);
 
-		$table->rewrite('enabled', function($row) {
-			if ($row['enabled'] == '1') return '<span class="color-success">Yes</span>';
-			return '<span class="color-error">No</span>';
-		});
-
-		$table->rewrite('updated_at', function($row) {
-			$c = new Carbon($row['updated_at']);
-			return $c->diffForHumans();
-		});
-		*/
-		
-		return 'products.index :)';
-		return $this->view('admin.products_index')->with('table', $table->display());
+		return $this->view('admin.products_index')
+		->with([
+			'table' => $table->render(),
+			'pagination' => $table->paginator->render(),
+		]);
 	}
 
 	/**
@@ -58,7 +52,11 @@ class ProductsController extends Controller {
 	 */
 	public function create()
 	{
-		return $this->view('admin.products_create')->with('categories', Category::all());
+		return $this->view('admin.products_create')
+		->with([
+			'categories' => Category::all(),
+			'form' => form('admin.category'),
+		]);
 	}
 
 	/**
@@ -86,24 +84,14 @@ class ProductsController extends Controller {
 		$p->categories()->sync(Input::get('categories', []));
 
 		if (Input::has('continue')) {
-			$r = Redirect::to('admin/products/create')->withInput(Input::all());
+			$r = Redirect::route('admin.products.create');
 		}else {
-			$r = Redirect::to('admin/products/' .$p->id);
+			$r = Redirect::route('admin.products.edit', $p);
 		}
 
-		return $r->with('success', 'Product "' .htmlentities($p->name) .'" created.');
+		return $r->with('success', 'Product "' .e($p->name) .'" created.');
 	}
 
-	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -111,9 +99,13 @@ class ProductsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Product $product)
 	{
-		//
+		return view('admin.products_edit')
+		->with([
+			'product' => $product,
+			'categories' => Category::all(),
+		]);
 	}
 
 	/**
@@ -122,9 +114,25 @@ class ProductsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Product $p)
 	{
-		//
+		$p->name = Input::get('name');
+		$p->slug = Input::get('slug');
+		$p->brand = Input::get('brand');
+		$p->model = Input::get('model');
+		$p->description = Input::get('description');
+		$p->stock = Input::get('stock', 0);
+		$p->enabled = (Input::get('enabled', 'off') == 'on') ? true : false;
+		$p->weight = Input::get('weight', 0);
+		$p->in_price = Input::get('in_price', 0);
+		$p->price = Input::get('price', 0);
+		$p->tax_percentage = Input::get('tax_percentage', 0);
+
+		$p->save();
+
+		$p->categories()->sync(Input::get('categories', []));
+
+		return redirect(route('admin.products.index'))->with('success', 'Product updated!');
 	}
 
 	/**
@@ -133,9 +141,10 @@ class ProductsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy($product)
 	{
-		//
+		$product->delete();
+		return redirect(route('admin.products.index'))->with('success', 'Product deleted.');
 	}
 
 }

@@ -2,6 +2,7 @@
 
 use Closure;
 use Javascript;
+use Cart;
 
 class JavascriptMiddleware {
 
@@ -17,7 +18,8 @@ class JavascriptMiddleware {
 		JavaScript::put([
 			'URL' => url(),
 			'token' => csrf_token(),
-			'request' => ['path' => $request->path()]
+			'request' => ['path' => $request->path()],
+			'cart' => ['contents' => Cart::getItemsWithModels(true), 'total' => Cart::getTotal()],
 		]);
 
 		return $next($request);

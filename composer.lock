@@ -4,33 +4,131 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "43917468b52208d40d431c3ac22418b2",
+    "hash": "fdd088eb94c8e0b1a4a601fff98e197a",
     "packages": [
         {
-            "name": "afflicto/neatdatatables",
-            "version": "1.2.0",
+            "name": "afflicto/html",
+            "version": "1.3.0",
             "source": {
                 "type": "git",
-                "url": "https://afflicto@bitbucket.org/afflicto/neatdatatables.git",
-                "reference": "8a70d697060e7a1e74ae2bf4d2d2575ad2dca261"
+                "url": "https://afflicto@bitbucket.org/afflicto/html.git",
+                "reference": "7d4e387f66ddb468f91122063b3ce21b8da5ee0e"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "afflicto": "src/"
+                "psr-4": {
+                    "Afflicto\\HTML\\": "src/"
                 }
             },
             "license": [
-                "Proprietary"
+                "proprietary"
             ],
             "authors": [
                 {
-                    "name": "Petter Thowsen",
+                    "name": "afflicto",
                     "email": "me@afflicto.net"
                 }
             ],
-            "description": "PHP Datatables with jQuery plugin",
-            "time": "2014-03-14 11:10:09"
+            "description": "HTML Layout & Utility Class",
+            "time": "2014-04-20 02:07:28"
+        },
+        {
+            "name": "anahkiasen/former",
+            "version": "4.0.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/formers/former.git",
+                "reference": "e37cb69d12d4436282e6754800903d94788528f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/formers/former/zipball/e37cb69d12d4436282e6754800903d94788528f3",
+                "reference": "e37cb69d12d4436282e6754800903d94788528f3",
+                "shasum": ""
+            },
+            "require": {
+                "anahkiasen/html-object": "~1.4",
+                "illuminate/config": "5.0.*",
+                "illuminate/container": "5.0.*",
+                "illuminate/http": "5.0.*",
+                "illuminate/routing": "5.0.*",
+                "illuminate/session": "5.0.*",
+                "illuminate/translation": "5.0.*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "illuminate/database": "5.0.*",
+                "mockery/mockery": "~0.9.1",
+                "phpunit/phpunit": "~4"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Former\\": [
+                        "src/Former",
+                        "tests"
+                    ],
+                    "Laravel\\": "src/Laravel"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Maxime Fabre",
+                    "email": "ehtnam6@gmail.com"
+                }
+            ],
+            "description": "A powerful form builder",
+            "homepage": "http://anahkiasen.github.com/former/",
+            "keywords": [
+                "bootstrap",
+                "form",
+                "foundation",
+                "laravel"
+            ],
+            "time": "2015-05-06 00:01:16"
+        },
+        {
+            "name": "anahkiasen/html-object",
+            "version": "1.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Anahkiasen/html-object.git",
+                "reference": "7890eb43636b1cd5ae7c4aab0d27c6890065c9ad"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Anahkiasen/html-object/zipball/7890eb43636b1cd5ae7c4aab0d27c6890065c9ad",
+                "reference": "7890eb43636b1cd5ae7c4aab0d27c6890065c9ad",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "HtmlObject\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Anahkiasen",
+                    "email": "ehtnam6@gmail.com"
+                }
+            ],
+            "description": "A set of classes to create and manipulate HTML objects abstractions",
+            "time": "2015-03-04 17:12:08"
         },
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -818,6 +916,35 @@
             "time": "2014-09-09 13:34:57"
         },
         {
+            "name": "gentlefox/laratables",
+            "version": "1.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://afflicto@bitbucket.org/gentlefox/laratables.git",
+                "reference": "928279a514cc8f8d18426c0185b94db00a7861e7"
+            },
+            "require": {
+                "afflicto/html": "~1.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Gentlefox\\Laratables\\": "src"
+                }
+            },
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Petter Thowsen",
+                    "email": "me@afflicto.net"
+                }
+            ],
+            "description": "Datatables for Laravel",
+            "time": "2015-05-07 03:07:28"
+        },
+        {
             "name": "ircmaxell/password-compat",
             "version": "v1.0.4",
             "source": {
@@ -1467,16 +1594,16 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "v1.2.2",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "08f97eb4efa029e2fafb6d8c98b71731bf0cf621"
+                "reference": "dff239267fd1befa1cd40430c9ed12591aa720ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/08f97eb4efa029e2fafb6d8c98b71731bf0cf621",
-                "reference": "08f97eb4efa029e2fafb6d8c98b71731bf0cf621",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/dff239267fd1befa1cd40430c9ed12591aa720ca",
+                "reference": "dff239267fd1befa1cd40430c9ed12591aa720ca",
                 "shasum": ""
             },
             "require": {
@@ -1486,7 +1613,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.3-dev"
                 }
             },
             "autoload": {
@@ -1508,7 +1635,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2015-04-03 14:33:59"
+            "time": "2015-05-02 15:40:40"
         },
         {
             "name": "phpdocumentor/reflection-docblock",
@@ -3010,16 +3137,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.6.5",
+            "version": "4.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "1c54dd1d9a782d7c8715bb3604cde7b6e23c2614"
+                "reference": "3afe303d873a4d64c62ef84de491b97b006fbdac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/1c54dd1d9a782d7c8715bb3604cde7b6e23c2614",
-                "reference": "1c54dd1d9a782d7c8715bb3604cde7b6e23c2614",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/3afe303d873a4d64c62ef84de491b97b006fbdac",
+                "reference": "3afe303d873a4d64c62ef84de491b97b006fbdac",
                 "shasum": ""
             },
             "require": {
@@ -3078,7 +3205,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-04-29 05:04:43"
+            "time": "2015-04-29 15:18:52"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
@@ -3559,7 +3686,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "anahkiasen/former": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

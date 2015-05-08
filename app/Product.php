@@ -1,11 +1,12 @@
 <?php namespace Friluft;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
 class Product extends Model {
 
-	use SearchableTrait;
+	use SearchableTrait, SoftDeletes;
 
 	protected $table = 'products';
 
@@ -61,9 +62,9 @@ class Product extends Model {
 			$parent = $this->categories()->first();
 			if ($parent) {
 				$this->path = $parent->getPath() .'/' .$this->slug;
+			}else {
+				$this->path = 'store/' .$this->slug;
 			}
-
-			$this->path = $this->slug;
 		}
 
 		return $this->path;

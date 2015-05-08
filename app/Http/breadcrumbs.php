@@ -56,5 +56,11 @@ Breadcrumbs::register('product', function($bc, $product, $category) {
 
 	$path = $slug = $category->getPath() .'/' .$product->slug;
 
-	$bc->push(htmlentities($product->name), url($path));
+	$bc->push(e($product->name), url($path));
+});
+
+Breadcrumbs::register('cart', function($bc) {
+	$bc->parent('store');
+
+	$bc->push('Cart', route('cart.index'));
 });

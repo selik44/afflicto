@@ -38,12 +38,18 @@ class Category extends Model {
 		return $this->belongsToMany('Friluft\Product');
 	}
 
-	public function nestedProducts() {
+	/**
+	 * Get all the products in this category, plus all categories in child categories.
+	 * @param  boolean $disabled Whether to include disabled products.
+	 * @return Array array of Project models.
+	 */
+	public function nestedProducts($includeDisabled = false) {
 		$array = [];
 
 		$path = $this->getPath();
 
-		foreach($this->products as $p) {
+		$collection = ($includeDisabled) ? $this->products : $this->products()->enabled()->get();
+		foreach($collection as $p) {
 			# help the model with calculating it's path
 			# otherwise, each model needs to traverse up to their root category.
 			$p->path = $path .'/' .$p->slug;
@@ -139,8 +145,8 @@ class Category extends Model {
 		$str .= '<div class="item">';
 			$str .= '<div class="line"></div>';
 			$str .= '<span class="handle"><i class="fa fa-bars"></i></span>';
-			$str .= '<div class="info"><a class="name" href="' .url('admin/categories/edit/' .$this->id) .'">' .htmlentities($this->name) .'</a> <code class="slug" title="slug">' .htmlentities($this->slug) .'</code></div>';
-			$str .= '<span class="arrow"><i class="fa fa-chevron-up"></i></span>';
+			$str .= '<div class="info"><a class="name" href="' .route('admin.categories.edit', $this) .'">' .htmlentities($this->name) .'</a> <code class="slug" title="slug">' .htmlentities($this->slug) .'</code></div>';
+			$str .= '<span class="arrow"><i class="fa fa-chevron-down"></i></span>';
 		$str .= '</div>';
 
 		$str .= '<ul class="flat sortable"><div class="dummy-item"></div>';

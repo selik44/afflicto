@@ -1,7 +1,7 @@
 <?php
 /**
  * An helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.0.28 on 2015-05-03.
+ * Generated for Laravel 5.0.28 on 2015-05-06.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11603,11 +11603,6 @@ namespace {
     }
 
 
-    class Datatable extends \Friluft\Utils\Datatable{
-        
-    }
-
-
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facade{
         
         /**
@@ -11756,6 +11751,83 @@ namespace {
          */
         public static function setView($view){
             return \DaveJamesMiller\Breadcrumbs\Manager::setView($view);
+        }
+        
+    }
+
+
+    class Javascript extends \Laracasts\Utilities\JavaScript\JavaScriptFacade{
+        
+        /**
+         * Bind the given array of variables to the view.
+         *
+         * @param array $variables
+         * @static 
+         */
+        public static function put($variables){
+            return \Laracasts\Utilities\JavaScript\PHPToJavaScriptTransformer::put($variables);
+        }
+        
+        /**
+         * Translate the array of PHP vars to
+         * the expected JavaScript syntax.
+         *
+         * @param array $vars
+         * @return array 
+         * @static 
+         */
+        public static function buildJavaScriptSyntax($vars){
+            return \Laracasts\Utilities\JavaScript\PHPToJavaScriptTransformer::buildJavaScriptSyntax($vars);
+        }
+        
+    }
+
+
+    class Laratable extends \Gentlefox\Laratables\Facades\Laratable{
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function make($query, $columns = array()){
+            return \Gentlefox\Laratables\Factory::make($query, $columns);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function registerTransformer($name, $callable){
+            return \Gentlefox\Laratables\Factory::registerTransformer($name, $callable);
+        }
+        
+    }
+
+
+    class JavaScript extends \Laracasts\Utilities\JavaScript\JavaScriptFacade{
+        
+        /**
+         * Bind the given array of variables to the view.
+         *
+         * @param array $variables
+         * @static 
+         */
+        public static function put($variables){
+            return \Laracasts\Utilities\JavaScript\PHPToJavaScriptTransformer::put($variables);
+        }
+        
+        /**
+         * Translate the array of PHP vars to
+         * the expected JavaScript syntax.
+         *
+         * @param array $vars
+         * @return array 
+         * @static 
+         */
+        public static function buildJavaScriptSyntax($vars){
+            return \Laracasts\Utilities\JavaScript\PHPToJavaScriptTransformer::buildJavaScriptSyntax($vars);
         }
         
     }

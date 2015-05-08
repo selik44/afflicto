@@ -47,7 +47,7 @@ body.with-menu
 
 
 	//center the main components
-	#header, #page, #footer, #nav, #nav-top, .nav-dropdown, #breadcrumbs, #slider
+	#header, #page, #footer, #nav, #nav-top, .nav-dropdown, #breadcrumbs, #slider, #cart
 		> .inner
 			margin: 0 auto
 			max-width: $base-width
@@ -284,9 +284,31 @@ body.with-menu
 			padding: 2rem
 			border-bottom: 1px solid $base-border-color
 			transition: all $base-transition-duration * 2
+			max-height: 600px
+			overflow: auto
+			
+			> .inner
+				max-width: 720px
 
 			&.visible
 				display: block
+				transition: all $base-transition-duration * 2
+			
+			.cart-table
+				font-size: 1.4rem
+				tbody tr td
+					padding-top: 2rem
+					padding-bottom: 2rem
+
+				.product
+					.image
+						max-width: 120px
+
+					.info
+						padding: 1rem
+
+				.quantity input
+					width: 48px
 
 	
 	#breadcrumbs

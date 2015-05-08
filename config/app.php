@@ -13,8 +13,7 @@ return [
 	|
 	*/
 
-	//'debug' => env('APP_DEBUG', false),
-	'debug' => true,
+	'debug' => env('APP_DEBUG', false),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -145,6 +144,8 @@ return [
 		'Friluft\Providers\ConfigServiceProvider',
 		'Friluft\Providers\EventServiceProvider',
 		'Friluft\Providers\RouteServiceProvider',
+		'Friluft\Providers\ShoppingCartProvider',
+		'Friluft\Providers\HelpersProvider',
 
         /*
          * Libs
@@ -152,6 +153,8 @@ return [
        	'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
        	'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 		'Laracasts\Utilities\JavaScript\JavascriptServiceProvider',
+		'Gentlefox\Laratables\LaratableServiceProvider',
+		'Former' => 'Former\FormerServiceProvider',
 	],
 
 	/*
@@ -202,10 +205,13 @@ return [
 
 		//friluft
         'Datatable' => 'Friluft\Utils\Datatable',
+        'Cart' => 'Friluft\Shopping\Facades\Cart',
 
         //libs
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',
         'Javascript' => 'Laracasts\Utilities\JavaScript\JavaScriptFacade',
+        'Laratable' => 'Gentlefox\Laratables\Facades\Laratable',
+        'Former' => 'Former\Facades\Former',
 	],
 
 ];

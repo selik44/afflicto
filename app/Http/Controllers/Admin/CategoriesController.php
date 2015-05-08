@@ -6,6 +6,8 @@ use Friluft\Http\Controllers\Controller;
 use Friluft\Category;
 use Input;
 use DB;
+use Laratable;
+use Redirect;
 
 class CategoriesController extends Controller {
 
@@ -14,9 +16,37 @@ class CategoriesController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function index($page = 1, $column = 'id', $direction = 'asc')
+	public function index()
 	{
-		return 'admin.categories.index :)';
+		$table = Laratable::make(Category::query(), [
+			'#' => 'id',
+			'Name' => 'name',
+			'Slug' => 'slug',
+			'Parent' => ['parent_id', function($cat) {
+				if ($cat->parent) {
+					return '<a href="' .route('admin.categories.edit', $cat->parent) .'">' .e($cat->parent->name) .'</a>';
+				}else {
+					return 'None';
+				}
+			}],
+			'Children' => ['children', function($cat) {
+				$c = $cat->children()->count();
+				return ($c > 0) ? $c : 'None';
+			}],
+			'Updated' => 'updated_at diffForHumans',
+		]);
+
+		$table->sortable(true, ['name','slug','parent_id', 'updated_at']);
+
+		$table->editable(true, url('admin/categories/{id}/edit'));
+
+		$table->destroyable(true, url('admin/categories/{id}'));
+
+		return view('admin.categories_index')
+			->with([
+				'table' => $table->render(),
+				'pagination' => $table->paginator->render(),
+			]);
 	}
 
 
@@ -37,7 +67,13 @@ class CategoriesController extends Controller {
 	 */
 	public function store()
 	{
-		$category = new Category(Input::only('name', 'slug', 'parent_id'));
+		$category = new Category(Input::only('name', 'slug'));
+		if (Input::has('parent_id')) {
+			$parent_id = Input::get('parent_id');
+			if (is_numeric($parent_id)) {
+				$category->parent_id = $parent_id;
+			}
+		}
 		$category->save();
 
 		if (Input::has('continue')) {
@@ -48,17 +84,6 @@ class CategoriesController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show(Category $category)
-	{
-		
-	}
-
-	/**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  int  $id
@@ -66,7 +91,11 @@ class CategoriesController extends Controller {
 	 */
 	public function edit(Category $category)
 	{
-		
+		return view('admin.categories_edit')
+			->with([
+				'category' => $category,
+				'categories' => Category::all(),
+			]);
 	}
 
 	/**
@@ -77,7 +106,13 @@ class CategoriesController extends Controller {
 	 */
 	public function update(Category $category)
 	{
-		
+		$category->name = Input::get('name');
+		$category->slug = Input::get('slug');
+		$parent_id = Input::get('parent_id', 'null');
+		if (is_numeric($parent_id)) $category->parent_id = $parent_id;
+		$category->save();
+
+		return Redirect::back()->with('success', 'Category updated.');
 	}
 
 	/**
@@ -86,9 +121,9 @@ class CategoriesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Category $cat)
 	{
-		DB::table('categories')->where('id', '=', $id)->delete();
+		$cat->delete();
 
 		return Redirect::to('admin/categories')->with('success', 'Category deleted.');
 	}

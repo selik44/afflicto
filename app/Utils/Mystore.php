@@ -4,12 +4,10 @@ use Curl\Curl;
 
 class Mystore {
 	
-	const API_KEY = "123FRILUFT-0DAAD5CF-43";
-	
 	const URL = "https://mystore-api.no";
 	
 	protected static function get($resource, $params = []) {
-		$params['api_key'] = self::API_KEY;
+		$params['api_key'] = getenv('MYSTORE_API_KEY');
 
 		$curl = new Curl();
 		$curl->setopt(CURLOPT_SSL_VERIFYPEER, false);

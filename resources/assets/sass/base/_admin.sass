@@ -1,6 +1,10 @@
-// VARIABLES
+// SETTINGS
 $sidebarWidth: 180px
 $headerHeight: 40px
+
+$header-color: weaker($base-background, 15%)
+$aside-color: weaker($base-background, 5%)
+$border-color: weaker($base-border-color, 7%)
 
 html,body, #admin
 	height: 100%
@@ -15,8 +19,8 @@ body
 		position: fixed
 		top: 0px
 		z-index: 10
-		background: stronger($base-background, 15%)
-		border-bottom: 1px solid weaker($base-border-color, 10%)
+		background: $header-color
+		border-bottom: 1px solid $border-color
 		padding: 0.25rem
 
 	#aside
@@ -27,12 +31,17 @@ body
 		padding-top: $headerHeight
 		top: 0px
 		left: 0px
-		background: stronger($base-background, 5%)
-		border-right: 1px solid weaker($base-border-color, 10%)
+		background: $aside-color
+		border-right: 1px solid $border-color
 
 		#navigation
+			> li > a
+				padding: 1rem
 			li
 				a
+					i
+						font-size: 1.4rem
+						margin-right: 0.5rem
 
 			//submenus
 			> li > ul
@@ -66,7 +75,7 @@ body
 		width: 100%
 		bottom: 0px;
 		left: 0px;
-		background: stronger($base-background, 5%)
+		background: $aside-color
 		border-top: 1px solid weaker($base-border-color, 10%)
 
 		> .inner
@@ -164,22 +173,37 @@ body
 				@extend .clearfix
 			
 
+	.laratable
+		.actions.button-group
+			a.button, form
+				float: left
+				display: inline-block
+
+		//sort buttons
+		tr th a.sort
+			margin-left: 1rem
+			i
+				color: $base-color
+				opacity: 0.3
+			
+			&:hover i
+				color: $base-color
+				opacity: 0.6
+
+			&.active i
+				color: $color-primary
+				opacity: 1
+
+			&.active:hover i
+				color: lighter($color-primary, 10%)
 
 
+		//base table style
+		tr
+			padding-top: 1rem
+			padding-bottom: 1rem
 
-table.ndt-table
-	thead
-		th
-			.title
-
-			.sort-arrow
-				margin-left: 1rem
-				color: weaker($base-color, 20%)
-
-				&:hover
-					color: $base-color
-
-				&.active
-					color: $color-primary
-	td
-		vertical-align: middle
+			td
+				font-size: 1.1rem
+			th
+				font-weight: 700
