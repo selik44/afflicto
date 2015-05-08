@@ -12,7 +12,7 @@
     "laravel-elixir": "*"
   },
   "dependencies": {
-    "@afflicto/gentlestyle": "^1.1.0",
+    "@afflicto/gentlestyle": "~2.0.0",
     "jquery": "^2.1.4"
   }
 }

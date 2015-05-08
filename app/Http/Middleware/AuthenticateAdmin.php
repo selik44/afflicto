@@ -40,7 +40,11 @@ class AuthenticateAdmin {
 			}
 			else
 			{
-				return redirect()->guest('auth/login');
+				if ($this->auth->guest()) {
+					return redirect('user/login');
+				}else if ($this->auth->user()->role->name !== 'admin') {
+					return redirect('/')->with('error', 'Unauthorized.');
+				}
 			}
 		}
 

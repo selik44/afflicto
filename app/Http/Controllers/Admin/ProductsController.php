@@ -10,6 +10,7 @@ use Laratable;
 use Redirect;
 use Carbon\Carbon;
 use DB;
+use Former;
 
 class ProductsController extends Controller {
 
@@ -55,7 +56,7 @@ class ProductsController extends Controller {
 		return $this->view('admin.products_create')
 		->with([
 			'categories' => Category::all(),
-			'form' => form('admin.category'),
+			'form' => form('admin.product'),
 		]);
 	}
 
@@ -101,10 +102,13 @@ class ProductsController extends Controller {
 	 */
 	public function edit(Product $product)
 	{
+		Former::populate($product);
+
 		return view('admin.products_edit')
 		->with([
 			'product' => $product,
 			'categories' => Category::all(),
+			'form' => form('admin.product'),
 		]);
 	}
 

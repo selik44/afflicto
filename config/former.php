@@ -7,7 +7,7 @@
 	'automatic_label'         => true,
 
 	// The default form type
-	'default_form_type'       => 'horizontal',
+	'default_form_type'       => 'vertical',
 
 	// Validation
 	////////////////////////////////////////////////////////////////////

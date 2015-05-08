@@ -9,6 +9,12 @@ use Illuminate\Support\Str;
 
 class GentleStyleFormFramework extends Framework implements \Former\Interfaces\FrameworkInterface {
 
+	public $app;
+
+	public function __construct($app) {
+		$this->app = $app;
+	}
+
 	/**
 	 * Filter buttons classes
 	 *
@@ -49,7 +55,7 @@ class GentleStyleFormFramework extends Framework implements \Former\Interfaces\F
 	 * @return string A list of group classes
 	 */
 	public function getGroupClasses() {
-		return '';
+		return 'form-group';
 	}
 
 	/**
@@ -58,7 +64,7 @@ class GentleStyleFormFramework extends Framework implements \Former\Interfaces\F
 	 * @return array An array of attributes with the label class
 	 */
 	public function getLabelClasses() {
-		return ['class' => 'gs-label'];
+		return [];
 	}
 
 	/**
@@ -67,7 +73,7 @@ class GentleStyleFormFramework extends Framework implements \Former\Interfaces\F
 	 * @return array An array of attributes with the uneditable class
 	 */
 	public function getUneditableClasses() {
-		return ['class' => 'gs-uneditable'];
+		return ['disabled' => 'disabled'];
 	}
 
 	/**
@@ -87,7 +93,7 @@ class GentleStyleFormFramework extends Framework implements \Former\Interfaces\F
 	 * @return array
 	 */
 	public function getFormClasses($type) {
-		return ['gs-form'];
+		return [];
 	}
 
 	/**
@@ -96,7 +102,7 @@ class GentleStyleFormFramework extends Framework implements \Former\Interfaces\F
 	 * @return array
 	 */
 	public function getActionClasses() {
-		return ['button-group gs-actions'];
+		return ['button-group'];
 	}
 
 	/**

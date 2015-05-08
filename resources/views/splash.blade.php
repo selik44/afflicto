@@ -6,7 +6,12 @@
 		@yield('header')
 	</header>
 	<article class="module-content">
+		@include('partial.alerts')
+
 		@yield('content')
 	</article>
+	<footer class="module-footer">
+		@yield('footer')
+	</footer>
 </div>
 @stop

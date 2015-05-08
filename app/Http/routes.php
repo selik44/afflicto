@@ -16,13 +16,29 @@ if (in_array($locale, $languages)) {
 Route::group(['prefix' => $locale], function() {
 
 	# home
-	Route::get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+	Route::get('/', ['as' => '/', 'uses' => 'HomeController@index']);
+	Route::get('home', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 	# auth
-	Route::controllers([
-		'auth' => 'Auth\AuthController',
-		'password' => 'Auth\PasswordController',
-	]);
+	Route::group(['prefix' => 'user'], function() {
+		# login
+		Route::get('login', ['as' => 'user.login', 'uses' => 'AuthController@get_login']);
+		Route::post('login', ['as' => 'user.login.post', 'uses' => 'AuthController@post_login']);
+
+		# logout
+		Route::get('logout', ['as' => 'user.logout', 'uses' => 'AuthController@get_logout']);
+
+		# register
+		Route::get('register', ['as' => 'user.register', 'uses' => 'AuthController@get_register']);
+		Route::post('register', ['as' => 'user.register.post', 'uses' => 'AuthController@post_register']);
+
+		# forgot
+		Route::get('forgot', ['as' => 'user.forgot', 'uses' => 'AuthController@get_forgot']);
+		Route::post('forgot', ['as' => 'user.forgot.post', 'uses' => 'AuthController@post_forgot']);
+
+		Route::get('reset/{token}', ['as' => 'user.reset', 'uses' => 'AuthController@get_reset']);
+		Route::post('reset', ['as' => 'user.reset.post', 'uses' => 'AuthController@post_reset']);
+	});
 
 	# store
 	Route::get('store/cart', ['as' => 'store.cart', 'uses' => 'StoreController@cart']);
