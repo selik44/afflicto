@@ -48,7 +48,7 @@ Route::group(['prefix' => $locale], function() {
 	Route::get('store/checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
 	#Route::post('store/checkout', ['as' => 'store.checkout.order', 'uses' => 'StoreController@order']);
 	Route::get('store/success', ['as' => 'store.checkout.success', 'uses' => 'StoreController@success']);
-	Route::get('store/push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
+	Route::post('store/push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
 	Route::get('store/{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
 
 	# search
