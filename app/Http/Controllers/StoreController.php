@@ -94,7 +94,7 @@ class StoreController extends Controller {
 			'terms_uri' => url('terms-and-conditions'),
 			'checkout_uri' => url('store/checkout'),
 			'confirmation_uri' => url('store/success'),
-			'push_uri' => url('store/push');
+			'push_uri' => url('store/push'),
 		];
 
 		#init klarna
