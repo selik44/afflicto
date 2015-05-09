@@ -93,8 +93,8 @@ class StoreController extends Controller {
 			'id' => getenv('KLARNA_MERCHANT_ID'),
 			'terms_uri' => url('terms-and-conditions'),
 			'checkout_uri' => url('store/checkout'),
-			'confirmation_uri' => url('store/success') .'?klarna_order={checkout.order.uri}',
-			'push_uri' => url('store/push') .'?klarna_order={checkout.order.uri}',
+			'confirmation_uri' => url('store/success'),
+			'push_uri' => url('store/push');
 		];
 
 		#init klarna
