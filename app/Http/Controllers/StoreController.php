@@ -8,6 +8,8 @@ use Friluft\Product;
 use Cart;
 use Klarna_Checkout_Order;
 use Klarna_Checkout_Connector;
+use Log;
+use Input;
 
 class StoreController extends Controller {
 
@@ -121,7 +123,7 @@ class StoreController extends Controller {
 
 	public function push() {
 		\Log::debug("------Klarna push----------");
-		foreach(Input::all() as $key => $value) {
+		foreach(\Input::all() as $key => $value) {
 			\Log::debug($key .' => ' .$value);
 		}
 	}
