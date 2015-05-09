@@ -1,10 +1,8 @@
 @extends('front.layout')
 
-
 @section('breadcrumbs')
 	{!! Breadcrumbs::render('home') !!}
 @stop
-
 
 @section('slider')
 	<div class="slider">

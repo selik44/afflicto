@@ -11,4 +11,8 @@ class HomeController extends Controller {
 			]);
 	}
 
+	public function terms() {
+		return view('front.terms');
+	}
+
 }

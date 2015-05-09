@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fdd088eb94c8e0b1a4a601fff98e197a",
+    "hash": "4395c49e8c43f42ffa1212652df790a9",
     "packages": [
         {
             "name": "afflicto/html",
@@ -1129,6 +1129,43 @@
                 "tokenizer"
             ],
             "time": "2015-03-11 20:06:43"
+        },
+        {
+            "name": "klarna/checkout",
+            "version": "v2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/klarna/kco_php.git",
+                "reference": "00d5ab4cb4a84252ba506c5e60c87e8ee71f7798"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/klarna/kco_php/zipball/00d5ab4cb4a84252ba506c5e60c87e8ee71f7798",
+                "reference": "00d5ab4cb4a84252ba506c5e60c87e8ee71f7798",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.16"
+            },
+            "require-dev": {
+                "phpmd/phpmd": "~1.5",
+                "phpunit/phpunit": "~3.7",
+                "satooshi/php-coveralls": "~0.6",
+                "squizlabs/php_codesniffer": "~1.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Klarna": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "Wrapper for the Klarna Checkout API",
+            "homepage": "http://developers.klarna.com",
+            "time": "2015-03-18 16:04:58"
         },
         {
             "name": "laracasts/utilities",

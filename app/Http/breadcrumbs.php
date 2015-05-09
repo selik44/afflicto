@@ -4,6 +4,11 @@ Breadcrumbs::register('home', function($bc) {
 	$bc->push('Home', url('/'));
 });
 
+Breadcrumbs::register('terms-and-conditions', function($bc) {
+	$bc->parent('home');
+	$bc->push('Terms & Conditions', url('/terms-and-conditions'));
+});
+
 Breadcrumbs::register('about', function($bc) {
 	$bc->parent('home');
 	$bc->push('About', url('/about'));

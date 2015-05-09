@@ -57,6 +57,10 @@ class Product extends Model {
 		return $this->belongsToMany('Friluft\Category');
 	}
 
+	public function attributes() {
+		return $this->hasMany('Friluft\Attribute');
+	}
+
 	public function getPath() {
 		if (!isset($this->path)) {
 			$parent = $this->categories()->first();

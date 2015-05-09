@@ -23,5 +23,3 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Leverage Request objects.
 - Implement Shopping cart, user management, klarna etc.
 - Implement better taxonomy and support for custom "collections" of stuff.
-- Refactor the Datatable class to make use of Eloquent.
-- !! Move the Mystore API key out of the code and into .env
