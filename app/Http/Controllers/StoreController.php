@@ -119,7 +119,7 @@ class StoreController extends Controller {
 		return view('front.store.success');
 	}
 
-	public function push($order) {
+	public function push() {
 		\Log::debug("------Klarna push----------");
 		foreach(Input::all() as $key => $value) {
 			\Log::debug($key .' => ' .$value);
