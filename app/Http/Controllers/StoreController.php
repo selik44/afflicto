@@ -120,7 +120,10 @@ class StoreController extends Controller {
 	}
 
 	public function push($order) {
-		\Log::debug("Klarna push: " .$order);
+		\Log::debug("------Klarna push----------");
+		foreach(Input::all() as $key => $value) {
+			\Log::debug($key .' => ' .$value);
+		}
 	}
 
 }
