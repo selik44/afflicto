@@ -7,7 +7,7 @@
 @section('page')
 	<div class="col-m-6 col-l-4">
 		<div class="module">
-			<div class="module-header"><h4>New Orders</h4></div>
+			<div class="module-header"><h6>New Orders</h6></div>
 			<div class="module-content">
 				<ul class="flat">
 					<li><a href="#">Someone bought something (#23)</span></a></li>
@@ -20,7 +20,7 @@
 
 	<div class="col-m-6 col-l-4">
 		<div class="module">
-			<div class="module-header"><h4>Something Else</h4></div>
+			<div class="module-header"><h6>Something Else</h6></div>
 			<div class="module-content">
 				<ul class="flat">
 					<li><a href="#">Some order</a></li>
@@ -33,7 +33,7 @@
 
 	<div class="col-m-6 col-l-4">
 		<div class="module">
-			<div class="module-header"><h4>New Orders</h4></div>
+			<div class="module-header"><h6>New Orders</h6></div>
 			<div class="module-content">
 				<ul class="flat">
 					<li><a href="#">Someone bought something (#23)</span></a></li>
@@ -48,7 +48,7 @@
 
 	<div class="col-m-6 col-l-4">
 		<div class="module">
-			<div class="module-header"><h4>Something Else</h4></div>
+			<div class="module-header"><h6>Something Else</h6></div>
 			<div class="module-content">
 				<ul class="flat">
 					<li><a href="#">Some order</a></li>

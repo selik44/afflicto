@@ -73,6 +73,7 @@ return [
 	"unique"               => "The :attribute has already been taken.",
 	"url"                  => "The :attribute format is invalid.",
 	"timezone"             => "The :attribute must be a valid zone.",
+	"slug"                 => "The :attribute must be a slug: lower-case letters and dashes only.",
 
 	/*
 	|--------------------------------------------------------------------------
@@ -91,6 +92,9 @@ return [
 		],
 	],
 
+	'disallowed_role_grant' => "Only Administrators can grant a role other than 'Regular'!",
+	'disallow_default_role_delete' => "The Administrator and Regular roles cannot be deleted.",
+	'disallow_admin_role_edit' => "Permissions for the Administrator role cannot be altered.",
 	/*
 	|--------------------------------------------------------------------------
 	| Custom Validation Attributes
@@ -102,6 +106,11 @@ return [
 	|
 	*/
 
-	'attributes' => [],
+	'attributes' => [
+		'firstname' => 'First Name',
+		'lastname' => 'Last Name',
+		'email' => 'E-Mail Address',
+		'vatgroup' => 'Vat Group',
+	],
 
 ];

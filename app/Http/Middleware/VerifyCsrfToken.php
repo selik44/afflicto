@@ -7,7 +7,7 @@ class VerifyCsrfToken extends BaseVerifier {
 
 	/**
 	 * Routes that match these patterns will be run regardless of the token.
-	 * @var [type]
+	 * @var array
 	 */
 	private $skippedRoutes = ['store/push'];
 

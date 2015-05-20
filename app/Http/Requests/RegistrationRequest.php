@@ -22,9 +22,9 @@ class RegistrationRequest extends Request {
 	public function rules()
 	{
 		return [
-			'firstname' => 'required|max:255',
+			'firstname' => 'required|max:60',
 			'lastname' => 'required|max:255',
-			'email' => 'required|email|max:255|unique:users',
+			'email' => 'required|email|unique:users',
 			'password' => 'required|min:8|confirmed',
 		];
 	}

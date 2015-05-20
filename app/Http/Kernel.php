@@ -17,7 +17,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
 		'Friluft\Http\Middleware\VerifyCsrfToken',
 		'Friluft\Http\Middleware\StoreDetector',
-		'Friluft\Http\Middleware\JavascriptMiddleware',
+		'Friluft\Http\Middleware\JavascriptMiddleware'
 	];
 
 	/**
@@ -28,7 +28,6 @@ class Kernel extends HttpKernel {
 	protected $routeMiddleware = [
 		'auth' => 'Friluft\Http\Middleware\Authenticate',
 		'admin' => 'Friluft\Http\Middleware\AuthenticateAdmin',
-		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'Friluft\Http\Middleware\RedirectIfAuthenticated',
 	];
 

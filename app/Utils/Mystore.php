@@ -12,7 +12,6 @@ class Mystore {
 		$curl = new Curl();
 		$curl->setopt(CURLOPT_SSL_VERIFYPEER, false);
 		$curl->get(self::URL .'/' .$resource, $params);
-
 		return json_decode($curl->response, true);
 	}
 

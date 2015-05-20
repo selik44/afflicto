@@ -178,28 +178,4 @@ class Import extends Command {
         $this->comment('Done!');
 	}
 
-	/**
-	 * Get the console command arguments.
-	 *
-	 * @return array
-	 */
-	protected function getArguments()
-	{
-		return [
-			//['example', InputArgument::REQUIRED, 'An example argument.'],
-		];
-	}
-
-	/**
-	 * Get the console command options.
-	 *
-	 * @return array
-	 */
-	protected function getOptions()
-	{
-		return [
-			//['download', null, InputOption::VALUE_OPTIONAL, 'download images from mystore', null],
-		];
-	}
-
 }

@@ -2,6 +2,8 @@
 
 namespace Friluft\Utils;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 use Request;
 use URL;
 
@@ -52,9 +54,22 @@ class Navigation {
 		}
 
 		# active?
-		if ($path == '/' && Request::is('/')) {
+		$route = \Route::getRoutes()->getByName($path);
+
+
+		$config = 'access.' .str_replace('.', '_', trim($path, '.'));
+		# do we have access to it?
+		$perms = \Config::get($config);
+
+		if (!permission($perms)) {
+			return;
+		}
+
+		if ($route && Request::is($route->getPath() .'*')) {
 			$active = 'current';
-		}else if (Request::is($path .'*')) {
+		}else if ($path == '/' && Request::is('/')) {
+			$active = 'current';
+		}else if(Request::route()->getName() == $path) {
 			$active = 'current';
 		}else {
 			$active = '';
@@ -66,7 +81,11 @@ class Navigation {
 			if ($path == '#') {
 				$link = $path;
 			}else {
-				$link = url($this->prefix .'/' .trim($path, '/'));
+				if (!preg_match('/^http.+/', $path)) {
+					$link = route($path);
+				}else {
+					$link = $path;
+				}
 			}
 
 			# a tag
@@ -75,7 +94,7 @@ class Navigation {
 				if ($icon != null) $str .= '<i class="fa ' .$icon .'"></i> ';
 
 				# label
-				$str .= $label;
+				$str .= trans($label);
 			$str .= '</a>';
 
 			# render children, if any.

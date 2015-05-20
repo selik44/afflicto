@@ -313,7 +313,7 @@ body.with-menu
 	
 	#breadcrumbs
 		background: darken($base-background, 2%)
-		text-transform: uppercase;
+		text-transform: uppercase
 		font-size: 0.8rem
 
 		> .inner
@@ -321,6 +321,11 @@ body.with-menu
 	
 	#alerts
 		> .alerts
+			max-width: $base-width
+			margin: 0 auto
+			padding-top: 2rem
+			padding-bottom: 2rem
+
 			.alert:first-child
 				margin-top: 1rem
 			.alert

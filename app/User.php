@@ -11,25 +11,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	use Authenticatable, CanResetPassword, SoftDeletes;
 
-	/**
-	 * The database table used by the model.
-	 *
-	 * @var string
-	 */
+	public $timestamps = true;
+
 	protected $table = 'users';
 
-	/**
-	 * The attributes that are mass assignable.
-	 *
-	 * @var array
-	 */
-	protected $fillable = ['name', 'email', 'password'];
+	protected $fillable = ['firstname', 'lastname', 'email'];
 
-	/**
-	 * The attributes excluded from the model's JSON form.
-	 *
-	 * @var array
-	 */
 	protected $hidden = ['password', 'remember_token'];
 
 	public function role() {
@@ -43,5 +30,17 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function addresses() {
 		return $this->hasMany('Friluft\Address');
 	}
-	
+
+	public function getNameAttribute() {
+		return $this->attributes['firstname'] .' ' .$this->attributes['lastname'];
+	}
+
+	public function setNameAttribute($value) {
+		$name = explode(' ', $value, 1);
+		if (count($name) > 1) {
+			$this->attributes['firstname'] = $name[0];
+			$this->attributes['lastname'] = $name[1];
+		}
+	}
+
 }

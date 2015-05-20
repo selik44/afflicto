@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('title')
-	New Category - @parent
+	@lang('admin.new') @lang('admin.category') - @parent
 @stop
 
 @section('page')

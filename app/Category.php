@@ -145,7 +145,7 @@ class Category extends Model {
 		$str .= '<div class="item">';
 			$str .= '<div class="line"></div>';
 			$str .= '<span class="handle"><i class="fa fa-bars"></i></span>';
-			$str .= '<div class="info"><a class="name" href="' .route('admin.categories.edit', $this) .'">' .htmlentities($this->name) .'</a> <code class="slug" title="slug">' .htmlentities($this->slug) .'</code></div>';
+			$str .= '<div class="info"><a class="name" href="#category-' .$this->id .'">' .htmlentities($this->name) .'</a> <code class="slug" title="slug">' .htmlentities($this->slug) .'</code></div>';
 			$str .= '<span class="arrow"><i class="fa fa-chevron-down"></i></span>';
 		$str .= '</div>';
 

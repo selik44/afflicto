@@ -2,25 +2,29 @@
 
 use Closure;
 use Friluft\Store;
+use Exception;
+use Illuminate\Http\Request;
 
 class StoreDetector {
 
-	/**
-	 * Handle an incoming request.
-	 *
-	 * @param  \Illuminate\Http\Request  $request
-	 * @param  \Closure  $next
-	 * @return mixed
-	 */
-	public function handle($request, Closure $next)
+	public function handle(Request $request, Closure $next)
 	{
-		$serverName = strtolower($_SERVER['HTTP_HOST']);
-		$store = Store::where('url', '=', $serverName)->first();
+		$host = array_reverse(
+			explode('.',
+				strtolower(
+					$request->getHost()
+				)
+			)
+		);
+
+		$host = $host[1];
+
+		$store = Store::where('host', '=', $host)->first();
 		if ($store) {
 			Store::setCurrentStore($store);
 			return $next($request);
 		}else {
-			throw new Exception("Store not found for server_name: " .$serverName ."!", 1);
+			throw new Exception("Store not found for host: " .$host ."!", 1);
 		}
 	}
 

@@ -17,7 +17,7 @@ class CreateStoresTable extends Migration {
 			$table->increments('id');
 			$table->string('machine');
 			$table->string('name');
-			$table->string('url');
+			$table->string('host');
 		});
 	}
 

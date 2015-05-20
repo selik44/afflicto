@@ -2,19 +2,42 @@
 
 $form = new stdClass();
 
-$form->name = Former::text('name');
-$form->slug = Former::text('slug')->help("As it appears in url's.");
+$form->open = Former::open(route('admin.products.store'))
+	->method('POST')
+	->class('vertical')
+	->rules([
+		'name' => 'required|max:255',
+		'slug' => 'required|max:255|slug|unique:products',
+		'manufacturer' => 'required|integer',
+		'categories' => 'array',
+		'summary' => 'max:600',
+		'weight' => 'required|number|min:0',
+		'price' => 'required|number|min:0',
+		'inprice' => 'required|number|min:0',
+		'vatgroup' => 'required|integer|exists:vatgroups',
+		'stock' => 'required|integer|min:0',
+		'enabled' => 'boolean',
+		'barcode' => 'required|max:13|unique:products',
+		'articlenumber' => 'required|max:255|unique:products',
+	]);
 
-$form->brand = Former::text('brand');
-$form->model = Former::text('model');
-$form->summary = Former::textarea('summary')->help("Short description in plain text.");
+$form->name = Former::text('name')->class('product-name');
+$form->slug = Former::text('slug')->class('product-slug');
 
+$form->articlenumber = Former::text('articlenumber');
 
-$form->weight = Former::number('weight');
-$form->price = Former::number('price');
-$form->in_price = Former::number('in_price');
-$form->tax_percentage = Former::number('tax_percentage');
-$form->stock = Former::number('stock');
+$form->barcode = Former::text('barcode');
+
+$form->manufacturer = Former::select('manufacturer')->fromQuery($manufacturers, 'name', 'id');
+$form->summary = Former::textarea('summary');
+
+$form->categories = Former::select('categories')->multiple()->fromQuery($categories, 'name', 'id')->name('categories[]')->label('categories');
+
+$form->weight = Former::text('weight');
+$form->price = Former::text('price');
+$form->inprice = Former::text('inprice', 'In price');
+$form->vatgroup = Former::select('vatgroup')->fromQuery($vatgroups, 'name', 'id');
+$form->stock = Former::text('stock');
 $form->enabled = Former::checkbox('enabled');
 
 $form->description = Former::textarea('description')->rows(8);

@@ -19,7 +19,17 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 ## Ideas
 
 - Figure out a way to cache routes while still allowing translated routes.
-- Move complicated controller logic to commands, for extendability.
+- Move complicated controller logic to commands, for extendability?
 - Leverage Request objects.
 - Implement Shopping cart, user management, klarna etc.
 - Implement better taxonomy and support for custom "collections" of stuff.
+- produsent ting
+
+- Order status, green/red.
+- manual orders, user management.
+- Banners, images etc.
+- Related products, tabbed view, appears when buying.
+
+- under tusen gram: 39,- brevpost
+- over 1000kr: 99,- service pakke sporing
+- over 800kr: fri frakt.

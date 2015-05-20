@@ -28,15 +28,17 @@ class RouteServiceProvider extends ServiceProvider {
 		$router->pattern('id', '[0-9]+');
 
 		$router->model('user', 'Friluft\User');
-			
+		$router->model('role', 'Friluft\Role');
+		$router->model('manufacturer', 'Friluft\Manufacturer');
+
 		# Bind category and product to find models by ID or slug.
-		$router->bind('categories', function($value) {
+		$router->bind('category', function($value) {
 			$cat = Category::where('id', '=', $value)->orWhere('slug', '=', $value)->first();
 			if ($cat) return $cat;
 			abort(404);
 		});
 
-		$router->bind('products', function($value) {
+		$router->bind('product', function($value) {
 			$product = Product::where('id', '=', $value)->orWhere('slug', '=', $value)->first();
 			if ($product) return $product;
 			abort(404);

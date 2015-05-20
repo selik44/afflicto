@@ -12,22 +12,37 @@ class Product extends Model {
 
 	protected $dates = ['created_at', 'updated_at'];
 
+	protected $fillable = [
+		'name',
+		'slug',
+		'price',
+		'articlenumber',
+		'barcode',
+		'inprice',
+		'weight',
+		'description',
+		'summary',
+		'stock',
+		'enabled',
+		'vatgroup_id',
+		'manufacturer_id',
+	];
+
 	protected $casts = [
 		'enabled' => 'boolean',
 		'weight' => 'float',
 		'price' => 'float',
 		'in_price' => 'float',
-		'tax_percentage' => 'float',
 		'stock' => 'integer',
 		'images' => 'array',
+		'tabs' => 'array',
+		'variants' => 'array',
 	];
 
 	protected $searchable = [
 		'columns' => [
-			'description' => 2,
-			'brand' => 10,
 			'name' => 15,
-			'model' => 20,
+			'summary' => 2,
 		],
 	];
 
@@ -37,11 +52,11 @@ class Product extends Model {
 	 *
 	 */
 	public $path = null;
-	
+
 	public function scopeEnabled($query) {
 		return $query->where('enabled', '=', '1');
 	}
-	
+
 	public function getFormattedWeight() {
 		$w = $this->weight;
 		if ($w > 1000) {
@@ -53,12 +68,43 @@ class Product extends Model {
 		return $this->weight;
 	}
 
+	public function setEnabledAttribute($value) {
+		if (is_string($value)) {
+			if (is_numeric($value)) {
+				$this->attributes['enabled'] = $value;
+			}else if ($value == 'true') {
+				$this->attributes['enabled'] = 1;
+			}else if ($value == 'false') {
+				$this->attributes['enabled'] = false;
+			}
+		}else if (is_bool($value)) {
+			$this->attributes['enabled'] = ($value) ? 1 : 0;
+		}
+	}
+
 	public function categories() {
 		return $this->belongsToMany('Friluft\Category');
 	}
 
 	public function attributes() {
 		return $this->hasMany('Friluft\Attribute');
+	}
+
+	public function vatgroup() {
+		return $this->belongsTo('Friluft\Vatgroup');
+	}
+
+	public function manufacturer() {
+		return $this->belongsTo('Friluft\Manufacturer');
+	}
+
+	public function relations() {
+		return $this->belongsToMany('Friluft\Product', 'product_relation', 'product_id', 'relation_id');
+	}
+
+	public function sell($amount = 1) {
+		$this->sales += $amount;
+		$this->save();
 	}
 
 	public function getPath() {
@@ -74,6 +120,11 @@ class Product extends Model {
 		return $this->path;
 	}
 
+	/**
+	 * Get the path to an image, given the index of the image (relative to the images array).
+	 * @param int $index
+	 * @return null|string
+	 */
 	public function getImagePath($index = 0) {
 		if (is_numeric($index)) {
 			$images = $this->images;

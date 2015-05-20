@@ -10,6 +10,7 @@ use Klarna_Checkout_Order;
 use Klarna_Checkout_Connector;
 use Log;
 use Input;
+use Session;
 
 class StoreController extends Controller {
 
@@ -61,6 +62,8 @@ class StoreController extends Controller {
 	 * @return View
 	 */
 	public function checkout() {
+		# get the klarna order
+		$order = Cart::getKlarnaOrder();
 
 		# create the Klarna Cart
 		$create = ['cart' => ['items' => []]];
@@ -95,8 +98,8 @@ class StoreController extends Controller {
 			'id' => getenv('KLARNA_MERCHANT_ID'),
 			'terms_uri' => url('terms-and-conditions'),
 			'checkout_uri' => url('store/checkout'),
-			'confirmation_uri' => url('store/success'),
-			'push_uri' => url('store/push'),
+			'confirmation_uri' => url('store/success') .'?klarna_order={checkout.order.uri}',
+			'push_uri' => url('store/push') .'?klarna_order={checkout.order.uri}',
 		];
 
 		#init klarna
@@ -113,19 +116,33 @@ class StoreController extends Controller {
 		# fetch
 		$order->fetch();
 
+		# get checkout ID and store it in the session
+		$id = $order->getLocation();
+		Session::put('klarna_checkout', $id);
+
 		return view('front.store.checkout')
 		->with('snippet', $order['gui']['snippet']);
 	}
 
 	public function success() {
+		if (!Input::has('klarna_order')) {
+			return view('front.store.success')->with('error', 'Something went wrong, contact us if the issue persists.');
+		}
+
+		$checkoutId = Input::get('klarna_order');
+		Klarna_Checkout_Order::$baseUri = getenv('KLARNA_URI');
+		Klarna_Checkout_Order::$contentType = getenv('KLARNA_CONTENT_TYPE');
+
+		# get klarna connector
+		$connector = Klarna_Checkout_Connector::create(getenv('KLARNA_SHARED_SECRET'));
+		$order = new Klarna_Checkout_Order($connector, $checkoutId);
+		$order->fetch();
+
 		return view('front.store.success');
 	}
 
 	public function push() {
-		\Log::debug("------Klarna push----------");
-		foreach(\Input::all() as $key => $value) {
-			\Log::debug($key .' => ' .$value);
-		}
+		$id = Input::get('klarna_order');
 	}
 
 }

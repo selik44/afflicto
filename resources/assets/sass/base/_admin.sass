@@ -1,13 +1,14 @@
 // SETTINGS
-$sidebarWidth: 180px
+$sidebarWidth: 200px
 $headerHeight: 40px
 
-$header-color: weaker($base-background, 15%)
+$header-color: $base-color
 $aside-color: weaker($base-background, 5%)
 $border-color: weaker($base-border-color, 7%)
 
 html,body, #admin
 	height: 100%
+	background: $base-background
 
 #admin
 	#header
@@ -33,7 +34,7 @@ html,body, #admin
 
 		#navigation
 			> li > a
-				padding: 1rem
+				padding: 1.2rem
 			li
 				a
 					i
@@ -43,7 +44,10 @@ html,body, #admin
 			//submenus
 			> li > ul
 				display: none
-
+				li
+					a
+						i
+							font-size: 1.0rem
 
 
 	#page
@@ -82,7 +86,6 @@ html,body, #admin
 			padding-bottom: 10px;
 	
 	.categories-tree
-		
 		//------ROOT------//
 		> ul.sortable
 			background: none !important
@@ -90,7 +93,7 @@ html,body, #admin
 			float: left
 			width: 100%
 			border: none !important
-			padding: 1rem
+			padding: 0rem
 			margin: 0
 
 			> li
@@ -102,37 +105,43 @@ html,body, #admin
 
 		ul.sortable
 			@extend .clearfix
-			background: weaker($base-background, 5%)
-			border-left: 1px solid weaker($base-border-color, 3%)
+			background: weaker($base-background, 10%)
+			border-left: 1px solid weaker($base-border-color, 7%)
 			
 			//the dummy item
 			.dummy-item
-				height: 2rem
+				height: 1rem
 			
 			//list item
 			li
-				margin-left: 2rem
+				margin-left: 1rem
 				transition: all 400ms
 
 				&:not(.visible)
-					margin-bottom: 2rem
+					margin-bottom: 1rem
 
 				&.visible > .item
 					background-color: stronger($base-background, 5%)
 
+				&.peek > .item
+					background-color: $color-primary
+
+					.name
+						color: white
+
 				.item
 					position: relative
-					background-color: weaker($base-background, 3%)
+					background-color: weaker($base-background, 7%)
 					border: 1px solid $base-border-color
-					padding: 1rem
+					padding: 0.5rem
 					width: 100%
 					@extend .clearfix
 	
 					//horizontal branch line
 					.line
 						position: absolute
-						left: -2rem
-						width: 2rem
+						left: -1rem
+						width: 1rem
 						height: 1px
 						top: 50%
 						background-color: weaker($base-border-color, 3%)
@@ -149,9 +158,11 @@ html,body, #admin
 
 					.info
 						float: left
+						font-size: 1.1rem
+
 						.name
 							margin-right: 1rem
-	
+
 					.arrow
 						float: right
 						font-size: 1.4rem
@@ -163,12 +174,31 @@ html,body, #admin
 					
 				ul.sortable
 					margin-left: 2rem
-			
+
 			//placeholder
 			.sortable-placeholder
 				border: 2px dotted $color-primary
 				@extend .clearfix
-			
+
+
+	.products-list
+		.product
+
+			.header
+				padding: 1rem
+
+			.handle
+				font-size: 1.8rem
+				color: black
+				cursor: move
+				margin-right: 1rem
+
+				&:hover
+					color: $color-primary
+
+			.name
+				color: $color-primary
+				cursor: pointer
 
 	.laratable
 		.actions.button-group

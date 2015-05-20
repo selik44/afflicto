@@ -146,6 +146,7 @@ return [
 		'Friluft\Providers\RouteServiceProvider',
 		'Friluft\Providers\ShoppingCartProvider',
 		'Friluft\Providers\HelpersProvider',
+		'Friluft\Providers\ValidatorsProvider',
 
         /*
          * Libs
@@ -154,7 +155,7 @@ return [
        	'DaveJamesMiller\Breadcrumbs\ServiceProvider',
 		'Laracasts\Utilities\JavaScript\JavascriptServiceProvider',
 		'Gentlefox\Laratables\LaratableServiceProvider',
-		'Former' => 'Former\FormerServiceProvider',
+		'Former\FormerServiceProvider',
 	],
 
 	/*

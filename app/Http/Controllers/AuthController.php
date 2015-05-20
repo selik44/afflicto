@@ -41,12 +41,12 @@ class AuthController extends Controller {
 	public function post_register(RegistrationRequest $request) {
 		$user = new User(Input::only('firstname', 'lastname', 'email'));
 		$user->password = bcrypt(Input::get('password'));
-		$user->role()->associate(Role::where('name', '=', 'user')->first());
+		$user->role()->associate(Role::where('machine', '=', 'regular')->first());
 		$user->save();
 
 		Auth::login($user);
 
-		return Redirect::to('')->with('success', 'Thank you for signing up.');
+		return Redirect::home()->with('success', 'Thank you for signing up.');
 	}
 
 	public function get_forgot() {
@@ -71,7 +71,7 @@ class AuthController extends Controller {
 
 			# mail the token to the user
 			Mail::send('emails.password', ['token' => $token, 'title' => 'Forgot Password'], function($mail) use($user) {
-				$mail->from('noreply@' .Store::current()->url, Store::current()->name);
+				$mail->from('noreply@' .Store::current()->host, Store::current()->name);
 				$mail->to($user->email)->subject('Forgotten Password');
 			});
 		}

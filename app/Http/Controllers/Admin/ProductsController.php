@@ -3,7 +3,10 @@
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Friluft\Category;
+use Friluft\Manufacturer;
 use Friluft\Product;
+use Friluft\Taxgroup;
+use Friluft\Vatgroup;
 use Illuminate\Http\Request;
 use Input;
 use Laratable;
@@ -14,11 +17,6 @@ use Former;
 
 class ProductsController extends Controller {
 
-	/**
-	 * Display a listing of the resource.
-	 *
-	 * @return Response
-	 */
 	public function index()
 	{
 		$table = Laratable::make(Product::query(), [
@@ -34,7 +32,6 @@ class ProductsController extends Controller {
 
 		$table->editable(true, url('admin/products/{id}/edit'));
 		$table->destroyable(true, url('admin/products/{id}'));
-
 		$table->sortable(true, [
 			'name','price','stock','enabled','updated_at'
 		]);
@@ -46,44 +43,46 @@ class ProductsController extends Controller {
 		]);
 	}
 
-	/**
-	 * Show the form for creating a new resource.
-	 *
-	 * @return Response
-	 */
 	public function create()
 	{
+		$cats = Category::all();
+		$mfs = Manufacturer::all();
+		$vatgroups = Vatgroup::all();
+
 		return $this->view('admin.products_create')
 		->with([
-			'categories' => Category::all(),
-			'form' => form('admin.product'),
+			'categories' => $cats,
+			'manufacturers' => $mfs,
+			'vatgroups' => $vatgroups,
+			'form' => form('admin.product', ['categories' => $cats, 'manufacturers' => $mfs, 'vatgroups' => $vatgroups]),
 		]);
 	}
 
-	/**
-	 * Store a newly created resource in storage.
-	 *
-	 * @return Response
-	 */
 	public function store()
 	{
-		$p = new Product();
-		$p->name = Input::get('name');
-		$p->slug = Input::get('slug');
-		$p->brand = Input::get('brand');
-		$p->model = Input::get('model');
-		$p->description = Input::get('description');
-		$p->stock = Input::get('stock', 0);
-		$p->enabled = (Input::get('enabled', 'off') == 'on') ? true : false;
-		$p->weight = Input::get('weight', 0);
-		$p->in_price = Input::get('in_price', 0);
-		$p->price = Input::get('price', 0);
-		$p->tax_percentage = Input::get('tax_percentage', 0);
+		$p = new Product(Input::only('name', 'slug', 'inprice', 'price', 'weight', 'summary', 'articlenumber', 'barcode', 'enabled', 'stock'));
 
+		if (Input::get('enabled', 'off') == 'on') {
+			$p->enabled = true;
+		}else {
+			$p->enabled = false;
+		}
+
+		# set vatgroup
+		$vatgroup = Vatgroup::find(Input::get('vatgroup'));
+		$p->vatgroup()->associate($vatgroup);
+
+		# set manufacturer
+		$manufacturer = Manufacturer::find(Input::get('manufacturer'));
+		$p->manufacturer()->associate($vatgroup);
+
+		# save it
 		$p->save();
 
+		# sync categories
 		$p->categories()->sync(Input::get('categories', []));
 
+		# continue?
 		if (Input::has('continue')) {
 			$r = Redirect::route('admin.products.create');
 		}else {
@@ -94,58 +93,56 @@ class ProductsController extends Controller {
 	}
 
 
-	/**
-	 * Show the form for editing the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function edit(Product $product)
 	{
 		Former::populate($product);
 
-		return view('admin.products_edit')
-		->with([
-			'product' => $product,
-			'categories' => Category::all(),
-			'form' => form('admin.product'),
-		]);
+		$cats = Category::all();
+		$mfs = Manufacturer::all();
+		$vatgroups = Vatgroup::all();
+
+		# mock tabs
+		$product->tabs = [
+			['title' => 'Size Guide', 'body' => '<p>this is the <strong>size</strong> guide</p>'],
+			['title' => 'Another one', 'body' => '<p>this is the <strong>other</strong> one</p>'],
+		];
+
+		return $this->view('admin.products_edit')
+			->with([
+				'product' => $product,
+				'categories' => $cats,
+				'manufacturers' => $mfs,
+				'vatgroups' => $vatgroups,
+				'form' => form('admin.product', ['product' => $product, 'categories' => $cats, 'manufacturers' => $mfs, 'vatgroups' => $vatgroups]),
+			]);
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function update(Product $p)
 	{
 		$p->name = Input::get('name');
 		$p->slug = Input::get('slug');
-		$p->brand = Input::get('brand');
-		$p->model = Input::get('model');
+		$p->articlenumber = Input::get('articlenumber');
+		$p->barcode = Input::get('barcode');
+		$p->summary = Input::get('summary');
 		$p->description = Input::get('description');
 		$p->stock = Input::get('stock', 0);
 		$p->enabled = (Input::get('enabled', 'off') == 'on') ? true : false;
 		$p->weight = Input::get('weight', 0);
-		$p->in_price = Input::get('in_price', 0);
+		$p->inprice = Input::get('inprice', 0);
 		$p->price = Input::get('price', 0);
-		$p->tax_percentage = Input::get('tax_percentage', 0);
+		$p->manufacturer_id = Input::get('manufacturer');
+		$p->vatgroup_id = Input::get('vatgroup');
 
 		$p->save();
 
+		# sync categories
 		$p->categories()->sync(Input::get('categories', []));
 
-		return redirect(route('admin.products.index'))->with('success', 'Product updated!');
+		# success
+		return Redirect::back()->with('success', 'Product updated!');
 	}
 
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function destroy($product)
+	public function destroy(Product $product)
 	{
 		$product->delete();
 		return redirect(route('admin.products.index'))->with('success', 'Product deleted.');

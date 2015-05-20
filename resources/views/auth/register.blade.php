@@ -16,21 +16,22 @@
 			'password' => 'required|min:8',
 		])
 	!!}
-	
-	{!! Former::text('email', 'E-Mail Address') !!}
-	
-	{!! Former::password('password') !!}
-	{!! Former::password('password_confirmation', 'Confirm Password') !!}
-		
-	<div class="row clearfix">
-		<div class="col-sm-6 tight-left">
-			{!! Former::text('firstname', 'First Name') !!}
-		</div>
-		<div class="col-sm-6 tight-right">
-			{!! Former::text('lastname', 'Last Name') !!}
-		</div>
-	</div>
-		
+
+    <div class="row clearfix">
+        <div class="col-sm-6 tight-left">
+            {!! Former::text('firstname', 'First Name') !!}
+        </div>
+        <div class="col-sm-6 tight-right">
+            {!! Former::text('lastname', 'Last Name') !!}
+        </div>
+    </div>
+
+    {!! Former::text('email', 'E-Mail Address') !!}
+
+    {!! Former::password('password') !!}
+    {!! Former::password('password_confirmation', 'Confirm Password') !!}
+
+
 	<hr>
 
 	{!! Former::submit('Register')->addClass('large primary') !!}

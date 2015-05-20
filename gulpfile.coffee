@@ -27,7 +27,8 @@ gulp.task 'scripts', ->
 			'resources/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js'
 			'resources/assets/vendor/nouislider/distribute/jquery.nouislider.all.min.js'
 			'resources/assets/vendor/chosen/chosen.jquery.min.js'
-			'resources/assets/vendor/html.sortable/dist/html.sortable.min.js'
+      'resources/assets/vendor/html.sortable/dist/html.sortable.min.js'
+      'resources/assets/vendor/dropzone/dist/min/dropzone.min.js'
 			'node_modules/@afflicto/gentlestyle/dist/gentlestyle.js'
 		]
 

@@ -2,20 +2,35 @@
 <?php
 
 	$nav = Friluft\Utils\Navigation::make([
-		'fa-dashboard:Dashboard' => 'admin/dashboard',
+		'fa-dashboard:admin.dashboard' => 'admin.dashboard',
 
-		'fa-dropbox:Products' => ['admin/products', [
-			'All' => 'admin/products',
-			'Create' => 'admin/products/create'
+        'fa-users:admin.users' => ['admin.users.index', [
+             'fa-user:admin.all' => 'admin.users.index',
+            'fa-plus:admin.new' => 'admin.users.create',
+        ]],
+
+        'fa-key:admin.roles' => ['admin.roles.index', [
+            'fa-key:admin.all' => 'admin.roles.index',
+            'fa-plus:admin.new' => 'admin.roles.create',
+        ]],
+
+        'fa-leaf:admin.manufacturers' => ['admin.manufacturers.index', [
+            'fa-leaf:admin.all' => 'admin.manufacturers.index',
+            'fa-plus:admin.add' => 'admin.manufacturers.create',
+        ]],
+
+		'fa-dropbox:admin.products' => ['admin.products.index', [
+			'fa-leaf:admin.all' => 'admin.products.index',
+			'fa-plus:admin.add' => 'admin.products.create',
 		]],
 
-		'fa-sitemap:Categories' => ['admin/categories', [
-			'All' => 'admin/categories',
-			'Tree View' => 'admin/categories/tree',
-			'Create' => 'admin/categories/create',
+		'fa-tag:admin.categories' => ['admin.categories.index', [
+			'fa-tag:admin.all' => 'admin.categories.index',
+			'fa-sitemap:admin.tree view' => 'admin.categories.tree',
+			'fa-plus:admin.create' => 'admin.categories.create',
 		]],
 
-		'fa-shopping-cart:Orders' => 'admin/orders',
+		'fa-shopping-cart:admin.orders' => 'admin.orders.index',
 	]);
 
 	echo $nav->render();

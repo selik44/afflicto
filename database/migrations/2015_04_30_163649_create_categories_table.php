@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration {
 			$t->timestamps();
 			$t->string('name');
 			$t->string('slug');
+			$t->integer('order')->default(0);
 			$t->integer('parent_id')->unsigned()->nullable();
 			$t->foreign('parent_id')->references('id')->on('categories')
 				->onDelete('cascade')

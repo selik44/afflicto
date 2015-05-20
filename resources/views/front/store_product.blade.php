@@ -25,7 +25,6 @@
 		</div>
 
 		<div class="product-actions col-l-4 col-m-5 col-sm-6 tight-right">
-			<h3>kr {{$product->price}},-</h3>
 
 			<form class="vertical" action="{{url('cart')}}" method="POST">
 				<input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -45,11 +44,11 @@
 					</label>
 				</fieldset>
 
-				<div class="button-group flex">
-					<input type="submit" name="add-to-cart" value="@lang('store.add to cart')" class="primary">
-					<input type="submit" name="Buy now" value="@lang('store.buy now')" class="success">
-				</div>
+				<h3>kr {{$product->price}},-</h3>
+				
+				<br>
 
+				<input class="large primary huge" style="width: 100%;" type="submit" name="Buy" value="@lang('store.buy')" class="success">
 			</form>
 		</div>
 	</div>	
