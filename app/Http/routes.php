@@ -3,6 +3,7 @@
 use Friluft\Category;
 use Friluft\Product;
 use Friluft\PDF\PDF;
+use Friluft\Variant;
 
 $languages = ['en', 'no', 'se'];
 
@@ -75,8 +76,6 @@ Route::group(['prefix' => $locale], function() {
 		return view('front.partial.product_modal')->with('product', $product);
 	}]);
 
-
-	
 	/*---------------------------
 	*	Admin routes
 	*--------------------------*/
@@ -106,32 +105,81 @@ Route::group(['prefix' => $locale], function() {
 			return response('OK');
 		});
 
+		# add image
+		Route::post('api/products/{product}/images', function(Product $p) {
+			$images = $p->images;
+
+			$file = Input::file('file');
+			$name = 'product_' .$p->id .'_' .count($images) .'.' .$file->getClientOriginalExtension();
+
+			if ($file->move(public_path('images/products/'), $name)) {
+				$images[] = ['order' => 0, 'image' => $name];
+
+				$p->images = $images;
+				$p->save();
+				return response('OK', 200);
+			}
+
+			return response('ERROR', 500);
+		});
+
 		# add variant
 		Route::post('api/products/{product}/variants', function(Product $p) {
-			#get variants
-			$variants = $p->variants;
+			$variant = new Variant(Input::only('name'));
+			$data = ['values' => []];
 
-			# add variant
-			$variants[Input::get('name')] = [
-				'name' => Input::get('name'),
-				'values' => explode(',', Input::get('values')),
-				'stock' => 0,
-			];
+			# set values array
+			$values = Input::get('values');
+			$values = trim($values, '\r\n\t, ');
+			$values = explode(',', $values);
 
-			# set variants & save
-			$p->variants = $variants;
-			$p->save();
+			# loop through values array and add stock, name etc.
+			foreach($values as $value) {
+				$data['values'][$value] = ['name' => $value, 'stock' => 0];
+			}
+
+			$variant->data = $data;
+
+			$p->variants()->save($variant);
+			return response('OK');
+		});
+
+		# update variant
+		Route::put('api/products/{product}/variants/{variant}', function(Product $p, Variant $v) {
+			# get data
+			$data = $v->data;
+
+			# set values array
+			$values = Input::get('values');
+			$values = trim($values, '\r\n\t, ');
+			$values = explode(',', $values);
+
+			# loop through values array and add stock, name etc.
+			foreach($values as $value) {
+				$data['values'][$value] = ['name' => $value, 'stock' => 0];
+			}
+
+			$v->data = $data;
+
+			# save
+			$v->save();
+			return response('OK');
+		});
+
+		# update variant stock
+		Route::put('api/products/{product}/variants/{variant}/setstock', function(Product $p, Variant $v) {
+			$data = $v->data;
+			$data['values'][Input::get('value')]['stock'] = Input::get('stock');
+
+			$v->data = $data;
+			$v->save();
 
 			return response('OK');
 		});
 
 		# remove variant
-		Route::delete('api/products/{product}/variants/{variant}', function(Product $product, $name) {
-			if (isset($product->variants[$name])) {
-				unset($product->variants[$name]);
-				$product->save();
-			}
-
+		Route::delete('api/products/{product}/variants/{variant}', function(Product $product, Variant $variant) {
+			$variant->delete();
 			return response('OK');
 		});
 

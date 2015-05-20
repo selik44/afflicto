@@ -9,6 +9,7 @@
     {!! $form->open
         ->action(route('admin.products.update', ['product' => $product]))
         ->method('PUT')
+        ->id("product-form")
     !!}
 
     <div class="row">
@@ -50,7 +51,7 @@
                     <input type="text" name="variant-name"/>
 
                     <label for="variant-values">Values</label>
-                    <textarea style="width: 100%" name="variant-values" rows="3"></textarea>
+                    <textarea style="width: 100%;" name="variant-values" rows="3"></textarea>
                     <span class="small muted">Separate values by commas <code>,</code>.</span>
                 </div>
                 <div class="modal-footer">
@@ -60,15 +61,15 @@
 
 
             <div id="edit-variant-modal" class="modal fade center">
-                <a href="#" style="font-size: 2.5rem" class="modal-dismiss" data-toggle-modal="#add-variant-modal"><i class="fa fa-close"></i></a>
-                <div class="modal-header">Add Variant</div>
+                <a href="#" style="font-size: 2.5rem" class="modal-dismiss" data-toggle-modal="#edit-variant-modal"><i class="fa fa-close"></i></a>
+                <div class="modal-header"><h5 class="end">Edit Variant</h5></div>
                 <div class="modal-content">
-                    <label for="variant-name">Name</label>
-                    <input type="text" name="variant-name"/>
 
                     <label for="variant-values">Values</label>
                     <textarea style="width: 100%;" name="variant-values" rows="3"></textarea>
                     <span class="small muted">Separate values by commas <code>,</code>.</span>
+
+                    <input type="hidden" name="variant-id"/>
                 </div>
                 <div class="modal-footer">
                     <button class="large success edit-variant-save">Save</button>
@@ -80,26 +81,36 @@
                 <div class="module">
                     <div class="module-header clearfix">
                         <h6 class="title pull-left">Variants</h6>
-                        <button class="pull-right large" data-toggle-modal="#add-variant-modal">Add</button>
+                        <button class="pull-right large" data-toggle-modal="#add-variant-modal"><i class="fa fa-plus"></i> Add</button>
                     </div>
 
-                    <div class="module-content">
-                        <table>
+                    <div class="module-content" style="padding: 0">
+                        <table class="bordered">
                             <thead>
                                 <tr>
                                     <th><strong>Name</strong></th>
-                                    <th colspan="2"><strong>Values</strong></th>
+                                    <th><strong>Values</strong> <div class="pull-right"><strong>Stock</strong></div></th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($product->variants as $variant)
-                                <tr class="variant">
-                                    <td>{{$variant['name']}}</td>
-                                    <td>{{implode(',', $variant['values'])}}</td>
+                                <tr class="variant" data-id="{{$variant->id}}">
+                                    <td class="name">{{$variant->name}}</td>
+                                    <td class="values">
+                                        <ul class="flat">
+                                            @foreach($variant->data['values'] as $value)
+                                                <li class="value clearfix">
+                                                    <span class="value-name pull-left">{{$value['name']}}</span>
+                                                    <input type="number" data-value="{{$value['name']}}" class="value-stock pull-right" style="width: 60px" value="{{$value['stock']}}"/>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </td>
                                     <td class="actions">
                                         <div class="button-group pull-right">
-                                            <button class="tiny variant-edit">Edit</button>
-                                            <button class="tiny variant-delete error">Delete</button>
+                                            <button class="small variant-edit"><i class="fa fa-pencil"></i></button>
+                                            <button class="small variant-delete error"><i class="fa fa-trash"></i></button>
                                         </div>
                                     </td>
                                 </tr>
@@ -109,6 +120,21 @@
                     </div>
                 </div>
             </div>
+
+            <hr/>
+
+            <div class="product-images row">
+                <div class="module">
+                    <div class="module-header clearfix">
+                        <h6 class="title">Images</h6>
+                    </div>
+
+                    <div class="module-content dropzone" style="padding: 0; min-height: 80px;" id="product-images-list">
+
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="product-data-view col-xs-6 col-l-5 col-xl-4">
@@ -199,6 +225,17 @@
         var productID = "{{$product->id}}";
         var form = $("form");
 
+        //initialize dropzone for images
+        $("#product-images-list").dropzone({
+            url: Friluft.URL + '/admin/api/products/' + productID + '/images',
+
+            init: function() {
+                this.on('sending', function(file, xhr, formData) {
+                    formData.append('_token', Friluft.token);
+                });
+            }
+        });
+
         //initialize chosen
         form.find('[name="categories[]"]').chosen().next().removeAttr('style').css('width', '100%');
         form.find('[name="vatgroup"]').chosen().next().removeAttr('style').css('width', '100%');
@@ -216,8 +253,9 @@
 
             var payload = {_token: Friluft.token, name: name, values: values};
             $.post(Friluft.URL + '/admin/api/products/' + productID + '/variants', payload, function(response) {
-                console.log(response);
                 self.removeAttr('disabled');
+                $("#add-variant-modal").gsModal('hide');
+                $("#product-form").trigger('submit');
             });
         });
 
@@ -225,19 +263,73 @@
         var editModal = $("#edit-variant-modal");
         $(".product-variants .variant .variant-edit").click(function(e) {
             e.preventDefault();
+
+            //get variant data
+            var view = $(this).parents('.variant').first();
+            var values = view.find('.values').text();
+            var id = view.attr('data-id');
+
+            //set form data
+            editModal.find('[name="variant-values"]').val(values);
+            editModal.find('[name="variant-id"]').val(id);
+
+            // show modal
             editModal.gsModal('show');
         });
 
         //save variant
-        editModal.find('.modal-footer .save').click(function(e) {
+        editModal.find('.modal-footer .edit-variant-save').click(function(e) {
             editModal.gsModal('hide');
-            var
+            var name = editModal.find('[name="variant-name"]').val();
+            var values = editModal.find('[name="variant-values"]').val();
+            var id = editModal.find('[name="variant-id"]').val();
+
+            var payload = {
+                _method: 'PUT',
+                _token: Friluft.token,
+                values: values
+            };
+
+            $.post(Friluft.URL + '/admin/api/products/' + productID + '/variants/' + id, payload, function(response) {
+                console.log('saved variant, response:');
+                console.log(response);
+                $("#product-form").trigger('submit');
+            });
+        });
+
+        //update variant stock
+        //api/products/{product}/variants/{variant}/{value}/{stock}
+        $(".product-variants .variant .values .value input.value-stock").change(function() {
+            var value = $(this).attr('data-value');
+            var stock = $(this).val();
+            var variantID = $(this).parents('.variant').first().attr('data-id');
+
+            var payload = {
+                _method: 'PUT',
+                _token: Friluft.token,
+                value: value,
+                stock: stock,
+            };
+
+            $.post(Friluft.URL + '/admin/api/products/' + productID + '/variants/' + variantID + '/setstock', payload, function(response) {
+                console.log('updated stock, response:');
+                console.log(response);
+            });
         });
 
         //delete variant
         $(".product-variants .variant .variant-delete").click(function(e) {
             e.preventDefault();
-            console.log('delete variant');
+
+            var id = $(this).parents('.variant').first().attr('data-id');
+
+            console.log('deleting variant by id: ' + id);
+
+            $.post(Friluft.URL + '/admin/api/products/' + productID + '/variants/' + id, {_token: Friluft.token, _method: 'DELETE'}, function(response) {
+                console.log('deleted variant, response:');
+                console.log(response);
+                $("#product-form").trigger('submit');
+            });
         });
 
         //auto-price
@@ -274,6 +366,8 @@
             profit.val(calculatedProfit);
         });
 
+        //set profit value
+        profit.val((getPrice() / getTaxPercent()) - getInPrice());
 
         //autoslug the name
         form.find('[name="slug"]').autoSlug({other: '[name="name"]'});

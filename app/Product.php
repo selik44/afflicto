@@ -35,8 +35,6 @@ class Product extends Model {
 		'in_price' => 'float',
 		'stock' => 'integer',
 		'images' => 'array',
-		'tabs' => 'array',
-		'variants' => 'array',
 	];
 
 	protected $searchable = [
@@ -86,10 +84,6 @@ class Product extends Model {
 		return $this->belongsToMany('Friluft\Category');
 	}
 
-	public function attributes() {
-		return $this->hasMany('Friluft\Attribute');
-	}
-
 	public function vatgroup() {
 		return $this->belongsTo('Friluft\Vatgroup');
 	}
@@ -100,6 +94,14 @@ class Product extends Model {
 
 	public function relations() {
 		return $this->belongsToMany('Friluft\Product', 'product_relation', 'product_id', 'relation_id');
+	}
+
+	public function variants() {
+		return $this->hasMany('Friluft\Variant');
+	}
+
+	public function producttabs() {
+		return $this->hasMany('Friluft\Producttab');
 	}
 
 	public function sell($amount = 1) {

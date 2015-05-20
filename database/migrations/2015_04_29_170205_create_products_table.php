@@ -33,9 +33,6 @@ class CreateProductsTable extends Migration {
 			$t->integer('vatgroup_id')->unsigned();
 			$t->integer('manufacturer_id')->unsigned();
 
-			$t->json('tabs');
-			$t->json('variants');
-
 			$t->foreign('vatgroup_id')
 				->references('id')->on('vatgroups');
 

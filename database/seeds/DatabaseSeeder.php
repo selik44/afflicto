@@ -84,11 +84,7 @@ class DatabaseSeeder extends Seeder {
 			[
 				'name' => 'Administrator',
 				'machine' => 'admin'
-			],
-			[
-				'name' => 'Lagermedarbeider',
-				'machine' => 'NULL',
-			],
+			]
 		]);
 
 
