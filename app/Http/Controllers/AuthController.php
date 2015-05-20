@@ -71,7 +71,6 @@ class AuthController extends Controller {
 
 			# mail the token to the user
 			Mail::send('emails.password', ['token' => $token, 'title' => 'Forgot Password'], function($mail) use($user) {
-				$mail->from('noreply@' .Store::current()->host, Store::current()->name);
 				$mail->to($user->email)->subject('Forgotten Password');
 			});
 		}
