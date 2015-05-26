@@ -4820,6 +4820,39 @@ html, body, #admin {
     font-size: 1.1rem; }
   #admin .laratable tr th {
     font-weight: 700; }
+#admin .product-images .dropzone .dz-default.dz-message {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 1px solid #ddd; }
+#admin .product-images .dropzone .placeholder {
+  float: left;
+  clear: both;
+  width: 100%;
+  min-width: 100px;
+  outline: 2px dotted #aaaaaa; }
+#admin .product-images .dropzone .dz-preview {
+  width: 100%;
+  margin: 1rem 0; }
+  #admin .product-images .dropzone .dz-preview .dz-details {
+    float: left;
+    width: 100%; }
+    #admin .product-images .dropzone .dz-preview .dz-details .dz-filename {
+      font-size: 1.1rem;
+      font-weight: 700; }
+    #admin .product-images .dropzone .dz-preview .dz-details .handle {
+      cursor: move; }
+      #admin .product-images .dropzone .dz-preview .dz-details .handle img {
+        text-align: center;
+        max-width: 100%;
+        max-height: 100%;
+        pointer-events: none; }
+  #admin .product-images .dropzone .dz-preview .dz-progress {
+    float: left;
+    width: 100%; }
+  #admin .product-images .dropzone .dz-preview .dz-success-mark {
+    top: 50%;
+    left: 50%;
+    font-size: 4rem; }
 
 #front #header #nav-top {
   background-color: #343434; }

@@ -107,20 +107,49 @@ Route::group(['prefix' => $locale], function() {
 
 		# add image
 		Route::post('api/products/{product}/images', function(Product $p) {
-			$images = $p->images;
-
+			# get the uploaded file
 			$file = Input::file('file');
-			$name = 'product_' .$p->id .'_' .count($images) .'.' .$file->getClientOriginalExtension();
 
-			if ($file->move(public_path('images/products/'), $name)) {
-				$images[] = ['order' => 0, 'image' => $name];
+			# create a new image instance
+			$image = new Friluft\Image();
 
-				$p->images = $images;
-				$p->save();
+			$image->type = 'product';
+
+			# save, to get ID
+			$p->images()->save($image);
+
+			# set name and save again
+			$image->name = 'product_' .$p->id .'_' .$image->id .'.' .$file->getClientOriginalExtension();
+
+			# move it to the public dir
+			if ($file->move(public_path('images/products/'), $image->name)) {
+				$image->save();
 				return response('OK', 200);
 			}
 
+			$image->delete();
+
 			return response('ERROR', 500);
+		});
+
+		# update image order
+		Route::put('api/products/{product}/images/order', function(Product $p) {
+			if (!Input::has('order')) return response('ERROR: Invalid input.', 400);
+			$order = json_decode(Input::get('order'), true);
+			foreach($order as $image) {
+				DB::table('images')
+					->where('id', '=', $image['id'])
+					->update(['order' => $image['order']]);
+			}
+			return response('OK', 200);
+		});
+
+		# delete product image
+		Route::delete('api/products/{product}/images', function(Product $p) {
+			$id = Input::get('id');
+			DB::table('images')->delete($id);
+
+			return response('OK', 200);
 		});
 
 		# add variant

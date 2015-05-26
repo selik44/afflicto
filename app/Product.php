@@ -34,7 +34,6 @@ class Product extends Model {
 		'price' => 'float',
 		'in_price' => 'float',
 		'stock' => 'integer',
-		'images' => 'array',
 	];
 
 	protected $searchable = [
@@ -62,7 +61,6 @@ class Product extends Model {
 		}else {
 			return $w .'<sub>g</sub>';
 		}
-
 		return $this->weight;
 	}
 
@@ -104,6 +102,10 @@ class Product extends Model {
 		return $this->hasMany('Friluft\Producttab');
 	}
 
+	public function images() {
+		return $this->hasMany('Friluft\Image');
+	}
+
 	public function sell($amount = 1) {
 		$this->sales += $amount;
 		$this->save();
@@ -120,23 +122,6 @@ class Product extends Model {
 		}
 
 		return $this->path;
-	}
-
-	/**
-	 * Get the path to an image, given the index of the image (relative to the images array).
-	 * @param int $index
-	 * @return null|string
-	 */
-	public function getImagePath($index = 0) {
-		if (is_numeric($index)) {
-			$images = $this->images;
-			if (isset($images[$index]) > 0) {
-				return asset('/images/products/' .$images[0]);
-			}
-		}else {
-			return asset('images/products/' .$index);
-		}
-		return null;
 	}
 
 }

@@ -38,7 +38,7 @@ $form->price = Former::text('price');
 $form->inprice = Former::text('inprice', 'In price');
 $form->vatgroup = Former::select('vatgroup')->fromQuery($vatgroups, 'name', 'id');
 $form->stock = Former::text('stock');
-$form->enabled = Former::checkbox('enabled');
+$form->enabled = Former::checkbox('enabled')->value('enabled');
 
 $form->description = Former::textarea('description')->rows(8);
 

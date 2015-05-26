@@ -37,10 +37,20 @@
       <column name="category_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="product_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="category_product_product_id_foreign" columns="product_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
       <foreign-key name="category_product_category_id_foreign" columns="category_id" ref-table="categories" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="category_product_product_id_foreign" columns="product_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
       <index name="category_product_category_id_foreign" unique="false" columns="category_id"/>
       <index name="category_product_product_id_foreign" unique="false" columns="product_id"/>
+    </table>
+    <table name="images" schema="" catalog="friluft" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="order" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="product_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="type" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="images_product_id_foreign" columns="product_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="images_product_id_index" unique="false" columns="product_id"/>
     </table>
     <table name="manufacturers" schema="" catalog="friluft" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -76,8 +86,8 @@
       <column name="permission_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="role_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="permission_role_role_id_foreign" columns="role_id" ref-table="roles" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <foreign-key name="permission_role_permission_id_foreign" columns="permission_id" ref-table="permissions" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="permission_role_role_id_foreign" columns="role_id" ref-table="roles" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <index name="permission_role_permission_id_index" unique="false" columns="permission_id"/>
       <index name="permission_role_role_id_index" unique="false" columns="role_id"/>
     </table>
@@ -94,8 +104,8 @@
       <column name="product_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="relation_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="product_relation_relation_id_foreign" columns="relation_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <foreign-key name="product_relation_product_id_foreign" columns="product_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="product_relation_relation_id_foreign" columns="relation_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <index name="product_relation_product_id_index" unique="false" columns="product_id"/>
       <index name="product_relation_relation_id_index" unique="false" columns="relation_id"/>
     </table>
@@ -123,8 +133,9 @@
       <foreign-key name="products_manufacturer_id_foreign" columns="manufacturer_id" ref-table="manufacturers" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="products_vatgroup_id_foreign" columns="vatgroup_id" ref-table="vatgroups" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="category_product_product_id_foreign" table="category_product" schema="" catalog="friluft" columns="product_id"/>
-      <exported-key name="product_relation_relation_id_foreign" table="product_relation" schema="" catalog="friluft" columns="relation_id"/>
+      <exported-key name="images_product_id_foreign" table="images" schema="" catalog="friluft" columns="product_id"/>
       <exported-key name="product_relation_product_id_foreign" table="product_relation" schema="" catalog="friluft" columns="product_id"/>
+      <exported-key name="product_relation_relation_id_foreign" table="product_relation" schema="" catalog="friluft" columns="relation_id"/>
       <exported-key name="producttabs_product_id_foreign" table="producttabs" schema="" catalog="friluft" columns="product_id"/>
       <exported-key name="variants_product_id_foreign" table="variants" schema="" catalog="friluft" columns="product_id"/>
       <index name="products_manufacturer_id_foreign" unique="false" columns="manufacturer_id"/>

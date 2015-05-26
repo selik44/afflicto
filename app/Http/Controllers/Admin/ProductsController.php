@@ -126,13 +126,14 @@ class ProductsController extends Controller {
 		$p->summary = Input::get('summary');
 		$p->description = Input::get('description');
 		$p->stock = Input::get('stock', 0);
-		$p->enabled = (Input::get('enabled', 'off') == 'on') ? true : false;
+		$p->enabled = (Input::has('enabled')) ? true : false;
 		$p->weight = Input::get('weight', 0);
 		$p->inprice = Input::get('inprice', 0);
 		$p->price = Input::get('price', 0);
 		$p->manufacturer_id = Input::get('manufacturer');
 		$p->vatgroup_id = Input::get('vatgroup');
 
+		# save
 		$p->save();
 
 		# sync categories

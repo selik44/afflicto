@@ -30,10 +30,12 @@
 	@foreach($products as $product)
 		<div class="product">
 			<?php
-				$img = $product->getImagePath(0);
+				$img = $product->images()->first();
 				if ($img == null) {
 					$img = '';
-				}
+				}else {
+                    $img = asset('images/products/' .$img->name);
+                }
 
 				$link = url($product->getPath());
 			?>

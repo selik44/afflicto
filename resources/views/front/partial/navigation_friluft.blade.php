@@ -2,7 +2,7 @@
 	
 	use Friluft\Category;
 	
-	$root = ['bestselgere', 'friluft', 'fiske', 'lopetoy', 'sykkel', 'lykteroglys', 'actionkamera', 'hund'];
+	$root = ['bestselgere', 'friluft', 'fiske', 'trening', 'sykkel', 'lykteroglys', 'actionkamera', 'hund'];
 
 	foreach ($root as $cat) {
 		$cat = Category::where('slug', '=', $cat)->first();

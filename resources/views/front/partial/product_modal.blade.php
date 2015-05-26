@@ -3,7 +3,7 @@
 		<div class="slider">
 			<div class="container">
 				@foreach($product->images as $image)
-					<div class="slide" style="background-image: url('{{$product->getImagePath($image)}}');">
+					<div class="slide" style="background-image: url('{{asset('images/products/' .$image->name)}}');">
 					</div>
 				@endforeach
 			</div>

@@ -129,8 +129,50 @@
                         <h6 class="title">Images</h6>
                     </div>
 
-                    <div class="module-content dropzone" style="padding: 0; min-height: 80px;" id="product-images-list">
+                    <div class="module-content dropzone row" style="padding: 0; min-height: 80px;" id="product-images-list">
+                        <div class="dz-preview dz-file-preview preview-template clearfix">
+                            <div class="col-xs-4 preview-image">
+                                <div class="handle">
+                                    <img data-dz-thumbnail>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 preview-info">
+                                <div class="dz-details">
+                                    <div class="dz-filename"><h6 data-dz-name></h6></div>
+                                    <div class="dz-size" data-dz-size></div>
+                                    <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+                                    <div class="dz-success-mark"><i class="fa fa-check color-success"></i></div>
+                                    <div class="dz-error-mark"><i class="fa fa-close color-error"></i></div>
+                                    <div class="dz-error-message alert alert-error"><h6>Error</h6><p><span data-dz-errormessage></span></p></div>
+                                </div>
+                                <footer class="footer">
+                                    <div class="button-group">
+                                        <button class="small error delete"><i class="fa fa-trash"></i> Delete</button>
+                                    </div>
+                                </footer>
+                            </div>
+                        </div>
 
+                        @foreach($product->images()->orderBy('order', 'asc')->get() as $image)
+                            <div data-id="{{$image->id}}" class="dz-sortable dz-preview dz-file-preview dz-success dz-complete preview-template">
+                                <div class="col-xs-4 preview-image">
+                                    <div class="handle">
+                                        <img data-dz-thumbnail src="{{asset('images/products/' .$image->name)}}">
+                                    </div>
+                                </div>
+                                <div class="col-xs-6 preview-info">
+                                    <div class="dz-details">
+                                        <div class="dz-filename"><h6 data-dz-name>{{$image->name}}</h6></div>
+                                        <div class="dz-size" data-dz-size>{{filesize(public_path('images/products/' .$image->name))}}</div>
+                                    </div>
+                                    <footer class="footer">
+                                        <div class="button-group image-actions">
+                                            <button class="small error delete"><i class="fa fa-trash"></i> Delete</button>
+                                        </div>
+                                    </footer>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -140,7 +182,10 @@
         <div class="product-data-view col-xs-6 col-l-5 col-xl-4">
             <h4>Product Data</h4>
             <div class="row">
-                <div class="col-xs-6 tight-left">
+                <div class="col-xs-2 tight-left">
+                    {!! $form->enabled !!}
+                </div>
+                <div class="col-xs-4">
                     {!! $form->name !!}
                 </div>
                 <div class="col-xs-6 tight-right">
@@ -225,15 +270,75 @@
         var productID = "{{$product->id}}";
         var form = $("form");
 
-        //initialize dropzone for images
+        var previewNode = document.querySelector(".preview-template");
+        previewNode.id = "";
+        var previewTemplate = previewNode.parentNode.innerHTML;
+        previewNode.parentNode.removeChild(previewNode);
+
         $("#product-images-list").dropzone({
             url: Friluft.URL + '/admin/api/products/' + productID + '/images',
+            previewTemplate: previewTemplate,
 
             init: function() {
+                //move the .dz-message to the start
+                var el = $(this.element);
+                el.find('.dz-message').detach().prependTo(el);
+
                 this.on('sending', function(file, xhr, formData) {
                     formData.append('_token', Friluft.token);
                 });
             }
+        });
+
+        //initialize sortable
+        $("#product-images-list").sortable({
+            items: '.dz-sortable',
+            handle: '.handle',
+            forcePlaceholderSize: true,
+            placeholder: '<div class="placeholder"></div>'
+        });
+
+        //persist changes of image ordering.
+        $("#product-images-list").on('sortupdate', function() {
+            var tree = [];
+            var order = 0;
+
+            $("#product-images-list .dz-sortable").each(function() {
+                var id = $(this).attr('data-id');
+                tree[id] = {id: id, order: order};
+                order++;
+            });
+
+            console.log('tree:');
+            console.log(JSON.stringify(tree));
+
+            var payload = {
+                _method: 'PUT',
+                _token: Friluft.token,
+                order: JSON.stringify(tree),
+            };
+
+            $.post(Friluft.URL + '/admin/api/products/' + productID + '/images/order', payload, function(response) {
+                console.log('updated image order, response:');
+                console.log(response);
+            });
+        });
+
+        //delete images
+        $("#product-images-list .image-actions .delete").click(function(e) {
+            var preview = $(this).parents('.dz-sortable').first();
+            e.preventDefault();
+            var payload = {
+                _method: 'DELETE',
+                _token: Friluft.token,
+                id: preview.attr('data-id')
+            };
+
+            $.post(Friluft.URL + '/admin/api/products/' + productID + '/images', payload, function(response) {
+                preview.slideUp(function() {
+                    $(this).remove();
+                });
+            });
         });
 
         //initialize chosen
