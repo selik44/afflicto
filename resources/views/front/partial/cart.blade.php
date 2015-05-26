@@ -16,16 +16,15 @@
 			<tbody>
 				@foreach($items as $item)
 					<?php $model = $item['model']; ?>
-
 					<tr id="cart-item-{{$item['id']}}">
 						<td class="product">
 							<div class="pull-left image">
-								<img class="thumbnail" src="{{asset('images/products/' .$model['images'][0])}}">
+								<img class="thumbnail" src="{{asset('images/products/' .$model->images()->first()->name)}}">
 							</div>
 
 							<div class="pull-left info">
 								<h4 class="name end">
-									<a href="{{$item['url']}}">{{$model['name']}}</a>
+									<a href="{{$item['url']}}">{{$model->name}}</a>
 									@if($item['quantity'] > 1)
 									({{$item['quantity']}})
 									@endif
@@ -34,7 +33,7 @@
 						</td>
 
 						<td class="sub-total">
-							kr <span class="price">{{$model['price'] * $item['quantity']}}</span>,-
+							kr <span class="price">{{($model->price * $model->vatgroup->amount) * $item['quantity']}}</span>,-
 						</td>
 					</tr>
 

@@ -49,7 +49,7 @@
 
 		<div id="cart">
 			<div class="inner">
-				@include('front.partial.cart', ['items' => Cart::getItemsWithModels(true), 'total' => Cart::getTotal()])
+				@include('front.partial.cart', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal()])
 			</div>
 		</div>
 	</header>

@@ -18,7 +18,7 @@ class CartController extends Controller {
 	{
 		# json?
 		if (Request::wantsJson()) {
-			return Cart::getItemsWithModels(true);
+			return Cart::getItemsWithModels(false);
 		}
 		
 		return view('front.cart.index')

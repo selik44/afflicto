@@ -4591,6 +4591,9 @@ body, #front #footer {
   #front #page #article > .inner {
     padding: 1rem; }
 
+#product-modal .slide {
+  background-size: contain; }
+
 ul.nav.tabs {
   background: none; }
 
