@@ -17,8 +17,8 @@
 		<div class="product-images col-l-8 col-m-7 col-sm-6 tight-left">
 			<div class="slider contain">
 				<div class="container">
-				@foreach($product->images as $index => $image)
-					<div class="slide" style="background-image: url('{{url($product->getImagePath($index))}}');"></div>
+				@foreach($product->images as $image)
+					<div class="slide" style="background-image: url('{{asset('images/products/' .$image->name)}}');"></div>
 				@endforeach
 				</div>
 			</div>

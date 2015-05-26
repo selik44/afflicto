@@ -8,4 +8,5 @@
     php artisan migrate
     chmod -R 755 *
     chmod -R 777 storage
+    chmod -R 777 public
 @endtask
