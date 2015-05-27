@@ -3,14 +3,21 @@
 @section('body')
 <div id="front">
 	<header id="header">
+
 		<nav id="nav-top">
 			<ul class="clearfix inner nav end">
 				<li><a href="#">Help</a></li>
 				<li><a href="#">Account</a></li>
 				<li><a href="#">Contact</a></li>
+                @if(Auth::user())
+                    @if (Auth::user()->role->has('admin.access'))
+                        <li><a href="{{route('admin.dashboard')}}">Admin</a></li>
+                    @endif
+                @endif
 				<li class="pull-right"><a href="#"><i class="fa fa-globe"></i> English</a></li>
 			</ul>
 		</nav>
+
 		<nav id="nav" class="clearfix">
 			<div class="inner">
 				<button class="nav-toggle hidden-m-up"><i class="fa fa-bars"></i></button>
@@ -28,17 +35,16 @@
 					
 					<div class="nav-extra">
 						<div class="button-group search-and-cart hidden-l-up">
-							<button data-toggle="#search" class="tiny primary"><i class="fa fa-search"></i> Search</button>
-							<button data-toggle="#cart" class="tiny primary"><i class="fa fa-shopping-cart"></i> Cart</button>
+							<button data-toggle="#search" class="primary"><i class="fa fa-search"></i> Search</button>
+							<button data-toggle="#cart" class="primary"><i class="fa fa-shopping-cart"></i> Cart</button>
 						</div>
 						
 						
 						<form class="inline" id="search" action="{{url('search')}}" method="GET">
-							<input required maxlength="150" type="text" name="terms" placeholder="Search...">
-							<div class="buttons">
-								<input type="submit" value="Find" class="primary">
-								<input type="reset" value="Cancel" data-hide="#search" class="hidden-l-up">
-							</div>
+                            <div class="input-append">
+                                <input required maxlength="100" type="search" name="terms" placeholder="search...">
+                                <input type="submit" value="Search" class="primary appended">
+                            </div>
 						</form>
 						
 						<button data-toggle="#cart" class="cart-toggle primary end visible-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>

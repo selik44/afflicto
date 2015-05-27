@@ -162,7 +162,7 @@ class Cart {
 			$model = $this->getProductModel($uid);
 
 			if ($model) {
-				return $model->price * $item['quantity'];
+				return ($model->price * $model->vatgroup->amount) * $item['quantity'];
 			}
 		}
 
@@ -179,6 +179,17 @@ class Cart {
 			$total += $this->getSubTotal($item['id']);
 		}
 		return $total;
+	}
+
+	public function getTotalWeight() {
+		$items = $this->getItemsWithModels(false);
+		$weight = 0;
+
+		foreach($items as $item) {
+			$weight += $item['model']->weight;
+		}
+
+		return $weight;
 	}
 
 	/**
@@ -199,18 +210,25 @@ class Cart {
 					'quantity' => $item['quantity'],
 					'unit_price' => $item['model']->price * 100,
 					'discount_rate' => 0,
-					'tax_rate' => $item['model']->tax_percentage * 100,
+					'tax_rate' => $item['model']->vatgroup->amount * 100,
 				];
 			}
 
 			# add shipping costs
+			$weight = $this->getTotalWeight();
+			$total = $this->getTotal();
+			$shippingFee = 9900;
+			if ($weight < 1000) {
+				$shippingFee = 3900;
+			}
+
 			$create['cart']['items'][] = [
 				'type' => 'shipping_fee',
 				'reference' => 'SHIPPING',
 				'name' => 'Shipping Fee',
 				'quantity' => 1,
-				'unit_price' => 4900,
-				'tax_rate' => 2500,
+				'unit_price' => $shippingFee,
+				'tax_rate' => 0,
 			];
 
 			# configure checkout

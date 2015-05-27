@@ -1396,10 +1396,10 @@ a:not(.button) {
 button, input[type="submit"], input[type="reset"], .button {
   border-color: #222222;
   color: #fff;
-  background: -webkit-linear-gradient(top, #555, #3b3b3b);
-  background: -moz-linear-gradient(top, #555, #3b3b3b);
-  background: -o-linear-gradient(top, #555, #3b3b3b);
-  background: linear-gradient(to bottom, #555, #3b3b3b);
+  background: -webkit-linear-gradient(top, #555, #555555);
+  background: -moz-linear-gradient(top, #555, #555555);
+  background: -o-linear-gradient(top, #555, #555555);
+  background: linear-gradient(to bottom, #555, #555555);
   font-size: 1rem;
   line-height: 1.5rem;
   border-radius: 2px;
@@ -1417,15 +1417,15 @@ button, input[type="submit"], input[type="reset"], .button {
   transition-duration: 50ms;
   padding: 0.6rem 1.2rem; }
   button:hover, input[type="submit"]:hover, input[type="reset"]:hover, .button:hover {
-    background: -webkit-linear-gradient(top, #686868, #4f4f4f);
-    background: -moz-linear-gradient(top, #686868, #4f4f4f);
-    background: -o-linear-gradient(top, #686868, #4f4f4f);
-    background: linear-gradient(to bottom, #686868, #4f4f4f); }
+    background: -webkit-linear-gradient(top, #686868, #686868);
+    background: -moz-linear-gradient(top, #686868, #686868);
+    background: -o-linear-gradient(top, #686868, #686868);
+    background: linear-gradient(to bottom, #686868, #686868); }
   button:active, button.active, input[type="submit"]:active, input[type="submit"].active, input[type="reset"]:active, input[type="reset"].active, .button:active, .button.active {
-    background: -webkit-linear-gradient(top, #424242, #282828);
-    background: -moz-linear-gradient(top, #424242, #282828);
-    background: -o-linear-gradient(top, #424242, #282828);
-    background: linear-gradient(to bottom, #424242, #282828); }
+    background: -webkit-linear-gradient(top, #424242, #424242);
+    background: -moz-linear-gradient(top, #424242, #424242);
+    background: -o-linear-gradient(top, #424242, #424242);
+    background: linear-gradient(to bottom, #424242, #424242); }
   button.active, input[type="submit"].active, input[type="reset"].active, .button.active {
     box-shadow: inset 0px 0px 6px 3px #222222; }
   button[disabled], button.disabled, input[type="submit"][disabled], input[type="submit"].disabled, input[type="reset"][disabled], input[type="reset"].disabled, .button[disabled], .button.disabled {
@@ -1461,20 +1461,20 @@ button, input[type="submit"], input[type="reset"], .button {
   button.primary, input[type="submit"].primary, input[type="reset"].primary, .button.primary {
     border-color: #45862e;
     color: #000;
-    background: -webkit-linear-gradient(top, #73c555, #59ac3b);
-    background: -moz-linear-gradient(top, #73c555, #59ac3b);
-    background: -o-linear-gradient(top, #73c555, #59ac3b);
-    background: linear-gradient(to bottom, #73c555, #59ac3b); }
+    background: -webkit-linear-gradient(top, #73c555, #73c555);
+    background: -moz-linear-gradient(top, #73c555, #73c555);
+    background: -o-linear-gradient(top, #73c555, #73c555);
+    background: linear-gradient(to bottom, #73c555, #73c555); }
     button.primary:hover, input[type="submit"].primary:hover, input[type="reset"].primary:hover, .button.primary:hover {
-      background: -webkit-linear-gradient(top, #8acf72, #6bc24b);
-      background: -moz-linear-gradient(top, #8acf72, #6bc24b);
-      background: -o-linear-gradient(top, #8acf72, #6bc24b);
-      background: linear-gradient(to bottom, #8acf72, #6bc24b); }
+      background: -webkit-linear-gradient(top, #8acf72, #8acf72);
+      background: -moz-linear-gradient(top, #8acf72, #8acf72);
+      background: -o-linear-gradient(top, #8acf72, #8acf72);
+      background: linear-gradient(to bottom, #8acf72, #8acf72); }
     button.primary:active, button.primary.active, input[type="submit"].primary:active, input[type="submit"].primary.active, input[type="reset"].primary:active, input[type="reset"].primary.active, .button.primary:active, .button.primary.active {
-      background: -webkit-linear-gradient(top, #5eb63e, #4a9031);
-      background: -moz-linear-gradient(top, #5eb63e, #4a9031);
-      background: -o-linear-gradient(top, #5eb63e, #4a9031);
-      background: linear-gradient(to bottom, #5eb63e, #4a9031); }
+      background: -webkit-linear-gradient(top, #5eb63e, #5eb63e);
+      background: -moz-linear-gradient(top, #5eb63e, #5eb63e);
+      background: -o-linear-gradient(top, #5eb63e, #5eb63e);
+      background: linear-gradient(to bottom, #5eb63e, #5eb63e); }
     button.primary.active, input[type="submit"].primary.active, input[type="reset"].primary.active, .button.primary.active {
       box-shadow: inset 0px 0px 6px 3px #45862e; }
     button.primary[disabled], button.primary.disabled, input[type="submit"].primary[disabled], input[type="submit"].primary.disabled, input[type="reset"].primary[disabled], input[type="reset"].primary.disabled, .button.primary[disabled], .button.primary.disabled {
@@ -1486,20 +1486,20 @@ button, input[type="submit"], input[type="reset"], .button {
   button.secondary, input[type="submit"].secondary, input[type="reset"].secondary, .button.secondary {
     border-color: #566252;
     color: #000;
-    background: -webkit-linear-gradient(top, #889783, #6f7e69);
-    background: -moz-linear-gradient(top, #889783, #6f7e69);
-    background: -o-linear-gradient(top, #889783, #6f7e69);
-    background: linear-gradient(to bottom, #889783, #6f7e69); }
+    background: -webkit-linear-gradient(top, #889783, #889783);
+    background: -moz-linear-gradient(top, #889783, #889783);
+    background: -o-linear-gradient(top, #889783, #889783);
+    background: linear-gradient(to bottom, #889783, #889783); }
     button.secondary:hover, input[type="submit"].secondary:hover, input[type="reset"].secondary:hover, .button.secondary:hover {
-      background: -webkit-linear-gradient(top, #9ca997, #82927c);
-      background: -moz-linear-gradient(top, #9ca997, #82927c);
-      background: -o-linear-gradient(top, #9ca997, #82927c);
-      background: linear-gradient(to bottom, #9ca997, #82927c); }
+      background: -webkit-linear-gradient(top, #9ca997, #9ca997);
+      background: -moz-linear-gradient(top, #9ca997, #9ca997);
+      background: -o-linear-gradient(top, #9ca997, #9ca997);
+      background: linear-gradient(to bottom, #9ca997, #9ca997); }
     button.secondary:active, button.secondary.active, input[type="submit"].secondary:active, input[type="submit"].secondary.active, input[type="reset"].secondary:active, input[type="reset"].secondary.active, .button.secondary:active, .button.secondary.active {
-      background: -webkit-linear-gradient(top, #75856f, #5c6958);
-      background: -moz-linear-gradient(top, #75856f, #5c6958);
-      background: -o-linear-gradient(top, #75856f, #5c6958);
-      background: linear-gradient(to bottom, #75856f, #5c6958); }
+      background: -webkit-linear-gradient(top, #75856f, #75856f);
+      background: -moz-linear-gradient(top, #75856f, #75856f);
+      background: -o-linear-gradient(top, #75856f, #75856f);
+      background: linear-gradient(to bottom, #75856f, #75856f); }
     button.secondary.active, input[type="submit"].secondary.active, input[type="reset"].secondary.active, .button.secondary.active {
       box-shadow: inset 0px 0px 6px 3px #566252; }
     button.secondary[disabled], button.secondary.disabled, input[type="submit"].secondary[disabled], input[type="submit"].secondary.disabled, input[type="reset"].secondary[disabled], input[type="reset"].secondary.disabled, .button.secondary[disabled], .button.secondary.disabled {
@@ -1511,20 +1511,20 @@ button, input[type="submit"], input[type="reset"], .button {
   button.success, input[type="submit"].success, input[type="reset"].success, .button.success {
     border-color: #145b32;
     color: #fff;
-    background: -webkit-linear-gradient(top, #27AE60, #1e8449);
-    background: -moz-linear-gradient(top, #27AE60, #1e8449);
-    background: -o-linear-gradient(top, #27AE60, #1e8449);
-    background: linear-gradient(to bottom, #27AE60, #1e8449); }
+    background: -webkit-linear-gradient(top, #27AE60, #27ae60);
+    background: -moz-linear-gradient(top, #27AE60, #27ae60);
+    background: -o-linear-gradient(top, #27AE60, #27ae60);
+    background: linear-gradient(to bottom, #27AE60, #27ae60); }
     button.success:hover, input[type="submit"].success:hover, input[type="reset"].success:hover, .button.success:hover {
-      background: -webkit-linear-gradient(top, #2ecd71, #25a45a);
-      background: -moz-linear-gradient(top, #2ecd71, #25a45a);
-      background: -o-linear-gradient(top, #2ecd71, #25a45a);
-      background: linear-gradient(to bottom, #2ecd71, #25a45a); }
+      background: -webkit-linear-gradient(top, #2ecd71, #2ecd71);
+      background: -moz-linear-gradient(top, #2ecd71, #2ecd71);
+      background: -o-linear-gradient(top, #2ecd71, #2ecd71);
+      background: linear-gradient(to bottom, #2ecd71, #2ecd71); }
     button.success:active, button.success.active, input[type="submit"].success:active, input[type="submit"].success.active, input[type="reset"].success:active, input[type="reset"].success.active, .button.success:active, .button.success.active {
-      background: -webkit-linear-gradient(top, #208f4f, #176538);
-      background: -moz-linear-gradient(top, #208f4f, #176538);
-      background: -o-linear-gradient(top, #208f4f, #176538);
-      background: linear-gradient(to bottom, #208f4f, #176538); }
+      background: -webkit-linear-gradient(top, #208f4f, #208f4f);
+      background: -moz-linear-gradient(top, #208f4f, #208f4f);
+      background: -o-linear-gradient(top, #208f4f, #208f4f);
+      background: linear-gradient(to bottom, #208f4f, #208f4f); }
     button.success.active, input[type="submit"].success.active, input[type="reset"].success.active, .button.success.active {
       box-shadow: inset 0px 0px 6px 3px #145b32; }
     button.success[disabled], button.success.disabled, input[type="submit"].success[disabled], input[type="submit"].success.disabled, input[type="reset"].success[disabled], input[type="reset"].success.disabled, .button.success[disabled], .button.success.disabled {
@@ -1536,20 +1536,20 @@ button, input[type="submit"], input[type="reset"], .button {
   button.info, input[type="submit"].info, input[type="reset"].info, .button.info {
     border-color: #14505b;
     color: #fff;
-    background: -webkit-linear-gradient(top, #2799AE, #1e7484);
-    background: -moz-linear-gradient(top, #2799AE, #1e7484);
-    background: -o-linear-gradient(top, #2799AE, #1e7484);
-    background: linear-gradient(to bottom, #2799AE, #1e7484); }
+    background: -webkit-linear-gradient(top, #2799AE, #2799ae);
+    background: -moz-linear-gradient(top, #2799AE, #2799ae);
+    background: -o-linear-gradient(top, #2799AE, #2799ae);
+    background: linear-gradient(to bottom, #2799AE, #2799ae); }
     button.info:hover, input[type="submit"].info:hover, input[type="reset"].info:hover, .button.info:hover {
-      background: -webkit-linear-gradient(top, #2eb4cd, #2590a4);
-      background: -moz-linear-gradient(top, #2eb4cd, #2590a4);
-      background: -o-linear-gradient(top, #2eb4cd, #2590a4);
-      background: linear-gradient(to bottom, #2eb4cd, #2590a4); }
+      background: -webkit-linear-gradient(top, #2eb4cd, #2eb4cd);
+      background: -moz-linear-gradient(top, #2eb4cd, #2eb4cd);
+      background: -o-linear-gradient(top, #2eb4cd, #2eb4cd);
+      background: linear-gradient(to bottom, #2eb4cd, #2eb4cd); }
     button.info:active, button.info.active, input[type="submit"].info:active, input[type="submit"].info.active, input[type="reset"].info:active, input[type="reset"].info.active, .button.info:active, .button.info.active {
-      background: -webkit-linear-gradient(top, #207e8f, #175965);
-      background: -moz-linear-gradient(top, #207e8f, #175965);
-      background: -o-linear-gradient(top, #207e8f, #175965);
-      background: linear-gradient(to bottom, #207e8f, #175965); }
+      background: -webkit-linear-gradient(top, #207e8f, #207e8f);
+      background: -moz-linear-gradient(top, #207e8f, #207e8f);
+      background: -o-linear-gradient(top, #207e8f, #207e8f);
+      background: linear-gradient(to bottom, #207e8f, #207e8f); }
     button.info.active, input[type="submit"].info.active, input[type="reset"].info.active, .button.info.active {
       box-shadow: inset 0px 0px 6px 3px #14505b; }
     button.info[disabled], button.info.disabled, input[type="submit"].info[disabled], input[type="submit"].info.disabled, input[type="reset"].info[disabled], input[type="reset"].info.disabled, .button.info[disabled], .button.info.disabled {
@@ -1561,20 +1561,20 @@ button, input[type="submit"], input[type="reset"], .button {
   button.warning, input[type="submit"].warning, input[type="reset"].warning, .button.warning {
     border-color: #976008;
     color: #000;
-    background: -webkit-linear-gradient(top, #F39C12, #c87f0a);
-    background: -moz-linear-gradient(top, #F39C12, #c87f0a);
-    background: -o-linear-gradient(top, #F39C12, #c87f0a);
-    background: linear-gradient(to bottom, #F39C12, #c87f0a); }
+    background: -webkit-linear-gradient(top, #F39C12, #f39c12);
+    background: -moz-linear-gradient(top, #F39C12, #f39c12);
+    background: -o-linear-gradient(top, #F39C12, #f39c12);
+    background: linear-gradient(to bottom, #F39C12, #f39c12); }
     button.warning:hover, input[type="submit"].warning:hover, input[type="reset"].warning:hover, .button.warning:hover {
-      background: -webkit-linear-gradient(top, #f5ab36, #ec960c);
-      background: -moz-linear-gradient(top, #f5ab36, #ec960c);
-      background: -o-linear-gradient(top, #f5ab36, #ec960c);
-      background: linear-gradient(to bottom, #f5ab36, #ec960c); }
+      background: -webkit-linear-gradient(top, #f5ab36, #f5ab36);
+      background: -moz-linear-gradient(top, #f5ab36, #f5ab36);
+      background: -o-linear-gradient(top, #f5ab36, #f5ab36);
+      background: linear-gradient(to bottom, #f5ab36, #f5ab36); }
     button.warning:active, button.warning.active, input[type="submit"].warning:active, input[type="submit"].warning.active, input[type="reset"].warning:active, input[type="reset"].warning.active, .button.warning:active, .button.warning.active {
-      background: -webkit-linear-gradient(top, #d4860b, #a36708);
-      background: -moz-linear-gradient(top, #d4860b, #a36708);
-      background: -o-linear-gradient(top, #d4860b, #a36708);
-      background: linear-gradient(to bottom, #d4860b, #a36708); }
+      background: -webkit-linear-gradient(top, #d4860b, #d4860b);
+      background: -moz-linear-gradient(top, #d4860b, #d4860b);
+      background: -o-linear-gradient(top, #d4860b, #d4860b);
+      background: linear-gradient(to bottom, #d4860b, #d4860b); }
     button.warning.active, input[type="submit"].warning.active, input[type="reset"].warning.active, .button.warning.active {
       box-shadow: inset 0px 0px 6px 3px #976008; }
     button.warning[disabled], button.warning.disabled, input[type="submit"].warning[disabled], input[type="submit"].warning.disabled, input[type="reset"].warning[disabled], input[type="reset"].warning.disabled, .button.warning[disabled], .button.warning.disabled {
@@ -1586,20 +1586,20 @@ button, input[type="submit"], input[type="reset"], .button {
   button.error, input[type="submit"].error, input[type="reset"].error, .button.error {
     border-color: #6d2018;
     color: #fff;
-    background: -webkit-linear-gradient(top, #C0392B, #962d22);
-    background: -moz-linear-gradient(top, #C0392B, #962d22);
-    background: -o-linear-gradient(top, #C0392B, #962d22);
-    background: linear-gradient(to bottom, #C0392B, #962d22); }
+    background: -webkit-linear-gradient(top, #C0392B, #c0392b);
+    background: -moz-linear-gradient(top, #C0392B, #c0392b);
+    background: -o-linear-gradient(top, #C0392B, #c0392b);
+    background: linear-gradient(to bottom, #C0392B, #c0392b); }
     button.error:hover, input[type="submit"].error:hover, input[type="reset"].error:hover, .button.error:hover {
-      background: -webkit-linear-gradient(top, #d44c3e, #b63629);
-      background: -moz-linear-gradient(top, #d44c3e, #b63629);
-      background: -o-linear-gradient(top, #d44c3e, #b63629);
-      background: linear-gradient(to bottom, #d44c3e, #b63629); }
+      background: -webkit-linear-gradient(top, #d44c3e, #d44c3e);
+      background: -moz-linear-gradient(top, #d44c3e, #d44c3e);
+      background: -o-linear-gradient(top, #d44c3e, #d44c3e);
+      background: linear-gradient(to bottom, #d44c3e, #d44c3e); }
     button.error:active, button.error.active, input[type="submit"].error:active, input[type="submit"].error.active, input[type="reset"].error:active, input[type="reset"].error.active, .button.error:active, .button.error.active {
-      background: -webkit-linear-gradient(top, #a13024, #77231b);
-      background: -moz-linear-gradient(top, #a13024, #77231b);
-      background: -o-linear-gradient(top, #a13024, #77231b);
-      background: linear-gradient(to bottom, #a13024, #77231b); }
+      background: -webkit-linear-gradient(top, #a13024, #a13024);
+      background: -moz-linear-gradient(top, #a13024, #a13024);
+      background: -o-linear-gradient(top, #a13024, #a13024);
+      background: linear-gradient(to bottom, #a13024, #a13024); }
     button.error.active, input[type="submit"].error.active, input[type="reset"].error.active, .button.error.active {
       box-shadow: inset 0px 0px 6px 3px #6d2018; }
     button.error[disabled], button.error.disabled, input[type="submit"].error[disabled], input[type="submit"].error.disabled, input[type="reset"].error[disabled], input[type="reset"].error.disabled, .button.error[disabled], .button.error.disabled {
@@ -1993,7 +1993,7 @@ label {
 .form-group {
   margin-bottom: 1.4rem; }
 
-.checkbox, textarea, select, .chosen-container .chosen-choices, .chosen-container .chosen-single, .chosen-container .chosen-drop, input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="time"], input[type="datetime"], input[type="url"], input[type="number"], input[type="range"], input[type="checkbox"], input[type="radio"] {
+.checkbox, .input-prepend, .input-append, textarea, select, .chosen-container .chosen-choices, .chosen-container .chosen-single, .chosen-container .chosen-drop, input[type="text"], input[type="email"], input[type="password"], input[type="date"], input[type="time"], input[type="datetime"], input[type="url"], input[type="number"], input[type="range"], input[type="checkbox"], input[type="radio"], input[type="search"] {
   display: block;
   padding: 0.6rem;
   border-radius: 2px;
@@ -2007,29 +2007,26 @@ label {
   color: #fff;
   border-color: #1a1a1a;
   box-shadow: inset 0 0px 2px 0px rgba(0, 0, 0, 0.2);
-  outline: 1px solid rgba(115, 197, 85, 0);
   outline-radius: 2px; }
-  .checkbox.small, textarea.small, select.small, .chosen-container .small.chosen-choices, .chosen-container .small.chosen-single, .chosen-container .small.chosen-drop, input[type="text"].small, input[type="email"].small, input[type="password"].small, input[type="date"].small, input[type="time"].small, input[type="datetime"].small, input[type="url"].small, input[type="number"].small, input[type="range"].small, input[type="checkbox"].small, input[type="radio"].small {
+  .checkbox.small, .input-prepend.small, .input-append.small, textarea.small, select.small, .chosen-container .small.chosen-choices, .chosen-container .small.chosen-single, .chosen-container .small.chosen-drop, input[type="text"].small, input[type="email"].small, input[type="password"].small, input[type="date"].small, input[type="time"].small, input[type="datetime"].small, input[type="url"].small, input[type="number"].small, input[type="range"].small, input[type="checkbox"].small, input[type="radio"].small, input[type="search"].small {
     font-size: 1rem;
     padding: 0.4rem; }
-  .checkbox.large, textarea.large, select.large, .chosen-container .large.chosen-choices, .chosen-container .large.chosen-single, .chosen-container .large.chosen-drop, input[type="text"].large, input[type="email"].large, input[type="password"].large, input[type="date"].large, input[type="time"].large, input[type="datetime"].large, input[type="url"].large, input[type="number"].large, input[type="range"].large, input[type="checkbox"].large, input[type="radio"].large {
+  .checkbox.large, .input-prepend.large, .input-append.large, textarea.large, select.large, .chosen-container .large.chosen-choices, .chosen-container .large.chosen-single, .chosen-container .large.chosen-drop, input[type="text"].large, input[type="email"].large, input[type="password"].large, input[type="date"].large, input[type="time"].large, input[type="datetime"].large, input[type="url"].large, input[type="number"].large, input[type="range"].large, input[type="checkbox"].large, input[type="radio"].large, input[type="search"].large {
     padding: 0.6rem;
     font-size: 1.3rem; }
-  .checkbox.large, textarea.large, select.large, .chosen-container .large.chosen-choices, .chosen-container .large.chosen-single, .chosen-container .large.chosen-drop, input[type="text"].large, input[type="email"].large, input[type="password"].large, input[type="date"].large, input[type="time"].large, input[type="datetime"].large, input[type="url"].large, input[type="number"].large, input[type="range"].large, input[type="checkbox"].large, input[type="radio"].large {
+  .checkbox.large, .input-prepend.large, .input-append.large, textarea.large, select.large, .chosen-container .large.chosen-choices, .chosen-container .large.chosen-single, .chosen-container .large.chosen-drop, input[type="text"].large, input[type="email"].large, input[type="password"].large, input[type="date"].large, input[type="time"].large, input[type="datetime"].large, input[type="url"].large, input[type="number"].large, input[type="range"].large, input[type="checkbox"].large, input[type="radio"].large, input[type="search"].large {
     padding: 0.8rem;
     font-size: 1.5rem; }
-  .checkbox.huge, textarea.huge, select.huge, .chosen-container .huge.chosen-choices, .chosen-container .huge.chosen-single, .chosen-container .huge.chosen-drop, input[type="text"].huge, input[type="email"].huge, input[type="password"].huge, input[type="date"].huge, input[type="time"].huge, input[type="datetime"].huge, input[type="url"].huge, input[type="number"].huge, input[type="range"].huge, input[type="checkbox"].huge, input[type="radio"].huge {
+  .checkbox.huge, .input-prepend.huge, .input-append.huge, textarea.huge, select.huge, .chosen-container .huge.chosen-choices, .chosen-container .huge.chosen-single, .chosen-container .huge.chosen-drop, input[type="text"].huge, input[type="email"].huge, input[type="password"].huge, input[type="date"].huge, input[type="time"].huge, input[type="datetime"].huge, input[type="url"].huge, input[type="number"].huge, input[type="range"].huge, input[type="checkbox"].huge, input[type="radio"].huge, input[type="search"].huge {
     padding: 1rem;
     font-size: 1.8rem; }
-  .checkbox:hover, textarea:hover, select:hover, .chosen-container .chosen-choices:hover, .chosen-container .chosen-single:hover, .chosen-container .chosen-drop:hover, input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, input[type="date"]:hover, input[type="time"]:hover, input[type="datetime"]:hover, input[type="url"]:hover, input[type="number"]:hover, input[type="range"]:hover, input[type="checkbox"]:hover, input[type="radio"]:hover {
+  .checkbox:hover, .input-prepend:hover, .input-append:hover, textarea:hover, select:hover, .chosen-container .chosen-choices:hover, .chosen-container .chosen-single:hover, .chosen-container .chosen-drop:hover, input[type="text"]:hover, input[type="email"]:hover, input[type="password"]:hover, input[type="date"]:hover, input[type="time"]:hover, input[type="datetime"]:hover, input[type="url"]:hover, input[type="number"]:hover, input[type="range"]:hover, input[type="checkbox"]:hover, input[type="radio"]:hover, input[type="search"]:hover {
     background-color: black;
-    box-shadow: inset 0 0px 2px 0px rgba(0, 0, 0, 0.1);
-    outline: 1px solid rgba(115, 197, 85, 0.3); }
-  .checkbox:focus, textarea:focus, select:focus, .chosen-container .chosen-choices:focus, .chosen-container .chosen-single:focus, .chosen-container .chosen-drop:focus, input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="time"]:focus, input[type="datetime"]:focus, input[type="url"]:focus, input[type="number"]:focus, input[type="range"]:focus, input[type="checkbox"]:focus, input[type="radio"]:focus {
+    box-shadow: inset 0 0px 2px 0px rgba(0, 0, 0, 0.1); }
+  .checkbox:focus, .input-prepend:focus, .input-append:focus, textarea:focus, select:focus, .chosen-container .chosen-choices:focus, .chosen-container .chosen-single:focus, .chosen-container .chosen-drop:focus, input[type="text"]:focus, input[type="email"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="time"]:focus, input[type="datetime"]:focus, input[type="url"]:focus, input[type="number"]:focus, input[type="range"]:focus, input[type="checkbox"]:focus, input[type="radio"]:focus, input[type="search"]:focus {
     background-color: black;
-    box-shadow: none;
-    outline: 1px solid rgba(115, 197, 85, 0.5); }
-  .checkbox.fullwidth, textarea.fullwidth, select.fullwidth, .chosen-container .fullwidth.chosen-choices, .chosen-container .fullwidth.chosen-single, .chosen-container .fullwidth.chosen-drop, input[type="text"].fullwidth, input[type="email"].fullwidth, input[type="password"].fullwidth, input[type="date"].fullwidth, input[type="time"].fullwidth, input[type="datetime"].fullwidth, input[type="url"].fullwidth, input[type="number"].fullwidth, input[type="range"].fullwidth, input[type="checkbox"].fullwidth, input[type="radio"].fullwidth {
+    box-shadow: 0px 0px 2px 0px #73c555; }
+  .checkbox.fullwidth, .input-prepend.fullwidth, .input-append.fullwidth, textarea.fullwidth, select.fullwidth, .chosen-container .fullwidth.chosen-choices, .chosen-container .fullwidth.chosen-single, .chosen-container .fullwidth.chosen-drop, input[type="text"].fullwidth, input[type="email"].fullwidth, input[type="password"].fullwidth, input[type="date"].fullwidth, input[type="time"].fullwidth, input[type="datetime"].fullwidth, input[type="url"].fullwidth, input[type="number"].fullwidth, input[type="range"].fullwidth, input[type="checkbox"].fullwidth, input[type="radio"].fullwidth, input[type="search"].fullwidth {
     width: 100%; }
 
 .checkbox-container {
@@ -2090,6 +2087,41 @@ label {
       top: 20%;
       background: #73c555;
       border-radius: 100px; }
+
+.input-append, .input-prepend {
+  display: flex;
+  flex-direction: row;
+  padding: 0;
+  border: none; }
+  .input-append input:not(input[type="button"]), .input-append input:not(input[type="button"]):hover, .input-append input:not(input[type="button"]):focus, .input-prepend input:not(input[type="button"]), .input-prepend input:not(input[type="button"]):hover, .input-prepend input:not(input[type="button"]):focus {
+    flex: 1 1 auto;
+    background: none;
+    outline: none; }
+  .input-append.input-append input, .input-prepend.input-append input {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px; }
+  .input-append.input-prepend input, .input-prepend.input-prepend input {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px; }
+  .input-append .appended, .input-append .prepended, .input-prepend .appended, .input-prepend .prepended {
+    flex: 0 1 auto;
+    border-radius: 2px; }
+  .input-append span.appended, .input-append span.prepended, .input-prepend span.appended, .input-prepend span.prepended {
+    padding: 0.6rem;
+    background: #121212;
+    border: 1px solid #1a1a1a; }
+  .input-append span.prepended, .input-prepend span.prepended {
+    border-right: 0px; }
+  .input-append span.appended, .input-prepend span.appended {
+    border-left: 0px; }
+  .input-append .appended, .input-prepend .appended {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-right: 0; }
+  .input-append .prepended, .input-prepend .prepended {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-left: 0; }
 
 .tab {
   border: 1px solid #404040;
@@ -4461,13 +4493,10 @@ body, #front #footer {
       transition: all 600ms; }
       #front #header #nav #search input[name="terms"] {
         width: 100px;
-        height: 34px;
         transition: all 600ms; }
         #front #header #nav #search input[name="terms"]:focus {
           width: 160px;
           transition: all 600ms; }
-      #front #header #nav #search input[type="reset"] {
-        display: none; }
       #front #header #nav #search .buttons {
         display: inline; }
       @media (min-width: 961px) and (max-width: 1280px) {

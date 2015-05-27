@@ -21,6 +21,8 @@ class Role extends Model {
 
 	public function has($permissions)
 	{
+		if ($this->machine === 'admin') return true;
+
 		# get permissions
 		if (func_num_args() > 1) $permissions = func_get_args();
 		if (is_string($permissions)) $permissions = explode(',', trim($permissions, ','));
