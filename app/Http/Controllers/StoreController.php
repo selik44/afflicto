@@ -92,7 +92,10 @@ class StoreController extends Controller {
 		if (!$user) {
 			$user = new User();
 			$user->role()->associate(Role::where('machine', '=', 'regular')->first());
-			$user->email = $email;
+			#$user->email = $email;
+
+			# testing email
+			$user->email = 'me@afflicto.net';
 
 			# parse name
 			$name = explode(' ', $data['billing_address']['given_name']);
