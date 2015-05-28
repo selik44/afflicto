@@ -194,74 +194,81 @@ class Cart {
 		return $weight;
 	}
 
-	/**
-	 * Gets the Klarna Order from the session. If it doesn't exist, we'll create one (and save it to session for later use)
-	 * @return Klarna_Checkout_Order
-	 */
-	public function getKlarnaOrder() {
-		# do we need to create it?
+	public function getKlarnaOrderData() {
+		$data = ['cart' => ['items' => []]];
+
+		# Add the products
+		foreach($this->getItemsWithModels(false) as $item) {
+			$data['cart']['items'][] = [
+				'reference' => json_encode(['id' => $item['model']->id, 'options' => $item['options']]),
+				'name' => $item['model']->name,
+				'quantity' => $item['quantity'],
+				'unit_price' => ($item['model']->price * $item['model']->vatgroup->amount) * 100,
+				'discount_rate' => 0,
+				'tax_rate' => ($item['model']->vatgroup->amount - 1) * 100,
+			];
+		}
+
+		# add shipping costs
+		$weight = $this->getTotalWeight();
+		$total = $this->getTotal();
+		$shippingFee = 9900;
+		if ($weight < 1000) {
+			$shippingFee = 3900;
+		}
+
+		$data['cart']['items'][] = [
+			'type' => 'shipping_fee',
+			'reference' => 'SHIPPING',
+			'name' => 'Shipping Fee',
+			'quantity' => 1,
+			'unit_price' => $shippingFee,
+			'tax_rate' => 0,
+		];
+
+		# configure checkout
+		$data['purchase_country'] = 'NO';
+		$data['purchase_currency'] = 'NOK';
+		$data['locale'] = 'nb-no';
+		$data['merchant'] = [
+			'id' => getenv('KLARNA_MERCHANT_ID'),
+			'terms_uri' => url('terms-and-conditions'),
+			'checkout_uri' => url('store/checkout'),
+			'confirmation_uri' => url('store/success') .'?klarna_order={checkout.order.uri}',
+			'push_uri' => url('store/push') .'?klarna_order={checkout.order.uri}',
+		];
+
+		return $data;
+	}
+
+	public function getKlarnaOrder($id = null) {
+		# get specific order?
+		if ($id != null) {
+			$order = new Klarna_Checkout_Order($this->klarnaConnector, $id);
+			$order->fetch();
+			return $order;
+		}
+
+		# get from session instead...
+
+		# create a new one?
 		if (!$this->session->has('klarna_order')) {
-			# create the Klarna Cart
-			$create = ['cart' => ['items' => []]];
-
-			# Add the products
-			foreach($this->getItemsWithModels(false) as $item) {
-				$price = $item['model']->price;
-				$create['cart']['items'][] = [
-					'reference' => $item['model']->id,
-					'name' => $item['model']->name,
-					'quantity' => $item['quantity'],
-					'unit_price' => ($item['model']->price * $item['model']->vatgroup->amount) * 100,
-					'discount_rate' => 0,
-					'tax_rate' => $item['model']->vatgroup->amount * 100,
-				];
-			}
-
-			# add shipping costs
-			$weight = $this->getTotalWeight();
-			$total = $this->getTotal();
-			$shippingFee = 9900;
-			if ($weight < 1000) {
-				$shippingFee = 3900;
-			}
-
-			$create['cart']['items'][] = [
-				'type' => 'shipping_fee',
-				'reference' => 'SHIPPING',
-				'name' => 'Shipping Fee',
-				'quantity' => 1,
-				'unit_price' => $shippingFee,
-				'tax_rate' => 0,
-			];
-
-			# configure checkout
-			$create['purchase_country'] = 'NO';
-			$create['purchase_currency'] = 'NOK';
-			$create['locale'] = 'nb-no';
-			$create['merchant'] = [
-				'id' => getenv('KLARNA_MERCHANT_ID'),
-				'terms_uri' => url('terms-and-conditions'),
-				'checkout_uri' => url('store/checkout'),
-				'confirmation_uri' => url('store/success') .'?klarna_order={checkout.order.uri}',
-				'push_uri' => url('store/push') .'?klarna_order={checkout.order.uri}',
-			];
-
 			# create klarna order
 			$order = new Klarna_Checkout_Order($this->klarnaConnector);
-			$order->create($create);
+			$order->create($this->getKlarnaOrderData());
 
 			# fetch
 			$order->fetch();
 
 			# save to session
 			$this->session->put('klarna_order', $order->getLocation());
-
-			# return it
-			return $order;
+		}else {
+			# just fetch from session
+			$order = new Klarna_Checkout_Order($this->klarnaConnector, $this->session->get('klarna_order'));
+			$order->fetch();
 		}
 
-		$order = new Klarna_Checkout_Order($this->klarnaConnector, $this->session->get('klarna_order'));
-		$order->fetch();
+		$order->update($this->getKlarnaOrderData());
 
 		return $order;
 	}

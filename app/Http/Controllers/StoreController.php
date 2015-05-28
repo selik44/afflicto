@@ -74,20 +74,12 @@ class StoreController extends Controller {
 			return view('front.store.success')->with('error', 'Something went wrong, contact us if the issue persists.');
 		}
 
-		$checkoutId = Input::get('klarna_order');
-		Klarna_Checkout_Order::$baseUri = getenv('KLARNA_URI');
-		Klarna_Checkout_Order::$contentType = getenv('KLARNA_CONTENT_TYPE');
-
-		# get klarna connector
-		$connector = Klarna_Checkout_Connector::create(getenv('KLARNA_SHARED_SECRET'));
-		$order = new Klarna_Checkout_Order($connector, $checkoutId);
-		$order->fetch();
-
 		return view('front.store.success');
 	}
 
 	public function push() {
 		$id = Input::get('klarna_order');
+		Log::info('Klarna pushed us with id: ' .$id, Cart::getKlarnaOrder($id));
 	}
 
 }
