@@ -90,6 +90,9 @@ class StoreController extends Controller {
 			return response('ERROR', 400);
 		}
 
+		# get data as array
+		$data = $data->marshal();
+
 		# get order model
 		$order = Order::where('klarna_id', '=', $id)->first();
 		if (!$order) {
@@ -102,7 +105,7 @@ class StoreController extends Controller {
 		}
 
 		$order->user_id = null;
-		$order->data = (array) $data;
+		$order->data = $data;
 		$order->save();
 
 		# completed?
