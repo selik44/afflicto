@@ -2,6 +2,7 @@
 
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
+use Friluft\Order;
 use Illuminate\Http\Request;
 use Friluft\Category;
 use Friluft\Product;
@@ -78,10 +79,44 @@ class StoreController extends Controller {
 	}
 
 	public function push() {
+		# get the klarna order
 		$id = Input::get('klarna_order');
-		$order = Cart::getKlarnaOrder($id);
-
 		Log::info('Klarna pushed us with id: ' .$id, (array) Cart::getKlarnaOrder($id));
+
+		# get order data
+		$data = Cart::getKlarnaOrder($id);
+		if (!$data) {
+			Log::error('Klarna Push failed. Cannot find klarna order with ID of: ' .$id);
+			return response('ERROR', 400);
+		}
+
+		# get order model
+		$order = Order::where('klarna_id', '=', $id)->first();
+		if (!$order) {
+			$order = new Order();
+		}
+
+		# update order data
+		foreach($data['items'] as $key => $item) {
+			$data['items'][$key]['reference'] = json_decode($item['reference'], true);
+		}
+
+		$order->user_id = null;
+		$order->data = (array) $data;
+		$order->save();
+
+		# completed?
+		if ($data['ORDER_STATUS'] == 'checkout_complete') {
+			# update the "sold" counter for the products
+			/*
+			foreach($data['items'] as $item) {
+				$product = Product::find($item['reference']['id']);
+				$product->sell($item['quantity']);
+				$product->save();
+			}*/
+		}
+
+		return response('OK', 200);
 	}
 
 }
