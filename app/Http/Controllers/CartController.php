@@ -6,6 +6,7 @@ use Cart;
 use Input;
 use Request;
 use Redirect;
+use Friluft\Product;
 
 class CartController extends Controller {
 
@@ -39,12 +40,30 @@ class CartController extends Controller {
 			return (Request::wantsJson()) ? response("error", 300) : Redirect::back()->with('error', 'Something went wrong there. Try again, or contact support if the error persists.');
 		}
 
-		$product = Input::get('product_id');
+		# get the product model
+		$product = Product::find(Input::get('product_id'));
+
+		# get quantity
 		$quantity = Input::get('quantity', 1);
 
-		$id = ['id' => Cart::add($product, $quantity)];
+		# set the variants options array
+		$options = [
+			'variants' => []
+		];
 
-		return (Request::wantsJson()) ? $id : Redirect::back()->with('success', 'added ' .$product .' to cart.');
+		foreach($product->variants as $variant) {
+			$name = $variant->name;
+			if (!Input::has('variant-' .$variant->id)) {
+				return (Request::wantsJson()) ? response('Variant ' .$name .' is missing!') : Redirect::back()->with('error', 'Variant ' .$name .' is missing!');
+			}
+
+			$value = Input::get('variant-' .$variant->id);
+			$options['variants'][$variant->id] = $value;
+		}
+
+		$cartid = Cart::add($product, $quantity, $options);
+
+		return (Request::wantsJson()) ? ['id' => $cartid] : Redirect::back()->with('success', 'added ' .$product->name .'(' .$quantity .') to cart.');
 	}
 
 	/**
@@ -60,27 +79,15 @@ class CartController extends Controller {
 		return Cart::get($id);
 	}
 
-	/**
-	 * Update the specified resource in storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function update($id)
-	{
-		if (!Cart::has($id)) return response("error", 404);
-	}
-
-	/**
-	 * Remove the specified resource from storage.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
 	public function destroy($id)
 	{
-		if (Cart::has($id)) Cart::remove($id);
+		Cart::remove($id);
 		return response("OK");
+	}
+
+	public function setQuantity($id) {
+		Cart::setQuantity($id, (int) Input::get('quantity', 0));
+		return response('OK');
 	}
 
 }

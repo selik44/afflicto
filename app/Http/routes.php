@@ -63,13 +63,12 @@ Route::group(['prefix' => $locale], function() {
 	Route::get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
 	# cart API
-	Route::resource('cart', 'CartController');
 	Route::get('cart', ['as' => 'cart.index', 'uses' => 'CartController@index']);
 	Route::get('cart/{cart}', ['as' => 'cart.show', 'uses' => 'CartController@show']);
-	Route::get('cart/create', ['as' => 'cart.create', 'uses' => 'CartController@create']);
-	Route::post('cart/create', ['as' => 'cart.store', 'uses' => 'CartController@store']);
-	Route::get('cart/{cart}/edit', ['as' => 'cart.edit', 'uses' => 'CartController@edit']);
-	Route::put('cart/{cart}', ['as' => 'cart.update', 'uses' => 'CartController@update']);
+	Route::post('cart', ['as' => 'cart.store', 'uses' => 'CartController@store']);
+	Route::put('cart/{id}/quantity', ['as' => 'cart.quantity', 'uses' => 'CartController@setQuantity']);
+	Route::delete('cart/{id}', ['as' => 'cart.destroy', 'uses' => 'CartController@destroy']);
+
 
 	# html/ajax API
 	Route::get('html/product/{product}', ['as' => 'html.product', function($product) {

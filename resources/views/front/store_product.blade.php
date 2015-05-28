@@ -28,24 +28,23 @@
 
 			<form class="vertical" action="{{url('cart')}}" method="POST">
 				<input type="hidden" name="_token" value="{{csrf_token()}}">
-
 				<input type="hidden" name="product_id" value="{{$product->id}}">
-				
-				<fieldset class="form-attribute">
-					<label for="size">Size
-						<select name="attribute_size">
-							<option value="xs">XS</option>
-							<option value="small">Small</option>
-							<option value="medium">Medium</option>
-							<option value="large">Large</option>
-							<option value="xl">XL</option>
-							<option value="xxl">XXL</option>
-						</select>
-					</label>
-				</fieldset>
 
-				<h3>kr {{$product->price}},-</h3>
-				
+                <h3>kr {{$product->price * $product->vatgroup->amount}},-</h3>
+
+                <div class="product-variants">
+                    @foreach($product->variants as $variant)
+                        <div class="variant" data-id="{{$variant->id}}">
+                            <label for="variant-{{$variant->id}}">{{$variant->name}}</label>
+                            <select name="variant-{{$variant->id}}">
+                                @foreach($variant->data['values'] as $name => $option)
+                                    <option value="{{$name}}">{{$name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @endforeach
+                </div>
+
 				<br>
 
 				<input class="large primary huge" style="width: 100%;" type="submit" name="Buy" value="@lang('store.buy')" class="success">
@@ -72,10 +71,6 @@
 				<li>Else</li>
 				<li>Here</li>
 			</ul>
-		</div>
-		
-		<div class="tab" id="product-reviews">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur, ratione.</p>
 		</div>
 	</div>
 @stop

@@ -90,7 +90,7 @@ class Cart {
 	 * @param int|integer The quantity of this item in the cart.
 	 * @return int|integer the item uid, used to reference the items in the cart.
 	 */
-	public function add($product, $quantity = 1) {
+	public function add($product, $quantity = 1, $options = []) {
 		# get product
 		if (is_object($product) && $product instanceof Product) {
 			$product = $product->id;
@@ -105,7 +105,7 @@ class Cart {
 			'product_id' => $product,
 			'id' => $uid,
 			'quantity' => $quantity,
-			'attributes' => [],
+			'options' => $options,
 		]);
 
 		# return the uid
@@ -136,6 +136,8 @@ class Cart {
 	 * @param integer quantity to set.
 	 */
 	public function setQuantity($uid, $quantity) {
+		$quantity = (int) $quantity;
+
 		if ($this->exists($uid)) {
 			if ($quantity <= 0) {
 				$this->remove($uid);
@@ -204,11 +206,12 @@ class Cart {
 
 			# Add the products
 			foreach($this->getItemsWithModels(false) as $item) {
+				$price = $item['model']->price;
 				$create['cart']['items'][] = [
 					'reference' => $item['model']->id,
 					'name' => $item['model']->name,
 					'quantity' => $item['quantity'],
-					'unit_price' => $item['model']->price * 100,
+					'unit_price' => ($item['model']->price * $item['model']->vatgroup->amount) * 100,
 					'discount_rate' => 0,
 					'tax_rate' => $item['model']->vatgroup->amount * 100,
 				];
