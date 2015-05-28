@@ -226,18 +226,6 @@ class Cart {
 			'tax_rate' => 0,
 		];
 
-		# configure checkout
-		$data['purchase_country'] = 'NO';
-		$data['purchase_currency'] = 'NOK';
-		$data['locale'] = 'nb-no';
-		$data['merchant'] = [
-			'id' => getenv('KLARNA_MERCHANT_ID'),
-			'terms_uri' => url('terms-and-conditions'),
-			'checkout_uri' => url('store/checkout'),
-			'confirmation_uri' => url('store/success') .'?klarna_order={checkout.order.uri}',
-			'push_uri' => url('store/push') .'?klarna_order={checkout.order.uri}',
-		];
-
 		return $data;
 	}
 
@@ -255,6 +243,20 @@ class Cart {
 		if (!$this->session->has('klarna_order')) {
 			# create klarna order
 			$order = new Klarna_Checkout_Order($this->klarnaConnector);
+			$data = $this->getKlarnaOrderData();
+
+			# configure checkout
+			$data['purchase_country'] = 'NO';
+			$data['purchase_currency'] = 'NOK';
+			$data['locale'] = 'nb-no';
+			$data['merchant'] = [
+				'id' => getenv('KLARNA_MERCHANT_ID'),
+				'terms_uri' => url('terms-and-conditions'),
+				'checkout_uri' => url('store/checkout'),
+				'confirmation_uri' => url('store/success') .'?klarna_order={checkout.order.uri}',
+				'push_uri' => url('store/push') .'?klarna_order={checkout.order.uri}',
+			];
+
 			$order->create($this->getKlarnaOrderData());
 
 			# fetch
