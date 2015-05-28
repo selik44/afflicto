@@ -97,8 +97,8 @@ class StoreController extends Controller {
 		}
 
 		# update order data
-		foreach($data['items'] as $key => $item) {
-			$data['items'][$key]['reference'] = json_decode($item['reference'], true);
+		foreach($data['cart']['items'] as $key => $item) {
+			$data['cart']['items'][$key]['reference'] = json_decode($item['reference'], true);
 		}
 
 		$order->user_id = null;
