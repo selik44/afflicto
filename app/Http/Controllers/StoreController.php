@@ -79,7 +79,9 @@ class StoreController extends Controller {
 
 	public function push() {
 		$id = Input::get('klarna_order');
-		Log::info('Klarna pushed us with id: ' .$id, Cart::getKlarnaOrder($id));
+		$order = Cart::getKlarnaOrder($id);
+
+		Log::info('Klarna pushed us with id: ' .$id, (array) Cart::getKlarnaOrder($id));
 	}
 
 }
