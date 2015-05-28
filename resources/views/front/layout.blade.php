@@ -20,14 +20,15 @@
 
 		<nav id="nav" class="clearfix">
 			<div class="inner">
-				<button class="nav-toggle hidden-m-up"><i class="fa fa-bars"></i></button>
+                <div class="nav-controls">
+                    <button class="nav-toggle hidden-m-up"><i class="fa fa-bars"></i></button>
 
-				<a href="{{url()}}" id="logo">
-					<img src="{{url('images/' .\Friluft\Store::current()->machine .'.png')}}">
-				</a>
+                    <a href="{{url()}}" id="logo">
+                        <img src="{{url('images/' .\Friluft\Store::current()->machine .'.png')}}">
+                    </a>
 
-				<button data-toggle="#cart" class="cart-toggle-top pull-right primary end hidden-m-up"><i class="fa fa-shopping-cart"></i> Cart</button>
-				
+                    <button data-toggle="#cart" class="cart-toggle-top pull-right primary end hidden-m-up"><i class="fa fa-shopping-cart"></i> Cart</button>
+                </div>
 				<div class="nav-contents">
 					<ul class="nav end navigation">
 						@include('front.partial.navigation_' .\Friluft\Store::current()->machine)
@@ -43,7 +44,8 @@
 						<form class="inline" id="search" action="{{url('search')}}" method="GET">
                             <div class="input-append">
                                 <input required maxlength="100" type="search" name="terms" placeholder="search...">
-                                <input type="submit" value="Search" class="primary appended">
+                                <!--<input type="submit" value="Search" class="primary appended">-->
+                                <button class="primary appended"><i class="fa fa-search"></i></button>
                             </div>
 						</form>
 						
@@ -53,7 +55,7 @@
 			</div>
 		</nav>
 
-		<div id="cart">
+		<div id="cart" style="display: none;">
 			<div class="inner">
 				@include('front.partial.cart', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal()])
 			</div>
@@ -178,14 +180,14 @@
 		$("[data-toggle='#search']").click(function() {
 			if (search.hasClass('visible')) {
 				//hide search
-				search.hide().removeClass('visible');
+				search.stop().slideUp().removeClass('visible');
 			}else {
 				var dropdown = $("#nav .nav-dropdown");
 				if (dropdown[0] != null) {
-					dropdown.hide();
+					dropdown.stop().slideUp();
 				}
-				search.addClass('visible');
-				cart.removeClass('visible');
+				search.stop().slideDown().addClass('visible');
+				cart.stop().slideUp().removeClass('visible');
 			}
 		});
 
@@ -202,24 +204,24 @@
 		$("[data-toggle='#cart']").click(function() {
 			if (cart.hasClass('visible')) {
 				//hide cart
-				cart.removeClass('visible');
+				cart.stop().slideUp().removeClass('visible');
 			}else {
 				var dropdown = $("#nav .nav-dropdown");
 				if (dropdown[0] != null) {
 					dropdown.hide();
 				}
-				search.removeClass('visible');
-				cart.addClass('visible');
+				search.stop().slideUp().removeClass('visible');
+				cart.stop().slideDown().addClass('visible');
 			}
 		});
 
 		$("[data-hide='#cart']").click(function() {
-			cart.removeClass('visible');
+			cart.stop().slideUp().removeClass('visible');
 		});
 
 		$("[data-show='#cart']").click(function() {
-			cart.addClass('visible');
-			search.removeClass('visible');
+			cart.stop().slideDown().addClass('visible');
+			search.stop().slideUp().removeClass('visible');
 		});
 
 

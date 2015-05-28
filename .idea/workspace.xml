@@ -2,16 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Shopping/Cart/Cart.php" afterPath="$PROJECT_DIR$/app/Shopping/Cart/Cart.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Role.php" afterPath="$PROJECT_DIR$/app/Role.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_settings.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_settings.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/partial/alerts.blade.php" afterPath="$PROJECT_DIR$/resources/views/partial/alerts.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/friluft.css" afterPath="$PROJECT_DIR$/public/css/friluft.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/highpulse.css" afterPath="$PROJECT_DIR$/public/css/highpulse.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/layout.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/watcherTasks.xml" afterPath="$PROJECT_DIR$/.idea/watcherTasks.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
@@ -57,31 +51,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="store_cart.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="store_cart.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/front/store_cart.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="1701">
-              <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/front/layout.blade.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="5964">
-              <caret line="36" column="78" selection-start-line="36" selection-start-column="78" selection-end-line="36" selection-end-column="78" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="_front.sass" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/_front.sass">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5627284" vertical-offset="4116" max-vertical-offset="7875">
-              <caret line="218" column="60" selection-start-line="218" selection-start-column="60" selection-end-line="218" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.38367844" vertical-offset="0" max-vertical-offset="1701">
+              <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -149,8 +123,8 @@
         <option value="$PROJECT_DIR$/resources/assets/sass/base/_settings.sass" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/all.sass" />
         <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/resources/views/front/layout.blade.php" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
+        <option value="$PROJECT_DIR$/resources/views/front/layout.blade.php" />
       </list>
     </option>
   </component>
@@ -754,11 +728,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="5757" max-vertical-offset="16698">
           <caret line="185" column="42" selection-start-line="185" selection-start-column="42" selection-end-line="185" selection-end-column="42" />
           <folding>
-            <element signature="e#1685#1710#0#HTML" expanded="true" />
-            <element signature="e#2122#2142#0#HTML" expanded="true" />
-            <element signature="e#2566#2591#0#HTML" expanded="true" />
-            <element signature="e#2906#2926#0#HTML" expanded="true" />
-            <element signature="e#6212#6249#0#HTML" expanded="true" />
+            <element signature="e#1685#1710#0#HTML" expanded="false" />
+            <element signature="e#2122#2142#0#HTML" expanded="false" />
+            <element signature="e#2566#2591#0#HTML" expanded="false" />
+            <element signature="e#2906#2926#0#HTML" expanded="false" />
+            <element signature="e#6212#6249#0#HTML" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -998,26 +972,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/front/store_cart.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/_front.sass">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="1701">
-          <caret line="33" column="25" selection-start-line="33" selection-start-column="25" selection-end-line="33" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="6508" max-vertical-offset="8274">
+          <caret line="287" column="50" selection-start-line="287" selection-start-column="50" selection-end-line="287" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/front/layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="378" max-vertical-offset="5964">
-          <caret line="36" column="78" selection-start-line="36" selection-start-column="78" selection-end-line="36" selection-end-column="78" />
-          <folding />
+        <state vertical-scroll-proportion="0.40222773" vertical-offset="4358" max-vertical-offset="6006">
+          <caret line="223" column="59" selection-start-line="223" selection-start-column="59" selection-end-line="223" selection-end-column="59" />
+          <folding>
+            <element signature="e#2313#2335#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/_front.sass">
+    <entry file="file://$PROJECT_DIR$/resources/views/front/store_cart.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5627284" vertical-offset="4116" max-vertical-offset="7875">
-          <caret line="218" column="60" selection-start-line="218" selection-start-column="60" selection-end-line="218" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.38367844" vertical-offset="0" max-vertical-offset="1701">
+          <caret line="15" column="25" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
           <folding />
         </state>
       </provider>

@@ -4390,173 +4390,183 @@ body, #front #footer {
       color: #b7b7b7; }
   #front #header #nav {
     padding: 1rem; }
-    #front #header #nav .nav-toggle {
-      float: left;
-      margin-right: 1rem;
-      font-size: 1.5rem;
-      margin-bottom: 0; }
-    #front #header #nav .cart-toggle-top {
-      font-size: 1.5rem; }
-    #front #header #nav #logo {
-      float: left;
-      margin-right: 1rem;
-      display: block;
-      max-width: 260px;
-      transition: all 600ms; }
-      #front #header #nav #logo img {
-        width: 100%; }
-      @media (min-width: 961px) and (max-width: 1280px) {
-        #front #header #nav #logo {
-          max-width: 200px; } }
-      @media (min-width: 681px) and (max-width: 960px) {
-        #front #header #nav #logo {
-          max-width: 140px; } }
+    #front #header #nav > .inner {
+      display: flex;
+      flex-direction: row; }
       @media (max-width: 680px) {
-        #front #header #nav #logo {
-          max-width: 200px; } }
-    #front #header #nav ul.navigation {
-      font-size: 1rem;
-      float: left;
-      margin-top: 12px;
-      margin-right: 1rem;
-      transition: all 600ms; }
-      #front #header #nav ul.navigation > li.heading, #front #header #nav ul.navigation > li > a {
-        text-transform: uppercase; }
-      @media (min-width: 961px) and (max-width: 1280px) {
-        #front #header #nav ul.navigation {
-          margin-top: 6px; } }
-      @media (min-width: 681px) and (max-width: 960px) {
-        #front #header #nav ul.navigation {
-          margin-top: 0px;
-          margin-right: 0; } }
-      @media (max-width: 680px) {
-        #front #header #nav ul.navigation {
-          border-top: 1px solid #333;
-          clear: both;
-          float: left;
-          width: 100%;
-          padding: 0;
-          margin-right: 0;
-          margin-top: 0;
-          background: black; }
-          #front #header #nav ul.navigation li {
-            clear: both;
-            width: 100%; }
-          #front #header #nav ul.navigation > li.heading {
-            padding-left: 0; }
-          #front #header #nav ul.navigation > li:not(:last-child) {
-            border-bottom: 1px solid #333; }
-          #front #header #nav ul.navigation > li > a {
-            background: black;
-            font-size: 1.2rem;
-            padding: 0.8rem; }
-          #front #header #nav ul.navigation > li > a.current, #front #header #nav ul.nav ul.navigation > li.current > a, ul.nav #front #header #nav ul.navigation > li.current > a {
-            background: #73c555;
-            color: black; }
-          #front #header #nav ul.navigation > li .nav-dropdown {
-            padding-left: 1rem; } }
-      @media (min-width: 681px) {
-        #front #header #nav ul.navigation .nav-dropdown {
-          padding-left: 0 !important;
-          padding: 1rem;
-          width: 100%;
-          position: absolute;
-          z-index: 50;
-          top: 100%;
-          left: 0px;
-          background: #222222;
-          border-top: 1px solid #333;
-          border-bottom: 1px solid #333;
-          box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.3);
-          transition: all 600ms;
-          opacity: 0;
-          pointer-events: none; }
-          #front #header #nav ul.navigation .nav-dropdown.visible {
-            opacity: 1;
-            pointer-events: auto; } }
-      @media (max-width: 680px) {
-        #front #header #nav ul.navigation .nav-dropdown .nav {
-          padding-left: 1rem; } }
-      #front #header #nav ul.navigation .nav-dropdown ul.nav li a {
-        padding: 0.1rem 0.4rem; }
-    #front #header #nav .nav-extra {
-      float: right; }
-      @media (max-width: 680px) {
-        #front #header #nav .nav-extra {
-          float: left;
-          width: 100%;
-          border-top: 1px solid #333;
-          padding: 1rem; } }
-    #front #header #nav #search {
-      float: left;
-      margin-top: 10px;
-      transition: all 600ms; }
-      #front #header #nav #search input[name="terms"] {
-        width: 100px;
+        #front #header #nav > .inner {
+          display: block; }
+          #front #header #nav > .inner .nav-controls {
+            flex: 1 1 auto; } }
+      #front #header #nav > .inner .nav-controls {
+        display: flex;
+        flex-direction: row;
+        flex: 0 1 auto; }
+      #front #header #nav > .inner .nav-toggle {
+        flex: 0 0 auto;
+        margin-right: 1rem;
+        font-size: 1.5rem;
+        margin-bottom: 0; }
+      #front #header #nav > .inner #logo {
+        flex: 0 1 auto;
+        margin-right: 1rem;
+        display: block;
         transition: all 600ms; }
-        #front #header #nav #search input[name="terms"]:focus {
-          width: 160px;
+        #front #header #nav > .inner #logo img {
+          width: 100%; }
+      #front #header #nav > .inner .cart-toggle-top {
+        flex: 0 0 auto;
+        font-size: 1.5rem; }
+      #front #header #nav > .inner .nav-contents {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: row; }
+        @media (max-width: 680px) {
+          #front #header #nav > .inner .nav-contents {
+            float: left;
+            width: 100%;
+            height: 100%;
+            clear: both;
+            transition: all 600ms;
+            overflow: hidden;
+            flex-direction: column; }
+            #front #header #nav > .inner .nav-contents:not(.visible) {
+              display: none;
+              transition: all 600ms; } }
+        #front #header #nav > .inner .nav-contents ul.navigation {
+          flex: 1 1 auto;
+          display: flex;
+          font-size: 1rem;
+          margin-right: 1rem;
+          transition: all 300ms;
+          align-items: center; }
+          #front #header #nav > .inner .nav-contents ul.navigation > li {
+            flex: auto; }
+            #front #header #nav > .inner .nav-contents ul.navigation > li > a {
+              text-align: center;
+              vertical-align: middle; }
+          #front #header #nav > .inner .nav-contents ul.navigation li a {
+            text-decoration: none;
+            color: #ddd; }
+            #front #header #nav > .inner .nav-contents ul.navigation li a:hover {
+              color: #73c555; }
+          #front #header #nav > .inner .nav-contents ul.navigation > li.heading, #front #header #nav > .inner .nav-contents ul.navigation > li > a {
+            text-transform: uppercase; }
+          @media (max-width: 680px) {
+            #front #header #nav > .inner .nav-contents ul.navigation {
+              display: block;
+              flex: 0 1 auto;
+              clear: both;
+              float: left;
+              width: 100%;
+              padding: 0;
+              margin-right: 0;
+              margin-top: 0;
+              background: black; }
+              #front #header #nav > .inner .nav-contents ul.navigation li {
+                clear: both;
+                width: 100%; }
+                #front #header #nav > .inner .nav-contents ul.navigation li.heading {
+                  font-weight: normal; }
+                #front #header #nav > .inner .nav-contents ul.navigation li a {
+                  text-align: left; }
+              #front #header #nav > .inner .nav-contents ul.navigation .col-m-4 {
+                padding: 0; }
+              #front #header #nav > .inner .nav-contents ul.navigation > li.heading {
+                padding-left: 0; }
+              #front #header #nav > .inner .nav-contents ul.navigation > li:not(:last-child) {
+                border-bottom: 1px solid #333; }
+              #front #header #nav > .inner .nav-contents ul.navigation > li > a {
+                background: black;
+                font-size: 1.2rem;
+                padding: 0.8rem; }
+              #front #header #nav > .inner .nav-contents ul.navigation > li > a.current, #front #header #nav > .inner .nav-contents ul.nav ul.navigation > li.current > a, ul.nav #front #header #nav > .inner .nav-contents ul.navigation > li.current > a {
+                background: #73c555;
+                color: black; }
+              #front #header #nav > .inner .nav-contents ul.navigation > li .nav-dropdown {
+                padding-left: 1rem; } }
+          @media (min-width: 681px) {
+            #front #header #nav > .inner .nav-contents ul.navigation .nav-dropdown {
+              padding-left: 0 !important;
+              padding: 1rem;
+              width: 100%;
+              position: absolute;
+              z-index: 50;
+              top: 100%;
+              left: 0px;
+              background: #222222;
+              border-top: 1px solid #333;
+              border-bottom: 1px solid #333;
+              box-shadow: 0px 6px 11px 0px rgba(0, 0, 0, 0.3);
+              transition: all 600ms;
+              opacity: 0;
+              pointer-events: none; }
+              #front #header #nav > .inner .nav-contents ul.navigation .nav-dropdown.visible {
+                opacity: 1;
+                pointer-events: auto; } }
+          @media (max-width: 680px) {
+            #front #header #nav > .inner .nav-contents ul.navigation .nav-dropdown .nav {
+              padding-left: 1rem; } }
+          #front #header #nav > .inner .nav-contents ul.navigation .nav-dropdown ul.nav li a {
+            padding: 0.1rem 0.4rem; }
+        #front #header #nav > .inner .nav-contents .nav-extra {
+          align-items: center;
+          justify-content: center;
+          display: flex;
+          flex: 0 1 auto; }
+          @media (max-width: 680px) {
+            #front #header #nav > .inner .nav-contents .nav-extra {
+              float: left;
+              width: 100%;
+              border-top: 1px solid #333;
+              padding: 1rem; } }
+        #front #header #nav > .inner .nav-contents #search {
+          display: flex;
+          flex: auto;
           transition: all 600ms; }
-      #front #header #nav #search .buttons {
-        display: inline; }
-      @media (min-width: 961px) and (max-width: 1280px) {
-        #front #header #nav #search {
-          margin-top: 6px; } }
-      @media (min-width: 681px) and (max-width: 960px) {
-        #front #header #nav #search {
-          display: none;
-          position: absolute;
-          margin-top: 8px;
-          top: 100%;
-          left: 0px;
-          width: 100%;
-          background: #222222;
-          text-align: center;
-          padding: 2rem;
-          border-bottom: 1px solid #333; }
-          #front #header #nav #search.visible {
-            display: block; }
-          #front #header #nav #search input[name="terms"], #front #header #nav #search input[name="terms"]:focus {
-            width: 50%; }
-          #front #header #nav #search input[type="submit"], #front #header #nav #search input[type="reset"] {
-            font-size: 1.2rem;
-            padding: 0.8rem 1.2rem; } }
-      @media (max-width: 680px) {
-        #front #header #nav #search {
-          margin-top: 0; } }
-    #front #header #nav .search-and-cart {
-      float: left;
-      margin-top: 16px;
-      margin-left: 1rem;
-      transition: all 600ms; }
-      @media (min-width: 681px) and (max-width: 960px) {
-        #front #header #nav .search-and-cart {
-          margin-top: 6px;
-          margin-left: 0; } }
-      @media (max-width: 680px) {
-        #front #header #nav .search-and-cart {
-          display: none;
-          margin: 0; } }
-    #front #header #nav .cart-toggle {
-      float: left;
-      margin-top: 11px;
-      margin-left: 1rem; }
-      @media (min-width: 961px) and (max-width: 1280px) {
-        #front #header #nav .cart-toggle {
-          margin-top: 7px; } }
-    @media (max-width: 680px) {
-      #front #header #nav .nav-contents {
-        float: left;
-        width: 100%;
-        height: 100%;
-        clear: both;
-        transition: all 600ms;
-        overflow: hidden; }
-        #front #header #nav .nav-contents:not(.visible) {
-          display: none;
-          transition: all 600ms; } }
+          #front #header #nav > .inner .nav-contents #search input[name="terms"] {
+            width: 100px;
+            transition: all 600ms; }
+            #front #header #nav > .inner .nav-contents #search input[name="terms"]:focus {
+              width: 160px;
+              transition: all 600ms; }
+          #front #header #nav > .inner .nav-contents #search .buttons {
+            display: inline; }
+          @media (min-width: 681px) and (max-width: 960px) {
+            #front #header #nav > .inner .nav-contents #search {
+              display: none;
+              position: absolute;
+              top: 100%;
+              left: 0px;
+              width: 100%;
+              background: #222222;
+              text-align: center;
+              padding: 2rem;
+              border-bottom: 1px solid #333; }
+              #front #header #nav > .inner .nav-contents #search input[name="terms"], #front #header #nav > .inner .nav-contents #search input[name="terms"]:focus {
+                width: 50%; }
+              #front #header #nav > .inner .nav-contents #search input[type="submit"], #front #header #nav > .inner .nav-contents #search input[type="reset"] {
+                font-size: 1.2rem;
+                padding: 0.8rem 1.2rem; } }
+          @media (max-width: 680px) {
+            #front #header #nav > .inner .nav-contents #search {
+              margin-top: 0; } }
+        #front #header #nav > .inner .nav-contents .search-and-cart {
+          flex: 1 0 auto;
+          float: left;
+          margin-left: 1rem;
+          transition: all 600ms; }
+          @media (min-width: 681px) and (max-width: 960px) {
+            #front #header #nav > .inner .nav-contents .search-and-cart {
+              margin-left: 0; } }
+          @media (max-width: 680px) {
+            #front #header #nav > .inner .nav-contents .search-and-cart {
+              display: none;
+              margin: 0; } }
+        #front #header #nav > .inner .nav-contents .cart-toggle {
+          margin-left: 1rem;
+          flex: 0 1 auto; }
   #front #header #cart {
-    display: none;
     position: absolute;
     z-index: 10;
     top: 100%;
@@ -4570,9 +4580,6 @@ body, #front #footer {
     overflow: auto; }
     #front #header #cart > .inner {
       max-width: 720px; }
-    #front #header #cart.visible {
-      display: block;
-      transition: all 600ms; }
     #front #header #cart .cart-table {
       font-size: 1.4rem; }
       #front #header #cart .cart-table tbody tr td {
