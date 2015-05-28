@@ -257,7 +257,7 @@ class Cart {
 				'push_uri' => url('store/push') .'?klarna_order={checkout.order.uri}',
 			];
 
-			$order->create($this->getKlarnaOrderData());
+			$order->create($data);
 
 			# fetch
 			$order->fetch();
