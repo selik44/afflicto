@@ -3,6 +3,7 @@
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Friluft\Order;
+use Friluft\Role;
 use Friluft\User;
 use Illuminate\Http\Request;
 use Friluft\Category;
@@ -13,6 +14,7 @@ use Klarna_Checkout_Connector;
 use Log;
 use Input;
 use Session;
+use Mail;
 
 class StoreController extends Controller {
 
@@ -89,21 +91,26 @@ class StoreController extends Controller {
 		# create a new user automatically
 		if (!$user) {
 			$user = new User();
+			$user->role()->associate(Role::where('machine', '=', 'regular')->first());
 			$user->email = $email;
 
 			# parse name
 			$name = explode(' ', $data['billing_address']['given_name']);
-			$firstname = '';
-			$lastname = '';
-			foreach($name as $key => $segment) {
-				if ($key >= count($name)-1) {
-					$lastname = $segment;
-				}else {
-					$firstname .= $segment .' ';
+			if (count($name) > 1) {
+				$firstname = '';
+				$lastname = '';
+				foreach($name as $key => $segment) {
+					if ($key >= count($name)-1) {
+						$lastname = $segment;
+					}else {
+						$firstname .= $segment .' ';
+					}
 				}
+				$user->firstname = $firstname;
+				$user->lastname = $lastname;
+			}else {
+				$user->firstname = implode(' ', $name);
 			}
-			$user->firstname = $firstname;
-			$user->lastname = $lastname;
 
 			# generate password
 			$user->password = bcrypt(str_random(16));
