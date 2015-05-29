@@ -125,7 +125,7 @@ class StoreController extends Controller {
 			$user->save();
 
 			# welcome the user
-			Mail::send('emails.store.welcome', ['password' => $user->password], function($mail) use($user) {
+			Mail::send('emails.store.welcome', ['title' => 'Your New Account', 'password' => $user->password], function($mail) use($user) {
 				$mail->to('me@afflicto.net')->subject('Your new account at ' .Store::current()->name);
 			});
 		}
@@ -139,7 +139,7 @@ class StoreController extends Controller {
 		foreach($data['cart']['items'] as $item) {
 			$total += $item['unit_price'] * $item['quantity'];
 		}
-		Mail::send('emails.store.order_received', ['items' => $data['cart']['items'], 'total' => $total], function($mail) use($user) {
+		Mail::send('emails.store.order_received', ['title' => 'Order Received', 'items' => $data['cart']['items'], 'total' => $total], function($mail) use($user) {
 			$mail->to('me@afflicto.net')->subject('Your order at ' .Store::current()->name);
 		});
 
