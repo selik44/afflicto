@@ -78,6 +78,11 @@ class StoreController extends Controller {
 			return view('front.store.success')->with('error', 'Something went wrong, contact us if the issue persists.');
 		}
 
+		$data = Cart::getKlarnaOrder(Input::get('klarna_order'));
+		$data = $data->marshal();
+
+		$this->createOrder($data);
+
 		return view('front.store.success');
 	}
 
