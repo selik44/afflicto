@@ -130,7 +130,11 @@ class StoreController extends Controller {
 		$order->save();
 
 		# notify the user that we received the order
-		Mail::send('emails.store.order_received', ['items' => $data['cart']['items']], function($mail) use($user) {
+		$total = 0;
+		foreach($data['cart']['items'] as $item) {
+			$total += $item['unit_price'] * $item['quantity'];
+		}
+		Mail::send('emails.store.order_received', ['items' => $data['cart']['items'], 'total' => $total], function($mail) use($user) {
 			$mail->to('me@afflicto.net')->subject('Your order at ' .Store::current()->name);
 		});
 
