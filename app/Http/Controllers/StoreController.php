@@ -77,6 +77,11 @@ class StoreController extends Controller {
 		$data = Cart::getKlarnaOrder(Input::get('klarna_order'));
 		$data = $data->marshal();
 
+		# parse data reference stuff
+		foreach($data['cart']['items'] as $key => $item) {
+			$data['cart']['items'][$key]['reference'] = json_decode($item['reference'], true);
+		}
+
 		$this->createOrder($data);
 
 		return view('front.store.success');
