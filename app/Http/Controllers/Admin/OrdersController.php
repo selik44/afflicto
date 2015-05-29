@@ -19,17 +19,32 @@ class OrdersController extends Controller {
 				$str = '<ul class="items">';
 				foreach($model->items as $item) {
 					if ($item['type'] != 'shipping_fee') {
-						$model = $item['reference']['id'];
-						$model = Product::find('id', '=', $model);
+						# get product ID and model
+						$productID = $item['reference']['id'];
+						$product = Product::find($productID);
 
-						$stock = $model->stock;
+						# get stock and name
+						$stock = $product->stock;
+						$name = $product->name;
 
-						if (count($model->variants) > 0) {
-							# get the variation we ordered
-							$variantID = $item['options']['variant'][0];
-							$variant = Variant::find($variantID);
-							if ($variant) {
-								$stock = $variant->stock;
+						if (count($product->variants) > 0) {
+							# get the variant we ordered
+							$variants = $item['reference']['options']['variants'];
+
+							# get first variant value
+							$variant = array_shift($variants);
+
+							# find the ID of this variant
+							$variantID = array_search($variant, $variants);
+
+							# get the variant model
+							$variantModel = Variant::find($variantID);
+
+							# got it?
+							if ($variantModel) {
+								# set stock and name
+								$stock = $variantModel->data['values'][$variant]['stock'];
+								$name = $name .' (' .$variant .')';
 							}
 						}
 
@@ -37,16 +52,16 @@ class OrdersController extends Controller {
 						$class = 'color-success';
 						if ($stock < $item['quantity']) $class = 'color-error';
 
-						return '<li class="' .$class .'">' .$model->name .' (' .$stock .'/' .$item['quantity'] .' in stock)</li>';
+						$str .= '<li class="' .$class .'">' .$name .' (' .$stock .'/' .$item['quantity'] .' in stock)</li>';
 					}
 				}
 				$str .= '</ul>';
+				return $str;
 			}],
 			'Status' => ['status', function($model, $column, $value) {
 				return ($model->status == 'checkout_complete') ? '<span class="color-success">' .$model->status .'</span>' : '<span class="color-error">' .$model->status .'</span>';
 			}],
 			'Updated' => 'updated_at diffForHumans',
-			'Completed' => 'completed_at diffForHumans',
 		]);
 
 		$table->editable(true, url('admin/orders/{id}/edit'));

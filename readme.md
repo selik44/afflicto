@@ -8,7 +8,6 @@ Built on Laravel 5, leveraging GentleStyle SASS Framework.
 3. "composer install --no-scripts"
 4. php artisan migrate
 5. php artisan db:seed
-6. You're done!
 8. To import products from MyStore API, run "php artisan mystore:import".
 
 
@@ -20,10 +19,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 - Figure out a way to cache routes while still allowing translated routes.
 - Move complicated controller logic to commands, for extendability?
-- Leverage Request objects.
-- Implement Shopping cart, user management, klarna etc.
-- Implement better taxonomy and support for custom "collections" of stuff.
-- produsent ting
+- Leverage Laravel Requests more
 
 - Order status, green/red.
 - manual orders, user management.

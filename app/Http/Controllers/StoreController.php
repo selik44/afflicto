@@ -74,41 +74,42 @@ class StoreController extends Controller {
 			return view('front.store.success')->with('error', 'Something went wrong, contact us if the issue persists.');
 		}
 
-		$data = Cart::getKlarnaOrder(Input::get('klarna_order'));
-		$data = $data->marshal();
+		$data = Cart::getKlarnaOrder(Input::get('klarna_order'))->marshal();
 
 		# create the order, unless it already exists.
-		$order = Order::where('klarna_id', '=', Input::get('klarna_order'))->first();
+		$order = Order::where('reservation', '=', $data['reservation'])->first();
 		if (!$order) {
-			$order = $this->createOrder(Input::get('klarna_order'));
+			$this->createOrder(Input::get('klarna_order'));
 		}
 
 		return view('front.store.success');
 	}
 
 	public function push() {
-		$id = Input::get('klarna_order');
+		# get data
+		$data = Cart::getKlarnaOrder(Input::get('klarna_id'))->marshal();
 
 		# get order model
-		$order = Order::where('klarna_id', '=', $id)->first();
+		$order = Order::where('reservation', '=', $data['reservation'])->first();
 		if (!$order) {
-			$order = $this->createOrder($id);
+			$order = $this->createOrder(Input::get('klarna_id'));
 		}
 
-		# get data
-		$data = Cart::getKlarnaOrder($id)->marshal();
-		$order->status = $data['status'];
-		$order->save();
-
-		# react to status change
-		if ($order->status == 'checkout_complete') {
+		# completed?
+		if ($order->status != 'checkout_complete' && $data['order_status'] == 'checkout_complete') {
 			# update the "sold" counter for the products
 			foreach($data['items'] as $item) {
+				if ($item['type'] == 'shipping_fee') continue;
 				$product = Product::find($item['reference']['id']);
 				$product->sell($item['quantity']);
 				$product->save();
 			}
 		}
+
+		# update the order with new data
+
+		$order->status = $data['status'];
+		$order->save();
 
 		return response('OK', 200);
 	}
