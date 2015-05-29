@@ -30,8 +30,11 @@
                     @else
                         <td>{{$item['name']}}
                             <ul class="variants">
-                                @foreach($item['model']->variants as $variant)
-                                    <li><strong>{{$variant->name}}:</strong> <span>{{$item['options']['variants'][$variant->id]}}</span></li>
+                                <?php
+                                    $model = \Friluft\Product::find($item['reference']['id']);
+                                ?>
+                                @foreach($model->variants as $variant)
+                                    <li><strong>{{$variant->name}}:</strong> <span>{{$item['reference']['options']['variants'][$variant->id]}}</span></li>
                                 @endforeach
                             </ul>
                         </td>
