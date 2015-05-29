@@ -272,9 +272,9 @@ Route::group(['prefix' => $locale], function() {
 		# orders
 		Route::get('orders', ['as' => 'admin.orders.index', 'uses' => 'Admin\OrdersController@index']);
 		Route::get('orders/create', ['as' => 'admin.orders.create', 'uses' => 'Admin\OrdersController@create']);
-		Route::get('orders/{manufacturer}/edit', ['as' => 'admin.orders.edit', 'uses' => 'Admin\OrdersController@edit']);
-		Route::get('orders/{manufacturer}', ['as' => 'admin.orders.show', 'uses' => 'Admin\OrdersController@show']);
-		Route::put('orders/{manufacturer}', ['as' => 'admin.orders.update', 'uses' => 'Admin\OrdersController@update']);
+		Route::get('orders/{order}/edit', ['as' => 'admin.orders.edit', 'uses' => 'Admin\OrdersController@edit']);
+		Route::get('orders/{order}', ['as' => 'admin.orders.show', 'uses' => 'Admin\OrdersController@show']);
+		Route::put('orders/{order}', ['as' => 'admin.orders.update', 'uses' => 'Admin\OrdersController@update']);
 		Route::post('orders', ['as' => 'admin.orders.store', 'uses' => 'Admin\OrdersController@store']);
 		Route::delete('orders/{order', ['as' => 'admin.orders.delete', 'uses' => 'Admin\OrdersController@destroy']);
 	});

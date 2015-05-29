@@ -82,19 +82,45 @@ class StoreController extends Controller {
 			$data['cart']['items'][$key]['reference'] = json_decode($item['reference'], true);
 		}
 
-		$this->createOrder($data);
+		# create the order, unless it already exists.
+		$order = Order::where('klarna_id', '=', Input::get('klarna_order'))->first();
+		if (!$order) {
+			$this->createOrder($data);
+		}
 
 		return view('front.store.success');
 	}
 
-	private function createOrder($data) {
+	private function createOrder($id) {
+		# get klarna order
+		$data = Cart::getKlarnaOrder($id)
+			->marshal();
+
+		# decode the item reference JSON
+		foreach($data['cart']['items'] as $key => $item) {
+			$data['cart']['items'][$key]['reference'] = json_decode($item['reference'], true);
+		}
+
+		# create new order
 		$order = new Order();
 
-		# get the user
+		$order->klarna_id = $id;
+		$order->reservation = $data['reservation'];
+		$order->status = $data['ORDER_STATUS'];
+		$order->items = $data['items'];
+		$order->total_price_excluding_tax = $data['total_price_excluding_tax'];
+		$order->total_price_including_tax = $data['total_price_including_tax'];
+		$order->total_tax_amount = $data['total_tax_amount'];
+		$order->billing_address = $data['billing_address'];
+		$order->shipping_address = $data['shipping_address'];
+		$order->locale = $data['locale'];
+		$order->purchase_country = $data['purchase_country'];
+		$order->purchase_currency = $data['purchase_currency'];
+
 		$email = $data['billing_address']['email'];
 		$user = User::where('email', '=', $email)->first();
 
-		# create a new user automatically
+		# create a new user automatically?
 		if (!$user) {
 			$user = new User();
 			$user->role()->associate(Role::where('machine', '=', 'regular')->first());
@@ -119,27 +145,25 @@ class StoreController extends Controller {
 			}
 
 			# generate password
-			$user->password = bcrypt(str_random(16));
+			$password = str_random(16);
+			$user->password = bcrypt($password);
 
 			# save
 			$user->save();
 
 			# welcome the user
-			Mail::send('emails.store.welcome', ['title' => 'Your New Account', 'password' => $user->password], function($mail) use($user) {
+			Mail::send('emails.store.welcome', ['title' => 'Your New Account', 'password' => $password], function($mail) use($user) {
 				$mail->to('me@afflicto.net')->subject('Your new account at ' .Store::current()->name);
 			});
 		}
 
-		# associate the user and save
 		$order->user()->associate($user);
+
+		# save it
 		$order->save();
 
-		# notify the user that we received the order
-		$total = 0;
-		foreach($data['cart']['items'] as $item) {
-			$total += $item['unit_price'] * $item['quantity'];
-		}
-		Mail::send('emails.store.order_received', ['title' => 'Order Received', 'items' => $data['cart']['items'], 'total' => $total], function($mail) use($user) {
+		# notify user
+		Mail::send('emails.store.order_received', ['title' => 'Order Received', 'order' => $order], function($mail) use($user) {
 			$mail->to('me@afflicto.net')->subject('Your order at ' .Store::current()->name);
 		});
 
@@ -147,41 +171,21 @@ class StoreController extends Controller {
 	}
 
 	public function push() {
-		# get the klarna order
 		$id = Input::get('klarna_order');
-		Log::info('Klarna pushed us with id: ' .$id, (array) Cart::getKlarnaOrder($id));
-
-		# get order data
-		$data = Cart::getKlarnaOrder($id);
-		if (!$data) {
-			Log::error('Klarna Push failed. Cannot find klarna order with ID of: ' .$id);
-			return response('ERROR', 400);
-		}
-
-		# get data as array
-		$data = $data->marshal();
-
-		# parse data reference stuff
-		foreach($data['cart']['items'] as $key => $item) {
-			$data['cart']['items'][$key]['reference'] = json_decode($item['reference'], true);
-		}
 
 		# get order model
 		$order = Order::where('klarna_id', '=', $id)->first();
-
-		# if, for some reason, the user was never sent to /store/success,
-		# we create the order now.
 		if (!$order) {
-			$order = $this->createOrder($data);
+			$order = $this->createOrder(Input::get('klarna_order'));
 		}
 
-		# update and save
-		$order->data = $data;
+		# get data
+		$data = Cart::getKlarnaOrder($id)->marshal();
+		$order->status = $data['ORDER_STATUS'];
 		$order->save();
 
 		# react to status change
-		if ($data['ORDER_STATUS'] == 'checkout_complete') {
-
+		if ($order->status == 'checkout_complete') {
 			# update the "sold" counter for the products
 			foreach($data['items'] as $item) {
 				$product = Product::find($item['reference']['id']);
