@@ -77,18 +77,40 @@ class StoreController extends Controller {
 		$data = Cart::getKlarnaOrder(Input::get('klarna_order'));
 		$data = $data->marshal();
 
-		# parse data reference stuff
-		foreach($data['cart']['items'] as $key => $item) {
-			$data['cart']['items'][$key]['reference'] = json_decode($item['reference'], true);
-		}
-
 		# create the order, unless it already exists.
 		$order = Order::where('klarna_id', '=', Input::get('klarna_order'))->first();
 		if (!$order) {
-			$this->createOrder($data);
+			$order = $this->createOrder(Input::get('klarna_order'));
 		}
 
 		return view('front.store.success');
+	}
+
+	public function push() {
+		$id = Input::get('klarna_order');
+
+		# get order model
+		$order = Order::where('klarna_id', '=', $id)->first();
+		if (!$order) {
+			$order = $this->createOrder(Input::get('klarna_order'));
+		}
+
+		# get data
+		$data = Cart::getKlarnaOrder($id)->marshal();
+		$order->status = $data['ORDER_STATUS'];
+		$order->save();
+
+		# react to status change
+		if ($order->status == 'checkout_complete') {
+			# update the "sold" counter for the products
+			foreach($data['items'] as $item) {
+				$product = Product::find($item['reference']['id']);
+				$product->sell($item['quantity']);
+				$product->save();
+			}
+		}
+
+		return response('OK', 200);
 	}
 
 	private function createOrder($id) {
@@ -106,8 +128,8 @@ class StoreController extends Controller {
 
 		$order->klarna_id = $id;
 		$order->reservation = $data['reservation'];
-		$order->status = $data['ORDER_STATUS'];
 		$order->items = $data['items'];
+		$order->status = $data['ORDER_STATUS'];
 		$order->total_price_excluding_tax = $data['total_price_excluding_tax'];
 		$order->total_price_including_tax = $data['total_price_including_tax'];
 		$order->total_tax_amount = $data['total_tax_amount'];
@@ -168,33 +190,6 @@ class StoreController extends Controller {
 		});
 
 		return $order;
-	}
-
-	public function push() {
-		$id = Input::get('klarna_order');
-
-		# get order model
-		$order = Order::where('klarna_id', '=', $id)->first();
-		if (!$order) {
-			$order = $this->createOrder(Input::get('klarna_order'));
-		}
-
-		# get data
-		$data = Cart::getKlarnaOrder($id)->marshal();
-		$order->status = $data['ORDER_STATUS'];
-		$order->save();
-
-		# react to status change
-		if ($order->status == 'checkout_complete') {
-			# update the "sold" counter for the products
-			foreach($data['items'] as $item) {
-				$product = Product::find($item['reference']['id']);
-				$product->sell($item['quantity']);
-				$product->save();
-			}
-		}
-
-		return response('OK', 200);
 	}
 
 }
