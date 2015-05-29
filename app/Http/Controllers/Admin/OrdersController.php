@@ -66,6 +66,7 @@ class OrdersController extends Controller {
 
 		$table->editable(true, url('admin/orders/{id}/edit'));
 		$table->destroyable(true, url('admin/orders/{id}'));
+		$table->selectable(true);
 		$table->sortable(true, [
 			'status','updated_at',
 		]);
