@@ -1,19 +1,15 @@
 <?php namespace Friluft\Http\Controllers;
 
 use Friluft\Http\Requests;
-use Friluft\Http\Controllers\Controller;
 use Friluft\Order;
 use Friluft\Role;
 use Friluft\User;
-use Illuminate\Http\Request;
 use Friluft\Category;
 use Friluft\Product;
+use Friluft\Store;
 use Cart;
-use Klarna_Checkout_Order;
-use Klarna_Checkout_Connector;
 use Log;
 use Input;
-use Session;
 use Mail;
 
 class StoreController extends Controller {
@@ -125,7 +121,7 @@ class StoreController extends Controller {
 
 			# welcome the user
 			Mail::send('store.welcome', ['password' => $user->password], function($mail) use($user) {
-				$mail->to('me@afflicto.net')->subject('Your new account at ' .\Store::current()->name);
+				$mail->to('me@afflicto.net')->subject('Your new account at ' .Store::current()->name);
 			});
 		}
 
@@ -135,7 +131,7 @@ class StoreController extends Controller {
 
 		# notify the user that we received the order
 		Mail::send('store.order_received', ['items' => $data['cart']['items']], function($mail) use($user) {
-			$mail->to('me@afflicto.net')->subject('Your order at ' .\Store::current()->name);
+			$mail->to('me@afflicto.net')->subject('Your order at ' .Store::current()->name);
 		});
 
 		return $order;
