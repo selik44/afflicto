@@ -92,10 +92,7 @@ class StoreController extends Controller {
 		if (!$user) {
 			$user = new User();
 			$user->role()->associate(Role::where('machine', '=', 'regular')->first());
-			#$user->email = $email;
-
-			# testing email
-			$user->email = 'me@afflicto.net';
+			$user->email = $email;
 
 			# parse name
 			$name = explode(' ', $data['billing_address']['given_name']);
@@ -120,8 +117,10 @@ class StoreController extends Controller {
 
 			# save
 			$user->save();
+
+			# welcome the user
 			Mail::send('store.welcome', ['password' => $user->password], function($mail) use($user) {
-				$mail->to($user->email)->subject('Your new account at ' .\Store::current()->name);
+				$mail->to('me@afflicto.net')->subject('Your new account at ' .\Store::current()->name);
 			});
 		}
 
@@ -131,7 +130,7 @@ class StoreController extends Controller {
 
 		# notify the user that we received the order
 		Mail::send('store.order_received', ['items' => $data['cart']['items']], function($mail) use($user) {
-			$mail->to($user->email)->subject('Your order at ' .\Store::current()->name);
+			$mail->to('me@afflicto.net')->subject('Your order at ' .\Store::current()->name);
 		});
 
 		return $order;
