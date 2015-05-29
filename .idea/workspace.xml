@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="orders are now correctly created in StoreController">
+    <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -107,8 +107,8 @@
       <file leaf-file-name="StoreController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StoreController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6489533" vertical-offset="1739" max-vertical-offset="4221">
-              <caret line="102" column="32" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
+            <state vertical-scroll-proportion="-1.5362319" vertical-offset="3411" max-vertical-offset="4200">
+              <caret line="117" column="53" selection-start-line="117" selection-start-column="53" selection-end-line="117" selection-end-column="53" />
               <folding>
                 <element signature="e#43#69#0#PHP" expanded="true" />
               </folding>
@@ -586,7 +586,19 @@
       <option name="project" value="LOCAL" />
       <updated>1432885017204</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="orders are now correctly created in StoreController">
+      <created>1432887655978</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1432887655978</updated>
+    </task>
+    <task id="LOCAL-00005" summary="bugfix">
+      <created>1432887811741</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1432887811741</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -649,13 +661,16 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="CHECK_NEW_TODO" value="false" />
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
     <MESSAGE value="fixed some stuff" />
     <MESSAGE value="added a migration" />
     <MESSAGE value="orders are now correctly created in StoreController" />
-    <option name="LAST_COMMIT_MESSAGE" value="orders are now correctly created in StoreController" />
+    <MESSAGE value="bugfix" />
+    <option name="LAST_COMMIT_MESSAGE" value="bugfix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1101,8 +1116,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StoreController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6489533" vertical-offset="1739" max-vertical-offset="4221">
-          <caret line="102" column="32" selection-start-line="102" selection-start-column="32" selection-end-line="102" selection-end-column="32" />
+        <state vertical-scroll-proportion="-1.5362319" vertical-offset="3411" max-vertical-offset="4200">
+          <caret line="117" column="53" selection-start-line="117" selection-start-column="53" selection-end-line="117" selection-end-column="53" />
           <folding>
             <element signature="e#43#69#0#PHP" expanded="true" />
           </folding>
