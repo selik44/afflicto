@@ -7,7 +7,7 @@
 @section('content')
     <h4>Thank you for your purchase!</h4>
     <p>Here is a summary of your order:</p>
-    <table>
+    <table style="width: 100%;">
         <thead>
             <tr>
                 <th>Product</th>
@@ -18,11 +18,11 @@
         <tfoot>
             <tr>
                 <th colspan="2">Total</th>
-                <th>{{$total}}</th>
+                <th>{{$order->total_price_including_tax}}</th>
             </tr>
         </tfoot>
         <tbody>
-            @foreach($items as $item)
+            @foreach($order->items as $item)
                 <tr>
                     @if($item['type'] == 'shipping_fee')
                         <td colspan="2">Shipping Costs</td>
@@ -48,5 +48,5 @@
 
     <hr/>
 
-    <p>You can view your orders <a href="{{url('user.orders')}}">here</a>.</p>
+    <p>You can view your orders <a href="{{url('user/orders')}}">here</a>.</p>
 @stop

@@ -92,7 +92,7 @@ class StoreController extends Controller {
 		# get order model
 		$order = Order::where('klarna_id', '=', $id)->first();
 		if (!$order) {
-			$order = $this->createOrder(Input::get('klarna_order'));
+			$order = $this->createOrder($id);
 		}
 
 		# get data
