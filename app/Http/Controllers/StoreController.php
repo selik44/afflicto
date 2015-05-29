@@ -120,7 +120,7 @@ class StoreController extends Controller {
 			$user->save();
 
 			# welcome the user
-			Mail::send('store.welcome', ['password' => $user->password], function($mail) use($user) {
+			Mail::send('emails.store.welcome', ['password' => $user->password], function($mail) use($user) {
 				$mail->to('me@afflicto.net')->subject('Your new account at ' .Store::current()->name);
 			});
 		}
@@ -130,7 +130,7 @@ class StoreController extends Controller {
 		$order->save();
 
 		# notify the user that we received the order
-		Mail::send('store.order_received', ['items' => $data['cart']['items']], function($mail) use($user) {
+		Mail::send('emails.store.order_received', ['items' => $data['cart']['items']], function($mail) use($user) {
 			$mail->to('me@afflicto.net')->subject('Your order at ' .Store::current()->name);
 		});
 
