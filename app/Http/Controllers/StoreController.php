@@ -90,12 +90,10 @@ class StoreController extends Controller {
 		$data = Cart::getKlarnaOrder(Input::get('klarna_id'))->marshal();
 
 		# get order model
-		$order = Order::where('reservation', '=', $data['reservation'])->first();
+		$order = Order::where('klarna_id', '=', Input::get('klarna_id'))->first();
 		if (!$order) {
 			$order = $this->createOrder(Input::get('klarna_id'));
 		}
-
-
 
 		# update the order with new data
 
