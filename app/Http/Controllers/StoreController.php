@@ -79,7 +79,7 @@ class StoreController extends Controller {
 		# create the order, unless it already exists.
 		$order = Order::where('reservation', '=', $data['reservation'])->first();
 		if (!$order) {
-			#$this->createOrder(Input::get('klarna_order'));
+			$this->createOrder(Input::get('klarna_order'));
 		}
 
 		return view('front.store.success');
@@ -87,18 +87,17 @@ class StoreController extends Controller {
 
 	public function push() {
 		# get data
-		$data = Cart::getKlarnaOrder(Input::get('klarna_id'))->marshal();
+		$data = Cart::getKlarnaOrder(Input::get('klarna_order'))->marshal();
 
 		Log::info('Klarna pushed us with data:', $data);
 
 		# get order model
-		$order = Order::where('klarna_id', '=', Input::get('klarna_id'))->first();
+		$order = Order::where('reservation', '=', $data['reservation'])->first();
 		if (!$order) {
-			$order = $this->createOrder(Input::get('klarna_id'));
+			$order = $this->createOrder(Input::get('klarna_order'));
 		}
 
 		# update the order with new data
-
 		$order->status = $data['status'];
 		$order->save();
 
