@@ -119,6 +119,7 @@ class StoreController extends Controller {
 		$order->klarna_id = $id;
 		$order->items = $data['cart']['items'];
 		$order->status = $data['status'];
+		$order->reservation = $data['reservation'];
 		$order->total_price_excluding_tax = $data['cart']['total_price_excluding_tax'];
 		$order->total_price_including_tax = $data['cart']['total_price_including_tax'];
 		$order->total_tax_amount = $data['cart']['total_tax_amount'];
