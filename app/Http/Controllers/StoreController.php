@@ -89,6 +89,8 @@ class StoreController extends Controller {
 		# get data
 		$data = Cart::getKlarnaOrder(Input::get('klarna_id'))->marshal();
 
+		Log::info('Klarna pushed us with data:', $data);
+
 		# get order model
 		$order = Order::where('klarna_id', '=', Input::get('klarna_id'))->first();
 		if (!$order) {
