@@ -106,8 +106,27 @@ class Product extends Model {
 		return $this->hasMany('Friluft\Image');
 	}
 
-	public function sell($amount = 1) {
+	public function sell($amount = 1, $variantName = null, $variantValue = null) {
 		$this->sales += $amount;
+
+		# variant?
+		if ($variantName != null && $variantValue != null) {
+			# get the variant model
+			$variant = $this->variants()->where('name', '=', $variantName)->first();
+
+			#  get the data
+			$data = $variant->data;
+
+			# decrease the stock by however many we sold
+			$data['values'][$variantValue]['stock'] -= $amount;
+
+			# save it
+			$variant->data = $data;
+			$variant->save();
+		}else {
+			$this->stock -= $amount;
+		}
+
 		$this->save();
 	}
 

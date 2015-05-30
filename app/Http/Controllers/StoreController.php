@@ -97,11 +97,20 @@ class StoreController extends Controller {
 
 		# completed?
 		if ($order->status != 'checkout_complete' && $data['order_status'] == 'checkout_complete') {
-			# update the "sold" counter for the products
-			foreach($data['items'] as $item) {
+			# react to sale
+			foreach($order->items as $item) {
 				if ($item['type'] == 'shipping_fee') continue;
 				$product = Product::find($item['reference']['id']);
-				$product->sell($item['quantity']);
+
+				$variantName = null;
+				$variantValue = null;
+				if ($product->variants->count() > 0) {
+					$variant = $product->variants->first();
+					$variantName = $variant->data;
+					$variantValue = $item['reference']['options']['variants'][$variant->id];
+				}
+
+				$product->sell($item['quantity'], $variantName, $variantValue);
 				$product->save();
 			}
 		}

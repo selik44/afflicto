@@ -15,11 +15,16 @@ Built on Laravel 5, leveraging GentleStyle SASS Framework.
 To push to the staging server, simply run "envoy run staging".
 To configure envoy, see "Envoy.blade.php" in the project root.
 
+# multi-store
+- views can be overriden per-store, using the view method of the Controller class. The default views are the ones used by 123friluft
+
+
 ## Ideas
 
 - Figure out a way to cache routes while still allowing translated routes.
 - Move complicated controller logic to commands, for extendability?
 - Leverage Laravel Requests more
+- Leverage Laravel Events
 
 - Order status, green/red.
 - manual orders, user management.
