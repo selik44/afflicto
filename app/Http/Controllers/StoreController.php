@@ -79,7 +79,7 @@ class StoreController extends Controller {
 		# create the order, unless it already exists.
 		$order = Order::where('reservation', '=', $data['reservation'])->first();
 		if (!$order) {
-			$this->createOrder(Input::get('klarna_order'));
+			#$this->createOrder(Input::get('klarna_order'));
 		}
 
 		return view('front.store.success');
