@@ -95,16 +95,7 @@ class StoreController extends Controller {
 			$order = $this->createOrder(Input::get('klarna_id'));
 		}
 
-		# completed?
-		if ($order->status != 'checkout_complete' && $data['order_status'] == 'checkout_complete') {
-			# react to sale
-			foreach($order->items as $item) {
-				if ($item['type'] == 'shipping_fee') continue;
-				$product = Product::find($item['reference']['id']);
-				$product->sell($item['quantity'], $item['reference']['options']['variants']);
-				$product->save();
-			}
-		}
+
 
 		# update the order with new data
 
@@ -183,6 +174,14 @@ class StoreController extends Controller {
 
 		# save it
 		$order->save();
+
+		# react to sale
+		foreach($order->items as $item) {
+			if ($item['name'] == 'Shipping Fee') continue;
+			$product = Product::find($item['reference']['id']);
+			$product->sell($item['quantity'], $item['reference']['options']['variants']);
+			$product->save();
+		}
 
 		# notify user
 		Mail::send('emails.store.order_received', ['title' => 'Order Received', 'order' => $order], function($mail) use($user) {
