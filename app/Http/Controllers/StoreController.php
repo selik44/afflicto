@@ -101,16 +101,7 @@ class StoreController extends Controller {
 			foreach($order->items as $item) {
 				if ($item['type'] == 'shipping_fee') continue;
 				$product = Product::find($item['reference']['id']);
-
-				$variantName = null;
-				$variantValue = null;
-				if ($product->variants->count() > 0) {
-					$variant = $product->variants->first();
-					$variantName = $variant->data;
-					$variantValue = $item['reference']['options']['variants'][$variant->id];
-				}
-
-				$product->sell($item['quantity'], $variantName, $variantValue);
+				$product->sell($item['quantity'], $item['reference']['options']['variants']);
 				$product->save();
 			}
 		}

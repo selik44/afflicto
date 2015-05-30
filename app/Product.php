@@ -3,6 +3,7 @@
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Nicolaslopezj\Searchable\SearchableTrait;
+use Friluft\Variant;
 
 class Product extends Model {
 
@@ -106,23 +107,23 @@ class Product extends Model {
 		return $this->hasMany('Friluft\Image');
 	}
 
-	public function sell($amount = 1, $variantName = null, $variantValue = null) {
+	public function sell($amount = 1, $variants = null) {
 		$this->sales += $amount;
 
 		# variant?
-		if ($variantName != null && $variantValue != null) {
-			# get the variant model
-			$variant = $this->variants()->where('name', '=', $variantName)->first();
+		if (is_array($variants)) {
+			foreach($variants as $id => $value) {
+				$variant = Variant::find($id);
+				if ($variant) {
+					$data = $variant->data;
 
-			#  get the data
-			$data = $variant->data;
+					$data['values'][$value]['stock']--;
 
-			# decrease the stock by however many we sold
-			$data['values'][$variantValue]['stock'] -= $amount;
+					$variant->data = $data;
+					$variant->save();
+				}
+			}
 
-			# save it
-			$variant->data = $data;
-			$variant->save();
 		}else {
 			$this->stock -= $amount;
 		}
