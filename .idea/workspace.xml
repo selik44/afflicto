@@ -2,194 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/database/migrations/2015_05_30_234644_create_receivals_table.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Receival.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ReceivalsController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_cart-manager.sass" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_front_store-cart.sass" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/front/store/checkout.blade.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/img/anchor.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/img/anchor.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/img/loader.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/img/loader.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/media/moxieplayer.swf" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/media/moxieplayer.swf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/img/object.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/img/object.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-cool.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-cool.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-cry.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-cry.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-embarassed.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-embarassed.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-foot-in-mouth.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-frown.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-frown.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-innocent.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-innocent.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-kiss.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-kiss.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-laughing.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-laughing.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-money-mouth.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-sealed.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-sealed.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-smile.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-smile.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-surprised.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-surprised.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-tongue-out.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-undecided.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-undecided.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-wink.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-wink.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-yell.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/img/smiley-yell.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce-small.eot" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce-small.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce-small.ttf" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce-small.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce-small.woff" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce-small.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce.eot" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce.eot" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce.ttf" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce.ttf" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce.woff" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce.woff" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/img/trans.gif" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/img/trans.gif" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/dropzone/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/vendor/dropzone/.bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/.bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/.npmignore" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/.npmignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Middleware/AuthenticateAdmin.php" afterPath="$PROJECT_DIR$/app/Http/Middleware/AuthenticateAdmin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Shopping/Cart/Cart.php" afterPath="$PROJECT_DIR$/app/Shopping/Cart/Cart.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/CartController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_dropzone.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_dropzone.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_front_products-grid.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_front_products-grid.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_ide_helper.php" afterPath="$PROJECT_DIR$/_ide_helper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_settings.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_settings.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/admin.php" afterPath="$PROJECT_DIR$/resources/lang/en/admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/no/admin.php" afterPath="$PROJECT_DIR$/resources/lang/no/admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/all.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/all.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/coffee/automachine.coffee" afterPath="$PROJECT_DIR$/resources/assets/coffee/automachine.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/basic.css" afterPath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/basic.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/min/basic.min.css" afterPath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/min/basic.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/dropzone/bower.json" afterPath="$PROJECT_DIR$/resources/assets/vendor/dropzone/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/bower.json" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/partial/cart.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/partial/cart.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/changelog.txt" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/changelog.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/content.inline.min.css" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/content.inline.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/content.min.css" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/content.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/dropzone-amd-module.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/dropzone-amd-module.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/min/dropzone-amd-module.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/min/dropzone-amd-module.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/dropzone.css" afterPath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/dropzone.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/dropzone.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/dropzone.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/min/dropzone.min.css" afterPath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/min/dropzone.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/min/dropzone.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/min/dropzone.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/friluft.css" afterPath="$PROJECT_DIR$/public/css/friluft.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/gulpfile.coffee" afterPath="$PROJECT_DIR$/gulpfile.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/highpulse.css" afterPath="$PROJECT_DIR$/public/css/highpulse.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/ide-helper.php" afterPath="$PROJECT_DIR$/config/ide-helper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/index.php" afterPath="$PROJECT_DIR$/public/index.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/jquery.tinymce.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/jquery.tinymce.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/layout.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/license.txt" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/license.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/forms/admin/manufacturer.php" afterPath="$PROJECT_DIR$/resources/forms/admin/manufacturer.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/manufacturers_create.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/manufacturers_create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/manufacturers_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/manufacturers_edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/manufacturers_index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/manufacturers_index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/emails/store/order_received.blade.php" afterPath="$PROJECT_DIR$/resources/views/emails/store/order_received.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/orders_index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/orders_index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/permissions.php" afterPath="$PROJECT_DIR$/resources/lang/en/permissions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/no/permissions.php" afterPath="$PROJECT_DIR$/resources/lang/no/permissions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/advlist/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/advlist/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/anchor/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/anchor/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/autolink/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/autolink/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/autoresize/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/autoresize/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/autosave/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/autosave/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/bbcode/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/bbcode/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/charmap/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/charmap/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/code/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/code/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/colorpicker/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/colorpicker/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/contextmenu/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/contextmenu/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/directionality/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/directionality/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/fullpage/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/fullpage/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/fullscreen/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/fullscreen/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/hr/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/hr/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/image/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/image/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/importcss/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/importcss/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/insertdatetime/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/insertdatetime/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/layer/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/layer/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/legacyoutput/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/legacyoutput/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/link/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/link/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/lists/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/lists/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/media/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/media/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/nonbreaking/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/nonbreaking/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/noneditable/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/noneditable/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/pagebreak/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/pagebreak/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/paste/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/paste/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/preview/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/preview/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/print/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/print/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/save/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/save/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/searchreplace/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/searchreplace/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/spellchecker/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/spellchecker/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/tabfocus/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/tabfocus/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/table/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/table/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/template/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/template/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/textcolor/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/textcolor/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/textpattern/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/textpattern/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/visualblocks/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/visualblocks/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/visualchars/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/visualchars/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/wordcount/plugin.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/wordcount/plugin.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/advlist/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/advlist/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/anchor/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/anchor/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/autolink/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/autolink/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/autoresize/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/autoresize/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/autosave/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/autosave/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/bbcode/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/bbcode/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/charmap/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/charmap/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/code/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/code/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/colorpicker/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/colorpicker/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/contextmenu/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/contextmenu/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/directionality/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/directionality/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/emoticons/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/fullpage/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/fullpage/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/fullscreen/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/fullscreen/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/hr/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/hr/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/image/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/image/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/importcss/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/importcss/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/insertdatetime/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/insertdatetime/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/layer/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/layer/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/legacyoutput/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/legacyoutput/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/link/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/link/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/lists/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/lists/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/media/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/media/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/nonbreaking/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/nonbreaking/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/noneditable/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/noneditable/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/pagebreak/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/pagebreak/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/paste/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/paste/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/preview/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/preview/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/print/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/print/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/save/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/save/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/searchreplace/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/searchreplace/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/spellchecker/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/spellchecker/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/tabfocus/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/tabfocus/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/table/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/table/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/template/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/template/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/textcolor/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/textcolor/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/textpattern/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/textpattern/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/visualblocks/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/visualblocks/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/visualchars/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/visualchars/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/wordcount/plugin.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/wordcount/plugin.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/partial/products_list.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/partial/products_list.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/readme.md" afterPath="$PROJECT_DIR$/resources/assets/vendor/dropzone/dist/readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/forms/admin/role.php" afterPath="$PROJECT_DIR$/resources/forms/admin/role.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/roles_create.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/roles_create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/roles_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/roles_edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/roles_index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/roles_index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/skin.ie7.min.css" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/skin.ie7.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/skin.min.css" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/skin.min.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/store_cart.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/store_cart.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/store_category.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/store_category.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/store_product.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/store_product.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/themes/modern/theme.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/themes/modern/theme.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/themes/modern/theme.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/themes/modern/theme.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce-small.svg" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce-small.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/tinymce.jquery.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/tinymce.jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/tinymce.jquery.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/tinymce.jquery.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/tinymce.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/tinymce.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/tinymce.min.js" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/tinymce.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce.svg" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/skins/lightgray/fonts/tinymce.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/forms/admin/user.php" afterPath="$PROJECT_DIR$/resources/forms/admin/user.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/users_create.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/users_create.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/users_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/users_edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/users_index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/users_index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/no/validation.php" afterPath="$PROJECT_DIR$/resources/lang/no/validation.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/visualblocks/css/visualblocks.css" afterPath="$PROJECT_DIR$/resources/assets/vendor/tinymce/plugins/visualblocks/css/visualblocks.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/emails/store/welcome.blade.php" afterPath="$PROJECT_DIR$/resources/views/emails/store/welcome.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
@@ -1001,7 +813,13 @@
       <option name="project" value="LOCAL" />
       <updated>1433019085953</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Fixed all major issues, klarna is displaying correctly.">
+      <created>1433573865448</created>
+      <option name="number" value="00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1433573865448</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TodoView" selected-index="0">
@@ -1081,7 +899,8 @@
     <MESSAGE value="made orders.index table selectable" />
     <MESSAGE value="Stock should be affected on order creation now." />
     <MESSAGE value="fixed the order bug&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed the order bug&#10;" />
+    <MESSAGE value="Fixed all major issues, klarna is displaying correctly." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed all major issues, klarna is displaying correctly." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1332,6 +1151,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1722">
           <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+          <folding />
         </state>
       </provider>
     </entry>
