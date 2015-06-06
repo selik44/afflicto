@@ -57,6 +57,7 @@ return array(
     'extra' => array(
         'Eloquent' => array('Illuminate\Database\Eloquent\Builder', 'Illuminate\Database\Query\Builder'),
         'Session' => array('Illuminate\Session\Store'),
+	    'Cart' => ['Friluft\Shopping\Cart\Cart'],
     ),
 
     'magic' => array(

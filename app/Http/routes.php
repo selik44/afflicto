@@ -15,6 +15,7 @@ if (in_array($locale, $languages)) {
 	$locale = '';
 }
 
+
 Route::get('test', function() {
 	$pdf = new PDF('/usr/bin/wkhtmltopdf');
 
@@ -259,6 +260,7 @@ Route::group(['prefix' => $locale], function() {
 		Route::get('categories/{category}', ['as' => 'admin.categories.show', 'uses' => 'Admin\CategoriesController@show']);
 		Route::put('categories/{category}', ['as' => 'admin.categories.update', 'uses' => 'Admin\CategoriesController@update']);
 		Route::post('categories', ['as' => 'admin.categories.store', 'uses' => 'Admin\CategoriesController@store']);
+		Route::delete('categories/{category}', ['as' => 'admin.categories.destroy', 'uses' => 'Admin\CategoriesController@destroy']);
 
 		# manufacturers
 		Route::get('manufacturers', ['as' => 'admin.manufacturers.index', 'uses' => 'Admin\ManufacturersController@index']);
@@ -276,6 +278,14 @@ Route::group(['prefix' => $locale], function() {
 		Route::get('orders/{order}', ['as' => 'admin.orders.show', 'uses' => 'Admin\OrdersController@show']);
 		Route::put('orders/{order}', ['as' => 'admin.orders.update', 'uses' => 'Admin\OrdersController@update']);
 		Route::post('orders', ['as' => 'admin.orders.store', 'uses' => 'Admin\OrdersController@store']);
-		Route::delete('orders/{order', ['as' => 'admin.orders.delete', 'uses' => 'Admin\OrdersController@destroy']);
+		Route::delete('orders/{order}', ['as' => 'admin.orders.delete', 'uses' => 'Admin\OrdersController@destroy']);
+
+		# receivals
+		Route::get('receivals', ['as' => 'admin.receivals.index', 'uses' => 'Admin\ReceivalsController@index']);
+		Route::get('receivals/create', ['as' => 'admin.receivals.create', 'uses' => 'Admin\ReceivalsController@create']);
+		Route::get('receivals/{receival}/edit', ['as' => 'admin.receivals.edit', 'uses' => 'Admin\ReceivalsController@edit']);
+		Route::put('receivals/{receival}', ['as' => 'admin.receivals.update', 'uses' => 'Admin\ReceivalsController@update']);
+		Route::post('receivals', ['as' => 'admin.receivals.store', 'uses' => 'Admin\ReceivalsController@store']);
+		Route::delete('receivals/{receival}', ['as' => 'admin.receivals.delete', 'uses' => 'Admin\ReceivalsController@store']);
 	});
 });

@@ -2,7 +2,6 @@
 
 use Closure;
 use Config;
-use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Http\Request;
 
 class AuthenticateAdmin extends Authenticate {

@@ -229,6 +229,20 @@ class Cart {
 		return $data;
 	}
 
+	public function updateKlarnaOrder() {
+		if ($this->session->has('klarna_order')) {
+			try {
+				$order = $this->getKlarnaOrder($this->session->get('klarna_order'));
+			}catch(Exception $e) {
+				$order = $this->getKlarnaOrder();
+			}
+		}else {
+			$order = $this->getKlarnaOrder();
+		}
+
+		return $order->update($this->getKlarnaOrderData());
+	}
+
 	public function getKlarnaOrder($id = null) {
 		# get specific order?
 		if ($id != null) {
@@ -255,8 +269,7 @@ class Cart {
 
 		$order->create($data);
 
-		# fetch
-		$order->fetch();
+		$this->session->put('klarna_order', $order->getLocation());
 
 		return $order;
 	}

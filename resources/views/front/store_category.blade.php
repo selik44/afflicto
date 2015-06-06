@@ -7,7 +7,7 @@
 @section('breadcrumbs', Breadcrumbs::render('category', $category))
 
 @section('article')
-	<h1 class="end">{{{ucfirst(strtolower($category->name))}}}</h1>
+	<h1 class="end">{{{$category->name}}}</h1>
 	<hr style="margin-top: 0.5rem">
 	
 
@@ -17,7 +17,7 @@
 
 @section('aside')
 	<div class="block store-menu visible-m-up">
-		<ul class="nav vertical fancy">
+		<ul id="store-menu" class="nav vertical fancy">
 			<?php
 			$c = '';
 			if (Request::is($category->getRoot()->getPath())) {
@@ -25,7 +25,7 @@
 			}
 			?>
 			<li>
-				<a class="{{{$c}}}" href="{{url('/store/' .$category->getRoot()->slug)}}">Alt</a>
+				<a class="{{{$c}}}" href="{{url('/store/' .$category->getRoot()->slug)}}">{{$category->getRoot()->name}}</a>
 			</li>
 			<?php
 				echo $category->getRoot()->renderMenu('/store', 3);

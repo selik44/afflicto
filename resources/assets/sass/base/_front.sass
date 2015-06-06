@@ -17,34 +17,21 @@ body.with-menu
 			z-index: 100
 			background: weaker($base-background, 5%)
 
+body.scrolled
+	padding-top: 80px
+
+	#nav
+		position: fixed
+		top: 0px
+		width: 100%
+		z-index: 10
+		box-shadow: 0px 0px 1rem 0px rgba(0,0,0,0.5)
+
+		#logo
+			@include breakpoint('m+')
+				max-width: 110px
+
 #front
-	//-------------------------------
-	//	Scrolled
-	//-------------------------------
-	&.scrolled
-		#header
-			position: fixed
-			top: 0px
-			width: 100%
-			z-index: 10
-		
-			#nav
-				#logo
-					@include breakpoint('m+')
-						max-width: 140px
-
-				ul.nav
-					margin-top: 0px + $base-logo-height !important
-
-				#search
-					margin-top: 0px + $base-logo-height
-
-				.search-and-cart
-					margin-top: 2px + $base-logo-height
-
-				.cart-toggle
-					margin-top: 0px + $base-logo-height
-
 
 	//center the main components
 	#header, #page, #footer, #nav, #nav-top, .nav-dropdown, #breadcrumbs, #slider, #cart
@@ -81,10 +68,6 @@ body.with-menu
 
 					.nav-controls
 						flex: 1 1 auto
-
-					.nav-contents
-
-
 
 				.nav-controls
 					display: flex
@@ -127,7 +110,6 @@ body.with-menu
 
 						&:not(.visible)
 							display: none
-							transition: all $base-transition-duration * 2
 
 					ul.navigation
 						flex: 1 1 auto
@@ -161,8 +143,6 @@ body.with-menu
 							float: left
 							width: 100%
 							padding: 0
-							margin-right: 0
-							margin-top: 0
 							background: stronger($base-background, 10%)
 
 							li
@@ -200,26 +180,20 @@ body.with-menu
 
 						.nav-dropdown
 							@include breakpoint('m+')
-								padding-left: 0 !important
 								padding: 1rem
 								width: 100%
 								position: absolute
-								z-index: 50
+								display: none
+								z-index: 5
 								top: 100%
 								left: 0px
 								background: weaker($base-background, 4%)
 								border-top: 1px solid $base-border-color
 								border-bottom: 1px solid $base-border-color
-								box-shadow: 0px 6px 11px 0px rgba(0,0,0,0.3)
-								transition: all $base-transition-duration * 2
-								opacity: 0
-								pointer-events: none
-
-								&.visible
-									opacity: 1
-									pointer-events: auto
+								box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.3)
 
 							@include breakpoint('sm-')
+								display: block
 								.nav
 									padding-left: 1rem
 
@@ -242,15 +216,19 @@ body.with-menu
 					#search
 						display: flex
 						flex: auto
-						transition: all $base-transition-duration * 2
 
 						input[name="terms"]
-							width: 100px
 							transition: all $base-transition-duration * 2
+							padding: 0.6rem
+							font-size: 1.1rem
+							width: 90px
 
 							&:focus
-								width: 160px
-								transition: all $base-transition-duration * 2
+								width: 140px
+								transition: all $base-transition-duration
+						button
+							font-size: 1.1rem
+							padding: 0.6rem
 
 						.buttons
 							display: inline
@@ -264,17 +242,15 @@ body.with-menu
 							background: weaker($base-background, 4%)
 							text-align: center
 							padding: 2rem
-							border-bottom: 1px solid $base-border-color
+							border: 1px solid weaker($base-background, 10%)
+							box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5)
 
 							input[name="terms"], input[name="terms"]:focus
-								width: 50%
+								width: 100%
 
-							input[type="submit"], input[type="reset"]
-								font-size: 1.2rem
-								padding: 0.8rem 1.2rem
-
-						@include breakpoint('sm-')
-							margin-top: 0
+							button
+								font-size: 1.4rem
+								padding: 1rem 2.2rem
 
 					.search-and-cart
 						flex: 1 0 auto
@@ -293,39 +269,30 @@ body.with-menu
 						margin-left: 1rem
 						flex: 0 1 auto
 
-		#cart
-			position: absolute
-			z-index: 10
-			top: 100%
-			left: 0px
-			width: 100%
-			background: weaker($base-background, 4%)
-			padding: 2rem
-			border-bottom: 1px solid $base-border-color
-			transition: all $base-transition-duration * 2
-			max-height: 600px
-			overflow: auto
-			
-			> .inner
-				max-width: 720px
+		.cart-container
+			position: relative
 
-			.cart-table
-				font-size: 1.4rem
-				tbody tr td
-					padding-top: 2rem
-					padding-bottom: 2rem
+			#cart
+				position: absolute
+				z-index: 10
+				top: 100%
+				right: 0px
+				margin: 1rem 0 1rem 1rem
+				padding: 2rem
+				min-width: 720px
 
-				.product
-					.image
-						max-width: 120px
+				background: weaker($base-background, 4%)
+				border: 1px solid darken($base-border-color, 20%)
+				border-radius: $base-radius
+				box-shadow: 0px 0px 1rem 0px rgba(0,0,0,0.3)
 
-					.info
-						padding: 1rem
+				@include breakpoint('sm-')
+					min-width: 70%
+					top: 0px
+					left: 0px
+					margin: 0
+					padding: 0
 
-				.quantity input
-					width: 48px
-
-	
 	#breadcrumbs
 		background: darken($base-background, 2%)
 		text-transform: uppercase
@@ -364,18 +331,29 @@ body.with-menu
 
 		> .inner
 			padding: 2rem 0rem
-	
-		#aside
-			> .inner
-				> .block
+			display: flex
+			flex-direction: row
+
+			@include breakpoint('sm-')
+				display: block
+
+				#aside
+					clear: both
+					background: weaker($base-background, 10%)
+
+			#aside
+				flex: 0 1 240px
+
+				> .inner
+					> .block
+						padding: 1rem
+						margin-bottom: 1rem
+						border-bottom: 1px solid $base-border-color
+
+			#article
+				flex: 1 1 auto
+				> .inner
 					padding: 1rem
-					margin-bottom: 1rem
-					border-bottom: 1px solid $base-border-color
-
-
-		#article
-			> .inner
-				padding: 1rem
 
 	#footer
 
@@ -387,3 +365,10 @@ body.with-menu
 
 ul.nav.tabs
 	background: none
+
+
+
+#store-menu
+	background: weaker($base-background, 5%)
+	border-radius: $base-radius
+	border: 1px solid $base-border-color

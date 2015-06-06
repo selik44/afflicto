@@ -11,6 +11,7 @@ use Cart;
 use Log;
 use Input;
 use Mail;
+use Session;
 
 class StoreController extends Controller {
 
@@ -50,23 +51,20 @@ class StoreController extends Controller {
 	 * @return View
 	 */
 	public function cart() {
+		# get the klarna order
+		if (Session::has('klarna_order')) {
+			$order = Cart::getKlarnaOrder(Session::get('klarna_order'));
+		}else {
+			$order = Cart::getKlarnaOrder();
+		}
+
+
 		return view('front.store_cart')
 			->with([
+				'snippet' => $order['gui']['snippet'],
 				'items' => Cart::getItemsWithModels(false),
 				'total' => Cart::getTotal(),
 			]);
-	}
-
-	/**
-	 * Shows the checkout form
-	 * @return View
-	 */
-	public function checkout() {
-		# get the klarna order
-		$order = Cart::getKlarnaOrder();
-
-		return view('front.store.checkout')
-		->with('snippet', $order['gui']['snippet']);
 	}
 
 	public function success() {

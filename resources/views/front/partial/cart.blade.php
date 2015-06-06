@@ -42,7 +42,7 @@
 		</table>
 
 		<div class="actions">
-			<a href="{{route('store.cart')}}" class="large primary button">Full View</a>
+			<a href="{{route('store.cart')}}" class="large primary button">Checkout</a>
 		</div>
 	@endif
 </div>

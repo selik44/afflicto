@@ -1,7 +1,7 @@
 <?php
 /**
  * An helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.0.28 on 2015-05-06.
+ * Generated for Laravel 5.0.31 on 2015-06-03.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -4339,11 +4339,12 @@ namespace {
         /**
          * Get the count of the total records for the paginator.
          *
+         * @param array $columns
          * @return int 
          * @static 
          */
-        public static function getCountForPagination(){
-            return \Illuminate\Database\Query\Builder::getCountForPagination();
+        public static function getCountForPagination($columns = array()){
+            return \Illuminate\Database\Query\Builder::getCountForPagination($columns);
         }
         
         /**
@@ -4622,7 +4623,7 @@ namespace {
         /**
          * Register an event subscriber with the dispatcher.
          *
-         * @param string $subscriber
+         * @param object|string $subscriber
          * @return void 
          * @static 
          */
@@ -5376,7 +5377,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function query($key = null, $default = null){
@@ -5399,7 +5400,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function cookie($key = null, $default = null){
@@ -5434,7 +5435,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function header($key = null, $default = null){
@@ -5446,7 +5447,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function server($key = null, $default = null){
@@ -7993,7 +7994,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function query($key = null, $default = null){
@@ -8016,7 +8017,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function cookie($key = null, $default = null){
@@ -8051,7 +8052,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function header($key = null, $default = null){
@@ -8063,7 +8064,7 @@ namespace {
          *
          * @param string $key
          * @param mixed $default
-         * @return string 
+         * @return string|array 
          * @static 
          */
         public static function server($key = null, $default = null){
@@ -11603,6 +11604,171 @@ namespace {
     }
 
 
+    class Cart extends \Friluft\Shopping\Facades\Cart{
+        
+        /**
+         * Get all the items in the cart.
+         *
+         * @return Array an array of items. [['id' => 0, 'product_id' => 0, 'quantity' => 1],...]
+         * @static 
+         */
+        public static function getItems(){
+            return \Friluft\Shopping\Cart\Cart::getItems();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function nothing(){
+            return \Friluft\Shopping\Cart\Cart::nothing();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getItemsWithModels($toArray = false){
+            return \Friluft\Shopping\Cart\Cart::getItemsWithModels($toArray);
+        }
+        
+        /**
+         * Check whether the given item exists, by item UID
+         *
+         * @param int|integer  the item UID
+         * @return Array the item array
+         * @static 
+         */
+        public static function exists($uid){
+            return \Friluft\Shopping\Cart\Cart::exists($uid);
+        }
+        
+        /**
+         * Get an item by item UID
+         *
+         * @param int|integer  the item uid
+         * @return Array|null The item, or null if it doesn't exist.
+         * @static 
+         */
+        public static function get($uid){
+            return \Friluft\Shopping\Cart\Cart::get($uid);
+        }
+        
+        /**
+         * Add an item to the cart.
+         *
+         * @param \Friluft\Shopping\Cart\Friluft\Product|int|integer  a product model instance or integer product_id
+         * @param int|integer  The quantity of this item in the cart.
+         * @return int|integer the item uid, used to reference the items in the cart.
+         * @static 
+         */
+        public static function add($product, $quantity = 1, $options = array()){
+            return \Friluft\Shopping\Cart\Cart::add($product, $quantity, $options);
+        }
+        
+        /**
+         * Remove an item from the cart. Returns the removed item.
+         *
+         * @param int|integer  the item UID (not product_id)
+         * @return Array|null the item array, or null if it doesn't exist.
+         * @static 
+         */
+        public static function remove($uid){
+            return \Friluft\Shopping\Cart\Cart::remove($uid);
+        }
+        
+        /**
+         * Removes all the items in the cart. Also resets the UID back to 0.
+         *
+         * @return void 
+         * @static 
+         */
+        public static function clear(){
+            \Friluft\Shopping\Cart\Cart::clear();
+        }
+        
+        /**
+         * Update the quantity of an item. If quantity is 0 or less, removes the item.
+         *
+         * @param integer  the item UID.
+         * @param integer  quantity to set.
+         * @static 
+         */
+        public static function setQuantity($uid, $quantity){
+            return \Friluft\Shopping\Cart\Cart::setQuantity($uid, $quantity);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getProductModel($uid){
+            return \Friluft\Shopping\Cart\Cart::getProductModel($uid);
+        }
+        
+        /**
+         * Get the total price of an item. (Product price * quantity)
+         *
+         * @param integer  the item UID
+         * @return float the product price multiplied by the quantity.
+         * @static 
+         */
+        public static function getSubTotal($uid){
+            return \Friluft\Shopping\Cart\Cart::getSubTotal($uid);
+        }
+        
+        /**
+         * Get the total price of all contents in the cart. Honors the quantity parameter.
+         *
+         * @return float the total price.
+         * @static 
+         */
+        public static function getTotal(){
+            return \Friluft\Shopping\Cart\Cart::getTotal();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getTotalWeight(){
+            return \Friluft\Shopping\Cart\Cart::getTotalWeight();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getKlarnaOrderData(){
+            return \Friluft\Shopping\Cart\Cart::getKlarnaOrderData();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function updateKlarnaOrder(){
+            return \Friluft\Shopping\Cart\Cart::updateKlarnaOrder();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getKlarnaOrder($id = null){
+            return \Friluft\Shopping\Cart\Cart::getKlarnaOrder($id);
+        }
+        
+    }
+
+
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facade{
         
         /**
@@ -11801,6 +11967,189 @@ namespace {
          */
         public static function registerTransformer($name, $callable){
             return \Gentlefox\Laratables\Factory::registerTransformer($name, $callable);
+        }
+        
+    }
+
+
+    class Former extends \Former\Facades\Former{
+        
+        /**
+         * Register a macro with Former
+         *
+         * @param string $name The name of the macro
+         * @param Callable $macro The macro itself
+         * @return mixed 
+         * @static 
+         */
+        public static function macro($name, $macro){
+            return \Former\Former::macro($name, $macro);
+        }
+        
+        /**
+         * Check if a macro exists
+         *
+         * @param string $name
+         * @return boolean 
+         * @static 
+         */
+        public static function hasMacro($name){
+            return \Former\Former::hasMacro($name);
+        }
+        
+        /**
+         * Get a registered macro
+         *
+         * @param string $name
+         * @return \Former\Closure 
+         * @static 
+         */
+        public static function getMacro($name){
+            return \Former\Former::getMacro($name);
+        }
+        
+        /**
+         * Add values to populate the array
+         *
+         * @param mixed $values Can be an Eloquent object or an array
+         * @static 
+         */
+        public static function populate($values){
+            return \Former\Former::populate($values);
+        }
+        
+        /**
+         * Set the value of a particular field
+         *
+         * @param string $field The field's name
+         * @param mixed $value Its new value
+         * @static 
+         */
+        public static function populateField($field, $value){
+            return \Former\Former::populateField($field, $value);
+        }
+        
+        /**
+         * Get the value of a field
+         *
+         * @param string $field The field's name
+         * @param null $fallback
+         * @return mixed 
+         * @static 
+         */
+        public static function getValue($field, $fallback = null){
+            return \Former\Former::getValue($field, $fallback);
+        }
+        
+        /**
+         * Fetch a field value from both the new and old POST array
+         *
+         * @param string $name A field name
+         * @param string $fallback A fallback if nothing was found
+         * @return string The results
+         * @static 
+         */
+        public static function getPost($name, $fallback = null){
+            return \Former\Former::getPost($name, $fallback);
+        }
+        
+        /**
+         * Set the errors to use for validations
+         *
+         * @param \Former\Message $validator The result from a validation
+         * @return void 
+         * @static 
+         */
+        public static function withErrors($validator = null){
+            \Former\Former::withErrors($validator);
+        }
+        
+        /**
+         * Add live validation rules
+         *
+         * @param array  *$rules An array of Laravel rules
+         * @return void 
+         * @static 
+         */
+        public static function withRules(){
+            \Former\Former::withRules();
+        }
+        
+        /**
+         * Switch the framework used by Former
+         *
+         * @param string $framework The name of the framework to use
+         * @static 
+         */
+        public static function framework($framework = null){
+            return \Former\Former::framework($framework);
+        }
+        
+        /**
+         * Get a new framework instance
+         *
+         * @param string $framework
+         * @throws Exceptions\InvalidFrameworkException
+         * @return \Former\Interfaces\FrameworkInterface 
+         * @static 
+         */
+        public static function getFrameworkInstance($framework){
+            return \Former\Former::getFrameworkInstance($framework);
+        }
+        
+        /**
+         * Get an option from the config
+         *
+         * @param string $option The option
+         * @param mixed $default Optional fallback
+         * @return mixed 
+         * @static 
+         */
+        public static function getOption($option, $default = null){
+            return \Former\Former::getOption($option, $default);
+        }
+        
+        /**
+         * Set an option on the config
+         *
+         * @param string $option
+         * @param string $value
+         * @static 
+         */
+        public static function setOption($option, $value){
+            return \Former\Former::setOption($option, $value);
+        }
+        
+        /**
+         * Closes a form
+         *
+         * @return string A form closing tag
+         * @static 
+         */
+        public static function close(){
+            return \Former\Former::close();
+        }
+        
+        /**
+         * Get the errors for the current field
+         *
+         * @param string $name A field name
+         * @return string An error message
+         * @static 
+         */
+        public static function getErrors($name = null){
+            return \Former\Former::getErrors($name);
+        }
+        
+        /**
+         * Get a rule from the Rules array
+         *
+         * @param string $name The field to fetch
+         * @return array An array of rules
+         * @static 
+         */
+        public static function getRules($name){
+            return \Former\Former::getRules($name);
         }
         
     }

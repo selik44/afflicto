@@ -63,6 +63,8 @@ class CartController extends Controller {
 
 		$cartid = Cart::add($product, $quantity, $options);
 
+		Cart::updateKlarnaOrder();
+
 		return (Request::wantsJson()) ? ['id' => $cartid] : Redirect::back()->with('success', 'added ' .$product->name .'(' .$quantity .') to cart.');
 	}
 
@@ -82,11 +84,13 @@ class CartController extends Controller {
 	public function destroy($id)
 	{
 		Cart::remove($id);
+		Cart::updateKlarnaOrder();
 		return response("OK");
 	}
 
 	public function setQuantity($id) {
 		Cart::setQuantity($id, (int) Input::get('quantity', 0));
+		Cart::updateKlarnaOrder();
 		return response('OK');
 	}
 

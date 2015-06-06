@@ -11,7 +11,6 @@
 
 @section('article')
 	<h1 class="end">Cart</h1>
-	<hr style="margin-top: 0.5rem">
 
 	<div id="store-cart">
 		<table class="cart-table bordered">
@@ -66,9 +65,11 @@
 			</tbody>
 		</table>
 
-		<hr>
+		<hr/>
 
-		<a href="{{route('store.checkout')}}" class="button huge primary pull-right">Checkout</a>
+		<div class="klarna-checkout">
+			{!! $snippet !!}
+		</div>
 	</div>
 @stop
 
@@ -78,6 +79,22 @@
 
 	<script type="text/javascript">
 		var cart = $("#store-cart");
+
+		$(document).ready(function() {
+			$("#klarna-checkout-container").css('overflow-x', 'visible');
+		});
+
+		function klarnaSuspend() {
+			window._klarnaCheckout(function (api) {
+				api.suspend();
+			});
+		}
+
+		function klarnaResume() {
+			window._klarnaCheckout(function (api) {
+				api.resume();
+			});
+		}
 
         //-------- change quantity -----------//
         cart.find('.quantity input').change(function() {
@@ -96,6 +113,8 @@
                 quantity: quantity,
             };
 
+	        klarnaSuspend();
+
             $.post(Friluft.URL + '/cart/' + id + '/quantity', payload, function(response) {
                 console.log('Changed quantity, response:');
                 console.log(response);
@@ -106,6 +125,8 @@
                 var subTotal = price * quantity;
 
                 item.find('.subtotal .value').html(subTotal);
+
+	            klarnaResume();
             });
         });
 
@@ -116,6 +137,8 @@
 
             var item = $(this).parents('.item').first();
             var id = item.attr('data-id');
+
+	        klarnaSuspend();
 
             $.post(Friluft.URL + '/cart/' + id, {_method: 'DELETE', _token: Friluft.token}, function(response) {
                 console.log('Removed, response:');
@@ -129,6 +152,8 @@
                         window.location.href = Friluft.URL;
                     }
                 });
+
+	            klarnaResume();
             });
         });
 	</script>

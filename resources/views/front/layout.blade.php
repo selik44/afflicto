@@ -52,14 +52,17 @@
 						<button data-toggle="#cart" class="cart-toggle primary end visible-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>
 					</div>
 				</div>
+
+				<div class="cart-container">
+					<div id="cart" style="display: none;">
+						<div class="inner">
+							@include('front.partial.cart', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal()])
+						</div>
+					</div>
+				</div>
+
 			</div>
 		</nav>
-
-		<div id="cart" style="display: none;">
-			<div class="inner">
-				@include('front.partial.cart', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal()])
-			</div>
-		</div>
 	</header>
 	
 	@if(isset($slider) && $slider)
@@ -152,24 +155,71 @@
 		var header = $("#header");
 		var front = $("#front");
 		var nav = $("#nav");
+		var navTop = $("#nav-top");
 
-		var navTop = $("#nav-top").height() * 2;
-
-		$(window).scroll(function() {
-			var scrollTop = $('body').scrollTop();
-			var height = $("#nav").height();
-
-			if (scrollTop > $("#nav-top").height()) {
-				front
-					.addClass('scrolled')
-					.css('padding-top', height + navTop);
-				$("#nav-top").hide();
+		//add 'scrolled' class when scrolling past navTop
+		$(window).scroll(_.throttle(function() {
+			var scroll = $('body').scrollTop();
+			if (scroll >= navTop.height()) {
+				$('body').addClass('scrolled');
 			}else {
-				front
-					.removeClass('scrolled')
-					.css('padding-top', 0);
-				$("#nav-top").show();
-				navTop = $("#nav-top").height() * 2;
+				$('body').removeClass('scrolled');
+			}
+		}, 50));
+
+
+		function showDropdown(dd, duration, callback) {
+			dd.stop().slideDown(duration, callback).addClass('visible');
+		}
+
+		function hideDropdown(dd, duration, callback) {
+			dd.stop().slideUp(duration, callback).removeClass('visible');
+		}
+
+
+		//nav dropdown toggles
+		var ul = $('#header #nav ul.navigation');
+		ul.find('> li > a').click(function(e) {
+			if ($(window).width() <= 960) {
+				e.preventDefault();
+			}
+			var dd = $(this).parent('li').find('> .nav-dropdown');
+
+			var current = nav.find('.nav-dropdown.visible');
+			if (current.length > 0) {
+				if (current.is(dd)) return;
+
+				hideDropdown(current, 150, function() {
+					showDropdown(dd, 300);
+				});
+				return;
+			}
+
+			showDropdown(dd);
+		});
+
+		ul.find('> li > a').mouseenter(function() {
+			if ($(window).width() <= 960) {
+				e.preventDefault();
+			}
+			var dd = $(this).parent('li').find('> .nav-dropdown');
+
+			var current = nav.find('.nav-dropdown.visible');
+			if (current.length > 0) {
+				if (current.is(dd)) return;
+
+				hideDropdown(current, 150, function() {
+					showDropdown(dd, 300);
+				});
+				return;
+			}
+
+			showDropdown(dd);
+		});
+
+		$('#header .nav-dropdown').mouseleave(function() {
+			if ($(this).hasClass('visible')) {
+				hideDropdown($(this), 200);
 			}
 		});
 
@@ -178,26 +228,16 @@
 		var search = $("#search");
 		var cart = $("#cart");
 		$("[data-toggle='#search']").click(function() {
-			if (search.hasClass('visible')) {
-				//hide search
-				search.stop().slideUp().removeClass('visible');
-			}else {
-				var dropdown = $("#nav .nav-dropdown");
-				if (dropdown[0] != null) {
-					dropdown.stop().slideUp();
-				}
-				search.stop().slideDown().addClass('visible');
-				cart.stop().slideUp().removeClass('visible');
-			}
+			search.stop().slideToggle().toggleClass('visible');
 		});
 
 		$("[data-hide='#search']").click(function() {
-			search.removeClass('visible');
+			search.removeClass('visible').stop().slideUp();
 		});
 
 		$("[data-show='#search']").click(function() {
-			search.addClass('visible');
-			cart.removeClass('visible');
+			search.stop().slideToggle().toggleClass('visible');
+			cart.removeClass('visible').stop().slideUp();
 		});
 
 		
@@ -210,7 +250,6 @@
 				if (dropdown[0] != null) {
 					dropdown.hide();
 				}
-				search.stop().slideUp().removeClass('visible');
 				cart.stop().slideDown().addClass('visible');
 			}
 		});
@@ -225,42 +264,7 @@
 		});
 
 
-		//nav dropdown toggles
-		var ul = $('#header #nav ul.navigation');
-		ul.find('> li > a').click(function(e) {
-			if ($(window).width() <= 960) {
-				e.preventDefault();
-			}
-			var dd = $(this).parent('li').find('> .nav-dropdown');
 
-			if (dd.hasClass('visible')) {
-				dd.removeClass('visible');
-			}else {
-				ul.find('.nav-dropdown').removeClass('visible');
-				dd.addClass('visible');
-			}
-		});
-
-		ul.find('> li > a').mouseenter(function() {
-			if ($(window).width() > 960) {
-				var dd = $(this).parent('li').find('> .nav-dropdown');
-
-				if (dd.hasClass('visible')) {
-					dd.removeClass('visible');
-					//$(this).removeClass('current');
-				}else {
-					ul.find('.nav-dropdown').removeClass('visible');
-					dd.addClass('visible');
-					//$(this).addClass('current');
-				}
-			}
-		});
-
-		$('#header .nav-dropdown').mouseleave(function() {
-			if ($(this).hasClass('visible')) {
-				$(this).removeClass('visible');
-			}
-		});
 
 
 		//navigation toggle for sm and xs
