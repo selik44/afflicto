@@ -53,7 +53,6 @@ Route::group(['prefix' => $locale], function() {
 	});
 
 	# store
-	Route::get('store/cart', ['as' => 'store.cart', 'uses' => 'StoreController@cart']);
 	Route::get('store/checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
 	Route::post('store/checkout', ['as' => 'store.checkout.order', 'uses' => 'StoreController@order']);
 	Route::get('store/success', ['as' => 'store.checkout.success', 'uses' => 'StoreController@success']);

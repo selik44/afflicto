@@ -4572,6 +4572,8 @@ body.scrolled {
       border: 1px solid #aaaaaa;
       border-radius: 2px;
       box-shadow: 0px 0px 1rem 0px rgba(0, 0, 0, 0.3); }
+      #front #header .cart-container #cart .cart-table .image img {
+        max-width: 140px; }
       @media (max-width: 680px) {
         #front #header .cart-container #cart {
           min-width: 70%;
@@ -4696,9 +4698,6 @@ ul.nav.tabs {
     @media (max-width: 680px) {
       .products-grid .product {
         width: 100%; } }
-
-#cart-manager .cart-table tbody tr .product .image img {
-  max-width: 140px; }
 
 html, body, #admin {
   height: 100%;

@@ -48,18 +48,24 @@
                                 <button class="primary appended"><i class="fa fa-search"></i></button>
                             </div>
 						</form>
-						
-						<button data-toggle="#cart" class="cart-toggle primary end visible-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>
+
+						@if(\Request::route()->getName() != 'store.checkout')
+							<button data-toggle="#cart" class="cart-toggle primary end visible-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>
+						@endif
 					</div>
 				</div>
 
+				@if(\Request::route()->getName() != 'store.checkout')
 				<div class="cart-container">
 					<div id="cart" style="display: none;">
 						<div class="inner">
 							@include('front.partial.cart', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal()])
+							<br>
+							<a class="button large primary" href="{{route('store.checkout')}}">Checkout</a>
 						</div>
 					</div>
 				</div>
+				@endif
 
 			</div>
 		</nav>

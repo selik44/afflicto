@@ -50,7 +50,7 @@ class StoreController extends Controller {
 	 * Display the cart contents.
 	 * @return View
 	 */
-	public function cart() {
+	public function checkout() {
 		# get the klarna order
 		if (Session::has('klarna_order')) {
 			$order = Cart::getKlarnaOrder(Session::get('klarna_order'));
@@ -59,7 +59,7 @@ class StoreController extends Controller {
 		}
 
 
-		return view('front.store_cart')
+		return view('front.store_checkout')
 			->with([
 				'snippet' => $order['gui']['snippet'],
 				'items' => Cart::getItemsWithModels(false),
