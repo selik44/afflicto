@@ -274,10 +274,12 @@ Route::group(['prefix' => $locale], function() {
 		Route::get('orders', ['as' => 'admin.orders.index', 'uses' => 'Admin\OrdersController@index']);
 		Route::get('orders/create', ['as' => 'admin.orders.create', 'uses' => 'Admin\OrdersController@create']);
 		Route::get('orders/{order}/edit', ['as' => 'admin.orders.edit', 'uses' => 'Admin\OrdersController@edit']);
+		Route::get('orders/{order}/activate', ['as' => 'admin.orders.activate', 'uses' => 'Admin\OrdersController@activate']);
 		Route::get('orders/{order}', ['as' => 'admin.orders.show', 'uses' => 'Admin\OrdersController@show']);
 		Route::put('orders/{order}', ['as' => 'admin.orders.update', 'uses' => 'Admin\OrdersController@update']);
 		Route::post('orders', ['as' => 'admin.orders.store', 'uses' => 'Admin\OrdersController@store']);
 		Route::delete('orders/{order}', ['as' => 'admin.orders.delete', 'uses' => 'Admin\OrdersController@destroy']);
+
 
 		# receivals
 		Route::get('receivals', ['as' => 'admin.receivals.index', 'uses' => 'Admin\ReceivalsController@index']);

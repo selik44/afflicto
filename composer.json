@@ -14,7 +14,8 @@
 		"nicolaslopezj/searchable": "~1.5",
 		"laracasts/utilities": "~2.0",
 		"anahkiasen/former": "~4.0@dev",
-		"klarna/checkout": "~2.0"
+		"klarna/checkout": "~2.0",
+		"klarna/php-xmlrpc": "^4.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
