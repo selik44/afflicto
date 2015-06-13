@@ -80,7 +80,6 @@ class OrdersController extends Controller {
 			'' => ['items', function($model) {
 				return '<div class="button-group actions">
 					<a class="button small primary" title="Details" href="' .route('admin.orders.edit', $model) .'"><i class="fa fa-search"></i></a>
-					<a class="button success small" href="' .route('admin.orders.activate', $model) .'" title="Activate"><i class="fa fa-check"></i></a>
 					<form method="POST" action="' .route('admin.orders.delete', $model) .'">
 						<input type="hidden" name="_method" value="DELETE">
 						<input type="hidden" name="_token" value="' .csrf_token() .'">
@@ -142,7 +141,24 @@ class OrdersController extends Controller {
 
 	public function update(Order $order)
 	{
+		$order->status = \Input::get('status');
+		$order->save();
+		return Redirect::back()->with('success', 'Order updated.');
+	}
 
+	public function packlist(Order $order) {
+		$items = [];
+		foreach($order->items as $item) {
+			if ($item['type'] == 'shipping_fee') continue;
+			$item['model'] = Product::find($item['reference']['id']);
+			$items[] = $item;
+		}
+
+		return view('admin.orders_packlist')
+			->with([
+				'order' => $order,
+				'items' => $items,
+			]);
 	}
 
 	public function destroy(Order $order)

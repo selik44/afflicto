@@ -279,7 +279,7 @@ Route::group(['prefix' => $locale], function() {
 		Route::put('orders/{order}', ['as' => 'admin.orders.update', 'uses' => 'Admin\OrdersController@update']);
 		Route::post('orders', ['as' => 'admin.orders.store', 'uses' => 'Admin\OrdersController@store']);
 		Route::delete('orders/{order}', ['as' => 'admin.orders.delete', 'uses' => 'Admin\OrdersController@destroy']);
-
+		Route::get('orders/{order}/packlist', ['as' => 'admin.orders.packlist', 'uses' => 'Admin\OrdersController@packlist']);
 
 		# receivals
 		Route::get('receivals', ['as' => 'admin.receivals.index', 'uses' => 'Admin\ReceivalsController@index']);

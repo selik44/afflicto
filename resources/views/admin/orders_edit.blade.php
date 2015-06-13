@@ -8,15 +8,86 @@
 	<h2>Order #{{$order->id}}</h2>
 	<div id="orders-edit">
 
+		{!! Former::open()
+			->method('PUT')
+			->action(route('admin.orders.update', $order))
+			->rules([])
+		!!}
+
+		<div id="orderdata" class="module">
+			<div class="module-header clearfix">
+				<h6 class="pull-left">Order Data</h6>
+				<div class="button-group pull-right">
+					<a class="button large" href="{{route('admin.orders.packlist', $order)}}"><i class="fa fa-list-ol"></i> Pack List</a>
+				</div>
+			</div>
+
+			<div class="module-content">
+				<div class="col-xs-12 tight">
+					<div class="col-m-4 tight-left">
+						<h6 class="end">Client</h6>
+						<address>
+							<strong>Name: </strong> <a href="{{route('admin.users.edit', $order->user)}}">{{$order->user->name}}</a><br>
+							<strong>Email: </strong> {{$order->user->email}}<br>
+							<strong>ID: </strong> {{$order->user->id}}
+						</address>
+					</div>
+
+					<div class="col-m-4">
+						<h6 class="end">Billing Address</h6>
+						<address>
+							{{$order->billing_address['given_name']}}<br>
+							{{$order->billing_address['street_address']}}, {{$order->billing_address['postal_code']}}
+							{{$order->billing_address['city']}}, {{$order->billing_address['country']}}.
+						</address>
+					</div>
+
+					<div class="col-m-4 tight-right">
+						<h6 class="end">Shipping Address</h6>
+						<address>
+							{{$order->shipping_address['given_name']}}<br>
+							{{$order->shipping_address['street_address']}}, {{$order->shipping_address['postal_code']}}
+							{{$order->shipping_address['city']}}, {{$order->shipping_address['country']}}.
+						</address>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-xs-12">
+				<p>
+					<strong>Klarna Status:</strong> {{$order->klarna_status}}
+				</p>
+			</div>
+		</div>
+
+		<hr/>
+
 		<div id="items" class="module">
+			<div class="module-header">
+				<h6>Products</h6>
+			</div>
 			<div class="module-content">
 				<table class="bordered">
+					<thead>
 						<tr>
 							<th>Product</th>
 							<th>Quantity</th>
 							<th>Sub-total</th>
 						</tr>
 					</thead>
+
+					<tfoot>
+						<tr>
+							<th colspan="3">
+								Total Eks/Ink: {{$order->total_price_excluding_tax / 100}} / {{$order->total_price_including_tax / 100}}
+							</th>
+						</tr>
+						<tr>
+							<th colspan="3">
+								Total tax: {{$order->total_tax_amount}}
+							</th>
+						</tr>
+					</tfoot>
 
 					<tbody>
 						@foreach($items as $id => $item)
@@ -72,5 +143,27 @@
 			</div>
 		</div>
 
+		<hr/>
+
+		<div id="status" class="module">
+			<header class="module-header">
+				<h6 class="end">Status</h6>
+			</header>
+			<div class="module-content">
+
+				{!! Former::select('status')->options([
+					'ubehandlet' => 'Ubehandlet',
+					'ready_for_sending' => 'Klar til Sending',
+					'behandlet' => 'Behandlet',
+				], $order->status) !!}
+
+			</div>
+		</div>
+
+		<br>
+
+		{!! Former::submit('Save')->class('primary submit large') !!}
+
+		{!!Former::close() !!}
 	</div>
 @stop
