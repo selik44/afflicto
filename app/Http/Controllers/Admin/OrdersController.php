@@ -156,7 +156,7 @@ class OrdersController extends Controller {
 	public function getMultiPacklist($orders) {
 
 		# get orders
-		$orders = json_decode($orders, true);
+		$orders = explode(',', $orders);
 
 		# get packlists for orders in HTML
 		$html = [];

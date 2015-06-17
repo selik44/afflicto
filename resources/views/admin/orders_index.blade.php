@@ -38,7 +38,7 @@
 				}
 			});
 
-			var url = "{{route('admin.orders.multipacklist')}}/" + JSON.stringify(orders);
+			var url = "{{route('admin.orders.multipacklist', '')}}/" + orders.join(',');
 			window.location.href = url;
 		});
 

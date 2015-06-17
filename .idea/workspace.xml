@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/PDF/Snappy.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/PDF/Facades/Snappy.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/admin/receivals_create.blade.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/PDF/PDF.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/123friluft.iml" afterPath="$PROJECT_DIR$/.idea/123friluft.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Product.php" afterPath="$PROJECT_DIR$/app/Product.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ReceivalsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ReceivalsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_ide_helper.php" afterPath="$PROJECT_DIR$/_ide_helper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/admin.php" afterPath="$PROJECT_DIR$/resources/lang/en/admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/no/admin.php" afterPath="$PROJECT_DIR$/resources/lang/no/admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/app.php" afterPath="$PROJECT_DIR$/config/app.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/blade.xml" afterPath="$PROJECT_DIR$/.idea/blade.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/home.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/home.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/partial/nav.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/partial/nav.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/orders_index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/orders_index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/en/store.php" afterPath="$PROJECT_DIR$/resources/lang/en/store.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/no/store.php" afterPath="$PROJECT_DIR$/resources/lang/no/store.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
@@ -111,7 +90,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="5051" max-vertical-offset="5780">
-              <caret line="271" column="126" selection-start-line="271" selection-start-column="126" selection-end-line="271" selection-end-column="126" />
+              <caret line="273" column="36" selection-start-line="273" selection-start-column="36" selection-end-line="273" selection-end-column="36" />
               <folding>
                 <element signature="e#7#28#0#PHP" expanded="true" />
               </folding>
@@ -119,29 +98,39 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrdersController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OrdersController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1260" max-vertical-offset="4240">
-              <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
+            <state vertical-scroll-proportion="0.37089872" vertical-offset="2880" max-vertical-offset="4240">
+              <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
               <folding>
                 <element signature="e#49#75#0#PHP" expanded="true" />
-                <marker date="1434514561566" expanded="true" signature="2380:2829" placeholder="..." />
-                <marker date="1434514561566" expanded="true" signature="2592:2818" placeholder="..." />
+                <marker date="1434518903902" expanded="true" signature="2380:2829" placeholder="..." />
+                <marker date="1434518903902" expanded="true" signature="2592:2818" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orders_packlist.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="orders_packlist.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.81232494" vertical-offset="0" max-vertical-offset="2500">
+            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="2500">
               <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
               <folding>
                 <element signature="e#147#171#0#HTML" expanded="true" />
                 <element signature="e#2587#2678#0#HTML" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="orders_index.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_index.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="426" max-vertical-offset="1680">
+              <caret line="40" column="88" selection-start-line="40" selection-start-column="88" selection-end-line="40" selection-end-column="88" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -211,10 +200,10 @@
         <option value="$PROJECT_DIR$/app/Providers/SnappyProvider.php" />
         <option value="$PROJECT_DIR$/app/PDF/Snappy.php" />
         <option value="$PROJECT_DIR$/app/GentleStyleFormFramework.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/orders_index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" />
       </list>
     </option>
   </component>
@@ -1407,14 +1396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.161103" vertical-offset="0" max-vertical-offset="1680">
-          <caret line="40" column="23" selection-start-line="40" selection-start-column="23" selection-end-line="40" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/PDF/Snappy.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5936139" vertical-offset="91" max-vertical-offset="940">
@@ -1433,35 +1414,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="60" max-vertical-offset="2500">
+          <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
+          <folding>
+            <element signature="e#147#171#0#HTML" expanded="true" />
+            <element signature="e#2587#2678#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="5051" max-vertical-offset="5780">
-          <caret line="271" column="126" selection-start-line="271" selection-start-column="126" selection-end-line="271" selection-end-column="126" />
+          <caret line="273" column="36" selection-start-line="273" selection-start-column="36" selection-end-line="273" selection-end-column="36" />
           <folding>
             <element signature="e#7#28#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1980" max-vertical-offset="4240">
-          <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
-          <folding>
-            <element signature="e#49#75#0#PHP" expanded="true" />
-            <marker date="1434514561566" expanded="true" signature="2380:2829" placeholder="..." />
-            <marker date="1434514561566" expanded="true" signature="2592:2818" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="426" max-vertical-offset="1680">
+          <caret line="40" column="88" selection-start-line="40" selection-start-column="88" selection-end-line="40" selection-end-column="88" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.81232494" vertical-offset="0" max-vertical-offset="2500">
-          <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
+        <state vertical-scroll-proportion="0.37089872" vertical-offset="2880" max-vertical-offset="4240">
+          <caret line="157" column="0" selection-start-line="157" selection-start-column="0" selection-end-line="157" selection-end-column="0" />
           <folding>
-            <element signature="e#147#171#0#HTML" expanded="true" />
-            <element signature="e#2587#2678#0#HTML" expanded="true" />
+            <element signature="e#49#75#0#PHP" expanded="true" />
+            <marker date="1434518903902" expanded="true" signature="2380:2829" placeholder="..." />
+            <marker date="1434518903902" expanded="true" signature="2592:2818" placeholder="..." />
           </folding>
         </state>
       </provider>
