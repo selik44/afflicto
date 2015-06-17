@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BladeInjectionConfiguration" rawTextEnd="!!}" rawTextStart="!!{" />
+  <component name="BladeInjectionConfiguration" escapedTextEnd="}}" escapedTextStart="{{" rawTextEnd="}}}" rawTextStart="{{{" textEnd="!!}" textStart="{!!" />
 </project>

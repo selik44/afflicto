@@ -30,6 +30,11 @@
 			'fa-plus:admin.create' => 'admin.categories.create',
 		]],
 
+		'fa-plus:admin.receivals' => ['admin.receivals.index', [
+			'fa-list:admin.all' => 'admin.receivals.index',
+			'fa-plus:admin.new' => 'admin.receivals.create',
+		]],
+
 		'fa-shopping-cart:admin.orders' => 'admin.orders.index',
 	]);
 

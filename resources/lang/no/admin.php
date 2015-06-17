@@ -42,4 +42,5 @@ return [
 	'permissions' => 'Tillatelser',
 	'manufacturers' => 'Produsenter',
 	'manufacturer' => 'Produsent',
+	'receivals' => 'Varemottak',
 ];

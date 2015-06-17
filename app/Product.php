@@ -131,6 +131,15 @@ class Product extends Model {
 		$this->save();
 	}
 
+	public function getImageURL() {
+		$img = $this->images()->first();
+		if ($img != null) {
+			return asset('images/products/' .$img->name);
+		}
+
+		return null;
+	}
+
 	public function getPath() {
 		if (!isset($this->path)) {
 			$parent = $this->categories()->first();
@@ -142,6 +151,10 @@ class Product extends Model {
 		}
 
 		return $this->path;
+	}
+
+	public function __toString() {
+		return $this->manufacturer->name .' ' .$this->name;
 	}
 
 }

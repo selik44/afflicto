@@ -46,4 +46,9 @@ return [
 	'role' => 'Role',
 	'manufacturers' => 'Manufacturers',
 	'manufacturer' => 'Manufacturer',
+	'receivals' => 'Receivals',
+	'receival' => 'Receival',
+
+	'ready_for_sending' => 'Ready for Sending',
+	'ubehandlet' => 'Ubehandlet',
 ];

@@ -34,3 +34,13 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - under tusen gram: 39,- brevpost
 - over 1000kr: 99,- service pakke sporing
 - over 800kr: fri frakt.
+
+
+ubehandlet
+klar til sending
+skrevet ut
+levert
+kansellert
+restordre | ikke på lager
+
+generate PDF for packlists with multiple orders

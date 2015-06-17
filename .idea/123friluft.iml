@@ -62,12 +62,15 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/instantiator" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/gentlefox/laratables" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/h4cc/wkhtmltoimage-i386" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/h4cc/wkhtmltopdf-i386" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/ircmaxell/password-compat" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-color" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jeremeamia/SuperClosure" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/klarna/checkout" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/klarna/php-xmlrpc" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/knplabs/knp-snappy" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laracasts/utilities" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/framework" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem" />
@@ -88,7 +91,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/phpunit-mock-objects" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpxmlrpc/phpxmlrpc" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/psliwa/php-pdf" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/log" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psy/psysh" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sebastian/comparator" />
@@ -114,15 +116,6 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/yaml" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-cache" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-eventmanager" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-json" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-math" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-memory" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-serializer" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-servicemanager" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zend-stdlib" />
-      <excludeFolder url="file://$MODULE_DIR$/vendor/zendframework/zendpdf" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -132,10 +125,9 @@
           <root url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/php-text-template" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-serializer" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-math" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/version" />
           <root url="file://$MODULE_DIR$/vendor/symfony/security-core" />
+          <root url="file://$MODULE_DIR$/vendor/h4cc/wkhtmltoimage-i386" />
           <root url="file://$MODULE_DIR$/vendor/curl/curl" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/dbal" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/environment" />
@@ -143,7 +135,6 @@
           <root url="file://$MODULE_DIR$/vendor/phpspec/php-diff" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/comparator" />
           <root url="file://$MODULE_DIR$/vendor/phpxmlrpc/phpxmlrpc" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zendpdf" />
           <root url="file://$MODULE_DIR$/vendor/nicolaslopezj/searchable" />
           <root url="file://$MODULE_DIR$/vendor/klarna/checkout" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
@@ -152,11 +143,11 @@
           <root url="file://$MODULE_DIR$/vendor/klarna/php-xmlrpc" />
           <root url="file://$MODULE_DIR$/vendor/dnoegel/php-xdg-base-dir" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-json" />
           <root url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/diff" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/php-file-iterator" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/global-state" />
+          <root url="file://$MODULE_DIR$/vendor/knplabs/knp-snappy" />
           <root url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-color" />
           <root url="file://$MODULE_DIR$/vendor/classpreloader/classpreloader" />
           <root url="file://$MODULE_DIR$/vendor/symfony/process" />
@@ -175,13 +166,10 @@
           <root url="file://$MODULE_DIR$/vendor/anahkiasen/html-object" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit-mock-objects" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/collections" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-stdlib" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-eventmanager" />
           <root url="file://$MODULE_DIR$/vendor/symfony/http-kernel" />
           <root url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
+          <root url="file://$MODULE_DIR$/vendor/h4cc/wkhtmltopdf-i386" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/php-token-stream" />
-          <root url="file://$MODULE_DIR$/vendor/psliwa/php-pdf" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-cache" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
           <root url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
@@ -191,7 +179,6 @@
           <root url="file://$MODULE_DIR$/vendor/anahkiasen/former" />
           <root url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
           <root url="file://$MODULE_DIR$/vendor/barryvdh/laravel-ide-helper" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-servicemanager" />
           <root url="file://$MODULE_DIR$/vendor/symfony/yaml" />
           <root url="file://$MODULE_DIR$/vendor/phpspec/prophecy" />
           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
@@ -200,7 +187,6 @@
           <root url="file://$MODULE_DIR$/vendor/ircmaxell/password-compat" />
           <root url="file://$MODULE_DIR$/vendor/symfony/translation" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-memory" />
           <root url="file://$MODULE_DIR$/vendor/psy/psysh" />
           <root url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/exporter" />
@@ -214,10 +200,9 @@
           <root url="file://$MODULE_DIR$/vendor/swiftmailer/swiftmailer" />
           <root url="file://$MODULE_DIR$/vendor/phpdocumentor/reflection-docblock" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/php-text-template" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-serializer" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-math" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/version" />
           <root url="file://$MODULE_DIR$/vendor/symfony/security-core" />
+          <root url="file://$MODULE_DIR$/vendor/h4cc/wkhtmltoimage-i386" />
           <root url="file://$MODULE_DIR$/vendor/curl/curl" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/dbal" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/environment" />
@@ -225,7 +210,6 @@
           <root url="file://$MODULE_DIR$/vendor/phpspec/php-diff" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/comparator" />
           <root url="file://$MODULE_DIR$/vendor/phpxmlrpc/phpxmlrpc" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zendpdf" />
           <root url="file://$MODULE_DIR$/vendor/nicolaslopezj/searchable" />
           <root url="file://$MODULE_DIR$/vendor/klarna/checkout" />
           <root url="file://$MODULE_DIR$/vendor/composer" />
@@ -234,11 +218,11 @@
           <root url="file://$MODULE_DIR$/vendor/klarna/php-xmlrpc" />
           <root url="file://$MODULE_DIR$/vendor/dnoegel/php-xdg-base-dir" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/annotations" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-json" />
           <root url="file://$MODULE_DIR$/vendor/symfony/event-dispatcher" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/diff" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/php-file-iterator" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/global-state" />
+          <root url="file://$MODULE_DIR$/vendor/knplabs/knp-snappy" />
           <root url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-color" />
           <root url="file://$MODULE_DIR$/vendor/classpreloader/classpreloader" />
           <root url="file://$MODULE_DIR$/vendor/symfony/process" />
@@ -257,13 +241,10 @@
           <root url="file://$MODULE_DIR$/vendor/anahkiasen/html-object" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit-mock-objects" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/collections" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-stdlib" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-eventmanager" />
           <root url="file://$MODULE_DIR$/vendor/symfony/http-kernel" />
           <root url="file://$MODULE_DIR$/vendor/nesbot/carbon" />
+          <root url="file://$MODULE_DIR$/vendor/h4cc/wkhtmltopdf-i386" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/php-token-stream" />
-          <root url="file://$MODULE_DIR$/vendor/psliwa/php-pdf" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-cache" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/inflector" />
           <root url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
           <root url="file://$MODULE_DIR$/vendor/jakub-onderka/php-console-highlighter" />
@@ -273,7 +254,6 @@
           <root url="file://$MODULE_DIR$/vendor/anahkiasen/former" />
           <root url="file://$MODULE_DIR$/vendor/symfony/var-dumper" />
           <root url="file://$MODULE_DIR$/vendor/barryvdh/laravel-ide-helper" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-servicemanager" />
           <root url="file://$MODULE_DIR$/vendor/symfony/yaml" />
           <root url="file://$MODULE_DIR$/vendor/phpspec/prophecy" />
           <root url="file://$MODULE_DIR$/vendor/monolog/monolog" />
@@ -282,7 +262,6 @@
           <root url="file://$MODULE_DIR$/vendor/ircmaxell/password-compat" />
           <root url="file://$MODULE_DIR$/vendor/symfony/translation" />
           <root url="file://$MODULE_DIR$/vendor/doctrine/lexer" />
-          <root url="file://$MODULE_DIR$/vendor/zendframework/zend-memory" />
           <root url="file://$MODULE_DIR$/vendor/psy/psysh" />
           <root url="file://$MODULE_DIR$/vendor/vlucas/phpdotenv" />
           <root url="file://$MODULE_DIR$/vendor/sebastian/exporter" />

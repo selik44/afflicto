@@ -43,7 +43,7 @@ class ReceivalsController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return $this->view('admin.receivals_create');
 	}
 
 	/**

@@ -107,7 +107,7 @@
 								<span>{{$name}}</span>
 							</td>
 							<td>
-								x{{$item['quantity']}}
+								{{$item['quantity']}}
 							</td>
 							<td>{{$product->articlenumber}}</td>
 						</tr>

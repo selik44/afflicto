@@ -147,6 +147,7 @@ return [
 		'Friluft\Providers\ShoppingCartProvider',
 		'Friluft\Providers\HelpersProvider',
 		'Friluft\Providers\ValidatorsProvider',
+		'Friluft\Providers\SnappyProvider',
 
         /*
          * Libs
@@ -207,6 +208,7 @@ return [
 		//friluft
         'Datatable' => 'Friluft\Utils\Datatable',
         'Cart' => 'Friluft\Shopping\Facades\Cart',
+		'Snappy' => 'Friluft\PDF\Facades\Snappy',
 
         //libs
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',

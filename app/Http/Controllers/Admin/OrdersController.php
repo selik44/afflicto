@@ -1,14 +1,17 @@
 <?php namespace Friluft\Http\Controllers\Admin;
 
-use Exception;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Friluft\Product;
 use Friluft\Order;
 use Friluft\Variant;
 use Illuminate\Support\Facades\Redirect;
+use Input;
 use Klarna;
 use Laratable;
+use Snappy;
+use Response;
+use SplFileInfo;
 
 class OrdersController extends Controller {
 
@@ -77,7 +80,7 @@ class OrdersController extends Controller {
 				return ($model->status == 'checkout_complete') ? '<span class="color-success">' .$model->status .'</span>' : '<span class="color-error">' .$model->status .'</span>';
 			}],
 			'Updated' => 'updated_at diffForHumans',
-			'' => ['items', function($model) {
+			'' => ['_actions', function($model) {
 				return '<div class="button-group actions">
 					<a class="button small primary" title="Details" href="' .route('admin.orders.edit', $model) .'"><i class="fa fa-search"></i></a>
 					<form method="POST" action="' .route('admin.orders.delete', $model) .'">
@@ -98,7 +101,7 @@ class OrdersController extends Controller {
 
 		return $this->view('admin.orders_index')
 			->with([
-				'table' => $table->render(),
+				'table' => $table,
 				'pagination' => $table->paginator->render(),
 			]);
 	}
@@ -146,8 +149,41 @@ class OrdersController extends Controller {
 		return Redirect::back()->with('success', 'Order updated.');
 	}
 
+	/**
+	 * Generates a multi-page PDF of multiple packlists.
+	 * @return Response
+	 */
+	public function getMultiPacklist($orders) {
+
+		# get orders
+		$orders = json_decode($orders, true);
+
+		# get packlists for orders in HTML
+		$html = [];
+		foreach($orders as $id) {
+			$html[] = $this->packlist(Order::find($id))->render();
+		}
+
+		# make PDF
+		$pdf = Snappy::make();
+
+		$filename = storage_path('app/pdf/' .'packlists_' .str_random(16) .'.pdf');
+
+		$pdf->generateFromHtml($html, $filename, [], true);
+
+		# return download response
+		return Response::download(new SplFileInfo($filename), "Packlists.pdf");
+	}
+
+	/**
+	 * Generates a packlist PDF for a single order.
+	 *
+	 * @param Order $order
+	 * @return $this
+	 */
 	public function packlist(Order $order) {
 		$items = [];
+
 		foreach($order->items as $item) {
 			if ($item['type'] == 'shipping_fee') continue;
 			$item['model'] = Product::find($item['reference']['id']);
