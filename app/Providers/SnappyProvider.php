@@ -23,7 +23,13 @@ class SnappyProvider extends ServiceProvider {
 	public function register()
 	{
 		$this->app->singleton('snappy', function($app) {
-			return new Snappy(base_path('vendor/h4cc/wkhtmltopdf-i386/bin/wkhtmltopdf-i386'));
+			$binary = getenv('SNAPPY_WKHTMLTOPDF_BINARY');
+
+			if (!$binary) {
+				$binary = base_path('vendor/h4cc/wkhtmltopdf-i386/bin/wkhtmltopdf-i386');
+			}
+
+			return new Snappy($binary);
 		});
 	}
 
