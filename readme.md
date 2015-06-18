@@ -15,32 +15,36 @@ Built on Laravel 5, leveraging GentleStyle SASS Framework.
 To push to the staging server, simply run "envoy run staging".
 To configure envoy, see "Envoy.blade.php" in the project root.
 
+
 # multi-store
 - views can be overriden per-store, using the view method of the Controller class. The default views are the ones used by 123friluft
 
 
-## Ideas
-
-- Figure out a way to cache routes while still allowing translated routes.
+# Architecture
+- Figure out a way to cache routes while still allowing translated routes. (@see gentlefox.net routing)
 - Move complicated controller logic to commands, for extendability?
-- Leverage Laravel Requests more
-- Leverage Laravel Events
+- Leverage Laravel Requests and Events
+- Implement caching, look at varnish cache? memcach?
 
-- Order status, green/red.
-- manual orders, user management.
+
+# Store
 - Banners, images etc.
+- Order status, green/red.
+- manual orders & order editing
 - Related products, tabbed view, appears when buying.
 
+- Client logged in dashboard, order management etc.
+
+
+Order statuses
+- ubehandlet
+- klar til sending
+- skrevet ut
+- levert
+- kansellert
+- restordre | ikke på lager
+
+Shipping
 - under tusen gram: 39,- brevpost
 - over 1000kr: 99,- service pakke sporing
 - over 800kr: fri frakt.
-
-
-ubehandlet
-klar til sending
-skrevet ut
-levert
-kansellert
-restordre | ikke på lager
-
-generate PDF for packlists with multiple orders
