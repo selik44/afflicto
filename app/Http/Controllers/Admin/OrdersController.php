@@ -144,9 +144,18 @@ class OrdersController extends Controller {
 
 	public function update(Order $order)
 	{
-		$order->status = \Input::get('status');
+		$order->status = Input::get('status');
 		$order->save();
-		return Redirect::back()->with('success', 'Order updated.');
+
+		# activate klarna?
+		if (Input::get('activate', 'off') == 'on') {
+
+			if (!$this->klarna->activate($order->reservation)) {
+				return Redirect::back()->with('warning', 'Order updated but it has already been activated in Klarna');
+			}
+		}
+
+		return Redirect::back()->with('success', 'Order updated.' .Input::get('activate', '0'));
 	}
 
 	/**

@@ -152,11 +152,16 @@
 			<div class="module-content">
 
 				{!! Former::select('status')->options([
-					'ubehandlet' => 'Ubehandlet',
+					'unprocessed' => 'Ubehandlet',
+					'written_out' => 'Skrevet ut',
+					'delivered' => 'Levert',
+					'cancelled' => 'Kansellert',
 					'ready_for_sending' => 'Klar til Sending',
-					'behandlet' => 'Behandlet',
+					'processed' => 'Behandlet',
+					'restorder' => 'Restordre',
 				], $order->status) !!}
 
+				{!! Former::checkbox('activate')->value("on")->help("Aktiver ordren i Klarna."); !!}
 			</div>
 		</div>
 
