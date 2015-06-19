@@ -4,13 +4,34 @@
 	.product-top
 		.product-images
 			.slider
+				border: none
 				.container
 					.slide
 
-		.product-actions
-
+		.product-info
+			position: relative
 			form
-				display: flex
-				flex-direction: row
+				width: 100%
 
-				.product-variants
+			.buy
+				margin: $typo-font-size * 2 0rem
+				text-transform: uppercase
+				padding: 2rem 4rem
+				font-weight: 700
+
+			p.summary
+				border-top: 1px solid $base-border-color
+				padding-top: 1rem
+
+	.product-bottom
+		ul.tabs
+			li
+				a
+					backround: weaker($base-background, 10%)
+
+		.tab
+			background: weaker($base-background, 10%)
+
+		#product-relations
+			.related .info
+				padding: 1rem
