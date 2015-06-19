@@ -79,7 +79,7 @@
 									<a href="{{$related->getPath()}}">
 										@if($related->images)
 											<img class="image" src="{{asset('images/products/' .$related->images[0]->name)}}" alt=""/>
-										@else
+										@endif
 									</a>
 								</div>
 								<div class="info pull-left">
