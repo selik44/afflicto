@@ -77,7 +77,9 @@
 							<div class="row">
 								<div class="thumbnail pull-left">
 									<a href="{{$related->getPath()}}">
-										<img class="image" src="{{asset('images/products/' .$related->images[0]->name)}}" alt=""/>
+										@if($related->images)
+											<img class="image" src="{{asset('images/products/' .$related->images[0]->name)}}" alt=""/>
+										@else
 									</a>
 								</div>
 								<div class="info pull-left">
