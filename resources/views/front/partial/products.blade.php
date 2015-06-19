@@ -2,17 +2,17 @@
 	<div class="col-xs-2 filter-header tight-left tight-vertical">
 		<h5>Filter:</h5>
 	</div>
-	
+
 	<div class="col-xs-10 filters tight-right tight-vertical">
 		<div class="col-xs-6 filter-price">
 			<div class="price-slider"></div>
 		</div>
 
 		<div class="col-xs-6 filter-attribute">
-			
+
 		</div>
 	</div>
-	
+
 </div>
 
 <hr>
@@ -39,21 +39,24 @@
 
 				$link = url($product->getPath());
 			?>
+
 			<div class="preview">
 				<a href="{{$link}}" style="background-image: url('{{$img}}');" class="image">
 				</a>
-				<div class="overlay">
-					<button data-product-id="{{{$product->id}}}" class="button large primary quick-peek end">
-						<i class="fa fa-search"></i> @lang('Quick Peek')
-					</button>
-				</div>
 			</div>
 
-			<hr class="divider shadow">
+			<header class="header clearfix">
+				<div class="pull-left title">
+					<h6 class="manufacturer end">{{$product->manufacturer->name}}</h6>
+					<h5 class="name end">{{$product->name}}</h5>
+				</div>
+				<h2 class="price pull-right end">{{$product->price}},-</h2>
+			</header>
 
 			<footer class="footer">
-				<a href="{{$link}}"><h5 class="title pull-left end">{{{$product->name}}}</h5></a>
-				<span class="price pull-right">kr {{{$product->price}}},-</span>
+				<hr class="divider shadow">
+				<a class="buy" href="{{$link}}"><i class="fa fa-cart-plus"></i></a>
+				<a class="share" href="#"><i class="fa fa-share-alt"></i></a>
 			</footer>
 		</div>
 	@endforeach
@@ -65,10 +68,10 @@
 		<header class="modal-header">
 		</header>
 		<article class="modal-content">
-			
+
 		</article>
 		<footer class="modal-footer">
-			
+
 		</footer>
 	</div>
 </div>
@@ -82,7 +85,7 @@
 		options.find('.filter-price .price-slider').noUiSlider({
 			start: [0, {{$mostExpensive}}],
 			range: {
-				min: 0, 
+				min: 0,
 				max: {{$mostExpensive}},
 			},
 		});
