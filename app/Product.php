@@ -30,7 +30,6 @@ class Product extends Model {
 	];
 
 	protected $casts = [
-		'enabled' => 'boolean',
 		'weight' => 'float',
 		'price' => 'float',
 		'in_price' => 'float',
@@ -77,6 +76,14 @@ class Product extends Model {
 		}else if (is_bool($value)) {
 			$this->attributes['enabled'] = ($value) ? 1 : 0;
 		}
+	}
+
+	public function isEnabled() {
+		return $this->enabled == '1';
+	}
+
+	public function getEnabledAttribute() {
+		return '' + $this->attributes['enabled'];
 	}
 
 	public function categories() {

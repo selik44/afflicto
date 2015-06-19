@@ -143,6 +143,20 @@ class ProductsController extends Controller {
 		return Redirect::back()->with('success', 'Product updated!');
 	}
 
+	public function relate(Product $p, $related) {
+		if (DB::table('product_relation')->where('product_id', '=', $p->id)->where('relation_id', '=', $related)->count() == 0) {
+			$p->relations()->attach($related);
+			return response('OK');
+		}
+
+		return response("ERROR: Relation already exists.");
+	}
+
+	public function unrelate(Product $p, $related) {
+		$p->relations()->detach($related);
+		return response('OK');
+	}
+
 	public function destroy(Product $product)
 	{
 		$product->delete();

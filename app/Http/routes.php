@@ -236,6 +236,8 @@ Route::group(['prefix' => $locale], function() {
 		get('products/{product}/edit', ['as' => 'admin.products.edit', 'uses' => 'Admin\ProductsController@edit']);
 		get('products/{product}', ['as' => 'admin.products.show', 'uses' => 'Admin\ProductsController@show']);
 		put('products/{product}', ['as' => 'admin.products.update', 'uses' => 'Admin\ProductsController@update']);
+		put('products/{product}/relate/{related}', ['as' => 'admin.products.relate', 'uses' => 'Admin\ProductsController@relate']);
+		put('products/{product}/unrelate/{related}', ['as' => 'admin.products.unrelate', 'uses' => 'Admin\ProductsController@unrelate']);
 		post('products', ['as' => 'admin.products.store', 'uses' => 'Admin\ProductsController@store']);
 		delete('products/{product}', ['as' => 'admin.products.delete', 'uses' => 'Admin\ProductsController@destroy']);
 

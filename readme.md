@@ -25,6 +25,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Move complicated controller logic to commands, for extendability?
 - Leverage Laravel Requests and Events
 - Implement caching, look at varnish cache? memcach?
+- clean up messy inline CSS, make use of partials more and perhaps look at a lightweight front-end MVC.
 
 
 # Store

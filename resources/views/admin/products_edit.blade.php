@@ -12,34 +12,71 @@
         ->id("product-form")
     !!}
 
+    <style>
+	    .tab {background: white;}
+    </style>
+
     <div class="row">
         <div class="col-xs-6 col-l-7 col-xl-8">
-            <h4>Tabs</h4>
-            <ul class="nav tabs">
-                <li class="current"><a href="#product-description">Description</a></li>
-                <li><a href="#product-relations">Related Products</a></li>
-                @if($product->tabs != null)
-                    @foreach($product->tabs as $key => $tab)
-                        <li><a href="#product-tab-{{$key}}">{{$tab['title']}}</a></li>
-                    @endforeach
-                @endif
-            </ul>
 
-            <div id="product-description">
-                {!! $form->description->label("") !!}
-            </div>
-            <div id="product-relations" class="tab">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum, temporibus.</p>
-            </div>
-            <div class="user-tabs">
-                @if($product->tabs != null)
-                    @foreach($product->tabs as $key => $tab)
-                        <div class="tab" id="product-tab-{{$key}}">
-                            <textarea name="product-tab-{{$key}}">{{$tab['body']}}</textarea>
-                        </div>
-                    @endforeach
-                @endif
-            </div>
+	        <div class="product-tabs-row module">
+		        <header class="module-header clearfix">
+			        <h6 class="title pull-left">Tabs</h6>
+			        <button class="pull-right large add-tab"><i class="fa fa-plus"></i> Add</button>
+		        </header>
+	            <ul class="nav tabs">
+	                <li class="current"><a href="#product-description">Description</a></li>
+	                <li><a href="#product-relations">Related Products</a></li>
+	                @if($product->tabs != null)
+	                    @foreach($product->tabs as $key => $tab)
+	                        <li><a href="#product-tab-{{$key}}">{{$tab['title']}}</a></li>
+	                    @endforeach
+	                @endif
+	            </ul>
+
+	            <div id="product-description">
+	                {!! $form->description->label("") !!}
+	            </div>
+
+	            <div id="product-relations" class="tab clearfix">
+		            <ul class="flat relations">
+			            @foreach($product->relations as $related)
+				            <li class="relation" data-id="{{$related->id}}">
+					            <span class="name">{{$related->manufacturer->name}} {{$related->name}} <a class="unrelate" href="#"><i class="fa fa-trash color-error"></i></a></span>
+				            </li>
+			            @endforeach
+		            </ul>
+
+		            <hr>
+
+		            <div class="row">
+			            <div class="col-xs-10 tight-left">
+				            <select name="relations" id="relations-select">
+					            @foreach(\Friluft\Product::all() as $p)
+									{{-- we don't want to relate A with A --}}
+					                @unless($p->id == $product->id)
+										<option value="{{$p->id}}">{{$p->manufacturer->name}}: {{$p->name}}</option>
+						            @endunless
+								@endforeach
+				            </select>
+			            </div>
+
+			            <div class="col-xs-2 tight-right">
+				            <button style="width: 100%;" class="primary add-relation"><i class="fa fa-plus"></i> Relate</button>
+			            </div>
+		            </div>
+	            </div>
+
+	            <div id="product-tabs">
+	                @if($product->tabs != null)
+	                    @foreach($product->tabs as $key => $tab)
+	                        <div class="tab" id="product-tab-{{$key}}">
+	                            <textarea name="product-tab-{{$key}}">{{$tab['body']}}</textarea>
+	                        </div>
+	                    @endforeach
+	                @endif
+	            </div>
+	        </div>
 
             <hr/>
 
@@ -269,6 +306,51 @@
     <script type="text/javascript">
         var productID = "{{$product->id}}";
         var form = $("form");
+
+        //init relations
+        var relations = $("#product-relations");
+
+        //init chosen for relations select
+        relations.find('select[name="relations"]').chosen().next().removeAttr('style').css('width', '100%');
+
+        //add relation
+        $(document).on('click', '#product-relations button.add-relation', function(e) {
+	        e.preventDefault();
+
+	        var related = relations.find('select[name="relations"]').val();
+	        var relatedName = relations.find('select[name="relations"] option[value="' + related + '"]').text();
+
+	        console.log('related name: ' + relatedName);
+
+	        var payload = {_token: Friluft.token, _method: 'PUT'};
+	        $.post(Friluft.URL + '/admin/products/' + productID + '/relate/' + related, payload, function(response) {
+		        console.log('added relation, response:');
+		        console.log(response);
+
+		        if (response == 'OK') {
+			        //add relation to UI
+			        relations.find('ul.relations').append('<li class="relation" data-id="' + related + '"><span class="name">' + relatedName + ' <a href="#" class="unrelate"><i class="color-error fa fa-trash"></i></a></span></li>');
+		        }
+	        });
+        });
+
+        //remove relation
+        $(document).on('click', '#product-relations .relations .relation .unrelate', function(e) {
+	        e.preventDefault();
+
+	        var element = $(this).parents('.relation');
+
+	        var related = $(this).parents('.relation').attr('data-id');
+
+	        var payload = {_token: Friluft.token, _method: 'PUT'}
+	        $.post(Friluft.URL + '/admin/products/' + productID + '/unrelate/' + related, payload, function(response) {
+		        console.log('removed relation' + related + ', response:');
+		        console.log(response);
+
+		        if (response == 'OK') element.slideUp(function() {$(this).remove()});
+	        });
+        });
+
 
         var previewNode = document.querySelector(".preview-template");
         previewNode.id = "";
