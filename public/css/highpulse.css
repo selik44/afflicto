@@ -4392,7 +4392,7 @@ body.scrolled {
       display: -webkit-box;
       display: -moz-box;
       display: -ms-flexbox;
-      dislpay: -webkit-flex;
+      display: -webkit-flex;
       display: flex;
       flex-direction: row;
       -webkit-flex-direction: row; }
@@ -4406,7 +4406,7 @@ body.scrolled {
         display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
-        dislpay: -webkit-flex;
+        display: -webkit-flex;
         display: flex;
         flex-direction: row;
         -webkit-flex-direction: row;
@@ -4436,7 +4436,7 @@ body.scrolled {
         display: -webkit-box;
         display: -moz-box;
         display: -ms-flexbox;
-        dislpay: -webkit-flex;
+        display: -webkit-flex;
         display: flex;
         flex-direction: row;
         -webkit-flex-direction: row; }
@@ -4458,7 +4458,7 @@ body.scrolled {
           display: -webkit-box;
           display: -moz-box;
           display: -ms-flexbox;
-          dislpay: -webkit-flex;
+          display: -webkit-flex;
           display: flex;
           font-size: 1rem;
           margin-right: 1rem;
@@ -4535,7 +4535,7 @@ body.scrolled {
           display: -webkit-box;
           display: -moz-box;
           display: -ms-flexbox;
-          dislpay: -webkit-flex;
+          display: -webkit-flex;
           display: flex;
           flex: 0 1 auto;
           -webkit-flex: 0 1 auto; }
@@ -4549,7 +4549,7 @@ body.scrolled {
           display: -webkit-box;
           display: -moz-box;
           display: -ms-flexbox;
-          dislpay: -webkit-flex;
+          display: -webkit-flex;
           display: flex;
           flex: auto;
           -webkit-flex: auto; }
@@ -4655,7 +4655,7 @@ body.scrolled {
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
-    dislpay: -webkit-flex;
+    display: -webkit-flex;
     display: flex;
     flex-direction: row;
     -webkit-flex-direction: row; }
