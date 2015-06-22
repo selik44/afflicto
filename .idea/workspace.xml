@@ -168,8 +168,8 @@
           <file leaf-file-name="_front.sass" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/_front.sass">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.18995929" vertical-offset="1160" max-vertical-offset="8660">
-                  <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+                <state vertical-scroll-proportion="0.5386703" vertical-offset="7403" max-vertical-offset="8860">
+                  <caret line="390" column="33" selection-start-line="390" selection-start-column="33" selection-end-line="390" selection-end-column="33" />
                   <folding />
                 </state>
               </provider>
@@ -1534,8 +1534,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/_front.sass">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.18995929" vertical-offset="1160" max-vertical-offset="8660">
-          <caret line="65" column="23" selection-start-line="65" selection-start-column="23" selection-end-line="65" selection-end-column="23" />
+        <state vertical-scroll-proportion="0.5386703" vertical-offset="7403" max-vertical-offset="8860">
+          <caret line="390" column="33" selection-start-line="390" selection-start-column="33" selection-end-line="390" selection-end-column="33" />
           <folding />
         </state>
       </provider>

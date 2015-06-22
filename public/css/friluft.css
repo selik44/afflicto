@@ -4395,7 +4395,9 @@ body.scrolled {
       display: -webkit-flex;
       display: flex;
       flex-direction: row;
-      -webkit-flex-direction: row; }
+      -webkit-flex-direction: row;
+      -moz-flex-direction: row;
+      -ms-flex-direction: row; }
       @media (max-width: 680px) {
         #front #header #nav > .inner {
           display: block; }
@@ -4410,6 +4412,8 @@ body.scrolled {
         display: flex;
         flex-direction: row;
         -webkit-flex-direction: row;
+        -moz-flex-direction: row;
+        -ms-flex-direction: row;
         flex: 0 1 auto;
         -webkit-flex: 0 1 auto; }
       #front #header #nav > .inner .nav-toggle {
@@ -4439,7 +4443,9 @@ body.scrolled {
         display: -webkit-flex;
         display: flex;
         flex-direction: row;
-        -webkit-flex-direction: row; }
+        -webkit-flex-direction: row;
+        -moz-flex-direction: row;
+        -ms-flex-direction: row; }
         @media (max-width: 680px) {
           #front #header #nav > .inner .nav-contents {
             float: left;
@@ -4449,7 +4455,9 @@ body.scrolled {
             transition: all 600ms;
             overflow: hidden;
             flex-direction: column;
-            -webkit-flex-direction: column; }
+            -webkit-flex-direction: column;
+            -moz-flex-direction: column;
+            -ms-flex-direction: column; }
             #front #header #nav > .inner .nav-contents:not(.visible) {
               display: none; } }
         #front #header #nav > .inner .nav-contents ul.navigation {
@@ -4658,7 +4666,9 @@ body.scrolled {
     display: -webkit-flex;
     display: flex;
     flex-direction: row;
-    -webkit-flex-direction: row; }
+    -webkit-flex-direction: row;
+    -moz-flex-direction: row;
+    -ms-flex-direction: row; }
     @media (max-width: 680px) {
       #front #page > .inner {
         display: block; }
