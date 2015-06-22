@@ -1,37 +1,38 @@
 <?php
-	use Friluft\Category;
-	
-	$root = ['bestselgere', 'friluft', 'fiske', 'trening', 'sykkel', 'lykteroglys', 'actionkamera', 'hund'];
+use Friluft\Category;
 
-	foreach ($root as $cat) {
-		$cat = Category::where('slug', '=', $cat)->first();
+$root = ['bestselgere', 'friluft', 'fiske', 'trening', 'sykkel', 'lykteroglys', 'actionkamera', 'hund'];
 
-		if ($cat) {
-			echo '<li>' .$cat->renderMenuItem('store');
+foreach ($root as $cat) {
+	$cat = Category::where('slug', '=', $cat)->first();
 
-				echo '<div class="nav-dropdown"><div class="inner clearfix">';
-					$i = 0;
-					foreach($cat->children as $child) {
-						echo '<div class="col-m-4 col-l-3">';
-							echo '<ul class="nav vertical">';
-								echo '<li class="heading">' .$child->renderMenuItem($cat->getPath()) .'</li>';
-								echo $child->renderMenu($cat->getPath(), 1);
-							echo '</ul>';
-						echo '</div>';
-						$i++;
+	if ($cat) {
+		echo '<li>' .$cat->renderMenuItem('store');
 
-						if ($i % 3 == 0) {
-							echo '<hr class="visible-m">';
-						}
+			echo '<div class="nav-dropdown"><div class="inner clearfix">';
+			$i = 0;
+			foreach($cat->children as $child) {
+				echo '<ul class="col-m-4 col-l-3 end">';
+					echo '<li>' .$child->renderMenuItem($cat->getPath());
+						echo '<ul>';
+							echo $child->renderMenu($cat->getPath(), 1);
+						echo '</ul>';
+					echo '</li>';
+				echo '</ul>';
+				$i++;
 
-						if ($i % 4 == 0) {
-							echo '<hr class="visible-l-up">';
-						}
-					}
-					#echo $cat->renderMenu('store/' .$cat->slug, 3);
-				echo '</div></div>';
+				if ($i % 3 == 0) {
+					//echo '<hr class="visible-m">';
+				}
 
-			echo '</li>';
-		}
+				if ($i % 4 == 0) {
+					//echo '<hr class="visible-l-up">';
+				}
+			}
+			#echo $cat->renderMenu('store/' .$cat->slug, 3);
+			echo '</div></div>';
+
+		echo '</li>';
 	}
+}
 ?>

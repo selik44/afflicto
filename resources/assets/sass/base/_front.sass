@@ -9,16 +9,47 @@ body.with-menu
 		overflow: hidden
 		height: 100%
 
-		#front #header
-			position: fixed
-			height: 100%
-			width: 100%
-			overflow-y: auto
-			z-index: 100
-			background: weaker($base-background, 5%)
+		#front
+			#header
+				position: fixed
+				height: 100%
+				width: 100%
+				overflow-y: hidden
+				z-index: 100
+				background: weaker($base-background, 5%)
+
+				#nav
+					height: 100%
+					overflow: hidden
+					padding: 0
+
+					.nav-controls
+						padding: 1rem
+
+					.nav-contents.visible
+						overflow: hidden
+						display: flex
+						flex-direction: column
+						clear: none
+
+						ul.nav
+							clear: both
+							float: left
+							width: 100%
+							overflow-y: auto
+							overflow-x: hidden
+							flex: 1 0 auto
+
+						.nav-extra
+							flex: auto
+
+				.nothing
+					display: block
 
 body.scrolled
-	padding-top: 80px
+
+	&:not(.with-menu)
+		padding-top: 80px
 
 	#nav
 		position: fixed
@@ -60,10 +91,6 @@ body.scrolled
 			padding: 1rem
 
 			> .inner
-				display: -webkit-box
-				display: -moz-box
-				display: -ms-flexbox
-				display: -webkit-flex
 				display: flex
 				flex-direction: row
 
@@ -74,10 +101,6 @@ body.scrolled
 						flex: 1 1 auto
 
 				.nav-controls
-					display: -webkit-box
-					display: -moz-box
-					display: -ms-flexbox
-					display: -webkit-flex
 					display: flex
 					flex-direction: row
 					flex: 0 1 auto
@@ -105,10 +128,6 @@ body.scrolled
 
 				.nav-contents
 					flex: 1 1 auto
-					display: -webkit-box
-					display: -moz-box
-					display: -ms-flexbox
-					display: -webkit-flex
 					display: flex
 					flex-direction: row
 
@@ -126,10 +145,6 @@ body.scrolled
 
 					ul.navigation
 						flex: 1 1 auto
-						display: -webkit-box
-						display: -moz-box
-						display: -ms-flexbox
-						display: -webkit-flex
 						display: flex
 						font-size: 1rem
 						margin-right: 1rem
@@ -232,10 +247,6 @@ body.scrolled
 							padding: 1rem
 
 					#search
-						display: -webkit-box
-						display: -moz-box
-						display: -ms-flexbox
-						display: -webkit-flex
 						display: flex
 						flex: auto
 
@@ -290,7 +301,6 @@ body.scrolled
 					.cart-toggle
 						margin-left: 1rem
 						flex: 0 1 auto
-						-webkit-flex: 0 1 auto
 
 		.cart-container
 			position: relative
@@ -364,6 +374,7 @@ body.scrolled
 
 			@include breakpoint('sm-')
 				display: block
+				flex-direction: row-reverse
 
 				#aside
 					clear: both
