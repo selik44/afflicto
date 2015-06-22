@@ -1,5 +1,8 @@
 <?php namespace Friluft\Console\Commands;
 
+use Friluft\Image;
+use Friluft\Manufacturer;
+use Friluft\Vatgroup;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
@@ -27,20 +30,15 @@ class Import extends Command {
 
 	private $attributes = [
 		'name',
-		'model',
 		'url_identifier:slug',
 		'quantity:stock',
 		'weight',
 		'status:enabled',
-		'in_price',
 		'price_ex_tax:price',
-		'tax_percentage',
 		'description',
 	];
 
 	private $idMap = [];
-
-	private $imagesStartID = 1072;
 
 	/**
 	 * Create a new command instance.
@@ -99,21 +97,22 @@ class Import extends Command {
 					}
 				}
 
+				$p->vatgroup()->associate(Vatgroup::where('name', '=', '25%')->first());
+
+				$p->manufacturer()
+					->associate(Manufacturer::where('slug', '=', 'highpulse')->first());
+
 				$p->save();
 
-				# get the images for this product
-				$images = [];
-								
 				# download the images from mystore
 				$i = 0;
-				$images = [];
 				if (isset($product['products_images']) && is_array($product['products_images'])) {
 					foreach($product['products_images'] as $image) {	
 						# get pathinfo
 						$pathinfo = pathinfo($image);
 
 						# the fileName for our image
-						$fileName = 'product_' .$p->id .'_image_' .$i .'.' .$pathinfo['extension'];
+						$fileName = 'product_' .$p->id .'_' .$i .'.' .$pathinfo['extension'];
 
 						# dwonload the image
 						if (!file_exists($filePath = public_path() .'/images/products/' .$fileName)) {
@@ -124,7 +123,12 @@ class Import extends Command {
 							# attempt download
 							if (@copy($url, $filePath)) {
 								# success
-								$images[] = $fileName;
+								$image = new Image();
+								$image->name = 'product_' .$p->id .'_' .$i .'.' .$pathinfo['extension'];
+								$image->type = 'product';
+								$image->save();
+
+								$p->images()->save($image);
 							}else {
 								# fail
 								$this->comment("Failed to download image '" .$url ."' for product id " .$p->id ."!");
@@ -135,9 +139,6 @@ class Import extends Command {
 						$i++;
 					}
 				}
-
-				# save the images array on the model as JSON.
-				$p->images = $images;
 
 				# save it again
 				$p->save();

@@ -1,6 +1,7 @@
 <?php namespace Friluft\Http\Controllers;
 
 use Friluft\Http\Requests;
+use Friluft\Manufacturer;
 use Friluft\Order;
 use Friluft\Role;
 use Friluft\User;
@@ -23,7 +24,21 @@ class StoreController extends Controller {
 		$cat = Category::where('slug', '=', $slug)->first();
 
 		if ($cat) {
-			return view('front.store_category')->with('category', $cat)->with('aside', true);
+			$products = $cat->nestedProducts();
+
+			$manufacturers = [];
+			foreach($products as $product) {
+				$m = $product->manufacturer;
+				if ( ! isset($manufacturers[$m->id])) {
+					$manufacturers[$m->id] = $m;
+				}
+			}
+
+			return view('front.store_category')
+				->with('category', $cat)
+				->with('products', $products)
+				->with('manufacturers', $manufacturers)
+				->with('aside', true);
 		}
 
 		$product = Product::enabled()->where('slug', '=', $slug)->first();

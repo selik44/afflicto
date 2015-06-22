@@ -4112,7 +4112,8 @@ ul.pagination {
   .chosen-container .chosen-drop {
     padding: 0;
     border-top-left-radius: 0;
-    border-top-right-radius: 0; }
+    border-top-right-radius: 0;
+    transition-property: height, opacity, background, color; }
     .chosen-container .chosen-drop li {
       color: #353535; }
       .chosen-container .chosen-drop li.highlighted {
@@ -4627,7 +4628,8 @@ body.scrolled {
     #front #page > .inner #article {
       flex: 1 1 auto; }
       #front #page > .inner #article > .inner {
-        padding: 2rem; }
+        padding: 2rem;
+        padding-top: 1rem; }
 
 #product-modal .slide {
   background-size: contain; }
@@ -4640,21 +4642,36 @@ ul.nav.tabs {
   border-radius: 2px;
   border: 1px solid #ddd; }
 
+.products-grid-options {
+  overflow: visible; }
+  .products-grid-options .filters .price-filter .header, .products-grid-options .filters .price-filter .values, .products-grid-options .filters .price-filter .control {
+    float: left;
+    width: 100%; }
+  .products-grid-options .filters .price-filter .values .min-value, .products-grid-options .filters .price-filter .values .max-value {
+    font-weight: 700; }
+    .products-grid-options .filters .price-filter .values .min-value:after, .products-grid-options .filters .price-filter .values .max-value:after {
+      content: ",-"; }
+  .products-grid-options .filters .price-filter .control {
+    padding: 1rem; }
+
 .products-grid {
   float: left;
   width: 100%; }
   .products-grid .product {
-    width: 50%;
+    width: 100%;
     padding: 1rem;
     margin-bottom: 2rem; }
-    @media (max-width: 680px) {
+    @media (min-width: 961px) and (max-width: 1280px) {
       .products-grid .product {
-        width: 100%; } }
+        width: 50%; } }
+    @media (min-width: 1281px) {
+      .products-grid .product {
+        width: 33%; } }
     .products-grid .product > .preview {
       position: relative;
       display: block;
       width: 100%;
-      height: 300px;
+      height: 200px;
       text-align: center; }
       .products-grid .product > .preview > .image {
         display: block;
@@ -4674,7 +4691,15 @@ ul.nav.tabs {
       padding: 1rem; }
       .products-grid .product > .header .title {
         color: #353535;
-        display: block; }
+        display: block;
+        float: left;
+        width: 60%; }
+        .products-grid .product > .header .title .name {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap; }
+      .products-grid .product > .header .price {
+        float: right; }
     .products-grid .product > .footer {
       transition: all 300ms;
       opacity: 0;

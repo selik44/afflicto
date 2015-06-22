@@ -1,5 +1,4 @@
 <?php
-	
 	use Friluft\Category;
 	
 	$root = ['bestselgere', 'friluft', 'fiske', 'trening', 'sykkel', 'lykteroglys', 'actionkamera', 'hund'];
@@ -36,31 +35,3 @@
 		}
 	}
 ?>
-<!--
-<li><a href="{{url('/')}}">Hjem</a></li>
-<li><a href="{{url('/store/bestselgere')}}">Bestselgere</a></li>
-<li><a href="{{url('store/friluft')}}">Friluft</a>
-	<div class="nav-dropdown">
-		<div class="inner">
-			<div class="col-m-4">
-				<ul class="nav vertical">
-					<li class="heading">Friluft</li>
-					<li><a href="{{url('/store/telt')}}">Telt</a></li>
-					<li><a href="{{url('/store/kokeutstyr')}}">Turkjøkken</a></li>
-					<li><a href="{{url('/store/treartikler')}}">Treartikler</a></li>
-					<li><a href="{{url('/store/termos-flasker')}}">Termos & Flasker</a></li>
-					<li><a href="{{url('/store/turutstyr')}}">Turutstyr</a></li>
-					<li><a href="{{url('/store/fjelldukponcho')}}">Fjellduk/Poncho</a></li>
-					<li><a href="{{url('/store/lykter')}}">Lykter</a></li>
-				</ul>
-			</div>
-		</div>
-	</div>
-</li>
-<li><a href="{{url('store/fiske')}}">Fiske</a></li>
-<li><a href="{{url('store/lopetoy')}}">Trening</a></li>
-<li><a href="{{url('store/sykkel')}}">Sykkel</a></li>
-<li><a href="{{url('store/lykteroglys')}}">Lykter</a></li>
-<li><a href="{{url('store/actionkamera')}}">ActionCam</a></li>
-<li><a href="{{url('store/hund')}}">Hund</a></li>
--->
