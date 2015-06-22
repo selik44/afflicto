@@ -4389,6 +4389,10 @@ body.scrolled {
   #front #header #nav {
     padding: 1rem; }
     #front #header #nav > .inner {
+      display: -webkit-box;
+      display: -moz-box;
+      display: -ms-flexbox;
+      dislpay: -webkit-flex;
       display: flex;
       flex-direction: row;
       -webkit-flex-direction: row; }
@@ -4399,6 +4403,10 @@ body.scrolled {
             flex: 1 1 auto;
             -webkit-flex: 1 1 auto; } }
       #front #header #nav > .inner .nav-controls {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        dislpay: -webkit-flex;
         display: flex;
         flex-direction: row;
         -webkit-flex-direction: row;
@@ -4425,6 +4433,10 @@ body.scrolled {
       #front #header #nav > .inner .nav-contents {
         flex: 1 1 auto;
         -webkit-flex: 1 1 auto;
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        dislpay: -webkit-flex;
         display: flex;
         flex-direction: row;
         -webkit-flex-direction: row; }
@@ -4443,6 +4455,10 @@ body.scrolled {
         #front #header #nav > .inner .nav-contents ul.navigation {
           flex: 1 1 auto;
           -webkit-flex: 1 1 auto;
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          dislpay: -webkit-flex;
           display: flex;
           font-size: 1rem;
           margin-right: 1rem;
@@ -4516,6 +4532,10 @@ body.scrolled {
         #front #header #nav > .inner .nav-contents .nav-extra {
           align-items: center;
           justify-content: center;
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          dislpay: -webkit-flex;
           display: flex;
           flex: 0 1 auto;
           -webkit-flex: 0 1 auto; }
@@ -4526,6 +4546,10 @@ body.scrolled {
               border-top: 1px solid #333;
               padding: 1rem; } }
         #front #header #nav > .inner .nav-contents #search {
+          display: -webkit-box;
+          display: -moz-box;
+          display: -ms-flexbox;
+          dislpay: -webkit-flex;
           display: flex;
           flex: auto;
           -webkit-flex: auto; }
@@ -4628,6 +4652,10 @@ body.scrolled {
   background: #181818; }
   #front #page > .inner {
     padding: 2rem 0rem;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    dislpay: -webkit-flex;
     display: flex;
     flex-direction: row;
     -webkit-flex-direction: row; }

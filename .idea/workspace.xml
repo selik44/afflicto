@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/SearchController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/SearchController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/friluft.css" afterPath="$PROJECT_DIR$/public/css/friluft.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/highpulse.css" afterPath="$PROJECT_DIR$/public/css/highpulse.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
@@ -170,8 +170,8 @@
           <file leaf-file-name="_front.sass" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/_front.sass">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.72" vertical-offset="1260" max-vertical-offset="8100">
-                  <caret line="90" column="42" selection-start-line="90" selection-start-column="42" selection-end-line="90" selection-end-column="42" />
+                <state vertical-scroll-proportion="0.7286296" vertical-offset="7083" max-vertical-offset="8660">
+                  <caret line="381" column="32" selection-start-line="381" selection-start-column="32" selection-end-line="381" selection-end-column="32" />
                   <folding />
                 </state>
               </provider>
@@ -1536,8 +1536,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/_front.sass">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.72" vertical-offset="1260" max-vertical-offset="8100">
-          <caret line="90" column="42" selection-start-line="90" selection-start-column="42" selection-end-line="90" selection-end-column="42" />
+        <state vertical-scroll-proportion="0.7286296" vertical-offset="7083" max-vertical-offset="8660">
+          <caret line="381" column="32" selection-start-line="381" selection-start-column="32" selection-end-line="381" selection-end-column="32" />
           <folding />
         </state>
       </provider>
