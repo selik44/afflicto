@@ -7,19 +7,6 @@
       <schema-pattern>friluft.*</schema-pattern>
       <default-schemas>friluft.*</default-schemas>
     </data-source>
-    <data-source name="Staging" uuid="bc0d4b35-8296-42b1-b50f-cbae24601911">
-      <secret-storage>master_key</secret-storage>
-      <user-name>root</user-name>
-      <schema-pattern>friluft.*</schema-pattern>
-      <default-schemas>friluft.*</default-schemas>
-      <ssh-properties>
-        <enabled>false</enabled>
-        <proxy-host>123friluft.tk</proxy-host>
-        <proxy-port>22</proxy-port>
-        <secret-storage>master_key</secret-storage>
-        <user>root</user>
-        <use-password>false</use-password>
-      </ssh-properties>
-    </data-source>
+    <data-source name="Staging" uuid="bc0d4b35-8296-42b1-b50f-cbae24601911" />
   </component>
 </project>
