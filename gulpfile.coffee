@@ -5,6 +5,7 @@ coffee = require 'gulp-coffee'
 concat = require 'gulp-concat'
 es = require 'event-stream'
 order = require 'gulp-order'
+prefixer = require 'gulp-autoprefixer'
 
 # SASS
 gulp.task 'sass', ->
@@ -12,6 +13,7 @@ gulp.task 'sass', ->
 	.pipe sass
 			indentedSyntax: true
 			onError: util.log
+	.pipe prefixer()
 	.pipe gulp.dest 'public/css'
 
 

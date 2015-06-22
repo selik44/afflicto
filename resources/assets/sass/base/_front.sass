@@ -66,16 +66,12 @@ body.scrolled
 				display: -webkit-flex
 				display: flex
 				flex-direction: row
-				-webkit-flex-direction: row
-				-moz-flex-direction: row
-				-ms-flex-direction: row
 
 				@include breakpoint('sm-')
 					display: block
 
 					.nav-controls
 						flex: 1 1 auto
-						-webkit-flex: 1 1 auto
 
 				.nav-controls
 					display: -webkit-box
@@ -84,15 +80,10 @@ body.scrolled
 					display: -webkit-flex
 					display: flex
 					flex-direction: row
-					-webkit-flex-direction: row
-					-moz-flex-direction: row
-					-ms-flex-direction: row
 					flex: 0 1 auto
-					-webkit-flex: 0 1 auto
 
 				.nav-toggle
 					flex: 0 0 auto
-					-webkit-flex: 0 0 auto
 
 					margin-right: 1rem
 					font-size: 1.5rem
@@ -100,7 +91,6 @@ body.scrolled
 
 				#logo
 					flex: 0 1 auto
-					-webkit-flex: 0 1 auto
 					margin-right: 1rem
 					display: block
 					transition: all $base-transition-duration * 2
@@ -115,16 +105,12 @@ body.scrolled
 
 				.nav-contents
 					flex: 1 1 auto
-					-webkit-flex: 1 1 auto
 					display: -webkit-box
 					display: -moz-box
 					display: -ms-flexbox
 					display: -webkit-flex
 					display: flex
 					flex-direction: row
-					-webkit-flex-direction: row
-					-moz-flex-direction: row
-					-ms-flex-direction: row
 
 					@include breakpoint('sm-')
 						float: left
@@ -134,16 +120,12 @@ body.scrolled
 						transition: all $base-transition-duration * 2
 						overflow: hidden
 						flex-direction: column
-						-webkit-flex-direction: column
-						-moz-flex-direction: column
-						-ms-flex-direction: column
 
 						&:not(.visible)
 							display: none
 
 					ul.navigation
 						flex: 1 1 auto
-						-webkit-flex: 1 1 auto
 						display: -webkit-box
 						display: -moz-box
 						display: -ms-flexbox
@@ -156,7 +138,6 @@ body.scrolled
 
 						> li
 							flex: auto
-							-webkit-flex: auto
 
 							> a
 								text-align: center
@@ -241,13 +222,8 @@ body.scrolled
 					.nav-extra
 						align-items: center
 						justify-content: center
-						display: -webkit-box
-						display: -moz-box
-						display: -ms-flexbox
-						display: -webkit-flex
 						display: flex
 						flex: 0 1 auto
-						-webkit-flex: 0 1 auto
 
 						@include breakpoint('sm-')
 							float: left
@@ -262,7 +238,6 @@ body.scrolled
 						display: -webkit-flex
 						display: flex
 						flex: auto
-						-webkit-flex: auto
 
 						input[name="terms"]
 							transition: all $base-transition-duration * 2
@@ -301,7 +276,6 @@ body.scrolled
 
 					.search-and-cart
 						flex: 1 0 auto
-						-webkit-flex: 1 0 auto
 						float: left
 						margin-left: 1rem
 						transition: all $base-transition-duration * 2
@@ -385,15 +359,8 @@ body.scrolled
 
 		> .inner
 			padding: 2rem 0rem
-			display: -webkit-box
-			display: -moz-box
-			display: -ms-flexbox
-			display: -webkit-flex
 			display: flex
 			flex-direction: row
-			-webkit-flex-direction: row
-			-moz-flex-direction: row
-			-ms-flex-direction: row
 
 			@include breakpoint('sm-')
 				display: block
@@ -404,7 +371,6 @@ body.scrolled
 
 			#aside
 				flex: 0 1 240px
-				-webkit-flex: 0 1 240px
 
 				> .inner
 					> .block
@@ -414,7 +380,7 @@ body.scrolled
 
 			#article
 				flex: 1 1 auto
-				-webkit-flex: 1 1 auto
+
 				> .inner
 					padding: 2rem
 					padding-top: 1rem
