@@ -23,9 +23,19 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 # Architecture
 - Figure out a way to cache routes while still allowing translated routes. (@see gentlefox.net routing)
 - Move complicated controller logic to commands, for extendability?
-- Leverage Laravel Requests and Events
-- Implement caching, look at varnish cache? memcach?
-- clean up messy inline CSS, make use of partials more and perhaps look at a lightweight front-end MVC.
+- Move all closure routes to controllers, so we can cache routes.
+- Architecture: Requests, Events, Commands etc.
+- Caching: Implement caching, look at varnish cache? memcach?
+- Modularize views: make use of partials more
+- turn all CSS into SASS
+- figure out a better way to organize translation lines
+
+
+# Todo:
+- Implement custom order statuses
+- Implement tagging functionality
+	Each tag can have a name, machine and optional icon (via font-awesome)
+- Allow defining custom product fields ("attributes")
 
 
 # Store
@@ -33,7 +43,6 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Order status, green/red.
 - manual orders & order editing
 - Related products, tabbed view, appears when buying.
-
 - Client logged in dashboard, order management etc.
 
 

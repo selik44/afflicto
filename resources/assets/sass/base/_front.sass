@@ -62,20 +62,25 @@ body.scrolled
 			> .inner
 				display: flex
 				flex-direction: row
+				-webkit-flex-direction: row
 
 				@include breakpoint('sm-')
 					display: block
 
 					.nav-controls
 						flex: 1 1 auto
+						-webkit-flex: 1 1 auto
 
 				.nav-controls
 					display: flex
 					flex-direction: row
+					-webkit-flex-direction: row
 					flex: 0 1 auto
+					-webkit-flex: 0 1 auto
 
 				.nav-toggle
 					flex: 0 0 auto
+					-webkit-flex: 0 0 auto
 
 					margin-right: 1rem
 					font-size: 1.5rem
@@ -83,6 +88,7 @@ body.scrolled
 
 				#logo
 					flex: 0 1 auto
+					-webkit-flex: 0 1 auto
 					margin-right: 1rem
 					display: block
 					transition: all $base-transition-duration * 2
@@ -92,12 +98,15 @@ body.scrolled
 
 				.cart-toggle-top
 					flex: 0 0 auto
+					-webkit-flex: 0 0 auto
 					font-size: 1.5rem
 
 				.nav-contents
 					flex: 1 1 auto
+					-webkit-flex: 1 1 auto
 					display: flex
 					flex-direction: row
+					-webkit-flex-direction: row
 
 					@include breakpoint('sm-')
 						float: left
@@ -107,12 +116,14 @@ body.scrolled
 						transition: all $base-transition-duration * 2
 						overflow: hidden
 						flex-direction: column
+						-webkit-flex-direction: column
 
 						&:not(.visible)
 							display: none
 
 					ul.navigation
 						flex: 1 1 auto
+						-webkit-flex: 1 1 auto
 						display: flex
 						font-size: 1rem
 						margin-right: 1rem
@@ -121,6 +132,7 @@ body.scrolled
 
 						> li
 							flex: auto
+							-webkit-flex: auto
 
 							> a
 								text-align: center
@@ -139,6 +151,7 @@ body.scrolled
 						@include breakpoint('sm-')
 							display: block
 							flex: 0 1 auto
+							-webkit-flex: 0 1 auto
 							clear: both
 							float: left
 							width: 100%
@@ -206,6 +219,7 @@ body.scrolled
 						justify-content: center
 						display: flex
 						flex: 0 1 auto
+						-webkit-flex: 0 1 auto
 
 						@include breakpoint('sm-')
 							float: left
@@ -216,6 +230,7 @@ body.scrolled
 					#search
 						display: flex
 						flex: auto
+						-webkit-flex: auto
 
 						input[name="terms"]
 							transition: all $base-transition-duration * 2
@@ -254,6 +269,7 @@ body.scrolled
 
 					.search-and-cart
 						flex: 1 0 auto
+						-webkit-flex: 1 0 auto
 						float: left
 						margin-left: 1rem
 						transition: all $base-transition-duration * 2
@@ -268,6 +284,7 @@ body.scrolled
 					.cart-toggle
 						margin-left: 1rem
 						flex: 0 1 auto
+						-webkit-flex: 0 1 auto
 
 		.cart-container
 			position: relative
@@ -338,6 +355,7 @@ body.scrolled
 			padding: 2rem 0rem
 			display: flex
 			flex-direction: row
+			-webkit-flex-direction: row
 
 			@include breakpoint('sm-')
 				display: block
@@ -348,6 +366,7 @@ body.scrolled
 
 			#aside
 				flex: 0 1 240px
+				-webkit-flex: 0 1 240px
 
 				> .inner
 					> .block
@@ -357,6 +376,7 @@ body.scrolled
 
 			#article
 				flex: 1 1 auto
+				-webkit-flex: 1 1 auto
 				> .inner
 					padding: 2rem
 					padding-top: 1rem

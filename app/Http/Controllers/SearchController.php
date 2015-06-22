@@ -1,9 +1,8 @@
 <?php namespace Friluft\Http\Controllers;
 
 use Friluft\Http\Requests;
-use Friluft\Http\Controllers\Controller;
-
-use Illuminate\Http\Request;
+use Input;
+use Friluft\Product;
 
 class SearchController extends Controller {
 
