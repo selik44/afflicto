@@ -5,6 +5,55 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Friluft\Variant;
 
+/**
+ * Friluft\Product
+ *
+ * @property integer $id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
+ * @property string $name
+ * @property string $slug
+ * @property float $price
+ * @property integer $articlenumber
+ * @property string $barcode
+ * @property float $inprice
+ * @property integer $weight
+ * @property string $description
+ * @property string $summary
+ * @property integer $stock
+ * @property boolean $enabled
+ * @property integer $sales
+ * @property integer $vatgroup_id
+ * @property integer $manufacturer_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Category[] $categories
+ * @property-read \Friluft\Vatgroup $vatgroup
+ * @property-read \Friluft\Manufacturer $manufacturer
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Product[] $relations
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Variant[] $variants
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Producttab[] $producttabs
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Image[] $images
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereSlug($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product wherePrice($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereArticlenumber($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereBarcode($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereInprice($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereWeight($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereSummary($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereStock($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereEnabled($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereSales($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereVatgroupId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereManufacturerId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product enabled()
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product search($search, $threshold = null, $entireText = false)
+ */
 class Product extends Model {
 
 	use SearchableTrait, SoftDeletes;

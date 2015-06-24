@@ -7,6 +7,34 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
+/**
+ * Friluft\User
+ *
+ * @property integer $id
+ * @property string $remember_token
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $deleted_at
+ * @property string $firstname
+ * @property string $lastname
+ * @property string $email
+ * @property string $password
+ * @property integer $role_id
+ * @property-read \Friluft\Role $role
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Order[] $orders
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Address[] $addresses
+ * @property mixed $name
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereRememberToken($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereFirstname($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereLastname($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereEmail($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User wherePassword($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereRoleId($value)
+ */
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
 	use Authenticatable, CanResetPassword, SoftDeletes;

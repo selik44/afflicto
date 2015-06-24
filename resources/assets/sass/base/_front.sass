@@ -12,33 +12,46 @@ body.with-menu
 		#front
 			#header
 				position: fixed
-				height: 100%
+				display: flex
+				flex-direction: column
 				width: 100%
-				overflow-y: hidden
+				overflow: hidden
 				z-index: 100
 				background: weaker($base-background, 5%)
 
 				#nav
 					height: 100%
+					width: 100%
 					overflow: hidden
 					padding: 0
 
+					.inner
+						width: 100%
+						display: flex
+						flex-direction: column
+
 					.nav-controls
+						flex: auto
 						padding: 1rem
 
 					.nav-contents.visible
+						flex: auto
 						overflow: hidden
 						display: flex
 						flex-direction: column
 						clear: none
 
-						ul.nav
+						> ul.nav
 							clear: both
 							float: left
 							width: 100%
 							overflow-y: auto
 							overflow-x: hidden
-							flex: 1 0 auto
+							flex: auto
+							display: block
+
+							li
+								float: left
 
 						.nav-extra
 							flex: auto
@@ -169,7 +182,7 @@ body.scrolled
 							text-transform: uppercase
 
 						@include breakpoint('sm-')
-							display: block
+							display: flex
 							flex: 0 1 auto
 							-webkit-flex: 0 1 auto
 							clear: both
@@ -230,9 +243,10 @@ body.scrolled
 								.nav
 									padding-left: 1rem
 
-							ul.nav
+							ul
+								margin: 0
+
 								li a
-									padding: 0.1rem 0.4rem
 
 					.nav-extra
 						align-items: center
@@ -241,10 +255,12 @@ body.scrolled
 						flex: 0 1 auto
 
 						@include breakpoint('sm-')
+							display: block
 							float: left
 							width: 100%
 							border-top: 1px solid $base-border-color
 							padding: 1rem
+							flex: auto
 
 					#search
 						display: flex

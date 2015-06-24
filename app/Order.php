@@ -2,6 +2,47 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Friluft\Order
+ *
+ * @property integer $id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property integer $user_id
+ * @property string $klarna_id
+ * @property string $status
+ * @property string $reservation
+ * @property string $items
+ * @property float $total_price_excluding_tax
+ * @property float $total_price_including_tax
+ * @property float $total_tax_amount
+ * @property string $purchase_country
+ * @property string $purchase_currency
+ * @property string $locale
+ * @property \Carbon\Carbon $completed_at
+ * @property string $billing_address
+ * @property string $shipping_address
+ * @property string $klarna_status
+ * @property-read \Friluft\User $user
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereUserId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereKlarnaId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereStatus($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereReservation($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereItems($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereTotalPriceExcludingTax($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereTotalPriceIncludingTax($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereTotalTaxAmount($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order wherePurchaseCountry($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order wherePurchaseCurrency($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereLocale($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereCompletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereBillingAddress($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereShippingAddress($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereKlarnaStatus($value)
+ */
 class Order extends Model {
 
 	protected $table = 'orders';

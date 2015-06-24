@@ -48,6 +48,7 @@ Route::group(['prefix' => $locale], function() {
 	get('store/success', ['as' => 'store.checkout.success', 'uses' => 'StoreController@success']);
 	post('store/push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
 	get('store/{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
+	get('manufacturer/{slug}', ['as' => 'store.manufacturer', 'uses' => 'StoreController@getmanufacturer']);
 
 	# search
 	get('search', ['as' => 'search', 'uses' => 'SearchController@index']);

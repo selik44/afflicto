@@ -14,7 +14,7 @@ foreach ($root as $cat) {
 			foreach($cat->children as $child) {
 				echo '<ul class="col-m-4 col-l-3 end">';
 					echo '<li>' .$child->renderMenuItem($cat->getPath());
-						echo '<ul>';
+						echo '<ul class="nav vertical">';
 							echo $child->renderMenu($cat->getPath(), 1);
 						echo '</ul>';
 					echo '</li>';

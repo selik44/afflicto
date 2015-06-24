@@ -2,6 +2,17 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Friluft\Vatgroup
+ *
+ * @property integer $id
+ * @property string $name
+ * @property float $amount
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Product[] $products
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Vatgroup whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Vatgroup whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Vatgroup whereAmount($value)
+ */
 class Vatgroup extends Model {
 
 	protected $table = 'vatgroups';

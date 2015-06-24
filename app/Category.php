@@ -1,12 +1,44 @@
 <?php namespace Friluft;
 
 use Illuminate\Database\Eloquent\Model;
+use Nicolaslopezj\Searchable\SearchableTrait;
 
+/**
+ * Friluft\Category
+ *
+ * @property integer $id
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property string $name
+ * @property string $slug
+ * @property integer $order
+ * @property integer $parent_id
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Product[] $products
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Category[] $children
+ * @property-read \Friluft\Category $parent
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereSlug($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereOrder($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereParentId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category root()
+ */
 class Category extends Model {
+
+	use SearchableTrait;
 
 	protected $table = 'categories';
 
 	protected $fillable = ['name', 'slug', 'parent_id'];
+
+	protected $searchable = [
+		'columns' => [
+			'name' => 15,
+			'slug' => 10
+		]
+	];
 
 	public function getLevel() {
 		$level = 0;

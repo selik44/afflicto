@@ -2,6 +2,18 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Friluft\Role
+ *
+ * @property integer $id
+ * @property string $name
+ * @property string $machine
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Permission[] $permissions
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\User[] $users
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Role whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Role whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Role whereMachine($value)
+ */
 class Role extends Model {
 
 	public $timestamps = false;

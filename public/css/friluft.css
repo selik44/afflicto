@@ -4447,18 +4447,46 @@ body, #front #footer {
     height: 100%; }
     body.with-menu #front #header {
       position: fixed;
-      height: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+          -ms-flex-direction: column;
+              flex-direction: column;
       width: 100%;
-      overflow-y: hidden;
+      overflow: hidden;
       z-index: 100;
       background: #f2f2f2; }
       body.with-menu #front #header #nav {
         height: 100%;
+        width: 100%;
         overflow: hidden;
         padding: 0; }
+        body.with-menu #front #header #nav .inner {
+          width: 100%;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+              -ms-flex-direction: column;
+                  flex-direction: column; }
         body.with-menu #front #header #nav .nav-controls {
+          -webkit-box-flex: 1;
+          -webkit-flex: auto;
+              -ms-flex: auto;
+                  flex: auto;
           padding: 1rem; }
         body.with-menu #front #header #nav .nav-contents.visible {
+          -webkit-box-flex: 1;
+          -webkit-flex: auto;
+              -ms-flex: auto;
+                  flex: auto;
           overflow: hidden;
           display: -webkit-box;
           display: -webkit-flex;
@@ -4470,16 +4498,19 @@ body, #front #footer {
               -ms-flex-direction: column;
                   flex-direction: column;
           clear: none; }
-          body.with-menu #front #header #nav .nav-contents.visible ul.nav {
+          body.with-menu #front #header #nav .nav-contents.visible > ul.nav {
             clear: both;
             float: left;
             width: 100%;
             overflow-y: auto;
             overflow-x: hidden;
             -webkit-box-flex: 1;
-            -webkit-flex: 1 0 auto;
-                -ms-flex: 1 0 auto;
-                    flex: 1 0 auto; }
+            -webkit-flex: auto;
+                -ms-flex: auto;
+                    flex: auto;
+            display: block; }
+            body.with-menu #front #header #nav .nav-contents.visible > ul.nav li {
+              float: left; }
           body.with-menu #front #header #nav .nav-contents.visible .nav-extra {
             -webkit-box-flex: 1;
             -webkit-flex: auto;
@@ -4635,7 +4666,10 @@ body.scrolled #nav {
             text-transform: uppercase; }
           @media (max-width: 680px) {
             #front #header #nav > .inner .nav-contents ul.navigation {
-              display: block;
+              display: -webkit-box;
+              display: -webkit-flex;
+              display: -ms-flexbox;
+              display: flex;
               -webkit-box-flex: 0;
                   -ms-flex: 0 1 auto;
                       flex: 0 1 auto;
@@ -4685,8 +4719,8 @@ body.scrolled #nav {
               display: block; }
               #front #header #nav > .inner .nav-contents ul.navigation .nav-dropdown .nav {
                 padding-left: 1rem; } }
-          #front #header #nav > .inner .nav-contents ul.navigation .nav-dropdown ul.nav li a {
-            padding: 0.1rem 0.4rem; }
+          #front #header #nav > .inner .nav-contents ul.navigation .nav-dropdown ul {
+            margin: 0; }
         #front #header #nav > .inner .nav-contents .nav-extra {
           -webkit-box-align: center;
           -webkit-align-items: center;
@@ -4706,10 +4740,15 @@ body.scrolled #nav {
                   flex: 0 1 auto; }
           @media (max-width: 680px) {
             #front #header #nav > .inner .nav-contents .nav-extra {
+              display: block;
               float: left;
               width: 100%;
               border-top: 1px solid #ddd;
-              padding: 1rem; } }
+              padding: 1rem;
+              -webkit-box-flex: 1;
+              -webkit-flex: auto;
+                  -ms-flex: auto;
+                      flex: auto; } }
         #front #header #nav > .inner .nav-contents #search {
           display: -webkit-box;
           display: -webkit-flex;

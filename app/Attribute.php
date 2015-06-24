@@ -2,6 +2,12 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Friluft\Attribute
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Field[] $fields
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Product[] $products
+ */
 class Attribute extends Model {
 
 	protected $table = 'attributes';

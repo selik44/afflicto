@@ -1,11 +1,8 @@
 <?php namespace Friluft;
 
-use Former\Interfaces\FrameworkInterface;
 use Former\Traits\Field;
 use Former\Traits\Framework;
 use HtmlObject\Element;
-use Illuminate\Container\Container;
-use Illuminate\Support\Str;
 
 class GentleStyleFormFramework extends Framework implements \Former\Interfaces\FrameworkInterface {
 
