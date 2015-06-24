@@ -5,8 +5,6 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/friluft.css" afterPath="$PROJECT_DIR$/public/css/friluft.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/highpulse.css" afterPath="$PROJECT_DIR$/public/css/highpulse.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/layout.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/partial/navigation_friluft.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/partial/navigation_friluft.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
@@ -169,8 +167,8 @@
           <file leaf-file-name="header.sass" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.50445104" vertical-offset="4440" max-vertical-offset="6400">
-                  <caret line="239" column="53" selection-start-line="239" selection-start-column="53" selection-end-line="239" selection-end-column="53" />
+                <state vertical-scroll-proportion="0.5934718" vertical-offset="5160" max-vertical-offset="6420">
+                  <caret line="278" column="26" selection-start-line="278" selection-start-column="26" selection-end-line="278" selection-end-column="26" />
                   <folding />
                 </state>
               </provider>
@@ -260,8 +258,8 @@
         <option value="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
         <option value="$PROJECT_DIR$/app/Category.php" />
         <option value="$PROJECT_DIR$/resources/views/front/partial/navigation_friluft.blade.php" />
-        <option value="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" />
         <option value="$PROJECT_DIR$/resources/views/front/layout.blade.php" />
+        <option value="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" />
       </list>
     </option>
   </component>
@@ -1444,8 +1442,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50445104" vertical-offset="4440" max-vertical-offset="6400">
-          <caret line="239" column="53" selection-start-line="239" selection-start-column="53" selection-end-line="239" selection-end-column="53" />
+        <state vertical-scroll-proportion="0.5934718" vertical-offset="5160" max-vertical-offset="6420">
+          <caret line="278" column="26" selection-start-line="278" selection-start-column="26" selection-end-line="278" selection-end-column="26" />
           <folding />
         </state>
       </provider>
