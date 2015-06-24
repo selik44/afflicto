@@ -1,0 +1,283 @@
+#header
+	display: flex
+	flex-direction: column
+
+	#navigation-top
+		flex: 0 1 auto
+		background: $base-color
+
+		ul li a
+			color: weaker($base-background, 10%)
+			font-size: 0.9rem
+			padding: 0.8rem 0.6rem
+
+			&:hover
+				color: stronger($base-background, 10%)
+				text-decoration: none
+
+	#navigation
+		background: stronger($base-background, 20%)
+		flex: 1 1 auto
+
+		> .inner
+			transition: all $base-transition-duration
+
+		.nav-controls
+			padding: 1rem
+			display: flex
+			flex-direction: row
+			align-items: center
+			justify-content: space-between
+
+			.nav-toggle
+				flex: 0 0 auto
+				font-size: 2rem
+				margin-right: 1rem
+
+			.logo
+				flex: 0 1 auto
+				transition: all $base-transition-duration
+
+			.cart-toggle-top
+				flex: 0 1 auto
+
+		.nav-contents
+			transition: all $base-transition-duration * 2 ease-in-out
+			height: 100%
+			left: -70%
+			width: 70%
+			overflow: hidden
+			position: fixed
+			top: 0px
+			display: flex
+			flex-direction: column
+
+			&.visible
+				left: 0%
+
+			.nav-extra
+				flex: 0 1 auto
+				order: -1
+
+				#search .input-append
+					input
+						flex: 1 0 auto
+						display: flex
+						font-size: 1.4rem
+						padding: 1.2rem 1.4rem
+					button
+						font-size: 1.4rem
+						padding: 1rem 1.4rem
+
+			ul.navigation
+				overflow-y: auto
+				flex: auto
+				background: weaker($base-background, 5%)
+
+
+				.navitem-dropdown-toggle
+					flex: 0 0 auto
+					align-items: center
+					display: flex
+					color: weaker($base-color, 20%)
+					border-left: 1px solid weaker($base-background, 20%)
+
+				li > ul, li > .nav-dropdown
+					display: none
+
+
+				> li
+					display: flex
+					flex-direction: row
+					flex-wrap: wrap
+
+					&:last-child
+						border-bottom: 1px solid weaker($base-background, 15%)
+
+					> a
+						flex: auto
+						text-transform: uppercase
+						border-color: weaker($base-background, 15%)
+						font-size: 1.1rem
+
+						&:hover
+							background: stronger($base-background, 10%)
+						&.current
+							background: $color-primary
+							color: $base-background
+
+
+
+				//second level
+				.nav-dropdown
+					background: weaker($base-background, 10%)
+					width: 100%
+
+					> .inner
+						> ul
+
+							padding: 0
+							border-bottom: 1px solid weaker($base-background, 15%)
+
+							> li
+								display: flex
+								flex-direction: row
+								flex-wrap:  wrap
+								border: none
+
+								> a:not(.navitem-dropdown-toggle)
+									padding-left: 2rem
+									flex: auto
+									&:hover
+										background: weaker($base-background, 10%)
+									//border-bottom: 1px solid weaker($base-background, 25%)
+
+								> ul
+									background: weaker($base-background, 17%)
+									width: 100%
+									padding-left: 3rem
+
+	//--------- MEDIUM ONLY ------------//
+	@include breakpoint('m')
+		#navigation
+			#search
+				display: none
+
+			.search-and-cart
+
+
+	//----------- MEDIUM UP ------------//
+	@include breakpoint('m+')
+		#navigation
+			> .inner
+				display: flex
+				flex-direction: row
+				max-width: $base-width
+				margin: 0 auto
+				padding: 1rem
+				//justify-content: space-between
+
+			.nav-controls
+				padding: 0
+				margin-right: 1rem
+				flex: 0 1 auto
+				justify-content: space-between
+
+				.logo
+					width: 200px
+					flex: 0 1 200px
+
+			.nav-contents
+				flex: auto
+				display: flex
+				flex-direction: row
+				position: static
+				height: auto
+				width: auto
+				top: auto
+				left: auto
+
+				ul.navigation
+					background: none
+					overflow: hidden
+					display: flex
+					flex-direction: row
+					justify-content:  center
+					align-items: center
+
+					.navitem-dropdown-toggle
+						display: none
+
+					> li
+						flex: auto
+						&:last-child
+							border: none
+
+						> a
+							background: none
+							border: none
+							font-size: 1.0rem
+							text-transform: uppercase
+							text-align: center
+							padding: 0
+
+							//hover
+							&:not(.current):hover
+								color: desaturate($color-primary, 30%)
+
+							//current
+							&.current
+								color: $color-primary
+								background: none
+								font-weight: 700
+
+						// MENU DROPDOWN
+						> .nav-dropdown
+							&:not(.visible)
+								height: 0px
+								overflow: hidden
+
+				.nav-extra
+					display: flex
+					align-items: center
+					flex: 0 0 auto
+					order: 1
+
+					#search
+						input[name="terms"]
+							max-width: 80px
+							transition: $base-transition-duration all
+
+							&:focus
+								max-width: 140px
+
+					.cart-toggle
+						margin-left: 1rem
+
+
+//----------- TOGGLED ------------//
+body
+	transition: left $base-transition-duration * 2 ease-in-out
+	position: relative
+	left: 0%
+
+	&.with-menu
+		left: 70%
+		overflow-x: hidden
+		overflow-y: hidden
+
+		#menu-overlay
+			background-color: rgba(0,0,0,0.5)
+			pointer-events: auto
+			width: 30%
+
+
+	#menu-overlay
+		transition: all $base-transition-duration * 2 ease-in-out
+		width: 100%
+		position: fixed
+		height: 100%
+		right: 0px
+		top: 0px
+		background-color: rgba(0,0,0,0)
+		pointer-events: none
+		z-index: 100
+
+
+//----------- SCROLLED ------------//
+body.scrolled
+	padding-top: 82px
+
+	#front
+		#navigation
+			position: fixed
+			z-index: 50
+			top: 0px
+			left: 0px
+			width: 100%
+			border-bottom: 1px solid $base-border-color
+			box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.5)
+
+			.nav-controls
+				.logo
+					width: 120px

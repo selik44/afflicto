@@ -36,7 +36,7 @@ class Category extends Model {
 	protected $searchable = [
 		'columns' => [
 			'name' => 15,
-			'slug' => 10
+			'slug' => 10,
 		]
 	];
 
@@ -124,7 +124,7 @@ class Category extends Model {
 		return 'store/' .implode('/', array_reverse($slugs));
 	}
 
-	public function renderMenuItem($path, $classes = []) {
+	public function renderMenuItem($path, $classes = [], $dropdownIcon = false) {
 		if (is_string($classes)) $classes = explode(' ', $classes);
 
 		$title = ucfirst(strtolower($this->name));
@@ -136,7 +136,17 @@ class Category extends Model {
 		}
 
 		$classes = array_unique($classes);
-		return '<a class="' .implode(' ', $classes) .'" href="' .url($path) .'">' .$title .'</a>';
+
+		$dropdown = '';
+		if ($dropdownIcon && $this->children()->count() > 0) {
+			$dropdown = $this->renderDropdownIcon();
+		}
+
+		return '<a class="' .implode(' ', $classes) .'" href="' .url($path) .'">' .$title .'</a>' .$dropdown;
+	}
+
+	public function renderDropdownIcon() {
+		return '<a class="navitem-dropdown-toggle" href="#"><i class="icon fa fa-chevron-down"></i></a>';
 	}
 
 	public function renderMenu($path = '/store', $levels = 0) {

@@ -1,80 +1,6 @@
 body, #front #footer
 	background: weaker($base-background, 5%)
 
-body.with-menu
-	//-------------------------------
-	//	With menu (sm and xs)
-	//-------------------------------
-	@include breakpoint('sm-')
-		overflow: hidden
-		height: 100%
-
-		#front
-			#header
-				position: fixed
-				display: flex
-				flex-direction: column
-				width: 100%
-				overflow: hidden
-				z-index: 100
-				background: weaker($base-background, 5%)
-
-				#nav
-					height: 100%
-					width: 100%
-					overflow: hidden
-					padding: 0
-
-					.inner
-						width: 100%
-						display: flex
-						flex-direction: column
-
-					.nav-controls
-						flex: auto
-						padding: 1rem
-
-					.nav-contents.visible
-						flex: auto
-						overflow: hidden
-						display: flex
-						flex-direction: column
-						clear: none
-
-						> ul.nav
-							clear: both
-							float: left
-							width: 100%
-							overflow-y: auto
-							overflow-x: hidden
-							flex: auto
-							display: block
-
-							li
-								float: left
-
-						.nav-extra
-							flex: auto
-
-				.nothing
-					display: block
-
-body.scrolled
-
-	&:not(.with-menu)
-		padding-top: 80px
-
-	#nav
-		position: fixed
-		top: 0px
-		width: 100%
-		z-index: 10
-		box-shadow: 0px 0px 1rem 0px rgba(0,0,0,0.5)
-
-		#logo
-			@include breakpoint('m+')
-				max-width: 110px
-
 #front
 
 	//center the main components
@@ -87,7 +13,6 @@ body.scrolled
 			border-bottom: 1px solid $base-border-color
 	
 	#header
-		position: relative
 		background: weaker($base-background, 5%)
 
 		#nav-top
@@ -97,256 +22,6 @@ body.scrolled
 				a
 					color: weaker($base-color, 15%)
 
-		//-------------------------------
-		//	main navigation
-		//-------------------------------
-		#nav
-			padding: 1rem
-
-			> .inner
-				display: flex
-				flex-direction: row
-
-				@include breakpoint('sm-')
-					display: block
-
-					.nav-controls
-						flex: 1 1 auto
-
-				.nav-controls
-					display: flex
-					flex-direction: row
-					flex: 0 1 auto
-
-				.nav-toggle
-					flex: 0 0 auto
-
-					margin-right: 1rem
-					font-size: 1.5rem
-					margin-bottom: 0
-
-				#logo
-					flex: 0 1 auto
-					margin-right: 1rem
-					display: block
-					transition: all $base-transition-duration * 2
-
-					img
-						width: 100%
-
-				.cart-toggle-top
-					flex: 0 0 auto
-					-webkit-flex: 0 0 auto
-					font-size: 1.5rem
-
-				.nav-contents
-					flex: 1 1 auto
-					display: flex
-					flex-direction: row
-
-					@include breakpoint('sm-')
-						float: left
-						width: 100%
-						height: 100%
-						clear: both
-						transition: all $base-transition-duration * 2
-						overflow: hidden
-						flex-direction: column
-
-						&:not(.visible)
-							display: none
-
-					ul.navigation
-						flex: 1 1 auto
-						display: flex
-						font-size: 1rem
-						margin-right: 1rem
-						transition: all $base-transition-duration
-						align-items: center
-
-						> li
-							flex: auto
-
-							> a
-								text-align: center
-								vertical-align: middle
-
-						li a
-							text-decoration: none
-							color: $base-color
-
-							&:hover
-								color: $color-primary
-
-						> li.heading, > li > a
-							text-transform: uppercase
-
-						@include breakpoint('sm-')
-							display: flex
-							flex: 0 1 auto
-							-webkit-flex: 0 1 auto
-							clear: both
-							float: left
-							width: 100%
-							padding: 0
-							background: stronger($base-background, 10%)
-
-							li
-								clear: both
-								width: 100%
-
-								&.heading
-									font-weight: normal
-
-								a
-									text-align: left
-
-							.col-m-4
-								padding: 0
-
-
-							> li
-								&.heading
-									padding-left: 0
-
-								&:not(:last-child)
-									border-bottom: 1px solid $base-border-color
-
-								> a
-									background: stronger($base-background, 10%)
-									font-size: 1.2rem
-									padding: 0.8rem
-
-								> a.current
-									background: $color-primary
-									color: stronger($base-background, 20%)
-
-								.nav-dropdown
-									padding-left: 1rem
-
-						.nav-dropdown
-							@include breakpoint('m+')
-								padding: 1rem
-								width: 100%
-								position: absolute
-								display: none
-								z-index: 5
-								top: 100%
-								left: 0px
-								background: weaker($base-background, 4%)
-								border-top: 1px solid $base-border-color
-								border-bottom: 1px solid $base-border-color
-								box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.3)
-
-							@include breakpoint('sm-')
-								display: block
-								.nav
-									padding-left: 1rem
-
-							ul
-								margin: 0
-
-								li a
-
-					.nav-extra
-						align-items: center
-						justify-content: center
-						display: flex
-						flex: 0 1 auto
-
-						@include breakpoint('sm-')
-							display: block
-							float: left
-							width: 100%
-							border-top: 1px solid $base-border-color
-							padding: 1rem
-							flex: auto
-
-					#search
-						display: flex
-						flex: auto
-
-						input[name="terms"]
-							transition: all $base-transition-duration * 2
-							padding: 0.6rem
-							font-size: 1.1rem
-							width: 90px
-
-							&:focus
-								width: 140px
-								transition: all $base-transition-duration
-						button
-							font-size: 1.1rem
-							padding: 0.6rem
-
-						.buttons
-							display: inline
-
-						@include breakpoint('m')
-							display: none
-							position: absolute
-							top: 100%
-							left: 0px
-							width: 100%
-							background: weaker($base-background, 4%)
-							text-align: center
-							padding: 2rem
-							border: 1px solid weaker($base-background, 10%)
-							box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.5)
-
-							input[name="terms"], input[name="terms"]:focus
-								width: 100%
-
-							button
-								font-size: 1.4rem
-								padding: 1rem 2.2rem
-
-					.search-and-cart
-						flex: 1 0 auto
-						float: left
-						margin-left: 1rem
-						transition: all $base-transition-duration * 2
-
-						@include breakpoint('m')
-							margin-left: 0
-
-						@include breakpoint('sm-')
-							display: none
-							margin: 0
-
-					.cart-toggle
-						margin-left: 1rem
-						flex: 0 1 auto
-
-		.cart-container
-			position: relative
-
-			#cart
-				position: absolute
-				z-index: 10
-				top: 100%
-				right: 0px
-				margin: 1rem 0 1rem 1rem
-				padding: 2rem
-				min-width: 720px
-
-				background: weaker($base-background, 4%)
-				border: 1px solid darken($base-border-color, 20%)
-				border-radius: $base-radius
-				box-shadow: 0px 0px 1rem 0px rgba(0,0,0,0.3)
-
-				.cart-table
-					.image
-						img
-							max-width: 140px
-
-				@include breakpoint('sm-')
-					min-width: 70%
-					top: 0px
-					left: 0px
-					margin: 0
-					padding: 0
-
 	#breadcrumbs
 		background: darken($base-background, 2%)
 		text-transform: uppercase
@@ -354,7 +29,14 @@ body.scrolled
 
 		> .inner
 			padding: 0.4rem 1rem
-	
+
+		@include breakpoint('m-')
+			display: flex
+			align-items: center
+
+			li
+				flex: auto
+
 	#alerts
 		> .alerts
 			max-width: $base-width
@@ -384,17 +66,10 @@ body.scrolled
 		background: $base-background
 
 		> .inner
-			padding: 2rem 0rem
+			padding: 1rem 0rem
 			display: flex
 			flex-direction: row
-
-			@include breakpoint('sm-')
-				display: block
-				flex-direction: row-reverse
-
-				#aside
-					clear: both
-					background: weaker($base-background, 10%)
+			flex-wrap: wrap
 
 			#aside
 				flex: 0 1 240px
@@ -405,11 +80,19 @@ body.scrolled
 						margin-bottom: 1rem
 						border-bottom: 1px solid $base-border-color
 
+				@include breakpoint('sm-')
+					flex: 0 1 100%
+					width: 100%
+					order: 2
+					background: weaker($base-background, 10%)
+
+
 			#article
 				flex: 1 1 auto
+				order: 1
 
 				> .inner
-					padding: 2rem
+					padding: 1rem
 					padding-top: 1rem
 
 	#footer

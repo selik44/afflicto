@@ -4,8 +4,8 @@
 <div id="front">
 	<header id="header">
 
-		<nav id="nav-top">
-			<ul class="clearfix inner nav end">
+		<nav id="navigation-top">
+			<ul class="inner nav end">
 				<li><a href="#">Help</a></li>
 				<li><a href="#">Account</a></li>
 				<li><a href="#">Contact</a></li>
@@ -18,26 +18,26 @@
 			</ul>
 		</nav>
 
-		<nav id="nav" class="clearfix">
+		<nav id="navigation">
 			<div class="inner">
                 <div class="nav-controls">
-                    <button class="nav-toggle hidden-m-up"><i class="fa fa-bars"></i></button>
+                    <button class="nav-toggle hidden-m-up end"><i class="fa fa-bars"></i></button>
 
-                    <a href="{{url()}}" id="logo">
+                    <a href="{{url()}}" class="logo">
                         <img src="{{url('images/' .\Friluft\Store::current()->machine .'.png')}}">
                     </a>
 
-                    <button data-toggle="#cart" class="cart-toggle-top pull-right primary end hidden-m-up"><i class="fa fa-shopping-cart"></i> Cart</button>
+                    <button data-toggle="#cart" class="cart-toggle-top primary end hidden-m-up"><i class="fa fa-shopping-cart"></i> Cart</button>
                 </div>
 				<div class="nav-contents">
-					<ul class="nav end navigation">
+					<ul class="nav vertical fancy end navigation">
 						@include('front.partial.navigation_' .\Friluft\Store::current()->machine)
 					</ul>
 					
 					<div class="nav-extra">
-						<div class="button-group search-and-cart hidden-l-up">
-							<button data-toggle="#search" class="primary"><i class="fa fa-search"></i> Search</button>
-							<button data-toggle="#cart" class="primary"><i class="fa fa-shopping-cart"></i> Cart</button>
+						<div class="button-group search-and-cart visible-m">
+							<button data-toggle="#search" class="primary"><i class="fa fa-search"></i></button>
+							<button data-toggle="#cart" class="primary"><i class="fa fa-shopping-cart"></i></button>
 						</div>
 						
 						
@@ -96,8 +96,9 @@
 		<div class="inner clearfix">
 
 				@if(isset($aside) && $aside)
-					<hr class="hidden-m-up">
-					<aside id="aside" class="tight col-m-4 col-l-3">
+					<aside id="aside">
+						<hr class="hidden-m-up">
+
 						<div class="inner">
 							@section('aside')
 								@include('front.partial.aside')
@@ -106,10 +107,7 @@
 					</aside>
 				@endif
 
-				<?php
-					$c = (isset($aside) && $aside) ? 'col-m-8 col-l-9' : '';
-				?>
-				<article id="article" class="tight {{$c}}">
+				<article id="article">
 					<div class="inner">
 						@yield('article')
 					</div>
@@ -148,6 +146,10 @@
 
 	</footer>
 </div>
+
+<div id="menu-overlay">
+
+</div>
 @stop
 
 
@@ -157,11 +159,8 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		//make the header fixed
-		var header = $("#header");
-		var front = $("#front");
-		var nav = $("#nav");
-		var navTop = $("#nav-top");
+		//make the nav controls fixed on scroll
+		var navTop = $("#navigation-top");
 
 		//add 'scrolled' class when scrolling past navTop
 		$(window).scroll(_.throttle(function() {
@@ -174,117 +173,25 @@
 		}, 50));
 
 
-		function showDropdown(dd, duration, callback) {
-			dd.stop().slideDown(duration, callback).addClass('visible');
-		}
-
-		function hideDropdown(dd, duration, callback) {
-			dd.stop().slideUp(duration, callback).removeClass('visible');
-		}
-
-
-		//nav dropdown toggles
-		var ul = $('#header #nav ul.navigation');
-		ul.find('> li > a').click(function(e) {
-			if ($(window).width() <= 960) {
-				e.preventDefault();
-			}
-			var dd = $(this).parent('li').find('> .nav-dropdown');
-
-			var current = nav.find('.nav-dropdown.visible');
-			if (current.length > 0) {
-				if (current.is(dd)) return;
-
-				hideDropdown(current, 150, function() {
-					showDropdown(dd, 300);
-				});
-				return;
-			}
-
-			showDropdown(dd);
+		//toggle nav-contents on small devices
+		$("#header .nav-toggle").click(function() {
+			$(this).toggleClass('active');
+			$("#header .nav-contents").toggleClass('visible');
+			$("body").toggleClass('with-menu');
 		});
 
-		ul.find('> li > a').mouseenter(function() {
-			if ($(window).width() <= 960) {
-				e.preventDefault();
-			}
-			var dd = $(this).parent('li').find('> .nav-dropdown');
-
-			var current = nav.find('.nav-dropdown.visible');
-			if (current.length > 0) {
-				if (current.is(dd)) return;
-
-				hideDropdown(current, 150, function() {
-					showDropdown(dd, 300);
-				});
-				return;
-			}
-
-			showDropdown(dd);
+		//untoggle nav-contents when clicking on menu-overlay
+		$("#menu-overlay").click(function() {
+			$("body").removeClass('with-menu');
+			$("#header .nav-contents").removeClass('visible');
+			$("#header .nav-toggle").removeClass('active');
 		});
 
-		$('#header .nav-dropdown').mouseleave(function() {
-			if ($(this).hasClass('visible')) {
-				hideDropdown($(this), 200);
-			}
+		//toggle nav sub-menus
+		$("#navigation .nav .navitem-dropdown-toggle").click(function() {
+			$(this).toggleClass('active');
+			$(this).parent().toggleClass('visible-small').children('.nav-dropdown, ul').first().slideToggle();
 		});
-
-
-		//search, dropdown & cart display
-		var search = $("#search");
-		var cart = $("#cart");
-		$("[data-toggle='#search']").click(function() {
-			search.stop().slideToggle().toggleClass('visible');
-		});
-
-		$("[data-hide='#search']").click(function() {
-			search.removeClass('visible').stop().slideUp();
-		});
-
-		$("[data-show='#search']").click(function() {
-			search.stop().slideToggle().toggleClass('visible');
-			cart.removeClass('visible').stop().slideUp();
-		});
-
-		
-		$("[data-toggle='#cart']").click(function() {
-			if (cart.hasClass('visible')) {
-				//hide cart
-				cart.stop().slideUp().removeClass('visible');
-			}else {
-				var dropdown = $("#nav .nav-dropdown");
-				if (dropdown[0] != null) {
-					dropdown.hide();
-				}
-				cart.stop().slideDown().addClass('visible');
-			}
-		});
-
-		$("[data-hide='#cart']").click(function() {
-			cart.stop().slideUp().removeClass('visible');
-		});
-
-		$("[data-show='#cart']").click(function() {
-			cart.stop().slideDown().addClass('visible');
-			search.stop().slideUp().removeClass('visible');
-		});
-
-
-
-
-
-		//navigation toggle for sm and xs
-		var navContents = $("#nav .nav-contents");
-		$("#header .nav-toggle").click(function(e) {
-			navContents.toggleClass('visible');
-			if (navContents.hasClass('visible')) {
-				$("body").addClass('with-menu');
-				$("#nav-top").show();
-			}else {
-				$("body").removeClass('with-menu');
-			}
-		});
-
 	});
 </script>
 
