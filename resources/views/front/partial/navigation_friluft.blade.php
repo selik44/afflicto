@@ -14,7 +14,7 @@ foreach ($root as $cat) {
 			echo '<div class="nav-dropdown"><div class="inner clearfix">';
 			$i = 0;
 			foreach($cat->children as $child) {
-				echo '<ul class="col-m-4 col-l-3 end">';
+				echo '<ul>';
 					echo '<li>' .$child->renderMenuItem($cat->getPath(), [], true);
 						if (count($child->children) > 0) {
 							echo '<ul class="nav vertical">';

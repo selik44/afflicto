@@ -187,11 +187,34 @@
 			$("#header .nav-toggle").removeClass('active');
 		});
 
-		//toggle nav sub-menus
+		//toggle nav sub-menus on small
 		$("#navigation .nav .navitem-dropdown-toggle").click(function() {
 			$(this).toggleClass('active');
 			$(this).parent().toggleClass('visible-small').children('.nav-dropdown, ul').first().slideToggle();
 		});
+
+		//toggle nav-dropdowns on large+
+		$("#navigation .nav-contents > ul.nav > li > a").mouseenter(function() {
+			if ($(window).width() <= 680) return;
+
+			var dropdown = $(this).parent('li').children('.nav-dropdown');
+			if (dropdown.hasClass('visible')) return;
+
+			$("#navigation .nav-dropdown.visible").removeClass('visible').stop(true, true).slideUp();
+			dropdown.toggleClass('visible').slideDown();
+		});
+
+		//leave dropdown
+		$("#navigation .nav-dropdown").mouseleave(function() {
+			if ($(window).width() <= 680) return;
+			$(this).slideUp(150).removeClass('visible');
+		});
+
+		//hide all dropdowns that are not visible when resizing
+		$(window).resize(_.throttle(function() {
+			console.log('resize event');
+			$("#navigation .nav-dropdown:not(.visible)").hide();
+		}, 100));
 	});
 </script>
 

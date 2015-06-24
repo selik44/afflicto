@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Category.php" afterPath="$PROJECT_DIR$/app/Category.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_settings.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_settings.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/base.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/base.sass" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/friluft.css" afterPath="$PROJECT_DIR$/public/css/friluft.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/highpulse.css" afterPath="$PROJECT_DIR$/public/css/highpulse.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/layout.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/partial/navigation_friluft.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/partial/navigation_friluft.blade.php" />
@@ -126,8 +122,8 @@
           <file leaf-file-name="layout.blade.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/views/front/layout.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.76261127" vertical-offset="3326" max-vertical-offset="4060">
-                  <caret line="192" column="66" selection-start-line="192" selection-start-column="66" selection-end-line="192" selection-end-column="66" />
+                <state vertical-scroll-proportion="0.8219585" vertical-offset="3746" max-vertical-offset="4520">
+                  <caret line="215" column="64" selection-start-line="215" selection-start-column="64" selection-end-line="215" selection-end-column="64" />
                   <folding />
                 </state>
               </provider>
@@ -136,11 +132,11 @@
           <file leaf-file-name="navigation_friluft.blade.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/views/front/partial/navigation_friluft.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="940">
-                  <caret line="11" column="59" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
+                <state vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="940">
+                  <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
                   <folding>
-                    <marker date="1435138729369" expanded="true" signature="296:361" placeholder="..." />
-                    <marker date="1435138729369" expanded="true" signature="517:635" placeholder="..." />
+                    <marker date="1435153881233" expanded="true" signature="296:361" placeholder="..." />
+                    <marker date="1435153881233" expanded="true" signature="489:607" placeholder="..." />
                   </folding>
                 </state>
               </provider>
@@ -173,8 +169,8 @@
           <file leaf-file-name="header.sass" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="1.3991098" vertical-offset="2977" max-vertical-offset="5760">
-                  <caret line="196" column="44" selection-start-line="196" selection-start-column="44" selection-end-line="196" selection-end-column="44" />
+                <state vertical-scroll-proportion="0.50445104" vertical-offset="4440" max-vertical-offset="6400">
+                  <caret line="239" column="53" selection-start-line="239" selection-start-column="53" selection-end-line="239" selection-end-column="53" />
                   <folding />
                 </state>
               </provider>
@@ -260,12 +256,12 @@
         <option value="$PROJECT_DIR$/resources/views/front/search.blade.php" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/modules/navigation.sass" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/base.sass" />
-        <option value="$PROJECT_DIR$/resources/views/front/partial/navigation_friluft.blade.php" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/_settings.sass" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
         <option value="$PROJECT_DIR$/app/Category.php" />
-        <option value="$PROJECT_DIR$/resources/views/front/layout.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/front/partial/navigation_friluft.blade.php" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" />
+        <option value="$PROJECT_DIR$/resources/views/front/layout.blade.php" />
       </list>
     </option>
   </component>
@@ -1429,27 +1425,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/front/partial/navigation_friluft.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="940">
-          <caret line="11" column="59" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="13" max-vertical-offset="940">
+          <caret line="16" column="25" selection-start-line="16" selection-start-column="25" selection-end-line="16" selection-end-column="25" />
           <folding>
-            <marker date="1435138729369" expanded="true" signature="296:361" placeholder="..." />
-            <marker date="1435138729369" expanded="true" signature="517:635" placeholder="..." />
+            <marker date="1435153881233" expanded="true" signature="296:361" placeholder="..." />
+            <marker date="1435153881233" expanded="true" signature="489:607" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/front/layout.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.76261127" vertical-offset="3326" max-vertical-offset="4060">
-          <caret line="192" column="66" selection-start-line="192" selection-start-column="66" selection-end-line="192" selection-end-column="66" />
+        <state vertical-scroll-proportion="0.8219585" vertical-offset="3746" max-vertical-offset="4520">
+          <caret line="215" column="64" selection-start-line="215" selection-start-column="64" selection-end-line="215" selection-end-column="64" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.3991098" vertical-offset="2977" max-vertical-offset="5760">
-          <caret line="196" column="44" selection-start-line="196" selection-start-column="44" selection-end-line="196" selection-end-column="44" />
+        <state vertical-scroll-proportion="0.50445104" vertical-offset="4440" max-vertical-offset="6400">
+          <caret line="239" column="53" selection-start-line="239" selection-start-column="53" selection-end-line="239" selection-end-column="53" />
           <folding />
         </state>
       </provider>
