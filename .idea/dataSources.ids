@@ -122,6 +122,14 @@
       <index name="product_relation_product_id_index" unique="false" columns="product_id"/>
       <index name="product_relation_relation_id_index" unique="false" columns="relation_id"/>
     </table>
+    <table name="product_tag" schema="" catalog="friluft" type="TABLE">
+      <column name="product_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="tag_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <foreign-key name="product_tag_tag_id_foreign" columns="tag_id" ref-table="tags" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="product_tag_product_id_foreign" columns="product_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="product_tag_product_id_index" unique="false" columns="product_id"/>
+      <index name="product_tag_tag_id_index" unique="false" columns="tag_id"/>
+    </table>
     <table name="products" schema="" catalog="friluft" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
@@ -148,6 +156,7 @@
       <exported-key name="images_product_id_foreign" table="images" schema="" catalog="friluft" columns="product_id"/>
       <exported-key name="product_relation_product_id_foreign" table="product_relation" schema="" catalog="friluft" columns="product_id"/>
       <exported-key name="product_relation_relation_id_foreign" table="product_relation" schema="" catalog="friluft" columns="relation_id"/>
+      <exported-key name="product_tag_product_id_foreign" table="product_tag" schema="" catalog="friluft" columns="product_id"/>
       <exported-key name="producttabs_product_id_foreign" table="producttabs" schema="" catalog="friluft" columns="product_id"/>
       <exported-key name="variants_product_id_foreign" table="variants" schema="" catalog="friluft" columns="product_id"/>
       <index name="products_manufacturer_id_foreign" unique="false" columns="manufacturer_id"/>
@@ -183,6 +192,14 @@
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="host" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <primary-key name="PRIMARY" columns="id"/>
+    </table>
+    <table name="tags" schema="" catalog="friluft" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="label" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="icon" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="enabled" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="product_tag_tag_id_foreign" table="product_tag" schema="" catalog="friluft" columns="tag_id"/>
     </table>
     <table name="taxgroups" schema="" catalog="friluft" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>

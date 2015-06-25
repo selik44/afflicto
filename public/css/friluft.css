@@ -4377,6 +4377,35 @@ ul.pagination {
         -moz-filter: saturate(50%);
         -o-filter: saturate(50%);
         -ms-filter: saturate(50%); }
+      .products-grid .product > .preview > .overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0px;
+        left: 0px; }
+        .products-grid .product > .preview > .overlay .tags .tag {
+          position: absolute;
+          font-size: 1.4rem;
+          background-color: rgba(3, 161, 169, 0.7);
+          padding: 1rem;
+          color: white;
+          text-transform: uppercase;
+          -webkit-transition: all 300ms;
+                  transition: all 300ms; }
+          .products-grid .product > .preview > .overlay .tags .tag:hover {
+            background-color: rgba(3, 161, 169, 0.9); }
+          .products-grid .product > .preview > .overlay .tags .tag:first-child {
+            left: 0px;
+            top: 0px; }
+          .products-grid .product > .preview > .overlay .tags .tag:nth-child(2) {
+            right: 0px;
+            top: 0px; }
+          .products-grid .product > .preview > .overlay .tags .tag:nth-child(3) {
+            right: 0px;
+            bottom: 0px; }
+          .products-grid .product > .preview > .overlay .tags .tag:nth-child(4) {
+            left: 0px;
+            bottom: 0px; }
     .products-grid .product > .header {
       padding: 1rem; }
       .products-grid .product > .header .title {
@@ -4932,15 +4961,17 @@ iframe {
     -webkit-box-direction: normal;
     -webkit-flex-direction: row;
         -ms-flex-direction: row;
-            flex-direction: row;
-    -webkit-flex-wrap: wrap;
-        -ms-flex-wrap: wrap;
-            flex-wrap: wrap; }
+            flex-direction: row; }
+    @media (max-width: 680px) {
+      #front #page > .inner {
+        -webkit-flex-wrap: wrap;
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap; } }
     #front #page > .inner #aside {
       -webkit-box-flex: 0;
-      -webkit-flex: 0 1 240px;
-          -ms-flex: 0 1 240px;
-              flex: 0 1 240px; }
+      -webkit-flex: 0 0 240px;
+          -ms-flex: 0 0 240px;
+              flex: 0 0 240px; }
       #front #page > .inner #aside > .inner > .block {
         padding: 1rem;
         margin-bottom: 1rem;

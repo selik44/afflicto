@@ -163,6 +163,10 @@ class Product extends Model {
 		return $this->hasMany('Friluft\Image');
 	}
 
+	public function tags() {
+		return $this->belongsToMany('Friluft\Tag');
+	}
+
 	public function sell($amount = 1, $variants = null) {
 		$this->sales += $amount;
 

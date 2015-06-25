@@ -72,10 +72,11 @@ iframe
 			padding: 1rem 0rem
 			display: flex
 			flex-direction: row
-			flex-wrap: wrap
+			@include breakpoint('sm-')
+				flex-wrap: wrap
 
 			#aside
-				flex: 0 1 240px
+				flex: 0 0 240px
 
 				> .inner
 					> .block

@@ -5,6 +5,7 @@ use Friluft\Http\Controllers\Controller;
 use Friluft\Category;
 use Friluft\Manufacturer;
 use Friluft\Product;
+use Friluft\Tag;
 use Friluft\Taxgroup;
 use Friluft\Vatgroup;
 use Illuminate\Http\Request;
@@ -100,6 +101,7 @@ class ProductsController extends Controller {
 		$cats = Category::all();
 		$mfs = Manufacturer::all();
 		$vatgroups = Vatgroup::all();
+		$tags = Tag::all();
 
 		# mock tabs
 		$product->tabs = [
@@ -111,9 +113,10 @@ class ProductsController extends Controller {
 			->with([
 				'product' => $product,
 				'categories' => $cats,
+				'tags' => $tags,
 				'manufacturers' => $mfs,
 				'vatgroups' => $vatgroups,
-				'form' => form('admin.product', ['product' => $product, 'categories' => $cats, 'manufacturers' => $mfs, 'vatgroups' => $vatgroups]),
+				'form' => form('admin.product', ['product' => $product, 'categories' => $cats, 'manufacturers' => $mfs, 'vatgroups' => $vatgroups, 'tags' => $tags]),
 			]);
 	}
 
@@ -138,6 +141,9 @@ class ProductsController extends Controller {
 
 		# sync categories
 		$p->categories()->sync(Input::get('categories', []));
+
+		# sync tags
+		$p->tags()->sync(Input::get('tags', []));
 
 		# success
 		return Redirect::back()->with('success', 'Product updated!');

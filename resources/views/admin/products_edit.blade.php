@@ -5,7 +5,6 @@
 @stop
 
 @section('page')
-    <h2>{{$product->name}}</h2>
     {!! $form->open
         ->action(route('admin.products.update', ['product' => $product]))
         ->method('PUT')
@@ -16,8 +15,16 @@
 	    .tab {background: white;}
     </style>
 
+    <header class="row product-title">
+	    <div class="col-xs-12 tight">
+		    {!! $form->name->class('large')->label(null) !!}
+	    </div>
+    </header>
+
+    <hr/>
+
     <div class="row">
-        <div class="col-xs-6 col-l-7 col-xl-8">
+        <div class="col-l-6 col-xl-8">
 
 	        <div class="product-tabs-row module">
 		        <header class="module-header clearfix">
@@ -216,18 +223,15 @@
 
         </div>
 
-        <div class="product-data-view col-xs-6 col-l-5 col-xl-4">
+        <div class="product-data-view col-l-6 col-xl-4">
             <h4>Product Data</h4>
             <div class="row">
-                <div class="col-xs-2 tight-left">
-                    {!! $form->enabled !!}
-                </div>
-                <div class="col-xs-4">
-                    {!! $form->name !!}
-                </div>
-                <div class="col-xs-6 tight-right">
+	            <div class="col-xs-4 tight-left">
+		            {!! $form->enabled->class('large') !!}
+	            </div>
+	            <div class="col-xs-8 tight-right">
                     {!! $form->slug !!}
-                </div>
+	            </div>
             </div>
 
             <div class="row">
@@ -274,12 +278,9 @@
             </div>
 
             <div class="row">
-                <div class="col-xs-6 tight-left">
-                    {!! $form->manufacturer !!}
-                </div>
-                <div class="col-xs-6 tight-right">
-                    {!! $form->categories !!}
-                </div>
+                {!! $form->manufacturer !!}
+                {!! $form->categories !!}
+	            {!! $form->tags !!}
             </div>
 
             <hr/>
@@ -427,6 +428,7 @@
         form.find('[name="categories[]"]').chosen().next().removeAttr('style').css('width', '100%');
         form.find('[name="vatgroup"]').chosen().next().removeAttr('style').css('width', '100%');
         form.find('[name="manufacturer"]').chosen().next().removeAttr('style').css('width', '100%');
+        form.find('[name="tags[]"]').chosen().next().removeAttr('style').css('width', '100%');
 
         //initialize add variant modal
         $("#add-variant-modal").gsModal();

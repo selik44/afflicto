@@ -24,10 +24,15 @@
 			'fa-plus:admin.add' => 'admin.products.create',
 		]],
 
-		'fa-tag:admin.categories' => ['admin.categories.index', [
-			'fa-tag:admin.all' => 'admin.categories.index',
+		'fa-bars:admin.categories' => ['admin.categories.index', [
+			'fa-bars:admin.all' => 'admin.categories.index',
 			'fa-sitemap:admin.tree view' => 'admin.categories.tree',
 			'fa-plus:admin.create' => 'admin.categories.create',
+		]],
+
+		'fa-tag:admin.tags' => ['admin.tags.index', [
+			'fa-tag:admin.all' => 'admin.tags.index',
+			'fa-plus:admin.add' => 'admin.tags.create',
 		]],
 
 		'fa-plus:admin.receivals' => ['admin.receivals.index', [

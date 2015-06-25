@@ -24,6 +24,7 @@
     "underscore": "~1.8.3",
     "jquery-touchswipe": "~1.6.8",
     "html.sortable": "~0.2.4",
-    "dropzone": "~4.0.1"
+    "dropzone": "~4.0.1",
+    "fontIconPicker": "~2.0.0"
   }
 }

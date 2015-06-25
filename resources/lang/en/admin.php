@@ -48,7 +48,10 @@ return [
 	'manufacturer' => 'Manufacturer',
 	'receivals' => 'Receivals',
 	'receival' => 'Receival',
+	'tag' => 'Tag',
+	'tags' => 'Tags',
 
 	'ready_for_sending' => 'Ready for Sending',
+	'processed' => 'Processed',
 	'ubehandlet' => 'Ubehandlet',
 ];

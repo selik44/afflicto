@@ -10,6 +10,7 @@ $form->open = Former::open(route('admin.products.store'))
 		'slug' => 'required|max:255|slug|unique:products',
 		'manufacturer' => 'required|integer',
 		'categories' => 'array',
+		'tags' => 'array',
 		'summary' => 'max:600',
 		'weight' => 'required|number|min:0',
 		'price' => 'required|number|min:0',
@@ -32,6 +33,8 @@ $form->manufacturer = Former::select('manufacturer')->fromQuery($manufacturers, 
 $form->summary = Former::textarea('summary');
 
 $form->categories = Former::select('categories')->multiple()->fromQuery($categories, 'name', 'id')->name('categories[]')->label('categories');
+
+$form->tags = Former::select('tags')->multiple()->fromQuery($tags, 'label', 'id')->name('tags[]')->label('tags');
 
 $form->weight = Former::text('weight');
 $form->price = Former::text('price');

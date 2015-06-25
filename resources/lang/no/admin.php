@@ -43,4 +43,6 @@ return [
 	'manufacturers' => 'Produsenter',
 	'manufacturer' => 'Produsent',
 	'receivals' => 'Varemottak',
+	'tags' => 'Merknader',
+	'tag' => 'Merknad',
 ];

@@ -13,7 +13,7 @@
 	</title>
 	
 	@section('head')
-		<link href="{{ asset('/css/chosen.min.css')}}" rel="stylesheet">
+		<link href="{{ asset('/css/lib.css')}}" rel="stylesheet">
 		<link href="{{ asset('/css/' .Friluft\Store::current()->machine .'.css') }}" rel="stylesheet">
 	@show
 	
