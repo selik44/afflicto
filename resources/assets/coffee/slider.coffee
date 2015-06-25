@@ -4,7 +4,7 @@
 		defaults:
 			pingPong: no
 			delay: 2000
-			transitionSpeed: 400
+			transitionSpeed: 300
 
 			slideLinks: yes
 			nextLink: no
@@ -48,7 +48,8 @@
 					swipeStatus: @swipeStatus
 					swipeLeft: @swipeLeft
 					swipeRight: @swipeRight
-					threshold: 200
+					threshold: 50
+					allowPageScroll: "vertical"
 
 
 			# relayout
@@ -60,6 +61,9 @@
 			return @
 
 		swipeStatus: (event, phase, direction, distance, duration, fingers) =>
+
+			console.log(event);
+
 			if phase is 'start'
 				# stop the interval
 				@stop()
@@ -85,6 +89,10 @@
 			left = @initialSwipePosition
 
 			if direction is 'left' then dist = -distance else dist = distance
+
+			# at end?
+			if @currentIndex <= 1 and dist < -100 then dist = -100
+			else if @currentIndex == @numSlides and dist > 100 then dist = 100
 
 			# follow fingers!
 			@$container.css 'left': @initialSwipePosition + dist

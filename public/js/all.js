@@ -388,7 +388,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       FriluftSlider.prototype.defaults = {
         pingPong: false,
         delay: 2000,
-        transitionSpeed: 400,
+        transitionSpeed: 300,
         slideLinks: true,
         nextLink: false,
         prevLink: false,
@@ -436,7 +436,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
             swipeStatus: this.swipeStatus,
             swipeLeft: this.swipeLeft,
             swipeRight: this.swipeRight,
-            threshold: 200
+            threshold: 50,
+            allowPageScroll: "vertical"
           });
         }
         this.reLayout();
@@ -446,6 +447,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
 
       FriluftSlider.prototype.swipeStatus = function(event, phase, direction, distance, duration, fingers) {
         var dist, left;
+        console.log(event);
         if (phase === 'start') {
           this.stop();
           this.$container.stop(true, false);
@@ -465,6 +467,11 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
           dist = -distance;
         } else {
           dist = distance;
+        }
+        if (this.currentIndex <= 1 && dist < -100) {
+          dist = -100;
+        } else if (this.currentIndex === this.numSlides && dist > 100) {
+          dist = 100;
         }
         return this.$container.css({
           'left': this.initialSwipePosition + dist

@@ -21,13 +21,13 @@
 		<nav id="navigation">
 			<div class="inner">
                 <div class="nav-controls">
-                    <button class="nav-toggle hidden-m-up end"><i class="fa fa-bars"></i></button>
+                    <button class="nav-toggle hidden-l-up end"><i class="fa fa-bars"></i></button>
 
                     <a href="{{url()}}" class="logo">
                         <img src="{{url('images/' .\Friluft\Store::current()->machine .'.png')}}">
                     </a>
 
-                    <button data-toggle="#cart" class="cart-toggle-top primary end hidden-m-up"><i class="fa fa-shopping-cart"></i> Cart</button>
+                    <button data-toggle="#cart" class="cart-toggle-top primary end hidden-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>
                 </div>
 				<div class="nav-contents">
 					<ul class="nav vertical fancy end navigation">
@@ -35,12 +35,6 @@
 					</ul>
 					
 					<div class="nav-extra">
-						<div class="button-group search-and-cart visible-m">
-							<button data-toggle="#search" class="primary"><i class="fa fa-search"></i></button>
-							<button data-toggle="#cart" class="primary"><i class="fa fa-shopping-cart"></i></button>
-						</div>
-						
-						
 						<form class="inline" id="search" action="{{url('search')}}" method="GET">
                             <div class="input-append">
                                 <input required maxlength="100" type="search" name="terms" placeholder="search...">
@@ -191,30 +185,58 @@
 		$("#navigation .nav .navitem-dropdown-toggle").click(function() {
 			$(this).toggleClass('active');
 			$(this).parent().toggleClass('visible-small').children('.nav-dropdown, ul').first().slideToggle();
+			$(this).parent().toggleClass('visible-small').children('.nav-dropdown, ul').first().css({height: '0px', display: 'block'}).animate({height: 'auto'}, {
+				progress: function() {
+					var li = $(this).parents('li').first();
+
+					li.css('display', 'none');
+					li.outerHeight();
+					li.css('display', 'flex');
+
+					console.log('animating');
+				}
+			});
 		});
+
+		function getDropdown() {
+			var dd = $("#navigation .nav-dropdown.visible");
+			if (dd.length > 0) return dd;
+			return null;
+		};
 
 		//toggle nav-dropdowns on large+
 		$("#navigation .nav-contents > ul.nav > li > a").mouseenter(function() {
 			if ($(window).width() <= 680) return;
 
 			var dropdown = $(this).parent('li').children('.nav-dropdown');
-			if (dropdown.hasClass('visible')) return;
+			var current = getDropdown();
 
-			$("#navigation .nav-dropdown.visible").removeClass('visible').stop(true, true).slideUp();
-			dropdown.toggleClass('visible').slideDown();
+			if (current != null) {
+				$("#navigation .nav-contents .nav-dropdown").each(function() {
+					if ($(this).is(dropdown) == false) {
+						$(this).stop(true, true).removeClass('visible').slideUp(150);
+					}
+				});
+
+				dropdown.addClass('visible').stop(false, true).slideDown(250);
+			}else {
+				dropdown.addClass('visible').stop(false, true).slideDown(250);
+			}
 		});
 
 		//leave dropdown
 		$("#navigation .nav-dropdown").mouseleave(function() {
 			if ($(window).width() <= 680) return;
-			$(this).slideUp(150).removeClass('visible');
+			$(this).stop(false, true).slideUp(150).removeClass('visible');
 		});
 
 		//hide all dropdowns that are not visible when resizing
 		$(window).resize(_.throttle(function() {
-			console.log('resize event');
 			$("#navigation .nav-dropdown:not(.visible)").hide();
 		}, 100));
+
+		//DEV MODE
+		//$(".nav-contents ul li:nth-child(3)").find('.nav-dropdown').slideDown(50).addClass('visible');
 	});
 </script>
 
