@@ -108,6 +108,9 @@ class StoreController extends Controller {
 			$this->createOrder(Input::get('klarna_order'));
 		}
 
+		# clean up the cart & order
+		Cart::clear();
+
 		return view('front.store.success');
 	}
 
