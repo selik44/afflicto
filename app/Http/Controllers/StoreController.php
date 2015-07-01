@@ -87,7 +87,6 @@ class StoreController extends Controller {
 			$order = Cart::getKlarnaOrder();
 		}
 
-
 		return view('front.store_checkout')
 			->with([
 				'snippet' => $order['gui']['snippet'],

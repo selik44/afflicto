@@ -27,7 +27,7 @@
                         <img src="{{url('images/' .\Friluft\Store::current()->machine .'.png')}}">
                     </a>
 
-                    <button data-toggle="#cart" class="cart-toggle-top primary end hidden-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>
+                    <button class="cart-toggle primary end hidden-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>
                 </div>
 				<div class="nav-contents">
 					<ul class="nav vertical fancy end navigation">
@@ -50,13 +50,11 @@
 				</div>
 
 				@if(\Request::route()->getName() != 'store.checkout')
-				<div class="cart-container">
-					<div id="cart" style="display: none;">
-						<div class="inner">
-							@include('front.partial.cart', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal()])
-							<br>
-							<a class="button large primary" href="{{route('store.checkout')}}">Checkout</a>
-						</div>
+				<div class="cart-container" style="display: none;">
+					<div class="inner">
+						@include('front.partial.cart-table', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal()])
+						<hr>
+						<a class="button large primary pull-right" href="{{route('store.checkout')}}">Checkout</a>
 					</div>
 				</div>
 				@endif
@@ -167,6 +165,15 @@
 		}, 50));
 
 
+		//toggle cart cotnainer
+		$("#header .cart-toggle").click(function() {
+			var cart = $("#header .cart-container");
+			cart.stop(false, false).slideToggle().toggleClass('visible');
+
+			$(this).toggleClass('active');
+		});
+
+
 		//toggle nav-contents on small devices
 		$("#header .nav-toggle").click(function() {
 			$(this).toggleClass('active');
@@ -214,20 +221,20 @@
 			if (current != null) {
 				$("#navigation .nav-contents .nav-dropdown").each(function() {
 					if ($(this).is(dropdown) == false) {
-						$(this).stop(true, true).removeClass('visible').slideUp(150);
+						$(this).stop(false, false).removeClass('visible').slideUp(150);
 					}
 				});
 
-				dropdown.addClass('visible').stop(false, true).slideDown(250);
+				dropdown.addClass('visible').stop(false, false).slideDown(250);
 			}else {
-				dropdown.addClass('visible').stop(false, true).slideDown(250);
+				dropdown.addClass('visible').stop(false, false).slideDown(250);
 			}
 		});
 
 		//leave dropdown
 		$("#navigation .nav-dropdown").mouseleave(function() {
 			if ($(window).width() <= 680) return;
-			$(this).stop(false, true).slideUp(150).removeClass('visible');
+			$(this).stop(false, false).slideUp(150).removeClass('visible');
 		});
 
 		//hide all dropdowns that are not visible when resizing

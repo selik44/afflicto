@@ -17,6 +17,7 @@
 
 	#navigation
 		position: relative
+		z-index: 200
 		background: stronger($base-background, 20%)
 		flex: 1 1 auto
 
@@ -128,9 +129,21 @@
 									background: weaker($base-background, 17%)
 									width: 100%
 									padding-left: 3rem
+		.cart-container
+			position: absolute
+			top: 100%
+			right: 0px
+			z-index: 100
+			width: 100%
+			background: weaker($base-background, 10%)
+			box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.3)
+			border: 1px solid $base-border-color
+			border-radius: $base-radius
+			padding: 1rem
+
 
 	//----------- SMALL ONLY ----------//
-	@include breakpoint('sm-')
+	@include breakpoint('m-')
 		#search .input-append
 			input
 				flex: 1 1 auto
@@ -144,6 +157,10 @@
 
 	//----------- LARGE UP ------------//
 	@include breakpoint('l+')
+		.cart-container
+			right: 1rem
+			max-width: 600px
+
 		#navigation
 			> .inner
 				display: flex

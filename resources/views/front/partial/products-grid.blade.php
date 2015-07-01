@@ -45,7 +45,7 @@
 					<h5 class="name end">{{$product->name}}</h5>
 				</div>
 
-				<h3 class="price end">{{$product->price}},-</h3>
+				<h3 class="price end">{{$product->price * $product->vatgroup->amount}},-</h3>
 			</header>
 
 			<footer class="footer">

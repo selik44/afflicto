@@ -14,7 +14,7 @@
 		<div class="module">
 			<div class="module-header"><h4>Cart</h4></div>
 			<div class="module-content">
-				@include('front.partial.cart')
+				@include('front.partial.cart-table')
 			</div>
 		</div>
 

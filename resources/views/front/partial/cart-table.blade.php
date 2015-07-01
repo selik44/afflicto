@@ -1,20 +1,21 @@
-<div id="cart-manager">
+<div class="cart-table">
 	@if(count($items) == 0)
-		<p class="lead text-center">Your cart is empty!</p>
+		<p class="lead text-center empty-message">Your cart is empty!</p>
 	@else
-		<table class="cart-table bordered">
+		<table class="bordered striped">
 			<thead>
-			<tr>
-				<th></th>
-				<th>Quantity</th>
-				<th>Subtotal</th>
-			</tr>
+				<tr>
+					<th colspan="2">Product</th>
+					<th>Quantity</th>
+					<th>Subtotal</th>
+				</tr>
 			</thead>
 			<tfoot>
-			<tr>
-				<th colspan="3"><h4 class="end">Total:</h4></th>
-				<th><h4 class="end">{{$total}},-</h4></th>
-			</tr>
+				<tr>
+					<th class="total">
+						<h3 class="end cart-total"><span class="title">Total: </span><span class="value">{{$total}}</span>,-</h3>
+					</th>
+				</tr>
 			</tfoot>
 			<tbody>
 			@foreach($items as $item)
@@ -23,31 +24,29 @@
 				?>
 				<tr class="item" data-id="{{$item['id']}}" data-price="{{$model->price * $model->vatgroup->amount}}">
 					<td>
-						<div class="col-xs-4">
-							<a href="{{$item['url']}}"><img class="thumbnail" src="{{asset('images/products/' .$item['model']->images()->first()->name)}}"></a>
-						</div>
-						<div class="col-xs-6">
-							<h5>{{$model['name']}}</h5>
+						<a href="{{$item['url']}}"><img class="thumbnail" src="{{asset('images/products/' .$item['model']->images()->first()->name)}}"></a>
+					</td>
 
-							<ul class="variants">
-								@foreach($model->variants as $variant)
-									<li class="variant" data-id="{{$variant->id}}">
-										<strong>{{$variant->name}}</strong>: <span>{{$item['options']['variants'][$variant->id]}}</span>
-									</li>
-								@endforeach
-							</ul>
-						</div>
+					<td>
+						<h5>{{$model['name']}}</h5>
+						<ul class="variants">
+							@foreach($model->variants as $variant)
+								<li class="variant" data-id="{{$variant->id}}">
+									<strong>{{$variant->name}}</strong>: <span>{{$item['options']['variants'][$variant->id]}}</span>
+								</li>
+							@endforeach
+						</ul>
 					</td>
 
 					<td class="quantity">
 						<div class="input-append">
-							<input type="number" min="1" name="quantity" style="width: 60px;" value="{{$item['quantity']}}">
+							<input type="number" min="1" name="quantity" value="{{$item['quantity']}}">
 							<button title="Remove" class="error remove appended"><i class="fa fa-trash"></i></button>
 						</div>
 					</td>
 
 					<td class="subtotal">
-						<h6 class="end"><span class="value">{{($model->price * $model->vatgroup->amount) * $item['quantity']}}</span>,-</h6>
+						<h4 class="end"><span class="value">{{($model->price * $model->vatgroup->amount) * $item['quantity']}}</span>,-</h4>
 					</td>
 				</tr>
 			@endforeach
@@ -59,7 +58,7 @@
 @section('scripts')
 @parent
 	<script>
-		var cart = $("#cart-manager");
+		var cart = $(".cart-table");
 
 		function klarnaSuspend() {
 			if (typeof window._klarnaCheckout !== 'undefined') {
@@ -132,7 +131,7 @@
 
 					//is the cart empty? If so, redirect to home
 					if (cart.find('.item').length <= 0) {
-						window.location.href = Friluft.URL;
+						//window.location.href = Friluft.URL;
 					}
 				});
 

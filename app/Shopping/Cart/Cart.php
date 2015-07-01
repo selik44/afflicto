@@ -210,6 +210,7 @@ class Cart {
 		}
 
 		# add shipping costs
+		/*
 		$weight = $this->getTotalWeight();
 		$total = $this->getTotal();
 		$shippingFee = 9900;
@@ -225,6 +226,7 @@ class Cart {
 			'unit_price' => $shippingFee,
 			'tax_rate' => 0,
 		];
+		*/
 
 		return $data;
 	}
@@ -242,6 +244,16 @@ class Cart {
 
 		return $order->update($this->getKlarnaOrderData());
 	}
+
+	/*
+	 * TODO: implement these color value thingies
+	$order['options']['color_button'] = '#04C5CF';
+	$order['options']['color_button_text'] = '#FFF';
+	$order['options']['color_header'] = '#04C5CF';
+	$order['options']['color_link'] = '#04C5CF';
+	$order['options']['color_checkbox'] = '#04C5CF';
+	$order['options']['color_checkbox_checkmark'] = '#fff';
+	*/
 
 	public function getKlarnaOrder($id = null) {
 		# get specific order?

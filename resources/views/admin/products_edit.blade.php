@@ -257,7 +257,7 @@
 
             <div class="row">
                 <div class="col-xs-6 tight-left">
-                    {!! $form->price !!}
+                    {!! $form->price->help('Inkl MVA: <span class="value">255</span>,-') !!}
                 </div>
 
                 <div class="col-xs-6 tight-right">
@@ -285,7 +285,9 @@
 
             <hr/>
 
-            {!! $form->summary !!}
+	        <div class="row">
+                {!! $form->summary !!}
+	        </div>
         </div>
     </div>
 
@@ -524,6 +526,7 @@
         //auto-price
         var profit = form.find('[name="profit"]');
         var price = form.find('[name="price"]');
+        var priceHelp = price.parent('.controls').find('.muted .value');
         var vatgroup = form.find('[name="vatgroup"]');
         var inprice = form.find('[name="inprice"]');
 
@@ -546,13 +549,26 @@
             return parseFloat(price.val());
         }
 
+        function calculateProfit() {
+	        var profit = (getPrice() / getTaxPercent()) - getInPrice();
+	        return Math.round(profit * 100) / 100;
+        }
+
         profit.bind('keyup', function(e) {
             price.val((getProfit() + getInPrice()) * getTaxPercent());
+	        priceHelp.html(getPrice() * getTaxPercent());
         });
 
         price.bind('keyup', function(e) {
-            var calculatedProfit = (getPrice() / getTaxPercent()) - getInPrice();
-            profit.val(calculatedProfit);
+            profit.val(calculateProfit());
+        });
+
+        inprice.bind('keyup', function(e) {
+	        profit.val(calculateProfit());
+        });
+
+        vatgroup.bind('change', function(e) {
+	        profit.val(calculateProfit());
         });
 
         //set profit value

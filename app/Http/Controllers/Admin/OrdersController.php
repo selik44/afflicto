@@ -43,6 +43,10 @@ class OrdersController extends Controller {
 						$productID = $item['reference']['id'];
 						$product = Product::find($productID);
 
+						if ($product == null) {
+							return "Invalid product data";
+						}
+
 						# get stock and name
 						$stock = $product->stock;
 						$name = $product->name;

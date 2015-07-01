@@ -29,7 +29,7 @@
                     </p>
                     <p>
                         <strong>@lang('admin.products_list_price'): </strong>
-                        <span>{{$product->price / $product->vatgroup->amount}},- | {{$product->price}},-</span>
+                        <span>{{$product->price}},- | {{$product->price * $product->vatgroup->amount}},-</span>
                     </p>
                     <p>
                         <strong>@lang('admin.sales'): </strong>

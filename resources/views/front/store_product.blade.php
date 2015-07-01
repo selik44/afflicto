@@ -18,7 +18,7 @@
 				</h2>
 			</div>
 			</h1>
-			<h1 class="price end pull-right"><strong>{{$product->price}},-</strong></h1>
+			<h1 class="price end pull-right"><strong>{{$product->price * $product->vatgroup->amount}},-</strong></h1>
 		</header>
 
 		<div class="product-top col-xs-12 tight">
