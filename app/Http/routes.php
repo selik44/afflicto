@@ -14,7 +14,6 @@ if (in_array($locale, $languages)) {
 	$locale = '';
 }
 
-
 Route::group(['prefix' => $locale], function() {
 
 	# home
@@ -55,6 +54,7 @@ Route::group(['prefix' => $locale], function() {
 
 	# cart API
 	get('cart', ['as' => 'cart.index', 'uses' => 'CartController@index']);
+	get('cart/clear', ['as' => 'cart.clear', 'uses' => 'CartController@clear']);
 	get('cart/{cart}', ['as' => 'cart.show', 'uses' => 'CartController@show']);
 	post('cart', ['as' => 'cart.store', 'uses' => 'CartController@store']);
 	put('cart/{id}/quantity', ['as' => 'cart.quantity', 'uses' => 'CartController@setQuantity']);

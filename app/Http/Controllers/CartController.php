@@ -94,4 +94,9 @@ class CartController extends Controller {
 		return response('OK');
 	}
 
+	public function clear() {
+		Cart::clear();
+		return response('OK');
+	}
+
 }
