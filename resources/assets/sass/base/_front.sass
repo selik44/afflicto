@@ -57,12 +57,23 @@ iframe
 	
 	#slider
 		> .inner
-			max-width: 1440px
+			max-width: $base-width
 
 			.slider
 				border: none
 				border-radius: 0
 				height: 500px
+
+			.slider, .image
+				border: 1px solid $base-border-color
+
+			.image
+				transition: all $base-transition-duration
+				transition-timing-function: ease-out
+				filter: saturate(20%)
+
+				&:hover
+					filter: saturate(100%)
 
 	#page
 		border-bottom: 1px solid stronger($base-border-color, 10%)

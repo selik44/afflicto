@@ -5,10 +5,26 @@
 @stop
 
 @section('slider')
-	<div class="slider">
-		<div class="container">
-			<div style="background-image: url('{{asset('/images/slides/highpulse_compression.jpg')}}');" class="slide"></div>
-			<div style="background-image: url('{{asset('/images/slides/neon_compression.jpg')}}');" class="slide"></div>
+	<div class="row end">
+		<div class="left col-l-3 tight visible-l-up">
+			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/800/500/technics'); background-size: cover; background-position: center;">
+			</div>
+			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/800/500/sports'); background-size: cover; background-position: center;">
+			</div>
+		</div>
+		<div class="middle col-l-6 tight">
+			<div class="slider">
+				<div class="container">
+					<div style="background-image: url('{{asset('/images/slides/highpulse_compression.jpg')}}');" class="slide"></div>
+					<div style="background-image: url('{{asset('/images/slides/neon_compression.jpg')}}');" class="slide"></div>
+				</div>
+			</div>
+		</div>
+		<div class="tight col-l-3 tight visible-l-up">
+			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/800/500/abstract'); background-size: cover; background-position: center;">
+			</div>
+			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/800/500/sports'); background-size: cover; background-position: center;">
+			</div>
 		</div>
 	</div>
 @stop
@@ -21,7 +37,7 @@
 		$("#slider .slider").friluftSlider({
 			delay: 4000,
 			transitionSpeed: 600,
-			autoHeight: true,
+			autoHeight: false,
 			heightRatio: 7 / 16
 		});
 	</script>
@@ -29,39 +45,30 @@
 
 
 @section('article')
-	<h2>@lang('store.popular')</h2>
-	<div class="row" id="popular">
-		<?php $i = 0; ?>
-		@foreach(\Friluft\Product::all()->take(5) as $product)
-			<div class="product col-xs-12 col-sm-6 col-m-4 col-l-3">
-				<a style="background-size: contain; background-position: center; background-repeat: no-repeat; display: block; width: 100%; height: 200px; background-image: url('{{$product->getImageURL()}}');" class="thumbnail" href="{{$product->getPath()}}"></a>
+	<h2 class="end">@lang('store.popular')</h2>
 
-				<h4 class="title text-center">
+	<hr/>
 
-				</h4>
-
-				<a class="link" href="{{$product->getPath()}}" style="text-decoration: none;">
-					<h4 class="end text-uppercase text-center">{{$product->manufacturer->name}}</h4>
-					<h5 class="end text-center">{{$product->name}}</h5>
-				</a>
-
-			<?php $i++;?>
+	<div class="row products-popular">
+		@foreach(\Friluft\Product::all()->take(4) as $product)
+			<div class="col-m-6 col-l-3 tight">
+				@include('front.partial.products-block', ['product' => $product])
 			</div>
 		@endforeach
 	</div>
 
-	<hr style="margin-top: 1rem;"/>
+	<hr/>
 
 	<div class="row">
 		<div class="col-xs-6 tight">
 			<a href="#">
-				<img src="http://lorempixel.com/600/600/abstract"/>
+				<img src="http://lorempixel.com/800/600/abstract"/>
 			</a>
 		</div>
 
 		<div class="col-xs-6 tight">
 			<a href="#">
-				<img src="http://lorempixel.com/600/600/sports"/>
+				<img src="http://lorempixel.com/800/600/sports"/>
 			</a>
 		</div>
 	</div>
