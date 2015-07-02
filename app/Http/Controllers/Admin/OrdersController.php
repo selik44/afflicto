@@ -153,8 +153,7 @@ class OrdersController extends Controller {
 
 		# activate klarna?
 		if (Input::get('activate', 'off') == 'on') {
-
-			if (!$this->klarna->activate($order->reservation)) {
+			if (!$this->klarna->activate($order->klarna_id)) {
 				return Redirect::back()->with('warning', 'Order updated but it has already been activated in Klarna');
 			}
 		}
