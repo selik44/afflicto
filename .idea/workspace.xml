@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/front/partial/products-block.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/front/partial/product-view.blade.php" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/products-block.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/base.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/base.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/friluft.css" afterPath="$PROJECT_DIR$/public/css/friluft.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/highpulse.css" afterPath="$PROJECT_DIR$/public/css/highpulse.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/home.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/home.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/partial/products-grid.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/partial/products-grid.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/products-grid.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/products-grid.sass" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
@@ -93,16 +85,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="home.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/front/home.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1600">
-              <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.7215007" vertical-offset="0" max-vertical-offset="1600">
+              <caret line="25" column="110" selection-start-line="25" selection-start-column="110" selection-end-line="25" selection-end-column="110" />
               <folding>
                 <element signature="e#206#357#0#HTML" expanded="true" />
                 <element signature="e#391#540#0#HTML" expanded="true" />
                 <element signature="e#984#1135#0#HTML" expanded="true" />
-                <element signature="e#1169#1318#0#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,10 +109,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_front.sass" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_front.sass" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/_front.sass">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6798867" vertical-offset="960" max-vertical-offset="2680">
+            <state vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="2680">
               <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
               <folding />
             </state>
@@ -210,8 +201,8 @@
         <option value="$PROJECT_DIR$/resources/assets/sass/base/modules/products-block.sass" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/modules/products-grid.sass" />
         <option value="$PROJECT_DIR$/resources/views/front/layout.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/front/home.blade.php" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
+        <option value="$PROJECT_DIR$/resources/views/front/home.blade.php" />
       </list>
     </option>
   </component>
@@ -1246,7 +1237,7 @@
         <state vertical-scroll-proportion="0.4815864" vertical-offset="0" max-vertical-offset="880">
           <caret line="17" column="48" selection-start-line="17" selection-start-column="48" selection-end-line="17" selection-end-column="48" />
           <folding>
-            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#div#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1275,19 +1266,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/front/home.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1600">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
-          <folding>
-            <element signature="e#206#357#0#HTML" expanded="true" />
-            <element signature="e#391#540#0#HTML" expanded="true" />
-            <element signature="e#984#1135#0#HTML" expanded="true" />
-            <element signature="e#1169#1318#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/modules/products-block.sass">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2280">
@@ -1298,9 +1276,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/_front.sass">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6798867" vertical-offset="960" max-vertical-offset="2680">
+        <state vertical-scroll-proportion="0.0" vertical-offset="960" max-vertical-offset="2680">
           <caret line="72" column="37" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/front/home.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7215007" vertical-offset="0" max-vertical-offset="1600">
+          <caret line="25" column="110" selection-start-line="25" selection-start-column="110" selection-end-line="25" selection-end-column="110" />
+          <folding>
+            <element signature="e#206#357#0#HTML" expanded="true" />
+            <element signature="e#391#540#0#HTML" expanded="true" />
+            <element signature="e#984#1135#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -7,9 +7,9 @@
 @section('slider')
 	<div class="row end">
 		<div class="left col-l-3 tight visible-l-up">
-			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/800/500/technics'); background-size: cover; background-position: center;">
+			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/300/200/technics'); background-size: cover; background-position: center;">
 			</div>
-			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/800/500/sports'); background-size: cover; background-position: center;">
+			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/300/200/sports'); background-size: cover; background-position: center;">
 			</div>
 		</div>
 		<div class="middle col-l-6 tight">
@@ -21,9 +21,9 @@
 			</div>
 		</div>
 		<div class="tight col-l-3 tight visible-l-up">
-			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/800/500/abstract'); background-size: cover; background-position: center;">
+			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/300/200/abstract'); background-size: cover; background-position: center;">
 			</div>
-			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/800/500/sports'); background-size: cover; background-position: center;">
+			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/300/200/sports'); background-size: cover; background-position: center;">
 			</div>
 		</div>
 	</div>
