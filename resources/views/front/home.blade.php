@@ -47,7 +47,7 @@
 @section('article')
 	<h2 class="end">@lang('store.popular')</h2>
 
-	<hr/>
+	<hr style="margin-top: 0px">
 
 	<div class="row products-popular">
 		@foreach(\Friluft\Product::all()->take(4) as $product)
