@@ -112,7 +112,7 @@ class OrdersController extends Controller {
 
 	public function activate(Order $order) {
 		try {
-			$this->klarna->activate($order->reservation);
+			$this->klarna->activate((int) $order->reservation);
 		} catch (\KlarnaException $e) {
 			return \Redirect::route('admin.orders.index')->with('error', 'Klarna could not activate the order: ' .$e->getMessage());
 		}
