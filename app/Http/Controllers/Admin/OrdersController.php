@@ -153,7 +153,7 @@ class OrdersController extends Controller {
 
 		# activate klarna?
 		if (Input::get('activate', 'off') == 'on') {
-			if (!$this->klarna->activate($order->klarna_id)) {
+			if (!$this->klarna->activate($order->reservation)) {
 				return Redirect::back()->with('warning', 'Order updated but it has already been activated in Klarna');
 			}
 		}
@@ -161,10 +161,11 @@ class OrdersController extends Controller {
 		return Redirect::back()->with('success', 'Order updated.' .Input::get('activate', '0'));
 	}
 
-	/**
-	 * Generates a multi-page PDF of multiple packlists.
-	 * @return Response
-	 */
+    /**
+     * Generates a multi-page PDF of multiple packlists.
+     * @param $orders
+     * @return Response
+     */
 	public function getMultiPacklist($orders) {
 
 		# get orders

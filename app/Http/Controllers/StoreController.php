@@ -106,6 +106,7 @@ class StoreController extends Controller {
 		$order = Order::where('reservation', '=', $data['reservation'])->first();
 		if (!$order) {
 			$this->createOrder(Input::get('klarna_order'));
+            Log::info("store.success: Creating order.");
 		}
 
 		# clean up the cart & order
@@ -124,6 +125,7 @@ class StoreController extends Controller {
 		$order = Order::where('reservation', '=', $data['reservation'])->first();
 		if (!$order) {
 			$order = $this->createOrder(Input::get('klarna_order'));
+            Log::info("store.push: Creating order.");
 		}
 
 		# update the order with new data

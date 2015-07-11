@@ -53,7 +53,7 @@ class Import extends Command {
 		$cats = Mystore::categories();
 		foreach($cats as $cat) {
 			$c = new Category();
-			$c->name = $cat['name'];
+			$c->name = ucwords(strtolower($cat['name']));
 			$c->slug = Str::slug($c->name);
 			$c->save();
 
