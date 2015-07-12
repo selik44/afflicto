@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="Local" uuid="d8446091-4e8e-463e-b3ab-ce54af6051b6">
-      <secret-storage>master_key</secret-storage>
-      <user-name>root</user-name>
-      <schema-pattern>friluft.*</schema-pattern>
-      <default-schemas>friluft.*</default-schemas>
-    </data-source>
     <data-source name="Staging" uuid="bc0d4b35-8296-42b1-b50f-cbae24601911">
       <user-name>root</user-name>
+      <user-password>df93df99dfdddfc9dfd8dff3df98dfefdfe4dfc3</user-password>
+    </data-source>
+    <data-source name="Local" uuid="b70391ad-1f84-4357-95ee-cb4cd3ded70e">
+      <user-name>root</user-name>
+      <user-password>dfc1dfcbdfc1dfcf</user-password>
     </data-source>
   </component>
 </project>

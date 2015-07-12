@@ -6,14 +6,12 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://123friluft.tk:3306/friluft</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>df93df99dfdddfc9dfd8dff3df98dfefdfe4dfc3</user-password>
       <driver-properties>
         <property name="characterEncoding" value="utf8" />
         <property name="yearIsDateType" value="false" />
-        <property name="tinyInt1isBit" value="false" />
-        <property name="characterSetResults" value="utf8" />
         <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="tinyInt1isBit" value="false" />
       </driver-properties>
       <libraries />
     </data-source>
@@ -22,8 +20,6 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/friluft</jdbc-url>
-      <user-name>root</user-name>
-      <user-password>dfc1dfcbdfc1dfcf</user-password>
       <driver-properties>
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
@@ -32,4 +28,3 @@
     </data-source>
   </component>
 </project>
-

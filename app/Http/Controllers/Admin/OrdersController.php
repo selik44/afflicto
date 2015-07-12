@@ -23,6 +23,7 @@ class OrdersController extends Controller {
 			env('KLARNA_MERCHANT_ID'),
 			env('KLARNA_SHARED_SECRET'),
 			\KlarnaCountry::NO,
+			\KlarnaLanguage::NB,
 			\KlarnaCurrency::NOK,
 			Klarna::BETA,
 			'json',
