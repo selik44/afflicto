@@ -45,7 +45,7 @@
                                 @endif
                             </td>
                             <td>{{$item['quantity']}}</td>
-                            <td>{{$item->total_price_including_tax / 100}}</td>
+                            <td>{{$item['total_price_including_tax'] / 100}}</td>
                         </tr>
                     @endforeach
                 </tbody>
