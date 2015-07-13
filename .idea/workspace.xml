@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -95,14 +94,14 @@
       <file leaf-file-name="orders_edit.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48987854">
-              <caret line="164" column="60" selection-start-line="164" selection-start-column="60" selection-end-line="164" selection-end-column="60" />
+            <state vertical-scroll-proportion="0.8875">
+              <caret line="172" column="12" selection-start-line="172" selection-start-column="12" selection-end-line="172" selection-end-column="12" />
               <folding>
-                <marker date="1436758847109" expanded="true" signature="176:181" placeholder="..." />
-                <marker date="1436758847109" expanded="true" signature="195:231" placeholder="..." />
-                <marker date="1436758847109" expanded="true" signature="244:246" placeholder="..." />
-                <marker date="1436758847109" expanded="true" signature="5124:5397" placeholder="..." />
-                <marker date="1436758847109" expanded="true" signature="5125:5380" placeholder="..." />
+                <marker date="1436758943685" expanded="true" signature="176:181" placeholder="..." />
+                <marker date="1436758943685" expanded="true" signature="195:231" placeholder="..." />
+                <marker date="1436758943685" expanded="true" signature="244:246" placeholder="..." />
+                <marker date="1436758943685" expanded="true" signature="5138:5411" placeholder="..." />
+                <marker date="1436758943685" expanded="true" signature="5139:5394" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -796,7 +795,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15677084" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27653062" sideWeight="0.4424307" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2489339" sideWeight="0.49812266" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23785926" sideWeight="0.53198296" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4172448" sideWeight="0.53198296" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17697228" sideWeight="0.22853369" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29513183" sideWeight="0.45101172" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1238,14 +1237,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48987854">
-          <caret line="164" column="60" selection-start-line="164" selection-start-column="60" selection-end-line="164" selection-end-column="60" />
+        <state vertical-scroll-proportion="0.8875">
+          <caret line="172" column="12" selection-start-line="172" selection-start-column="12" selection-end-line="172" selection-end-column="12" />
           <folding>
-            <marker date="1436758847109" expanded="true" signature="176:181" placeholder="..." />
-            <marker date="1436758847109" expanded="true" signature="195:231" placeholder="..." />
-            <marker date="1436758847109" expanded="true" signature="244:246" placeholder="..." />
-            <marker date="1436758847109" expanded="true" signature="5124:5397" placeholder="..." />
-            <marker date="1436758847109" expanded="true" signature="5125:5380" placeholder="..." />
+            <marker date="1436758943685" expanded="true" signature="176:181" placeholder="..." />
+            <marker date="1436758943685" expanded="true" signature="195:231" placeholder="..." />
+            <marker date="1436758943685" expanded="true" signature="244:246" placeholder="..." />
+            <marker date="1436758943685" expanded="true" signature="5138:5411" placeholder="..." />
+            <marker date="1436758943685" expanded="true" signature="5139:5394" placeholder="..." />
           </folding>
         </state>
       </provider>

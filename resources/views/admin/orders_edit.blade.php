@@ -170,6 +170,8 @@
             </div>
         </div>
 
+        <hr>
+
 		<div id="status" class="module">
 			<header class="module-header">
 				<h6 class="end">Status</h6>
