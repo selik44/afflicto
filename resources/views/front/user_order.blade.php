@@ -37,11 +37,11 @@
                 <tbody>
                     @foreach($order->items as $item)
                         <tr>
-                            <td>
+                            <>
                                 @if($item['name'] == 'shipping_costs')
-                                    <td>Shipping</td>
+                                    Shipping
                                 @else
-                                    <td>{{$item['name']}}</td>
+                                    {{$item['name']}}
                                 @endif
                             </td>
                             <td>{{$item['quantity']}}</td>
