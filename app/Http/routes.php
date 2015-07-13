@@ -37,9 +37,17 @@ Route::group(['prefix' => $locale], function() {
 		get('forgot', ['as' => 'user.forgot', 'uses' => 'AuthController@get_forgot']);
 		post('forgot', ['as' => 'user.forgot.post', 'uses' => 'AuthController@post_forgot']);
 
+        # reset
 		get('reset/{token}', ['as' => 'user.reset', 'uses' => 'AuthController@get_reset']);
 		post('reset', ['as' => 'user.reset.post', 'uses' => 'AuthController@post_reset']);
-	});
+
+        # dashboard
+        Route::group(['middleware' => 'auth'], function() {
+            get('/', ['as' => 'user', 'uses' => 'UserController@index']);
+            get('orders', ['as' => 'user.orders', 'uses' => 'UserController@getOrders']);
+            get('order/{order}', ['as' => 'user.order', 'uses' => 'UserController@getOrder']);
+        });
+    });
 
 	# store
 	get('store/checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);

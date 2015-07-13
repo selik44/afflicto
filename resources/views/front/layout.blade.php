@@ -7,7 +7,7 @@
 		<nav id="navigation-top">
 			<ul class="inner nav end">
 				<li><a href="#">Help</a></li>
-				<li><a href="#">Account</a></li>
+				<li><a href="{{route('user')}}">Account</a></li>
 				<li><a href="#">Contact</a></li>
                 @if(Auth::user())
                     @if (Auth::user()->role->has('admin.access'))

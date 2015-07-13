@@ -29,6 +29,21 @@ Breadcrumbs::register('search', function($bc) {
 	$bc->push('Search', url('/search'));
 });
 
+Breadcrumbs::register('user', function($bc) {
+    $bc->parent('home');
+    $bc->push('User', url('/user'));
+});
+
+Breadcrumbs::register('user.orders', function($bc) {
+    $bc->parent('user');
+    $bc->push('Orders', url('user/orders'));
+});
+
+Breadcrumbs::register('user.order', function($bc, $order) {
+    $bc->parent('user.orders');
+    $bc->push('Order', route('user.order', ['order' => $order]));
+});
+
 Breadcrumbs::register('store', function($bc) {
 	$bc->parent('home');
 	$bc->push('Store', url('/store'));
