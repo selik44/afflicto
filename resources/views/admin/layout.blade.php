@@ -9,13 +9,16 @@
 		<header id="header">
 			@section('header')
 				<ul class="nav end">
-				@foreach(\Friluft\Store::all() as $store)
-					@if($store->name == \Friluft\Store::current()->name)
-						<li class="current"><a href="http://{{$store->host}}.tk/{{Request::path()}}">{{$store->name}}</a></li>
-					@else
-						<li><a href="http://{{$store->host}}.tk/{{Request::path()}}">{{$store->name}}</a></li>
-					@endif
-				@endforeach
+                    <li>
+                        <a href="/">View Site</a>
+                    </li>
+                    @foreach(\Friluft\Store::all() as $store)
+                        @if($store->name == \Friluft\Store::current()->name)
+                            <li class="pull-right current"><a href="http://{{$store->host}}.tk/{{Request::path()}}">{{$store->name}}</a></li>
+                        @else
+                            <li class="pull-right"><a href="http://{{$store->host}}.tk/{{Request::path()}}">{{$store->name}}</a></li>
+                        @endif
+                    @endforeach
 				</ul>
 			@show
 		</header>
