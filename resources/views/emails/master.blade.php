@@ -4,6 +4,13 @@
 	<title>
 		{{$title}}
 	</title>
+
+    <style>
+        <?php
+            echo file_get_contents(base_path('public/css/lib.css'));
+            echo file_get_contents(base_path('public/css/friluft.css'));
+        ?>
+    </style>
 </head>
 <body>
 	<div class="module clearfix ninesixty">

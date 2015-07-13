@@ -25,25 +25,17 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Move complicated controller logic to commands, for extendability?
 - Move all closure routes to controllers, so we can cache routes.
 - Architecture: Requests, Events, Commands etc.
-- Caching: Implement caching, look at varnish cache? memcach?
-- Modularize views: make use of partials more
-- turn all CSS into SASS
+- Caching: Implement caching, look at varnish cache? memcached?
 - figure out a better way to organize translation lines
 
 
 # Todo:
-- Implement custom order statuses
-- Implement tagging functionality
-	Each tag can have a name, machine and optional icon (via font-awesome)
 - Allow defining custom product fields ("attributes")
-
-
-# Store
-- Banners, images etc.
-- Order status, green/red.
+  that can be sorted and filtered dynamically.
+- Implement banners and slider images on the home page.
 - manual orders & order editing
 - Related products, tabbed view, appears when buying.
-- Client logged in dashboard, order management etc.
+- Client dashboard
 
 
 Order statuses

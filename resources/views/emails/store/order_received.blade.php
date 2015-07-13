@@ -18,7 +18,7 @@
         <tfoot>
             <tr>
                 <th colspan="2">Total</th>
-                <th>{{$order->total_price_including_tax}}</th>
+                <th>{{$order->total_price_including_tax / 100}}</th>
             </tr>
         </tfoot>
         <tbody>
@@ -26,7 +26,7 @@
                 <tr>
                     @if($item['type'] == 'shipping_fee')
                         <td colspan="2">Shipping Costs</td>
-                        <td>{{$item['unit_price']}}</td>
+                        <td>{{$item['unit_price'] / 100}}</td>
                     @else
                         <td>{{$item['name']}}
                             <ul class="variants">
@@ -39,7 +39,7 @@
                             </ul>
                         </td>
                         <td>{{$item['quantity']}}</td>
-                        <td>{{$item['unit_price'] * $item['quantity']}}</td>
+                        <td>{{($item['unit_price'] / 100) * $item['quantity']}}</td>
                     @endif
                 </tr>
             @endforeach

@@ -5,15 +5,16 @@ use Friluft\OrderEvent;
 use Illuminate\Contracts\Bus\SelfHandling;
 use KlarnaFlags;
 
+/**
+ * Activates an order in klarna and creates a new OrderEvent describing that.
+ * @package Friluft\Commands
+ */
 class ActivateOrder extends Command implements SelfHandling {
 
     private $klarna;
 
     private $order;
 
-	/**
-	 * Create a new command instance.
-	 */
 	public function __construct(\Klarna $klarna, Order $order)
 	{
         $this->klarna = $klarna;
@@ -21,7 +22,7 @@ class ActivateOrder extends Command implements SelfHandling {
 	}
 
     /**
-     * Execute the command.
+     * Handles the command.
      * @return array ['status' => 'x', 'invoice' => '...']
      * @throws \Exception if klarna failed to activate the order
      */
