@@ -30,7 +30,7 @@
 
                 <tfoot>
                     <tr>
-                        <th colspan="3">Total: {{$order->total_price_including_tax / 100}}</th>
+                        <th colspan="3" class="text-right">Total: {{$order->total_price_including_tax / 100}}</th>
                     </tr>
                 </tfoot>
 
