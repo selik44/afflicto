@@ -9,13 +9,13 @@
 
     <hr style="margin-top: 0px">
 
-    <div class="module user-orders">
-        <header class="module-header">
-            <h6 class="end">Orders</h6>
-        </header>
+    <div class="row user-grid">
+        <div class="col-xs-6">
+            <div class="module user-orders">
+                <header class="module-header">
+                    <h6 class="end">Orders</h6>
+                </header>
 
-        <div class="row user-grid">
-            <div class="col-xs-6">
                 <article class="module-content">
                     <table class="table">
                         <tbody>
