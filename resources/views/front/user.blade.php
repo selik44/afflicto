@@ -17,7 +17,7 @@
         <article class="module-content">
             <table class="table">
                 <tbody>
-                @foreach(\Auth::user()->orders as $order)
+                @foreach(\Auth::user()->orders()->orderBy('created_at', 'desc')->get() as $order)
                     <tr>
                         <th>{{$order->created_at->diffForHumans()}}</th>
                         <td><a href="{{route('user.order', ['order' => $order->id])}}">{{$order->id}}</a></td>
