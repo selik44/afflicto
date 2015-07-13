@@ -12,14 +12,15 @@
 
 	<div class="preview">
 		<a href="{{$link}}" style="background-image: url('{{$img}}');" class="image">
-		</a>
-		<div class="overlay">
-			<div class="tags">
-				@foreach($product->tags as $tag)
-					<span class="tag"><i class="{{$tag->icon}}"></i> {{$tag->label}}</span>
-				@endforeach
-			</div>
-		</div>
+
+            <div class="overlay">
+                <div class="tags">
+                    @foreach($product->tags as $tag)
+                        <span class="tag"><i class="{{$tag->icon}}"></i> {{$tag->label}}</span>
+                    @endforeach
+                </div>
+            </div>
+        </a>
 	</div>
 
 	<header class="header clearfix">
