@@ -61,5 +61,9 @@ class Order extends Model {
 	public function user() {
 		return $this->belongsTo('Friluft\User');
 	}
-	
+
+    public function orderEvents() {
+        return $this->hasMany('Friluft\OrderEvent');
+    }
+
 }

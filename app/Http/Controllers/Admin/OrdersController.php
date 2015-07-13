@@ -1,5 +1,6 @@
 <?php namespace Friluft\Http\Controllers\Admin;
 
+use Friluft\Commands\ActivateOrder;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Friluft\Product;
@@ -154,9 +155,12 @@ class OrdersController extends Controller {
 
 		# activate klarna?
 		if (Input::get('activate', 'off') == 'on') {
-			if (!$this->klarna->activate($order->reservation)) {
-				return Redirect::back()->with('warning', 'Order updated but it has already been activated in Klarna');
-			}
+            $activate = new ActivateOrder($this->klarna, $order);
+            try {
+                $this->dispatch($activate);
+            }catch(\Exception $e) {
+                return Redirect::back()->with('error', $e->getMessage());
+            }
 		}
 
 		return Redirect::back()->with('success', 'Order updated.' .Input::get('activate', '0'));
