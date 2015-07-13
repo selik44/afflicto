@@ -5,8 +5,8 @@
 		{{$title}}
 	</title>
 
-    {{asset('css/lib.css')}}
-    {{asset('css/' .\Friluft\Store::current()->host .'.css')}}
+    <link rel="stylesheet" type="text/css" href="{{asset('css/lib.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/' .\Friluft\Store::current()->host .'.css')}}">
 </head>
 <body>
 	<div class="module clearfix ninesixty">
