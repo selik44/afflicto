@@ -22,20 +22,24 @@ class ProductsController extends Controller {
 	{
 		$table = Laratable::make(Product::query(), [
 			'#' => 'id',
-			'Name' => 'name',
-			'Price' => 'price',
-			'Stock' => 'stock',
-			'Enabled' => ['enabled', function($model, $column, $value) {
-				return ($model->enabled) ? '<span class="color-success">Yes</span>' : '<span class="color-error">no</span>';
-			}],
+            'Enabled' => ['enabled', function($model, $column, $value) {
+                return ($model->enabled) ? '<span class="color-success">Yes</span>' : '<span class="color-error">no</span>';
+            }],
+            'Name' => 'name',
+            'Stock' => 'stock',
+            'Price' => 'price',
+            'Category' => ['category', function($model, $column, $value) {
+                return $model->category->name;
+            }],
 			'Updated' => 'updated_at diffForHumans',
 		]);
 
 		$table->editable(true, url('admin/products/{id}/edit'));
 		$table->destroyable(true, url('admin/products/{id}'));
 		$table->sortable(true, [
-			'name','price','stock','enabled','updated_at'
+			'name','price','stock','enabled','updated_at', 'category'
 		]);
+        $table->selectable(true);
 
 		return $this->view('admin.products_index')
 		->with([
