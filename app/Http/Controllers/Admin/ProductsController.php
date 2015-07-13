@@ -20,7 +20,7 @@ class ProductsController extends Controller {
 
 	public function index()
 	{
-		$table = Laratable::make(Product::query(), [
+		$table = Laratable::make(Product::query()->with(), [
 			'#' => 'id',
             'Name' => 'name',
             'Stock' => 'stock',
