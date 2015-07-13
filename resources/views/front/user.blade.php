@@ -1,5 +1,9 @@
 @extends('front.layout')
 
+@section('title')
+    Account - @parent
+@stop
+
 @section('breadcrumbs')
     {!! Breadcrumbs::render('user') !!}
 @stop
