@@ -5,12 +5,8 @@
 		{{$title}}
 	</title>
 
-    <style>
-        <?php
-            echo file_get_contents(base_path('public/css/lib.css'));
-            echo file_get_contents(base_path('public/css/friluft.css'));
-        ?>
-    </style>
+    {{asset('css/lib.css')}}
+    {{asset('css/' .\Friluft\Store::current()->host .'.css')}}
 </head>
 <body>
 	<div class="module clearfix ninesixty">
