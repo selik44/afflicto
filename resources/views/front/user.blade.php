@@ -26,7 +26,7 @@
                         @foreach(\Auth::user()->orders()->orderBy('created_at', 'desc')->get() as $order)
                             <tr>
                                 <th>{{$order->created_at->diffForHumans()}}</th>
-                                <td><a href="{{route('user.order', ['order' => $order->id])}}">Order #{{$order->id}}</a></td>
+                                <td><a href="{{route('user.order', ['order' => $order->id])}}">Order #{{$order->getHumanName()}}</a></td>
                             </tr>
                         @endforeach
                         </tbody>

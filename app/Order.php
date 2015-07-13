@@ -66,4 +66,22 @@ class Order extends Model {
         return $this->hasMany('Friluft\OrderEvent');
     }
 
+    public function getHumanName() {
+        $firstItem = null;
+        foreach($this->items as $item) {
+            if ($item['type'] == 'shipping_fee') {
+                continue;
+            }
+
+            $firstItem = $item['name'];
+        }
+
+        if (count($this->items) > 1) {
+            $c = count($this->items) - 1;
+            return $firstItem = ' and ' .$c .' others.';
+        }else {
+            return $firstItem;
+        }
+    }
+
 }
