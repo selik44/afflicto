@@ -11,9 +11,9 @@
 				<ul class="nav end">
 				@foreach(\Friluft\Store::all() as $store)
 					@if($store->name == \Friluft\Store::current()->name)
-						<li class="current"><a href="http://{{$store->url}}/{{Request::path()}}">{{$store->name}}</a></li>
+						<li class="current"><a href="http://{{$store->host}}.tk/{{Request::path()}}">{{$store->name}}</a></li>
 					@else
-						<li><a href="http://{{$store->url}}/{{Request::path()}}">{{$store->name}}</a></li>
+						<li><a href="http://{{$store->host}}.tk/{{Request::path()}}">{{$store->name}}</a></li>
 					@endif
 				@endforeach
 				</ul>
