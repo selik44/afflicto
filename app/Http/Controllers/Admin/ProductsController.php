@@ -29,7 +29,12 @@ class ProductsController extends Controller {
             'Stock' => 'stock',
             'Price' => 'price',
             'Category' => ['category', function($model, $column, $value) {
-                return $model->category->name;
+                dd($model);
+                if ($model->category != null) {
+                    return $model->category->name;
+                }
+
+                return 'None';
             }],
 			'Updated' => 'updated_at diffForHumans',
 		]);
