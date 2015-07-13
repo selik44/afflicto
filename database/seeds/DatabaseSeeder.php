@@ -138,6 +138,12 @@ class DatabaseSeeder extends Seeder {
 				'amount' => 0,
 			]
 		]);
+
+        // manufacturers
+        DB::table('manufacturers')->insert([
+            'name' => 'HighPulse',
+            'slug' => 'highpulse',
+        ]);
 	}
 
 }
