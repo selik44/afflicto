@@ -22,9 +22,6 @@ class ProductsController extends Controller {
 	{
 		$table = Laratable::make(Product::query(), [
 			'#' => 'id',
-            'Enabled' => ['enabled', function($model, $column, $value) {
-                return ($model->enabled) ? '<span class="color-success">Yes</span>' : '<span class="color-error">no</span>';
-            }],
             'Name' => 'name',
             'Stock' => 'stock',
             'Price' => 'price',
@@ -34,6 +31,9 @@ class ProductsController extends Controller {
                 }
 
                 return 'None';
+            }],
+            'Enabled' => ['enabled', function($model, $column, $value) {
+                return ($model->enabled) ? '<span class="color-success">Yes</span>' : '<span class="color-error">no</span>';
             }],
 			'Updated' => 'updated_at diffForHumans',
 		]);
