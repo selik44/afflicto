@@ -37,7 +37,6 @@
                 <tbody>
                     @foreach($order->items as $item)
                         <tr>
-                            <>
                                 @if($item['name'] == 'shipping_costs')
                                     Shipping
                                 @else
