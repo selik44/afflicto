@@ -19,7 +19,7 @@
                 <tbody>
                 @foreach(\Auth::user()->orders as $order)
                     <tr>
-                        <th>{{$order->created_at}}</th>
+                        <th>{{$order->created_at->diffForHumans()}}</th>
                         <td><a href="{{route('user.order', ['order' => $order->id])}}">{{$order->id}}</a></td>
                     </tr>
                 @endforeach
