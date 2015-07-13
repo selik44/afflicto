@@ -25,7 +25,7 @@ class ProductsController extends Controller {
             'Name' => 'name',
             'Stock' => 'stock',
             'Price' => 'price',
-            'Category' => ['category', function($model, $column, $value) {
+            'Categories' => ['categories', function($model, $column, $value) {
                 if ($model->categories()->first() != null) {
                     return $model->categories()->first()->name;
                 }
