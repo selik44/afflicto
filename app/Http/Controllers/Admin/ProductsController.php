@@ -49,13 +49,14 @@ class ProductsController extends Controller {
 		$cats = Category::all();
 		$mfs = Manufacturer::all();
 		$vatgroups = Vatgroup::all();
+        $tags = Tag::all();
 
 		return $this->view('admin.products_create')
 		->with([
 			'categories' => $cats,
 			'manufacturers' => $mfs,
 			'vatgroups' => $vatgroups,
-			'form' => form('admin.product', ['categories' => $cats, 'manufacturers' => $mfs, 'vatgroups' => $vatgroups]),
+			'form' => form('admin.product', ['categories' => $cats, 'manufacturers' => $mfs, 'vatgroups' => $vatgroups, 'tags' => $tags]),
 		]);
 	}
 
