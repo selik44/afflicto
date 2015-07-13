@@ -76,7 +76,7 @@ class ProductsController extends Controller {
 
 		# set manufacturer
 		$manufacturer = Manufacturer::find(Input::get('manufacturer'));
-		$p->manufacturer()->associate($vatgroup);
+		$p->manufacturer()->associate($manufacturer);
 
 		# save it
 		$p->save();
