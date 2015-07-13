@@ -145,6 +145,31 @@
 
 		<hr/>
 
+        <div id="events" class="module">
+            <header class="module-header">
+                <h6 class="end">Events</h6>
+            </header>
+
+            <div class="module-content">
+                <table class="table bordered">
+                    <thead>
+                        <tr>
+                            <th>When</th>
+                            <th>Event</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($order->orderEvents as $event)
+                            <tr>
+                                <td>{{$event->created_at->diffForHumans()}}</td>
+                                <td>{{$event->comment}}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
 		<div id="status" class="module">
 			<header class="module-header">
 				<h6 class="end">Status</h6>
