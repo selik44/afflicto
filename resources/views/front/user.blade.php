@@ -14,17 +14,21 @@
             <h6 class="end">Orders</h6>
         </header>
 
-        <article class="module-content">
-            <table class="table">
-                <tbody>
-                @foreach(\Auth::user()->orders()->orderBy('created_at', 'desc')->get() as $order)
-                    <tr>
-                        <th>{{$order->created_at->diffForHumans()}}</th>
-                        <td><a href="{{route('user.order', ['order' => $order->id])}}">{{$order->id}}</a></td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </article>
+        <div class="row user-grid">
+            <div class="col-xs-6">
+                <article class="module-content">
+                    <table class="table">
+                        <tbody>
+                        @foreach(\Auth::user()->orders()->orderBy('created_at', 'desc')->get() as $order)
+                            <tr>
+                                <th>{{$order->created_at->diffForHumans()}}</th>
+                                <td><a href="{{route('user.order', ['order' => $order->id])}}">{{$order->id}}</a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </article>
+            </div>
+        </div>
     </div>
 @stop
