@@ -29,9 +29,8 @@ class ProductsController extends Controller {
             'Stock' => 'stock',
             'Price' => 'price',
             'Category' => ['category', function($model, $column, $value) {
-                dd($model);
-                if ($model->category != null) {
-                    return $model->category->name;
+                if ($model->categories()->first() != null) {
+                    return $model->categories()->first()->name;
                 }
 
                 return 'None';
