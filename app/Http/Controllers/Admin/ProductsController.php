@@ -20,17 +20,27 @@ class ProductsController extends Controller {
 
 	public function index()
 	{
-		$table = Laratable::make(Product::query()->with(), [
+		$table = Laratable::make(Product::query(), [
 			'#' => 'id',
             'Name' => 'name',
             'Stock' => 'stock',
             'Price' => 'price',
+			'Manufacturer' => ['manufacturer_id', function($model, $column, $value) {
+				if ( ! $model->manufacturer) return 'None';
+				return $model->manufacturer->name;
+			}],
             'Categories' => ['categories', function($model, $column, $value) {
-                if ($model->categories()->first() != null) {
-                    return $model->categories()->first()->name;
-                }
+				$cats = $model->categories;
 
-                return 'None';
+				if (empty($cats)) {
+					return 'None';
+				}
+
+				$str = '';
+				foreach($cats as $cat) {
+					$str .= $cat->name .', ';
+				}
+				return trim($str, ', ');
             }],
             'Enabled' => ['enabled', function($model, $column, $value) {
                 return ($model->enabled) ? '<span class="color-success">Yes</span>' : '<span class="color-error">no</span>';
@@ -41,14 +51,25 @@ class ProductsController extends Controller {
 		$table->editable(true, url('admin/products/{id}/edit'));
 		$table->destroyable(true, url('admin/products/{id}'));
 		$table->sortable(true, [
-			'name','price','stock','enabled','updated_at', 'category'
+			'name','price','stock','enabled','updated_at', 'categories','manufacturer_id',
 		]);
         $table->selectable(true);
+
+		$table->filterable(true);
+		$table->addFilter('name', 'search');
+
+		$manufacturers = ['*' => 'Any'];
+		foreach(Manufacturer::orderBy('name', 'asc')->get() as $mf) {
+			$manufacturers[$mf->id] = $mf->name;
+		}
+		$table->addFilter('manufacturer_id', 'select')->setValues($manufacturers);
+		$table->addFilter('categories', 'category');
 
 		return $this->view('admin.products_index')
 		->with([
 			'table' => $table->render(),
 			'pagination' => $table->paginator->render(),
+			'filters' => $table->buildFilters()->addClass('inline'),
 		]);
 	}
 
@@ -72,6 +93,8 @@ class ProductsController extends Controller {
 	{
 		$p = new Product(Input::only('name', 'slug', 'inprice', 'price', 'weight', 'summary', 'articlenumber', 'barcode', 'enabled', 'stock'));
 
+		$p->categories = Input::get('categories', []);
+
 		if (Input::get('enabled', 'off') == 'on') {
 			$p->enabled = true;
 		}else {
@@ -88,9 +111,6 @@ class ProductsController extends Controller {
 
 		# save it
 		$p->save();
-
-		# sync categories
-		$p->categories()->sync(Input::get('categories', []));
 
 		# continue?
 		if (Input::has('continue')) {
@@ -144,12 +164,10 @@ class ProductsController extends Controller {
 		$p->price = Input::get('price', 0);
 		$p->manufacturer_id = Input::get('manufacturer');
 		$p->vatgroup_id = Input::get('vatgroup');
+		$p->categories = Input::get('categories', []);
 
 		# save
 		$p->save();
-
-		# sync categories
-		$p->categories()->sync(Input::get('categories', []));
 
 		# sync tags
 		$p->tags()->sync(Input::get('tags', []));

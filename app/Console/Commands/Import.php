@@ -34,7 +34,6 @@ class Import extends Command {
 		'quantity:stock',
 		'weight',
 		'status:enabled',
-		'price_ex_tax:price',
 		'description',
 	];
 
@@ -90,6 +89,9 @@ class Import extends Command {
 					}
 				}
 
+				# price
+				$p->price = $product['products_price_ex_tax'] * 100;
+
 				$catids = [];
 				foreach($product['products_categories'] as $id) {
 					if (isset($this->idMap[$id])) {
@@ -99,53 +101,72 @@ class Import extends Command {
 
 				$p->vatgroup()->associate(Vatgroup::where('name', '=', '25%')->first());
 
-				$p->manufacturer()
-					->associate(Manufacturer::where('slug', '=', 'highpulse')->first());
+				$p->manufacturer_id = null;
+
+				$mf = $product['products_brand_name'];
+				if (mb_strlen($mf) > 0) {
+					$manufacturer = Manufacturer::where('name', '=', $mf)->first();
+					if ( ! $manufacturer) {
+						$manufacturer = new Manufacturer();
+						$manufacturer->name = $mf;
+						$manufacturer->slug = Str::slug($mf, '-');
+						$manufacturer->save();
+					}
+
+					$p->manufacturer()->associate($manufacturer);
+				}
+
+				# remove manufacturer name from product name
+				if ($p->manufacturer) {
+					if ($p->name == 'HighPulse') {
+						$p->name = preg_replace('/^(h|H)igh *(p|P)ulse/', '', $p->name);
+					}else {
+						$p->name = str_replace($p->manufacturer->name, '', $p->name);
+					}
+				}
 
 				$p->save();
 
 				# download the images from mystore
-				$i = 0;
 				if (isset($product['products_images']) && is_array($product['products_images'])) {
-					foreach($product['products_images'] as $image) {	
+					foreach($product['products_images'] as $image) {
 						# get pathinfo
 						$pathinfo = pathinfo($image);
 
-						# the fileName for our image
-						$fileName = 'product_' .$p->id .'_' .$i .'.' .$pathinfo['extension'];
+						$hasImage = false;
+						# download the image
 
-						# dwonload the image
-						if (!file_exists($filePath = public_path() .'/images/products/' .$fileName)) {
+						$filePath = public_path('images/products') .'/' .$pathinfo['basename'];
+
+						if (!file_exists($filePath)) {
 							# we need to urlencode the filename, since this is an http request.
 							$url = $pathinfo['dirname'] .'/' .rawurlencode($pathinfo['basename']);
 							$this->comment("Downloading image: $url...");
 
 							# attempt download
+							$hasImage = false;
 							if (@copy($url, $filePath)) {
-								# success
-								$image = new Image();
-								$image->name = 'product_' .$p->id .'_' .$i .'.' .$pathinfo['extension'];
-								$image->type = 'product';
-								$image->save();
-
-								$p->images()->save($image);
+								$hasImage = true;
 							}else {
-								# fail
 								$this->comment("Failed to download image '" .$url ."' for product id " .$p->id ."!");
 							}
-
+						}else {
+							$hasImage = true;
+							$this->comment('Image already exists, skipping download.');
 						}
 
-						$i++;
+						if ($hasImage) {
+							$image = new Image();
+							$image->name = $pathinfo['basename'];
+							$image->type = 'product';
+							$p->images()->save($image);
+						}
 					}
 				}
 
-				# save it again
-				$p->save();
-
 				# sync categories
-				$p->categories()->sync($catids);
-
+				$p->categories = $catids;
+				$p->save();
 			}
 			$page++;
 			$products = Mystore::products($page);
@@ -160,13 +181,11 @@ class Import extends Command {
 	public function fire()
 	{
 		if ($this->confirm('delete all categories and products?')) {
-			$this->comment('Truncating "categories" and "products" table, as well as deleting all images in public/images/products...');
+			$this->comment('Truncating "categories", "manufacturers" and "products" tables.');
 		    DB::table('categories')->delete();
 		    DB::table('products')->delete();
 		    DB::table('category_product')->delete();
-		    foreach(glob(public_path() .'/images/products/*') as $img) {
-		    	@unlink($img);
-		    }
+			DB::table('manufacturers')->delete();
 	    	$this->comment('Ok.');
 	    }
 

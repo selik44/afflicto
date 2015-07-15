@@ -66,8 +66,12 @@ class Category extends Model {
 		return $root;
 	}
 
+	public function getProductsAttribute() {
+		return $this->products()->get();
+	}
+
 	public function products() {
-		return $this->belongsToMany('Friluft\Product');
+		return Product::where('categories', 'LIKE', '%' .$this->id .'%');
 	}
 
 	/**
@@ -94,6 +98,17 @@ class Category extends Model {
 			}
 		}
 
+		return $array;
+	}
+
+	public function nestedChildren() {
+		$array = [];
+		foreach($this->children as $child) {
+			$array[] = $child;
+			foreach($child->nestedChildren() as $c) {
+				$array[] = $c;
+			}
+		}
 		return $array;
 	}
 

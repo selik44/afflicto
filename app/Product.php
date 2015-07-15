@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Collection;
 use Nicolaslopezj\Searchable\SearchableTrait;
 use Friluft\Variant;
 
@@ -99,6 +100,11 @@ class Product extends Model {
 	 */
 	public $path = null;
 
+	/**
+	 * @var Collection
+	 */
+	private $categoriesCollection;
+
 	public function scopeEnabled($query) {
 		return $query->where('enabled', '=', '1');
 	}
@@ -135,8 +141,34 @@ class Product extends Model {
 		return '' + $this->attributes['enabled'];
 	}
 
-	public function categories() {
-		return $this->belongsToMany('Friluft\Category');
+	public function getCategoriesAttribute() {
+		if ( ! isset($this->categoriesCollection)) {
+			$array = explode(',', $this->attributes['categories']);
+			$this->categoriesCollection = Category::whereIn('id', $array)->get();
+		}
+
+		return $this->categoriesCollection;
+	}
+
+	public function setCategoriesAttribute($categories) {
+		$this->categoriesCollection = null;
+
+		if (is_string($categories)) {
+			$array = explode(',', $categories);
+			sort($array, SORT_ASC);
+		}
+		else if ($categories instanceof Collection) {
+			$collection = $categories;
+			$categories = [];
+			foreach($collection as $cat) {
+				$categories[] = $cat->id;
+			}
+		}else if (is_array($categories)) {
+			$array = $categories;
+			sort($array, SORT_ASC);
+		}
+
+		$this->attributes['categories'] = implode(',', $array);
 	}
 
 	public function vatgroup() {
@@ -202,12 +234,15 @@ class Product extends Model {
 
 	public function getPath() {
 		if (!isset($this->path)) {
-			$parent = $this->categories()->first();
-			if ($parent) {
-				$this->path = $parent->getPath() .'/' .$this->slug;
-			}else {
-				$this->path = 'store/' .$this->slug;
+
+			if (is_object($this->categories)) {
+				$parent = $this->categories->first();
+				if ($parent) {
+					$this->path = $parent->getPath() . '/' . $this->slug;
+					return $this->path;
+				}
 			}
+			$this->path = 'store/' .$this->slug;
 		}
 
 		return $this->path;

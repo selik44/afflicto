@@ -299,5 +299,13 @@ Route::group(['prefix' => $locale], function() {
 		put('receivals/{receival}', ['as' => 'admin.receivals.update', 'uses' => 'Admin\ReceivalsController@update']);
 		post('receivals', ['as' => 'admin.receivals.store', 'uses' => 'Admin\ReceivalsController@store']);
 		delete('receivals/{receival}', ['as' => 'admin.receivals.delete', 'uses' => 'Admin\ReceivalsController@store']);
+
+		# slides
+		get('slides', ['as' => 'admin.slides.index', 'uses' => 'Admin\SlidesController@index']);
+		post('slides', ['as' => 'admin.slides.store', 'uses' => 'Admin\SlidesController@store']);
+		get('slides/{image}', ['as' => 'admin.slides.edit', 'uses' => 'Admin\SlidesController@edit']);
+		put('slides/{image}', ['as' => 'admin.slides.update', 'uses' => 'Admin\SlidesController@update']);
+		put('slides/order', ['as' => 'admin.slides.order', 'uses' => 'Admin\SlidesController@order']);
+		delete('slides/{image}', ['as' => 'admin.sides.destroy', 'uses' => 'Admin\SlidesController@destroy']);
 	});
 });

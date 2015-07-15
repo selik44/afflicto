@@ -115,7 +115,7 @@ class GenerateProductSummary extends Command {
 			$final = $results[0];
 			$finalLength = mb_strlen($final);
 			foreach($results as $result) {
-				$length = mb_strlen($result);
+				if ($length == null) $length = mb_strlen($result);
 				if ($length > $finalLength) {
 					$final = $result;
 					$length = $finalLength;

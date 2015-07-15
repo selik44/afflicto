@@ -18,6 +18,8 @@ class CreateOrdersTable extends Migration {
 			$t->timestamps();
 			$t->string('data');
 			$t->integer('user_id')->unsigned();
+			$t->boolean('activated')->default(0);
+
 			$t->foreign('user_id')->references('id')->on('users');
 		});
 	}

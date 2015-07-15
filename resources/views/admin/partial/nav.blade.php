@@ -41,6 +41,10 @@
 		]],
 
 		'fa-shopping-cart:admin.orders' => 'admin.orders.index',
+
+        'fa-pencil:admin.design' => ['admin.slides.index', [
+            'fa-newspaper:admin.slides' => 'admin.slides.index',
+        ]],
 	]);
 
 	echo $nav->render();

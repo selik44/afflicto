@@ -15,8 +15,9 @@
 		<div class="middle col-l-6 tight">
 			<div class="slider">
 				<div class="container">
-					<div style="background-image: url('{{asset('/images/slides/highpulse_compression.jpg')}}');" class="slide"></div>
-					<div style="background-image: url('{{asset('/images/slides/neon_compression.jpg')}}');" class="slide"></div>
+                    @foreach(\Friluft\Image::whereType('slideshow')->orderBy('order', 'asc')->get() as $slide)
+                        <div style="background-image: url('{{asset('/images/' .$slide->name)}}');" class="slide"></div>
+                    @endforeach
 				</div>
 			</div>
 		</div>
@@ -51,7 +52,7 @@
 
 	<div class="row products-popular">
 		@foreach(\Friluft\Product::all()->take(4) as $product)
-			<div class="col-m-6 col-l-3 tight">
+			<div class="col-xs-6 col-l-3">
 				@include('front.partial.products-block', ['product' => $product])
 			</div>
 		@endforeach

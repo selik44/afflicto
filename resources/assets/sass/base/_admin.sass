@@ -71,19 +71,19 @@ html,body, #admin
 			@extend .row
 
 	#footer
-		position: fixed;
+		position: fixed
 		z-index: 4
 		width: 100%
-		bottom: 0px;
-		left: 0px;
+		bottom: 0px
+		left: 0px
 		background: $aside-color
 		border-top: 1px solid weaker($base-border-color, 10%)
 
 		> .inner
-			padding-left: $sidebarWidth + 10px;
-			padding-right: 10px;
-			padding-top: 10px;
-			padding-bottom: 10px;
+			padding-left: $sidebarWidth + 10px
+			padding-right: 10px
+			padding-top: 10px
+			padding-bottom: 10px
 	
 	.categories-tree
 		//------ROOT------//
@@ -235,8 +235,24 @@ html,body, #admin
 			th
 				font-weight: 700
 
+	.laratable-filters
+		> .filters
+			float: left
+			margin-right: 2rem
 
-	.product-images .dropzone
+			.filter
+				float: left
+
+				&:not(:last-child)
+					margin-right: 2rem
+
+				label
+					margin-right: 1rem
+
+		> .controls
+			float: left
+
+	.product-images, .slides .dropzone
 		.dz-default.dz-message
 			padding: 1rem
 			text-align: center

@@ -50,6 +50,9 @@ return [
 	'receival' => 'Receival',
 	'tag' => 'Tag',
 	'tags' => 'Tags',
+	'design' => 'Design',
+	'slides' => 'Slides',
+	'slide' => 'Slide',
 
 	'ready_for_sending' => 'Ready for Sending',
 	'processed' => 'Processed',

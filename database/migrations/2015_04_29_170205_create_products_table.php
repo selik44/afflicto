@@ -19,19 +19,20 @@ class CreateProductsTable extends Migration {
 			$t->softDeletes();
 			$t->string('name', 50);
 			$t->string('slug', 50);
-			$t->float('price');
+			$t->integer('price');
 			$t->integer('articlenumber')->unsigned();
-			$t->string('barcode', 13);
-			$t->float('inprice');
+			$t->string('barcode', 13)->nullable();
+			$t->integer('inprice');
 			$t->integer('weight');
 			$t->text('description');
 			$t->text('summary');
 			$t->integer('stock');//only used for products that don't have any variants
-			$t->text('images');
 			$t->boolean('enabled')->default(1);
 			$t->integer('sales')->unsigned();
 			$t->integer('vatgroup_id')->unsigned();
-			$t->integer('manufacturer_id')->unsigned();
+			$t->integer('manufacturer_id')->unsigned()->nullable();
+
+			$t->string('categories')->default('');
 
 			$t->foreign('vatgroup_id')
 				->references('id')->on('vatgroups');

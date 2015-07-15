@@ -17,6 +17,7 @@ class CreateTagsTable extends Migration {
 			$table->increments('id');
 			$table->string('label');
 			$table->string('icon')->nullable();
+			$table->string('color')->default('white');
 			$table->boolean('enabled')->default(true);
 		});
 	}

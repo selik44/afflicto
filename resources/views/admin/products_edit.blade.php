@@ -49,7 +49,7 @@
 		            <ul class="flat relations">
 			            @foreach($product->relations as $related)
 				            <li class="relation" data-id="{{$related->id}}">
-					            <span class="name">{{$related->manufacturer->name}} {{$related->name}} <a class="unrelate" href="#"><i class="fa fa-trash color-error"></i></a></span>
+					            <span class="name">{{($related->manufacturer) ? $related->manufacturer->name : ''}} {{$related->name}} <a class="unrelate" href="#"><i class="fa fa-trash color-error"></i></a></span>
 				            </li>
 			            @endforeach
 		            </ul>
@@ -62,7 +62,7 @@
 					            @foreach(\Friluft\Product::all() as $p)
 									{{-- we don't want to relate A with A --}}
 					                @unless($p->id == $product->id)
-										<option value="{{$p->id}}">{{$p->manufacturer->name}}: {{$p->name}}</option>
+										<option value="{{$p->id}}">{{($p->manufacturer) ? $p->manufacturer->name : ''}}: {{$p->name}}</option>
 						            @endunless
 								@endforeach
 				            </select>

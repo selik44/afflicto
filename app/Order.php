@@ -56,6 +56,7 @@ class Order extends Model {
 		'total_tax_amount' => 'float',
 		'billing_address' => 'array',
 		'shipping_address' => 'array',
+		'activated' => 'boolean',
 	];
 
 	public function user() {
