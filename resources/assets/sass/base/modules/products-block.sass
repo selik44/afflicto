@@ -28,6 +28,7 @@
 			position: absolute
 			top: 0px
 			left: 0px
+			pointer-events: none
 
 			.tags
 				.tag
@@ -65,6 +66,11 @@
 			display: block
 			float: left
 			width: 70%
+			text-decoration: none
+
+			&:hover
+				h5, h6
+					color: $color-primary
 
 			.name
 				overflow: hidden

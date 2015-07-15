@@ -1,4 +1,4 @@
-<div class="product products-block" data-id="{{$product->id}}" data-price="{{$product->price}}" data-manufacturer="{{$product->manufacturer->id}}">
+<div class="product products-block" data-id="{{$product->id}}" data-price="{{$product->price}}" data-manufacturer="{{($product->manufacturer) ? $product->manufacturer->id : ''}}">
 	<?php
 	$img = $product->images()->first();
 	if ($img == null) {
@@ -12,22 +12,23 @@
 
 	<div class="preview">
 		<a href="{{$link}}" style="background-image: url('{{$img}}');" class="image">
-
-            <div class="overlay">
-                <div class="tags">
-                    @foreach($product->tags as $tag)
-                        <span class="tag"><i class="{{$tag->icon}}"></i> {{$tag->label}}</span>
-                    @endforeach
-                </div>
-            </div>
-        </a>
+		</a>
+		<div class="overlay">
+			<div class="tags">
+				@foreach($product->tags as $tag)
+					<span class="tag"><i class="{{$tag->icon}}"></i> {{$tag->label}}</span>
+				@endforeach
+			</div>
+		</div>
 	</div>
 
 	<header class="header clearfix">
-		<div class="title">
-			<h6 class="manufacturer end">{{$product->manufacturer->name}}</h6>
+		<a href="{{$link}}" class="title">
+            @if(isset($product->manufacturer))
+			    <h6 class="manufacturer end">{{$product->manufacturer->name}}</h6>
+            @endif
 			<h5 class="name end">{{$product->name}}</h5>
-		</div>
+		</a>
 
 		<h3 class="price end">{{$product->price * $product->vatgroup->amount}},-</h3>
 	</header>

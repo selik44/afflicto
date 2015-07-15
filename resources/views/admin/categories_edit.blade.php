@@ -18,7 +18,7 @@
 		</label>
 
 		<label for="slug">Slug <span class="color-error">*</span>
-			<input type="text" name="slug" value="{{$category->value}}" maxlength="255" required>
+			<input type="text" name="slug" value="{{$category->slug}}" maxlength="255" required>
 		</label>
 
 		<label for="parent">Parent

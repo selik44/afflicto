@@ -84,7 +84,7 @@ html,body, #admin
 			padding-right: 10px;
 			padding-top: 10px;
 			padding-bottom: 10px;
-	
+
 	.categories-tree
 		//------ROOT------//
 		> ul.sortable
@@ -107,11 +107,11 @@ html,body, #admin
 			@extend .clearfix
 			background: weaker($base-background, 10%)
 			border-left: 1px solid weaker($base-border-color, 7%)
-			
+
 			//the dummy item
 			.dummy-item
 				height: 1rem
-			
+
 			//list item
 			li
 				margin-left: 1rem
@@ -136,7 +136,7 @@ html,body, #admin
 					padding: 0.5rem
 					width: 100%
 					@extend .clearfix
-	
+
 					//horizontal branch line
 					.line
 						position: absolute
@@ -171,7 +171,7 @@ html,body, #admin
 
 						&:hover
 							color: $color-primary
-					
+
 				ul.sortable
 					margin-left: 2rem
 
@@ -212,7 +212,7 @@ html,body, #admin
 			i
 				color: $base-color
 				opacity: 0.3
-			
+
 			&:hover i
 				color: $base-color
 				opacity: 0.6
@@ -235,6 +235,22 @@ html,body, #admin
 			th
 				font-weight: 700
 
+	.laratable-filters
+		> .filters
+			float: left
+			margin-right: 2rem
+
+			.filter
+				float: left
+
+				&:not(:last-child)
+					margin-right: 2rem
+
+				label
+					margin-right: 1rem
+
+		> .controls
+			float: left
 
 	.product-images .dropzone
 		.dz-default.dz-message

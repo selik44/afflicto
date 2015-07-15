@@ -250,6 +250,8 @@ Route::group(['prefix' => $locale], function() {
 		post('products', ['as' => 'admin.products.store', 'uses' => 'Admin\ProductsController@store']);
 		delete('products/{product}', ['as' => 'admin.products.delete', 'uses' => 'Admin\ProductsController@destroy']);
 
+		get('products/move/{products}/{category}', ['as' => 'admin.products.move', 'uses' => 'Admin\ProductsController@move']);
+
 		# categories
 		get('categories/tree', ['as' => 'admin.categories.tree', 'uses' => 'Admin\CategoriesController@tree']);
 		put('categories/tree', ['as' => 'admin.categories.tree.update', 'uses' => 'Admin\CategoriesController@tree_update']);

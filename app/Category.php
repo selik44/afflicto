@@ -67,7 +67,7 @@ class Category extends Model {
 	}
 
 	public function products() {
-		return $this->belongsToMany('Friluft\Product');
+		return $this->hasMany('Friluft\Product');
 	}
 
 	/**
@@ -97,6 +97,20 @@ class Category extends Model {
 		return $array;
 	}
 
+	public function nestedChildren() {
+		$array = [];
+
+		$collection = $this->children;
+		foreach($collection as $child) {
+			$array[] = $child;
+			foreach($child->nestedChildren() as $c) {
+				$array[] = $c;
+			}
+		}
+
+		return $array;
+	}
+
 	public function children() {
 		return $this->hasMany('Friluft\Category', 'parent_id');
 	}
@@ -106,8 +120,6 @@ class Category extends Model {
 	}
 
 	public function getPath() {
-		$slugs = [];
-
 		$slugs = [$this->slug];
 
 		$last = false;
@@ -122,6 +134,23 @@ class Category extends Model {
 		}
 
 		return 'store/' .implode('/', array_reverse($slugs));
+	}
+
+	public function getHierarchicalName($separator = ' > ') {
+		$names = [$this->name];
+
+		$last = false;
+		$p = $this->parent;
+		while(!$last) {
+			if ($p) {
+				$names[] = $p->name;
+				$p = $p->parent;
+			}else {
+				$last = true;
+			}
+		}
+
+		return implode($separator, array_reverse($names));
 	}
 
 	public function renderMenuItem($path, $classes = [], $dropdownIcon = false) {

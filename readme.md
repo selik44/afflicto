@@ -50,3 +50,8 @@ Shipping
 - under tusen gram: 39,- brevpost
 - over 1000kr: 99,- service pakke sporing
 - over 800kr: fri frakt.
+
+
+Design ideas
+gsport.no
+tights.no

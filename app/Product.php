@@ -26,7 +26,7 @@ use Friluft\Variant;
  * @property integer $sales
  * @property integer $vatgroup_id
  * @property integer $manufacturer_id
- * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Category[] $categories
+ * @property-read \Friluft\Category $category
  * @property-read \Friluft\Vatgroup $vatgroup
  * @property-read \Friluft\Manufacturer $manufacturer
  * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Product[] $relations
@@ -76,6 +76,7 @@ class Product extends Model {
 		'enabled',
 		'vatgroup_id',
 		'manufacturer_id',
+		'category_id',
 	];
 
 	protected $casts = [
@@ -135,8 +136,8 @@ class Product extends Model {
 		return '' + $this->attributes['enabled'];
 	}
 
-	public function categories() {
-		return $this->belongsToMany('Friluft\Category');
+	public function category() {
+		return $this->belongsTo('Friluft\Category');
 	}
 
 	public function vatgroup() {
@@ -202,7 +203,7 @@ class Product extends Model {
 
 	public function getPath() {
 		if (!isset($this->path)) {
-			$parent = $this->categories()->first();
+			$parent = $this->category;
 			if ($parent) {
 				$this->path = $parent->getPath() .'/' .$this->slug;
 			}else {

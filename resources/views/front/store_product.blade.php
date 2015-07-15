@@ -2,7 +2,7 @@
 
 
 @section('title')
-	{{{$product->name}}} - {{{$product->categories->first()->name}}} - @parent
+	{{{$product->name}}} - {{{$category->name}}} - @parent
 @stop
 
 
@@ -13,9 +13,14 @@
 	<div class="product-view">
 		<header class="header">
 			<div class="title pull-left">
+
 				<h2 class="manufacturer end">
-					<strong>{{$product->manufacturer->name}}</strong> <span class="title">{{$product->name}}</span>
+                    @if($product->manufacturer)
+					    <strong>{{$product->manufacturer->name}} </strong>
+                    @endif
+                    <span class="title">{{$product->name}}</span>
 				</h2>
+
 			</div>
 			</h1>
 			<h1 class="price end pull-right"><strong>{{$product->price * $product->vatgroup->amount}},-</strong></h1>

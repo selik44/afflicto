@@ -4349,10 +4349,10 @@ ul.pagination {
     width: 100%;
     padding: 1rem;
     margin-bottom: 2rem; }
-    @media (min-width: 961px) and (max-width: 1280px) {
+    @media (min-width: 421px) {
       .products-grid .products-block {
         width: 50%; } }
-    @media (min-width: 1281px) {
+    @media (min-width: 961px) {
       .products-grid .products-block {
         width: 33%; } }
 
@@ -4383,7 +4383,8 @@ ul.pagination {
     height: 100%;
     position: absolute;
     top: 0px;
-    left: 0px; }
+    left: 0px;
+    pointer-events: none; }
     .products-block > .preview > .overlay .tags .tag {
       position: absolute;
       font-size: 1.4rem;
@@ -4413,7 +4414,10 @@ ul.pagination {
     color: #353535;
     display: block;
     float: left;
-    width: 70%; }
+    width: 70%;
+    text-decoration: none; }
+    .products-block > .header .title:hover h5, .products-block > .header .title:hover h6 {
+      color: #03a1a9; }
     .products-block > .header .title .name {
       overflow: hidden;
       text-overflow: ellipsis;
@@ -5214,6 +5218,17 @@ html, body, #admin {
     font-size: 1.1rem; }
   #admin .laratable tr th {
     font-weight: 700; }
+#admin .laratable-filters > .filters {
+  float: left;
+  margin-right: 2rem; }
+  #admin .laratable-filters > .filters .filter {
+    float: left; }
+    #admin .laratable-filters > .filters .filter:not(:last-child) {
+      margin-right: 2rem; }
+    #admin .laratable-filters > .filters .filter label {
+      margin-right: 1rem; }
+#admin .laratable-filters > .controls {
+  float: left; }
 #admin .product-images .dropzone .dz-default.dz-message {
   padding: 1rem;
   text-align: center;

@@ -25,4 +25,8 @@ return [
 		'classes' => 'hovered bordered laratable',
 	],
 
+	'filters' => [
+		'category' => '\Friluft\Laratables\CategoryFilter',
+	],
+
 ];

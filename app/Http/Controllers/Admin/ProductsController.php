@@ -20,44 +20,64 @@ class ProductsController extends Controller {
 
 	public function index()
 	{
-		$table = Laratable::make(Product::query()->with(), [
+		$cats = Category::orderBy('parent_id')->orderBy('order')->orderBy('name')->get();
+
+		$table = Laratable::make(Product::query(), [
 			'#' => 'id',
             'Name' => 'name',
-            'Stock' => 'stock',
-            'Price' => 'price',
-            'Categories' => ['categories', function($model, $column, $value) {
-                if ($model->categories()->first() != null) {
-                    return $model->categories()->first()->name;
-                }
-
-                return 'None';
-            }],
+            'Stock' => ['stock', function($model) {
+				if ($model->stock <= 0) {
+					return '<span class="color-error">' .$model->stock .'</span>';
+				}else {
+					return '<span class="color-success">' .$model->stock .'</span>';
+				}
+			}],
+            'Price' => ['price', function($model) {
+				return $model->price .',-';
+			}],
+			'Category' => ['category_id', function($model, $column, $value) {
+				if ($model->category == null) return 'None';
+				return $model->category->name;
+			}],
             'Enabled' => ['enabled', function($model, $column, $value) {
                 return ($model->enabled) ? '<span class="color-success">Yes</span>' : '<span class="color-error">no</span>';
             }],
 			'Updated' => 'updated_at diffForHumans',
 		]);
 
+		# enable pagination and sorting
+		$table->paginate(13);
+		$table->sortable(true, [
+			'name','category_id','price','stock','enabled','updated_at',
+		]);
+
+		# enable editable & destroyable
 		$table->editable(true, url('admin/products/{id}/edit'));
 		$table->destroyable(true, url('admin/products/{id}'));
-		$table->sortable(true, [
-			'name','price','stock','enabled','updated_at', 'category'
-		]);
         $table->selectable(true);
+
+		# setup filters
+		$table->filterable(true);
+
+		# name filter
+		$table->addFilter('name', 'search');
+		$table->addFilter('category_id', 'category');
 
 		return $this->view('admin.products_index')
 		->with([
 			'table' => $table->render(),
 			'pagination' => $table->paginator->render(),
+			'categories' => $cats,
+			'filters' => $table->buildFilters()->addClass('table inline'),
 		]);
 	}
 
 	public function create()
 	{
-		$cats = Category::all();
-		$mfs = Manufacturer::all();
+		$cats = Category::orderBy('parent_id')->orderBy('order')->orderBy('name')->get();
+		$mfs = Manufacturer::orderBy('name')->get();
 		$vatgroups = Vatgroup::all();
-        $tags = Tag::all();
+        $tags = Tag::orderBy('label')->get();
 
 		return $this->view('admin.products_create')
 		->with([
@@ -78,6 +98,9 @@ class ProductsController extends Controller {
 			$p->enabled = false;
 		}
 
+		# category
+		$p->category_id = Input::get('category', null);
+
 		# set vatgroup
 		$vatgroup = Vatgroup::find(Input::get('vatgroup'));
 		$p->vatgroup()->associate($vatgroup);
@@ -88,9 +111,6 @@ class ProductsController extends Controller {
 
 		# save it
 		$p->save();
-
-		# sync categories
-		$p->categories()->sync(Input::get('categories', []));
 
 		# continue?
 		if (Input::has('continue')) {
@@ -107,10 +127,10 @@ class ProductsController extends Controller {
 	{
 		Former::populate($product);
 
-		$cats = Category::all();
-		$mfs = Manufacturer::all();
+		$cats = Category::orderBy('parent_id')->orderBy('order')->orderBy('name')->get();
+		$mfs = Manufacturer::orderBy('name')->get();
 		$vatgroups = Vatgroup::all();
-		$tags = Tag::all();
+		$tags = Tag::orderBy('label')->get();
 
 		# mock tabs
 		$product->tabs = [
@@ -144,12 +164,10 @@ class ProductsController extends Controller {
 		$p->price = Input::get('price', 0);
 		$p->manufacturer_id = Input::get('manufacturer');
 		$p->vatgroup_id = Input::get('vatgroup');
+		$p->category_id = Input::get('category', null);
 
 		# save
 		$p->save();
-
-		# sync categories
-		$p->categories()->sync(Input::get('categories', []));
 
 		# sync tags
 		$p->tags()->sync(Input::get('tags', []));
@@ -176,6 +194,10 @@ class ProductsController extends Controller {
 	{
 		$product->delete();
 		return redirect(route('admin.products.index'))->with('success', 'Product deleted.');
+	}
+
+	public function move($products, Category $category) {
+		DB::table('products')->update(['category_id' => $category->id])->where('id', 'in', $products)->put();
 	}
 
 }

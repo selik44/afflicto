@@ -9,7 +9,7 @@ $form->open = Former::open(route('admin.products.store'))
 		'name' => 'required|max:255',
 		'slug' => 'required|max:255|slug|unique:products',
 		'manufacturer' => 'required|integer',
-		'categories' => 'array',
+		'category' => 'integer',
 		'tags' => 'array',
 		'summary' => 'max:600',
 		'weight' => 'required|number|min:0',
@@ -18,7 +18,7 @@ $form->open = Former::open(route('admin.products.store'))
 		'vatgroup' => 'required|integer|exists:vatgroups',
 		'stock' => 'required|integer|min:0',
 		'enabled' => 'boolean',
-		'barcode' => 'required|max:13|unique:products',
+		'barcode' => 'max:13|unique:products',
 		'articlenumber' => 'required|max:255|unique:products',
 	]);
 
@@ -32,7 +32,7 @@ $form->barcode = Former::text('barcode');
 $form->manufacturer = Former::select('manufacturer')->fromQuery($manufacturers, 'name', 'id');
 $form->summary = Former::textarea('summary');
 
-$form->categories = Former::select('categories')->multiple()->fromQuery($categories, 'name', 'id')->name('categories[]')->label('categories');
+$form->categories = Former::select('category')->fromQuery($categories, 'name', 'id')->name('categories[]')->label('category');
 
 $form->tags = Former::select('tags')->multiple()->fromQuery($tags, 'label', 'id')->name('tags[]')->label('tags');
 
