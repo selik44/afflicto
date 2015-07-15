@@ -29,6 +29,7 @@ class StoreController extends Controller {
 			$manufacturers = [];
 			foreach($products as $product) {
 				$m = $product->manufacturer;
+				if ( ! $m) continue;
 				if ( ! isset($manufacturers[$m->id])) {
 					$manufacturers[$m->id] = $m;
 				}
