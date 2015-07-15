@@ -90,7 +90,7 @@ class Import extends Command {
 				}
 
 				# price
-				$p->price = $product['products_price_ex_tax'] * 100;
+				$p->price = $product['products_price_ex_tax'];
 
 				$catids = [];
 				foreach($product['products_categories'] as $id) {
