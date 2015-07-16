@@ -81,9 +81,11 @@ class SlidesController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Image $image)
 	{
-
+		$image->data = json_decode(Input::get('data', ''), true);
+		$image->save();
+		return response('OK', 200);
 	}
 
 	/**

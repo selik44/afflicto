@@ -16,6 +16,8 @@
 			stopOnMouseEnter: no
 			startOnMouseLeave: no
 
+			useElements: no
+
 		constructor: (el, options) ->
 			@options = $.extend({}, @defaults, options)
 			@$el = $(el)
@@ -28,7 +30,12 @@
 
 			if @options.slideLinks
 				@createSlideLinks()
-			
+
+			@elementTimeouts = []
+
+			if @options.useElements
+				@initializeElements()
+
 			# reLayout on resize
 			$(window).resize _.debounce((() => @reLayout()), 30)
 
@@ -48,7 +55,7 @@
 					swipeStatus: @swipeStatus
 					swipeLeft: @swipeLeft
 					swipeRight: @swipeRight
-					threshold: 50
+					threshold: 100
 					allowPageScroll: "vertical"
 
 
@@ -60,8 +67,61 @@
 
 			return @
 
-		swipeStatus: (event, phase, direction, distance, duration, fingers) =>
+		elementPosition: (pos, x, y) ->
+			x = parseInt x
+			y = parseInt y
 
+			w = @$el.width() / 2
+			h = @$el.height() / 2
+
+			console.log 'width: ' + w
+			console.log 'height: ' + h
+
+			console.log 'pos: ' + x + ', ' + y
+
+			if pos is 'left'
+				return left: x, top: h + y
+			else if pos is 'right'
+				return right: x, top: h + y
+			else if pos is 'top'
+				return left: w + x, top: y
+			else if pos is 'bottom'
+				return bottom: y, left: h + x
+			else if pos is 'top_left'
+				return left: x, top: y
+			else if pos is 'top_right'
+				return right: x, top: y
+			else if pos is 'bottom_left'
+				return left: x, bottom: x
+			else if pos is 'bottom_right'
+				return right: x, bottom: y
+			else if pos is 'center'
+				return left: w + x, top: h + x
+
+		# initialize elements start position
+		initializeElements: ->
+			that = this
+			@$container.find('.element').each () ->
+				el = $(this)
+				start = el.attr 'data-start'
+				x = el.attr 'data-offset-x'
+				y = el.attr 'data-offset-y'
+
+				pos = that.elementPosition start, x, y
+
+				el.css pos
+				el.css 'opacity', 0
+
+		showElement: (el) ->
+			end = el.attr('data-end')
+			pos = @elementPosition end, parseInt(el.attr('data-offset-x')), parseInt(el.attr('data-offset-y'))
+			pos.opacity = 1
+			el.animate(pos, el.attr('data-speed'))
+
+		hideElement: (el) ->
+			el.css 'opacity', 0
+
+		swipeStatus: (event, phase, direction, distance, duration, fingers) =>
 			console.log(event);
 
 			if phase is 'start'
@@ -91,8 +151,8 @@
 			if direction is 'left' then dist = -distance else dist = distance
 
 			# at end?
-			if @currentIndex <= 1 and dist < -100 then dist = -100
-			else if @currentIndex == @numSlides and dist > 100 then dist = 100
+			if @currentIndex <= 1 and dist > 100 then dist = 100
+			else if @currentIndex == @numSlides and dist < -100 then dist = -100
 
 			# follow fingers!
 			@$container.css 'left': @initialSwipePosition + dist
@@ -122,6 +182,7 @@
 			@$slideLinks.find('li a').click () ->
 				self.stop()
 				self.goTo($(this).attr('data-id'))
+				self.start()
 
 		goTo: (index) ->
 			@currentIndex = index
@@ -169,11 +230,38 @@
 
 		slide: (speed = @options.transitionSpeed) ->
 			left = -@$el.width() + (@$el.width() * @currentIndex)
+			that = this
+
+			if @options.useElements is true
+				for timeout in @elementTimeouts
+					clearTimeout timeout
+				@elementTimeouts = []
+
+				for slide in @$slides
+					$(slide).find('.element').each () ->
+						pos = that.elementPosition($(this).attr('data-start'), $(this).attr('data-offset-x'), $(this).attr('data-offset-y'))
+						$(this).animate pos
+						$(this).animate {'opacity': 0}, that.options.transitionSpeed
+
+				# current slide
+				slide = that.$slides[that.currentIndex-1]
+				$(slide).find('.element').each () ->
+					delay = $(this).attr 'data-delay'
+					$(this).css 'opacity', 0
 
 			@$container.stop(true, false).animate {
-					left: '-' + left
-				}, speed
-			
+				left: '-' + left
+			}, speed, =>
+				if @options.useElements is true
+					slide = that.$slides[that.currentIndex-1]
+					$(slide).find('.element').each () ->
+						delay = $(this).attr 'data-delay'
+						el = $(this)
+						that.elementTimeouts.push setTimeout ->
+								that.showElement el
+							, delay
+
+
 		reLayout: ->
 			# set the width of each slide to the slider width
 			@$slides.css 'width', @$el.width()
@@ -197,6 +285,4 @@
 			if !data
 				$this.data 'friluftSlider', (data = new FriluftSlider(this, option))
 			if typeof option == 'string'
-				data[option].apply(data, args)
-
-) window.jQuery, window
+				data[option].apply(data, args)) window.jQuery, window

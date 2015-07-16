@@ -4138,6 +4138,18 @@ ul.pagination {
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat; }
+      .slider .container .slide .elements {
+        position: relative;
+        width: 100%;
+        height: 100%; }
+        .slider .container .slide .elements .element {
+          position: absolute;
+          color: white;
+          background: rgba(0, 0, 0, 0.6);
+          padding: 0.5rem 1rem; }
+          .slider .container .slide .elements .element > * {
+            color: white;
+            margin: 0; }
   .slider .slide-links {
     position: absolute;
     bottom: 0.5rem;

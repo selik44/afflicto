@@ -230,6 +230,7 @@
 
             $.get(Friluft.URL + '/admin/slides/' + id, function(response) {
                 console.log('response: ' );
+                console.log(response);
                 slideEditor.slideDown().attr('data-id', id);
 
                 console.log(slideEditor);
@@ -241,8 +242,49 @@
                         var elementEl = elementTemplate.clone();
                         slideEditor.find('.elements tbody').append(elementEl);
                         elementEl.slideDown();
+
+                        elementEl.find('[name="content"]').val(element.content);
+                        elementEl.find('[name="start"]').val(element.start);
+                        elementEl.find('[name="end"]').val(element.end);
+                        elementEl.find('[name="offsetX"]').val(element.offsetX);
+                        elementEl.find('[name="offsetY"]').val(element.offsetY);
+                        elementEl.find('[name="delay"]').val(element.delay);
+                        elementEl.find('[name="type"]').val(element.type);
+                        elementEl.find('[name="speed"]').val(element.speed);
                     }
                 }
+            });
+        });
+
+        //save slide
+        slideEditor.find('.module-header button.save').click(function() {
+            var id = slideEditor.attr('data-id');
+
+            var elements = [];
+
+            slideEditor.find('.module-content .elements tbody tr').each(function() {
+                var element = {};
+
+                element.content = $(this).find('[name="content"]').val();
+                element.start = $(this).find('[name="start"]').val();
+                element.end = $(this).find('[name="end"]').val();
+                element.offsetX = $(this).find('[name="offsetX"]').val();
+                element.offsetY = $(this).find('[name="offsetY"]').val();
+                element.delay = $(this).find('[name="delay"]').val();
+                element.type = $(this).find('[name="type"]').val();
+                element.speed = $(this).find('[name="speed"]').val();
+
+                elements.push(element);
+            });
+
+            var payload = {
+                _method: 'PUT',
+                _token: Friluft.token,
+                data: JSON.stringify({elements: elements}),
+            };
+
+            $.post(Friluft.URL + '/admin/slides/' + id, payload, function(response) {
+                console.log('Elements saved!');
             });
         });
 

@@ -410,7 +410,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         autoHeight: true,
         heightRatio: 0.7,
         stopOnMouseEnter: false,
-        startOnMouseLeave: false
+        startOnMouseLeave: false,
+        useElements: false
       };
 
       function FriluftSlider(el, options) {
@@ -425,6 +426,10 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         this.numSlides = this.$slides.length;
         if (this.options.slideLinks) {
           this.createSlideLinks();
+        }
+        this.elementTimeouts = [];
+        if (this.options.useElements) {
+          this.initializeElements();
         }
         $(window).resize(_.debounce(((function(_this) {
           return function() {
@@ -450,7 +455,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
             swipeStatus: this.swipeStatus,
             swipeLeft: this.swipeLeft,
             swipeRight: this.swipeRight,
-            threshold: 50,
+            threshold: 100,
             allowPageScroll: "vertical"
           });
         }
@@ -458,6 +463,90 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         this.start();
         return this;
       }
+
+      FriluftSlider.prototype.elementPosition = function(pos, x, y) {
+        var h, w;
+        x = parseInt(x);
+        y = parseInt(y);
+        w = this.$el.width() / 2;
+        h = this.$el.height() / 2;
+        console.log('width: ' + w);
+        console.log('height: ' + h);
+        console.log('pos: ' + x + ', ' + y);
+        if (pos === 'left') {
+          return {
+            left: x,
+            top: h + y
+          };
+        } else if (pos === 'right') {
+          return {
+            right: x,
+            top: h + y
+          };
+        } else if (pos === 'top') {
+          return {
+            left: w + x,
+            top: y
+          };
+        } else if (pos === 'bottom') {
+          return {
+            bottom: y,
+            left: h + x
+          };
+        } else if (pos === 'top_left') {
+          return {
+            left: x,
+            top: y
+          };
+        } else if (pos === 'top_right') {
+          return {
+            right: x,
+            top: y
+          };
+        } else if (pos === 'bottom_left') {
+          return {
+            left: x,
+            bottom: x
+          };
+        } else if (pos === 'bottom_right') {
+          return {
+            right: x,
+            bottom: y
+          };
+        } else if (pos === 'center') {
+          return {
+            left: w + x,
+            top: h + x
+          };
+        }
+      };
+
+      FriluftSlider.prototype.initializeElements = function() {
+        var that;
+        that = this;
+        return this.$container.find('.element').each(function() {
+          var el, pos, start, x, y;
+          el = $(this);
+          start = el.attr('data-start');
+          x = el.attr('data-offset-x');
+          y = el.attr('data-offset-y');
+          pos = that.elementPosition(start, x, y);
+          el.css(pos);
+          return el.css('opacity', 0);
+        });
+      };
+
+      FriluftSlider.prototype.showElement = function(el) {
+        var end, pos;
+        end = el.attr('data-end');
+        pos = this.elementPosition(end, parseInt(el.attr('data-offset-x')), parseInt(el.attr('data-offset-y')));
+        pos.opacity = 1;
+        return el.animate(pos, el.attr('data-speed'));
+      };
+
+      FriluftSlider.prototype.hideElement = function(el) {
+        return el.css('opacity', 0);
+      };
 
       FriluftSlider.prototype.swipeStatus = function(event, phase, direction, distance, duration, fingers) {
         var dist, left;
@@ -482,10 +571,10 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         } else {
           dist = distance;
         }
-        if (this.currentIndex <= 1 && dist < -100) {
-          dist = -100;
-        } else if (this.currentIndex === this.numSlides && dist > 100) {
+        if (this.currentIndex <= 1 && dist > 100) {
           dist = 100;
+        } else if (this.currentIndex === this.numSlides && dist < -100) {
+          dist = -100;
         }
         return this.$container.css({
           'left': this.initialSwipePosition + dist
@@ -515,7 +604,8 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         this.setCurrentSlideLink();
         return this.$slideLinks.find('li a').click(function() {
           self.stop();
-          return self.goTo($(this).attr('data-id'));
+          self.goTo($(this).attr('data-id'));
+          return self.start();
         });
       };
 
@@ -571,14 +661,55 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       };
 
       FriluftSlider.prototype.slide = function(speed) {
-        var left;
+        var j, k, left, len, len1, ref, ref1, slide, that, timeout;
         if (speed == null) {
           speed = this.options.transitionSpeed;
         }
         left = -this.$el.width() + (this.$el.width() * this.currentIndex);
+        that = this;
+        if (this.options.useElements === true) {
+          ref = this.elementTimeouts;
+          for (j = 0, len = ref.length; j < len; j++) {
+            timeout = ref[j];
+            clearTimeout(timeout);
+          }
+          this.elementTimeouts = [];
+          ref1 = this.$slides;
+          for (k = 0, len1 = ref1.length; k < len1; k++) {
+            slide = ref1[k];
+            $(slide).find('.element').each(function() {
+              var pos;
+              pos = that.elementPosition($(this).attr('data-start'), $(this).attr('data-offset-x'), $(this).attr('data-offset-y'));
+              $(this).animate(pos);
+              return $(this).animate({
+                'opacity': 0
+              }, that.options.transitionSpeed);
+            });
+          }
+          slide = that.$slides[that.currentIndex - 1];
+          $(slide).find('.element').each(function() {
+            var delay;
+            delay = $(this).attr('data-delay');
+            return $(this).css('opacity', 0);
+          });
+        }
         return this.$container.stop(true, false).animate({
           left: '-' + left
-        }, speed);
+        }, speed, (function(_this) {
+          return function() {
+            if (_this.options.useElements === true) {
+              slide = that.$slides[that.currentIndex - 1];
+              return $(slide).find('.element').each(function() {
+                var delay, el;
+                delay = $(this).attr('data-delay');
+                el = $(this);
+                return that.elementTimeouts.push(setTimeout(function() {
+                  return that.showElement(el);
+                }, delay));
+              });
+            }
+          };
+        })(this));
       };
 
       FriluftSlider.prototype.reLayout = function() {
