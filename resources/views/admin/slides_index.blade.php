@@ -195,7 +195,7 @@
                 order: JSON.stringify(tree),
             };
 
-            $.post(Friluft.URL + '/admin/slides/order', payload, function(response) {
+            $.post(Friluft.URL + '/admin/design/slides/order', payload, function(response) {
                 console.log('updated slide order, response:');
                 console.log(response);
             });
@@ -211,7 +211,7 @@
                 id: preview.attr('data-id')
             };
 
-            $.post(Friluft.URL + '/admin/slides', payload, function(response) {
+            $.post(Friluft.URL + '/admin/design/slides', payload, function(response) {
                 preview.slideUp(function() {
                     $(this).remove();
                 });
@@ -228,7 +228,7 @@
             slideEditor.attr('data-id', '');
             slideEditor.find('.elements tbody tr').remove();
 
-            $.get(Friluft.URL + '/admin/slides/' + id, function(response) {
+            $.get(Friluft.URL + '/admin/design/slides/' + id, function(response) {
                 console.log('response: ' );
                 console.log(response);
                 slideEditor.slideDown().attr('data-id', id);
@@ -283,7 +283,7 @@
                 data: JSON.stringify({elements: elements}),
             };
 
-            $.post(Friluft.URL + '/admin/slides/' + id, payload, function(response) {
+            $.post(Friluft.URL + '/admin/design/slides/' + id, payload, function(response) {
                 console.log('Elements saved!');
             });
         });
