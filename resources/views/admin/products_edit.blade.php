@@ -26,10 +26,10 @@
     <div class="row">
         <div class="col-l-6 col-xl-8">
 
-	        <div class="product-tabs-row module">
+	        <div class="product-tabs-row module" style="overflow: visible;">
 		        <header class="module-header clearfix">
 			        <h6 class="title pull-left">Tabs</h6>
-			        <button class="pull-right large add-tab"><i class="fa fa-plus"></i> Add</button>
+			        <a class="button pull-right large add-tab"><i class="fa fa-plus"></i> Add</a>
 		        </header>
 	            <ul class="nav tabs">
 	                <li class="current"><a href="#product-description">Description</a></li>

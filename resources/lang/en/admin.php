@@ -22,6 +22,22 @@ return [
 	'disabled' => 'Disabled',
 	'visible' => 'Visible',
 
+	//product attributes
+	'name' => 'Name',
+	'slug' => 'Slug',
+	'barcode' => 'Warehouse Place',
+	'articlenumber' => 'Article Number',
+	'tab' => 'Tab',
+	'tabs' => 'Tabs',
+	'in_price' => 'Wholesale Price',
+	'price' => 'Price',
+	'vatgroup' => 'VAT Group',
+	'profit' => 'Profit',
+	'inc' => 'Inc',
+	'excl' => 'Excl',
+	'stock' => 'Stock',
+	'weight' => 'Weight',
+
 	'new' => 'New',
 	'create' => 'Create',
 	'add' => 'Add',

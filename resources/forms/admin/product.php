@@ -18,7 +18,7 @@ $form->open = Former::open(route('admin.products.store'))
 		'vatgroup' => 'required|integer|exists:vatgroups',
 		'stock' => 'required|integer|min:0',
 		'enabled' => 'boolean',
-		'barcode' => 'required|max:13|unique:products',
+		'barcode' => 'max:13|unique:products',
 		'articlenumber' => 'required|max:255|unique:products',
 	]);
 
@@ -27,7 +27,7 @@ $form->slug = Former::text('slug')->class('product-slug');
 
 $form->articlenumber = Former::text('articlenumber');
 
-$form->barcode = Former::text('barcode');
+$form->barcode = Former::text('barcode')->label(trans('admin.barcode'));
 
 $form->manufacturer = Former::select('manufacturer')->fromQuery($manufacturers, 'name', 'id');
 $form->summary = Former::textarea('summary');

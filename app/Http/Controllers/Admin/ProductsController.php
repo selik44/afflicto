@@ -42,6 +42,14 @@ class ProductsController extends Controller {
 				}
 				return trim($str, ', ');
             }],
+			'Tags' => ['_tags', function($model, $column, $value) {
+				$tags = [];
+				foreach($model->tags as $tag) {
+					$tags[] = $tag->name;
+				}
+
+				return implode(', ', $tags);
+			}],
             'Enabled' => ['enabled', function($model, $column, $value) {
                 return ($model->enabled) ? '<span class="color-success">Yes</span>' : '<span class="color-error">no</span>';
             }],
