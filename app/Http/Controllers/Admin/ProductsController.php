@@ -72,6 +72,7 @@ class ProductsController extends Controller {
 			'table' => $table->render(),
 			'pagination' => $table->paginator->render(),
 			'filters' => $table->buildFilters()->addClass('inline'),
+			'categories' => Category::orderBy('parent_id', 'asc')->orderBy('name', 'asc')->get(),
 		]);
 	}
 

@@ -32,8 +32,10 @@ class CategoryFilter extends SelectFilter {
 
 		$categories = [];
 		foreach($category->nestedChildren() as $cat) {
-			$categories[] = $cat->id;
+			$categories[] = (int) $cat->id;
 		}
+
+		sort($categories, SORT_ASC);
 
 		$query->where('categories', 'REGEXP', '.?(' .implode($categories, '|') .').?');
 	}

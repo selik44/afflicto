@@ -16,17 +16,17 @@
     {!! $pagination !!}
 
     <div id="tableActions">
-        <button disabled class="large move"><i class="fa fa-move"></i> Move</button>
+        <button disabled class="large move"><i class="fa fa-plane"></i> Move</button>
     </div>
 
-    <div class="modal fade center">
-        <a href="#" data-toggle-modal="#modal-1" class="modal-dismiss"><i class="fa fa-close"></i> close</a>
+    <div class="modal fade center" id="moveModal">
+        <a href="#" data-toggle-modal="#moveModal" class="modal-dismiss"><i class="fa fa-close"></i> close</a>
         <header class="modal-header">
             <h3 class="end">Move Products</h3>
         </header>
 
         <article class="modal-content">
-            <select class=""></select>
+
         </article>
     </div>
 @stop
@@ -34,20 +34,21 @@
 @section('scripts')
     @parent
     <script>
-
         var actions = $("#tableActions");
         var selectAll = $('table input[type="checkbox"][name="laratable-select-all"]');
         var selectRows = $('table input[type="checkbox"].laratable-select-row');
 
-        //request packlist
+        //open move modal
         var packListAction = "{{route('admin.orders.multipacklist')}}";
         actions.find('.move').click(function() {
-            var orders = [];
+            var products = [];
             selectRows.each(function() {
                 if ($(this).prop('checked')) {
-                    orders.push($(this).attr('value'));
+                    products.push($(this).attr('value'));
                 }
             });
+
+
         });
 
         //quickly select all or none

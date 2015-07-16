@@ -102,7 +102,7 @@ class Category extends Model {
 	}
 
 	public function nestedChildren() {
-		$array = [];
+		$array = [$this];
 		foreach($this->children as $child) {
 			$array[] = $child;
 			foreach($child->nestedChildren() as $c) {
