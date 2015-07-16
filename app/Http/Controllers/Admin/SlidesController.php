@@ -1,5 +1,6 @@
 <?php namespace Friluft\Http\Controllers\Admin;
 
+use DB;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 
