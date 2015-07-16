@@ -29,7 +29,7 @@ $form->articlenumber = Former::text('articlenumber');
 
 $form->barcode = Former::text('barcode')->label(trans('admin.barcode'));
 
-$form->manufacturer = Former::select('manufacturer')->fromQuery($manufacturers, 'name', 'id');
+$form->manufacturer = Former::select('manufacturer_id')->label('Manufacturer')->fromQuery($manufacturers, 'name', 'id');
 $form->summary = Former::textarea('summary');
 
 $form->categories = Former::select('categories')->multiple()->fromQuery($categories, 'name', 'id')->name('categories[]')->label('categories');
