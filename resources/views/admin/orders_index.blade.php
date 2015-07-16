@@ -5,15 +5,17 @@
 @stop
 
 @section('page')
-    <h2>Orders</h2>
+    <div class="row end">
+        <h3 class="pull-left end" style="margin-right: 2rem">Orders</h3>
+        <div class="pull-left">{!! $filters !!}</div>
+    </div>
+    <hr class="small">
 
     {!! $table !!}
-
-    <hr>
-
+    <hr class="end">
     {!! $pagination !!}
 
-	<hr/>
+    <hr>
 
 	<div id="tableActions">
 		<button disabled class="large packlist"><i class="fa fa-download"></i> Packlist</button>

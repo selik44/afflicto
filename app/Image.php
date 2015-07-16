@@ -31,4 +31,8 @@ class Image extends Model {
 		return $this->belongsTo('Friluft\Product');
 	}
 
+	public function getURLAttriute() {
+		return public_path($this->name);
+	}
+
 }

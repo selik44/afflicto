@@ -42,8 +42,9 @@
 
 		'fa-shopping-cart:admin.orders' => 'admin.orders.index',
 
-        'fa-pencil:admin.design' => ['admin.slides.index', [
-            'fa-newspaper:admin.slides' => 'admin.slides.index',
+        'fa-pencil:admin.design' => ['admin.slides', [
+            'fa-film:admin.slides' => 'admin.slides.index',
+            'fa-image:admin.banners' => 'admin.banners.index',
         ]],
 	]);
 

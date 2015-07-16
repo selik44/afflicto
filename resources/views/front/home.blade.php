@@ -7,10 +7,15 @@
 @section('slider')
 	<div class="row end">
 		<div class="left col-l-3 tight visible-l-up">
-			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/300/200/technics'); background-size: cover; background-position: center;">
-			</div>
-			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/300/200/sports'); background-size: cover; background-position: center;">
-			</div>
+            @if(isset($images['top_left']))
+                <div class="image" style="width:100%; height:250px; background-image: url('{{asset('images/' .$images['top_left']->name)}}'); background-size: cover; background-position: center;">
+                </div>
+            @endif
+
+            @if(isset($images['bottom_left']))
+                <div class="image" style="width:100%; height:250px; background-image: url('{{asset('images/' .$images['bottom_left']->name)}}'); background-size: cover; background-position: center;">
+                </div>
+            @endif
 		</div>
 		<div class="middle col-l-6 tight">
 			<div class="slider">
@@ -40,10 +45,15 @@
 			</div>
 		</div>
 		<div class="tight col-l-3 tight visible-l-up">
-			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/300/200/abstract'); background-size: cover; background-position: center;">
-			</div>
-			<div class="image" style="width:100%; height:250px; background-image: url('http://lorempixel.com/300/200/sports'); background-size: cover; background-position: center;">
-			</div>
+            @if(isset($images['top_right']))
+                <div class="image" style="width:100%; height:250px; background-image: url('{{asset('images/' .$images['top_right']->name)}}'); background-size: cover; background-position: center;">
+                </div>
+            @endif
+
+            @if(isset($images['bottom_right']))
+                <div class="image" style="width:100%; height:250px; background-image: url('{{asset('images/' .$images['bottom_right']->name)}}'); background-size: cover; background-position: center;">
+                </div>
+            @endif
 		</div>
 	</div>
 @stop

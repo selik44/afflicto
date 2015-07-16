@@ -6,12 +6,10 @@
 
 @section('page')
 	<h2>Categories</h2>
-	{!! $table !!}
+    {!! $filters !!}
+    <hr class="small end">
 
-	<div class="footer-height-fix"></div>
-	<footer id="footer">
-		<div class="inner">
-			{!! $pagination !!}
-		</div>
-	</footer>
+	{!! $table !!}
+    <hr class="end">
+    {!! $pagination !!}
 @stop

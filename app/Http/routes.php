@@ -300,12 +300,19 @@ Route::group(['prefix' => $locale], function() {
 		post('receivals', ['as' => 'admin.receivals.store', 'uses' => 'Admin\ReceivalsController@store']);
 		delete('receivals/{receival}', ['as' => 'admin.receivals.delete', 'uses' => 'Admin\ReceivalsController@store']);
 
+		# design
+		get('design', ['as' => 'admin.slides', 'uses' => 'Admin\SlidesController@index']);
+
 		# slides
-		put('slides/order', ['as' => 'admin.slides.order', 'uses' => 'Admin\SlidesController@order']);
-		get('slides', ['as' => 'admin.slides.index', 'uses' => 'Admin\SlidesController@index']);
-		post('slides', ['as' => 'admin.slides.store', 'uses' => 'Admin\SlidesController@store']);
-		get('slides/{image}', ['as' => 'admin.slides.edit', 'uses' => 'Admin\SlidesController@edit']);
-		put('slides/{image}', ['as' => 'admin.slides.update', 'uses' => 'Admin\SlidesController@update']);
-		delete('slides/{image}', ['as' => 'admin.sides.destroy', 'uses' => 'Admin\SlidesController@destroy']);
+		put('design/slides/order', ['as' => 'admin.slides.order', 'uses' => 'Admin\SlidesController@order']);
+		get('design/slides', ['as' => 'admin.slides.index', 'uses' => 'Admin\SlidesController@index']);
+		post('design/slides', ['as' => 'admin.slides.store', 'uses' => 'Admin\SlidesController@store']);
+		get('design/slides/{image}', ['as' => 'admin.slides.edit', 'uses' => 'Admin\SlidesController@edit']);
+		put('design/slides/{image}', ['as' => 'admin.slides.update', 'uses' => 'Admin\SlidesController@update']);
+		delete('design/slides/{image}', ['as' => 'admin.sides.destroy', 'uses' => 'Admin\SlidesController@destroy']);
+
+		# banners
+		get('design/banners', ['as' => 'admin.banners.index', 'uses' => 'Admin\BannersController@index']);
+		put('design/banners', ['as' => 'admin.banners.update', 'uses' => 'Admin\BannersController@update']);
 	});
 });

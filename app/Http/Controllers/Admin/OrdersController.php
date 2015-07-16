@@ -5,6 +5,7 @@ use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Friluft\Product;
 use Friluft\Order;
+use Friluft\User;
 use Friluft\Variant;
 use Illuminate\Support\Facades\Redirect;
 use Input;
@@ -82,10 +83,12 @@ class OrdersController extends Controller {
 				$str .= '</ul>';
 				return $str;
 			}],
-			'Status' => ['status', function($model, $column, $value) {
-				return ($model->status == 'checkout_complete') ? '<span class="color-success">' .$model->status .'</span>' : '<span class="color-error">' .$model->status .'</span>';
+			'Status' => 'status',
+			'Activated' => ['activated', function($model) {
+				if ($model->activated) return '<span class="color-success">Yes</span>';
+				return '<span class="color-error">No</span>';
 			}],
-			'Updated' => 'updated_at diffForHumans',
+			'Created' => 'created_at diffForHumans',
 			'' => ['_actions', function($model) {
 				return '<div class="button-group actions">
 					<a class="button small primary" title="Details" href="' .route('admin.orders.edit', $model) .'"><i class="fa fa-search"></i></a>
@@ -102,12 +105,37 @@ class OrdersController extends Controller {
 		#$table->destroyable(true, url('admin/orders/{id}'));
 		$table->selectable(true);
 		$table->sortable(true, [
-			'status','updated_at','user',
+			'status','updated_at','user','activated',
 		]);
+
+		$table->filterable(true);
+
+
+		$users = ['*' => 'All'];
+		foreach(User::orderBy('firstname', 'asc')->orderBy('lastname', 'asc')->get() as $user) {
+			$users[$user->id] = $user->name;
+		}
+		$table->addFilter('user', 'select')->setValues($users);
+
+
+		$status = [
+			'*' => 'All',
+			'unprocessed' => 'Ubehandlet',
+			'written_out' => 'Skrevet ut',
+			'delivered' => 'Levert',
+			'cancelled' => 'Kansellert',
+			'ready_for_sending' => 'Klar til Sending',
+			'processed' => 'Behandlet',
+			'restorder' => 'Restordre',
+		];
+		$table->addFilter('status', 'select')->setValues($status);
+
+		$table->paginate(true);
 
 		return $this->view('admin.orders_index')
 			->with([
-				'table' => $table,
+				'table' => $table->render(),
+				'filters' => $table->buildFilters()->addClass('inline'),
 				'pagination' => $table->paginator->render(),
 			]);
 	}

@@ -1,5 +1,7 @@
 <?php namespace Friluft\Http\Controllers;
 
+use Friluft\Http\Controllers\Admin\BannersController;
+
 class HomeController extends Controller {
 
 	public function index()
@@ -8,6 +10,7 @@ class HomeController extends Controller {
 			->with([
 				'slider' => true,
 				'breadcrumbs' => false,
+				'images' => BannersController::getImages(),
 			]);
 	}
 

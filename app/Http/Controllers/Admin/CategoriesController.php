@@ -42,9 +42,16 @@ class CategoriesController extends Controller {
 
 		$table->destroyable(true, url('admin/categories/{id}'));
 
+		$table->filterable(true);
+
+		$table->addFilter('name', 'search');
+
+		$table->paginate(true);
+
 		return view('admin.categories_index')
 			->with([
 				'table' => $table->render(),
+				'filters' => $table->buildFilters()->addClass('inline'),
 				'pagination' => $table->paginator->render(),
 			]);
 	}

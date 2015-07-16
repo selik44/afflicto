@@ -53,6 +53,8 @@ return [
 	'design' => 'Design',
 	'slides' => 'Slides',
 	'slide' => 'Slide',
+	'banners' => 'Banners',
+	'banner' => 'Banner',
 
 	'ready_for_sending' => 'Ready for Sending',
 	'processed' => 'Processed',
