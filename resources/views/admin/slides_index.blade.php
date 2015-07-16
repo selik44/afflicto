@@ -207,11 +207,12 @@
             e.preventDefault();
             var payload = {
                 _method: 'DELETE',
-                _token: Friluft.token,
-                id: preview.attr('data-id')
+                _token: Friluft.token
             };
 
-            $.post(Friluft.URL + '/admin/design/slides', payload, function(response) {
+            var id = $(this).parents('.dz-sortable').attr('data-id');
+
+            $.post(Friluft.URL + '/admin/design/slides/' + id, payload, function(response) {
                 preview.slideUp(function() {
                     $(this).remove();
                 });
