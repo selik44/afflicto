@@ -153,7 +153,7 @@
         previewNode.parentNode.removeChild(previewNode);
 
         $("#slides-list").dropzone({
-            url: Friluft.URL + '/admin/slides',
+            url: Friluft.URL + '/admin/design/slides',
             previewTemplate: previewTemplate,
 
             init: function() {

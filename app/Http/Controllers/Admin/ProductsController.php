@@ -65,6 +65,8 @@ class ProductsController extends Controller {
 		$table->addFilter('manufacturer_id', 'select')->setValues($manufacturers);
 		$table->addFilter('categories', 'category');
 
+		$table->paginate(true, 13);
+
 		return $this->view('admin.products_index')
 		->with([
 			'table' => $table->render(),
