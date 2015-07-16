@@ -2,10 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Category.php" afterPath="$PROJECT_DIR$/app/Category.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Laratables/CategoryFilter.php" afterPath="$PROJECT_DIR$/app/Laratables/CategoryFilter.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/products_index.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/products_index.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
@@ -90,7 +89,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="310" column="98" selection-start-line="310" selection-start-column="98" selection-end-line="310" selection-end-column="98" />
+              <caret line="253" column="118" selection-start-line="253" selection-start-column="118" selection-end-line="253" selection-end-column="118" />
               <folding />
             </state>
           </provider>
@@ -100,7 +99,20 @@
         <entry file="file://$PROJECT_DIR$/resources/views/admin/products_index.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
+              <caret line="98" column="22" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
+              <folding>
+                <element signature="e#617#638#0#HTML" expanded="true" />
+                <element signature="e#1639#1665#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProductsController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.5497703">
+              <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -111,36 +123,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="62" column="28" selection-start-line="62" selection-start-column="28" selection-end-line="62" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProductsController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="74" column="97" selection-start-line="74" selection-start-column="97" selection-end-line="74" selection-end-column="97" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CategoryFilter.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Laratables/CategoryFilter.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.48545176">
-              <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Category.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Category.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="109" column="13" selection-start-line="109" selection-start-column="13" selection-end-line="109" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -212,7 +194,6 @@
         <option value="$PROJECT_DIR$/resources/views/admin/orders_index.blade.php" />
         <option value="$PROJECT_DIR$/resources/lang/en/admin.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/partial/nav.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Image.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/banners_index.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/BannersController.php" />
@@ -221,10 +202,11 @@
         <option value="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
         <option value="$PROJECT_DIR$/resources/views/admin/slides_index.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/partial/categories_dropdown.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/products_index.blade.php" />
         <option value="$PROJECT_DIR$/app/Category.php" />
         <option value="$PROJECT_DIR$/app/Laratables/CategoryFilter.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/products_index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" />
       </list>
     </option>
   </component>
@@ -883,19 +865,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/2048a19a/b70391ad-1f84-4357-95ee-cb4cd3ded70e/friluft..products">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/composer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.2857143">
@@ -1260,10 +1229,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+    <entry file="file://$PROJECT_DIR$/app/Category.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="310" column="98" selection-start-line="310" selection-start-column="98" selection-end-line="310" selection-end-column="98" />
+        <state vertical-scroll-proportion="0.525268">
+          <caret line="109" column="13" selection-start-line="109" selection-start-column="13" selection-end-line="109" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/forms/admin/product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.517611">
+          <caret line="34" column="13" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Laratables/CategoryFilter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.42113322">
+          <caret line="16" column="9" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1276,34 +1261,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="dbDummy://dbtable:/2048a19a/b70391ad-1f84-4357-95ee-cb4cd3ded70e/friluft..products">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="253" column="118" selection-start-line="253" selection-start-column="118" selection-end-line="253" selection-end-column="118" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/products_index.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="27" column="39" selection-start-line="27" selection-start-column="39" selection-end-line="27" selection-end-column="39" />
-          <folding />
+          <caret line="98" column="22" selection-start-line="98" selection-start-column="22" selection-end-line="98" selection-end-column="22" />
+          <folding>
+            <element signature="e#617#638#0#HTML" expanded="true" />
+            <element signature="e#1639#1665#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="74" column="97" selection-start-line="74" selection-start-column="97" selection-end-line="74" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Category.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="109" column="13" selection-start-line="109" selection-start-column="13" selection-end-line="109" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Laratables/CategoryFilter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48545176">
-          <caret line="32" column="25" selection-start-line="32" selection-start-column="25" selection-end-line="32" selection-end-column="25" />
+        <state vertical-scroll-proportion="0.5497703">
+          <caret line="215" column="8" selection-start-line="215" selection-start-column="8" selection-end-line="215" selection-end-column="8" />
           <folding />
         </state>
       </provider>

@@ -240,6 +240,9 @@ Route::group(['prefix' => $locale], function() {
 		delete('roles/{role}', ['as' => 'admin.roles.delete', 'uses' => 'Admin\RolesController@destroy']);
 
 		# products
+		delete('products/batch', ['as' => 'admin.products.batch.destroy', 'uses' => 'Admin\ProductsController@batchDestroy']);
+		put('products/batch/move', ['as' => 'admin.products.batch.move', 'uses' => 'Admin\ProductsController@batchMove']);
+
 		get('products', ['as' => 'admin.products.index', 'uses' => 'Admin\ProductsController@index']);
 		get('products/create', ['as' => 'admin.products.create', 'uses' => 'Admin\ProductsController@create']);
 		get('products/{product}/edit', ['as' => 'admin.products.edit', 'uses' => 'Admin\ProductsController@edit']);

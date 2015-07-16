@@ -193,6 +193,32 @@ class ProductsController extends Controller {
 		return response('OK');
 	}
 
+	/**
+	 * "Move" several products to a given set of categories
+	 *
+	 * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+	 */
+	public function batchMove() {
+		$products = explode(',', Input::get('products', ''));
+		$categories = Input::get('categories', []);
+
+		sort($categories, SORT_ASC);
+
+		DB::table('products')->whereIn('id', $products)->update([
+			'categories' => implode(',', $categories),
+		]);
+
+		return Redirect::back()->with('success', count($products) .' moved!');
+	}
+
+	public function batchDestroy() {
+		if ( ! Input::has('products')) return Redirect::back()->with('error', 'No products selected!');
+
+		$products = explode(',', Input::get('products'));
+		Product::whereIn('id', $products)->delete();
+		return Redirect::back()->with('success', count($products) .' deleted!');
+	}
+
 	public function destroy(Product $product)
 	{
 		$product->delete();
