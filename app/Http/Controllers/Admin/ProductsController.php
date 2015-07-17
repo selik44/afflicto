@@ -177,7 +177,7 @@ class ProductsController extends Controller {
 		$p->weight = Input::get('weight', 0);
 		$p->inprice = Input::get('inprice', 0);
 		$p->price = Input::get('price', 0);
-		$p->manufacturer_id = Input::get('manufacturer');
+		$p->manufacturer_id = Input::get('manufacturer_id');
 		$p->vatgroup_id = Input::get('vatgroup');
 		$p->categories = Input::get('categories', []);
 
