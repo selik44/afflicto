@@ -82,6 +82,8 @@ class Product extends Model {
 	protected $casts = [
 		'weight' => 'float',
 		'stock' => 'integer',
+		'price' => 'integer',
+		'inprice' => 'integer',
 	];
 
 	protected $searchable = [
@@ -137,14 +139,6 @@ class Product extends Model {
 
 	public function getEnabledAttribute() {
 		return '' + $this->attributes['enabled'];
-	}
-
-	public function getPriceAttribute() {
-		return $this->attributes['price'] / 100;
-	}
-
-	public function setPriceAttribute($value) {
-		$this->attributes['price'] = (int) ($value * 100);
 	}
 
 	public function getCategoriesAttribute() {

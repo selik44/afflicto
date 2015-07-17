@@ -18,7 +18,7 @@
 				</h2>
 			</div>
 			</h1>
-			<h1 class="price end pull-right"><strong>{{$product->price * $product->vatgroup->amount}},-</strong></h1>
+			<h1 class="price end pull-right"><strong>{{ceil($product->price * $product->vatgroup->amount)}},-</strong></h1>
 		</header>
 
 		<div class="product-top col-xs-12 tight">
@@ -88,7 +88,7 @@
 									</a>
 
 									<div class="price">
-										<h4><strong>{{$related->price}},-</strong></h4>
+										<h4><strong>{{ceil($related->price * $related->vatgroup->amount)}},-</strong></h4>
 									</div>
 								</div>
 							</div>
