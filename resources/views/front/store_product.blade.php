@@ -14,7 +14,10 @@
 		<header class="header">
 			<div class="title pull-left">
 				<h2 class="manufacturer end">
-					<strong>{{$product->manufacturer->name}}</strong> <span class="title">{{$product->name}}</span>
+                    @if($product->manufacturer)
+					    <strong>{{$product->manufacturer->name}}</strong>
+                    @endif
+                    <span class="title">{{$product->name}}</span>
 				</h2>
 			</div>
 			</h1>
