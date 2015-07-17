@@ -8,7 +8,8 @@ use Friluft\Product;
 use Friluft\Tag;
 use Friluft\Taxgroup;
 use Friluft\Vatgroup;
-use Illuminate\Http\Request;
+use Request;
+use Session;
 use Input;
 use Laratable;
 use Redirect;
@@ -20,6 +21,9 @@ class ProductsController extends Controller {
 
 	public function index()
 	{
+		# store the query settings
+		Session::put('admin_products_index_query', Request::getQueryString());
+
 		$table = Laratable::make(Product::query(), [
 			'#' => 'id',
             'Name' => 'name',
@@ -184,7 +188,9 @@ class ProductsController extends Controller {
 		$p->tags()->sync(Input::get('tags', []));
 
 		# success
-		return Redirect::back()->with('success', 'Product updated!');
+
+		$queryParams = Session::get('admin_products_index_query', '');
+		return Redirect::to(route('admin.products.index') .'?' .$queryParams)->with('success', 'Product updated!');
 	}
 
 	public function relate(Product $p, $related) {
