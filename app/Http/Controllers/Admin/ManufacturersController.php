@@ -9,6 +9,7 @@ use Laratable;
 use Input;
 use Redirect;
 use Friluft\Manufacturer;
+use DB;
 
 class ManufacturersController extends Controller {
 
@@ -67,6 +68,8 @@ class ManufacturersController extends Controller {
 
 	public function destroy(Manufacturer $mf)
 	{
+		DB::table('products')->where('manufacturer_id', '=', $mf->id)->update(['manufacturer_id' => null]);
+
 		$mf->delete();
 
 		return Redirect::route('admin.manufacturers.index')->with('success', trans('admin.manufacturers_delete_success', ['manufacturer' => $mf->name]));
