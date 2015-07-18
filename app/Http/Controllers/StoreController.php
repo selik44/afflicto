@@ -97,22 +97,7 @@ class StoreController extends Controller {
 	}
 
 	public function success() {
-		if (!Input::has('klarna_order')) {
-			return view('front.store.success')->with('error', 'Something went wrong, contact us if the issue persists.');
-		}
-
-		$data = Cart::getKlarnaOrder(Input::get('klarna_order'))->marshal();
-
-		# create the order, unless it already exists.
-		$order = Order::where('reservation', '=', $data['reservation'])->first();
-		if (!$order) {
-			$this->createOrder(Input::get('klarna_order'));
-            Log::info("store.success: Creating order.");
-		}
-
-		# clean up the cart & order
 		Cart::clear();
-
 		return view('front.store.success');
 	}
 
@@ -130,7 +115,7 @@ class StoreController extends Controller {
 		}
 
 		# update the order with new data
-		$order->status = $data['status'];
+		$order->klarna_status = $data['status'];
 		$order->save();
 
 		return response('OK', 200);
@@ -148,7 +133,7 @@ class StoreController extends Controller {
 		# create new order
 		$order = new Order();
 
-		$order->status = 'ubehandlet';
+		$order->status = 'unprocessed';
 
 		$order->klarna_id = $id;
 		$order->items = $data['cart']['items'];
