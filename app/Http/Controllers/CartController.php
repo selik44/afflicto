@@ -85,13 +85,13 @@ class CartController extends Controller {
 	{
 		Cart::remove($id);
 		Cart::updateKlarnaOrder();
-		return response("OK");
+		return ['total' => Cart::getTotal()];
 	}
 
 	public function setQuantity($id) {
 		Cart::setQuantity($id, (int) Input::get('quantity', 0));
 		Cart::updateKlarnaOrder();
-		return response('OK');
+		return ['total' => Cart::getTotal()];
 	}
 
 	public function clear() {

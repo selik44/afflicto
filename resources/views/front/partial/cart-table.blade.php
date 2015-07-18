@@ -104,7 +104,7 @@
 
 				//update price
 				var price = parseFloat(item.attr('data-price'));
-				var subTotal = price * quantity;
+				var subTotal = Math.round(price * quantity);
 
 				item.find('.subtotal .value').html(subTotal);
 
