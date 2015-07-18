@@ -46,7 +46,7 @@
 					</td>
 
 					<td class="subtotal">
-						<h4 class="end"><span class="value">{{($model->price * $model->vatgroup->amount) * $item['quantity']}}</span>,-</h4>
+						<h4 class="end"><span class="value">{{round($model->price * $model->vatgroup->amount) * $item['quantity']}}</span>,-</h4>
 					</td>
 				</tr>
 			@endforeach

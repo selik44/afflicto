@@ -86,7 +86,7 @@ class Cart {
 
 	/**
 	 * Add an item to the cart.
-	 * @param Friluft\Product|int|integer a product model instance or integer product_id
+	 * @param \Friluft\Product|int|integer a product model instance or integer product_id
 	 * @param int|integer The quantity of this item in the cart.
 	 * @return int|integer the item uid, used to reference the items in the cart.
 	 */
@@ -177,11 +177,11 @@ class Cart {
 	 * @return float the total price.
 	 */
 	public function getTotal() {
-		$total = 0.0;
+		$total = 0;
 		foreach($this->getItems() as $item) {
 			$total += $this->getSubTotal($item['id']);
 		}
-		return $total;
+		return round($total);
 	}
 
 	public function getTotalWeight() {

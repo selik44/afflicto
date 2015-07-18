@@ -195,8 +195,9 @@ class StoreController extends Controller {
 
 		# react to sale
 		foreach($order->items as $item) {
-			if ($item['name'] == 'Shipping Fee') continue;
+			if ($item['reference'] == 'SHIPPING') continue;
 			$product = Product::find($item['reference']['id']);
+			if ( ! $product) continue;
 			$product->sell($item['quantity'], $item['reference']['options']['variants']);
 			$product->save();
 		}
