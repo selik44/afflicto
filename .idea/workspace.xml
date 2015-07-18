@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_ide_helper.php" afterPath="$PROJECT_DIR$/_ide_helper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/js/all.js" afterPath="$PROJECT_DIR$/public/js/all.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/forms/admin/product.php" afterPath="$PROJECT_DIR$/resources/forms/admin/product.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/products_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/products_edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -90,12 +85,12 @@
       <file leaf-file-name="products_edit.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/products_edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6270492">
-              <caret line="640" column="11" selection-start-line="640" selection-start-column="11" selection-end-line="640" selection-end-column="11" />
+            <state vertical-scroll-proportion="0.6557377">
+              <caret line="650" column="65" selection-start-line="650" selection-start-column="65" selection-end-line="650" selection-end-column="65" />
               <folding>
-                <marker date="1437186862906" expanded="true" signature="162:217" placeholder="..." />
-                <marker date="1437186862906" expanded="true" signature="236:241" placeholder="..." />
-                <marker date="1437186862906" expanded="true" signature="256:270" placeholder="..." />
+                <marker date="1437187678470" expanded="true" signature="162:217" placeholder="..." />
+                <marker date="1437187678470" expanded="true" signature="236:241" placeholder="..." />
+                <marker date="1437187678470" expanded="true" signature="256:270" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -1209,12 +1204,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/products_edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6270492">
-          <caret line="640" column="11" selection-start-line="640" selection-start-column="11" selection-end-line="640" selection-end-column="11" />
+        <state vertical-scroll-proportion="0.6557377">
+          <caret line="650" column="65" selection-start-line="650" selection-start-column="65" selection-end-line="650" selection-end-column="65" />
           <folding>
-            <marker date="1437186862906" expanded="true" signature="162:217" placeholder="..." />
-            <marker date="1437186862906" expanded="true" signature="236:241" placeholder="..." />
-            <marker date="1437186862906" expanded="true" signature="256:270" placeholder="..." />
+            <marker date="1437187678470" expanded="true" signature="162:217" placeholder="..." />
+            <marker date="1437187678470" expanded="true" signature="236:241" placeholder="..." />
+            <marker date="1437187678470" expanded="true" signature="256:270" placeholder="..." />
           </folding>
         </state>
       </provider>

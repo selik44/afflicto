@@ -624,7 +624,7 @@
             var priceValue = (getProfit() + getInPrice());
             price.val(priceValue);
 
-            priceHelp.html(priceValue * getTaxPercent());
+            priceHelp.html(Math.round(priceValue * getTaxPercent()));
         }
 
         profit.bind('keyup', function(e) {
@@ -633,7 +633,7 @@
 
         price.bind('keyup', function(e) {
             profit.val(calculateProfit());
-            priceHelp.html(priceValue * getTaxPercent());
+            priceHelp.html(getPrice() * getTaxPercent());
         });
 
         inprice.bind('keyup', function(e) {
@@ -646,7 +646,9 @@
         });
 
         //set profit value
-        profit.val((getPrice() / getTaxPercent()) - getInPrice());
+        profit.val(getPrice() - getInPrice());
+
+        priceHelp.html(Math.round(getPrice() * getTaxPercent()));
 
         //autoslug the name
         form.find('[name="slug"]').autoSlug({other: '[name="name"]'});
