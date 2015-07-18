@@ -204,19 +204,21 @@ class Cart {
 				'reference' => json_encode(['id' => $item['model']->id, 'options' => $item['options']]),
 				'name' => $item['model']->name,
 				'quantity' => $item['quantity'],
-				'unit_price' => ($item['model']->price * $item['model']->vatgroup->amount) * 100,
+				'unit_price' => (ceil($item['model']->price * $item['model']->vatgroup->amount)) * 100,
 				'discount_rate' => 0,
 				'tax_rate' => ($item['model']->vatgroup->amount - 1) * 100,
 			];
 		}
 
 		# add shipping costs
-		/*
 		$weight = $this->getTotalWeight();
 		$total = $this->getTotal();
-		$shippingFee = 9900;
-		if ($weight < 1000) {
+		if ($total >= 800) {
+			$shippingFee = 0;
+		}else if ($weight <= 1000) {
 			$shippingFee = 3900;
+		}else {
+			$shippingFee = 9900;
 		}
 
 		$data['cart']['items'][] = [
@@ -227,7 +229,6 @@ class Cart {
 			'unit_price' => $shippingFee,
 			'tax_rate' => 0,
 		];
-		*/
 
 		return $data;
 	}

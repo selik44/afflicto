@@ -47,6 +47,6 @@ Order statuses
 - restordre | ikke på lager
 
 Shipping
-- under tusen gram: 39,- brevpost
-- over 1000kr: 99,- service pakke sporing
-- over 800kr: fri frakt.
+99,- service pakke sporing
+under tusen gram: 39,- brevpost
+over 800kr: fri frakt.

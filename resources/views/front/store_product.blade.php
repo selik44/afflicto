@@ -67,7 +67,17 @@
 			<ul id="product-tabs" class="nav tabs clearfix">
 				<li class="current"><a href="#product-info">Product Info</a></li>
 				<li><a href="#product-relations">Related Products</a></li>
+
+                @foreach($product->producttabs as $tab)
+                    <li><a href="#product-tab-{{$tab->id}}">{{$tab->title}}</a></li>
+                @endforeach
 			</ul>
+
+            @foreach($product->producttabs as $tab)
+                <div class="tab" id="product-tab-{{$tab->id}}">
+                    {!! $tab->body !!}
+                </div>
+            @endforeach
 
 			<div class="tab" id="product-info">
 				{!! $product->description !!}
