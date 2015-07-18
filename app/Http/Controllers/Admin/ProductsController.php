@@ -5,6 +5,7 @@ use Friluft\Http\Controllers\Controller;
 use Friluft\Category;
 use Friluft\Manufacturer;
 use Friluft\Product;
+use Friluft\Producttab;
 use Friluft\Tag;
 use Friluft\Taxgroup;
 use Friluft\Vatgroup;
@@ -175,6 +176,27 @@ class ProductsController extends Controller {
 		$p->vatgroup_id = Input::get('vatgroup');
 		$p->categories = Input::get('categories', []);
 
+		# add tabs
+		for($i = 1; $i < 10; $i++) {
+			if (Input::has('tab-' .$i .'-title')) {
+				$title = Input::get('tab-' .$i .'-title');
+				$body = Input::get('tab-' .$i .'-content');
+				$id = Input::get('tab-' .$i .'-id', null);
+
+				if ($id != null) {
+					$tab = Producttab::findOrNew($i);
+				}else {
+					$tab = new Producttab();
+				}
+
+				$tab->title = trim($title);
+				$tab->body = trim($body);
+				$p->producttabs()->save($tab);
+			}else {
+				break;
+			}
+		}
+
 		# save
 		$p->save();
 
@@ -199,6 +221,11 @@ class ProductsController extends Controller {
 	public function unrelate(Product $p, $related) {
 		$p->relations()->detach($related);
 		return response('OK');
+	}
+
+	public function destroyTab(Producttab $tab) {
+		$tab->delete();
+		return response('OK', 200);
 	}
 
 	/**

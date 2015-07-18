@@ -34,11 +34,9 @@
 	            <ul class="nav tabs">
 	                <li class="current"><a href="#product-description">Description</a></li>
 	                <li><a href="#product-relations">Related Products</a></li>
-	                @if($product->tabs != null)
-	                    @foreach($product->tabs as $key => $tab)
-	                        <li><a href="#product-tab-{{$key}}">{{$tab['title']}}</a></li>
-	                    @endforeach
-	                @endif
+                    @foreach($product->producttabs as $tab)
+                        <li><a href="#tab-{{$tab->id}}">{{$tab->title}}</a></li>
+                    @endforeach
 	            </ul>
 
 	            <div id="product-description">
@@ -75,13 +73,15 @@
 	            </div>
 
 	            <div id="product-tabs">
-	                @if($product->tabs != null)
-	                    @foreach($product->tabs as $key => $tab)
-	                        <div class="tab" id="product-tab-{{$key}}">
-	                            <textarea name="product-tab-{{$key}}">{{$tab['body']}}</textarea>
-	                        </div>
-	                    @endforeach
-	                @endif
+                    @foreach($product->producttabs as $tab)
+                        <div class="tab" id="tab-{{$tab->id}}">
+                            <input type="text" name="tab-{{$tab->id}}-title" value="{{$tab->title}}">
+                            <input type="hidden" name="tab-{{$tab->id}}-id" value="{{$tab->id}}">
+                            <textarea name="tab-{{$tab->id}}">{{$tab->body}}</textarea>
+                            <br>
+                            <button class="error remove"><i class="fa fa-trash"></i> Delete Tab</button>
+                        </div>
+                    @endforeach
 	            </div>
 	        </div>
 
@@ -397,7 +397,7 @@
             var id = tabs.find('.tab').length + 1;
 
             //create the tab itself
-            var tab = $("<div style='display: none;' class='tab' id='tab-" + id + "'><input type='text' class='title' value='" + title + "'><textarea class='tab-content'></textarea><br><button class='error remove'><i class='fa fa-trash'></i> Delete Tab</button></div>");
+            var tab = $("<div style='display: none;' class='tab' id='tab-" + id + "'><input type='text' class='title' name='tab-" + id + "-title' value='" + title + "'><textarea class='tab-content' name='tab-" + id + "-content'></textarea><br><button class='error remove'><i class='fa fa-trash'></i> Delete Tab</button></div>");
             tabs.append(tab);
 
             //create the tab link
@@ -412,8 +412,24 @@
             var id = tab.attr('id');
             var link = $(".product-tabs-row ul.nav.tabs li a[href='#" + id + "']");
 
-            tab.remove();
-            link.remove();
+            var dbId = $('input[name="' + id + '-id"]').val();
+
+            console.log('db id: ' + dbId);
+
+            if (dbId == null) {
+                return false;
+            }
+
+            var payload = {
+                _method: 'DELETE',
+                _token: Friluft.token,
+            };
+
+            $.post(Friluft.URL + '/admin/products/tabs/' + dbId, payload, function(response) {
+                console.log('tab deleted.');
+                tab.remove();
+                link.remove();
+            });
         });
 
         var previewNode = document.querySelector(".preview-template");

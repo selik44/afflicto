@@ -240,6 +240,7 @@ Route::group(['prefix' => $locale], function() {
 		delete('roles/{role}', ['as' => 'admin.roles.delete', 'uses' => 'Admin\RolesController@destroy']);
 
 		# products
+		delete('products/tabs/{producttab}', ['as' => 'admin.products.tabs.destroy', 'uses' => 'Admin\ProductsController@destroyTab']);
 		delete('products/batch', ['as' => 'admin.products.batch.destroy', 'uses' => 'Admin\ProductsController@batchDestroy']);
 		put('products/batch/move', ['as' => 'admin.products.batch.move', 'uses' => 'Admin\ProductsController@batchMove']);
 
