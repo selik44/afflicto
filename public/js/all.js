@@ -140,6 +140,13 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
             return tab.hide();
           }
         });
+        this.$el.on('click', 'a', function(e) {
+          target = $(this).attr('href');
+          if (target != null) {
+            e.preventDefault();
+            return self["switch"](target);
+          }
+        });
         this.$el.find('a').click(function(e) {
           target = $(this).attr('href');
           if (target != null) {

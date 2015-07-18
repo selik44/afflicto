@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.0.33 on 2015-06-16.
+ * Generated for Laravel 5.0.33 on 2015-07-17.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -1228,7 +1228,7 @@ namespace {
         /**
          * Get the currently authenticated user.
          *
-         * @return \App\User|null 
+         * @return \Friluft\User|null 
          * @static 
          */
         public static function user(){
@@ -1330,7 +1330,7 @@ namespace {
          *
          * @param mixed $id
          * @param bool $remember
-         * @return \App\User 
+         * @return \Friluft\User 
          * @static 
          */
         public static function loginUsingId($id, $remember = false){
@@ -1435,7 +1435,7 @@ namespace {
         /**
          * Return the currently cached user.
          *
-         * @return \App\User|null 
+         * @return \Friluft\User|null 
          * @static 
          */
         public static function getUser(){
@@ -1477,7 +1477,7 @@ namespace {
         /**
          * Get the last user we attempted to authenticate.
          *
-         * @return \App\User 
+         * @return \Friluft\User 
          * @static 
          */
         public static function getLastAttempted(){
@@ -11780,6 +11780,19 @@ namespace {
          */
         public static function make(){
             return \Friluft\PDF\Snappy::make();
+        }
+        
+        /**
+         * 
+         *
+         * @param string $html
+         * @param string $fileName
+         * @param boolean $overWrite
+         * @return \Knp\Snappy\Pdf 
+         * @static 
+         */
+        public static function fromHTML($html, $fileName, $overWrite){
+            return \Friluft\PDF\Snappy::fromHTML($html, $fileName, $overWrite);
         }
         
     }

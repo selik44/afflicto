@@ -299,6 +299,24 @@
         </div>
     </footer>
     {!!Former::close()!!}
+
+    <div id="add-tab-modal" class="modal center fade">
+        <button class="modal-dismiss" data-toggle-modal="#add-tab-modal"><i class="fa fa-close"></i></button>
+        <div class="modal-header">
+            <h4 class="end">New Tab</h4>
+        </div>
+
+        <div class="modal-content">
+            <input type="text" name="title" value="New Tab">
+
+            <br>
+
+            <div class="button-group">
+                <button class="primary large add">Add</button>
+                <button class="large cancel">Cancel</button>
+            </div>
+        </div>
+    </div>
 @stop
 
 
@@ -354,6 +372,49 @@
 	        });
         });
 
+
+        //---------------- product tabs ------------------//
+        var tabs = $("#product-tabs");
+        var addTabModal = $("#add-tab-modal").gsModal();
+
+        //show add tab modal
+        $(".product-tabs-row .module-header a.add-tab").click(function() {
+            addTabModal.find('input[name="title"]').val("New Tab");
+            addTabModal.gsModal('show');
+        });
+
+        //cancel add
+        addTabModal.find('button.cancel').click(function() {
+            addTabModal.gsModal('hide');
+        });
+
+        //add
+        addTabModal.find('button.add').click(function() {
+            addTabModal.gsModal('hide');
+
+            var title = addTabModal.find('input[name="title"]').val();
+
+            var id = tabs.find('.tab').length + 1;
+
+            //create the tab itself
+            var tab = $("<div style='display: none;' class='tab' id='tab-" + id + "'><input type='text' class='title' value='" + title + "'><textarea class='tab-content'></textarea><br><button class='error remove'><i class='fa fa-trash'></i> Delete Tab</button></div>");
+            tabs.append(tab);
+
+            //create the tab link
+            var link = $("<li><a href='#tab-" + id + "'>" + title + "</a></li>");
+            $(".product-tabs-row ul.nav.tabs").append(link);
+        });
+
+        //remove tab
+        tabs.on('click', '.tab > button.remove', function(e) {
+            e.preventDefault();
+            var tab = $(this).parent('.tab');
+            var id = tab.attr('id');
+            var link = $(".product-tabs-row ul.nav.tabs li a[href='#" + id + "']");
+
+            tab.remove();
+            link.remove();
+        });
 
         var previewNode = document.querySelector(".preview-template");
         previewNode.id = "";
@@ -538,37 +599,50 @@
         }
 
         function getProfit() {
-            return parseFloat(profit.val());
+            return parseInt(profit.val());
         }
 
         function getInPrice() {
-            return parseFloat(inprice.val());
+            return parseInt(inprice.val());
         }
 
         function getPrice() {
-            return parseFloat(price.val());
+            return parseInt(price.val());
         }
 
         function calculateProfit() {
-	        var profit = (getPrice() / getTaxPercent()) - getInPrice();
-	        return Math.round(profit * 100) / 100;
+	        var profit = getPrice() - getInPrice();
+
+            profit -= ((profit * getTaxPercent()) - profit);
+
+            return Math.round(profit);
+        }
+
+        function updatePrice() {
+            //profit = 100
+            //inPrice = 100
+            var priceValue = (getProfit() + getInPrice());
+            price.val(priceValue);
+
+            priceHelp.html(priceValue * getTaxPercent());
         }
 
         profit.bind('keyup', function(e) {
-            price.val((getProfit() + getInPrice()) * getTaxPercent());
-	        priceHelp.html(getPrice() * getTaxPercent());
+            updatePrice();
         });
 
         price.bind('keyup', function(e) {
             profit.val(calculateProfit());
+            priceHelp.html(priceValue * getTaxPercent());
         });
 
         inprice.bind('keyup', function(e) {
-	        profit.val(calculateProfit());
+	        updatePrice();
         });
 
         vatgroup.bind('change', function(e) {
-	        profit.val(calculateProfit());
+	        updatePrice();
+            calculateProfit();
         });
 
         //set profit value
