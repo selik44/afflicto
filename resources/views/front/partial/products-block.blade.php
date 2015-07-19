@@ -16,7 +16,7 @@
             <div class="overlay">
                 <div class="tags">
                     @foreach($product->tags as $tag)
-                        <span class="tag"><i class="{{$tag->icon}}"></i> {{$tag->label}}</span>
+                        <span class="tag" style="background-color: {{$tag->color}};"><i class="{{$tag->icon}}"></i> {{$tag->label}}</span>
                     @endforeach
                 </div>
             </div>

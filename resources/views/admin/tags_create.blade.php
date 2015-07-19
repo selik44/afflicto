@@ -21,6 +21,10 @@
 			</select>
 		</label>
 
+        <label for="color">Color
+            <input type="color" name="color">
+        </label>
+
 		<div class="footer-height-fix"></div>
 
 		<footer id="footer">

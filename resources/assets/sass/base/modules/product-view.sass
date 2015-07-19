@@ -17,9 +17,9 @@
 				margin: $typo-font-size * 2 0rem
 				text-transform: uppercase
 				padding: 2rem 4rem
-				font-weight: 700
+				font-size: 1.6rem
 
-			p.summary
+			.summary
 				border-top: 1px solid $base-border-color
 				padding-top: 1rem
 
@@ -36,9 +36,19 @@
 			.related .info
 				padding: 1rem
 
+	//------- Large --------//
+	@include breakpoint('l')
+		> .header
+			.manufacturer, .price
+				font-size: 2rem
 
-	//------- SMALL -------//
-	@include breakpoint('sm-')
+		.product-top
+			.product-info
+				.buy
+					padding: 1.4rem 2.8rem
+
+	//------- MEDIUM -------//
+	@include breakpoint('m-')
 		> .header
 			text-align: center
 			.title
@@ -53,6 +63,7 @@
 
 			.product-info
 				position: fixed
+				z-index: 50
 				padding: 0
 				bottom: 0px
 				left: 0px
@@ -62,7 +73,15 @@
 				box-shadow: 0px 0px 8px 0px rgba(0,0,0, 0.5)
 
 				> .inner
-					padding: 0.5rem 3rem
+					padding: 0
 
-					p.summary
+					.product-variants
+						padding: 0.8rem 1.2rem
+						margin-bottom: 0.5rem
+
+					.summary
 						display: none
+
+					.buy
+						margin: 0
+						padding: 1.4rem 1.8rem

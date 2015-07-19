@@ -143,8 +143,22 @@
 			border-radius: $base-radius
 			padding: 1rem
 
+	//----------- SMALL AND DOWN ----------//
+	@include breakpoint('sm-')
+		#navigation .inner .nav-controls
+			padding: 0
+			align-items: stretch
 
-	//----------- SMALL ONLY ----------//
+		.logo
+			margin: 0.2rem 0.4rem
+			max-width: 120px
+
+		.cart-toggle
+			font-size: 2rem
+			.text
+				display: none
+
+	//----------- MEDIUM AND DOWN ----------//
 	@include breakpoint('m-')
 		#search .input-append
 			input

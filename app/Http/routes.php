@@ -268,9 +268,9 @@ Route::group(['prefix' => $locale], function() {
 
 		# tags
 		get('tags', ['as' => 'admin.tags.index', 'uses' => 'Admin\TagsController@index']);
+		put('tags/{tag}', ['as' => 'admin.tags.update', 'uses' => 'Admin\TagsController@update']);
 		get('tags/create', ['as' => 'admin.tags.create', 'uses' => 'Admin\TagsController@create']);
 		get('tags/{tag}/edit', ['as' => 'admin.tags.edit', 'uses' => 'Admin\TagsController@edit']);
-		put('tags/{tag}', ['as' => 'admin.tags.update', 'uses' => 'Admin\TagsController@update']);
 		post('tags', ['as' => 'admin.tags.store', 'uses' => 'Admin\TagsController@store']);
 		delete('tags/{tag}', ['as' => 'admin.tags.destroy', 'uses' => 'Admin\TagsController@destroy']);
 

@@ -80,27 +80,23 @@ iframe
 		background: $base-background
 
 		> .inner
-			padding: 1rem 0rem
+			padding: 2rem 0rem
 			display: flex
 			flex-direction: row
+
 			@include breakpoint('sm-')
 				flex-wrap: wrap
 
 			#aside
 				flex: 0 0 240px
+				@include breakpoint('m-')
+					display: none
 
 				> .inner
 					> .block
 						padding: 1rem
 						margin-bottom: 1rem
 						border-bottom: 1px solid $base-border-color
-
-				@include breakpoint('sm-')
-					flex: 0 1 100%
-					width: 100%
-					order: 2
-					background: weaker($base-background, 10%)
-
 
 			#article
 				flex: 1 1 auto

@@ -20,12 +20,11 @@
                     <span class="title">{{$product->name}}</span>
 				</h2>
 			</div>
-			</h1>
 			<h1 class="price end pull-right"><strong>{{ceil($product->price * $product->vatgroup->amount)}},-</strong></h1>
 		</header>
 
 		<div class="product-top col-xs-12 tight">
-			<div class="product-images col-l-8 col-m-7 col-sm-12 tight-left">
+			<div class="product-images col-l-8 col-m-7 col-m-12 tight-left">
 				<div class="slider contain">
 					<div class="container">
 					@foreach($product->images as $image)
@@ -35,7 +34,13 @@
 				</div>
 			</div>
 
-			<div class="product-info col-l-4 col-m-5 col-sm-6 tight-right">
+            <div class="product-summary hidden-l-up">
+                <div class="lead">
+                    {!! $product->summary !!}
+                </div>
+            </div>
+
+			<div class="product-info col-l-4 col-m-12 tight-right">
                 <div class="inner">
                     <form class="vertical" action="{{url('cart')}}" method="POST">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -53,12 +58,12 @@
                             @endforeach
                         </div>
 
-                        <button class="huge primary huge buy" style="width: 100%;" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.buy')</button>
+                        <button class="large primary huge buy" style="width: 100%;" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
                     </form>
 
-                    <p class="lead summary">
-                        {{$product->summary}}
-                    </p>
+                    <div class="lead summary">
+                        {!! $product->summary !!}
+                    </div>
                 </div>
 			</div>
 		</div>

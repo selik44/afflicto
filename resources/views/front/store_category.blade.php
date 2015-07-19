@@ -89,7 +89,6 @@
 @section('article')
 
 	<div class="products-grid-options clearfix module">
-
 		<header class="module-header clearfix">
 			<h2 class="end pull-left">{{{ucwords(strtolower($category->name))}}}</h2>
 		</header>
@@ -120,10 +119,7 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
-
-	<hr>
 
 	@include('front.partial.products-grid', ['withMenu' => true])
 @stop

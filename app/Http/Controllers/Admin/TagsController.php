@@ -620,6 +620,9 @@ class TagsController extends Controller {
 			'Icon' => ['icon', function($model, $column, $value) {
 				return '<i class="' .$value .'"></i>';
 			}],
+			'Color' => ['color', function($model, $column, $value) {
+				return '<span style="padding: 0.4rem; background: ' .$model->color .';">' .$model->color .'</span>';
+			}],
 		]);
 
 		$table->editable(true, url('admin/tags/{id}/edit'));
@@ -652,6 +655,7 @@ class TagsController extends Controller {
 		$tag = new Tag();
 		$tag->label = Input::get('label');
 		$tag->icon = Input::get('icon', null);
+		$tag->color = Input::get('color', null);
 		$tag->save();
 
 		return Redirect::back()->with('success', 'Tag created!');
@@ -676,7 +680,10 @@ class TagsController extends Controller {
 	 */
 	public function edit(Tag $tag)
 	{
-		return view('admin.tags_edit');
+		return view('admin.tags_edit')->with([
+			'tag' => $tag,
+			'icons' => $this->icons,
+		]);
 	}
 
 	/**
@@ -687,7 +694,12 @@ class TagsController extends Controller {
 	 */
 	public function update(Tag $tag)
 	{
+		$tag->label = Input::get('label');
+		$tag->icon = Input::get('icon');
+		$tag->color = Input::get('color');
+		$tag->save();
 
+		return Redirect::route('admin.tags.index');
 	}
 
 	/**

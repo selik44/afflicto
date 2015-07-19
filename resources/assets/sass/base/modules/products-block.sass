@@ -1,4 +1,5 @@
 .products-block
+
 	> .preview
 		position: relative
 		display: block
@@ -16,11 +17,6 @@
 
 			transition: all $base-transition-duration * 2
 			transition-timing-function: ease-out
-			filter: saturate(50%)
-			-webkit-filter: saturate(50%)
-			-moz-filter: saturate(50%)
-			-o-filter: saturate(50%)
-			-ms-filter: saturate(50%)
 
 		.overlay
 			width: 100%
@@ -28,19 +24,20 @@
 			position: absolute
 			top: 0px
 			left: 0px
+			transition: all $base-transition-duration
+			opacity: 0.6
+
+			&:hover
+				opacity: 0.8
 
 			.tags
 				.tag
 					position: absolute
-					font-size: 1.4rem
+					font-size: 1.2rem
 					background-color: transparentize($color-primary, 0.3)
-					padding: 1rem
-					color: white
+					padding: 0.6rem
+					color: black
 					text-transform: uppercase
-					transition: all $base-transition-duration
-
-					&:hover
-						background-color: transparentize($color-primary, 0.1)
 
 					&:first-child
 						left: 0px
@@ -58,25 +55,40 @@
 
 
 	> .header
-		padding: 1rem
+		position: relative
+		display: flex
+		flex-direction: row
+		padding-top: 1rem
 
 		.title
 			color: $base-color
 			display: block
-			float: left
-			width: 70%
+			flex: auto
 
 			.name
-				overflow: hidden
-				text-overflow: ellipsis
+				display: inline-block
+				width: 75%
 				white-space: nowrap
+				overflow: hidden !important
+				text-overflow: ellipsis
 
 		.price
-			float: right
-			max-width: 30%
+			flex: auto
 			font-weight: $typo-font-weight-strong
+			position: absolute
+			right: 0px
+
+		&:hover
+			.title
+				.name
+
+			.price
+				position: absolute
+				right: 0px
+
 
 	> .footer
+		display: none
 		transition: all $base-transition-duration
 		opacity: 0
 		margin-top: 1rem
@@ -97,13 +109,9 @@
 
 	&:hover
 		> .preview
+
 			> .image
 				transition-duration: $base-transition-duration * 0.5
-				filter: saturate(100%)
-				-webkit-filter: saturate(100%)
-				-moz-filter: saturate(100%)
-				-o-filter: saturate(100%)
-				-ms-filter: saturate(100%)
 
 		> .footer
 			opacity: 0.7

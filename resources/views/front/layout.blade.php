@@ -27,7 +27,7 @@
                         <img src="{{url('images/' .\Friluft\Store::current()->machine .'.png')}}">
                     </a>
 
-                    <button class="cart-toggle primary end hidden-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>
+                    <button class="cart-toggle primary end hidden-l-up"><i class="fa fa-shopping-cart"></i> <span class="text">Cart</span></button>
                 </div>
 				<div class="nav-contents">
 					<ul class="nav vertical fancy end navigation">
