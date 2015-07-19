@@ -1,4 +1,9 @@
 (($, window) ->
+
+	isFunc = (func) ->
+		getType = {}
+		func and getType.toString.call func is '[object Function]'
+
 	class FriluftSlider
 
 		defaults:
@@ -210,7 +215,7 @@
 		next: ->
 			@currentIndex++
 			@updateIndex()
-
+			@$el.trigger 'slider.next'
 			return @
 
 		prev: ->
@@ -280,9 +285,25 @@
 	$.fn.extend friluftSlider: (option, args...) ->
 		@each ->
 			$this = $(this)
-			data = $this.data('friluftSlider')
+			slider = $this.data('friluftSlider')
 
-			if !data
-				$this.data 'friluftSlider', (data = new FriluftSlider(this, option))
-			if typeof option == 'string'
-				data[option].apply(data, args)) window.jQuery, window
+			if !slider
+				$this.data 'friluftSlider', (slider = new FriluftSlider(this, option))
+			else if typeof option == 'string'
+				if option == "option"
+					console.log 'getting option'
+					if args[1]?
+						slider.options[args[0]] = args[1]
+					else
+						return slider.options[args[0]]
+				else
+					console.log 'getting property or calling method'
+					if typeof slider[option] is 'function'
+						console.log 'calling method'
+						slider[option].apply slider, args
+					else
+						console.log 'getting prop'
+						console.log 'slider.' + option + ' is ' + slider[option]
+						return slider[option]
+
+) window.jQuery, window

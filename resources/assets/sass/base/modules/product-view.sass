@@ -3,8 +3,31 @@
 
 	.product-top
 		.product-images
+			display: flex
+			flex-direction: row
+
+			.thumbnails
+				flex: 0 0 140px
+				overflow-y: auto
+				overflow-x: visible
+				display: block
+
+				.thumbnail
+					display: block
+					width: 140px
+					height: 80px
+					background-position: center
+					background-size: contain
+					background-repeat: no-repeat
+
+					&.active
+						border: 1px solid $color-primary
+
 			.slider
+				flex: 1 1 auto
 				border: none
+				border-left: 1px solid $base-border-color
+
 				.container
 					.slide
 

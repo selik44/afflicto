@@ -404,7 +404,12 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
     slice = [].slice;
 
   (function($, window) {
-    var FriluftSlider;
+    var FriluftSlider, isFunc;
+    isFunc = function(func) {
+      var getType;
+      getType = {};
+      return func && getType.toString.call(func === '[object Function]');
+    };
     FriluftSlider = (function() {
       FriluftSlider.prototype.defaults = {
         pingPong: false,
@@ -648,6 +653,7 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
       FriluftSlider.prototype.next = function() {
         this.currentIndex++;
         this.updateIndex();
+        this.$el.trigger('slider.next');
         return this;
       };
 
@@ -738,14 +744,30 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
         var args, option;
         option = arguments[0], args = 2 <= arguments.length ? slice.call(arguments, 1) : [];
         return this.each(function() {
-          var $this, data;
+          var $this, slider;
           $this = $(this);
-          data = $this.data('friluftSlider');
-          if (!data) {
-            $this.data('friluftSlider', (data = new FriluftSlider(this, option)));
-          }
-          if (typeof option === 'string') {
-            return data[option].apply(data, args);
+          slider = $this.data('friluftSlider');
+          if (!slider) {
+            return $this.data('friluftSlider', (slider = new FriluftSlider(this, option)));
+          } else if (typeof option === 'string') {
+            if (option === "option") {
+              console.log('getting option');
+              if (args[1] != null) {
+                return slider.options[args[0]] = args[1];
+              } else {
+                return slider.options[args[0]];
+              }
+            } else {
+              console.log('getting property or calling method');
+              if (typeof slider[option] === 'function') {
+                console.log('calling method');
+                return slider[option].apply(slider, args);
+              } else {
+                console.log('getting prop');
+                console.log('slider.' + option + ' is ' + slider[option]);
+                return slider[option];
+              }
+            }
           }
         });
       }

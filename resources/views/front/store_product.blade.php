@@ -25,9 +25,14 @@
 
 		<div class="product-top col-xs-12 tight">
 			<div class="product-images col-l-8 col-m-7 col-m-12 tight-left">
+                <div class="thumbnails">
+                    @foreach($product->images as $key => $image)
+                        <a class="thumbnail" href="#" data-slide="{{$key+1}}" style="background-image: url('{{asset('images/products/' .$image->name)}}');"></a>
+                    @endforeach
+                </div>
 				<div class="slider contain">
 					<div class="container">
-					@foreach($product->images as $image)
+					@foreach($product->images as $key => $image)
 						<div class="slide" style="background-image: url('{{asset('images/products/' .$image->name)}}');"></div>
 					@endforeach
 					</div>
@@ -145,9 +150,27 @@
 	@parent
 
 	<script type="text/javascript">
-		$(".product-images .slider").friluftSlider({
+        var slider = $(".product-images .slider");
+		slider.friluftSlider({
 			delay: 4000,
-			transitionSpeed: 600,
+			transitionSpeed: 400,
+            slideLinks: false,
 		});
+
+        $(".product-images .thumbnails .thumbnail").click(function() {
+            var id = $(this).attr('data-slide');
+            slider.friluftSlider("goTo", id);
+            slider.friluftSlider("stop");
+            $(".product-images .thumbnails .thumbnail.active").removeClass('active');
+            $(this).addClass('active');
+        });
+
+        slider.on('slider.next', function() {
+            var id = slider.data('friluftSlider').currentIndex;
+
+            $('.product-images .thumbnails .thumbnail.active').removeClass('active');
+
+            $('.product-images .thumbnails .thumbnail[data-slide="' + id + '"]').addClass('active');
+        });
 	</script>
 @stop
