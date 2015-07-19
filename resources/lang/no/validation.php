@@ -105,6 +105,11 @@ return [
 		'enabled' => 'Synlig',
 		'articlenumber' => 'Artikkelnummer',
 		'stock' => 'Lager',
+		'password' => 'Passord',
+		'remember' => 'Husk Meg',
+		'login' => 'Logg inn',
+		'create account' => 'Lag Konto',
+		'create' => 'Lag',
 	],
 
 ];

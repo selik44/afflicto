@@ -121,8 +121,6 @@ class Category extends Model {
 	}
 
 	public function getPath() {
-		$slugs = [];
-
 		$slugs = [$this->slug];
 
 		$last = false;
@@ -136,7 +134,7 @@ class Category extends Model {
 			}
 		}
 
-		return 'store/' .implode('/', array_reverse($slugs));
+		return \App::getLocale() .'/store/' .implode('/', array_reverse($slugs));
 	}
 
 	public function renderMenuItem($path, $classes = [], $dropdownIcon = false) {
@@ -146,7 +144,7 @@ class Category extends Model {
 
 		$path = trim($path, '/') .'/' .$this->slug;
 
-		if (\Request::is($path .'*')) {
+		if (\Request::is(\App::getLocale() .'/' .$path .'*')) {
 			$classes[] = 'current';
 		}
 
@@ -157,7 +155,7 @@ class Category extends Model {
 			$dropdown = $this->renderDropdownIcon();
 		}
 
-		return '<a class="' .implode(' ', $classes) .'" href="' .url($path) .'">' .$title .'</a>' .$dropdown;
+		return '<a class="' .implode(' ', $classes) .'" href="' .url(\App::getLocale() .'/' .$path) .'">' .$title .'</a>' .$dropdown;
 	}
 
 	public function renderDropdownIcon() {

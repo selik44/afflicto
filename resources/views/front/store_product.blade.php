@@ -63,7 +63,7 @@
                             @endforeach
                         </div>
 
-                        <button class="large primary huge buy" style="width: 100%;" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+                        <button class="huge primary buy" style="width: 100%;" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
                     </form>
 
                     <div class="lead summary">
@@ -77,8 +77,8 @@
 
 		<div class="product-bottom col-xs-12 tight">
 			<ul id="product-tabs" class="nav tabs clearfix">
-				<li class="current"><a href="#product-info">Product Info</a></li>
-				<li><a href="#product-relations">Related Products</a></li>
+				<li class="current"><a href="#product-info">@lang('store.product info')</a></li>
+				<li><a href="#product-relations">@lang('store.related products')</a></li>
 
                 @foreach($product->producttabs as $tab)
                     <li><a href="#product-tab-{{$tab->id}}">{{$tab->title}}</a></li>
@@ -151,6 +151,8 @@
 
 	<script type="text/javascript">
         var slider = $(".product-images .slider");
+        var thumbnails = $(".product-images .thumbnails");
+
 		slider.friluftSlider({
 			delay: 4000,
 			transitionSpeed: 400,

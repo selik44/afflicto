@@ -16,6 +16,7 @@ class Kernel extends HttpKernel {
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
 		'Friluft\Http\Middleware\VerifyCsrfToken',
+		'Friluft\Http\Middleware\LocaleDetector',
 		'Friluft\Http\Middleware\StoreDetector',
 		'Friluft\Http\Middleware\JavascriptMiddleware'
 	];

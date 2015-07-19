@@ -5,15 +5,15 @@
 		<table class="bordered striped">
 			<thead>
 				<tr>
-					<th colspan="2">Product</th>
-					<th>Quantity</th>
-					<th>Subtotal</th>
+					<th colspan="2">@lang('store.product')</th>
+					<th>@lang('store.quantity')</th>
+					<th>@lang('store.price')</th>
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
 					<th class="total">
-						<h3 class="end cart-total"><span class="title">Total: </span><span class="value">{{$total}}</span>,-</h3>
+						<h3 class="end cart-total"><span class="title">@lang('store.total'): </span><span class="value">{{$total}}</span>,-</h3>
 					</th>
 				</tr>
 			</tfoot>

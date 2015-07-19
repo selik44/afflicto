@@ -1,12 +1,12 @@
 @extends('splash')
 
 @section('title')
-	Reset Password - @parent
+	@lang('store.auth.reset password') - @parent
 @stop
 
 @section('content')
-	<h2>Reset Password</h2>
-	{!! Former::open(url('user/reset'))
+	<h2>@lang('store.auth.reset password')</h2>
+	{!! Former::open(route('user.reset'))
 		->addClass('vertical clearfix')
 		->rules([
 			'email' => 'email|required',
@@ -17,9 +17,9 @@
 	
 	{!! Former::hidden('token')->value($token) !!}
 
-	{!! Former::password('password', 'New Password') !!}
+	{!! Former::password('password', trans('store.auth.new password')) !!}
 
-	{!! Former::password('password_confirmation', 'Confirm Password') !!}
+	{!! Former::password('password_confirmation') !!}
 	
 	{!! Former::submit('Submit')->addClass('primary large') !!}
 		

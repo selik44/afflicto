@@ -5,6 +5,12 @@
 	#navigation-top
 		flex: 0 1 auto
 		background: $base-color
+		align-items: center
+		justify-content: center
+
+		> ul
+			max-width: $base-width
+			margin: 0 auto
 
 		ul li a
 			color: weaker($base-background, 10%)
@@ -14,6 +20,28 @@
 			&:hover
 				color: stronger($base-background, 10%)
 				text-decoration: none
+
+		> ul li.dropdown
+			position: relative
+
+			> ul
+				position: absolute
+				top: 100%
+				right: 0
+				display: none
+				z-index: 500
+				background: $base-color
+				border: 1px solid weaker($base-color, 10%)
+				padding: 0
+
+				li
+					width: 100%
+					a
+						&:hover
+							background: weaker($base-color, 5%)
+
+			&:hover > ul
+				display: block
 
 	#navigation
 		position: relative
@@ -67,7 +95,6 @@
 				overflow-y: auto
 				flex: auto
 				background: weaker($base-background, 5%)
-
 
 				.navitem-dropdown-toggle
 					flex: 0 0 auto
@@ -124,7 +151,6 @@
 									flex: auto
 									&:hover
 										background: weaker($base-background, 10%)
-									//border-bottom: 1px solid weaker($base-background, 25%)
 
 								> ul
 									background: weaker($base-background, 17%)
@@ -170,6 +196,10 @@
 				font-size: 1.4rem
 				padding: 1rem 1.4rem
 
+	//----------- LARGE ONLY ------------//
+	@include breakpoint('l')
+		#navigation .nav-controls .logo
+			width: 120px
 
 	//----------- LARGE UP ------------//
 	@include breakpoint('l+')
@@ -191,10 +221,6 @@
 				margin-right: 1rem
 				flex: 0 1 auto
 				justify-content: space-between
-
-				.logo
-					width: 200px
-					flex: 0 1 200px
 
 			.nav-contents
 				flex: auto
@@ -314,6 +340,9 @@
 	@include breakpoint('xl')
 		#navigation
 			.nav-contents
+				.logo
+					width: 200px
+					flex: 0 1 200px
 				ul.navigation
 					> li
 						> .nav-dropdown

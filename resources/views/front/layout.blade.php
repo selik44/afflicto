@@ -6,15 +6,36 @@
 
 		<nav id="navigation-top">
 			<ul class="inner nav end">
+
 				<li><a href="#">Help</a></li>
-				<li><a href="{{route('user')}}">Account</a></li>
 				<li><a href="#">Contact</a></li>
                 @if(Auth::user())
                     @if (Auth::user()->role->has('admin.access'))
                         <li><a href="{{route('admin.dashboard')}}">Admin</a></li>
                     @endif
                 @endif
-				<li class="pull-right"><a href="#"><i class="fa fa-globe"></i> English</a></li>
+
+                <?php
+                    $langs = ['en' => 'English', 'no' => 'Norsk', 'se' => 'Svensk'];
+                    $currentLang = \App::getLocale();
+                ?>
+
+                <li class="pull-right dropdown language">
+                    <a href="#"><i class="fa fa-globe"></i> {{$langs[$currentLang]}} <i class="fa fa-chevron-down"></i></a>
+                    <ul>
+                        @foreach($langs as $lang => $label)
+                            @if($currentLang != $lang)
+                                <li><a href="{{url()}}/{{$lang}}">{{$label}}</a></li>
+                            @endif
+                        @endforeach
+                    </ul>
+                </li>
+
+                @if(Auth::user())
+                    <li class="pull-right"><a href="{{route('user')}}">@lang('store.account')</a></li>
+                @else
+                    <li class="pull-right"><a href="{{route('user')}}">@lang('store.login')</a></li>
+                @endif
 			</ul>
 		</nav>
 

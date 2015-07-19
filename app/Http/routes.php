@@ -4,17 +4,9 @@ use Friluft\Category;
 use Friluft\Product;
 use Friluft\Variant;
 
-$languages = ['en', 'no', 'se'];
+get('/', ['as' => '/', 'uses' => 'HomeController@index']);
 
-$locale = Request::segment(1);
-
-if (in_array($locale, $languages)) {
-	App::setLocale($locale);
-}else {
-	$locale = '';
-}
-
-Route::group(['prefix' => $locale], function() {
+Route::group(['prefix' => Request::segment(1)], function() {
 
 	# home
 	get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
@@ -240,7 +232,6 @@ Route::group(['prefix' => $locale], function() {
 		delete('roles/{role}', ['as' => 'admin.roles.delete', 'uses' => 'Admin\RolesController@destroy']);
 
 		# products
-		delete('products/tabs/{producttab}', ['as' => 'admin.products.tabs.destroy', 'uses' => 'Admin\ProductsController@destroyTab']);
 		delete('products/batch', ['as' => 'admin.products.batch.destroy', 'uses' => 'Admin\ProductsController@batchDestroy']);
 		put('products/batch/move', ['as' => 'admin.products.batch.move', 'uses' => 'Admin\ProductsController@batchMove']);
 
@@ -268,9 +259,9 @@ Route::group(['prefix' => $locale], function() {
 
 		# tags
 		get('tags', ['as' => 'admin.tags.index', 'uses' => 'Admin\TagsController@index']);
-		put('tags/{tag}', ['as' => 'admin.tags.update', 'uses' => 'Admin\TagsController@update']);
 		get('tags/create', ['as' => 'admin.tags.create', 'uses' => 'Admin\TagsController@create']);
 		get('tags/{tag}/edit', ['as' => 'admin.tags.edit', 'uses' => 'Admin\TagsController@edit']);
+		put('tags/{tag}', ['as' => 'admin.tags.update', 'uses' => 'Admin\TagsController@update']);
 		post('tags', ['as' => 'admin.tags.store', 'uses' => 'Admin\TagsController@store']);
 		delete('tags/{tag}', ['as' => 'admin.tags.destroy', 'uses' => 'Admin\TagsController@destroy']);
 

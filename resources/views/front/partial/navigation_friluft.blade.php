@@ -1,7 +1,7 @@
 <?php
 use Friluft\Category;
 
-echo '<li><a href="' .route('home') .'">Home</a></li>';
+echo '<li><a href="' .route('home') .'">' .trans('store.home') .'</a></li>';
 
 foreach (Category::root()->orderBy('order', 'asc')->get() as $cat) {
     echo '<li>' .$cat->renderMenuItem('store', [], true);

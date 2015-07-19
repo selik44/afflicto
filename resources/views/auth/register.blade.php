@@ -1,11 +1,11 @@
 @extends('splash')
 
 @section('title')
-	Register - @parent
+	@lang('store.auth.register') - @parent
 @stop
 
 @section('header')
-	<h2>Register</h2>
+	<h2>@lang('store.auth.register')</h2>
 @stop
 
 @section('content')

@@ -97,7 +97,7 @@
 			<div class="filters clearfix">
 				<div class="col-sm-12 col-m-6 filter price-filter">
 					<div class="header">
-						<h5 class="pull-left end">Price</h5>
+						<h5 class="pull-left end">@lang('store.price')</h5>
 					</div>
 					<div class="values">
 						<div class="pull-left min-value">0</div>
@@ -109,9 +109,9 @@
 				</div>
 
 				<div class="col-sm-12 col-m-6 filter manufacturers-filter">
-					<h5>Manufacturer</h5>
+					<h5>@lang('store.manufacturer')</h5>
 					<select name="manufacturers-select" class="manufacturers-select">
-						<option value="*">All</option>
+						<option value="*">@lang('store.all')</option>
 						@foreach($manufacturers as $m)
 							<option value="{{$m->id}}">{{$m->name}}</option>
 						@endforeach

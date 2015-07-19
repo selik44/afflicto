@@ -111,6 +111,11 @@ return [
 		'lastname' => 'Last Name',
 		'email' => 'E-Mail Address',
 		'vatgroup' => 'Vat Group',
+		'password' => 'Password',
+		'remember' => 'Remember Me',
+		'login' => 'Log in',
+		'create account' => 'Create Account',
+		'create' => 'Create',
 	],
 
 ];

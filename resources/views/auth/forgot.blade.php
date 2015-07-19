@@ -5,7 +5,7 @@
 @stop
 
 @section('header')
-	<h2>Forgot Password</h2>
+	<h2>@lang('store.auth.forgot password')</h2>
 @stop
 
 @section('content')
@@ -17,7 +17,7 @@
 		])
 	!!}
 	
-	{!! Former::email('email', 'E-Mail Address') !!}
+	{!! Former::email('email') !!}
 
 	
 	{!! Former::submit('Reset')->addClass('primary large') !!}
