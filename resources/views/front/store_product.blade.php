@@ -159,7 +159,8 @@
             slideLinks: false,
 		});
 
-        $(".product-images .thumbnails .thumbnail").click(function() {
+        $(".product-images .thumbnails .thumbnail").click(function(e) {
+            e.preventDefault();
             var id = $(this).attr('data-slide');
             slider.friluftSlider("goTo", id);
             slider.friluftSlider("stop");
