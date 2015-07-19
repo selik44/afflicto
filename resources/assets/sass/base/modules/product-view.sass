@@ -4,18 +4,20 @@
 	.product-top
 		.product-images
 			display: flex
-			flex-direction: row
+			flex-direction: column-reverse
 
 			.thumbnails
 				flex: 0 0 140px
-				overflow-y: auto
-				overflow-x: visible
-				display: block
+				overflow-y: hidden
+				overflow-x: auto
+				display: flex
+				flex-direction: row
+				align-items: center
+				justify-content: center
 
 				.thumbnail
-					display: block
-					width: 140px
-					height: 80px
+					flex: 1 1 140px
+					height: 140px
 					background-position: center
 					background-size: contain
 					background-repeat: no-repeat
@@ -26,7 +28,7 @@
 			.slider
 				flex: 1 1 auto
 				border: none
-				border-left: 1px solid $base-border-color
+				border-bottom: 1px solid $base-border-color
 
 				.container
 					.slide
