@@ -46,7 +46,7 @@ class StoreController extends Controller {
 
 		if ($product) {
 			$slug = array_pop($path);
-			
+
 			if ($slug) {
 				$category = Category::where('slug', '=', $slug)->first();
 			}
@@ -77,6 +77,9 @@ class StoreController extends Controller {
 	}
 
 	public function cart() {
+		if (count(Cart::getItems()) <= 0) {
+			return \Redirect::back()->with('info', 'Handlekurven er tom!');
+		}
 		return view('front.store.cart')
 			->with([
 				'items' => Cart::getItemsWithModels(false),

@@ -2,7 +2,6 @@
 
 use Friluft\Category;
 use Friluft\Product;
-use Friluft\Shopping\Facades\Cart;
 use Friluft\Variant;
 
 # home
@@ -12,7 +11,7 @@ get('/', function() {
 get('{lang}/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 get('cart/clear', function() {
-	\Cart::clear();
+	Cart::clear();
 });
 
 Route::group(['prefix' => Request::segment(1)], function() {

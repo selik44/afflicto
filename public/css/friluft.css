@@ -5117,18 +5117,18 @@ iframe {
         -webkit-flex: auto;
             -ms-flex: auto;
                 flex: auto; } }
-#front #alerts > .alerts {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding-top: 2rem;
-  padding-bottom: 2rem; }
-  #front #alerts > .alerts .alert:first-child {
-    margin-top: 1rem; }
-  #front #alerts > .alerts .alert {
-    margin-top: 1rem; }
-  #front #alerts > .alerts .alert:last-child {
-    margin-top: 0;
-    margin-bottom: 1rem; }
+#front #alerts {
+  padding-top: 2rem; }
+  #front #alerts > .alerts {
+    max-width: 1440px;
+    margin: 0 auto; }
+    #front #alerts > .alerts .alert:first-child {
+      margin-top: 1rem; }
+    #front #alerts > .alerts .alert {
+      margin-top: 1rem; }
+    #front #alerts > .alerts .alert:last-child {
+      margin-top: 0;
+      margin-bottom: 1rem; }
 #front #slider > .inner {
   max-width: 1440px; }
   #front #slider > .inner .slider {
