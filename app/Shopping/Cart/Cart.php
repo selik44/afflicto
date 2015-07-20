@@ -60,7 +60,9 @@ class Cart {
 			$item['url'] = url($item['model']->getPath());
 
 			if ($toArray) {
+				$model = $item['model'];
 				$item['model'] = $item['model']->toArray();
+				$item['model']['vatgroup'] = $model->vatgroup->toArray();
 			}
 		}
 		return $items;

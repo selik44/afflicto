@@ -25,11 +25,13 @@
 
 		<div class="product-top col-xs-12 tight">
 			<div class="product-images col-l-8 col-m-7 col-m-12 tight-left">
-                <div class="thumbnails">
-                    @foreach($product->images as $key => $image)
-                        <a class="thumbnail" href="#" data-slide="{{$key+1}}" style="background-image: url('{{asset('images/products/' .$image->name)}}');"></a>
-                    @endforeach
-                </div>
+                @if(count($product->images) > 1)
+                    <div class="thumbnails">
+                        @foreach($product->images as $key => $image)
+                            <a class="thumbnail" href="#" data-slide="{{$key+1}}" style="background-image: url('{{asset('images/products/' .$image->name)}}');"></a>
+                        @endforeach
+                    </div>
+                @endif
 				<div class="slider contain">
 					<div class="container">
 					@foreach($product->images as $key => $image)
@@ -47,7 +49,7 @@
 
 			<div class="product-info col-l-4 col-m-12 tight-right">
                 <div class="inner">
-                    <form class="vertical" action="{{url('cart')}}" method="POST">
+                    <form class="vertical" id="buy-form" action="{{route('cart.store')}}" method="POST">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <input type="hidden" name="product_id" value="{{$product->id}}">
                         <div class="product-variants">
@@ -166,6 +168,8 @@
             slider.friluftSlider("stop");
             $(".product-images .thumbnails .thumbnail.active").removeClass('active');
             $(this).addClass('active');
+
+            return false;
         });
 
         slider.on('slider.next', function() {
@@ -174,6 +178,20 @@
             $('.product-images .thumbnails .thumbnail.active').removeClass('active');
 
             $('.product-images .thumbnails .thumbnail[data-slide="' + id + '"]').addClass('active');
+        });
+
+        //------ BUY ---------//
+        var form = $("#buy-form");
+        var cart = $("#header .cart-container");
+        form.on('submit', function(e) {
+            e.preventDefault();
+            $(this).serialize();
+
+            $.post($(this).attr('action'), $(this).serialize(), function(response) {
+                $.get(Friluft.URL + '/cart', function(html) {
+                    cart.find('.cart-table').replaceWith(html);
+                });
+            });
         });
 	</script>
 @stop

@@ -16,7 +16,7 @@ class JavascriptMiddleware {
 	public function handle($request, Closure $next)
 	{
 		JavaScript::put([
-			'URL' => url(),
+			'URL' => url() .'/' .\App::getLocale(),
 			'token' => csrf_token(),
 			'request' => ['path' => $request->path()],
 			'cart' => ['contents' => Cart::getItemsWithModels(true), 'total' => Cart::getTotal()],

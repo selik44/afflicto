@@ -17,16 +17,24 @@ class CartController extends Controller {
 	 */
 	public function index()
 	{
+
+		return view('front.partial.cart-table')->with([
+			'items' => Cart::getItemsWithModels(false),
+			'total' => Cart::getTotal(),
+		]);
+
+		/*
 		# json?
 		if (Request::wantsJson()) {
 			return Cart::getItemsWithModels(false);
 		}
-		
+
 		return view('front.cart.index')
 			->with([
 				'items' => Cart::getItemsWithModels(),
 				'total' => Cart::getTotal(),
 			]);
+		*/
 	}
 
 	/**
@@ -37,7 +45,7 @@ class CartController extends Controller {
 	public function store()
 	{
 		if (!Input::has('product_id')) {
-			return (Request::wantsJson()) ? response("error", 300) : Redirect::back()->with('error', 'Something went wrong there. Try again, or contact support if the error persists.');
+			return response("error", 300);
 		}
 
 		# get the product model
@@ -54,7 +62,7 @@ class CartController extends Controller {
 		foreach($product->variants as $variant) {
 			$name = $variant->name;
 			if (!Input::has('variant-' .$variant->id)) {
-				return (Request::wantsJson()) ? response('Variant ' .$name .' is missing!') : Redirect::back()->with('error', 'Variant ' .$name .' is missing!');
+				return response('Variant ' .$name .' is missing!');
 			}
 
 			$value = Input::get('variant-' .$variant->id);
@@ -65,7 +73,7 @@ class CartController extends Controller {
 
 		Cart::updateKlarnaOrder();
 
-		return (Request::wantsJson()) ? ['id' => $cartid] : Redirect::back()->with('success', 'added ' .$product->name .'(' .$quantity .') to cart.');
+		return ['id' => $cartid];
 	}
 
 	/**

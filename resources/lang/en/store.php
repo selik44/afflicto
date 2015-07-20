@@ -14,6 +14,11 @@ return [
 	'related products' => 'Related Products',
 	'home' => 'Home',
 	'login' => 'Log in',
+	'total' => 'Total',
+	'quantity' => 'Quantity',
+	'price' => 'Price',
+	'product' => 'Product',
+	'cart empty' => 'Your Cart is empty.',
 
 	'auth' => [
 		'forgot your password?' => 'Forgot your password?',

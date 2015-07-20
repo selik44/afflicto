@@ -15,6 +15,11 @@ return [
 	'related products' => 'Relaterte Produkter',
 	'home' => 'Hjem',
 	'login' => 'Logg in',
+	'total' => 'Totalt',
+	'quantity' => 'Antall',
+	'price' => 'Pris',
+	'product' => 'Produkt',
+	'cart empty' => 'Handlekurven er tom.',
 
 	'auth' => [
 		'forgot your password?' => 'Glemt passordet ditt?',

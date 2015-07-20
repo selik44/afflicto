@@ -1,20 +1,16 @@
 <div class="cart-table">
 	@if(count($items) == 0)
-		<p class="lead text-center empty-message">Your cart is empty!</p>
+		<p class="lead text-center empty-message">@lang('store.cart empty')</p>
 	@else
-		<table class="bordered striped">
-			<thead>
-				<tr>
-					<th colspan="2">@lang('store.product')</th>
-					<th>@lang('store.quantity')</th>
-					<th>@lang('store.price')</th>
-				</tr>
-			</thead>
+		<table class="bordered">
 			<tfoot>
 				<tr>
-					<th class="total">
-						<h3 class="end cart-total"><span class="title">@lang('store.total'): </span><span class="value">{{$total}}</span>,-</h3>
-					</th>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+					<td class="total">
+                        <h6 class="end total">@lang('store.total'): <span class="value">{{$total}}</span>,-</h6>
+					</td>
 				</tr>
 			</tfoot>
 			<tbody>
@@ -23,12 +19,12 @@
 				$model = $item['model'];
 				?>
 				<tr class="item" data-id="{{$item['id']}}" data-price="{{$model->price * $model->vatgroup->amount}}">
-					<td>
+					<td class="image">
 						<a href="{{$item['url']}}"><img class="thumbnail" src="{{asset('images/products/' .$item['model']->images()->first()->name)}}"></a>
 					</td>
 
-					<td>
-						<h5>{{$model['name']}}</h5>
+					<td class="product">
+						<h5 class="end"><a href="{{$item['url']}}">{{$model['name']}}</a></h5>
 						<ul class="variants">
 							@foreach($model->variants as $variant)
 								<li class="variant" data-id="{{$variant->id}}">
@@ -59,6 +55,7 @@
 @parent
 	<script>
 		var cart = $(".cart-table");
+        var container = cart.parent();
 
 		function klarnaSuspend() {
 			if (typeof window._klarnaCheckout !== 'undefined') {
@@ -78,8 +75,12 @@
 			}
 		}
 
+        function setTotal(total) {
+            container.find('.cart-table table tfoot .total .value').html(total);
+        };
+
 		//-------- change quantity -----------//
-		cart.find('.quantity input').change(function() {
+		container.on('change', '.quantity input', function() {
 			if ($(this).attr('disabled')) return;
 			$(this).attr('disabled', 'disabled').addClass('disabled');
 
@@ -108,13 +109,14 @@
 
 				item.find('.subtotal .value').html(subTotal);
 
+                setTotal(response.total);
+
 				klarnaResume();
 			});
 		});
 
-
 		//-------- remove item -----------//
-		cart.find('.quantity button.remove').click(function() {
+		container.on('click', '.quantity button.remove', function() {
 			$(this).addClass('disabled').attr('disabled', 'disabled');
 
 			var item = $(this).parents('.item').first();
@@ -130,10 +132,12 @@
 					$(this).remove();
 
 					//is the cart empty? If so, redirect to home
-					if (cart.find('.item').length <= 0) {
+					if (container.find('.cart .item').length <= 0) {
 						//window.location.href = Friluft.URL;
 					}
 				});
+
+                setTotal(response.total);
 
 				klarnaResume();
 			});

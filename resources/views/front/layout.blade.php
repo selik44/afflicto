@@ -74,8 +74,10 @@
 				<div class="cart-container" style="display: none;">
 					<div class="inner">
 						@include('front.partial.cart-table', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal()])
-						<hr>
-						<a class="button large primary pull-right" href="{{route('store.checkout')}}">Checkout</a>
+
+                        <footer class="cart-footer">
+                            <a class="button large primary pull-right" href="{{route('store.checkout')}}">Checkout</a>
+                        </footer>
 					</div>
 				</div>
 				@endif
