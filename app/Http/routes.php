@@ -42,9 +42,9 @@ Route::group(['prefix' => Request::segment(1)], function() {
     });
 
 	# store
+	get('store/cart', ['as' => 'store.cart', 'uses' => 'StoreController@cart']);
 	get('store/checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
-	post('store/checkout', ['as' => 'store.checkout.order', 'uses' => 'StoreController@order']);
-	get('store/success', ['as' => 'store.checkout.success', 'uses' => 'StoreController@success']);
+	get('store/success', ['as' => 'store.success', 'uses' => 'StoreController@success']);
 	post('store/push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
 	get('store/{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
 	get('manufacturer/{slug}', ['as' => 'store.manufacturer', 'uses' => 'StoreController@getmanufacturer']);
@@ -52,7 +52,7 @@ Route::group(['prefix' => Request::segment(1)], function() {
 	# search
 	get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
-	# cart API
+	# cart
 	get('cart', ['as' => 'cart.index', 'uses' => 'CartController@index']);
 	get('cart/clear', ['as' => 'cart.clear', 'uses' => 'CartController@clear']);
 	get('cart/{cart}', ['as' => 'cart.show', 'uses' => 'CartController@show']);

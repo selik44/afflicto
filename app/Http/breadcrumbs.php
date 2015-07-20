@@ -79,8 +79,18 @@ Breadcrumbs::register('product', function($bc, $product, $category) {
 	$bc->push(e($product->name), url($path));
 });
 
-Breadcrumbs::register('cart', function($bc) {
-	$bc->parent('store');
+Breadcrumbs::register('store.cart', function($bc) {
+	$bc->parent('home');
+	$bc->push('Cart', route('store.cart'));
+});
 
-	$bc->push('Cart', route('cart.index'));
+Breadcrumbs::register('store.checkout', function($bc) {
+	$bc->parent('store.cart');
+
+	$bc->push('Checkout', route('store.checkout'));
+});
+
+Breadcrumbs::register('store.success', function($bc) {
+	$bc->parent('store.cart');
+	$bc->push('Success', route('cart.success'));
 });

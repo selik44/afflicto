@@ -76,10 +76,16 @@ class StoreController extends Controller {
 			->with(['products' => $products]);
 	}
 
-	/**
-	 * Display the cart contents.
-	 * @return View
-	 */
+	public function cart() {
+		return view('front.store.cart')
+			->with([
+				'items' => Cart::getItemsWithModels(false),
+				'total' => Cart::getTotal(),
+				'aside' => true,
+				'intro' => true,
+			]);
+	}
+
 	public function checkout() {
 		# get the klarna order
 		if (Session::has('klarna_order')) {
@@ -88,17 +94,19 @@ class StoreController extends Controller {
 			$order = Cart::getKlarnaOrder();
 		}
 
-		return view('front.store_checkout')
+		return view('front.store.checkout')
 			->with([
 				'snippet' => $order['gui']['snippet'],
 				'items' => Cart::getItemsWithModels(false),
 				'total' => Cart::getTotal(),
+				'aside' => true,
+				'intro' => true,
 			]);
 	}
 
 	public function success() {
 		Cart::clear();
-		return view('front.store.success');
+		return view('front.store.success')->with('aside', true);
 	}
 
 	public function push() {

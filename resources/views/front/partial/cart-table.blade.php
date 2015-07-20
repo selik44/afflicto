@@ -3,12 +3,18 @@
 		<p class="lead text-center empty-message">@lang('store.cart empty')</p>
 	@else
 		<table class="bordered">
+            <thead>
+            <tr>
+                <th colspan="2">@lang('store.product')</th>
+                <th>@lang('store.quantity')</th>
+            </tr>
+            </thead>
 			<tfoot>
 				<tr>
                     <td></td>
                     <td></td>
                     <td></td>
-					<td class="total">
+					<td>
                         <h6 class="end total">@lang('store.total'): <span class="value">{{$total}}</span>,-</h6>
 					</td>
 				</tr>
@@ -19,7 +25,7 @@
 				$model = $item['model'];
 				?>
 				<tr class="item" data-id="{{$item['id']}}" data-price="{{$model->price * $model->vatgroup->amount}}">
-					<td class="image">
+					<td class="image" style="width: 80px;">
 						<a href="{{$item['url']}}"><img class="thumbnail" src="{{asset('images/products/' .$item['model']->images()->first()->name)}}"></a>
 					</td>
 
@@ -34,14 +40,14 @@
 						</ul>
 					</td>
 
-					<td class="quantity">
+					<td class="quantity" style="width: 1%;">
 						<div class="input-append">
 							<input type="number" min="1" name="quantity" value="{{$item['quantity']}}">
 							<button title="Remove" class="error remove appended"><i class="fa fa-trash"></i></button>
 						</div>
 					</td>
 
-					<td class="subtotal">
+					<td class="subtotal"  style="width: 1%;">
 						<h4 class="end"><span class="value">{{round($model->price * $model->vatgroup->amount) * $item['quantity']}}</span>,-</h4>
 					</td>
 				</tr>

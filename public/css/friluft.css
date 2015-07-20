@@ -5147,6 +5147,9 @@ iframe {
     #front #slider > .inner .image:hover {
       -webkit-filter: saturate(100%);
               filter: saturate(100%); }
+#front #intro > .inner {
+  margin: 0 auto;
+  max-width: 1440px; }
 #front #page {
   border-bottom: 1px solid #f7f7f7;
   background: #fff; }
@@ -5178,6 +5181,8 @@ iframe {
         padding: 1rem;
         margin-bottom: 1rem;
         border-bottom: 1px solid #ddd; }
+        #front #page > .inner #aside > .inner > .block.module {
+          padding: 0; }
     #front #page > .inner #article {
       -webkit-box-flex: 1;
       -webkit-flex: 1 1 auto;
@@ -5201,6 +5206,44 @@ ul.nav.tabs {
   background: #f2f2f2;
   border-radius: 0px;
   border: 1px solid #ddd; }
+
+.checkout-navigation {
+  margin-top: 3rem;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-justify-content: space-around;
+      -ms-flex-pack: distribute;
+          justify-content: space-around;
+  border: 1px solid #d0d0d0;
+  background: #f2f2f2;
+  padding: 0.6rem 0.8rem; }
+  .checkout-navigation .item {
+    display: block;
+    text-decoration: none !important; }
+    .checkout-navigation .item .badge {
+      margin-right: 0.4rem;
+      display: inline-block;
+      padding: 0.4rem;
+      width: 2rem;
+      height: 2rem;
+      line-height: 1rem;
+      border-radius: 50%;
+      background: white;
+      border: 1px solid #ddd;
+      color: black;
+      padding-left: 0.6rem; }
+    .checkout-navigation .item .title {
+      font-size: 1.1rem; }
+    .checkout-navigation .item.current .badge {
+      background-color: #03a1a9;
+      color: white; }
 
 html, body, #admin {
   height: 100%;

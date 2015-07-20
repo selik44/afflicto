@@ -64,19 +64,19 @@
                             </div>
 						</form>
 
-						@if(\Request::route()->getName() != 'store.checkout')
+						@if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
 							<button data-toggle="#cart" class="cart-toggle primary end visible-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>
 						@endif
 					</div>
 				</div>
 
-				@if(\Request::route()->getName() != 'store.checkout')
+                @if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
 				<div class="cart-container" style="display: none;">
 					<div class="inner">
 						@include('front.partial.cart-table', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal()])
 
                         <footer class="cart-footer">
-                            <a class="button large primary pull-right" href="{{route('store.checkout')}}">Checkout</a>
+                            <a class="button large primary pull-right" href="{{route('store.cart')}}">Checkout</a>
                         </footer>
 					</div>
 				</div>
@@ -105,28 +105,34 @@
 	<div id="alerts">
 		@include('partial.alerts')
 	</div>
-	
+
+    @if(isset($intro) && $intro)
+        <div id="intro" class="clearfix">
+            <div class="inner">
+                @yield('intro')
+            </div>
+        </div>
+    @endif
 
 	<div id="page" class="clearfix">
 		<div class="inner clearfix">
+            @if(isset($aside) && $aside)
+                <aside id="aside">
+                    <hr class="hidden-m-up">
 
-				@if(isset($aside) && $aside)
-					<aside id="aside">
-						<hr class="hidden-m-up">
+                    <div class="inner">
+                        @section('aside')
+                            @include('front.partial.aside')
+                        @show
+                    </div>
+                </aside>
+            @endif
 
-						<div class="inner">
-							@section('aside')
-								@include('front.partial.aside')
-							@show
-						</div>
-					</aside>
-				@endif
-
-				<article id="article">
-					<div class="inner">
-						@yield('article')
-					</div>
-				</article>
+            <article id="article">
+                <div class="inner">
+                    @yield('article')
+                </div>
+            </article>
 		</div>
 	</div>
 
