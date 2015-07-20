@@ -509,7 +509,7 @@ class ProductsController extends Controller {
 
 		$table->addFilter('categories', 'category')->setLabel("Categories");
 
-		$table->paginate(true);
+		$table->paginate(false);
 
 		return $this->view('admin.products_multiedit')
 			->with([

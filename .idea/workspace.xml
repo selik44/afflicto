@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/store/cart.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/store/cart.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/partial/nav.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/partial/nav.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/products_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/products_edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
@@ -105,7 +99,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.5294118">
-              <caret line="565" column="97" selection-start-line="565" selection-start-column="97" selection-end-line="565" selection-end-column="97" />
+              <caret line="511" column="32" selection-start-line="511" selection-start-column="32" selection-end-line="511" selection-end-column="32" />
               <folding>
                 <element signature="e#49#75#0#PHP" expanded="true" />
               </folding>
@@ -1369,7 +1363,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5294118">
-          <caret line="565" column="97" selection-start-line="565" selection-start-column="97" selection-end-line="565" selection-end-column="97" />
+          <caret line="511" column="32" selection-start-line="511" selection-start-column="32" selection-end-line="511" selection-end-column="32" />
           <folding>
             <element signature="e#49#75#0#PHP" expanded="true" />
           </folding>
