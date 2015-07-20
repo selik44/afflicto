@@ -110,40 +110,42 @@
                                         $stock = [];
                                     }
 
-                                    $rootVariant = $product->variants[0];
-                                    if (count($product->variants) > 1) {
-                                        foreach($rootVariant->data['values'] as $rootValue) {
-                                            foreach($product->variants as $variant) {
-                                                if ($rootVariant == $variant) continue;
+                                    if (is_array($product->variants)) {
+                                        $rootVariant = $product->variants[0];
+                                        if (count($product->variants) > 1) {
+                                            foreach($rootVariant->data['values'] as $rootValue) {
+                                                foreach($product->variants as $variant) {
+                                                    if ($rootVariant == $variant) continue;
 
-                                                foreach($variant['data']['values'] as $value) {
-                                                    $stockID = $rootValue['id'] .'_' .$value['id'];
-                                                    $s = 0;
-                                                    if (isset($stock[$stockID])) {
-                                                        $s = $stock[$stockID];
+                                                    foreach($variant['data']['values'] as $value) {
+                                                        $stockID = $rootValue['id'] .'_' .$value['id'];
+                                                        $s = 0;
+                                                        if (isset($stock[$stockID])) {
+                                                            $s = $stock[$stockID];
+                                                        }
+
+                                                        echo '<tr>';
+                                                        echo '<td>' .$rootValue['name'] .' ' .$value['name'] .'</td>';
+                                                        echo '<td><input type="text" name="variant-' .$stockID .'" value="' .$s .'"></td>';
+                                                        echo '<tr>';
                                                     }
-
-                                                    echo '<tr>';
-                                                    echo '<td>' .$rootValue['name'] .' ' .$value['name'] .'</td>';
-                                                    echo '<td><input type="text" name="variant-' .$stockID .'" value="' .$s .'"></td>';
-                                                    echo '<tr>';
                                                 }
                                             }
-                                        }
-                                    }else {
-                                        foreach($rootVariant->data['values'] as $value) {
+                                        }else {
+                                            foreach($rootVariant->data['values'] as $value) {
 
-                                            $stockID = $value['id'];
+                                                $stockID = $value['id'];
 
-                                            $s = 0;
-                                            if (isset($stock[$stockID])) {
-                                                $s = $stock[$stockID];
+                                                $s = 0;
+                                                if (isset($stock[$stockID])) {
+                                                    $s = $stock[$stockID];
+                                                }
+
+                                                echo '<tr>';
+                                                echo '<td>' .$value['name'] .'</td>';
+                                                echo '<td><input type="text" name="variant-' .$value['id'] .'" value="' .$s .'"></td>';
+                                                echo '</tr>';
                                             }
-
-                                            echo '<tr>';
-                                            echo '<td>' .$value['name'] .'</td>';
-                                            echo '<td><input type="text" name="variant-' .$value['id'] .'" value="' .$s .'"></td>';
-                                            echo '</tr>';
                                         }
                                     }
                                 ?>
