@@ -4,14 +4,13 @@ use Friluft\Category;
 use Friluft\Product;
 use Friluft\Variant;
 
+# home
 get('/', function() {
 	return Redirect::to('en');
 });
+get('{lang}/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 Route::group(['prefix' => Request::segment(1)], function() {
-
-	# home
-	get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 	get('terms-and-conditions', ['as' => 'home.terms', 'uses' => 'HomeController@terms']);
 
 	# auth
