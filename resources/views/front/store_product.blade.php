@@ -57,8 +57,8 @@
                                 <div class="variant" data-id="{{$variant->id}}">
                                     <label for="variant-{{$variant->id}}">{{$variant->name}}</label>
                                     <select name="variant-{{$variant->id}}">
-                                        @foreach($variant->data['values'] as $name => $option)
-                                            <option value="{{$name}}">{{$name}}</option>
+                                        @foreach($variant->data['values'] as $value)
+                                            <option value="{{$value['id']}}">{{$value['name']}}</option>
                                         @endforeach
                                     </select>
                                 </div>

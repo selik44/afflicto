@@ -237,13 +237,21 @@ Route::group(['prefix' => Request::segment(1)], function() {
 
 		get('products', ['as' => 'admin.products.index', 'uses' => 'Admin\ProductsController@index']);
 		get('products/create', ['as' => 'admin.products.create', 'uses' => 'Admin\ProductsController@create']);
-		get('products/{product}/edit/{back?}', ['as' => 'admin.products.edit', 'uses' => 'Admin\ProductsController@edit']);
+		get('products/{product}/edit', ['as' => 'admin.products.edit', 'uses' => 'Admin\ProductsController@edit']);
 		get('products/{product}', ['as' => 'admin.products.show', 'uses' => 'Admin\ProductsController@show']);
 		put('products/{product}', ['as' => 'admin.products.update', 'uses' => 'Admin\ProductsController@update']);
 		put('products/{product}/relate/{related}', ['as' => 'admin.products.relate', 'uses' => 'Admin\ProductsController@relate']);
 		put('products/{product}/unrelate/{related}', ['as' => 'admin.products.unrelate', 'uses' => 'Admin\ProductsController@unrelate']);
 		post('products', ['as' => 'admin.products.store', 'uses' => 'Admin\ProductsController@store']);
 		delete('products/{product}', ['as' => 'admin.products.delete', 'uses' => 'Admin\ProductsController@destroy']);
+
+		# variants
+		get('variants', ['as' => 'admin.variants.index', 'uses' => 'Admin\VariantsController@index']);
+		get('variants/create', ['as' => 'admin.variants.create', 'uses' => 'Admin\VariantsController@create']);
+		get('variants/{variant}/edit', ['as' => 'admin.variants.edit', 'uses' => 'Admin\VariantsController@edit']);
+		put('variants/{variant}', ['as' => 'admin.variants.update', 'uses' => 'Admin\VariantsController@update']);
+		post('variants', ['as' => 'admin.variants.store', 'uses' => 'Admin\VariantsController@store']);
+		delete('variants/{variant}', ['as' => 'admin.variants.destroy', 'uses' => 'Admin\VariantsController@destroy']);
 
 		# categories
 		get('categories/tree', ['as' => 'admin.categories.tree', 'uses' => 'Admin\CategoriesController@tree']);

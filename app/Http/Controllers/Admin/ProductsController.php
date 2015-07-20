@@ -8,6 +8,7 @@ use Friluft\Product;
 use Friluft\Producttab;
 use Friluft\Tag;
 use Friluft\Taxgroup;
+use Friluft\Variant;
 use Friluft\Vatgroup;
 use Request;
 use Session;
@@ -147,6 +148,7 @@ class ProductsController extends Controller {
 		$mfs = Manufacturer::all();
 		$vatgroups = Vatgroup::all();
 		$tags = Tag::all();
+		$variants = Variant::all();
 
 		return $this->view('admin.products_edit')
 			->with([
@@ -155,7 +157,14 @@ class ProductsController extends Controller {
 				'tags' => $tags,
 				'manufacturers' => $mfs,
 				'vatgroups' => $vatgroups,
-				'form' => form('admin.product', ['product' => $product, 'categories' => $cats, 'manufacturers' => $mfs, 'vatgroups' => $vatgroups, 'tags' => $tags]),
+				'form' => form('admin.product', [
+					'product' => $product,
+					'categories' => $cats,
+					'manufacturers' => $mfs,
+					'vatgroups' => $vatgroups,
+					'tags' => $tags,
+					'variants' => $variants
+				]),
 			]);
 	}
 
@@ -175,6 +184,7 @@ class ProductsController extends Controller {
 		$p->manufacturer_id = Input::get('manufacturer_id');
 		$p->vatgroup_id = Input::get('vatgroup');
 		$p->categories = Input::get('categories', []);
+
 
 		# add tabs
 		for($i = 1; $i < 10; $i++) {
@@ -197,11 +207,41 @@ class ProductsController extends Controller {
 			}
 		}
 
+		# update variant stock?
+		if (count($p->variants) > 0) {
+			$stock = [];
+
+			$rootVariant = $p->variants[0];
+
+			if (count($p->variants) > 1) {
+				foreach($rootVariant->data['values'] as $rootValue) {
+					foreach($p->variants as $variant) {
+						if ($rootVariant == $variant) continue;
+
+						foreach($variant['data']['values'] as $value) {
+							$stockID = $rootValue['id'] .'_' .$value['id'];
+							$stock[$stockID] = Input::get('variant-' .$stockID, 0);
+						}
+					}
+				}
+			}else {
+				foreach($rootVariant->data['values'] as $value) {
+					$stockID = $value['id'];
+					$stock[$stockID] = Input::get('variant-' .$stockID);
+				}
+			}
+
+			$p->variants_stock = $stock;
+		}
+
 		# save
 		$p->save();
 
 		# sync tags
 		$p->tags()->sync(Input::get('tags', []));
+
+		# sync variants
+		$p->variants()->sync(Input::get('variants', []));
 
 		# success
 

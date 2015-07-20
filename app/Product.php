@@ -84,6 +84,7 @@ class Product extends Model {
 		'stock' => 'integer',
 		'price' => 'integer',
 		'inprice' => 'integer',
+		'variants_stock' => 'array',
 	];
 
 	protected $searchable = [
@@ -184,7 +185,20 @@ class Product extends Model {
 	}
 
 	public function variants() {
-		return $this->hasMany('Friluft\Variant');
+		return $this->belongsToMany('Friluft\Variant')->withPivot('data');
+	}
+
+	public function getVariantsTree() {
+		$tree = [];
+
+		$current = &$tree;
+		foreach($this->variants as $key => $variant) {
+			$node = ['variant' => $variant, 'children' => []];
+			$current[] = $node;
+			$current = &$node['children'];
+		}
+
+		return $tree;
 	}
 
 	public function producttabs() {

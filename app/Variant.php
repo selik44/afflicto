@@ -27,8 +27,8 @@ class Variant extends Model {
 
 	protected $fillable = ['name', 'data'];
 
-	public function product() {
-		return $this->belongsTo('Friluft\Product');
+	public function products() {
+		return $this->belongsToMany('Friluft\Product')->withPivot('data');
 	}
 
 }

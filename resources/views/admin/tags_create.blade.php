@@ -6,7 +6,7 @@
 
 @section('page')
 	<h2>New Tag</h2>
-	<form class="vertical" action="{{url('admin/tags')}}" method="POST">
+	<form class="vertical" action="{{route('admin.tags.store')}}" method="POST">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<label for="label">Label <span class="color-error">*</span>
 			<input type="text" name="label" maxlength="255" required>

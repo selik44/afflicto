@@ -19,6 +19,11 @@
             'fa-plus:admin.add' => 'admin.manufacturers.create',
         ]],
 
+        'fa-adjust:admin.variants' => ['admin.variants.index', [
+            'fa-adjust:admin.all' => 'admin.variants.index',
+            'fa-plus:admin.add' => 'admin.variants.create',
+        ]],
+
 		'fa-dropbox:admin.products' => ['admin.products.index', [
 			'fa-leaf:admin.all' => 'admin.products.index',
 			'fa-plus:admin.add' => 'admin.products.create',

@@ -793,6 +793,7 @@
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <column name="user_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="activated" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MA=="/>
       <column name="klarna_id" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="status" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="J3BlbmRpbmcn"/>
       <column name="reservation" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
@@ -855,6 +856,17 @@
       <index name="product_tag_product_id_index" unique="false" columns="product_id"/>
       <index name="product_tag_tag_id_index" unique="false" columns="tag_id"/>
     </table>
+    <table name="product_variant" schema="" catalog="friluft" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="variant_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="product_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="data" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="product_variant_product_id_foreign" columns="product_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="product_variant_variant_id_foreign" columns="variant_id" ref-table="variants" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <index name="product_variant_product_id_index" unique="false" columns="product_id"/>
+      <index name="product_variant_variant_id_index" unique="false" columns="variant_id"/>
+    </table>
     <table name="products" schema="" catalog="friluft" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
@@ -883,8 +895,8 @@
       <exported-key name="product_relation_relation_id_foreign" table="product_relation" schema="" catalog="friluft" columns="relation_id"/>
       <exported-key name="product_relation_product_id_foreign" table="product_relation" schema="" catalog="friluft" columns="product_id"/>
       <exported-key name="product_tag_product_id_foreign" table="product_tag" schema="" catalog="friluft" columns="product_id"/>
+      <exported-key name="product_variant_product_id_foreign" table="product_variant" schema="" catalog="friluft" columns="product_id"/>
       <exported-key name="producttabs_product_id_foreign" table="producttabs" schema="" catalog="friluft" columns="product_id"/>
-      <exported-key name="variants_product_id_foreign" table="variants" schema="" catalog="friluft" columns="product_id"/>
       <index name="products_manufacturer_id_foreign" unique="false" columns="manufacturer_id"/>
       <index name="products_vatgroup_id_foreign" unique="false" columns="vatgroup_id"/>
     </table>
@@ -956,10 +968,8 @@
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
       <column name="data" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
-      <column name="product_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="variants_product_id_foreign" columns="product_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
-      <index name="variants_product_id_index" unique="false" columns="product_id"/>
+      <exported-key name="product_variant_variant_id_foreign" table="product_variant" schema="" catalog="friluft" columns="variant_id"/>
     </table>
     <table name="vatgroups" schema="" catalog="friluft" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>

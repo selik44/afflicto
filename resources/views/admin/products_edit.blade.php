@@ -87,78 +87,66 @@
 
             <hr/>
 
-            <div id="add-variant-modal" class="modal fade center">
-                <a href="#" style="font-size: 2.5rem" class="modal-dismiss" data-toggle-modal="#add-variant-modal"><i class="fa fa-close"></i></a>
-                <div class="modal-header">Add Variant</div>
-                <div class="modal-content">
-                    <label for="variant-name">Name</label>
-                    <input type="text" name="variant-name"/>
-
-                    <label for="variant-values">Values</label>
-                    <textarea style="width: 100%;" name="variant-values" rows="3"></textarea>
-                    <span class="small muted">Separate values by commas <code>,</code>.</span>
-                </div>
-                <div class="modal-footer">
-                    <button class="large success add-variant-add">Add</button>
-                </div>
-            </div>
-
-
-            <div id="edit-variant-modal" class="modal fade center">
-                <a href="#" style="font-size: 2.5rem" class="modal-dismiss" data-toggle-modal="#edit-variant-modal"><i class="fa fa-close"></i></a>
-                <div class="modal-header"><h5 class="end">Edit Variant</h5></div>
-                <div class="modal-content">
-
-                    <label for="variant-values">Values</label>
-                    <textarea style="width: 100%;" name="variant-values" rows="3"></textarea>
-                    <span class="small muted">Separate values by commas <code>,</code>.</span>
-
-                    <input type="hidden" name="variant-id"/>
-                </div>
-                <div class="modal-footer">
-                    <button class="large success edit-variant-save">Save</button>
-                </div>
-            </div>
-
-
             <div class="product-variants row">
                 <div class="module">
                     <div class="module-header clearfix">
-                        <h6 class="title pull-left">Variants</h6>
-                        <button class="pull-right large" data-toggle-modal="#add-variant-modal"><i class="fa fa-plus"></i> Add</button>
+                        <h6 class="title">Variants</h6>
                     </div>
 
                     <div class="module-content" style="padding: 0">
                         <table class="bordered">
                             <thead>
                                 <tr>
-                                    <th><strong>Name</strong></th>
-                                    <th><strong>Values</strong> <div class="pull-right"><strong>Stock</strong></div></th>
-                                    <th></th>
+                                    <th>Name</th>
+                                    <th>Stock</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($product->variants as $variant)
-                                <tr class="variant" data-id="{{$variant->id}}">
-                                    <td class="name">{{$variant->name}}</td>
-                                    <td class="values">
-                                        <ul class="flat">
-                                            @foreach($variant->data['values'] as $value)
-                                                <li class="value clearfix">
-                                                    <span class="value-name pull-left">{{$value['name']}}</span>
-                                                    <input type="number" data-value="{{$value['name']}}" class="value-stock pull-right" style="width: 60px" value="{{$value['stock']}}"/>
-                                                </li>
-                                            @endforeach
-                                        </ul>
-                                    </td>
-                                    <td class="actions">
-                                        <div class="button-group pull-right">
-                                            <button class="small variant-edit"><i class="fa fa-pencil"></i></button>
-                                            <button class="small variant-delete error"><i class="fa fa-trash"></i></button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                <?php
+
+                                    $stock = $product->variants_stock;
+
+                                    if ( ! $stock) {
+                                        $stock = [];
+                                    }
+
+                                    $rootVariant = $product->variants[0];
+                                    if (count($product->variants) > 1) {
+                                        foreach($rootVariant->data['values'] as $rootValue) {
+                                            foreach($product->variants as $variant) {
+                                                if ($rootVariant == $variant) continue;
+
+                                                foreach($variant['data']['values'] as $value) {
+                                                    $stockID = $rootValue['id'] .'_' .$value['id'];
+                                                    $s = 0;
+                                                    if (isset($stock[$stockID])) {
+                                                        $s = $stock[$stockID];
+                                                    }
+
+                                                    echo '<tr>';
+                                                    echo '<td>' .$rootValue['name'] .' ' .$value['name'] .'</td>';
+                                                    echo '<td><input type="text" name="variant-' .$stockID .'" value="' .$s .'"></td>';
+                                                    echo '<tr>';
+                                                }
+                                            }
+                                        }
+                                    }else {
+                                        foreach($rootVariant->data['values'] as $value) {
+
+                                            $stockID = $value['id'];
+
+                                            $s = 0;
+                                            if (isset($stock[$stockID])) {
+                                                $s = $stock[$stockID];
+                                            }
+
+                                            echo '<tr>';
+                                            echo '<td>' .$value['name'] .'</td>';
+                                            echo '<td><input type="text" name="variant-' .$value['id'] .'" value="' .$s .'"></td>';
+                                            echo '</tr>';
+                                        }
+                                    }
+                                ?>
                             </tbody>
                         </table>
                     </div>
@@ -270,7 +258,9 @@
 
             <div class="row">
                 <div class="col-xs-6 tight-left">
-                    {!! $form->stock !!}
+                    @if(count($product->variants) <= 0)
+                        {!! $form->stock !!}
+                    @endunless
                 </div>
                 <div class="col-xs-6 tight-right">
                     {!! $form->weight !!}
@@ -281,6 +271,7 @@
                 {!! $form->manufacturer !!}
                 {!! $form->categories !!}
 	            {!! $form->tags !!}
+                {!! $form->variants !!}
             </div>
 
             <hr/>
@@ -504,86 +495,18 @@
         });
 
         //initialize chosen
-        form.find('[name="categories[]"]').chosen().next().removeAttr('style').css('width', '100%');
-        form.find('[name="vatgroup"]').chosen().next().removeAttr('style').css('width', '100%');
-        form.find('[name="manufacturer"]').chosen().next().removeAttr('style').css('width', '100%');
-        form.find('[name="tags[]"]').chosen().next().removeAttr('style').css('width', '100%');
+        form.find('[name="categories[]"]').chosen({width: '100%'});
+        form.find('[name="vatgroup"]').chosen({width: '100%'});
+        form.find('[name="manufacturer"]').chosen({width: '100%'});
+        form.find('[name="tags[]"]').chosen({width: '100%'});
+        form.find('[name="variants[]"]').chosen({width: '100%'});
 
-        //initialize add variant modal
-        $("#add-variant-modal").gsModal();
-        $("#add-variant-modal .add-variant-add").click(function() {
-            var self = $(this);
-            self.attr('disabled', 'disabled');
-
-            var modal = $("#add-variant-modal");
-            var name = modal.find('[name="variant-name"]').val();
-            var values = modal.find('[name="variant-values"]').val();
-
-            var payload = {_token: Friluft.token, name: name, values: values};
-            $.post(Friluft.URL + '/admin/api/products/' + productID + '/variants', payload, function(response) {
-                self.removeAttr('disabled');
-                $("#add-variant-modal").gsModal('hide');
-                $("#product-form").trigger('submit');
-            });
+        /*
+        $.post(Friluft.URL + '/admin/api/products/' + productID + '/variants/' + variantID + '/setstock', payload, function(response) {
+            console.log('updated stock, response:');
+            console.log(response);
         });
-
-        //edit variant
-        var editModal = $("#edit-variant-modal");
-        $(".product-variants .variant .variant-edit").click(function(e) {
-            e.preventDefault();
-
-            //get variant data
-            var view = $(this).parents('.variant').first();
-            var values = view.find('.values').text();
-            var id = view.attr('data-id');
-
-            //set form data
-            editModal.find('[name="variant-values"]').val(values);
-            editModal.find('[name="variant-id"]').val(id);
-
-            // show modal
-            editModal.gsModal('show');
-        });
-
-        //save variant
-        editModal.find('.modal-footer .edit-variant-save').click(function(e) {
-            editModal.gsModal('hide');
-            var name = editModal.find('[name="variant-name"]').val();
-            var values = editModal.find('[name="variant-values"]').val();
-            var id = editModal.find('[name="variant-id"]').val();
-
-            var payload = {
-                _method: 'PUT',
-                _token: Friluft.token,
-                values: values
-            };
-
-            $.post(Friluft.URL + '/admin/api/products/' + productID + '/variants/' + id, payload, function(response) {
-                console.log('saved variant, response:');
-                console.log(response);
-                $("#product-form").trigger('submit');
-            });
-        });
-
-        //update variant stock
-        //api/products/{product}/variants/{variant}/{value}/{stock}
-        $(".product-variants .variant .values .value input.value-stock").change(function() {
-            var value = $(this).attr('data-value');
-            var stock = $(this).val();
-            var variantID = $(this).parents('.variant').first().attr('data-id');
-
-            var payload = {
-                _method: 'PUT',
-                _token: Friluft.token,
-                value: value,
-                stock: stock,
-            };
-
-            $.post(Friluft.URL + '/admin/api/products/' + productID + '/variants/' + variantID + '/setstock', payload, function(response) {
-                console.log('updated stock, response:');
-                console.log(response);
-            });
-        });
+        */
 
         //delete variant
         $(".product-variants .variant .variant-delete").click(function(e) {

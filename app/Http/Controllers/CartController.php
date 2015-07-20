@@ -66,7 +66,7 @@ class CartController extends Controller {
 			}
 
 			$value = Input::get('variant-' .$variant->id);
-			$options['variants'][$variant->id] = $value;
+			$options['variants'][$variant->id] = $variant->data['values'][$value]['name'];
 		}
 
 		$cartid = Cart::add($product, $quantity, $options);
