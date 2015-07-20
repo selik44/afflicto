@@ -4,7 +4,9 @@ use Friluft\Category;
 use Friluft\Product;
 use Friluft\Variant;
 
-get('/', ['as' => '/', 'uses' => 'HomeController@index']);
+get('/', function() {
+	return Redirect::to('en');
+});
 
 Route::group(['prefix' => Request::segment(1)], function() {
 
