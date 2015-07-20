@@ -55,7 +55,12 @@
 
 			<div class="col-xs-12">
 				<p>
-					<strong>Klarna Status:</strong> {{$order->klarna_status}}
+					<strong>Klarna Status:</strong> {{$order->klarna_status}}<br>
+                    @if($order->activated)
+                        <span class="color-success">Activated</span>
+                    @else
+                        <span class="color-error">NOT Activated</span>
+                    @endif
 				</p>
 			</div>
 		</div>
@@ -187,8 +192,6 @@
 					'processed' => 'Behandlet',
 					'restorder' => 'Restordre',
 				], $order->status) !!}
-
-				{!! Former::checkbox('activate')->value("on")->help("Aktiver ordren i Klarna."); !!}
 			</div>
 		</div>
 

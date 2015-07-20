@@ -181,8 +181,8 @@ class OrdersController extends Controller {
 		$order->status = Input::get('status');
 		$order->save();
 
-		# activate klarna?
-		if (Input::get('activate', 'off') == 'on') {
+		# activate?
+		if ($order->status == 'ready_for_sending' && ! $order->activated) {
             $activate = new ActivateOrder($this->klarna, $order);
             try {
                 $this->dispatch($activate);
