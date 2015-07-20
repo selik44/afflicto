@@ -120,7 +120,7 @@ class Category extends Model {
 		return $this->belongsTo('Friluft\Category', 'parent_id');
 	}
 
-	public function getPath() {
+	public function getPath($withoutLocale = false) {
 		$slugs = [$this->slug];
 
 		$last = false;
@@ -133,6 +133,8 @@ class Category extends Model {
 				$last = true;
 			}
 		}
+
+		if ($withoutLocale) return '/store/' .implode('/', array_reverse($slugs));
 
 		return \App::getLocale() .'/store/' .implode('/', array_reverse($slugs));
 	}
