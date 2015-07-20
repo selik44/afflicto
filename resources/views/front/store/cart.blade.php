@@ -29,7 +29,7 @@
                 $tag = \Friluft\Tag::where('type', '=', 'checkout')->first();
             ?>
             @if($tag)
-                @foreach(\Friluft\Tag::where('type', '=', 'checkout')->first()->products() as $p)
+                @foreach($tag->products as $p)
                     @include('front.partial.products-block', ['product' => $p])
                 @endforeach
             @endif

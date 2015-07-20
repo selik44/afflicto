@@ -16,7 +16,9 @@
             <div class="overlay">
                 <div class="tags">
                     @foreach($product->tags as $tag)
+                        @unless($tag->type !== null)
                         <span class="tag" style="background-color: {{$tag->color}};"><i class="{{$tag->icon}}"></i> {{$tag->label}}</span>
+                        @endunless
                     @endforeach
                 </div>
             </div>
