@@ -26,6 +26,7 @@
 
 		'fa-dropbox:admin.products' => ['admin.products.index', [
 			'fa-leaf:admin.all' => 'admin.products.index',
+            'fa-edit:admin.quick edit' => 'admin.products.quick-edit',
 			'fa-plus:admin.add' => 'admin.products.create',
 		]],
 

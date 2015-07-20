@@ -300,4 +300,290 @@ class ProductsController extends Controller {
 		return redirect(route('admin.products.index'))->with('success', 'Product deleted.');
 	}
 
+	public function getMultiedit() {
+		# get categories, manufacturers and tags
+		$categories = Category::orderBy('parent_id', 'asc')->orderBy('name', 'asc')->get();
+		$manufacturers = Manufacturer::orderBy('name', 'asc')->get();
+		$tags = Tag::orderBy('label', 'asc')->get();
+		$variants = Variant::orderBy('name', 'asc')->get();
+
+		$columns = [];
+
+		if (Input::has('column_name')) {
+			$columns['Name'] = ['name', function($p) {
+				return '<input type="text" name="' .$p->id .'_name" value="' .$p->name .'">';
+			}];
+		}
+
+		if (Input::has('column_slug')) {
+			$columns['Slug'] = ['slug', function($p) {
+				return '<input type="text" name="' .$p->id .'_slug" value="' .$p->slug .'">';
+			}];
+		}
+
+		if (Input::has('column_inprice')) {
+			$columns[trans('admin.inprice')] = ['inprice', function($p) {
+				return '<input type="text" name="' .$p->id .'_inprice" value="' .$p->inprice .'">';
+			}];
+		}
+
+		if (Input::has('column_price')) {
+			$columns[trans('admin.price')] = ['price', function($p) {
+				return '<input type="text" name="' .$p->id .'_price" value="' .$p->price .'"">';
+			}];
+		}
+
+		if (Input::has('column_articlenumber')) {
+			$columns[trans('admin.articlenumber')] = ['articlenumber', function($p) {
+				return '<input type="text" name="' .$p->id .'_articlenumber" value="' .$p->articlenumber .'">';
+			}];
+		}
+
+		if (Input::has('column_barcode')) {
+			$columns[trans('admin.barcode')] = ['barcode', function($p) {
+				return '<input type="text" name="' .$p->id .'_barcode" value="' .$p->barcode .'">';
+			}];
+		}
+
+		if (Input::has('column_weight')) {
+			$columns[trans('admin.weight')] = ['weight', function($p) {
+				return '<input type="text" name="' .$p->id .'_weight" value="' .$p->weight .'">';
+			}];
+		}
+
+		if (Input::has('column_description')) {
+			$columns[trans('admin.description')] = ['description', function($p) {
+				return '<textarea class="wysiwyg" name="' .$p->id .'_description">' .$p->description .'</textarea>';
+			}];
+		}
+
+		if (Input::has('column_summary')) {
+			$columns[trans('admin.summary')] = ['summary', function($p) {
+				return '<textarea class="wysiwyg" name="' .$p->id .'_summary">' .$p->summary .'</textarea>';
+			}];
+		}
+
+		if (Input::has('column_stock')) {
+			$columns[trans('admin.stock')] = ['stock', function($product) {
+				$stock = $product->variants_stock;
+
+				$str = '';
+
+				if ( ! $stock) {
+					$stock = [];
+				}
+
+				if (count($product->variants) > 0) {
+					$str .= '<table>';
+					$rootVariant = $product->variants[0];
+					if (count($product->variants) > 1) {
+						foreach($rootVariant->data['values'] as $rootValue) {
+							foreach($product->variants as $variant) {
+								if ($rootVariant == $variant) continue;
+
+								foreach($variant['data']['values'] as $value) {
+									$stockID = $rootValue['id'] .'_' .$value['id'];
+									$s = 0;
+									if (isset($stock[$stockID])) {
+										$s = $stock[$stockID];
+									}
+
+									$str .= '<tr>';
+									$str .= '<td>' .$rootValue['name'] .' ' .$value['name'] .'</td>';
+									$str .= '<td><input type="text" name="' .$product->id .'_variant-' .$stockID .'" value="' .$s .'"></td>';
+									$str .= '<tr>';
+								}
+							}
+						}
+					}else {
+						foreach($rootVariant->data['values'] as $value) {
+
+							$stockID = $value['id'];
+
+							$s = 0;
+							if (isset($stock[$stockID])) {
+								$s = $stock[$stockID];
+							}
+
+							$str .= '<tr>';
+							$str .= '<td>' .$value['name'] .'</td>';
+							$str .= '<td><input type="text" name="' .$product->id .'_variant-' .$value['id'] .'" value="' .$s .'"></td>';
+							$str .= '</tr>';
+						}
+					}
+					$str .= '</table>';
+				}
+
+
+
+				return $str;
+			}];
+		}
+
+		if (Input::has('column_categories') || true) {
+			$columns[trans('admin.categories')] = ['categories', function($p) use($categories) {
+				$str = '<select class="categories" multiple="multiple" name="' .$p->id .'_categories">';
+				foreach($categories as $cat) {
+					if ($p->categories->contains($cat)) {
+						$str .= '<option selected value="' .$cat->id .'">' .$cat->name .'</option>';
+					}else {
+						$str .= '<option value="' .$cat->id .'">' .$cat->name .'</option>';
+					}
+				}
+				$str .= '</select>';
+				return $str;
+			}];
+		}
+
+		if (Input::has('column_tags')) {
+			$columns[trans('admin.tags')] = ['tags', function($p) use($tags) {
+				$str = '<select class="tags" multiple name="' .$p->id .'_tags">';
+				foreach($tags as $tag) {
+					if ($p->tags->contains($tag)) {
+						$str .= '<option selected value="' .$tag->id .'">' .$tag->label .'</option>';
+					}else {
+						$str .= '<option value="' .$tag->id .'">' .$tag->label .'</option>';
+					}
+				}
+				$str .= '</select>';
+				return $str;
+			}];
+		}
+
+		if (Input::has('column_variants')) {
+			$columns[trans('admin.variants')] = ['variants', function($p) use($variants) {
+				$str = '<select class="variants" multiple name="' .$p->id .'_variants[]">';
+				foreach($variants as $variant) {
+					if ($p->variants->contains($variant)) {
+						$str .= '<option selected value="' .$variant->id .'">' .$variant->name .'</option>';
+					}else {
+						$str .= '<option value="' .$variant->id .'">' .$variant->name .'</option>';
+					}
+				}
+				$str .= '</select>';
+				return $str;
+			}];
+		}
+
+		if (Input::has('column_manufacturer') || true) {
+			$columns[trans('admin.manufacturer')] = ['manufacturer_id', function($p) use($manufacturers) {
+				$str = '<select class="manufacturer" name="' .$p->id .'_manufacturer">';
+				foreach($manufacturers as $mf) {
+					if ($mf == $p->manufacturer) {
+						$str .= '<option selected value="' .$mf->id .'">' .$mf->name .'</option>';
+					}else {
+						$str .= '<option value="' .$mf->id .'">' .$mf->name .'</option>';
+					}
+				}
+				$str .= '</select>';
+				return $str;
+			}];
+		}
+
+		$columns[trans('admin.enabled')] = ['enabled', function($p) {
+			$str = '<label class="checkbox-container" for="' .$p->id .'_enabled" style="float: left; margin-right: 1rem;">' .trans('admin.enabled') .'
+				<div class="checkbox">';
+			if ($p->enabled) {
+				$str .= '<input type="checkbox" checked="checked" id="' .$p->id .'_enabled" name="' .$p->id .'_enabled">';
+			}else {
+				$str .= '<input type="hidden" name="' .$p->id .'_enabled" value="off">';
+				$str .= '<input type="checkbox" id="' .$p->id .'_enabled" name="' .$p->id .'_enabled">';
+			}
+			$str .= '<span></span></div></label>';
+			return $str;
+		}];
+
+		$table = Laratable::make(Product::query(), $columns);
+
+		$table->sortable(true, [
+			'name','inprice','price','stock','enabled', 'categories','manufacturer_id',
+		]);
+
+		$table->filterable(true);
+
+		$mfs = ['*' => 'Any'];
+		foreach($manufacturers as $mf) {
+			$mfs[$mf->id] = $mf->name;
+		}
+		$table->addFilter('manufacturer_id', 'select')->setValues($mfs);
+
+		$table->addFilter('categories', 'category')->setLabel("Categories");
+
+		$table->paginate(true);
+
+		return $this->view('admin.products_multiedit')
+			->with([
+				'table' => $table->render(),
+				'filters' => $table->buildFilters()->addClass('inline')->filters,
+				'categories' => $categories,
+				'manufacturers' => $manufacturers,
+				'tags' => $tags,
+			]);
+	}
+
+	public function putMultiedit() {
+		$cols = [
+			'name','slug','inprice','price','articlenumber','barcode','weight','description','summary','enabled','manufacturer_id'
+		];
+
+		foreach(Product::all() as $p) {
+			$id = $p->id;
+
+			foreach($cols as $col) {
+				if (Input::has($id .'_' .$col)) {
+					$p->{$col} = Input::get($id .'_' .$col);
+				}
+			}
+
+			if (Input::has($id .'_categories')) {
+				$p->categories = Input::get($id .'_categories', []);
+			}
+
+			if (Input::has($id .'_tags')) {
+				$p->tags()->sync(Input::get($id .'_tags', []));
+			}
+
+			if (Input::has($id .'_variants')) {
+				$p->variants()->sync(Input::get($id .'_variants', []));
+			}
+
+			$p->enabled = (Input::get($id .'_enabled', 'off') == 'on') ? true : false;
+
+			# update variant stock?
+			if (count($p->variants) > 0) {
+				$stock = [];
+
+				$rootVariant = $p->variants[0];
+
+				if (count($p->variants) > 1) {
+					foreach($rootVariant->data['values'] as $rootValue) {
+						foreach($p->variants as $variant) {
+							if ($rootVariant == $variant) continue;
+
+							foreach($variant['data']['values'] as $value) {
+								$stockID = $rootValue['id'] .'_' .$value['id'];
+								if (Input::has($id .'_variant-' .$stockID)) {
+									$stock[$stockID] = Input::get($id .'_variant-' .$stockID, 0);
+								}
+							}
+						}
+					}
+				}else {
+					foreach($rootVariant->data['values'] as $value) {
+						$stockID = $value['id'];
+						if (Input::has($id .'_variant-' .$stockID)) {
+							$stock[$stockID] = Input::get($id .'_variant-' . $stockID);
+						}
+					}
+				}
+
+				$p->variants_stock = $stock;
+			}
+
+			$p->save();
+		}
+
+		return Redirect::back()->with('success', 'Products Updated!');
+	}
+
 }

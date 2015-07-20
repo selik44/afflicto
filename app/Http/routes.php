@@ -240,6 +240,9 @@ Route::group(['prefix' => Request::segment(1)], function() {
 		delete('products/batch', ['as' => 'admin.products.batch.destroy', 'uses' => 'Admin\ProductsController@batchDestroy']);
 		put('products/batch/move', ['as' => 'admin.products.batch.move', 'uses' => 'Admin\ProductsController@batchMove']);
 
+		get('products/quick-edit', ['as' => 'admin.products.quick-edit', 'uses' => 'Admin\ProductsController@getMultiedit']);
+		put('products/quick-edit', ['as' => 'admin.products.quick-edit.save', 'uses' => 'Admin\ProductsController@putMultiedit']);
+
 		get('products', ['as' => 'admin.products.index', 'uses' => 'Admin\ProductsController@index']);
 		get('products/create', ['as' => 'admin.products.create', 'uses' => 'Admin\ProductsController@create']);
 		get('products/{product}/edit', ['as' => 'admin.products.edit', 'uses' => 'Admin\ProductsController@edit']);

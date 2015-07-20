@@ -110,7 +110,7 @@
                                         $stock = [];
                                     }
 
-                                    if (is_array($product->variants)) {
+                                    if (is_object($product->variants)) {
                                         $rootVariant = $product->variants[0];
                                         if (count($product->variants) > 1) {
                                             foreach($rootVariant->data['values'] as $rootValue) {

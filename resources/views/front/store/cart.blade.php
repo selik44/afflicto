@@ -24,15 +24,21 @@
 
 @section('aside')
     <div class="block module">
-        <div class="module-content">
-            <?php
-                $tag = \Friluft\Tag::where('type', '=', 'checkout')->first();
-            ?>
-            @if($tag)
-                @foreach($tag->products as $p)
-                    @include('front.partial.products-block', ['product' => $p])
-                @endforeach
-            @endif
+        <div class="module-content" style="padding: 0px;">
+            <div class="row end">
+                <?php
+                    $tag = \Friluft\Tag::where('type', '=', 'checkout')->first();
+                ?>
+                @if($tag)
+                    @foreach($tag->products as $p)
+                        <div class="col-xs-12 tight">
+                            <a href="#" style="width: 100%; display: block; height: 140px; background-image: url('{{$p->getImageURL()}}'); background-position: center; background-size: cover">
+
+                            </a>
+                        </div>
+                    @endforeach
+                @endif
+            </div>
         </div>
     </div>
 @stop
