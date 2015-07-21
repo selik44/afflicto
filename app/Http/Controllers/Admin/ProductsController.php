@@ -509,11 +509,12 @@ class ProductsController extends Controller {
 
 		$table->addFilter('categories', 'category')->setLabel("Categories");
 
-		$table->paginate(false);
+		$table->paginate(true, 100);
 
 		return $this->view('admin.products_multiedit')
 			->with([
 				'table' => $table->render(),
+				'pagination' => $table->paginator->render(),
 				'filters' => $table->buildFilters()->addClass('inline')->filters,
 				'categories' => $categories,
 				'manufacturers' => $manufacturers,

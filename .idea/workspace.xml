@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
@@ -95,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProductsController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProductsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5294118">
-              <caret line="511" column="32" selection-start-line="511" selection-start-column="32" selection-end-line="511" selection-end-column="32" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="516" column="60" selection-start-line="516" selection-start-column="60" selection-end-line="516" selection-end-column="60" />
               <folding>
                 <element signature="e#49#75#0#PHP" expanded="true" />
               </folding>
@@ -107,18 +108,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="products_multiedit.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="products_multiedit.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.8044914">
+              <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
               <folding>
                 <element signature="e#461#487#0#HTML" expanded="true" />
                 <element signature="e#1136#1160#0#HTML" expanded="true" />
-                <marker date="1437413843872" expanded="true" signature="1190:1222" placeholder="..." />
-                <marker date="1437413843872" expanded="true" signature="1223:1742" placeholder="..." />
-                <marker date="1437413843872" expanded="true" signature="1292:1713" placeholder="..." />
-                <marker date="1437413843872" expanded="true" signature="2293:2304" placeholder="..." />
+                <marker date="1437458492552" expanded="true" signature="1190:1222" placeholder="..." />
+                <marker date="1437458492552" expanded="true" signature="1223:1742" placeholder="..." />
+                <marker date="1437458492552" expanded="true" signature="1292:1713" placeholder="..." />
+                <marker date="1437458492552" expanded="true" signature="2326:2337" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -263,8 +264,8 @@
         <option value="$PROJECT_DIR$/resources/views/admin/partial/nav.blade.php" />
         <option value="$PROJECT_DIR$/vendor/gentlefox/laratables/src/Laratable.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/products_edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php" />
       </list>
     </option>
   </component>
@@ -816,9 +817,9 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16979167" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.27653062" sideWeight="0.4424307" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26461843" sideWeight="0.4484375" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22200198" sideWeight="0.4484375" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2484375" sideWeight="0.49812266" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.26461843" sideWeight="0.5515625" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22200198" sideWeight="0.5515625" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17697228" sideWeight="0.22853369" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3458418" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29513183" sideWeight="0.45101172" order="9" side_tool="false" content_ui="tabs" />
@@ -1345,27 +1346,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="40" selection-start-line="28" selection-start-column="40" selection-end-line="28" selection-end-column="40" />
+          <caret line="516" column="60" selection-start-line="516" selection-start-column="60" selection-end-line="516" selection-end-column="60" />
           <folding>
-            <element signature="e#461#487#0#HTML" expanded="true" />
-            <element signature="e#1136#1160#0#HTML" expanded="true" />
-            <marker date="1437413843872" expanded="true" signature="1190:1222" placeholder="..." />
-            <marker date="1437413843872" expanded="true" signature="1223:1742" placeholder="..." />
-            <marker date="1437413843872" expanded="true" signature="1292:1713" placeholder="..." />
-            <marker date="1437413843872" expanded="true" signature="2293:2304" placeholder="..." />
+            <element signature="e#49#75#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5294118">
-          <caret line="511" column="32" selection-start-line="511" selection-start-column="32" selection-end-line="511" selection-end-column="32" />
+        <state vertical-scroll-proportion="0.8044914">
+          <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
           <folding>
-            <element signature="e#49#75#0#PHP" expanded="true" />
+            <element signature="e#461#487#0#HTML" expanded="true" />
+            <element signature="e#1136#1160#0#HTML" expanded="true" />
+            <marker date="1437458492552" expanded="true" signature="1190:1222" placeholder="..." />
+            <marker date="1437458492552" expanded="true" signature="1223:1742" placeholder="..." />
+            <marker date="1437458492552" expanded="true" signature="1292:1713" placeholder="..." />
+            <marker date="1437458492552" expanded="true" signature="2326:2337" placeholder="..." />
           </folding>
         </state>
       </provider>

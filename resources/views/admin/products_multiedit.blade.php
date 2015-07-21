@@ -60,6 +60,8 @@
     {!! Former::open()->method('PUT')->action(route('admin.products.quick-edit.save')) !!}
     {!! $table !!}
     <br>
+    {!! $pagination !!}
+    <hr>
     {!! Former::submit('Save')->addClass('success huge') !!}
     {!! Former::close() !!}
 @stop
