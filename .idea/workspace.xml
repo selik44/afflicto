@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -98,8 +97,8 @@
       <file leaf-file-name="ProductsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3606341">
-              <caret line="511" column="35" selection-start-line="511" selection-start-column="35" selection-end-line="511" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.58256274">
+              <caret line="486" column="88" selection-start-line="486" selection-start-column="88" selection-end-line="486" selection-end-column="88" />
               <folding>
                 <element signature="e#49#75#0#PHP" expanded="true" />
               </folding>
@@ -1362,8 +1361,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3606341">
-          <caret line="511" column="35" selection-start-line="511" selection-start-column="35" selection-end-line="511" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.58256274">
+          <caret line="486" column="88" selection-start-line="486" selection-start-column="88" selection-end-line="486" selection-end-column="88" />
           <folding>
             <element signature="e#49#75#0#PHP" expanded="true" />
           </folding>

@@ -484,6 +484,7 @@ class ProductsController extends Controller {
 			$str = '<label class="checkbox-container" for="' .$p->id .'_enabled" style="float: left; margin-right: 1rem;">' .trans('admin.enabled') .'
 				<div class="checkbox">';
 			if ($p->enabled) {
+				$str .= '<input type="hidden" name="' .$p->id .'_enabled" value="off">';
 				$str .= '<input type="checkbox" checked="checked" id="' .$p->id .'_enabled" name="' .$p->id .'_enabled">';
 			}else {
 				$str .= '<input type="hidden" name="' .$p->id .'_enabled" value="off">';
