@@ -23,7 +23,7 @@ class AuthController extends Controller {
 
 	public function post_login(LoginRequest $request) {
 		if (Auth::attempt(Input::only('email', 'password'), Input::has('remember') , true)) {
-			return redirect()->route('home');
+			return Redirect::intended('/');
 		}
 
 		return Redirect::back()->withInput()->with('error', 'Authentication Failed.');

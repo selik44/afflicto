@@ -31,12 +31,12 @@ Breadcrumbs::register('search', function($bc) {
 
 Breadcrumbs::register('user', function($bc) {
     $bc->parent('home');
-    $bc->push('User', url('/user'));
+    $bc->push('User', route('user'));
 });
 
 Breadcrumbs::register('user.orders', function($bc) {
     $bc->parent('user');
-    $bc->push('Orders', url('user/orders'));
+    $bc->push('Orders', route('user.orders.index'));
 });
 
 Breadcrumbs::register('user.order', function($bc, $order) {
@@ -46,7 +46,7 @@ Breadcrumbs::register('user.order', function($bc, $order) {
 
 Breadcrumbs::register('store', function($bc) {
 	$bc->parent('home');
-	$bc->push('Store', url('/store'));
+	$bc->push('Store', url(App::getLocale() .'/store'));
 });
 
 Breadcrumbs::register('category', function($bc, $cat) {
@@ -67,16 +67,16 @@ Breadcrumbs::register('category', function($bc, $cat) {
 	$slug = '/store';
 	foreach($parents as $parent) {
 		$slug .= '/' .$parent->slug;
-		$bc->push($parent->name, url($slug));
+		$bc->push($parent->name, url(App::getLocale() .$slug));
 	}
 });
 
 Breadcrumbs::register('product', function($bc, $product, $category) {
 	$bc->parent('category', $category);
 
-	$path = $slug = $category->getPath() .'/' .$product->slug;
+	$path = $category->getPath() .'/' .$product->slug;
 
-	$bc->push(e($product->name), url($path));
+	$bc->push(e($product->name), url(App::getLocale() .'/' .$path));
 });
 
 Breadcrumbs::register('store.cart', function($bc) {
