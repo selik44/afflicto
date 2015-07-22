@@ -36,7 +36,6 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Related products, tabbed view, appears when buying.
 - Client dashboard
 - Buy button on related products
-- amount left for free shipping in breadcrumbs
 - modal view for added products
 - rabatt popup ting
 

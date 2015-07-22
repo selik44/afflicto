@@ -30,7 +30,7 @@
 			<div class="form-group">
 				<label class="checkbox-container" for="remember">@lang('validation.attributes.remember')
 					<div class="checkbox">
-						<input id="remember" type="checkbox">
+						<input id="remember" type="checkbox" name="remember">
 						<span></span>
 					</div>
 				</label>
