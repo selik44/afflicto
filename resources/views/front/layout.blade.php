@@ -97,13 +97,19 @@
 	@if(!isset($breadcrumbs) || $breadcrumbs == true)
 		<div id="breadcrumbs">
 			<div class="inner clearfix">
-                <div class="pull-left">
+                <div class="pull-left crumbs">
 				    @yield('breadcrumbs')
                 </div>
 
-                <div class="pull-right">
+                <div class="pull-right free-shipping-status">
                     <?php
                         $total = Cart::getTotal();
+                        if ($total > 0) {
+                            $left = 1000 - $total;
+                            if ($left > 0) {
+                                echo '<i class="fa fa-exclamation-circle color-warning"></i> Du mangler ' .$left .',- for å få gratis frakt.';
+                            }
+                        }
                     ?>
                 </div>
 			</div>
