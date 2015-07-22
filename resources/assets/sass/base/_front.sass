@@ -58,6 +58,28 @@ iframe
 	#slider
 		> .inner
 			max-width: $base-width
+			display: flex
+			flex-direction: row
+			align-items: stretch
+			justify-content: center
+
+
+			> .left
+				flex: 1 1 auto
+
+			> .right
+				flex: 0 0 30%
+				display: flex
+				flex-direction: column
+				align-items: center
+				justify-content: center
+
+				.image
+					background-repeat: no-repeat
+					background-size: cover
+					background-position: center
+					flex: 1 1 50%
+					width: 100%
 
 			.slider
 				border: none

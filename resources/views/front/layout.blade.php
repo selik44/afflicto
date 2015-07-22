@@ -96,15 +96,21 @@
 
 	@if(!isset($breadcrumbs) || $breadcrumbs == true)
 		<div id="breadcrumbs">
-			<div class="inner">
-				@yield('breadcrumbs')
+			<div class="inner clearfix">
+                <div class="pull-left">
+				    @yield('breadcrumbs')
+                </div>
+
+                <div class="pull-right">
+                    <?php
+                        $total = Cart::getTotal();
+                    ?>
+                </div>
 			</div>
 		</div>
 	@endif
 	
-	<div id="alerts">
-		@include('partial.alerts')
-	</div>
+    @include('partial.alerts')
 
     @if(isset($intro) && $intro)
         <div id="intro" class="clearfix">

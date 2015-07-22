@@ -5,13 +5,12 @@
 @stop
 
 @section('slider')
-	<div class="row end">
-		<div class="middle col-l-6 tight">
-			<div class="slider">
-				<div class="container">
-                    @foreach(\Friluft\Image::whereType('slideshow')->orderBy('order', 'asc')->get() as $slide)
-                        <div style="background-image: url('{{asset('/images/' .$slide->name)}}');" class="slide">
-                            @if($slide->data)
+    <div class="left">
+        <div class="slider">
+            <div class="container">
+                @foreach(\Friluft\Image::whereType('slideshow')->orderBy('order', 'asc')->get() as $slide)
+                    <div style="background-image: url('{{asset('/images/' .$slide->name)}}');" class="slide">
+                        @if($slide->data)
                             <div class="elements" style="padding: 1rem">
                                 @foreach($slide->data['elements'] as $el)
                                     <div class="element"
@@ -27,24 +26,24 @@
                                     </div>
                                 @endforeach
                             </div>
-                            @endif
-                        </div>
-                    @endforeach
-				</div>
-			</div>
-		</div>
-		<div class="tight col-l-3 tight visible-l-up">
-            @if(isset($images['top_right']))
-                <div class="image" style="width:100%; height:250px; background-image: url('{{asset('images/' .$images['top_right']->name)}}'); background-size: cover; background-position: center;">
-                </div>
-            @endif
+                        @endif
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
 
-            @if(isset($images['bottom_right']))
-                <div class="image" style="width:100%; height:250px; background-image: url('{{asset('images/' .$images['bottom_right']->name)}}'); background-size: cover; background-position: center;">
-                </div>
-            @endif
-		</div>
-	</div>
+    <div class="right">
+        @if(isset($images['top_right']))
+            <div class="image" style="background-image: url('{{asset('images/' .$images['top_right']->name)}}');">
+            </div>
+        @endif
+
+        @if(isset($images['bottom_right']))
+            <div class="image" style="background-image: url('{{asset('images/' .$images['bottom_right']->name)}}');">
+            </div>
+        @endif
+    </div>
 @stop
 
 
