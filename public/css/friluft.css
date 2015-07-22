@@ -5176,6 +5176,7 @@ iframe {
         -ms-flex-pack: center;
             justify-content: center; }
     #front #slider > .inner > .right .image {
+      display: block;
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;

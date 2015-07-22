@@ -10,9 +10,9 @@ use Input;
 class BannersController extends Controller {
 
 	public static $spots = [
-		'top_left',
+		//'top_left',
 		'top_right',
-		'bottom_left',
+		//'bottom_left',
 		'bottom_right',
 	];
 
@@ -44,18 +44,37 @@ class BannersController extends Controller {
 	public function update()
 	{
 		foreach(self::$spots as $spot) {
-			if (Input::hasFile($spot)) {
 
-				$file = Input::file($spot);
+			$image = Image::whereType('banners_' .$spot)->first();
 
-				$file->move(public_path('images/slides'), $file->getClientOriginalName());
-
-				$image = Image::wheretype('banners_' .$spot)->first();
+			if (Input::hasFile($spot) || $image) {
 				if ( ! $image) {
 					$image = new Image();
 					$image->type = 'banners_' .$spot;
 				}
-				$image->name = 'slides/' .$file->getClientOriginalName();
+
+				# new image file?
+				if (Input::hasFile($spot)) {
+					$file = Input::file($spot);
+					$file->move(public_path('images/slides'), $file->getClientOriginalName());
+					$image->name = 'slides/' .$file->getClientOriginalName();
+				}
+
+				# get data
+				$data = $image->data;
+				if ( ! is_array($data)) {
+					$data = [
+						'link' => '#'
+					];
+				}
+
+				# link?
+				if (Input::has($spot .'_link')) {
+					$data['link'] = Input::get($spot .'_link');
+				}
+
+				# set data & save
+				$image->data = $data;
 				$image->save();
 			}
 		}

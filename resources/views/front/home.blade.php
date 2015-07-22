@@ -35,13 +35,13 @@
 
     <div class="right">
         @if(isset($images['top_right']))
-            <div class="image" style="background-image: url('{{asset('images/' .$images['top_right']->name)}}');">
-            </div>
+            <a href="{{$images['top_right']->data['link']}}" class="image" style="background-image: url('{{asset('images/' .$images['top_right']->name)}}');">
+            </a>
         @endif
 
         @if(isset($images['bottom_right']))
-            <div class="image" style="background-image: url('{{asset('images/' .$images['bottom_right']->name)}}');">
-            </div>
+            <a href="{{$images['bottom_right']->data['link']}}" class="image" style="background-image: url('{{asset('images/' .$images['bottom_right']->name)}}');">
+            </a>
         @endif
     </div>
 @stop

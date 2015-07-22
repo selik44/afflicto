@@ -56,7 +56,7 @@
 					</ul>
 					
 					<div class="nav-extra">
-						<form class="inline" id="search" action="{{url('search')}}" method="GET">
+						<form class="inline" id="search" action="{{route('search')}}" method="GET">
                             <div class="input-append">
                                 <input required maxlength="100" type="search" name="terms" placeholder="search...">
                                 <!--<input type="submit" value="Search" class="primary appended">-->

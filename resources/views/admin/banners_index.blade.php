@@ -22,6 +22,16 @@
         @else
             {!! Former::file($key)->label(null) !!}
         @endif
+        <?php
+            $link = '';
+            $data = $image->data;
+            if (is_array($data)) {
+                if (isset($data['link'])) {
+                    $link = $data['link'];
+                }
+            }
+        ?>
+        {!! Former::text($key .'_link')->label('link')->value($link) !!}
 
         <hr>
     @endforeach

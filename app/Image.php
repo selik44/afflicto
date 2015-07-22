@@ -24,7 +24,7 @@ class Image extends Model {
 	protected $table = 'images';
 
 	protected $casts = [
-		'data' => 'json',
+		'data' => 'array',
 	];
 
 	public function product() {
