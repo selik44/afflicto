@@ -11,7 +11,7 @@
     <div class="row">
         <div class="module slide-editor" style="display: none;" data-id="">
             <header class="module-header clearfix" style="padding: 0">
-                <h6 class="pull-left">Slide #1</h6>
+                <h5 class="pull-left">Slide #1</h5>
                 <div class="button-group pull-right">
                     <button class="add large primary"><i class="fa fa-plus"></i> Add Element</button>
                     <button class="save large success"><i class="fa fa-save"></i> Save</button>
@@ -40,6 +40,11 @@
             ?>
 
             <article class="module-content">
+                <label>Link
+                    <input style="width: 100%;" type="text" name="link">
+                </label>
+                <hr>
+                <h6>Elements</h6>
                 <table class="table elements">
                     <thead>
                     <tr>
@@ -234,7 +239,7 @@
                 console.log(response);
                 slideEditor.slideDown().attr('data-id', id);
 
-                console.log(slideEditor);
+                slideEditor.find('input[name="link"]').val(response.data.link);
 
                 if (response.data != null) {
                     var element;
@@ -261,8 +266,9 @@
         slideEditor.find('.module-header button.save').click(function() {
             var id = slideEditor.attr('data-id');
 
-            var elements = [];
+            var link = slideEditor.find('input[name="link"]').val();
 
+            var elements = [];
             slideEditor.find('.module-content .elements tbody tr').each(function() {
                 var element = {};
 
@@ -281,7 +287,7 @@
             var payload = {
                 _method: 'PUT',
                 _token: Friluft.token,
-                data: JSON.stringify({elements: elements}),
+                data: JSON.stringify({elements: elements, link: link}),
             };
 
             $.post(Friluft.URL + '/admin/design/slides/' + id, payload, function(response) {

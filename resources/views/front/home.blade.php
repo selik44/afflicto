@@ -9,7 +9,7 @@
         <div class="slider">
             <div class="container">
                 @foreach(\Friluft\Image::whereType('slideshow')->orderBy('order', 'asc')->get() as $slide)
-                    <div style="background-image: url('{{asset('/images/' .$slide->name)}}');" class="slide">
+                    <a href="{{$slide->data['link']}}" style="background-image: url('{{asset('/images/' .$slide->name)}}');" class="slide">
                         @if($slide->data)
                             <div class="elements" style="padding: 1rem">
                                 @foreach($slide->data['elements'] as $el)
@@ -27,7 +27,7 @@
                                 @endforeach
                             </div>
                         @endif
-                    </div>
+                    </a>
                 @endforeach
             </div>
         </div>
