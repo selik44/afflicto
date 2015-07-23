@@ -1,8 +1,14 @@
 .product-view
+	@include clearfix()
 	.header
+		float: left
+		width: 100%
+		margin-bottom: 1rem
 
 	.product-top
 		.product-images
+			padding-bottom: 0
+			background: stronger($base-background, 10%)
 			display: flex
 			flex-direction: column-reverse
 
@@ -35,6 +41,8 @@
 
 		.product-info
 			position: relative
+			padding-bottom: 0
+
 			form
 				width: 100%
 
@@ -50,16 +58,21 @@
 
 	.product-bottom
 		ul.tabs
-			li
+			li.current
 				a
-					backround: weaker($base-background, 10%)
+					background: stronger($base-background, 10%)
 
 		.tab
-			background: weaker($base-background, 10%)
+			background: stronger($base-background, 10%)
 
 		#product-relations
-			.related .info
-				padding: 1rem
+			.products-grid
+				.products-block
+					float: left
+					width: 50%
+
+					@include breakpoint('xl')
+						width: 33%
 
 	//------- Large --------//
 	@include breakpoint('l')

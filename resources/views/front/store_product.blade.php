@@ -97,31 +97,12 @@
 				{!! $product->description !!}
 			</div>
 
-			<div class="tab" id="product-relations">
-				<ul class="relations flat">
+			<div class="tab clearfix" id="product-relations">
+				<div class="products-grid">
 					@foreach($product->relations as $related)
-						<li class="related clearfix">
-							<div class="row">
-								<div class="thumbnail pull-left">
-									<a href="{{$related->getPath()}}">
-										@if($related->images)
-											<img class="image" src="{{$related->getImageURL()}}" alt=""/>
-										@endif
-									</a>
-								</div>
-								<div class="info pull-left">
-									<a class="link" href="{{$related->getPath()}}">
-										<h4><strong>{{$related->manufacturer->name}}</strong> {{$product->name}}</h4>
-									</a>
-
-									<div class="price">
-										<h4><strong>{{ceil($related->price * $related->vatgroup->amount)}},-</strong></h4>
-									</div>
-								</div>
-							</div>
-						</li>
+                        @include('front.partial.products-block', ['product' => $related])
 					@endforeach
-				</ul>
+				</div>
 			</div>
 		</div>
 	</div>

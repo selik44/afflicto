@@ -144,7 +144,7 @@ class Product extends Model {
 
 	public function getCategoriesAttribute() {
 		if ( ! isset($this->categoriesCollection)) {
-			$array = explode(',', $this->attributes['categories']);
+			$array = explode(',', trim($this->attributes['categories'], ','));
 			$this->categoriesCollection = Category::whereIn('id', $array)->get();
 		}
 
@@ -160,16 +160,16 @@ class Product extends Model {
 		}
 		else if ($categories instanceof Collection) {
 			$collection = $categories;
-			$categories = [];
+			$array = [];
 			foreach($collection as $cat) {
-				$categories[] = $cat->id;
+				$array[] = $cat->id;
 			}
 		}else if (is_array($categories)) {
 			$array = $categories;
 			sort($array, SORT_ASC);
 		}
 
-		$this->attributes['categories'] = implode(',', $array);
+		$this->attributes['categories'] = ',' .implode(',', $array) .',';
 	}
 
 	public function vatgroup() {

@@ -71,7 +71,7 @@ class Category extends Model {
 	}
 
 	public function products() {
-		return Product::where('categories', 'LIKE', '%' .$this->id .'%');
+		return Product::where('categories', 'LIKE', '%,' .$this->id .',%');
 	}
 
 	/**
@@ -85,6 +85,7 @@ class Category extends Model {
 		$path = $this->getPath();
 
 		$collection = ($includeDisabled) ? $this->products : $this->products()->enabled()->get();
+
 		foreach($collection as $p) {
 			# help the model with calculating it's path
 			# otherwise, each model needs to traverse up to their root category.

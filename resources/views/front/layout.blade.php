@@ -124,7 +124,7 @@
 
     @if(isset($intro) && $intro)
         <div id="intro" class="clearfix">
-            <div class="inner">
+            <div class="inner clearfix">
                 @yield('intro')
             </div>
         </div>
@@ -145,7 +145,7 @@
             @endif
 
             <article id="article">
-                <div class="inner">
+                <div class="inner clearfix">
                     @yield('article')
                 </div>
             </article>

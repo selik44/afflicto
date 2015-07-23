@@ -19,7 +19,7 @@ class JavascriptMiddleware {
 			'URL' => url() .'/' .\App::getLocale(),
 			'token' => csrf_token(),
 			'request' => ['path' => $request->path()],
-			'cart' => ['contents' => Cart::getItemsWithModels(true), 'total' => Cart::getTotal()],
+			//'cart' => ['contents' => Cart::getItemsWithModels(true), 'total' => Cart::getTotal()],
 		]);
 
 		return $next($request);
