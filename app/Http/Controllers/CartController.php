@@ -73,7 +73,7 @@ class CartController extends Controller {
 
 		Cart::updateKlarnaOrder();
 
-		return ['id' => $cartid];
+		return ['id' => $cartid, 'total' => Cart::getTotal()];
 	}
 
 	/**

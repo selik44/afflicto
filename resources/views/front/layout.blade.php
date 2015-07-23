@@ -101,16 +101,20 @@
 				    @yield('breadcrumbs')
                 </div>
 
-                <div class="pull-right free-shipping-status">
-                    <?php
-                        $total = Cart::getTotal();
-                        if ($total > 0) {
-                            $left = 1000 - $total;
-                            if ($left > 0) {
-                                echo '<i class="fa fa-exclamation-circle color-warning"></i> Du mangler ' .$left .',- for å få gratis frakt.';
-                            }
-                        }
-                    ?>
+                <?php
+                $display = 'none';
+                $left = 1000;
+                $total = Cart::getTotal();
+                if ($total > 0) {
+                    $left = 1000 - $total;
+                    if ($left > 0) {
+                        $display = 'block';
+                    }
+                }
+                ?>
+
+                <div class="pull-right free-shipping-status" style="display: {{$display}}">
+                    <i class="fa fa-exclamation-circle color-warning"></i> Du mangler <span class="value">{{$left}}</span>,- for å få gratis frakt.
                 </div>
 			</div>
 		</div>
@@ -183,15 +187,54 @@
 <div id="menu-overlay">
 
 </div>
+
+<div id="buy-modal" class="modal fade center">
+    <div class="modal-content">
+        <h1 class="end header">@lang('store.product added to cart')</h1>
+        <hr>
+
+        <div class="info">
+            <h2 class="quantity">
+                <span class="value">1</span> x
+            </h2>
+
+            <img width="100" src="http://lorempixel.com/100/100/abstract" class="thumbnail">
+
+            <div class="description">
+                <h5 class="title">Title</h5>
+                <h3 class="price">179,-</h3>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="footer">
+            <div class="end button huge primary continue" data-toggle-modal="#buy-modal">@lang('store.continue shopping')</div>
+            <a href="{{route('store.cart')}}" class="end button huge success">@lang('store.to checkout')</a>
+        </div>
+    </div>
+</div>
 @stop
 
 
 @section('scripts')
-
 @parent
-
 <script type="text/javascript">
+
+    var showBuyModal;
+
 	$(document).ready(function() {
+        //init buy modal
+        showBuyModal = function(quantity, thumbnail, title, price) {
+            var m = $("#buy-modal");
+            m.find('.info .quantity .value').html(quantity);
+            m.find('.info .thumbnail').attr('src', thumbnail);
+            m.find('.info .description .title').html(title);
+            m.find('.info .description .price').html(price + ",-");
+            $("#buy-modal").gsModal("show");
+        };
+
+
 		//make the nav controls fixed on scroll
 		var navTop = $("#navigation-top");
 

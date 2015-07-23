@@ -23,6 +23,10 @@ return [
 	'product' => 'Product',
 	'cart empty' => 'Your Cart is empty.',
 
+	'product added to cart' => 'The product has been added to your cart!',
+	'continue shopping' => 'Continue Shopping',
+	'to checkout' => 'To Checkout',
+
 	'auth' => [
 		'forgot your password?' => 'Forgot your password?',
 		'create account' => 'Create Account',

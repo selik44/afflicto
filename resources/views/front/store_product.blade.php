@@ -187,7 +187,28 @@
             e.preventDefault();
             $(this).serialize();
 
+            // show buy modal
+            var thumbnail = $(this).parents('.product-view').find('.product-images .slider .slide').first().css('background-image');
+            thumbnail = thumbnail.replace('url(', '');
+            thumbnail = thumbnail.replace(')', '');
+
+            var title = $(this).parents('.product-view').find('.header .title .manufacturer .title').text();
+
+            var price = $(this).parents('.product-view').find('.header .price').text();
+
+            showBuyModal(1, thumbnail, title, price);
+
+            //post form via ajax
             $.post($(this).attr('action'), $(this).serialize(), function(response) {
+                var total = response.total;
+
+                var left = 1000 - total;
+                if (left > 0) {
+                    $("#breadcrumbs .free-shipping-status").show().find('.value').text(left);
+                }else {
+                    $("#breadcrumbs .free-shipping-status").hide();
+                }
+
                 $.get(Friluft.URL + '/cart', function(html) {
                     cart.find('.cart-table').replaceWith(html);
                 });
