@@ -68,7 +68,7 @@
 	<hr style="margin-top: 0px">
 
 	<div class="row products-popular">
-		@foreach(\Friluft\Product::all()->take(4) as $product)
+		@foreach($popular as $product)
 			<div class="col-xs-6 col-l-3">
 				@include('front.partial.products-block', ['product' => $product])
 			</div>

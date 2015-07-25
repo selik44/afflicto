@@ -45,7 +45,7 @@ class SlidesController extends Controller {
 			$image = new Image();
 			$image->type = 'slideshow';
 			$image->name = 'slides/' .$filename;
-			$image->data = ['link' => ''];
+			$image->data = ['link' => '', 'elements' => []];
 			$image->save();
 
 			return response('OK', 200);

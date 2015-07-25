@@ -531,6 +531,9 @@ class ProductsController extends Controller {
 		foreach(Product::all() as $p) {
 			$id = $p->id;
 
+			# are we editing this one?
+			if ( ! Input::has($id .'_enabled')) continue;
+
 			foreach($cols as $col) {
 				if (Input::has($id .'_' .$col)) {
 					$p->{$col} = Input::get($id .'_' .$col);
