@@ -33,12 +33,13 @@ iframe
 		> .inner
 			padding: 0.4rem 1rem
 
-		@include breakpoint('m-')
-			display: flex
-			align-items: center
+			@include breakpoint('m-')
+				display: flex
+				flex-direction: column
+				align-items: center
 
-			li
-				flex: auto
+				li
+					flex: auto
 
 	#alerts
 		padding-top: 2rem
