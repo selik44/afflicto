@@ -96,14 +96,6 @@
                 contentsCss: '{{asset('css/friluft.css')}}',
                 stylesSet: 'friluft',
             });
-
-            var editor = $(this).parent().find('div[contenteditable="true"]');
-
-            $(this).parent().find('div[contenteditable="true"]').on('input', function() {
-                console.log('keyup');
-                var val = $(this).html();
-                $(this).parent().find('.wysiwyg').html(val);
-            });
         });
 
         var form = $("#products-form");

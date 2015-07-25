@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/friluft.css" afterPath="$PROJECT_DIR$/public/css/friluft.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/css/highpulse.css" afterPath="$PROJECT_DIR$/public/css/highpulse.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/slider.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/slider.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -101,8 +95,8 @@
       <file leaf-file-name="products_multiedit.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7647658">
-              <caret line="113" column="35" selection-start-line="113" selection-start-column="35" selection-end-line="113" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.57230145">
+              <caret line="96" column="37" selection-start-line="96" selection-start-column="37" selection-end-line="96" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -1268,8 +1262,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7647658">
-          <caret line="113" column="35" selection-start-line="113" selection-start-column="35" selection-end-line="113" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.57230145">
+          <caret line="96" column="37" selection-start-line="96" selection-start-column="37" selection-end-line="96" selection-end-column="37" />
           <folding />
         </state>
       </provider>
