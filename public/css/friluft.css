@@ -4194,6 +4194,9 @@ ul.pagination {
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8); }
     .slider .slide-links li a.current, .slider .slide-links ul.nav li.current > a, ul.nav .slider .slide-links li.current > a {
       color: #03a1a9; }
+    @media (max-width: 680px) {
+      .slider .slide-links {
+        display: none; } }
 
 .slider.contain .container .slide {
   background-size: contain; }
@@ -5132,12 +5135,8 @@ iframe {
   max-width: 1440px; }
 #front #header:not(:last-child), #front #page:not(:last-child), #front #footer:not(:last-child), #front #nav:not(:last-child), #front #nav-top:not(:last-child), #front .nav-dropdown:not(:last-child), #front #breadcrumbs:not(:last-child), #front #slider:not(:last-child), #front #cart:not(:last-child) {
   border-bottom: 1px solid #ddd; }
-#front #header {
-  background: #f2f2f2; }
-  #front #header #nav-top {
-    background: white; }
-    #front #header #nav-top .nav li a {
-      color: #5b5b5b; }
+#front #header #nav-top .nav li a {
+  color: #5b5b5b; }
 #front #breadcrumbs {
   background: #fafafa;
   text-transform: uppercase;

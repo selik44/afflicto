@@ -57,7 +57,7 @@
         {!! Former::close() !!}
     </div>
 
-    {!! Former::open()->method('PUT')->action(route('admin.products.quick-edit.save')) !!}
+    {!! Former::open()->id("products-form")->method('PUT')->action(route('admin.products.quick-edit.save')) !!}
     {!! $table !!}
     <br>
     {!! $pagination !!}
@@ -90,11 +90,28 @@
             {name: 'Blockquote', element: 'blockquote'},
         ]);
 
-        $(".wysiwyg").each(function() {
-            CKEDITOR.replace(this, {
+        $('.wysiwyg').each(function() {
+            CKEDITOR.inline(this, {
                 language: '{{\App::getLocale()}}',
                 contentsCss: '{{asset('css/friluft.css')}}',
                 stylesSet: 'friluft',
+            });
+
+            var editor = $(this).parent().find('div[contenteditable="true"]');
+
+            $(this).parent().find('div[contenteditable="true"]').on('input', function() {
+                console.log('keyup');
+                var val = $(this).html();
+                $(this).parent().find('.wysiwyg').html(val);
+            });
+        });
+
+        var form = $("#products-form");
+
+        form.on('submit', function(e) {
+            $(".wysiwyg").each(function() {
+                var html = $(this).parent().find('div[contenteditable="true"]').html();
+                $(this).html(html);
             });
         });
 
