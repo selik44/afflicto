@@ -412,9 +412,9 @@ class ProductsController extends Controller {
 						}
 					}
 					$str .= '</table>';
+				}else {
+					return '<input type="text" name="' .$product->id .'_stock" value="' .$product->stock .'">';
 				}
-
-
 
 				return $str;
 			}];
@@ -580,6 +580,8 @@ class ProductsController extends Controller {
 				}
 
 				$p->variants_stock = $stock;
+			}else {
+				$p->stock = Input::get($id .'_stock');
 			}
 
 			$p->save();
