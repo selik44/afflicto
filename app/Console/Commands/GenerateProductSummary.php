@@ -75,7 +75,6 @@ class GenerateProductSummary extends Command {
 	{
 
 		foreach(Product::all() as $product) {
-			$this->info('------GENERATING SUMMARY-------');
 			$string = html_entity_decode($product->description);
 
 			# trim
@@ -85,8 +84,23 @@ class GenerateProductSummary extends Command {
 			if (mb_strlen($string) <= 0) continue;
 
 			# shorten 
-			$string = substr($string, 0, 350);
+			$string = substr($string, 0, 600);
 
+			$result = $string;
+
+			if (mb_strlen($result) > 200) {
+				$result = $this->fromHTMLParagraph($string);
+
+				if (mb_strlen($result) <= 10) {
+					$result = $this->fromDoubleNewlines($string);
+				}
+
+				if (mb_strlen($result) <= 10) {
+					$result = $this->fromSentences($string);
+				}
+			}
+
+			/*
 			$methods = ['fromHTMLParagraph', 'fromDoubleNewlines', 'fromSentences'];
 
 			$results = [];
@@ -95,37 +109,13 @@ class GenerateProductSummary extends Command {
 				# run this method
 				$result = $this->{$method}($string);
 				$results[] = $result;
-
-				# combine it with the others
-				foreach($methods as $method) {
-					$result = $this->{$method}($result);
-					$results[] = $result;
-				}
 			}
 
-			$this->info('Results!');
-			foreach($results as $key => $result) {
-				$this->comment('Result ' .$key);
-				$this->comment($result);
-			}
-
-			$this->info('Final Result for ' .$product->name .':');
-
-			# get the best one
-			$final = $results[0];
-			$finalLength = mb_strlen($final);
-			foreach($results as $result) {
-				if ($length == null) $length = mb_strlen($result);
-				if ($length > $finalLength) {
-					$final = $result;
-					$length = $finalLength;
-				}
-			}
 
 			$this->comment($final);
-
+			*/
 			# save the model
-			$product->summary = $final;
+			$product->summary = trim($result);
 			$product->save();
 		}
 		
