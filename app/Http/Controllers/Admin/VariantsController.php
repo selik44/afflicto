@@ -22,9 +22,15 @@ class VariantsController extends Controller {
 	{
 		$table = Laratable::make(Variant::query(), [
 			'#' => 'id',
-			'Name' => 'name',
-			'Values' => ['data', function() {
-				return 'data';
+			'Name' => 'admin_name',
+			'Display Name' => 'name',
+			'Values' => ['data', function($variant) {
+				$values = [];
+				foreach($variant->data['values'] as $value) {
+					$values[] = $value['name'];
+				}
+
+				return implode(', ', $values);
 			}],
 		]);
 
@@ -63,6 +69,7 @@ class VariantsController extends Controller {
 		$variant = new Variant();
 		$variant->data = ['values' => [], 'uid' => 0];
 		$variant->name = Input::get('name');
+		$variant->admin_name = Input::get('admin_name');
 		$variant->save();
 
 		return \Redirect::route('admin.variants.index');
@@ -89,6 +96,7 @@ class VariantsController extends Controller {
 	public function update(Variant $variant)
 	{
 		$variant->name = Input::get('name');
+		$variant->admin_name = Input::get('admin_name');
 
 		# update current values
 		$data = $variant->data;

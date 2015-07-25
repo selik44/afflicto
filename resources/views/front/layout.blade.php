@@ -257,7 +257,7 @@
 		}, 50));
 
 
-		//toggle cart cotnainer
+		//toggle cart container
 		$("#header .cart-toggle").click(function() {
 			var cart = $("#header .cart-container");
 			cart.stop(false, false).slideToggle().toggleClass('visible');

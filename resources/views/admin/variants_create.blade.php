@@ -13,6 +13,8 @@
     ->method('POST')
     !!}
 
+    {!! Former::text('admin_name') !!}
+
     {!! Former::text('name') !!}
 
     {!! Former::submit(trans('admin.create'))->class('large primary') !!}

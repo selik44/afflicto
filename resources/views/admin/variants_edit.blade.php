@@ -12,6 +12,8 @@
     ->method('PUT')
     !!}
 
+    {!! Former::text('admin_name') !!}
+
     {!! Former::text('name') !!}
 
     <div class="values-container module">
