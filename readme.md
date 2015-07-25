@@ -30,13 +30,9 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 
 # Todo:
-- Allow defining custom product fields ("attributes")
-  that can be sorted and filtered dynamically.
 - manual orders & order editing
 - Related products, tabbed view, appears when buying.
 - Client dashboard
-- Buy button on related products
-- modal view for added products
 - rabatt popup ting
 
 

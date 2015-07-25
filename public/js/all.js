@@ -9,6 +9,86 @@ void 0===c?d&&"get"in d&&null!==(e=d.get(a,b))?e:(e=n.find.attr(a,b),null==e?voi
   var slice = [].slice;
 
   (function($, window, document) {
+    var GSDropdown;
+    GSDropdown = (function() {
+      GSDropdown.prototype.defaults = {
+        transitionSpeed: 200
+      };
+
+      function GSDropdown(el, options) {
+        var callback, self;
+        console.log('initializing dropdown');
+        self = this;
+        this.options = $.extend({}, this.defaults, options);
+        this.$el = $(el);
+        callback = function(e) {
+          console.log('click dropdown');
+          e.preventDefault();
+          return self.toggle();
+        };
+        $('.dropdown-toggle[href="#' + this.$el.attr('id') + '"]').click(callback);
+        return this;
+      }
+
+      GSDropdown.prototype.show = function() {
+        return this.$el.slideDown(this.options.transitionSpeed).addClass('visible');
+      };
+
+      GSDropdown.prototype.hide = function() {
+        return this.$el.slideUp(this.options.transitionSpeed).removeClass('visible');
+      };
+
+      GSDropdown.prototype.toggle = function() {
+        if (this.$el.hasClass('visible')) {
+          return this.hide();
+        } else {
+          return this.show();
+        }
+      };
+
+      return GSDropdown;
+
+    })();
+
+    /**
+    	 * Define the jQuery plugin
+    	 * @param  {[type]} option  [description]
+    	 * @param  {[type]} args... [description]
+    	 * @return {[type]}         [description]
+     */
+    $.fn.extend({
+      gsDropdown: function() {
+        var args, option;
+        option = arguments[0], args = 2 <= arguments.length ? slice.call(arguments, 1) : [];
+        return this.each(function() {
+          var $this, data;
+          $this = $(this);
+          data = $this.data('gsDropdown');
+          if (!data) {
+            $this.data('gsDropdown', (data = new GSDropdown(this, option)));
+          }
+          if (typeof option === 'string') {
+            return data[option].apply(data, args);
+          }
+        });
+      }
+
+      /**
+      	 * Auto-init
+      	 * @return {[type]} [description]
+       */
+    });
+    return $(document).ready(function() {
+      return $('ul.dropdown-menu').gsDropdown();
+    });
+  })(window.jQuery, window, document);
+
+}).call(this);
+
+(function() {
+  var slice = [].slice;
+
+  (function($, window, document) {
     var GSModal;
     GSModal = (function() {
       GSModal.prototype.defaults = {};

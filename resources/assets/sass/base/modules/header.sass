@@ -22,26 +22,21 @@
 				text-decoration: none
 
 		> ul li.dropdown
-			position: relative
 
-			> ul
-				position: absolute
-				top: 100%
-				right: 0
-				display: none
-				z-index: 500
+			.dropdown-menu
+				padding-left: 0
+				z-index: 1000
 				background: $base-color
 				border: 1px solid weaker($base-color, 10%)
-				padding: 0
 
 				li
-					width: 100%
+					//width: 100%
 					a
-						&:hover
-							background: weaker($base-color, 5%)
+						background: $base-color
+						color: $base-background
 
-			&:hover > ul
-				display: block
+						&:hover
+							background: weaker($base-color, 10%)
 
 	#navigation
 		position: relative

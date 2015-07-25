@@ -6,6 +6,7 @@ return [
 	'account' => 'Account',
 	'log in' => 'Log in',
 	'log out' => 'Log out',
+	'register' => 'Register',
 	'cart' => 'Cart',
 	'checkout' => 'Checkout',
 	'to checkout' => 'To Checkout',

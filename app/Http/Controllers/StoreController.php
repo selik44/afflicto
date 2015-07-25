@@ -18,28 +18,31 @@ class StoreController extends Controller {
 
 	public function index($path)
 	{
+		$query = \App::getLocale() .'/store/' .$path;
 		$path = explode('/', $path);
 		$slug = array_pop($path);
 
-		$cat = Category::where('slug', '=', $slug)->first();
+		foreach(Category::where('slug', '=', $slug)->get() as $cat) {
+			$p = $cat->getPath();
 
-		if ($cat) {
-			$products = $cat->nestedProducts();
+			if ($p == $query) {
+				$products = $cat->nestedProducts();
 
-			$manufacturers = [];
-			foreach($products as $product) {
-				$m = $product->manufacturer;
-				if ( ! $m) continue;
-				if ( ! isset($manufacturers[$m->id])) {
-					$manufacturers[$m->id] = $m;
+				$manufacturers = [];
+				foreach($products as $product) {
+					$m = $product->manufacturer;
+					if ( ! $m) continue;
+					if ( ! isset($manufacturers[$m->id])) {
+						$manufacturers[$m->id] = $m;
+					}
 				}
-			}
 
-			return view('front.store_category')
-				->with('category', $cat)
-				->with('products', $products)
-				->with('manufacturers', $manufacturers)
-				->with('aside', true);
+				return view('front.store_category')
+					->with('category', $cat)
+					->with('products', $products)
+					->with('manufacturers', $manufacturers)
+					->with('aside', true);
+			}
 		}
 
 		$product = Product::enabled()->where('slug', '=', $slug)->first();

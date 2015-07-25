@@ -4,11 +4,11 @@ use Friluft\Category;
 use Friluft\Product;
 use Friluft\Variant;
 
-# home
+get(Request::segment(1) .'/', ['as' => 'home', 'uses' => 'HomeController@index']);
+
 get('/', function() {
 	return Redirect::to('en');
 });
-get('{lang}/', ['as' => 'home', 'uses' => 'HomeController@index']);
 
 get('cart/clear', function() {
 	Cart::clear();

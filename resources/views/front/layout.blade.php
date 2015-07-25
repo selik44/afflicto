@@ -21,8 +21,8 @@
                 ?>
 
                 <li class="pull-right dropdown language">
-                    <a href="#"><i class="fa fa-globe"></i> {{$langs[$currentLang]}} <i class="fa fa-chevron-down"></i></a>
-                    <ul>
+                    <a href="#language-dropdown" class="dropdown-toggle"><i class="fa fa-globe"></i> {{$langs[$currentLang]}} <i class="fa fa-caret-down"></i></a>
+                    <ul id="language-dropdown" class="dropdown-menu align-right">
                         @foreach($langs as $lang => $label)
                             @if($currentLang != $lang)
                                 <li><a href="{{url()}}/{{$lang}}">{{$label}}</a></li>
@@ -31,11 +31,19 @@
                     </ul>
                 </li>
 
-                @if(Auth::user())
-                    <li class="pull-right"><a href="{{route('user')}}">@lang('store.account')</a></li>
-                @else
-                    <li class="pull-right"><a href="{{route('user')}}">@lang('store.login')</a></li>
-                @endif
+
+                <li class="pull-right dropdown account">
+                    <a href="#account-dropdown" class="dropdown-toggle">@lang('store.account') <i class="fa fa-caret-down"></i></a>
+                    <ul id="account-dropdown" class="dropdown-menu align-right">
+                        @if(Auth::user())
+                            <li><a href="{{route('user')}}">@lang('store.my account')</a></li>
+                            <li><a href="{{route('user.logout')}}">@lang('store.log out')</a></li>
+                        @else
+                            <li><a href="{{route('user.login')}}">@lang('store.log in')</a></li>
+                            <li><a href="{{route('user.register')}}">@lang('store.register')</a></li>
+                        @endif
+                    </ul>
+                </li>
 			</ul>
 		</nav>
 

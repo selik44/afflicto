@@ -7,6 +7,7 @@ return [
 	'my account' => 'Min Konto',
 	'log in' => 'Logg inn',
 	'log out' => 'Logg ut',
+	'register' => 'Registrer',
 	'cart' => 'Handlekurv',
 	'checkout' => 'Kassen',
 	'to checkout' => 'Til Kassen',

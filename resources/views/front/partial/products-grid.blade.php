@@ -30,7 +30,7 @@
 				}
 				?>
 				<li>
-					<a class="{{{$c}}}" href="{{url('/store/' .$category->getRoot()->slug)}}">{{$category->getRoot()->name}}</a>
+					<a class="{{{$c}}}" href="{{url(App::getLocale() .'/store/' .$category->getRoot()->slug)}}">{{$category->getRoot()->name}}</a>
 				</li>
 				<?php
 				echo $category->getRoot()->renderMenu('/store', 3);
