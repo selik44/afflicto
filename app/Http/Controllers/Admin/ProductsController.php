@@ -510,6 +510,9 @@ class ProductsController extends Controller {
 
 		$table->addFilter('categories', 'category')->setLabel("Categories");
 
+		$enabledColumns = [];
+		$table->appendQueryParams(Input::only('column_name', 'column_slug', 'column_inprice', 'column_price', 'column_articlenumber', 'column_barcode', 'clumn_weight', 'column_description', 'column_summary', 'column_stock', 'column_tags', 'column_variants'));
+
 		$table->paginate(true, 30);
 
 		return $this->view('admin.products_multiedit')
