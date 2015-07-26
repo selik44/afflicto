@@ -23,8 +23,6 @@ class GenerateProductSummary extends Command {
 
 	/**
 	 * Create a new command instance.
-	 *
-	 * @return void
 	 */
 	public function __construct()
 	{
@@ -100,20 +98,6 @@ class GenerateProductSummary extends Command {
 				}
 			}
 
-			/*
-			$methods = ['fromHTMLParagraph', 'fromDoubleNewlines', 'fromSentences'];
-
-			$results = [];
-
-			foreach($methods as $method) {
-				# run this method
-				$result = $this->{$method}($string);
-				$results[] = $result;
-			}
-
-
-			$this->comment($final);
-			*/
 			# save the model
 			$product->summary = trim($result);
 			$product->save();

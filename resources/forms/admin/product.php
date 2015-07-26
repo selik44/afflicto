@@ -35,7 +35,7 @@ $form->summary = Former::textarea('summary');
 
 $form->categories = Former::select('categories')->multiple()->fromQuery($categories, 'name', 'id')->name('categories[]')->label('categories');
 
-$form->variants = Former::select('variants')->multiple()->fromQuery($variants, 'name', 'id')->name('variants[]')->label('variants');
+$form->variants = Former::select('variants')->multiple()->fromQuery($variants, 'admin_name', 'id')->name('variants[]')->label('variants');
 
 $form->tags = Former::select('tags')->multiple()->fromQuery($tags, 'label', 'id')->name('tags[]')->label('tags');
 

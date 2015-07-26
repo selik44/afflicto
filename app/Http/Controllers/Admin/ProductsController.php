@@ -455,9 +455,9 @@ class ProductsController extends Controller {
 				$str = '<select class="variants" multiple name="' .$p->id .'_variants[]">';
 				foreach($variants as $variant) {
 					if ($p->variants->contains($variant)) {
-						$str .= '<option selected value="' .$variant->id .'">' .$variant->name .'</option>';
+						$str .= '<option selected value="' .$variant->id .'">' .$variant->admin_name .'</option>';
 					}else {
-						$str .= '<option value="' .$variant->id .'">' .$variant->name .'</option>';
+						$str .= '<option value="' .$variant->id .'">' .$variant->admin_name .'</option>';
 					}
 				}
 				$str .= '</select>';
