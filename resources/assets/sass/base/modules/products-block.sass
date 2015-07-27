@@ -58,20 +58,31 @@
 		position: relative
 		display: flex
 		flex-direction: row
-		align-content: stretch
+		align-items: center
+		justify-content: flex-start
 		padding-top: 1rem
 
 		.title
 			color: $base-color
 			display: block
 			flex: auto
+			padding-right: 1rem
+
+			.manufacturer
+				text-decoration: none
 
 			.name
 				display: inline-block
 
+			&:hover
+				text-decoration: none
+				.manufacturer, .name
+					color: $color-primary
+
 		.price
 			flex: auto
 			font-weight: $typo-font-weight-strong
+			text-align: right
 
 
 	> .footer

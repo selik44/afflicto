@@ -6,7 +6,7 @@
 			imagesLoaded(document.querySelector('.products-grid'), function() {
 				$(".products-grid").isotope({
 					itemSelector: '.product',
-					layoutMode: 'packery'
+					layoutMode: 'fitRows'
 				});
 			});
 		})();

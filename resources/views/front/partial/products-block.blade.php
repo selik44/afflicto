@@ -26,12 +26,12 @@
 	</div>
 
 	<header class="header clearfix">
-		<div class="title">
+		<a href="{{$link}}" class="title">
             @if(isset($product->manufacturer))
                 <h6 class="manufacturer end">{{$product->manufacturer->name}}</h6>
             @endif
 			<h5 class="name end">{{$product->name}}</h5>
-		</div>
+		</a>
 
 		<h3 class="price end">{{ceil($product->price * $product->vatgroup->amount)}},-</h3>
 	</header>
