@@ -16,7 +16,11 @@ class ManufacturersController extends Controller {
 
 	public function index()
 	{
-		$table = Laratable::make(Manufacturer::query(), [
+
+		$query = Manufacturer::query();
+		if ( ! Input::has('sort')) $query->orderBy('name', 'asc');
+
+		$table = Laratable::make($query, [
 			'#' => 'id',
 			'Name' => 'name',
 		]);

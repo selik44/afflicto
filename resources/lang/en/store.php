@@ -23,6 +23,7 @@ return [
 	'price' => 'Price',
 	'product' => 'Product',
 	'cart empty' => 'Your Cart is empty.',
+	'show more' => 'Show More',
 
 	'product added to cart' => 'The product has been added to your cart!',
 	'continue shopping' => 'Continue Shopping',

@@ -6,6 +6,8 @@
 		margin-bottom: 1rem
 
 	.product-top
+		display: flex
+
 		.product-images
 			padding-bottom: 0
 			background: stronger($base-background, 10%)
@@ -20,6 +22,8 @@
 				flex-direction: row
 				align-items: center
 				justify-content: center
+				border-top: 1px solid $base-border-color
+				padding-top: 1rem
 
 				.thumbnail
 					flex: 1 1 140px
@@ -34,7 +38,7 @@
 			.slider
 				flex: 1 1 auto
 				border: none
-				border-bottom: 1px solid $base-border-color
+
 
 				.container
 					.slide
@@ -42,19 +46,62 @@
 		.product-info
 			position: relative
 			padding-bottom: 0
+			display: flex
+			flex-direction: column
+			align-items: center
+			align-content: stretch
+			flex: 1 1 400px
+
+			> .manufacturer
+				img
+					max-width: 80%
+
+			> .header
+				display: flex
+				align-items: center
+				align-content: center
+
+				> .title
+					flex: auto
+					margin-right: 1rem
+
+				> .price
+					flex: auto
+					text-align: right
 
 			form
 				width: 100%
+				flex: 1 0 auto
+				display: flex
+				flex-direction: column
+				align-content: space-between
 
-			.buy
-				margin: $typo-font-size * 2 0rem
-				text-transform: uppercase
-				padding: 2rem 4rem
-				font-size: 1.6rem
+				.product-variants
+					margin-bottom: 2rem
+
+				.buy
+					margin-top: auto
+					text-transform: uppercase
+					padding: 2rem 4rem
+					font-size: 1.6rem
+					width: 100%
+
+				.toggle-add-modal
+					display: none
+
+					&.fixed
+						position: fixed
+						bottom: 0px
+						width: 100%
+						z-index: 200
+						left: 0px
 
 			.summary
 				border-top: 1px solid $base-border-color
 				padding-top: 1rem
+				transition: all $base-transition-duration
+				margin-bottom: 1rem
+
 
 	.product-bottom
 		ul.tabs
@@ -74,60 +121,47 @@
 					@include breakpoint('xl')
 						width: 33%
 
-	//------- Large --------//
-	@include breakpoint('l')
-		> .header
-			.manufacturer, .price
-				font-size: 2rem
 
-		.product-top
-			.product-info
-				.buy
-					padding: 1.4rem 2.8rem
-
-	//------- MEDIUM -------//
-	@include breakpoint('m-')
-		> .header
-			text-align: center
-			.title
-				float: none
-				margin-bottom: 1rem
-			.price
-				float: none
-				margin-bottom: 1rem
-
-		.product-top
-			.product-images
-
-			.product-info
-				position: fixed
-				z-index: 50
-				padding: 0
-				bottom: 0px
-				left: 0px
-				width: 100%
-				background: weaker($base-background, 10%)
-				border-top: 1px solid $base-border-color
-				box-shadow: 0px 0px 8px 0px rgba(0,0,0, 0.5)
-
-				> .inner
-					padding: 0
-
-					.product-variants
-						padding: 0.8rem 1.2rem
-						margin-bottom: 0.5rem
-
-					.summary
-						display: none
-
-					.buy
-						margin: 0
-						padding: 1.4rem 1.8rem
-
-
-	//------- SMALL -------//
 	@include breakpoint('sm-')
 		.product-top
+			display: block
 			.product-images
 				.thumbnails
 					display: none
+
+			.product-info
+				clear: both
+
+				> .manufacturer
+					display: none
+
+				> form
+					.product-variants
+						display: none
+
+					.buy
+						display: none
+					.toggle-add-modal
+						display: block
+
+		.product-bottom
+			#product-tabs
+				display: flex
+				flex-direction: row
+				align-items: stretch
+
+				li
+					flex: auto
+					float: none
+					text-align: center
+					display: flex
+					align-items: stretch
+#add-modal
+	margin-top: 50%
+
+	.variants
+		margin-bottom: 1rem
+		select
+			width: 100%
+	.buy
+		width: 100%
