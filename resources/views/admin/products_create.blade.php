@@ -97,6 +97,7 @@
         //auto-price
         var profit = form.find('[name="profit"]');
         var price = form.find('[name="price"]');
+        var priceHelp = price.parent('.controls').find('.muted .value');
         var vatgroup = form.find('[name="vatgroup"]');
         var inprice = form.find('[name="inprice"]');
 
@@ -105,32 +106,53 @@
             if (/[0-9]+%/.test(taxPercent) == false) return 1;
             taxPercent = parseInt(taxPercent.substr(0, taxPercent.length -1));
             return 1 + (taxPercent / 100);
-        };
+        }
 
         function getProfit() {
-            return parseFloat(profit.val());
-        };
+            return parseInt(profit.val());
+        }
 
         function getInPrice() {
-            return parseFloat(inprice.val());
+            return parseInt(inprice.val());
         }
 
         function getPrice() {
-            return parseFloat(price.val());
-        };
+            return parseInt(price.val());
+        }
+
+        function calculateProfit() {
+            var profit = getPrice() - getInPrice();
+
+            profit -= ((profit * getTaxPercent()) - profit);
+
+            return Math.round(profit);
+        }
+
+        function updatePrice() {
+            //profit = 100
+            //inPrice = 100
+            var priceValue = (getProfit() + getInPrice());
+            price.val(priceValue);
+
+            priceHelp.html(Math.round(priceValue * getTaxPercent()));
+        }
 
         profit.bind('keyup', function(e) {
-            price.val((getProfit() + getInPrice()) * getTaxPercent());
+            updatePrice();
         });
 
         price.bind('keyup', function(e) {
-            var calculatedProfit = (getPrice() / getTaxPercent()) - getInPrice();
-            profit.val(calculatedProfit);
+            profit.val(calculateProfit());
+            priceHelp.html(getPrice() * getTaxPercent());
         });
 
-        vatgroup.bind('change', function() {
-            price.val((getProfit() + getInPrice()) * getTaxPercent());
-            profit.val((getPrice() / getTaxPercent()) - getInPrice());
+        inprice.bind('keyup', function(e) {
+            updatePrice();
+        });
+
+        vatgroup.bind('change', function(e) {
+            updatePrice();
+            calculateProfit();
         });
 
         //autoslug the name

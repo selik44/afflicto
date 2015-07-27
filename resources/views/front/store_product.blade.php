@@ -11,19 +11,7 @@
 @section('article')
 
 	<div class="product-view">
-		<header class="header">
-			<div class="title pull-left">
-				<h2 class="manufacturer end">
-                    @if($product->manufacturer)
-					    <strong>{{$product->manufacturer->name}}</strong>
-                    @endif
-                    <span class="title">{{$product->name}}</span>
-				</h2>
-			</div>
-			<h1 class="price end pull-right"><strong>{{ceil($product->price * $product->vatgroup->amount)}},-</strong></h1>
-		</header>
-
-		<div class="product-top col-xs-12 tight">
+		<div class="product-top">
 			<div class="product-images col-l-8 col-m-7 col-m-12 tight-left clearfix">
                 @if(count($product->images) > 1)
                     <div class="thumbnails">
@@ -41,44 +29,45 @@
 				</div>
 			</div>
 
-            <div class="product-summary hidden-l-up" style="clear: both; padding-top: 1rem">
-                <p class="lead">
-                    {!! $product->summary !!}
-                </p>
-            </div>
-
-			<div class="product-info col-l-4 col-m-12 tight-right">
-                <div class="inner">
-                    @if($product->manufacturer->image)
-                    <a class="manufacturer-link text-center visible-l-up" href="#product-manufacturer-description" style="width: 100%; float: left; padding:1rem">
-                        <img src="{{asset('images/manufacturers/' .$product->manufacturer->image->name)}}" alt="">
+			<div class="product-info">
+                @if($product->manufacturer->image)
+                    <a class="manufacturer text-center" href="#product-manufacturer-description" style="width: 100%; float: left; padding:1rem">
+                        <img src="{{asset('images/manufacturers/' .$product->manufacturer->image->name)}}" alt="{{$product->manufacturer->name}} Logo">
                     </a>
-                    @endif
-                    <p class="lead summary">
+                @endif
+
+                <header class="header">
+                    <h3 class="title end">
+                        {{$product->name}}
+                    </h3>
+                    <h3 class="price end"><strong class="value">{{ceil($product->price * $product->vatgroup->amount)}}</strong>,-</h3>
+                </header>
+
+                <div class="summary">
+                    <p class="lead muted content">
                         {!! $product->summary !!}
                     </p>
-
-                    <hr class="visible-l-up">
-
-                    <form class="vertical" id="buy-form" action="{{route('cart.store')}}" method="POST">
-                        <input type="hidden" name="_token" value="{{csrf_token()}}">
-                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                        <div class="product-variants">
-                            @foreach($product->variants as $variant)
-                                <div class="variant" data-id="{{$variant->id}}">
-                                    <label for="variant-{{$variant->id}}">{{$variant->name}}</label>
-                                    <select name="variant-{{$variant->id}}">
-                                        @foreach($variant->data['values'] as $value)
-                                            <option value="{{$value['id']}}">{{$value['name']}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            @endforeach
-                        </div>
-
-                        <button class="huge primary buy" style="width: 100%;" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
-                    </form>
                 </div>
+
+                <form class="vertical" id="buy-form" action="{{route('cart.store')}}" method="POST">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}">
+                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                    <div class="product-variants">
+                        @foreach($product->variants as $variant)
+                            <div class="variant" data-id="{{$variant->id}}">
+                                <label for="variant-{{$variant->id}}">{{$variant->name}}</label>
+                                <select name="variant-{{$variant->id}}">
+                                    @foreach($variant->data['values'] as $value)
+                                        <option value="{{$value['id']}}">{{$value['name']}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <button class="huge primary buy" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+                    <button class="huge primary toggle-add-modal" data-toggle-modal="#add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+                </form>
 			</div>
 		</div>
 
@@ -118,6 +107,25 @@
             </div>
 		</div>
 	</div>
+
+    <div id="add-modal" class="modal center fade">
+        <div class="modal-content">
+            <div class="variants">
+                @foreach($product->variants as $variant)
+                    <div class="variant" data-id="{{$variant->id}}">
+                        <label for="variant-{{$variant->id}}">{{$variant->name}}</label>
+                        <select name="variant-{{$variant->id}}">
+                            @foreach($variant->data['values'] as $value)
+                                <option value="{{$value['id']}}">{{$value['name']}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endforeach
+            </div>
+
+            <button class="large primary buy" data-toggle-modal="#add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+        </div>
+    </div>
 @stop
 
 @section('aside')
@@ -173,7 +181,39 @@
             $('.product-images .thumbnails .thumbnail[data-slide="' + id + '"]').addClass('active');
         });
 
-        //------ BUY ---------//
+        //summarize
+        $(".summary").each(function() {
+            $(this).next('.show-more').click(function() {
+                console.log('showing more');
+            });
+        });
+
+        // setup add modal
+        var addModal = $("#add-modal");
+        addModal.find('button.buy').click(function() {
+            $("#buy-form").trigger('submit');
+        });
+
+        //stick the buy button to bottom on mobile
+        var callback = function() {
+            console.log('checking');
+            var btn = $(".product-top form .toggle-add-modal");
+            if ( ! btn.hasClass('fixed')) {
+                if (btn.is(':below-the-fold')) {
+                    btn.addClass('fixed');
+                }
+            }else {
+                if ( ! btn.is(':below-the-fold')) {
+                    btn.removeClass('fixed');
+                }
+            }
+        };
+        callback();
+        $(window).bind('scroll resize', _.debounce(function() {
+            callback();
+        }, 50));
+
+        // setup buy event
         var form = $("#buy-form");
         var cart = $("#header .cart-container");
         form.on('submit', function(e) {
@@ -187,7 +227,7 @@
 
             var title = $(this).parents('.product-view').find('.header .title .manufacturer .title').text();
 
-            var price = $(this).parents('.product-view').find('.header .price').text();
+            var price = $(this).parents('.product-view').find('.header .price .value').first().text();
 
             showBuyModal(1, thumbnail, title, price);
 

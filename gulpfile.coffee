@@ -42,6 +42,7 @@ gulp.task 'scripts', ->
 		  	'resources/assets/vendor/html.sortable/dist/html.sortable.min.js'
 		  	'resources/assets/vendor/dropzone/dist/min/dropzone.min.js'
 			'resources/assets/vendor/fontIconPicker/jquery.fonticonpicker.min.js'
+			'resources/assets/js/viewport.jquery.js'
 			'node_modules/@afflicto/gentlestyle/dist/gentlestyle.js'
 		]
 

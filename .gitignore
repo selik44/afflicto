@@ -3,4 +3,8 @@
 .env
 public/images/products/*
 public/images/slides/*
+<<<<<<< HEAD
 public/images/manufacturers/*
+=======
+public/images/manufacturers/*
+>>>>>>> productview
