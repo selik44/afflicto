@@ -5405,8 +5405,7 @@ ul.nav.tabs {
     margin: 0; }
 
 html, body, #admin {
-  height: 100%;
-  background: #fff; }
+  height: 100%; }
 
 #admin #header {
   height: 40px;
