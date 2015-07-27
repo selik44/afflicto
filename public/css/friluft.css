@@ -5497,6 +5497,9 @@ ul.nav.tabs {
           justify-content: space-around; }
   #buy-modal .footer .continue {
     margin: 0; }
+@media (max-width: 680px) {
+  #buy-modal .footer button, #buy-modal .footer .button {
+    font-size: 1rem; } }
 
 html, body, #admin {
   height: 100%; }

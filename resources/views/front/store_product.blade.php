@@ -67,6 +67,7 @@
 
                     <button class="huge primary buy" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
                     <button class="huge primary toggle-add-modal" data-toggle-modal="#add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+                    <button class="huge primary toggle-add-modal-dummy" style="display: none;" data-toggle-modal="#add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
                 </form>
 			</div>
 		</div>
@@ -198,18 +199,44 @@
         var callback = function() {
             console.log('checking');
             var btn = $(".product-top form .toggle-add-modal");
-            if ( ! btn.hasClass('fixed')) {
-                if (btn.is(':below-the-fold')) {
+            var dummy = $(".product-top form .toggle-add-modal-dummy");
+
+            if (btn.hasClass('fixed')) {
+                if ( ! dummy.is(':in-viewport')) {
                     btn.addClass('fixed');
+                    $("#footer").css('padding-bottom', (btn.outerHeight() + 24) + 'px');
+                    dummy.css({
+                        display: 'block',
+                        visibility: 'hidden',
+                    });
+                }else {
+                    btn.removeClass('fixed');
+                    $("#footer").css('padding-bottom', '0');
+                    dummy.css({
+                        display: 'none',
+                        visibility: 'auto',
+                    });
                 }
             }else {
-                if ( ! btn.is(':below-the-fold')) {
+                if ( ! btn.is(':in-viewport')) {
+                    btn.addClass('fixed');
+                    $("#footer").css('padding-bottom', (btn.outerHeight() + 24) + 'px');
+                    dummy.css({
+                        display: 'block',
+                        visibility: 'hidden',
+                    });
+                }else {
                     btn.removeClass('fixed');
+                    $("#footer").css('padding-bottom', '0');
+                    dummy.css({
+                        display: 'none',
+                        visibility: 'auto',
+                    });
                 }
             }
         };
         callback();
-        $(window).bind('scroll resize', _.debounce(function() {
+        $(window).bind('scroll resize', _.throttle(function() {
             callback();
         }, 50));
 
