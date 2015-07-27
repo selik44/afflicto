@@ -2290,6 +2290,48 @@ ul.pagination {
         background: #323232;
         cursor: default; }
 
+.modal-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  position: fixed;
+  z-index: 1000;
+  top: 0px;
+  left: 0px;
+  background-color: rgba(0, 0, 0, 0.3);
+  -webkit-transition: opacity 400ms;
+          transition: opacity 400ms;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  max-height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+          align-content: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .modal-wrapper.visible {
+    opacity: 1;
+    -webkit-transition: all 400ms;
+            transition: all 400ms;
+    pointer-events: auto; }
+  .modal-wrapper.faded {
+    background-color: rgba(0, 0, 0, 0.3); }
+  @media (max-width: 680px) {
+    .modal-wrapper {
+      padding: 0; } }
+
 .modal {
   background-color: #181818;
   border-radius: 0px;
@@ -2297,7 +2339,11 @@ ul.pagination {
   position: relative;
   margin: 0 auto;
   max-height: 100%;
-  width: 80%;
+  max-width: 80%;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2321,45 +2367,28 @@ ul.pagination {
     border-bottom: 1px solid #333;
     background-color: #252525; }
   .modal > .modal-content {
-    overflow: auto; }
+    overflow: auto;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto; }
     .modal > .modal-content:not(.tight) {
       padding: 1.5rem; }
   .modal > .modal-footer {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
+    margin-top: auto;
     padding: 1rem;
     border-top: 1px solid #333; }
   .modal > .modal-dismiss:first-child {
     position: absolute;
     top: 0.25rem;
     right: 0.25rem; }
-  @media (max-width: 420px) {
+  @media (max-width: 680px) {
     .modal {
-      width: 100%; } }
-
-.modal-wrapper {
-  width: 100%;
-  height: 100%;
-  padding: 2rem;
-  position: fixed;
-  z-index: 1000;
-  top: 0px;
-  left: 0px;
-  background-color: rgba(0, 0, 0, 0.3);
-  -webkit-transition: opacity 400ms;
-          transition: opacity 400ms;
-  opacity: 0;
-  pointer-events: none;
-  overflow: hidden;
-  max-height: 100%; }
-  .modal-wrapper.visible {
-    opacity: 1;
-    -webkit-transition: all 400ms;
-            transition: all 400ms;
-    pointer-events: auto; }
-  .modal-wrapper.faded {
-    background-color: rgba(0, 0, 0, 0.3); }
-  @media (max-width: 420px) {
-    .modal-wrapper {
-      padding: 0; } }
+      max-width: 100%; } }
 
 .component {
   padding: 2rem;
@@ -4541,8 +4570,6 @@ ul.pagination {
       -webkit-flex: 0 0 140px;
           -ms-flex: 0 0 140px;
               flex: 0 0 140px;
-      overflow-y: hidden;
-      overflow-x: auto;
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -4686,7 +4713,7 @@ ul.pagination {
     .product-view .product-top .product-info {
       clear: both; }
       .product-view .product-top .product-info > .manufacturer {
-        display: none; }
+        max-width: 340px; }
       .product-view .product-top .product-info > form .product-variants {
         display: none; }
       .product-view .product-top .product-info > form .buy {
@@ -4723,14 +4750,12 @@ ul.pagination {
           -ms-flex-align: stretch;
               align-items: stretch; } }
 
-#add-modal {
-  margin-top: 50%; }
-  #add-modal .variants {
-    margin-bottom: 1rem; }
-    #add-modal .variants select, #add-modal .variants .chosen-container .chosen-choices, .chosen-container #add-modal .variants .chosen-choices, #add-modal .variants .chosen-container .chosen-single, .chosen-container #add-modal .variants .chosen-single, #add-modal .variants .chosen-container .chosen-drop, .chosen-container #add-modal .variants .chosen-drop {
-      width: 100%; }
-  #add-modal .buy {
+#add-modal .variants {
+  margin-bottom: 1rem; }
+  #add-modal .variants select, #add-modal .variants .chosen-container .chosen-choices, .chosen-container #add-modal .variants .chosen-choices, #add-modal .variants .chosen-container .chosen-single, .chosen-container #add-modal .variants .chosen-single, #add-modal .variants .chosen-container .chosen-drop, .chosen-container #add-modal .variants .chosen-drop {
     width: 100%; }
+#add-modal .buy {
+  width: 100%; }
 
 .cart-table table tbody .product {
   vertical-align: middle; }

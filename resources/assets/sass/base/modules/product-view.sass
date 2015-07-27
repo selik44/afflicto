@@ -16,8 +16,6 @@
 
 			.thumbnails
 				flex: 0 0 140px
-				overflow-y: hidden
-				overflow-x: auto
 				display: flex
 				flex-direction: row
 				align-items: center
@@ -133,7 +131,7 @@
 				clear: both
 
 				> .manufacturer
-					display: none
+					max-width: 340px
 
 				> form
 					.product-variants
@@ -156,9 +154,9 @@
 					text-align: center
 					display: flex
 					align-items: stretch
-#add-modal
-	margin-top: 50%
 
+
+#add-modal
 	.variants
 		margin-bottom: 1rem
 		select

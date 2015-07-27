@@ -66,7 +66,7 @@
                     </div>
 
                     <button class="huge primary buy" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
-                    <button class="huge primary toggle-add-modal" data-toggle-modal="#add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+                    <button class="huge primary toggle-add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
                     <button class="huge primary toggle-add-modal-dummy" style="display: none;" data-toggle-modal="#add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
                 </form>
 			</div>
@@ -182,17 +182,19 @@
             $('.product-images .thumbnails .thumbnail[data-slide="' + id + '"]').addClass('active');
         });
 
-        //summarize
-        $(".summary").each(function() {
-            $(this).next('.show-more').click(function() {
-                console.log('showing more');
-            });
-        });
-
         // setup add modal
         var addModal = $("#add-modal");
         addModal.find('button.buy').click(function() {
             $("#buy-form").trigger('submit');
+        });
+
+        $("form .toggle-add-modal").click(function() {
+            if ($('.product-info .product-variants').children().length > 0) {
+                //has variants
+                addModal.gsModal('show');
+            }else {
+                $("#buy-form").trigger('submit');
+            }
         });
 
         //stick the buy button to bottom on mobile
