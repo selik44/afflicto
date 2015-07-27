@@ -17,6 +17,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Image whereOrder($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Image whereProductId($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Image whereType($value)
+ * @property integer $manufacturer_id
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Image whereManufacturerId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Image whereData($value)
  */
 class Image extends Model {
 

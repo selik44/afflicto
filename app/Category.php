@@ -24,6 +24,7 @@ use Nicolaslopezj\Searchable\SearchableTrait;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereOrder($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereParentId($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Category root()
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category search($search, $threshold = null, $entireText = false)
  */
 class Category extends Model {
 

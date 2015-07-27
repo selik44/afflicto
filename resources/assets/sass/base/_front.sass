@@ -111,8 +111,10 @@ iframe
 			display: flex
 			flex-direction: row
 
-			@include breakpoint('sm-')
+			@include breakpoint('m-')
 				flex-wrap: wrap
+				padding-left: 1rem
+				padding-right: 1rem
 
 			#aside
 				flex: 0 0 240px
@@ -136,7 +138,8 @@ iframe
 				> .inner
 					padding-left: 1rem
 
-	#footer
+					@include breakpoint('m-')
+						padding-left: 0rem
 
 
 #product-modal

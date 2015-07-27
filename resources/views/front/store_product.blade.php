@@ -24,7 +24,7 @@
 		</header>
 
 		<div class="product-top col-xs-12 tight">
-			<div class="product-images col-l-8 col-m-7 col-m-12 tight-left">
+			<div class="product-images col-l-8 col-m-7 col-m-12 tight-left clearfix">
                 @if(count($product->images) > 1)
                     <div class="thumbnails">
                         @foreach($product->images as $key => $image)
@@ -41,14 +41,25 @@
 				</div>
 			</div>
 
-            <div class="product-summary hidden-l-up">
-                <div class="lead">
+            <div class="product-summary hidden-l-up" style="clear: both; padding-top: 1rem">
+                <p class="lead">
                     {!! $product->summary !!}
-                </div>
+                </p>
             </div>
 
 			<div class="product-info col-l-4 col-m-12 tight-right">
                 <div class="inner">
+                    @if($product->manufacturer->image)
+                    <a class="manufacturer-link text-center visible-l-up" href="#product-manufacturer-description" style="width: 100%; float: left; padding:1rem">
+                        <img src="{{asset('images/manufacturers/' .$product->manufacturer->image->name)}}" alt="">
+                    </a>
+                    @endif
+                    <p class="lead summary">
+                        {!! $product->summary !!}
+                    </p>
+
+                    <hr class="visible-l-up">
+
                     <form class="vertical" id="buy-form" action="{{route('cart.store')}}" method="POST">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <input type="hidden" name="product_id" value="{{$product->id}}">
@@ -67,10 +78,6 @@
 
                         <button class="huge primary buy" style="width: 100%;" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
                     </form>
-
-                    <div class="lead summary">
-                        {!! $product->summary !!}
-                    </div>
                 </div>
 			</div>
 		</div>
@@ -81,6 +88,7 @@
 			<ul id="product-tabs" class="nav tabs clearfix">
 				<li class="current"><a href="#product-info">@lang('store.product info')</a></li>
 				<li><a href="#product-relations">@lang('store.related products')</a></li>
+                <li><a href="#product-manufacturer-description">About {{$product->manufacturer->name}}</a></li>
 
                 @foreach($product->producttabs as $tab)
                     <li><a href="#product-tab-{{$tab->id}}">{{$tab->title}}</a></li>
@@ -104,6 +112,10 @@
 					@endforeach
 				</div>
 			</div>
+
+            <div class="tab" id="product-manufacturer-description">
+                {!! $product->manufacturer->description !!}
+            </div>
 		</div>
 	</div>
 @stop

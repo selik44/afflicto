@@ -54,6 +54,10 @@ use Friluft\Variant;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereManufacturerId($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Product enabled()
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Product search($search, $threshold = null, $entireText = false)
+ * @property string $variants_stock
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Tag[] $tags
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereCategories($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereVariantsStock($value)
  */
 class Product extends Model {
 

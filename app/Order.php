@@ -42,6 +42,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereBillingAddress($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereShippingAddress($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereKlarnaStatus($value)
+ * @property boolean $activated
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\OrderEvent[] $orderEvents
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereActivated($value)
  */
 class Order extends Model {
 

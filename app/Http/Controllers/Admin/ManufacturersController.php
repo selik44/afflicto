@@ -4,6 +4,7 @@ use App;
 use Former\Facades\Former;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
+use Friluft\Image;
 use Illuminate\Routing\Router;
 use Laratable;
 use Input;
@@ -40,8 +41,23 @@ class ManufacturersController extends Controller {
 
 	public function store(Requests\CreateManufacturerRequest $request)
 	{
-		$mf = new Manufacturer(Input::only('name', 'slug'));
+		$mf = new Manufacturer(Input::only('name', 'slug', 'description'));
 		$mf->save();
+
+		if (Input::hasFile('logo')) {
+			$file = Input::file('logo');
+
+			$filename = $file->getClientOriginalName();
+
+			$file->move(public_path('images/manufacturers'), $filename);
+
+			$image = new Image();
+			$image->type = 'manufacturer';
+			$image->name = $filename;
+
+			$image->save();
+			$mf->image()->associate($image);
+		}
 
 		return Redirect::route('admin.manufacturers.index')
 			->with('success', trans('admin.manufacturers_create_success', ['manufacturer' => $mf->name]));
@@ -61,6 +77,26 @@ class ManufacturersController extends Controller {
 	{
 		$mf->name = Input::get('name');
 		$mf->slug = Input::get('slug');
+		$mf->description = Input::get('description', null);
+
+		if (Input::hasFile('logo')) {
+			$file = Input::file('logo');
+
+			$filename = $file->getClientOriginalName();
+
+			$file->move(public_path('images/manufacturers'), $filename);
+
+			$image = $mf->image;
+			if (!$image) {
+				$image = new Image();
+				$image->type = 'manufacturer';
+			}
+
+			$image->name = $filename;
+
+			$image->save();
+			$mf->image()->associate($image);
+		}
 		$mf->save();
 
 		return Redirect::route('admin.manufacturers.index')->with('success', trans('admin.manufacturers_update_success', ['manufacturer' => $mf->name]));

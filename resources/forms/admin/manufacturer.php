@@ -2,7 +2,7 @@
 
 $form = new stdClass();
 
-$form->open = Former::open(route('admin.manufacturers.store'))
+$form->open = Former::open_for_files(route('admin.manufacturers.store'))
 	->method('POST')->class('vertical')
 	->rules([
 		'name' => 'required|max:255',
@@ -11,5 +11,7 @@ $form->open = Former::open(route('admin.manufacturers.store'))
 
 $form->name = Former::text('name');
 $form->slug = Former::text('slug');
+$form->description = Former::textarea('description');
+$form->image = Former::file('logo');
 
 return $form;

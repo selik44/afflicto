@@ -16,6 +16,11 @@ use Nicolaslopezj\Searchable\SearchableTrait;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer whereSlug($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer whereImages($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer search($search, $threshold = null, $entireText = false)
+ * @property integer $image_id
+ * @property-read \Friluft\Image $image
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer whereImageId($value)
+ * @property string $description 
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer whereDescription($value)
  */
 class Manufacturer extends Model {
 
@@ -35,6 +40,10 @@ class Manufacturer extends Model {
 
 	public function products() {
 		$this->hasMany('Friluft\Product');
+	}
+
+	public function image() {
+		return $this->belongsTo('Friluft\Image');
 	}
 
 }

@@ -17,7 +17,7 @@
 
 @task('staging.composer', ['on' => 'staging'])
     cd /usr/share/nginx/html
-    composer update
+    composer update -n
     chmod -R 755 *
     chmod -R 777 storage
     chmod -R 777 public

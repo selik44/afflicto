@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Variant whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Variant whereData($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Variant whereProductId($value)
+ * @property string $admin_name
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Product[] $products
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Variant whereAdminName($value)
  */
 class Variant extends Model {
 

@@ -58,6 +58,7 @@
 		position: relative
 		display: flex
 		flex-direction: row
+		align-content: stretch
 		padding-top: 1rem
 
 		.title
@@ -67,24 +68,10 @@
 
 			.name
 				display: inline-block
-				width: 75%
-				white-space: nowrap
-				overflow: hidden !important
-				text-overflow: ellipsis
 
 		.price
 			flex: auto
 			font-weight: $typo-font-weight-strong
-			position: absolute
-			right: 0px
-
-		&:hover
-			.title
-				.name
-
-			.price
-				position: absolute
-				right: 0px
 
 
 	> .footer
