@@ -191,7 +191,7 @@ class Cart {
 		$weight = 0;
 
 		foreach($items as $item) {
-			$weight += $item['model']->weight;
+			$weight += $item['model']->weight * $item['quantity'];
 		}
 
 		return $weight;

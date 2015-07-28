@@ -4629,8 +4629,13 @@ ul.pagination {
     -webkit-flex: 1 1 400px;
         -ms-flex: 1 1 400px;
             flex: 1 1 400px; }
-    .product-view .product-top .product-info > .manufacturer img {
-      max-width: 80%; }
+    .product-view .product-top .product-info > .manufacturer {
+      font-size: 2rem;
+      font-weight: 700; }
+      .product-view .product-top .product-info > .manufacturer:hover {
+        text-decoration: none; }
+      .product-view .product-top .product-info > .manufacturer img {
+        max-width: 80%; }
     .product-view .product-top .product-info > .header {
       display: -webkit-box;
       display: -webkit-flex;
@@ -4668,6 +4673,8 @@ ul.pagination {
               flex-direction: column; }
       .product-view .product-top .product-info > form .product-variants {
         margin-bottom: 2rem; }
+        .product-view .product-top .product-info > form .product-variants .variant:not(:last-child) {
+          margin-bottom: 1rem; }
       .product-view .product-top .product-info > form .buy {
         padding: 1.6rem 2.4rem;
         font-size: 1.4rem;

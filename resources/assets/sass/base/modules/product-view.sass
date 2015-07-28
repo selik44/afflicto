@@ -51,6 +51,11 @@
 			flex: 1 1 400px
 
 			> .manufacturer
+				font-size: 2rem
+				font-weight: 700
+				&:hover
+					text-decoration: none
+
 				img
 					max-width: 80%
 
@@ -74,6 +79,10 @@
 
 				.product-variants
 					margin-bottom: 2rem
+
+					.variant
+						&:not(:last-child)
+							margin-bottom: 1rem
 
 				.buy
 					padding: 1.6rem 2.4rem

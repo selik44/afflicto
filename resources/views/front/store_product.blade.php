@@ -10,7 +10,7 @@
 
 @section('article')
 
-	<div class="product-view">
+	<div class="product-view" data-id="{{$product->id}}" data-variants="{{count($product->variants)}}" data-stock="{{$product->stock}}">
 		<div class="product-top">
 			<div class="product-images col-l-8 col-m-7 col-m-12 tight-left clearfix">
                 @if(count($product->images) > 1)
@@ -34,6 +34,10 @@
                     <a class="manufacturer text-center" href="#product-manufacturer-description" style="width: 100%; float: left; padding:1rem">
                         <img src="{{asset('images/manufacturers/' .$product->manufacturer->image->name)}}" alt="{{$product->manufacturer->name}} Logo">
                     </a>
+                @else
+                    <a class="manufacturer text-center" href="#product-manufacturer-description" style="width: 100%; float: left; padding:1rem">
+                        {{$product->manufacturer->name}}
+                    </a>
                 @endif
 
                 <header class="header">
@@ -46,22 +50,64 @@
                 <form class="vertical" id="buy-form" action="{{route('cart.store')}}" method="POST">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" name="product_id" value="{{$product->id}}">
-                    <div class="product-variants">
-                        @foreach($product->variants as $variant)
-                            <div class="variant" data-id="{{$variant->id}}">
-                                <label for="variant-{{$variant->id}}">{{$variant->name}}</label>
-                                <select name="variant-{{$variant->id}}">
-                                    @foreach($variant->data['values'] as $value)
-                                        <option value="{{$value['id']}}">{{$value['name']}}</option>
+
+                    @if(count($product->variants) > 0)
+                            @if(count($product->variants) == 1)
+                                <div class="product-variants">
+                                    @foreach($product->variants as $variant)
+                                        <div class="variant" data-id="{{$variant->id}}">
+                                            <label for="variant-{{$variant->id}}">{{$variant->name}}</label>
+                                            <select name="variant-{{$variant->id}}">
+                                                @foreach($variant->data['values'] as $value)
+                                                    @if($product->variants_stock[$value['id']] <= 0)
+                                                        <option disabled="disabled" value="{{$value['id']}}">
+                                                            {{$value['name']}}
+                                                            @if ($product->manufacturer)
+                                                            @endif
+                                                        </option>
+                                                    @else
+                                                        <option value="{{$value['id']}}">{{$value['name']}}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     @endforeach
-                                </select>
-                            </div>
-                        @endforeach
+                                </div>
+                            @else
+                                <div class="product-variants">
+                                    @foreach($product->variants as $variant)
+                                        <div class="variant" data-id="{{$variant->id}}">
+                                            <label for="variant-{{$variant->id}}">{{$variant->name}}</label>
+                                            <select name="variant-{{$variant->id}}">
+                                                @foreach($variant->data['values'] as $value)
+                                                    <option value="{{$value['id']}}">{{$value['name']}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @endif
+                    @endif
+
+                    <div class="product-stock">
+                        <p class="true lead color-success">
+                            <i class="fa fa-check"></i> @lang('store.in stock')
+                        </p>
+
+                        <p class="false lead color-warning">
+                            <i class="fa fa-exclamation-triangle"></i> @lang('store.out of stock')
+                        </p>
                     </div>
 
-                    <button class="huge primary buy" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
-                    <button class="huge primary toggle-add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
-                    <button class="huge primary toggle-add-modal-dummy" style="display: none;" data-toggle-modal="#add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+                    <?php
+                        $disabled = '';
+                        if (count($product->variants) > 0) {
+
+                        }else if ( ! $product->manufacturer->always_allow_orders) $disabled = 'disabled="disabled" ';
+                    ?>
+                    <button {{$disabled}}class="huge primary buy" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+                    <button {{$disabled}}class="huge primary toggle-add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+                    <button {{$disabled}}class="huge primary toggle-add-modal-dummy" style="display: none;" data-toggle-modal="#add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
                 </form>
 
                 <div class="summary">
@@ -157,6 +203,8 @@
         var slider = $(".product-images .slider");
         var thumbnails = $(".product-images .thumbnails");
 
+        var alwaysAllowOrders = <?= ($product->manufacturer->always_allow_orders) ? "true" : "false" ?>;
+
 		slider.friluftSlider({
 			delay: 4000,
 			transitionSpeed: 400,
@@ -174,6 +222,7 @@
             return false;
         });
 
+
         slider.on('slider.next', function() {
             var id = slider.data('friluftSlider').currentIndex;
 
@@ -181,6 +230,42 @@
 
             $('.product-images .thumbnails .thumbnail[data-slide="' + id + '"]').addClass('active');
         });
+
+
+        // setup stock status text
+        if (parseInt($(".product-view").attr('data-variants')) > 0) {
+            var stock = JSON.parse('{!! json_encode($product->variants_stock) !!}');
+            var $stock = $(".product-stock");
+
+            function updateStock() {
+                console.log('updating stock status');
+                //get the current stock ID
+                var stockID = []
+                $("form .product-variants .variant").each(function() {
+                    var select = $(this).find('select');
+                    stockID.push(select.val());
+                });
+
+                stockID = stockID.join('_');
+                var stockValue = parseInt(stock[stockID]);
+
+                if (stockValue > 0) {
+                    $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").removeAttr('disabled');
+                    $("form .product-stock .true").show().siblings('.false').hide();
+                }else {
+                    $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").attr('disabled', 'disabled');
+                    $("form .product-stock .true").hide().siblings('.false').show();
+                }
+            }
+
+            updateStock();
+
+            //listen for change event on the variant form fields
+            $("form .product-variants .variant select").change(function() {
+                updateStock();
+            });
+        }
+
 
         // setup add modal
         var addModal = $("#add-modal");

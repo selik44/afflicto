@@ -27,6 +27,9 @@ return [
 	'cart empty' => 'Handlekurven er tom.',
 	'done' => 'Ferdig',
 
+	'in stock' => 'På Lager',
+	'out of stock' => 'Utsolgt',
+
 	'auth' => [
 		'forgot your password?' => 'Glemt passordet ditt?',
 		'create account' => 'Opprett Konto',

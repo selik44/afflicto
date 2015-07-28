@@ -34,7 +34,11 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Related products, tabbed view, appears when buying.
 - Client dashboard
 - rabatt popup ting
-
+- receival
+- dashboard stats & reports
+- disallow buy when out of stock, hide variants that are out of stock
+- variant filtering
+- category description and banner
 
 Order statuses
 - ubehandlet

@@ -30,6 +30,9 @@ return [
 	'product added to cart' => 'The product has been added to your cart!',
 	'continue shopping' => 'Continue Shopping',
 
+	'in stock' => 'In Stock',
+	'out of stock' => 'Out of Stock',
+
 	'auth' => [
 		'forgot your password?' => 'Forgot your password?',
 		'create account' => 'Create Account',
