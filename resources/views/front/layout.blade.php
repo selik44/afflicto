@@ -81,11 +81,7 @@
                 @if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
 				<div class="cart-container" style="display: none;">
 					<div class="inner">
-						@include('front.partial.cart-table', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal()])
-
-                        <footer class="cart-footer">
-                            <a class="button large primary pull-right" href="{{route('store.cart')}}">Checkout</a>
-                        </footer>
+						@include('front.partial.cart-table', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal(), 'withCheckoutButton' => true])
 					</div>
 				</div>
 				@endif

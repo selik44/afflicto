@@ -86,6 +86,7 @@ class StoreController extends Controller {
 		return view('front.store.cart')
 			->with([
 				'items' => Cart::getItemsWithModels(false),
+				'shipping' => Cart::getShipping(),
 				'total' => Cart::getTotal(),
 				'aside' => true,
 				'intro' => true,

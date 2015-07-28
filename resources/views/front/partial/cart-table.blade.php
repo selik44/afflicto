@@ -3,22 +3,6 @@
 		<p class="lead text-center empty-message">@lang('store.cart empty')</p>
 	@else
 		<table class="bordered">
-            <thead>
-            <tr>
-                <th colspan="2">@lang('store.product')</th>
-                <th>@lang('store.quantity')</th>
-            </tr>
-            </thead>
-			<tfoot>
-				<tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-					<td>
-                        <h6 class="end total">@lang('store.total'): <span class="value">{{$total}}</span>,-</h6>
-					</td>
-				</tr>
-			</tfoot>
 			<tbody>
 			@foreach($items as $item)
 				<?php
@@ -52,8 +36,33 @@
 					</td>
 				</tr>
 			@endforeach
+
+            @if(isset($withShipping) && $withShipping)
+                <tr class="shipping" data-price="{{round($shipping['unit_price'] / 100)}}">
+                    <td>
+                        <h3 class="end">@lang('store.shipping.shipping')</h3>
+                    </td>
+                    <td>
+                        <p class="lead">@lang('store.shipping.' .$shipping['name'])</p>
+                    </td>
+                    <td colspan="2">{{round($shipping['unit_price']) / 100}},-</td>
+                </tr>
+            @endif
 			</tbody>
 		</table>
+
+        <div class="footer">
+            <div class="total">
+                <?php
+                    $t = $total;
+                    if (isset($withShipping) && $withShipping) $t += ($shipping['unit_price'] / 100);
+                ?>
+                <h3>@lang('store.total'): <span class="value">{{$t}}</span>,-</h3>
+            </div>
+            @if(isset($withCheckoutButton) && $withCheckoutButton)
+                <a class="button primary large" href="{{route('store.cart')}}">@lang('store.to cart') <i class="fa fa-chevron-right"></i></a>
+            @endif
+        </div>
 	@endif
 </div>
 
@@ -82,7 +91,21 @@
 		}
 
         function setTotal(total) {
-            container.find('.cart-table table tfoot .total .value').html(total);
+            total = parseInt(total);
+            container.find('.cart-table .footer .total .value').html(total);
+
+            console.log('setting total to : ' + total);
+
+            if (total < 1000) {
+                var left = 1000 - total;
+                if (left > 0) {
+                    $("#breadcrumbs .free-shipping-status").show().find('.value').text(left);
+                }else {
+                    $("#breadcrumbs .free-shipping-status").hide();
+                }
+            }else {
+                $("#breadcrumbs .free-shipping-status").hide();
+            }
         };
 
 		//-------- change quantity -----------//

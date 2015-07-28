@@ -171,7 +171,7 @@ class Cart {
 			}
 		}
 
-		return 0.0;
+		return 0;
 	}
 
 	/**
@@ -197,6 +197,17 @@ class Cart {
 		return $weight;
 	}
 
+	public function getShipping() {
+		$order = $this->getKlarnaOrderData();
+		foreach($order['cart']['items'] as $key => $item) {
+			if ($item['reference'] == 'SHIPPING') {
+				return $item;
+			}
+		}
+
+		throw new \Exception("No Shipping Data!");
+	}
+
 	public function getKlarnaOrderData() {
 		$data = ['cart' => ['items' => []]];
 
@@ -215,18 +226,25 @@ class Cart {
 		# add shipping costs
 		$weight = $this->getTotalWeight();
 		$total = $this->getTotal();
-		if ($total >= 800) {
-			$shippingFee = 0;
-		}else if ($weight <= 1000) {
+
+		# determine shipping type (mail or service-pack)
+		if ($weight < 1000) {
+			$shippingType = 'mail';
 			$shippingFee = 3900;
 		}else {
+			$shippingType = 'service-pack';
 			$shippingFee = 9900;
+		}
+
+		# free shipping?
+		if ($total >= 800) {
+			$shippingFee = 0;
 		}
 
 		$data['cart']['items'][] = [
 			'type' => 'shipping_fee',
 			'reference' => 'SHIPPING',
-			'name' => 'Shipping Fee',
+			'name' => $shippingType,
 			'quantity' => 1,
 			'unit_price' => $shippingFee,
 			'tax_rate' => 0,

@@ -21,6 +21,8 @@ class CartController extends Controller {
 		return view('front.partial.cart-table')->with([
 			'items' => Cart::getItemsWithModels(false),
 			'total' => Cart::getTotal(),
+			'withCheckoutButton' => true,
+			'shipping' => Cart::getShipping(),
 		]);
 
 		/*

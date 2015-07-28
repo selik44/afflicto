@@ -11,6 +11,7 @@ return [
 	'cart' => 'Handlekurv',
 	'checkout' => 'Kassen',
 	'to checkout' => 'Til Kassen',
+	'to cart' => 'Til Handlekurven',
 	'place order' => 'Fullfør Bestilling',
 	'add to cart' => 'Legg i Kurven',
 	'popular' => 'Populær',
@@ -24,11 +25,18 @@ return [
 	'price' => 'Pris',
 	'product' => 'Produkt',
 	'cart empty' => 'Handlekurven er tom.',
+	'done' => 'Ferdig',
 
 	'auth' => [
 		'forgot your password?' => 'Glemt passordet ditt?',
 		'create account' => 'Opprett Konto',
 		'forgot password' => 'Glemt Passord',
 		'reset password' => 'Tilbakestill Passord',
+	],
+
+	'shipping' => [
+		'shipping' => 'Frakt',
+		'service-pack' => 'Service-pakke med Sporing',
+		'mail' => 'Brevpost',
 	],
 ];

@@ -31,11 +31,7 @@
                 ?>
                 @if($tag)
                     @foreach($tag->products as $p)
-                        <div class="col-xs-12 tight">
-                            <a href="#" style="width: 100%; display: block; height: 140px; background-image: url('{{$p->getImageURL()}}'); background-position: center; background-size: cover">
-
-                            </a>
-                        </div>
+                        @include('front.partial.products-block', ['product' => $p])
                     @endforeach
                 @endif
             </div>
@@ -44,7 +40,7 @@
 @stop
 
 @section('article')
-    @include('front.partial.cart-table')
+    @include('front.partial.cart-table', ['items' => $items, 'total' => $total, 'withShipping' => true])
     <hr>
     <a class="pull-right button huge success" href="{{route('store.checkout')}}"><i class="fa fa-chevron-right"></i> @lang('store.to checkout')</a>
 @stop

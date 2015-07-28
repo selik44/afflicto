@@ -98,6 +98,7 @@ iframe
 					filter: saturate(100%)
 
 	#intro
+		background: $base-background
 		> .inner
 			margin: 0 auto
 			max-width: $base-width
@@ -151,14 +152,16 @@ ul.nav.tabs
 	background: none
 
 
-
 #store-menu
 	background: weaker($base-background, 5%)
 	border-radius: $base-radius
 	border: 1px solid $base-border-color
 
 .checkout-navigation
-	margin-top: 3rem
+	float: left
+	width: 100%
+	clear: both
+	margin: 2rem 0
 	display: flex
 	flex-direction: row
 	justify-content: space-around
