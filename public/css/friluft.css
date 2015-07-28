@@ -4750,12 +4750,16 @@ ul.pagination {
 #add-modal .buy {
   width: 100%; }
 
-.cart-table table tbody .product {
+.cart-table table tbody tr.item .product {
   vertical-align: middle; }
-.cart-table table tbody .thumbnail {
+.cart-table table tbody tr.item .thumbnail {
   width: 80px; }
-.cart-table table tbody .quantity .input-append input {
+.cart-table table tbody tr.item .quantity .input-append input {
   max-width: 80px; }
+.cart-table table tbody tr.shipping .icon .fa {
+  font-size: 4rem; }
+.cart-table table tbody tr.shipping .value {
+  text-align: right; }
 .cart-table .footer .total {
   float: left; }
   .cart-table .footer .total h3 {

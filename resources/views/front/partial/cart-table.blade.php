@@ -39,13 +39,14 @@
 
             @if(isset($withShipping) && $withShipping)
                 <tr class="shipping" data-price="{{round($shipping['unit_price'] / 100)}}">
+                    <td class="icon">
+                        <i class="fa fa-truck"></i>
+                    </td>
                     <td>
                         <h3 class="end">@lang('store.shipping.shipping')</h3>
-                    </td>
-                    <td>
                         <p class="lead">@lang('store.shipping.' .$shipping['name'])</p>
                     </td>
-                    <td colspan="2">{{round($shipping['unit_price']) / 100}},-</td>
+                    <td colspan="2" class="value"><h4>{{round($shipping['unit_price']) / 100}},-</h4></td>
                 </tr>
             @endif
 			</tbody>
