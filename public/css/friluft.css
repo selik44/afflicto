@@ -4655,12 +4655,8 @@ ul.pagination {
             -ms-flex: auto;
                 flex: auto;
         text-align: right; }
-    .product-view .product-top .product-info form {
+    .product-view .product-top .product-info > form {
       width: 100%;
-      -webkit-box-flex: 1;
-      -webkit-flex: 1 0 auto;
-          -ms-flex: 1 0 auto;
-              flex: 1 0 auto;
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -4669,21 +4665,18 @@ ul.pagination {
       -webkit-box-direction: normal;
       -webkit-flex-direction: column;
           -ms-flex-direction: column;
-              flex-direction: column;
-      -webkit-align-content: space-between;
-          -ms-flex-line-pack: justify;
-              align-content: space-between; }
-      .product-view .product-top .product-info form .product-variants {
+              flex-direction: column; }
+      .product-view .product-top .product-info > form .product-variants {
         margin-bottom: 2rem; }
-      .product-view .product-top .product-info form .buy {
-        margin-top: auto;
-        text-transform: uppercase;
-        padding: 2rem 4rem;
-        font-size: 1.6rem;
+      .product-view .product-top .product-info > form .buy {
+        padding: 1.6rem 2.4rem;
+        font-size: 1.4rem;
         width: 100%; }
-      .product-view .product-top .product-info form .toggle-add-modal {
+        .product-view .product-top .product-info > form .buy i.fa {
+          margin-right: 1rem; }
+      .product-view .product-top .product-info > form .toggle-add-modal {
         display: none; }
-        .product-view .product-top .product-info form .toggle-add-modal.fixed {
+        .product-view .product-top .product-info > form .toggle-add-modal.fixed {
           position: fixed;
           bottom: 0px;
           width: 100%;

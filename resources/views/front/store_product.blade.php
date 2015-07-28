@@ -43,12 +43,6 @@
                     <h3 class="price end"><strong class="value">{{ceil($product->price * $product->vatgroup->amount)}}</strong>,-</h3>
                 </header>
 
-                <div class="summary">
-                    <p class="lead muted content">
-                        {!! $product->summary !!}
-                    </p>
-                </div>
-
                 <form class="vertical" id="buy-form" action="{{route('cart.store')}}" method="POST">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" name="product_id" value="{{$product->id}}">
@@ -69,6 +63,12 @@
                     <button class="huge primary toggle-add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
                     <button class="huge primary toggle-add-modal-dummy" style="display: none;" data-toggle-modal="#add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
                 </form>
+
+                <div class="summary">
+                    <p class="lead muted content">
+                        {!! $product->summary !!}
+                    </p>
+                </div>
 			</div>
 		</div>
 
@@ -185,10 +185,12 @@
         // setup add modal
         var addModal = $("#add-modal");
         addModal.find('button.buy').click(function() {
+            console.log('#add-modal button.buy CLICKED!');
             $("#buy-form").trigger('submit');
         });
 
-        $("form .toggle-add-modal").click(function() {
+        $("form .toggle-add-modal").click(function(e) {
+            e.preventDefault();
             if ($('.product-info .product-variants').children().length > 0) {
                 //has variants
                 addModal.gsModal('show');
@@ -199,7 +201,6 @@
 
         //stick the buy button to bottom on mobile
         var callback = function() {
-            console.log('checking');
             var btn = $(".product-top form .toggle-add-modal");
             var dummy = $(".product-top form .toggle-add-modal-dummy");
 
@@ -258,6 +259,7 @@
 
             var price = $(this).parents('.product-view').find('.header .price .value').first().text();
 
+            console.log('showign buy modal');
             showBuyModal(1, thumbnail, title, price);
 
             //post form via ajax
