@@ -208,6 +208,9 @@ class ProductsController extends Controller {
 			}
 		}
 
+		# sync variants
+		$p->variants()->sync(Input::get('variants', []));
+
 		# update variant stock?
 		if (count($p->variants) > 0) {
 			$stock = [];
@@ -240,11 +243,6 @@ class ProductsController extends Controller {
 
 		# sync tags
 		$p->tags()->sync(Input::get('tags', []));
-
-		# sync variants
-		$p->variants()->sync(Input::get('variants', []));
-
-		# success
 
 		$queryParams = Session::get('admin_products_index_query', '');
 		return Redirect::to(route('admin.products.index') .'?' .$queryParams)->with('success', 'Product updated!');

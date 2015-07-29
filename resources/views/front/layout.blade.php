@@ -107,10 +107,10 @@
 
                 <?php
                 $display = 'none';
-                $left = 1000;
+                $left = 800;
                 $total = Cart::getTotal();
                 if ($total > 0) {
-                    $left = 1000 - $total;
+                    $left = 800 - $total;
                     if ($left > 0) {
                         $display = 'block';
                     }
@@ -161,7 +161,7 @@
 			<div class="clearfix">
 				@section('footer')
 					<div class="col-m-5 col-sm-6">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, sit quam autem, quae blanditiis, omnis totam exercitationem in incidunt eum voluptatibus laborum. Blanditiis quae, incidunt accusantium! Deserunt quidem vel, ipsam amet eveniet nesciunt placeat iusto quis, magnam temporibus saepe cum. Optio quam voluptates natus iure esse totam, inventore dolor dicta, laudantium mollitia. Voluptates ex, aliquam suscipit asperiores, hic ab molestias.</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, sit quam autem, quae blanditiis, omnis totam exercitationem in incidunt eum voluptatibus laborum. Blanditiis quae, incidunt accusantium! Deserunt quidem vel, ipsam amet eveniet nesciunt placeat iusto quis, magnam temporibus saepe cum.</p>
 					</div>
 					<div class="col-m-4 col-sm-3 col-xs-6">
 						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus accusamus error eos tempora earum quaerat. Architecto reiciendis error perspiciatis consectetur accusamus nisi voluptatum distinctio veniam nam, sequi labore eaque. Laudantium.</p>

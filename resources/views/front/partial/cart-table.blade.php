@@ -97,8 +97,8 @@
 
             console.log('setting total to : ' + total);
 
-            if (total < 1000) {
-                var left = 1000 - total;
+            if (total < 800) {
+                var left = 800 - total;
                 if (left > 0) {
                     $("#breadcrumbs .free-shipping-status").show().find('.value').text(left);
                 }else {

@@ -264,6 +264,13 @@
             $("form .product-variants .variant select").change(function() {
                 updateStock();
             });
+        }else {
+            var stockNumber = parseInt($(".product-view").attr('data-stock'));
+            if (stockNumber > 0) {
+                $("form .product-stock .true").show().siblings('.false').hide();
+            }else {
+                $("form .product-stock .true").hide().siblings('.false').show();
+            }
         }
 
 
@@ -344,14 +351,14 @@
 
             var price = $(this).parents('.product-view').find('.header .price .value').first().text();
 
-            console.log('showign buy modal');
+            console.log('showing buy modal');
             showBuyModal(1, thumbnail, title, price);
 
             //post form via ajax
             $.post($(this).attr('action'), $(this).serialize(), function(response) {
                 var total = response.total;
 
-                var left = 1000 - total;
+                var left = 800 - total;
                 if (left > 0) {
                     $("#breadcrumbs .free-shipping-status").show().find('.value').text(left);
                 }else {
