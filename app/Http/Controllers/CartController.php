@@ -67,9 +67,12 @@ class CartController extends Controller {
 				return response('Variant ' .$name .' is missing!');
 			}
 
-			$value = (int) Input::get('variant-' .$variant->id);
-			$value--;
-			$options['variants'][$variant->id] = $variant->data['values'][$value]['name'];
+			$id = (int) Input::get('variant-' .$variant->id);
+			foreach($variant->data['values'] as $value) {
+				if ($value['id'] == $id) {
+					$options['variants'][$variant->id] = $value['name'];
+				}
+			}
 		}
 
 		$cartid = Cart::add($product, $quantity, $options);
