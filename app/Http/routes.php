@@ -41,14 +41,6 @@ Route::group(['prefix' => 'user'], function() {
 	});
 });
 
-# store
-get('{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
-get('store/cart', ['as' => 'store.cart', 'uses' => 'StoreController@cart']);
-get('store/checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
-get('store/success', ['as' => 'store.success', 'uses' => 'StoreController@success']);
-post('store/push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
-get('manufacturer/{slug}', ['as' => 'store.manufacturer', 'uses' => 'StoreController@getmanufacturer']);
-
 # search
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
@@ -198,7 +190,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 
 	# remove variant
 	delete('api/products/{product}/variants/{variant}', function(Product $product, Variant $variant) {
-		$variant->delete();
+		$product->variants()->detach($variant);
 		return response('OK');
 	});
 
@@ -321,3 +313,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 	get('design/banners', ['as' => 'admin.banners.index', 'uses' => 'Admin\BannersController@index']);
 	put('design/banners', ['as' => 'admin.banners.update', 'uses' => 'Admin\BannersController@update']);
 });
+
+
+# store
+get('cart', ['as' => 'store.cart', 'uses' => 'StoreController@cart']);
+get('checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
+get('success', ['as' => 'store.success', 'uses' => 'StoreController@success']);
+post('push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
+get('{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');

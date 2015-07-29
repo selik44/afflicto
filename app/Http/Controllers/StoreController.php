@@ -65,20 +65,6 @@ class StoreController extends Controller {
 		abort(404);
 	}
 
-	public function getManufacturer($slug) {
-
-		$manufacturer = Manufacturer::where('slug', '=', $slug)->first();
-
-		if (!$manufacturer) {
-			abort(404, "That manufacturer does not exist!");
-		}
-
-		$products = $manufacturer->products()->enabled();
-
-		return view('front.store_manufaturer')
-			->with(['products' => $products]);
-	}
-
 	public function cart() {
 		if (count(Cart::getItems()) <= 0) {
 			return \Redirect::back()->with('info', 'Handlekurven er tom!');

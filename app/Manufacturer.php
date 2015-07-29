@@ -19,8 +19,10 @@ use Nicolaslopezj\Searchable\SearchableTrait;
  * @property integer $image_id
  * @property-read \Friluft\Image $image
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer whereImageId($value)
- * @property string $description 
+ * @property string $description
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer whereDescription($value)
+ * @property boolean $always_allow_orders 
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer whereAlwaysAllowOrders($value)
  */
 class Manufacturer extends Model {
 
