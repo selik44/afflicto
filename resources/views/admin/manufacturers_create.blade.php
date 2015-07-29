@@ -17,10 +17,10 @@
 
     {!! $form->slug !!}
 
-    {!! $form->image !!}
-
     {!! $form->description->addClass('wysiwyg') !!}
 
+    {!! $form->image !!}
+    
     {!! $form->banner !!}
 
     {!! $form->always_allow_orders !!}

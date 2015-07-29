@@ -46,6 +46,7 @@ class ManufacturersController extends Controller {
 	public function store(Requests\CreateManufacturerRequest $request)
 	{
 		$mf = new Manufacturer(Input::only('name', 'slug', 'description'));
+		$mf->always_allow_orders = Input::has('always_allow_orders') ? true : false;
 		$mf->save();
 
 		if (Input::hasFile('logo')) {
@@ -61,6 +62,21 @@ class ManufacturersController extends Controller {
 
 			$image->save();
 			$mf->image()->associate($image);
+		}
+
+		if (Input::hasFile('banner')) {
+			$file = Input::file('banner');
+
+			$filename = $file->getClientOriginalName();
+
+			$file->move(public_path('images/manufacturers'), $filename);
+
+			$image = new Image();
+			$image->type = 'manufacturer_banner';
+			$image->name = $filename;
+
+			$image->save();
+			$mf->banner()->associate($image);
 		}
 
 		return Redirect::route('admin.manufacturers.index')
@@ -82,6 +98,7 @@ class ManufacturersController extends Controller {
 		$mf->name = Input::get('name');
 		$mf->slug = Input::get('slug');
 		$mf->description = Input::get('description', null);
+		$mf->always_allow_orders = (Input::has('always_allow_orders')) ? true : false;
 
 		if (Input::hasFile('logo')) {
 			$file = Input::file('logo');
@@ -101,6 +118,25 @@ class ManufacturersController extends Controller {
 			$image->save();
 			$mf->image()->associate($image);
 		}
+
+		if (Input::hasFile('banner')) {
+			$file = Input::file('banner');
+
+			$filename = $file->getClientOriginalName();
+
+			$file->move(public_path('images/manufacturers'), $filename);
+
+			$image = $mf->banner;
+			if (!$image) {
+				$image = new Image();
+				$image->type = 'manufacturer_banner';
+			}
+
+			$image->name = $filename;
+			$image->save();
+			$mf->banner()->associate($image);
+		}
+
 		$mf->save();
 
 		return Redirect::route('admin.manufacturers.index')->with('success', trans('admin.manufacturers_update_success', ['manufacturer' => $mf->name]));

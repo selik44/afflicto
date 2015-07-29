@@ -21,8 +21,11 @@ use Nicolaslopezj\Searchable\SearchableTrait;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer whereImageId($value)
  * @property string $description
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer whereDescription($value)
- * @property boolean $always_allow_orders 
+ * @property boolean $always_allow_orders
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer whereAlwaysAllowOrders($value)
+ * @property integer $banner_id
+ * @property-read \Friluft\Image $banner
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer whereBannerId($value)
  */
 class Manufacturer extends Model {
 
@@ -32,6 +35,10 @@ class Manufacturer extends Model {
 	protected $table = 'manufacturers';
 
 	protected $fillable = ['name','slug'];
+
+	protected $casts = [
+		'always_allow_orders' => 'boolean'
+	];
 
 	protected $searchable = [
 		'columns' => [
@@ -45,6 +52,10 @@ class Manufacturer extends Model {
 	}
 
 	public function image() {
+		return $this->belongsTo('Friluft\Image');
+	}
+
+	public function banner() {
 		return $this->belongsTo('Friluft\Image');
 	}
 
