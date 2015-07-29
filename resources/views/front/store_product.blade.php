@@ -268,8 +268,10 @@
             var stockNumber = parseInt($(".product-view").attr('data-stock'));
             if (stockNumber > 0) {
                 $("form .product-stock .true").show().siblings('.false').hide();
+                $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").removeAttr('disabled');
             }else {
                 $("form .product-stock .true").hide().siblings('.false').show();
+                $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").attr('disabled', 'disabled');
             }
         }
 
