@@ -18,7 +18,7 @@ class StoreController extends Controller {
 
 	public function index($path)
 	{
-		$query = \App::getLocale() .'/store/' .$path;
+		$query = $path;
 		$path = explode('/', $path);
 		$slug = array_pop($path);
 
@@ -63,20 +63,6 @@ class StoreController extends Controller {
 		}
 
 		abort(404);
-	}
-
-	public function getManufacturer($slug) {
-
-		$manufacturer = Manufacturer::where('slug', '=', $slug)->first();
-
-		if (!$manufacturer) {
-			abort(404, "That manufacturer does not exist!");
-		}
-
-		$products = $manufacturer->products()->enabled();
-
-		return view('front.store_manufaturer')
-			->with(['products' => $products]);
 	}
 
 	public function cart() {
