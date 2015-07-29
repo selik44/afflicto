@@ -44,13 +44,13 @@ Route::group(['prefix' => 'user'], function() {
 # search
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
-# cart
-get('cart', ['as' => 'cart.index', 'uses' => 'CartController@index']);
-get('cart/clear', ['as' => 'cart.clear', 'uses' => 'CartController@clear']);
-get('cart/{cart}', ['as' => 'cart.show', 'uses' => 'CartController@show']);
-post('cart', ['as' => 'cart.store', 'uses' => 'CartController@store']);
-put('cart/{id}/quantity', ['as' => 'cart.quantity', 'uses' => 'CartController@setQuantity']);
-delete('cart/{id}', ['as' => 'cart.destroy', 'uses' => 'CartController@destroy']);
+# cart API
+get('api/cart', ['as' => 'api.cart.index', 'uses' => 'CartController@index']);
+get('api/cart/clear', ['as' => 'api.cart.clear', 'uses' => 'CartController@clear']);
+get('api/cart/{cart}', ['as' => 'api.cart.show', 'uses' => 'CartController@show']);
+post('api/cart', ['as' => 'api.cart.store', 'uses' => 'CartController@store']);
+put('api/cart/{id}/quantity', ['as' => 'api.cart.quantity', 'uses' => 'CartController@setQuantity']);
+delete('api/cart/{id}', ['as' => 'api.cart.destroy', 'uses' => 'CartController@destroy']);
 
 
 # html/ajax API
@@ -315,7 +315,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 });
 
 
-# store
+# store / cart
 get('cart', ['as' => 'store.cart', 'uses' => 'StoreController@cart']);
 get('checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
 get('success', ['as' => 'store.success', 'uses' => 'StoreController@success']);

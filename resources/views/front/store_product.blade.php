@@ -47,7 +47,7 @@
                     <h3 class="price end"><strong class="value">{{ceil($product->price * $product->vatgroup->amount)}}</strong>,-</h3>
                 </header>
 
-                <form class="vertical" id="buy-form" action="{{route('cart.store')}}" method="POST">
+                <form class="vertical" id="buy-form" action="{{route('api.cart.store')}}" method="POST">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" name="product_id" value="{{$product->id}}">
 
@@ -353,7 +353,6 @@
 
             var price = $(this).parents('.product-view').find('.header .price .value').first().text();
 
-            console.log('showing buy modal');
             showBuyModal(1, thumbnail, title, price);
 
             //post form via ajax
@@ -367,7 +366,7 @@
                     $("#breadcrumbs .free-shipping-status").hide();
                 }
 
-                $.get(Friluft.URL + '/cart', function(html) {
+                $.get(Friluft.URL + '/api/cart', function(html) {
                     cart.find('.cart-table').replaceWith(html);
                 });
             });

@@ -128,7 +128,7 @@
 
 			klarnaSuspend();
 
-			$.post(Friluft.URL + '/cart/' + id + '/quantity', payload, function(response) {
+			$.post(Friluft.URL + '/api/cart/' + id + '/quantity', payload, function(response) {
 				console.log('Changed quantity, response:');
 				console.log(response);
 				self.removeAttr('disabled').removeClass('disabled');
@@ -154,7 +154,7 @@
 
 			klarnaSuspend();
 
-			$.post(Friluft.URL + '/cart/' + id, {_method: 'DELETE', _token: Friluft.token}, function(response) {
+			$.post(Friluft.URL + '/api/cart/' + id, {_method: 'DELETE', _token: Friluft.token}, function(response) {
 				console.log('Removed, response:');
 				console.log(response);
 
