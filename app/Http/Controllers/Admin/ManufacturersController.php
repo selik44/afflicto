@@ -27,8 +27,8 @@ class ManufacturersController extends Controller {
 
 		$table->sortable(true, ['id', 'name']);
 
-		$table->editable(true, url(App::getLocale() .'/admin/manufacturers/{id}/edit'));
-		$table->destroyable(true, url(App::getLocale() .'/admin/manufacturers/{id}'));
+		$table->editable(true, url('admin/manufacturers/{id}/edit'));
+		$table->destroyable(true, url('admin/manufacturers/{id}'));
 
 		return $this->view('admin.manufacturers_index')->with([
 			'table' => $table->render(),

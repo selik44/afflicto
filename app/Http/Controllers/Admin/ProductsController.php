@@ -62,8 +62,8 @@ class ProductsController extends Controller {
 			'Updated' => 'updated_at diffForHumans',
 		]);
 
-		$table->editable(true, url(\App::getLocale() .'/admin/products/{id}/edit'));
-		$table->destroyable(true, url(\App::getLocale() .'/admin/products/{id}'));
+		$table->editable(true, url('admin/products/{id}/edit'));
+		$table->destroyable(true, url('admin/products/{id}'));
 		$table->sortable(true, [
 			'name','price','stock','enabled','updated_at', 'categories','manufacturer_id',
 		]);

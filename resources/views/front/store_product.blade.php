@@ -185,10 +185,10 @@
 			}
 			?>
 			<li>
-				<a class="{{{$c}}}" href="{{url('/store/' .$category->getRoot()->slug)}}">{{$category->getRoot()->name}}</a>
+				<a class="{{{$c}}}" href="{{url($category->getRoot()->slug)}}">{{$category->getRoot()->name}}</a>
 			</li>
 			<?php
-			echo $category->getRoot()->renderMenu('/store', 3);
+			echo $category->getRoot()->renderMenu('', 3);
 			?>
 		</ul>
 	</div>

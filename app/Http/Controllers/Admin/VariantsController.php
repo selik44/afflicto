@@ -34,8 +34,8 @@ class VariantsController extends Controller {
 			}],
 		]);
 
-		$table->editable(true, url(\App::getLocale() .'/admin/variants/{id}/edit'));
-		$table->destroyable(true, url(\App::getLocale() .'/admin/variants/{id}'));
+		$table->editable(true, url('admin/variants/{id}/edit'));
+		$table->destroyable(true, url('admin/variants/{id}'));
 
 		$table->filterable(true);
 		$table->addFilter('name', 'search');

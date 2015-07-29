@@ -21,12 +21,11 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 
 # Architecture
-- Figure out a way to cache routes while still allowing translated routes. (@see gentlefox.net routing)
 - Move complicated controller logic to commands, for extendability?
 - Move all closure routes to controllers, so we can cache routes.
 - Architecture: Requests, Events, Commands etc.
 - Caching: Implement caching, look at varnish cache? memcached?
-- figure out a better way to organize translation lines
+- improve translation organization
 
 
 # Todo:
@@ -54,7 +53,7 @@ Shipping
 under tusen gram: 39,- brevpost
 over 800kr: fri frakt.
 
-# design inspiration
+# design
 http://www.tights.no/
 gsport
 

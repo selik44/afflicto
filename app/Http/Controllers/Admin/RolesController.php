@@ -29,8 +29,8 @@ class RolesController extends Controller {
 			}],
 		]);
 
-		$table->editable(true, url(\App::getLocale() .'/admin/roles/{id}/edit'));
-		$table->destroyable(true, url(\App::getLocale() .'/admin/roles/{id}'));
+		$table->editable(true, url('admin/roles/{id}/edit'));
+		$table->destroyable(true, url('admin/roles/{id}'));
 
 		return $this->view('admin.roles_index')
 			->with([

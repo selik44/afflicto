@@ -67,7 +67,8 @@ class CartController extends Controller {
 				return response('Variant ' .$name .' is missing!');
 			}
 
-			$value = Input::get('variant-' .$variant->id);
+			$value = (int) Input::get('variant-' .$variant->id);
+			$value--;
 			$options['variants'][$variant->id] = $variant->data['values'][$value]['name'];
 		}
 

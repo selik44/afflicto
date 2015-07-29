@@ -26,8 +26,8 @@ class UsersController extends Controller {
 			'Registered' => 'created_at diffForHumans',
 		]);
 
-		$table->editable(true, url(\App::getLocale() .'/admin/users/{id}/edit'));
-		$table->destroyable(true, url(\App::getLocale() .'/admin/users/{id}'));
+		$table->editable(true, url('admin/users/{id}/edit'));
+		$table->destroyable(true, url('admin/users/{id}'));
 		$table->sortable(true, [
 			'firstname','lastname','email','created_at','role_id',
 		]);
