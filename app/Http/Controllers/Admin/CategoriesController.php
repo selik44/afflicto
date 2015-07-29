@@ -1,5 +1,6 @@
 <?php namespace Friluft\Http\Controllers\Admin;
 
+use Friluft\Image;
 use Illuminate\Http\Request;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
@@ -81,6 +82,7 @@ class CategoriesController extends Controller {
 				$category->parent_id = $parent_id;
 			}
 		}
+
 		$category->save();
 
 		if (Input::has('continue')) {
@@ -117,6 +119,27 @@ class CategoriesController extends Controller {
 		$category->slug = Input::get('slug');
 		$parent_id = Input::get('parent_id', 'null');
 		if (is_numeric($parent_id)) $category->parent_id = $parent_id;
+
+		# banner?
+		if (Input::hasFile('banner')) {
+			$file = Input::file('banner');
+
+			$filename = $file->getClientOriginalName();
+			$file->move(public_path('images'), $filename);
+
+			$banner = $category->banner;
+			if ( ! $banner) {
+				$banner = new Image();
+				$banner->type = 'category_banner';
+
+			}
+
+			$banner->name = $filename;
+			$banner->save();
+
+			$category->banner()->associate($banner);
+		}
+
 		$category->save();
 
 		return Redirect::back()->with('success', 'Category updated.');

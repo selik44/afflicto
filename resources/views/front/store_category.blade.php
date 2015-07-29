@@ -88,6 +88,16 @@
 
 @section('article')
 
+    <?php
+        $banner = $category->getBanner();
+    ?>
+
+    @if($banner)
+        <div class="category-banner">
+            <img src="{{asset('images/' .$banner->name)}}">
+        </div>
+    @endif
+
 	<div class="products-grid-options clearfix module">
 		<header class="module-header clearfix">
 			<h2 class="end pull-left">{{{ucwords(strtolower($category->name))}}}</h2>

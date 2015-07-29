@@ -25,12 +25,6 @@
     @endif
     {!! $form->image->label(null) !!}
 
-    <label for="banner">Banner</label>
-    @if($manufacturer->banner)
-        <img src="{{asset('images/manufacturers/' .$manufacturer->banner->name)}}" alt="{{$manufacturer->name}} Banner">
-    @endif
-    {!! $form->banner->label(null) !!}
-
     {!! $form->always_allow_orders !!}
 
     {!! Former::submit(trans('admin.save'))->class('large success') !!}

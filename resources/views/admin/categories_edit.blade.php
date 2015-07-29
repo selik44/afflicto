@@ -10,7 +10,7 @@
 
 	<hr>
 	
-	<form class="vertical" action="{{route('admin.categories.update', $category)}}" method="POST">
+	<form class="vertical" action="{{route('admin.categories.update', $category)}}" method="POST" enctype="multipart/form-data">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type="hidden" name="_method" value="PUT">
 		<label for="name">Name <span class="color-error">*</span>
@@ -18,7 +18,7 @@
 		</label>
 
 		<label for="slug">Slug <span class="color-error">*</span>
-			<input type="text" name="slug" value="{{$category->value}}" maxlength="255" required>
+			<input type="text" name="slug" value="{{$category->slug}}" maxlength="255" required>
 		</label>
 
 		<label for="parent">Parent
@@ -33,7 +33,17 @@
 				@endforeach
 			</select>
 		</label>
-		
+
+        <hr>
+
+        <h4>Banner</h4>
+        @if($category->banner)
+            <img src="{{asset('images/' .$category->banner->name)}}" alt="Category Banner">
+        @endif
+        <input type="file" name="banner">
+
+        <hr>
+
 		<div class="footer-height-fix"></div>
 
 		<footer id="footer">

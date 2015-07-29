@@ -215,4 +215,20 @@ class Category extends Model {
 		return $str .'</li>';
 	}
 
+	public function banner() {
+		return $this->belongsTo('Friluft\Image', 'banner_id', 'id');
+	}
+
+	public function getBanner() {
+		$banner = null;
+		$cat = $this;
+		while ($cat != null) {
+			if ($cat->banner) {
+				$banner = $cat->banner;
+			}
+			$cat = $cat->parent;
+		}
+		return $banner;
+	}
+
 }

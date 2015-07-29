@@ -64,21 +64,6 @@ class ManufacturersController extends Controller {
 			$mf->image()->associate($image);
 		}
 
-		if (Input::hasFile('banner')) {
-			$file = Input::file('banner');
-
-			$filename = $file->getClientOriginalName();
-
-			$file->move(public_path('images/manufacturers'), $filename);
-
-			$image = new Image();
-			$image->type = 'manufacturer_banner';
-			$image->name = $filename;
-
-			$image->save();
-			$mf->banner()->associate($image);
-		}
-
 		return Redirect::route('admin.manufacturers.index')
 			->with('success', trans('admin.manufacturers_create_success', ['manufacturer' => $mf->name]));
 	}
@@ -117,24 +102,6 @@ class ManufacturersController extends Controller {
 
 			$image->save();
 			$mf->image()->associate($image);
-		}
-
-		if (Input::hasFile('banner')) {
-			$file = Input::file('banner');
-
-			$filename = $file->getClientOriginalName();
-
-			$file->move(public_path('images/manufacturers'), $filename);
-
-			$image = $mf->banner;
-			if (!$image) {
-				$image = new Image();
-				$image->type = 'manufacturer_banner';
-			}
-
-			$image->name = $filename;
-			$image->save();
-			$mf->banner()->associate($image);
 		}
 
 		$mf->save();

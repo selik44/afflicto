@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ManufacturersAddBanner extends Migration {
+class CategoriesAddBannerIdColumn extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,9 +12,8 @@ class ManufacturersAddBanner extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('manufacturers', function(Blueprint $t) {
+		Schema::table('categories', function($t) {
 			$t->integer('banner_id')->unsigned()->nullable();
-
 			$t->foreign('banner_id')->references('id')->on('images');
 		});
 	}
@@ -26,9 +25,9 @@ class ManufacturersAddBanner extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('manufacturers', function(Blueprint $t) {
-			$t->dropForeign('manufacturers_banner_id_foreign');
-			$t->removeColumn('banner');
+		Schema::table('categories', function($t) {
+			$t->dropForeign('categories_banner_id_foreign');
+			$t->dropColumn('banner_id');
 		});
 	}
 
