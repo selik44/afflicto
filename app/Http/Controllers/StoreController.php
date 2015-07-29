@@ -18,7 +18,7 @@ class StoreController extends Controller {
 
 	public function index($path)
 	{
-		$query = \App::getLocale() .'/store/' .$path;
+		$query = $path;
 		$path = explode('/', $path);
 		$slug = array_pop($path);
 

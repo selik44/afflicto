@@ -4,10 +4,10 @@ use Closure;
 
 class LocaleDetector {
 
-	public static $supportedLocales = [
-		'en' => 'English',
-		'no' => 'Norsk',
-		'se' => 'Swedish',
+	public static $tlds = [
+		'com' => 'en',
+		'no' => 'no',
+		'se' => 'se',
 	];
 
 	/**
@@ -19,15 +19,20 @@ class LocaleDetector {
 	 */
 	public function handle($request, Closure $next)
 	{
-		$lang = $request->segment(1);
+		# get TLD
+		$host = array_reverse(
+			explode('.',
+				strtolower(
+					$request->getHost()
+				)
+			)
+		);
+		$host = $host[0];
 
-		if ( ! isset(static::$supportedLocales[$lang])) {
-			# detect locale from HTTP request
-			$lang = strtolower(substr($request->server->get('HTTP_ACCEPT_LANGUAGE'), 0, 2));
-
-			if ( ! isset(static::$supportedLocales[$lang])) {
-				$lang = 'en';
-			}
+		# set locale
+		$lang = 'en';
+		if (isset(static::$tlds[$host])) {
+			$lang = static::$tlds[$host];
 		}
 
 		\App::setLocale($lang);

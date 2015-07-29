@@ -42,11 +42,11 @@ Route::group(['prefix' => 'user'], function() {
 });
 
 # store
+get('{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
 get('store/cart', ['as' => 'store.cart', 'uses' => 'StoreController@cart']);
 get('store/checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
 get('store/success', ['as' => 'store.success', 'uses' => 'StoreController@success']);
 post('store/push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
-get('store/{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
 get('manufacturer/{slug}', ['as' => 'store.manufacturer', 'uses' => 'StoreController@getmanufacturer']);
 
 # search
