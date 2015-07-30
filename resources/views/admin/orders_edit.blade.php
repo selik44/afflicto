@@ -119,7 +119,7 @@
                                         # create the string describing the variants
                                         $stockID = [];
                                         foreach($variants as $variantID => $value) {
-                                            $variantModel = Variant::find($variantID);
+                                            $variantModel = Friluft\Variant::find($variantID);
                                             $variantString .= $variantModel->name .': ' .$value .', ';
                                             foreach($variantModel->data['values'] as $v) {
                                                 if ($v['name'] == $value) $stockID[$value] = $v['id'];
