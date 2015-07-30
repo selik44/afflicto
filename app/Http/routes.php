@@ -281,10 +281,12 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 	get('orders', ['as' => 'admin.orders.index', 'uses' => 'Admin\OrdersController@index']);
 	get('orders/create', ['as' => 'admin.orders.create', 'uses' => 'Admin\OrdersController@create']);
 	get('orders/{order}/edit', ['as' => 'admin.orders.edit', 'uses' => 'Admin\OrdersController@edit']);
-	get('orders/{order}', ['as' => 'admin.orders.show', 'uses' => 'Admin\OrdersController@show']);
 	put('orders/{order}', ['as' => 'admin.orders.update', 'uses' => 'Admin\OrdersController@update']);
 	post('orders', ['as' => 'admin.orders.store', 'uses' => 'Admin\OrdersController@store']);
 	delete('orders/{order}', ['as' => 'admin.orders.delete', 'uses' => 'Admin\OrdersController@destroy']);
+
+	get('orders/{order}/edit/products', ['as' => 'admin.orders.edit.products', 'uses' => 'Admin\OrdersController@products_edit']);
+	put('orders/{order}/edit/products', ['as' => 'admin.orders.edit.products.update', ['uses' => 'Admin\OrdersController@products_update']]);
 
 	get('orders/{order}/packlist', ['as' => 'admin.orders.packlist', 'uses' => 'Admin\OrdersController@packlist']);
 	get('orders/packlist/{orders}', ['as' => 'admin.orders.multipacklist', 'uses' => 'Admin\OrdersController@getMultiPacklist'])
@@ -316,8 +318,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 
 
 # store / cart
+get('{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
 get('cart', ['as' => 'store.cart', 'uses' => 'StoreController@cart']);
 get('checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
 get('success', ['as' => 'store.success', 'uses' => 'StoreController@success']);
 post('push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
-get('{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');

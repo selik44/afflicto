@@ -68,8 +68,9 @@
 		<hr/>
 
 		<div id="items" class="module">
-			<div class="module-header">
-				<h6>Products</h6>
+			<div class="module-header clearfix">
+				<h6 class="end pull-left">Products</h6>
+                <a href="{{route('admin.orders.edit.products', $order->id)}}" class="button primary large pull-right"><i class="fa fa-pencil"></i> Edit</a>
 			</div>
 			<div class="module-content">
 				<table class="bordered">

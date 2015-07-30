@@ -30,12 +30,10 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 # Todo:
 - manual orders & order editing
-- disallow buy when out of stock, hide variants that are out of stock
 - receival
 - Client dashboard
 - dashboard stats & reports
 - variant filtering
-- category description and banner
 - Related products, tabbed view, appears when buying.
 - rabatt popup ting
 

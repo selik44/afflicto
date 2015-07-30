@@ -5746,6 +5746,9 @@ html, body, #admin {
   border: 1px solid #4d4d4d;
   padding: 1rem; }
 
+table th {
+  font-weight: 700; }
+
 #splash {
   max-width: 600px;
   margin: 40px auto;

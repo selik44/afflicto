@@ -178,6 +178,7 @@ class OrdersController extends Controller {
 
 	public function update(Order $order)
 	{
+		# set status
 		$order->status = Input::get('status');
 		$order->save();
 
@@ -191,7 +192,17 @@ class OrdersController extends Controller {
             }
 		}
 
-		return Redirect::back()->with('success', 'Order updated.' .Input::get('activate', '0'));
+		return Redirect::back()->with('success', 'Order updated');
+	}
+
+	public function products_edit(Order $order) {
+		return view('admin.orders_products_edit')->with(['order' => $order]);
+	}
+
+	public function products_update(Order $order) {
+		$order->save();
+
+		return Redirect::to(route('admin.orders.edit', $order))->with('success', 'Order Updated!');
 	}
 
     /**

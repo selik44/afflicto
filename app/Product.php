@@ -260,7 +260,7 @@ class Product extends Model {
 					return $this->path;
 				}
 			}
-			$this->path = 'store/' .$this->slug;
+			$this->path = $this->slug;
 		}
 
 		return $this->path;
