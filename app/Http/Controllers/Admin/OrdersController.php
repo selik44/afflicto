@@ -41,7 +41,7 @@ class OrdersController extends Controller {
 			'Items' => ['items', function($model, $column, $value) {
 				$str = '<ul class="items">';
 				foreach($model->items as $item) {
-					if ($item['reference'] != 'shipping_fee') {
+					if ($item['reference'] !== 'shipping_fee') {
 						# get product ID and model
 						$productID = $item['reference']['id'];
 						$product = Product::find($productID);
