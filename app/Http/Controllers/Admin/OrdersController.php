@@ -73,13 +73,13 @@ class OrdersController extends Controller {
 						}
 						$variantString = rtrim($variantString, ', ');
 
-						if (strlen($variantString) > 0) $variantString = ' [' .$variantString .'] ';
+						if (strlen($variantString) > 0) $variantString = ' [' .$variantString .']';
 
 						# color the item by stock
 						$class = 'color-success';
 						if ($stock < $item['quantity']) $class = 'color-error';
 
-						$str .= '<li class="' .$class .'">' .$name .$variantString .'(' .$stock .'/' .$item['quantity'] .' in stock)</li>';
+						$str .= '<li class="' .$class .'">' .$name .$variantString .' (' .$stock .'/' .$item['quantity'] .' in stock)</li>';
 					}
 				}
 				$str .= '</ul>';
