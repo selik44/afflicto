@@ -65,7 +65,7 @@ class OrdersController extends Controller {
 								$variantModel = Variant::find($variantID);
 								$variantString .= $variantModel->name .': ' .$value .', ';
 								foreach($variantModel->data['values'] as $v) {
-									$stockID[$value] = $v['id'];
+									if ($v['name'] == $value) $stockID[$value] = $v['id'];
 								}
 							}
 							$stockID = implode('_', $stockID);
