@@ -101,7 +101,7 @@
 								if ($item['type'] != 'shipping_fee') {
 									# get product ID and model
                                     $productID = $item['reference']['id'];
-                                    $product = Product::find($productID);
+                                    $product = Friluft\Product::find($productID);
 
                                     if ($product == null) {
                                         return "Invalid product data";
