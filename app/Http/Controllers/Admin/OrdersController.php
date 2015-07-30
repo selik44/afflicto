@@ -41,7 +41,7 @@ class OrdersController extends Controller {
 			'Items' => ['items', function($model, $column, $value) {
 				$str = '<ul class="items">';
 				foreach($model->items as $item) {
-					if ($item['type'] != 'shipping_fee') {
+					if ($item['reference'] != 'shipping_fee') {
 						# get product ID and model
 						$productID = $item['reference']['id'];
 						$product = Product::find($productID);
@@ -54,30 +54,23 @@ class OrdersController extends Controller {
 						$stock = $product->stock;
 						$name = $product->name;
 
+						$variantString = '';
 						if (count($product->variants) > 0) {
-							# get the variant we ordered
+							# get the variants we ordered
 							$variants = $item['reference']['options']['variants'];
 
-							# get the first variant value and ID
-							$variant = array_values($variants)[0];
-							$variantID = array_search($variant, $variants);
-
-							# get the variant model
-							$variantModel = Variant::find($variantID);
-
-							# got it?
-							if ($variantModel) {
-								# set stock and name
-								$stock = $variantModel->data['values'][$variant]['stock'];
-								$name = $name .' [' .$variant .']';
+							foreach($variants as $variantID => $value) {
+								$variantModel = Variant::find($variantID);
+								$variantString .= $variantModel->name .': ' .$value .', ';
 							}
 						}
+						$variantString = rtrim($variantString, ', ');
 
 						# color the item by stock
 						$class = 'color-success';
 						if ($stock < $item['quantity']) $class = 'color-error';
 
-						$str .= '<li class="' .$class .'">' .$name .' (' .$stock .'/' .$item['quantity'] .' in stock)</li>';
+						$str .= '<li class="' .$class .'">' .$name .'[' .$variantString .'] (' .$stock .'/' .$item['quantity'] .' in stock)</li>';
 					}
 				}
 				$str .= '</ul>';
