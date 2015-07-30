@@ -60,13 +60,15 @@ class OrdersController extends Controller {
 							$variants = $item['reference']['options']['variants'];
 
 							# create the string describing the variants
+							$stockID = [];
 							foreach($variants as $variantID => $value) {
 								$variantModel = Variant::find($variantID);
 								$variantString .= $variantModel->name .': ' .$value .', ';
+								foreach($variantModel->values as $v) {
+									$stockID[$value] = $v['id'];
+								}
 							}
-
-							# get stock
-							$stockID = implode('_', array_keys($variants));
+							$stockID = implode('_', $stockID);
 							$stock = $product->variants_stock[$stockID];
 						}
 						$variantString = rtrim($variantString, ', ');
