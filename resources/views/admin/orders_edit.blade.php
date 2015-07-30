@@ -141,7 +141,7 @@
 							?>
 							<tr class="item {{$class}}" data-id="{{$id}}">
 								<td>
-									{{$title}} &nbsp;&nbsp;<a target="_blank" href="{{url($product->getPath())}}"><i style="color: white;" class="fa fa-link color-white"></i></a>
+									{!! $title !!} &nbsp;&nbsp;<a target="_blank" href="{{url($product->getPath())}}"><i style="color: white;" class="fa fa-link color-white"></i></a>
 								</td>
 								<td>
 									{{$item['quantity']}}
