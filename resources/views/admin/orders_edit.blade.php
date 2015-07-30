@@ -100,42 +100,47 @@
 							<?php
 								if ($item['type'] != 'shipping_fee') {
 									# get product ID and model
-									$productID = $item['reference']['id'];
-									$product = Friluft\Product::find($productID);
+                                    $productID = $item['reference']['id'];
+                                    $product = Product::find($productID);
 
-									# get stock and name
-									$stock = $product->stock;
-									$name = $product->name;
+                                    if ($product == null) {
+                                        return "Invalid product data";
+                                    }
 
-									if (count($product->variants) > 0) {
-										# get the variant we ordered
-										$variants = $item['reference']['options']['variants'];
+                                    # get stock and name
+                                    $stock = $product->stock;
+                                    $name = $product->name;
 
-										# get the first variant value and ID
-										$variant = array_values($variants)[0];
-										$variantID = array_search($variant, $variants);
+                                    $variantString = '';
+                                    if (count($product->variants) > 0) {
+                                        # get the variants we ordered
+                                        $variants = $item['reference']['options']['variants'];
 
-										# get the variant model
-										$variantModel = Friluft\Variant::find($variantID);
+                                        # create the string describing the variants
+                                        $stockID = [];
+                                        foreach($variants as $variantID => $value) {
+                                            $variantModel = Variant::find($variantID);
+                                            $variantString .= $variantModel->name .': ' .$value .', ';
+                                            foreach($variantModel->data['values'] as $v) {
+                                                if ($v['name'] == $value) $stockID[$value] = $v['id'];
+                                            }
+                                        }
+                                        $stockID = implode('_', $stockID);
+                                        $stock = $product->variants_stock[$stockID];
+                                    }
+                                    $variantString = rtrim($variantString, ', ');
 
-										# got it?
-										if ($variantModel) {
-											# set stock and name
-											$stock = $variantModel->data['values'][$variant]['stock'];
-											$name = $name .' [' .$variant .']';
-										}
-									}
+                                    if (strlen($variantString) > 0) $variantString = ' [' .$variantString .']';
 
-									# color the item by stock
-									$class = 'success';
-									if ($stock < $item['quantity']) $class = 'error';
+                                    # color the item by stock
+                                    $class = 'color-success';
+                                    if ($stock < $item['quantity']) $class = 'color-error';
 
-									$title = $name .' (' .$stock .'/' .$item['quantity'] .' in stock)';
+                                    $title = '<span class="' .$class .'">' .$name .$variantString .' (' .$stock .'/' .$item['quantity'] .' in stock)</span>';
 								}
 							?>
 							<tr class="item {{$class}}" data-id="{{$id}}">
 								<td>
-
 									{{$title}} &nbsp;&nbsp;<a target="_blank" href="{{url($product->getPath())}}"><i style="color: white;" class="fa fa-link color-white"></i></a>
 								</td>
 								<td>
