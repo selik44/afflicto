@@ -318,8 +318,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 
 
 # store / cart
-get('{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
 get('cart', ['as' => 'store.cart', 'uses' => 'StoreController@cart']);
 get('checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
 get('success', ['as' => 'store.success', 'uses' => 'StoreController@success']);
 post('push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
+get('{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
