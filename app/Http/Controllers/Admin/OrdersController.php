@@ -39,7 +39,7 @@ class OrdersController extends Controller {
 			'#' => 'id',
 			'User' => 'user->name',
 			'Items' => ['items', function($model, $column, $value) {
-				$str = '<ul class="items">';
+				$str = '<ul class="flat items">';
 				foreach($model->items as $item) {
 					if ($item['type'] !== 'shipping_fee') {
 						# get product ID and model
