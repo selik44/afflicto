@@ -82,11 +82,53 @@
 			updateFilter();
 		});
 
+        $(".products-grid-options .variants .filter select").change(function() {
+            console.log('variants filter changed');
+            updateFilter();
+        })
+
 		function updateFilter() {
 			grid.isotope({
 				filter: function() {
 					var price = parseInt($(this).attr('data-price'));
 					var manufacturer = $(this).attr('data-manufacturer');
+
+                    //selected filter values
+                    var filters = [];
+                    $(".products-grid-options .variants .filter").each(function() {
+                        filters[$(this).attr('data-variant')] = $(this).find('select').val();
+                    });
+
+                    console.log('filters: ');
+                    console.log(filters);
+
+                    var value;
+                    for(var name in filters) {
+                        value = filters[name];
+                        if (value == '*') continue;
+                        var supported = $(this).attr('data-variant-' + name);
+
+                        console.log('this product supports: ');
+                        console.log(supported);
+
+                        console.log('and we have chosen: ' + value);
+
+                        if (supported !== undefined && supported !== null) {
+                            supported = supported.split(',');
+                            console.log('checking if ' + value + ' is inside: ' + supported.join(','));
+                            var inArray = false;
+                            for(var i in supported) {
+                                var val = supported[i];
+                                if (val == value) inArray = true;
+                            }
+                            if ( ! inArray) {
+                                console.log('NOPE!');
+                                return false;
+                            }else {
+                                console.log('yes!');
+                            }
+                        }
+                    }
 
 					if (price < priceSlider.val()[0]) return false;
 
@@ -137,6 +179,20 @@
                                 <option value="{{$m->id}}">{{$m->name}}</option>
                             @endforeach
                         </select>
+                    </div>
+
+                    <div class="variants">
+                        @foreach($variants as $name => $values)
+                            <div class="filter variant" data-variant="{{$name}}">
+                                <h5>{{$name}}</h5>
+                                <select name="variant-{{str_replace(' ', '-', $name)}}">
+                                    <option value="*">@lang('store.all')</option>
+                                    @foreach($values as $value)
+                                        <option value="{{$value}}">{{$value}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

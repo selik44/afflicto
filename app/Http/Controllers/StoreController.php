@@ -1,7 +1,6 @@
 <?php namespace Friluft\Http\Controllers;
 
 use Friluft\Http\Requests;
-use Friluft\Manufacturer;
 use Friluft\Order;
 use Friluft\Role;
 use Friluft\User;
@@ -37,11 +36,24 @@ class StoreController extends Controller {
 					}
 				}
 
+				# create merged variant filters
+				$variants = [];
+				foreach($products as $product) {
+					foreach($product->variants as $variant) {
+						$name = strtolower(str_replace(' ', '-', $variant->name));
+						if ( ! isset($variants[$name])) $variants[$name] = [];
+						$variants[$name] = array_unique(array_merge($variants[$name], array_column($variant->data['values'], 'name')));
+					}
+				}
+
 				return view('front.store_category')
-					->with('category', $cat)
-					->with('products', $products)
-					->with('manufacturers', $manufacturers)
-					->with('aside', true);
+					->with([
+						'category' => $cat,
+						'products' => $products,
+						'manufacturers' => $manufacturers,
+						'variants' => $variants,
+						'aside' => true,
+					]);
 			}
 		}
 

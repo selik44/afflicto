@@ -10,6 +10,7 @@
                     getSortData: {
                         price: '[data-price] parseInt',
                         manufacturer: '[data-manufacturer]',
+
                     }
 				});
 			});

@@ -1,4 +1,13 @@
-<div class="product products-block" data-id="{{$product->id}}" data-price="{{ceil($product->price * $product->vatgroup->amount)}}" data-manufacturer="{{($product->manufacturer) ? $product->manufacturer->id : ''}}">
+<?php
+        $variants = '';
+        foreach($product->variants as $variant) {
+            $name = strtolower(str_replace(' ', '-', $variant->name));
+            $values = implode(',', array_column($variant->data['values'], 'name'));
+            $variants .= ' data-variant-' .$name .'="' .$values .'"';
+        }
+?>
+
+<div class="product products-block" {!! $variants !!} data-id="{{$product->id}}" data-price="{{ceil($product->price * $product->vatgroup->amount)}}" data-manufacturer="{{($product->manufacturer) ? $product->manufacturer->id : ''}}">
 	<?php
 	$img = $product->images()->first();
 	if ($img == null) {

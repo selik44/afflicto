@@ -4406,6 +4406,12 @@ ul.pagination {
 
 .products-grid-options {
   overflow: visible; }
+  .products-grid-options .filters .filter, .products-grid-options .filters .variants {
+    float: left;
+    width: 100%;
+    clear: both; }
+    .products-grid-options .filters .filter:not(:last-child), .products-grid-options .filters .variants:not(:last-child) {
+      margin-bottom: 2rem; }
   .products-grid-options .filters .price-filter .header, .products-grid-options .filters .price-filter .values, .products-grid-options .filters .price-filter .control {
     float: left;
     width: 100%; }

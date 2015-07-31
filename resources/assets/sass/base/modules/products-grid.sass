@@ -1,6 +1,14 @@
 .products-grid-options
 	overflow: visible
 	.filters
+
+		.filter, .variants
+			float: left
+			width: 100%
+			clear: both
+			&:not(:last-child)
+				margin-bottom: 2rem
+
 		.price-filter
 			.header, .values, .control
 				float: left
