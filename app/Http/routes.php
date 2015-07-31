@@ -302,6 +302,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 
 	# design
 	get('design', ['as' => 'admin.slides', 'uses' => 'Admin\SlidesController@index']);
+	get('design/general', ['as' => 'admin.design', 'uses' => 'Admin\SettingsController@getDesign']);
+	put('design/general', ['as' => 'admin.design.save', 'uses' => 'Admin\SettingsController@putDesign']);
 
 	# slides
 	put('design/slides/order', ['as' => 'admin.slides.order', 'uses' => 'Admin\SlidesController@order']);

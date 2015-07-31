@@ -52,6 +52,7 @@
         ]],
 
         'fa-pencil:admin.design' => ['admin.slides', [
+            'fa-pencil:admin.design' => 'admin.design',
             'fa-film:admin.slides' => 'admin.slides.index',
             'fa-image:admin.banners' => 'admin.banners.index',
         ]],

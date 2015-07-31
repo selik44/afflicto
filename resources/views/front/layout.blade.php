@@ -1,7 +1,14 @@
 @extends('master')
 
 @section('body')
-<div id="front">
+    <?php
+        $background = '';
+        $img = Friluft\Image::whereType('background')->first();
+        if ($img) {
+            $background = asset('images/' .$img->name);
+        }
+    ?>
+<div id="front" style="background-image: url('{{$background}}')">
 	<header id="header">
 
 		<nav id="navigation-top">
