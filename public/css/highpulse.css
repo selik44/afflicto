@@ -5332,7 +5332,7 @@ iframe {
   #front #slider {
     background: black;
     box-shadow: 0px 0px 2rem 0px rgba(0, 0, 0, 0.5);
-    height: 440px; }
+    max-height: 440px; }
     #front #slider > .inner {
       max-width: 1440px;
       display: -webkit-box;
