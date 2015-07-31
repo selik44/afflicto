@@ -17,7 +17,7 @@
 	</script>
 @endsection
 
-<div class="products-grid">
+<div class="products-grid paper">
 	@foreach($products as $product)
 		@include('front.partial.products-block', ['product' => $product])
 	@endforeach

@@ -47,7 +47,7 @@
 			}
 		});
 
-        $(".products-grid-sort select").change(function() {
+        $(".products-grid-header .sort select").change(function() {
             console.log('applying sort');
             var sort = $(this).val();
             var asc = false;
@@ -157,17 +157,20 @@
         </div>
     @endif
 
-    <div class="products-grid-sort">
-        <h4 for="sort">@lang('store.sort.sort')</h4>
-        <select name="sort">
-            <option value="none">----</option>
-            <option value="price-asc">@lang('store.sort.price ascending')</option>
-            <option value="price-desc">@lang('store.sort.price descending')</option>
-            <option value="manufacturer">@lang('store.manufacturer')</option>
-        </select>
+    <div class="paper clearfix products-grid-header">
+        <h4 class="title end pull-left">
+            {{$category->name}}
+        </h4>
+        <div class="sort pull-right">
+            <h4 for="sort">@lang('store.sort.sort')</h4>
+            <select name="sort">
+                <option value="none">----</option>
+                <option value="price-asc">@lang('store.sort.price ascending')</option>
+                <option value="price-desc">@lang('store.sort.price descending')</option>
+                <option value="manufacturer">@lang('store.manufacturer')</option>
+            </select>
+        </div>
     </div>
-
-    <hr>
 
 	@include('front.partial.products-grid', ['withMenu' => true])
 @stop

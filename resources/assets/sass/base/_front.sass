@@ -106,11 +106,16 @@ iframe
 	#page
 		border-bottom: 1px solid stronger($base-border-color, 10%)
 		background: $base-background
+		background-image: url('/images/bg.jpg')
+		background-position: top center
+		background-attachment: fixed
+		background-repeat: no-repeat
+		padding: 3rem 0
 
 		> .inner
-			padding: 2rem
 			display: flex
 			flex-direction: row
+			padding: 1rem
 
 			@include breakpoint('m-')
 				flex-wrap: wrap
@@ -119,28 +124,39 @@ iframe
 
 			#aside
 				flex: 0 0 260px
+				padding-right: 2rem
 				@include breakpoint('m-')
 					display: none
 
 				> .inner
-					padding-right: 1rem
 					> .block
-						padding: 1rem
-						padding-top: 0
-						margin-bottom: 1rem
+						background: rgba(255, 255, 255, 0.75)
+						&:not(:last-child)
+							margin-bottom: 2rem
 
 						&.module
 							padding: 0
+							background: none
+
+						.module-content
+							background: none
 
 			#article
 				flex: 1 1 auto
 				order: 1
 
 				> .inner
-					padding-left: 1rem
-
 					@include breakpoint('m-')
 						padding-left: 0rem
+
+	.paper
+		background-color: rgba(255,255,255, 0.75)
+
+		.white
+			background-color: white
+
+	hr
+		background-color: weaker($base-background, 15%)
 
 
 #product-modal

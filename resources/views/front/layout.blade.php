@@ -153,7 +153,7 @@
                     @yield('article')
                 </div>
             </article>
-		</div>
+        </div>
 	</div>
 
 	<footer id="footer">
