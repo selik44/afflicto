@@ -4436,7 +4436,7 @@ ul.pagination {
     padding: 1rem; }
     @media (min-width: 1200px) {
       .products-grid .products-block {
-        width: 33%; } }
+        width: 33.333%; } }
 
 .products-block > .preview {
   position: relative;
