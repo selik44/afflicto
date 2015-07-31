@@ -19,7 +19,6 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 # multi-store
 - views can be overriden per-store, using the view method of the Controller class. The default views are the ones used by 123friluft
 
-
 # Architecture
 - Move complicated controller logic to commands, for extendability?
 - Move all closure routes to controllers, so we can cache routes.
@@ -29,12 +28,16 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 
 # Todo:
-- manual orders & order editing
-- receival
-- Client dashboard
-- dashboard stats & reports
 - variant filtering
-- Related products, tabbed view, appears when buying.
+- merge cart and checkout steps, improve UX on cart button in header.
+- Client dashboard
+- increment quantity of item in cart when adding a product with the same options (variants)
+- receival
+- translate emails
+- dashboard stats & reports
+- mini-banner on top, background & text.
+- edit checkout & footer text
+- related products appears when buying.
 - rabatt popup ting
 
 

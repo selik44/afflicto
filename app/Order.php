@@ -66,6 +66,40 @@ class Order extends Model {
 		return $this->belongsTo('Friluft\User');
 	}
 
+	public function getTotal() {
+		$total = 0;
+
+		if ( ! $this->items) return 0;
+
+		foreach($this->items as $item) {
+			$total += $item['total_price_including_tax'];
+		}
+
+		return ceil($total);
+	}
+
+	public function getWeight() {
+		$weight = 0;
+
+		if ( ! $this->items) return 0;
+
+		foreach($this->items as $item) {
+			if ($item['type'] == 'shipping_fee') continue;
+			$model = Product::find($item['reference']['id']);
+			$weight += $model->weight * $item['quantity'];
+		}
+		return $weight;
+	}
+
+	public function getShipping() {
+		foreach($this->items as $item) {
+			if ($item['type'] == 'shipping_fee') {
+				return $item;
+			}
+		}
+		return null;
+	}
+
     public function orderEvents() {
         return $this->hasMany('Friluft\OrderEvent');
     }

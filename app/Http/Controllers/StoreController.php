@@ -80,6 +80,8 @@ class StoreController extends Controller {
 	}
 
 	public function checkout() {
+		if (Cart::nothing()) return \Redirect::home()->with('error', trans('store.your cart is empty'));
+
 		# get the klarna order
 		if (Session::has('klarna_order')) {
 			$order = Cart::getKlarnaOrder(Session::get('klarna_order'));
@@ -131,6 +133,12 @@ class StoreController extends Controller {
 			$data['cart']['items'][$key]['reference'] = json_decode($item['reference'], true);
 		}
 
+		# parse data
+		foreach($data['cart']['items'] as &$item) {
+			$item['total_price_excluding_tax'] /= 100;
+			$item['total_price_including_tax'] /= 100;
+		}
+
 		# create new order
 		$order = new Order();
 
@@ -140,8 +148,8 @@ class StoreController extends Controller {
 		$order->items = $data['cart']['items'];
 		$order->klarna_status = $data['status'];
 		$order->reservation = $data['reservation'];
-		$order->total_price_excluding_tax = $data['cart']['total_price_excluding_tax'];
-		$order->total_price_including_tax = $data['cart']['total_price_including_tax'];
+		$order->total_price_excluding_tax = $data['cart']['total_price_excluding_tax'] / 100;
+		$order->total_price_including_tax = $data['cart']['total_price_including_tax'] / 100;
 		$order->total_tax_amount = $data['cart']['total_tax_amount'];
 		$order->billing_address = $data['billing_address'];
 		$order->shipping_address = $data['shipping_address'];
@@ -196,7 +204,7 @@ class StoreController extends Controller {
 
 		# react to sale
 		foreach($order->items as $item) {
-			if ($item['reference'] == 'SHIPPING') continue;
+			if ($item['type'] == 'shipping_fee') continue;
 			$product = Product::find($item['reference']['id']);
 			if ( ! $product) continue;
 			$product->sell($item['quantity'], $item['reference']['options']['variants']);

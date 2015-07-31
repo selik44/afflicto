@@ -20,7 +20,7 @@
                     $currentLang = \App::getLocale();
                 ?>
 
-                <li class="pull-right dropdown language">
+                <li class="pull-right dropdown language" style="display: none;">
                     <a href="#language-dropdown" class="dropdown-toggle"><i class="fa fa-globe"></i> {{$langs[$currentLang]}} <i class="fa fa-caret-down"></i></a>
                     <ul id="language-dropdown" class="dropdown-menu align-right">
                         @foreach($langs as $lang => $label)

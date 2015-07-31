@@ -72,7 +72,13 @@ return [
 	'banners' => 'Banners',
 	'banner' => 'Banner',
 
-	'ready_for_sending' => 'Ready for Sending',
-	'processed' => 'Processed',
-	'ubehandlet' => 'Ubehandlet',
+	'status' => [
+		'unprocessed' => 'Unprocessed',
+		'written_out' => 'Written out',
+		'delivered' => 'Delivered',
+		'cancelled' => 'Cancelled',
+		'ready_for_sending' => 'Ready to Ship',
+		'processed' => 'Processed',
+		'unused' => 'Unused',
+	],
 ];

@@ -46,7 +46,10 @@
 			'fa-plus:admin.new' => 'admin.receivals.create',
 		]],
 
-		'fa-shopping-cart:admin.orders' => 'admin.orders.index',
+		'fa-shopping-cart:admin.orders' => ['admin.orders.index', [
+            'fa-shopping-cart:admin.all' => 'admin.orders.index',
+            'fa-plus:admin.new' => 'admin.orders.create',
+        ]],
 
         'fa-pencil:admin.design' => ['admin.slides', [
             'fa-film:admin.slides' => 'admin.slides.index',

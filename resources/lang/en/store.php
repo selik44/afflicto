@@ -26,9 +26,12 @@ return [
 	'cart empty' => 'Your Cart is empty.',
 	'show more' => 'Show More',
 	'done' => 'Done',
+	'my account' => 'My Account',
 
 	'product added to cart' => 'The product has been added to your cart!',
 	'continue shopping' => 'Continue Shopping',
+
+	'your cart is empty' => 'Your cart is empty!',
 
 	'in stock' => 'In Stock',
 	'out of stock' => 'Out of Stock',

@@ -110,6 +110,18 @@ return [
 		'login' => 'Logg inn',
 		'create account' => 'Lag Konto',
 		'create' => 'Lag',
+
+		'billing_name' => 'Navn',
+		'billing_postal_code' => 'Postkode',
+		'billing_city' => 'By',
+		'billing_country' => 'Land',
+		'billing_email' => 'E-Mail Addresse',
+
+		'shipping_name' => 'Navn',
+		'shipping_postal_code' => 'Postkode',
+		'shipping_city' => 'By',
+		'shipping_country' => 'Land',
+		'shipping_email' => 'E-Mail Addresse',
 	],
 
 ];

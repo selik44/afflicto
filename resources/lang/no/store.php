@@ -14,7 +14,6 @@ return [
 	'to cart' => 'Til Handlekurven',
 	'place order' => 'Fullfør Bestilling',
 	'add to cart' => 'Legg i Kurven',
-	'popular' => 'Populær',
 	'popular products' => 'Populære Produkter',
 	'product info' => 'Informasjon',
 	'related products' => 'Relaterte Produkter',
@@ -29,6 +28,8 @@ return [
 
 	'in stock' => 'På Lager',
 	'out of stock' => 'Utsolgt',
+
+	'your cart is empty' => 'Handlekurven er tom!',
 
 	'auth' => [
 		'forgot your password?' => 'Glemt passordet ditt?',

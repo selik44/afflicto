@@ -30,7 +30,7 @@
 
                 <tfoot>
                     <tr>
-                        <th colspan="3" class="text-right">Total: {{$order->total_price_including_tax / 100}}</th>
+                        <th colspan="3" class="text-right">Total: {{$order->total_price_including_tax}}</th>
                     </tr>
                 </tfoot>
 
@@ -38,14 +38,14 @@
                     @foreach($order->items as $item)
                         <tr>
                             <td>
-                                @if($item['name'] == 'shipping_costs')
-                                    Shipping
+                                @if($item['type'] == 'shiping_fee')
+                                    @lang('store.shipping.' .$item['name'])
                                 @else
                                     {{$item['name']}}
                                 @endif
                             </td>
                             <td>{{$item['quantity']}}</td>
-                            <td>{{$item['total_price_including_tax'] / 100}}</td>
+                            <td>{{$item['total_price_including_tax']}}</td>
                         </tr>
                     @endforeach
                 </tbody>

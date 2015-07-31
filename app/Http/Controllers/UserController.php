@@ -12,7 +12,7 @@ class UserController extends Controller {
 	}
 
     public function getOrders() {
-        return view('front.user_orders')->with('orders', Auth::user()->orders);
+        return view('front.user_orders')->with('orders', Auth::user()->orders()->where('reservation', 'IS NULL')->get());
     }
 
     public function getOrder(Order $order) {

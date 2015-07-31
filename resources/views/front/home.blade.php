@@ -63,7 +63,7 @@
 
 
 @section('article')
-	<h2 class="end">@lang('store.popular')</h2>
+	<h2 class="end">@lang('store.popular products')</h2>
 
 	<hr style="margin-top: 0px">
 

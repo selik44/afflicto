@@ -5194,7 +5194,7 @@ ul.pagination {
             -ms-flex-order: 1;
                 order: 1; }
         #header #navigation .nav-contents .nav-extra #search input[name="terms"] {
-          max-width: 80px;
+          max-width: 100px;
           -webkit-transition: 300ms all;
                   transition: 300ms all; }
           #header #navigation .nav-contents .nav-extra #search input[name="terms"]:focus {

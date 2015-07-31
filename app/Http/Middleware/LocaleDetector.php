@@ -8,6 +8,8 @@ class LocaleDetector {
 		'com' => 'en',
 		'no' => 'no',
 		'se' => 'se',
+		'tk' => 'no',
+		'dev' => 'no',
 	];
 
 	/**

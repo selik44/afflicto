@@ -78,24 +78,24 @@
 							$name = $product->name;
 							$manufacturer = $product->manufacturer->name;
 
-							if (count($product->variants) > 0) {
-								# get the variant we ordered
-								$variants = $item['reference']['options']['variants'];
+                            $variantString = '';
+                            if (count($product->variants) > 0) {
+                                # get the variants we ordered
+                                $variants = $item['reference']['options']['variants'];
 
-								# get the first variant value and ID
-								$variant = array_values($variants)[0];
-								$variantID = array_search($variant, $variants);
-
-								# get the variant model
-								$variantModel = Friluft\Variant::find($variantID);
-
-								# got it?
-								if ($variantModel) {
-									# set stock and name
-									$stock = $variantModel->data['values'][$variant]['stock'];
-									$name = $name .' [' .$variant .']';
-								}
-							}
+                                # create the string describing the variants
+                                $stockID = [];
+                                foreach($variants as $variantID => $value) {
+                                    $variantModel = Friluft\Variant::find($variantID);
+                                    $variantString .= $variantModel->name .': ' .$value .', ';
+                                    foreach($variantModel->data['values'] as $v) {
+                                        if ($v['name'] == $value) $stockID[$value] = $v['id'];
+                                    }
+                                }
+                                $stockID = implode('_', $stockID);
+                                $stock = $product->variants_stock[$stockID];
+                            }
+                            $variantString = rtrim($variantString, ', ');
 						}
 						?>
 						<tr class="item" data-id="{{$id}}">
@@ -104,7 +104,7 @@
 							</td>
 							<td>
 								<strong>{{$manufacturer}}</strong>
-								<span>{{$name}}</span>
+								<span>{{$name .' [' .$variantString .'] (' .$stock .' ' .trans('store.in stock') .')'}}</span>
 							</td>
 							<td>
 								{{$item['quantity']}}

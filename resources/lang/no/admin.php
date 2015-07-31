@@ -45,4 +45,25 @@ return [
 	'receivals' => 'Varemottak',
 	'tags' => 'Merknader',
 	'tag' => 'Merknad',
+	'variants' => 'Varianter',
+	'variant' => 'Variant',
+
+	'billing address' => 'Faktura Addresse',
+	'shipping address' => 'Sendings Addresse',
+	'activated' => 'Aktivert',
+
+	'quantity' => 'Antall',
+	'subtotal' => 'Subtotal',
+	'total tax' => 'Total MVA',
+	'pack list' => 'Plukkliste',
+
+	'status' => [
+		'unprocessed' => 'Ubehandlet',
+		'written_out' => 'Skrevet ut',
+		'delivered' => 'Levert',
+		'cancelled' => 'Kansellert',
+		'ready_for_sending' => 'Klar for Sending',
+		'processed' => 'Behandlet',
+		'unused' => 'Restordre',
+	],
 ];
