@@ -1,6 +1,6 @@
 {
   "name": "html.sortable",
-  "version": "0.2.4",
+  "version": "0.2.9",
   "repository": {
     "type": "git",
     "url": "https://github.com/voidberg/html5sortable.git"
@@ -36,20 +36,18 @@
   "devDependencies": {
     "angular": "~1.3.15",
     "requirejs": "~2.1.17",
-    "require1k": "~1.0.0",
     "basscss": "~6.0.2"
   },
   "dependencies": {
     "jquery": "~2.1.3"
   },
-  "_release": "0.2.4",
+  "_release": "0.2.9",
   "_resolution": {
     "type": "version",
-    "tag": "v0.2.4",
-    "commit": "041491e347a7b9ea5eeecf42552a9478c2d11c41"
+    "tag": "v0.2.9",
+    "commit": "68a0fa630d4c2fe32330135d38450c1703b2b29f"
   },
   "_source": "git://github.com/voidberg/html5sortable.git",
   "_target": "~0.2.4",
-  "_originalSource": "html.sortable",
-  "_direct": true
+  "_originalSource": "html.sortable"
 }

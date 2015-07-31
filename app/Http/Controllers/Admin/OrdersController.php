@@ -403,6 +403,10 @@ class OrdersController extends Controller {
 
 	public function destroy(Order $order)
 	{
+		foreach($order->orderEvents as $event) {
+			$event->delete();
+		}
+
 		$order->delete();
 		return Redirect::back()->with('success', 'Order #' .$order->id .' deleted.');
 	}

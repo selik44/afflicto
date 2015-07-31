@@ -6,7 +6,11 @@
 			imagesLoaded(document.querySelector('.products-grid'), function() {
 				$(".products-grid").isotope({
 					itemSelector: '.product',
-					layoutMode: 'fitRows'
+					layoutMode: 'fitRows',
+                    getSortData: {
+                        price: '[data-price] parseInt',
+                        manufacturer: '[data-manufacturer]',
+                    }
 				});
 			});
 		})();

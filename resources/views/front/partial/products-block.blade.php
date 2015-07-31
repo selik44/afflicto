@@ -1,4 +1,4 @@
-<div class="product products-block" data-id="{{$product->id}}" data-price="{{$product->price}}" data-manufacturer="{{($product->manufacturer) ? $product->manufacturer->id : ''}}">
+<div class="product products-block" data-id="{{$product->id}}" data-price="{{ceil($product->price * $product->vatgroup->amount)}}" data-manufacturer="{{($product->manufacturer) ? $product->manufacturer->id : ''}}">
 	<?php
 	$img = $product->images()->first();
 	if ($img == null) {

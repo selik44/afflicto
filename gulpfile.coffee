@@ -36,6 +36,8 @@ gulp.task 'scripts', ->
 			'resources/assets/vendor/jquery-touchswipe/jquery.touchSwipe.min.js'
 			'resources/assets/vendor/isotope/dist/isotope.pkgd.min.js'
 			'resources/assets/vendor/isotope-packery/packery-mode.pkgd.min.js'
+			'resources/assets/vendor/isotope-cells-by-row/cells-by-row.js'
+			'resources/assets/vendor/isotope-fit-columns/fit-columns.js'
 			'resources/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js'
 			'resources/assets/vendor/nouislider/distribute/jquery.nouislider.all.min.js'
 			'resources/assets/vendor/chosen/chosen.jquery.min.js'
@@ -58,6 +60,7 @@ gulp.task 'scripts', ->
 	jsFiles
 		.pipe order [
 				'jquery.min.js'
+				'isotope.pkgd.min.js'
 				'chosen.jquery.min.js'
 				'gentlestyle.js'
 				'autoslug.coffee'

@@ -10,7 +10,7 @@
 	$mostExpensive = 0;
 	foreach($products as $product) {
 		if ($product->price > $mostExpensive) {
-			$mostExpensive = $product->price;
+			$mostExpensive = ceil($product->price * $product->vatgroup->amount);
 		}
 	}
 	?>
@@ -28,7 +28,7 @@
 
 		priceSlider.noUiSlider({
 			start: [0, {{$mostExpensive}}],
-			step: 100,
+			step: 10,
 			range: {
 				min: 0,
 				max: {{$mostExpensive}}
@@ -47,6 +47,29 @@
 			}
 		});
 
+        $(".products-grid-sort select").change(function() {
+            console.log('applying sort');
+            var sort = $(this).val();
+            var asc = false;
+            if (sort == '----') {
+                sort = null;
+            }else if (sort == 'price-asc') {
+                sort = 'price';
+                asc = true;
+            }else if (sort == 'price-desc'){
+                sort = 'price';
+                asc = false;
+            }
+
+            console.log('sorting by ' + sort + ' asc: ' + asc);
+
+            //sort
+            grid.isotope({
+                sortBy: sort,
+                sortAscending: asc,
+            });
+        });
+
 		// manufacturers select
 		manufacturersSelect.chosen().next().removeAttr('style').css('width', '100%');
 
@@ -62,7 +85,7 @@
 		function updateFilter() {
 			grid.isotope({
 				filter: function() {
-					var price = $(this).attr('data-price');
+					var price = parseInt($(this).attr('data-price'));
 					var manufacturer = $(this).attr('data-manufacturer');
 
 					if (price < priceSlider.val()[0]) return false;
@@ -77,13 +100,49 @@
 		};
 
 		// initialize isotope
-		imagesLoaded(document.querySelector('.products-grid'), function() {
-			grid.isotope({
-				itemSelector: '.product',
-				layoutMode: 'packery',
-			});
-		});
+        grid.isotope({
+            getSortData: {
+                price: '[data-price] parseInt',
+            },
+        });
 	</script>
+@stop
+
+@section('aside')
+    <div class="block">
+        <div class="module">
+            <div class="module-header">
+                <h6>Filter</h6>
+            </div>
+            <div class="products-grid-options clearfix module-content">
+                <div class="filters clearfix">
+                    <div class="filter price-filter">
+                        <div class="header">
+                            <h5 class="pull-left end">@lang('store.price')</h5>
+                        </div>
+                        <div class="values">
+                            <div class="pull-left min-value">0</div>
+                            <div class="pull-right max-value">{{$mostExpensive}}</div>
+                        </div>
+                        <div class="control">
+                            <div class="price-slider"></div>
+                        </div>
+                    </div>
+
+                    <div class="filter manufacturers-filter">
+                        <h5>@lang('store.manufacturer')</h5>
+                        <select name="manufacturers-select" class="manufacturers-select">
+                            <option value="*">@lang('store.all')</option>
+                            @foreach($manufacturers as $m)
+                                <option value="{{$m->id}}">{{$m->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @parent
 @stop
 
 @section('article')
@@ -98,38 +157,17 @@
         </div>
     @endif
 
-	<div class="products-grid-options clearfix module">
-		<header class="module-header clearfix">
-			<h2 class="end pull-left">{{{ucwords(strtolower($category->name))}}}</h2>
-		</header>
+    <div class="products-grid-sort">
+        <h4 for="sort">@lang('store.sort.sort')</h4>
+        <select name="sort">
+            <option value="none">----</option>
+            <option value="price-asc">@lang('store.sort.price ascending')</option>
+            <option value="price-desc">@lang('store.sort.price descending')</option>
+            <option value="manufacturer">@lang('store.manufacturer')</option>
+        </select>
+    </div>
 
-		<div class="module-content clearfix">
-			<div class="filters clearfix">
-				<div class="col-sm-12 col-m-6 filter price-filter">
-					<div class="header">
-						<h5 class="pull-left end">@lang('store.price')</h5>
-					</div>
-					<div class="values">
-						<div class="pull-left min-value">0</div>
-						<div class="pull-right max-value">{{$mostExpensive}}</div>
-					</div>
-					<div class="control">
-						<div class="price-slider"></div>
-					</div>
-				</div>
-
-				<div class="col-sm-12 col-m-6 filter manufacturers-filter">
-					<h5>@lang('store.manufacturer')</h5>
-					<select name="manufacturers-select" class="manufacturers-select">
-						<option value="*">@lang('store.all')</option>
-						@foreach($manufacturers as $m)
-							<option value="{{$m->id}}">{{$m->name}}</option>
-						@endforeach
-					</select>
-				</div>
-			</div>
-		</div>
-	</div>
+    <hr>
 
 	@include('front.partial.products-grid', ['withMenu' => true])
 @stop

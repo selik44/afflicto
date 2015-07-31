@@ -1,6 +1,7 @@
 <?php
 
 return [
+	'all' => 'Alle',
 	'search' => 'Søk',
 	'help' => 'Hjelp',
 	'account' => 'Konto',
@@ -25,6 +26,7 @@ return [
 	'product' => 'Produkt',
 	'cart empty' => 'Handlekurven er tom.',
 	'done' => 'Ferdig',
+	'manufacturer' => 'Produsent',
 
 	'in stock' => 'På Lager',
 	'out of stock' => 'Utsolgt',
@@ -42,5 +44,11 @@ return [
 		'shipping' => 'Frakt',
 		'service-pack' => 'Service-pakke med Sporing',
 		'mail' => 'Brevpost',
+	],
+
+	'sort' => [
+		'sort' => 'Sorter',
+		'price ascending' => 'Pris - Stigende',
+		'price descending' => 'Pris - Fallende',
 	],
 ];

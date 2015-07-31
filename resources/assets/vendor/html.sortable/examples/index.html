@@ -56,12 +56,13 @@
 		    </div>
 				<div class="col col-6">
 					<ul class="ml4 js-sortable sortable list flex flex-column list-reset">
-						<li class="p1 mb1 navy bg-yellow">Item 1</li>
-						<li class="p1 mb1 navy bg-yellow">Item 2</li>
-						<li class="p1 mb1 navy bg-yellow">Item 3</li>
-						<li class="p1 mb1 navy bg-yellow">Item 4</li>
-						<li class="p1 mb1 navy bg-yellow">Item 5</li>
-						<li class="p1 mb1 navy bg-yellow">Item 6</li>
+						<li class="p1 mb1 navy bg-yellow" style="position: relative; z-index: 10">Item 1</li>
+						<li class="p1 mb1 navy bg-yellow" style="position: relative; z-index: 10">Item 2</li>
+						<li class="p1 mb1 navy bg-yellow" style="position: relative; z-index: 10">Item 3</li>
+						<li class="p1 mb1 navy bg-yellow" style="position: relative; z-index: 10">Item 4</li>
+						<li class="p1 mb1 navy bg-yellow" style="position: relative; z-index: 10">Item 5</li>
+						<li class="p1 mb1 navy bg-yellow" style="position: relative; z-index: 10">Item 6</li>
+						<li class="mb1 bg-navy ghost border border-yellow" style="position: relative; z-index: 1; margin-top: -49px; height: 40px; display: block;">Ghost test</li>
 					</ul>
 		    </div>
 			</div>
@@ -141,10 +142,19 @@
 					Connected lists
 		    </h2>
 				<p>Connected: This means an item can be draged into another (connected) list.</p>
-				<p class="mb3">Handles: Elements, e.g. || an item can be dragged with.</p>
+				<p class="mb2">Handles: Elements, e.g. || an item can be dragged with.</p>
 				<ul class="js-sortable-connected list flex flex-column list-reset">
+					<script>// scripts are needed for a test for indexes in sortupdate</script>
+					<script></script>
+					<script></script>
 					<li class="p1 mb1 border border-white white bg-orange"><span class="js-handle px1">||</span>Item 1</li>
-					<li class="p1 mb1 border border-white white bg-orange"><span class="js-handle px1">||</span>Item 2</li>
+					<li class="p1 mb1 border border-white white bg-orange">
+						<div class="mb1"><span class="js-handle px1">||</span>Item 2</div>
+					<ul class="js-sortable-inner-connected list flex flex-column list-reset m0">
+						<li class="p1 mb1 border border-blue white bg-blue"><span class="js-inner-handle px1">||</span>Inner item 1</li>
+						<li class="p1 mb1 border border-blue white bg-blue"><span class="js-inner-handle px1">||</span>Inner item 2</li>
+					</ul>
+					</li>
 					<li class="p1 mb1 border border-white white bg-orange"><span class="js-handle px1">||</span>Item 3</li>
 					<li class="p1 mb1 border border-white white bg-orange"><span class="js-handle px1">||</span>Item 4</li>
 					<li class="p1 mb1 border border-white white bg-orange"><span class="js-handle px1">||</span>Item 5</li>
@@ -152,10 +162,15 @@
 				</ul>
 			</div>
 			<div class="p3 bg-orange white col col-6">
-				<div class="p3 border border-white mb1">
+				<div class="px3 py2 border border-white mb1">
 					<code class="mb0">
+						<div class="muted">// white & orange items</div>
 						<div>$('.o-sortable').sortable({</div>
-						<div class="px2">connectWith: '.js-connected'</div>
+						<div class="px2">connectWith: 'js-connected'</div>
+						<div>});</div>
+						<div class="muted">// blue items</div>
+						<div>$('.o-sortable-inner').sortable({</div>
+						<div class="px2">connectWith: 'js-inner-connected'</div>
 						<div>});</div>
 					</code>
 				</div>
@@ -163,9 +178,13 @@
 					<li class="p1 mb1 border border-orange orange bg-white"><span class="js-handle px1">||</span>Item 1</li>
 					<li class="p1 mb1 border border-orange orange bg-white"><span class="js-handle px1">||</span>Item 2</li>
 					<li class="p1 mb1 border border-orange orange bg-white"><span class="js-handle px1">||</span>Item 3</li>
-					<li class="p1 mb1 border border-orange orange bg-white"><span class="js-handle px1">||</span>Item 4</li>
-					<li class="p1 mb1 border border-orange orange bg-white"><span class="js-handle px1">||</span>Item 5</li>
-					<li class="p1 mb1 border border-orange orange bg-white"><span class="js-handle px1">||</span>Item 6</li>
+					<li class="p1 mb1 border border-orange orange bg-white">
+						<div class="mb1"><span class="js-handle px1">||</span>Item 4</div>
+						<ul class="js-sortable-inner-connected list flex flex-column list-reset mb0">
+							<li class="p1 mb1 border border-blue white bg-blue"><span class="js-inner-handle px1">||</span>Inner item 3</li>
+							<li class="p1 mb1 border border-blue white bg-blue"><span class="js-inner-handle px1">||</span>Inner item 4</li>
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</section>
@@ -197,23 +216,30 @@
 					<div class="center py2 ml4">
 						<button class="js-disable button blue bg-white" data-text="Enable">Disable</button>
 						<button class="js-add-item-button button blue bg-white">Add item</button>
-						<button class="js-reload button button-outline white">Reload</button>
+						<button class="js-reload button button-outline white">Re-init</button>
+					</div>
+					<div class="center py1 ml4">
+						<button class="js-destroy button blue bg-white">Destroy</button>
+						<button class="js-init button blue bg-white">Init</button>
 					</div>
 		    </div>
 			</div>
 		</section>
 	</div>
   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="../dist/html.sortable.js"></script>
 	<script src="../src/html.sortable.src.js"></script>
 	<script>
 		$(function() {
 			$('.js-sortable').sortable({
 				forcePlaceholderSize: true,
-				placeholderClass: 'p1 mb1 bg-navy border border-yellow'
+				placeholderClass: 'p1 mb1 bg-navy border border-yellow',
+				dragImage: $('.ghost')[0]
 			});
 			$('.js-grid').sortable({
 				forcePlaceholderSize: true,
-				placeholderClass: 'col col-4 border border-maroon'
+				placeholderClass: 'col col-4 border border-maroon',
+				dragImage: null
 			});
 			$('.js-sortable-disabled').sortable({
 				forcePlaceholderSize: true,
@@ -225,44 +251,51 @@
 				items: ':not(.disabled)',
 				placeholderClass: 'border border-maroon mb1'
 			});
-			$('.js-list-handle').sortable({
-				handle: '.js-handle',
-				forcePlaceholderSize: true,
-				placeholderClass: 'border border-maroon mb1'
-			});
-			$('.js-handles').sortable({
-				handle: 'span',
-				forcePlaceholderSize: true
-			});
 			$('.js-sortable-connected').sortable({
 				forcePlaceholderSize: true,
 				connectWith: '.js-connected',
 				handle: '.js-handle',
+				items: 'li',
 				placeholderClass: 'border border-white bg-orange mb1'
 			});
-			$('.js-exclude').sortable({
+			$('.js-sortable-inner-connected').sortable({
 				forcePlaceholderSize: true,
-				items: ':not(.disabled)'
-			});
-			$('.js-sortable-buttons').sortable({
-				forcePlaceholderSize: true,
-				placeholderClass: 'border border-white mb1'
+				connectWith: 'js-inner-connected',
+				handle: '.js-inner-handle',
+				items: 'li',
+				placeholderClass: 'border border-white bg-orange mb1'
+			})
+			$('.js-sortable-connected').on('sortupdate', function(e, obj){
+				console.log('Parent old: ');
+				console.log(obj.startparent);
+				console.log('Parent new: ');
+				console.log(obj.endparent);
+				console.log('Index: '+obj.oldindex+' -> '+obj.index);
+				console.log('elementIndex: '+obj.oldElementIndex+' -> '+obj.elementIndex);
 			});
 
+			$('.js-sortable-buttons').sortable({
+				forcePlaceholderSize: true,
+				items: 'li',
+				placeholderClass: 'border border-white mb1'
+			});
 			// buttons to add items and reload the list
 			// separatly to showcase issue without reload
 			$('.js-add-item-button').on('click', function(){
 				$(this).parents().siblings('ul').append('<li class="p1 mb1 blue bg-white">new item</li>');
 			});
 			$('.js-reload').on('click', function(){
-				$(this).parents().siblings('ul').sortable('reload');
+				console.log('Options before re-init:');
+				console.log($(this).parents().siblings('ul').data('opts'));
+				$(this).parents().siblings('ul').sortable();
+				console.log('Options after re-init:');
+				console.log($(this).parents().siblings('ul').data('opts'));
 			});
 			// JS DISABLEFD
 			$('.js-disable').on('click', function(){
 				var $list = $('[data-disabled]');
 				var text = $(this).data('text');
 				$(this).data('text', $(this).text()).text(text);
-				console.log($list.data('disabled'));
 				if( $list.data('disabled') === false )
 				{
 					$list.sortable('disable');
@@ -273,6 +306,17 @@
 					$list.data('disabled', false);
 					$list.find('li').removeClass('muted');
 				}
+			});
+			// Destroy & Init
+			$('.js-destroy').on('click', function(){
+				$(this).parents().siblings('ul').sortable('destroy');
+			});
+			$('.js-init').on('click', function(){
+				$(this).parents().siblings('ul').sortable({
+					forcePlaceholderSize: true,
+					items: 'li',
+					placeholderClass: 'border border-white mb1'
+				});
 			});
 		});
 	</script>

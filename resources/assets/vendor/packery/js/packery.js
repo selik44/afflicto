@@ -1,5 +1,5 @@
 /*!
- * Packery v1.4.1
+ * Packery v1.4.2
  * bin-packing layout library
  *
  * Licensed GPLv3 for open source use
@@ -86,13 +86,23 @@ Packery.prototype._create = function() {
   };
 
   this.handleUIDraggable = {
-    start: function handleUIDraggableStart( event ) {
+    start: function handleUIDraggableStart( event, ui ) {
+      // HTML5 may trigger dragstart, dismiss HTML5 dragging
+      if ( !ui ) {
+        return;
+      }
       _this.itemDragStart( event.currentTarget );
     },
     drag: function handleUIDraggableDrag( event, ui ) {
+      if ( !ui ) {
+        return;
+      }
       _this.itemDragMove( event.currentTarget, ui.position.left, ui.position.top );
     },
-    stop: function handleUIDraggableStop( event ) {
+    stop: function handleUIDraggableStop( event, ui ) {
+      if ( !ui ) {
+        return;
+      }
       _this.itemDragEnd( event.currentTarget );
     }
   };
@@ -318,7 +328,7 @@ Packery.prototype._bindFitEvents = function( item ) {
     if ( ticks != 2 ) {
       return;
     }
-    _this.emitEvent( 'fitComplete', [ item ] );
+    _this.dispatchEvent( 'fitComplete', null, [ item ] );
   }
   // when item is laid out
   item.on( 'layout', function() {
@@ -463,7 +473,7 @@ Packery.prototype._getDragEndLayoutComplete = function( elem, item ) {
 
     // emit item drag event now that everything is done
     if ( itemNeedsPositioning ) {
-      _this.emitEvent( 'dragItemPositioned', [ item ] );
+      _this.dispatchEvent( 'dragItemPositioned', null, [ item ] );
     }
     // listen once
     return true;

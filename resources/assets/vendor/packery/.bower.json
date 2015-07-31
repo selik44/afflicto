@@ -1,6 +1,6 @@
 {
   "name": "packery",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "author": "Metafizzy",
   "description": "bin-packing layout library",
   "main": "js/packery.js",
@@ -8,7 +8,7 @@
     "classie": "1.x",
     "get-style-property": "1.x",
     "get-size": "1.2.x",
-    "outlayer": "1.4.x"
+    "outlayer": "~1.4.1"
   },
   "devDependencies": {
     "draggabilly": "1.x",
@@ -26,11 +26,11 @@
     "Gruntfile.js"
   ],
   "homepage": "https://github.com/metafizzy/packery",
-  "_release": "1.4.1",
+  "_release": "1.4.2",
   "_resolution": {
     "type": "version",
-    "tag": "v1.4.1",
-    "commit": "c5daa487b413ba333ddad5e6cab3c385e302bc52"
+    "tag": "v1.4.2",
+    "commit": "73597d7e3aca0f5d5cd1622edb1b421c6296f735"
   },
   "_source": "git://github.com/metafizzy/packery.git",
   "_target": ">=1.3.0 <1.5",
