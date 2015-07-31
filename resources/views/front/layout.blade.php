@@ -279,8 +279,8 @@
 		//toggle nav sub-menus on small
         $("#navigation .nav .navitem-dropdown-toggle").click(function() {
             $(this).toggleClass('active');
-            var dropdown = $(this).parent().children('.nav-dropdown').first();
-            dropdown.slideToggle();
+            var dropdown = $(this).parent().children('ul, .nav-dropdown').first();
+            dropdown.css('height', 'auto').slideToggle();
         });
 
         /*

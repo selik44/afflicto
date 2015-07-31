@@ -63,21 +63,21 @@
 
 
 @section('article')
-	<h2 class="end">@lang('store.popular products')</h2>
+	<div class="products-popular paper clearfix" style="padding: 2rem;">
+        <h2 class="end">@lang('store.popular products')</h2>
 
-	<hr style="margin-top: 0px">
-
-	<div class="row products-popular">
+        <div class="row">
 		@foreach($popular as $product)
 			<div class="col-xs-6 col-l-3">
 				@include('front.partial.products-block', ['product' => $product])
 			</div>
 		@endforeach
+        </div>
 	</div>
 
-	<hr/>
+    <br>
 
-	<div class="row">
+	<div class="row paper">
 		<div class="col-xs-6 tight">
 			<a href="#">
 				<img src="http://lorempixel.com/800/600/abstract"/>

@@ -29,7 +29,7 @@
 				</div>
 			</div>
 
-			<div class="product-info">
+			<div class="product-info paper">
                 @if($product->manufacturer->image)
                     <a class="manufacturer text-center" href="#product-manufacturer-description" style="width: 100%; float: left; padding:1rem">
                         <img src="{{asset('images/manufacturers/' .$product->manufacturer->image->name)}}" alt="{{$product->manufacturer->name}} Logo">
@@ -111,16 +111,14 @@
                 </form>
 
                 <div class="summary">
-                    <p class="lead muted content">
+                    <p class="lead content">
                         {!! $product->summary !!}
                     </p>
                 </div>
 			</div>
 		</div>
 
-		<hr>
-
-		<div class="product-bottom col-xs-12 tight">
+		<div class="paper product-bottom col-xs-12 tight">
 			<ul id="product-tabs" class="nav tabs clearfix">
 				<li class="current"><a href="#product-info">@lang('store.product info')</a></li>
 				<li><a href="#product-relations">@lang('store.related products')</a></li>

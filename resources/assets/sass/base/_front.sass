@@ -5,6 +5,11 @@ iframe
 	max-width: 100%
 
 #front
+	background: $base-background
+	background-image: url('/images/bg.jpg')
+	background-position: top center
+	background-attachment: fixed
+	background-repeat: no-repeat
 
 	//center the main components
 	#header, #page, #footer, #nav, #nav-top, .nav-dropdown, #breadcrumbs, #slider, #cart
@@ -16,7 +21,8 @@ iframe
 			border-bottom: 1px solid $base-border-color
 
 	#header
-
+		position: relative
+		z-index: 10
 		#nav-top
 
 			.nav li
@@ -24,9 +30,9 @@ iframe
 					color: weaker($base-color, 15%)
 
 	#breadcrumbs
-		background: darken($base-background, 2%)
+		background: darken($base-background, 10%)
 		text-transform: uppercase
-		font-size: 0.8rem
+		font-size: 0.9rem
 
 		> .inner
 			padding: 0.4rem 1rem
@@ -55,6 +61,9 @@ iframe
 				margin-bottom: 1rem
 	
 	#slider
+		background: stronger($base-background, 10%)
+		box-shadow: 0px 0px 2rem 0px rgba(0,0,0, 0.5)
+
 		> .inner
 			max-width: $base-width
 			display: flex
@@ -80,22 +89,19 @@ iframe
 					background-position: center
 					flex: 1 1 50%
 					width: 100%
+					border-left: 2px solid $base-background
+
+					&:first-child
+						border-bottom: 2px solid $base-background
 
 			.slider
 				border: none
 				border-radius: 0
 				height: 700px
 
-			.slider, .image
-				border: 1px solid $base-border-color
-
 			.image
 				transition: all $base-transition-duration
 				transition-timing-function: ease-out
-				filter: saturate(20%)
-
-				&:hover
-					filter: saturate(100%)
 
 	#intro
 		background: $base-background
@@ -105,11 +111,6 @@ iframe
 
 	#page
 		border-bottom: 1px solid stronger($base-border-color, 10%)
-		background: $base-background
-		background-image: url('/images/bg.jpg')
-		background-position: top center
-		background-attachment: fixed
-		background-repeat: no-repeat
 		padding: 3rem 0
 
 		> .inner
@@ -150,7 +151,7 @@ iframe
 						padding-left: 0rem
 
 	.paper
-		background-color: rgba(255,255,255, 0.75)
+		background-color: rgba(255,255,255, 0.85)
 
 		.white
 			background-color: white

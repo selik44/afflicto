@@ -7,6 +7,7 @@
 
 	.product-top
 		display: flex
+		margin-bottom: 2rem
 
 		.product-images
 			padding-bottom: 0
@@ -43,7 +44,7 @@
 
 		.product-info
 			position: relative
-			padding-bottom: 0
+			padding: 1rem
 			display: flex
 			flex-direction: column
 			align-items: center
@@ -111,12 +112,16 @@
 
 	.product-bottom
 		ul.tabs
+			li
+				a
+					color: $base-color
 			li.current
 				a
 					background: stronger($base-background, 10%)
 
 		.tab
 			background: stronger($base-background, 10%)
+			padding: 2rem
 
 		#product-relations
 			.products-grid
