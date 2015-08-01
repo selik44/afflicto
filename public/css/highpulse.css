@@ -4406,12 +4406,16 @@ ul.pagination {
 
 .products-grid-options {
   overflow: visible; }
+  .products-grid-options .filters .manufacturers-filter {
+    display: none; }
   .products-grid-options .filters .filter, .products-grid-options .filters .variants {
     float: left;
     width: 100%;
     clear: both; }
     .products-grid-options .filters .filter:not(:last-child), .products-grid-options .filters .variants:not(:last-child) {
       margin-bottom: 2rem; }
+    .products-grid-options .filters .filter select, .products-grid-options .filters .filter .chosen-container .chosen-choices, .chosen-container .products-grid-options .filters .filter .chosen-choices, .products-grid-options .filters .filter .chosen-container .chosen-single, .chosen-container .products-grid-options .filters .filter .chosen-single, .products-grid-options .filters .filter .chosen-container .chosen-drop, .chosen-container .products-grid-options .filters .filter .chosen-drop, .products-grid-options .filters .variants select, .products-grid-options .filters .variants .chosen-container .chosen-choices, .chosen-container .products-grid-options .filters .variants .chosen-choices, .products-grid-options .filters .variants .chosen-container .chosen-single, .chosen-container .products-grid-options .filters .variants .chosen-single, .products-grid-options .filters .variants .chosen-container .chosen-drop, .chosen-container .products-grid-options .filters .variants .chosen-drop {
+      width: 100%; }
   .products-grid-options .filters .price-filter .header, .products-grid-options .filters .price-filter .values, .products-grid-options .filters .price-filter .control {
     float: left;
     width: 100%; }
@@ -4586,9 +4590,9 @@ ul.pagination {
             flex-direction: column-reverse; }
     .product-view .product-top .product-images .thumbnails {
       -webkit-box-flex: 0;
-      -webkit-flex: 0 0 140px;
-          -ms-flex: 0 0 140px;
-              flex: 0 0 140px;
+      -webkit-flex: 0 0 auto;
+          -ms-flex: 0 0 auto;
+              flex: 0 0 auto;
       display: -webkit-box;
       display: -webkit-flex;
       display: -ms-flexbox;
@@ -4607,7 +4611,7 @@ ul.pagination {
           -ms-flex-pack: center;
               justify-content: center;
       border-top: 1px solid #333;
-      padding-top: 1rem; }
+      padding: 1px; }
       .product-view .product-top .product-images .thumbnails .thumbnail {
         -webkit-box-flex: 1;
         -webkit-flex: 1 1 140px;
@@ -5274,7 +5278,7 @@ body.scrolled {
     border-bottom: 1px solid #333;
     box-shadow: 0px 0px 2rem 0px rgba(0, 0, 0, 0.5); }
     body.scrolled #front #navigation .nav-controls .logo {
-      width: 120px; }
+      width: 100px; }
 
 body, #front #footer {
   background: #252525; }

@@ -1,20 +1,26 @@
 .products-grid-options
 	overflow: visible
+
 	.filters
+
+		.manufacturers-filter
+			display: none
 
 		.filter, .variants
 			float: left
 			width: 100%
 			clear: both
+
 			&:not(:last-child)
 				margin-bottom: 2rem
+
+			select
+				width: 100%
 
 		.price-filter
 			.header, .values, .control
 				float: left
 				width: 100%
-
-			.header
 
 			.values
 				.min-value, .max-value

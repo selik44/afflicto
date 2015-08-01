@@ -48,7 +48,10 @@ return [
 
 	'sort' => [
 		'sort' => 'Sorter',
-		'price ascending' => 'Pris - Stigende',
-		'price descending' => 'Pris - Fallende',
+		'price ascending' => 'Pris, Lav - Høy',
+		'price descending' => 'Pris, Høy - Lav',
+		'in stock' => 'På Lager',
 	],
+
+	'search no results' => 'Fant ingenting.',
 ];

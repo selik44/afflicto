@@ -48,7 +48,6 @@
 		});
 
         $(".products-grid-header .sort select").change(function() {
-            console.log('applying sort');
             var sort = $(this).val();
             var asc = false;
             if (sort == '----') {
@@ -60,8 +59,6 @@
                 sort = 'price';
                 asc = false;
             }
-
-            console.log('sorting by ' + sort + ' asc: ' + asc);
 
             //sort
             grid.isotope({
@@ -99,33 +96,22 @@
                         filters[$(this).attr('data-variant')] = $(this).find('select').val();
                     });
 
-                    console.log('filters: ');
-                    console.log(filters);
-
                     var value;
                     for(var name in filters) {
                         value = filters[name];
                         if (value == '*') continue;
                         var supported = $(this).attr('data-variant-' + name);
 
-                        console.log('this product supports: ');
-                        console.log(supported);
-
-                        console.log('and we have chosen: ' + value);
-
                         if (supported !== undefined && supported !== null) {
                             supported = supported.split(',');
-                            console.log('checking if ' + value + ' is inside: ' + supported.join(','));
                             var inArray = false;
                             for(var i in supported) {
                                 var val = supported[i];
                                 if (val == value) inArray = true;
                             }
                             if ( ! inArray) {
-                                console.log('NOPE!');
                                 return false;
                             }else {
-                                console.log('yes!');
                             }
                         }
                     }
@@ -184,7 +170,7 @@
                     <div class="variants">
                         @foreach($variants as $name => $values)
                             <div class="filter variant" data-variant="{{$name}}">
-                                <h5>{{$name}}</h5>
+                                <h5>{{ucwords($name)}}</h5>
                                 <select name="variant-{{str_replace(' ', '-', $name)}}">
                                     <option value="*">@lang('store.all')</option>
                                     @foreach($values as $value)

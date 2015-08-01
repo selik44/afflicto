@@ -86,6 +86,23 @@ class Cart {
 		return $this->session->get('shoppingcart.contents.' .$uid, null);
 	}
 
+	public function getItemLike($product_id, $options = []) {
+		foreach($this->getItems() as $item) {
+			if ($item['product_id'] == $product_id) {
+				if (isset($item['options']['variants']) && isset($options['variants'])) {
+					foreach($options['variants'] as $key => $value) {
+						if ($item['options']['variants'][$key] != $value) {
+							return null;
+						}
+					}
+					return $item;
+				}
+			}
+		}
+
+		return null;
+	}
+
 	/**
 	 * Add an item to the cart.
 	 * @param \Friluft\Product|int|integer a product model instance or integer product_id
@@ -96,6 +113,12 @@ class Cart {
 		# get product
 		if (is_object($product) && $product instanceof Product) {
 			$product = $product->id;
+		}
+
+		$duplicate = $this->getItemLike($product, $options);
+		if ($duplicate) {
+			$this->setQuantity($duplicate['id'], $duplicate['quantity'] + $quantity);
+			return $duplicate['id'];
 		}
 
 		# get uid and increment it

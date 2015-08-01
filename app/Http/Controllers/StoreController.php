@@ -15,62 +15,65 @@ use Session;
 
 class StoreController extends Controller {
 
-	public function index($path)
-	{
-		$query = $path;
+	public function index($path) {
 		$path = explode('/', $path);
-		$slug = array_pop($path);
-
-		foreach(Category::where('slug', '=', $slug)->get() as $cat) {
-			$p = $cat->getPath();
-
-			if ($p == $query) {
-				$products = $cat->nestedProducts();
-
-				$manufacturers = [];
-				foreach($products as $product) {
-					$m = $product->manufacturer;
-					if ( ! $m) continue;
-					if ( ! isset($manufacturers[$m->id])) {
-						$manufacturers[$m->id] = $m;
-					}
-				}
-
-				# create merged variant filters
-				$variants = [];
-				foreach($products as $product) {
-					foreach($product->variants as $variant) {
-						$name = strtolower(str_replace(' ', '-', $variant->name));
-						if ( ! isset($variants[$name])) $variants[$name] = [];
-						$variants[$name] = array_unique(array_merge($variants[$name], array_column($variant->data['values'], 'name')));
-					}
-				}
-
-				return view('front.store_category')
-					->with([
-						'category' => $cat,
-						'products' => $products,
-						'manufacturers' => $manufacturers,
-						'variants' => $variants,
-						'aside' => true,
-					]);
+		$tree = [];
+		$parent_id = null;
+		$product = null;
+		foreach($path as $slug) {
+			$cat = Category::whereParentId($parent_id)->whereSlug($slug)->first();
+			if ($cat) {
+				$tree[] = $cat;
+				$parent_id = $cat->id;
+			}else {
+				$tree[] = Product::where('categories', 'LIKE', '%' .$parent_id .'%')->whereSlug($slug)->first();
 			}
 		}
 
-		$product = Product::enabled()->where('slug', '=', $slug)->first();
+		$last = array_pop($tree);
+		if ($last instanceof Product) {
+			#--- product ---#
+			$product = $last;
 
-		if ($product) {
-			$slug = array_pop($path);
-
-			if ($slug) {
-				$category = Category::where('slug', '=', $slug)->first();
-			}
+			$category = array_pop($tree);
 
 			return view('front.store_product')
 				->with([
 					'category' => $category,
 					'product' => $product,
 					'aside' => true
+				]);
+		}else {
+			#--- category ---#
+			$cat = $last;
+			$products = $cat->nestedProducts();
+
+			$manufacturers = [];
+			foreach($products as $product) {
+				$m = $product->manufacturer;
+				if ( ! $m) continue;
+				if ( ! isset($manufacturers[$m->id])) {
+					$manufacturers[$m->id] = $m;
+				}
+			}
+
+			# create merged variant filters
+			$variants = [];
+			foreach($products as $product) {
+				foreach($product->variants as $variant) {
+					$name = strtolower(str_replace(' ', '-', $variant->name));
+					if ( ! isset($variants[$name])) $variants[$name] = [];
+					$variants[$name] = array_unique(array_merge($variants[$name], array_column($variant->data['values'], 'name')));
+				}
+			}
+
+			return view('front.store_category')
+				->with([
+					'category' => $cat,
+					'products' => $products,
+					'manufacturers' => $manufacturers,
+					'variants' => $variants,
+					'aside' => true,
 				]);
 		}
 

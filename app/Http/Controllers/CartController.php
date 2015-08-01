@@ -61,6 +61,7 @@ class CartController extends Controller {
 			'variants' => []
 		];
 
+		# set variants
 		foreach($product->variants as $variant) {
 			$name = $variant->name;
 			if (!Input::has('variant-' .$variant->id)) {
@@ -75,10 +76,31 @@ class CartController extends Controller {
 			}
 		}
 
+		# get stock
+		$stock = $product->getStock($options['variants']);
+
+		# is quantity greater than stock?
+		$totalQuantity = $quantity;
+
+		# is there a duplicate of this product with the same variant options?
+		$duplicate = Cart::getItemLike($product->id, $options);
+		if ($duplicate) $totalQuantity += $duplicate['quantity'];
+
+		if ($totalQuantity > $stock) {
+			# allow always order?
+			$manufacturer = $product->manufacturer;
+			if ( ! $manufacturer || ! $manufacturer->always_allow_orders) {
+				return response('Not enough in stock', 400);
+			}
+		}
+
+		# add it to the cart
 		$cartid = Cart::add($product, $quantity, $options);
 
+		# update the klarna order
 		Cart::updateKlarnaOrder();
 
+		# return some data
 		return ['id' => $cartid, 'total' => Cart::getTotal()];
 	}
 

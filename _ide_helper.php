@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.0.33 on 2015-07-27.
+ * Generated for Laravel 5.0.33 on 2015-08-01.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -11658,6 +11658,15 @@ namespace {
         }
         
         /**
+         * 
+         *
+         * @static 
+         */
+        public static function getItemLike($product_id, $options = array()){
+            return \Friluft\Shopping\Cart\Cart::getItemLike($product_id, $options);
+        }
+        
+        /**
          * Add an item to the cart.
          *
          * @param \Friluft\Product|int|integer  a product model instance or integer product_id
@@ -11738,6 +11747,15 @@ namespace {
          */
         public static function getTotalWeight(){
             return \Friluft\Shopping\Cart\Cart::getTotalWeight();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */
+        public static function getShipping(){
+            return \Friluft\Shopping\Cart\Cart::getShipping();
         }
         
         /**

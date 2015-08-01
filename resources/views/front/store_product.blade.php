@@ -15,8 +15,10 @@
 			<div class="product-images col-l-8 col-m-7 col-m-12 tight-left clearfix">
                 @if(count($product->images) > 1)
                     <div class="thumbnails">
+                        <?php $active = 'active'; ?>
                         @foreach($product->images as $key => $image)
-                            <a class="thumbnail" href="#" data-slide="{{$key+1}}" style="background-image: url('{{asset('images/products/' .$image->name)}}');"></a>
+                            <a class="thumbnail {{$active}}" href="#" data-slide="{{$key+1}}" style="background-image: url('{{asset('images/products/' .$image->name)}}');"></a>
+                            <?php $$active = '';?>
                         @endforeach
                     </div>
                 @endif

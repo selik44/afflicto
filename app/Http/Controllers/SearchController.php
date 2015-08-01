@@ -13,7 +13,7 @@ class SearchController extends Controller {
 			$terms = trim(substr(Input::get('terms'), 0, 60));
 			return view('front.search')
 				->with([
-					'products' => Product::enabled()->search(Input::get('terms'))->get(),
+					'products' => Product::enabled()->where('categories', '!=', ',,')->search(Input::get('terms'))->get(),
 					'manufacturers' => Manufacturer::search(Input::get('terms'))->get(),
 					'categories' => Category::search(Input::get('terms'))->get(),
 					'aside' => true

@@ -73,7 +73,7 @@
 					<div class="nav-extra">
 						<form class="inline" id="search" action="{{route('search')}}" method="GET">
                             <div class="input-append">
-                                <input required maxlength="100" type="search" name="terms" placeholder="search...">
+                                <input required maxlength="100" type="search" name="terms" placeholder="@lang('store.search')...">
                                 <!--<input type="submit" value="Search" class="primary appended">-->
                                 <button class="primary appended"><i class="fa fa-search"></i></button>
                             </div>

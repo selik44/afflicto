@@ -100,7 +100,7 @@ class Product extends Model {
 
 	/**
 	 * This is the full path to this product which includes the entire depth of the category tree.
-	 * It's stored here as a simple "cache" mechanism, for performance reasons.
+	 * It's stored here as a simple "cache".
 	 *
 	 */
 	public $path = null;
@@ -140,6 +140,35 @@ class Product extends Model {
 
 	public function isEnabled() {
 		return $this->enabled == '1';
+	}
+
+	public function isInStock($options = []) {
+		return $this->getStock($options) > 0;
+	}
+
+	public function getStock($options = []) {
+		if (count($this->variants) == 0) return $this->stock;
+
+		$stockID = [];
+		foreach($options as $id => $value) {
+			# get variant
+			$variant = $this->variants()->where('name', '=', $id)->first();
+			if ( ! $variant) {
+				$variant = Variant::find($id);
+			}
+			if ($variant) {
+				# get id of this value
+				foreach($variant->data['values'] as $val) {
+					if ($value == $val['name'] || $value == $val['id']) {
+						$id = $val['id'];
+					}
+				}
+				$stockID[] = $id;
+			}
+		}
+		$stockID = implode('_', $stockID);
+		if ( ! isset($this->variants_stock[$stockID])) return -1;
+		return $this->variants_stock[$stockID];
 	}
 
 	public function getEnabledAttribute() {
