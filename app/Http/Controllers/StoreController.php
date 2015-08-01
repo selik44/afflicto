@@ -43,7 +43,7 @@ class StoreController extends Controller {
 					'product' => $product,
 					'aside' => true
 				]);
-		}else {
+		}else if ($last instanceof Category) {
 			#--- category ---#
 			$cat = $last;
 			$products = $cat->nestedProducts();
