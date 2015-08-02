@@ -6,15 +6,15 @@
 
 @section('content')
 	<h2>@lang('store.auth.reset password')</h2>
-	{!! Former::open(route('user.reset'))
+	{!! Former::open(route('user.reset.post'))
+	    ->method('POST')
 		->addClass('vertical clearfix')
-		->rules([
 			'email' => 'email|required',
 			'password' => 'required',
 			'password_confirmation' => 'required',
 		])
 	!!}
-	
+
 	{!! Former::hidden('token')->value($token) !!}
 
 	{!! Former::password('password', trans('store.auth.new password')) !!}
