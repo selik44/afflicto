@@ -199,7 +199,7 @@ class StoreController extends Controller {
 
 			# generate password
 			$password = str_random(16);
-			$user->password = bcrypt($password);
+			$user->password = \Hash::make($password);
 
 			# set phone, billing address & shipping address
 			$user->phone = $order->billing_address['phone'];
