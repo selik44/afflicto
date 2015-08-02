@@ -83,5 +83,5 @@ Breadcrumbs::register('store.checkout', function($bc) {
 
 Breadcrumbs::register('store.success', function($bc) {
 	$bc->parent('home');
-	$bc->push(trans('store.crumbs.success'), route('cart.success'));
+	$bc->push(trans('store.crumbs.success'), route('store.success'));
 });
