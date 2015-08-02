@@ -10,6 +10,10 @@ use Input;
 class SettingsController extends Controller {
 
 	public function getDesign() {
+		$image = Image::whereType('background')->first();
+		\Former::populate([
+			'use_background_image' => ($image) ? true : false,
+		]);
 		return view('admin.design_general');
 	}
 
@@ -22,7 +26,6 @@ class SettingsController extends Controller {
 				$image->type = 'background';
 			}
 
-
 			$file = Input::file('background');
 
 			$filename = $file->getClientOriginalName();
@@ -31,6 +34,9 @@ class SettingsController extends Controller {
 
 			$image->name = $filename;
 			$image->save();
+		}else if ( ! Input::has('use_background_image')) {
+			$image = Image::whereType('background')->first();
+			if ($image) $image->delete();
 		}
 
 		return \Redirect::back()->with('success', 'Settings Saved!');

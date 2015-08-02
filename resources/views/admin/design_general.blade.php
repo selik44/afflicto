@@ -13,6 +13,8 @@
         ->method('PUT')
      !!}
 
+    {!! Former::checkbox('use_background_image') !!}
+
     {!! Former::file('background') !!}
 
     {!! Former::submit('save')->class('large success') !!}
