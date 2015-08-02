@@ -1,7 +1,7 @@
 @extends('emails.master')
 
 @section('header')
-    <h2>@lang('emails.order_confirmation.header')</h2>
+    <h3 class="end">@lang('emails.order_confirmation.header')</h3>
 @stop
 
 @section('content')
@@ -18,15 +18,15 @@
         </thead>
         <tfoot>
             <tr>
-                <th colspan="2">@lang('store.total')</th>
-                <th>{{$order->total_price_including_tax}}</th>
+                <th colspan="2"><h4 class="end">@lang('store.total')</h4></th>
+                <th><h4 class="end">{{$order->total_price_including_tax}},-</h4></th>
             </tr>
         </tfoot>
         <tbody>
             @foreach($order->items as $item)
                 <tr>
                     @if($item['type'] == 'shipping_fee')
-                        <td colspan="2">@lang('store.shipping.shipping_' .$item['name'])</td>
+                        <td colspan="2">@lang('store.shipping.' .$item['name'])</td>
                         <td>{{$item['unit_price']}},-</td>
                     @else
                         <td>{{$item['name']}}
@@ -49,5 +49,5 @@
 @stop
 
 @section('footer')
-    @lang('emails.order_confirmation.footer') <a href="{{url('user/orders')}}">@lang('store.here')</a>.
+    @lang('emails.order_confirmation.footer') <a href="{{route('user')}}">@lang('store.here')</a>.
 @stop

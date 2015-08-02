@@ -10,9 +10,9 @@ return [
 	],
 
 	'order_confirmation' => [
-		'subject' => 'Ordrebekreftelse',
-		'header' => 'Vi har mottatt din ordre!',
-		'intro' => 'Takk for din bestilling! Her er en oversikt over ordren din.',
+		'subject' => 'Ordrebekreftelse :id',
+		'header' => 'Vi har mottatt din bestilling!',
+		'intro' => 'Takk for din bestilling!.',
 		'footer' => 'Du kan se bestillingene dine',
 	],
 

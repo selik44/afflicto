@@ -230,8 +230,8 @@ class StoreController extends Controller {
 		}
 
 		# notify user
-		Mail::send('emails.store.order_confirmation', ['order' => $order], function($mail) use($user) {
-			$mail->to('me@afflicto.net')->subject(trans('emails.order_confirmation.subject', ['store' => Store::current()->name]));
+		Mail::send('emails.store.order_confirmation', ['order' => $order], function($mail) use($user, $order) {
+			$mail->to('me@afflicto.net')->subject(trans('emails.order_confirmation.subject', ['id' => $order->id]));
 		});
 
 		return $order;

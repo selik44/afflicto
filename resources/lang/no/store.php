@@ -19,6 +19,7 @@ return [
 	'place order' => 'Fullfør Bestilling',
 	'add to cart' => 'Legg i Kurven',
 	'popular products' => 'Populære Produkter',
+	'products' => 'Produkter',
 	'product info' => 'Informasjon',
 	'related products' => 'Relaterte Produkter',
 	'home' => 'Hjem',
