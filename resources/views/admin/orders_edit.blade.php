@@ -142,7 +142,7 @@
 								<td>
 									{{$item['quantity']}}
 								</td>
-								<td>kr {{round($item['unit_price'] * (($item['tax_rate'] / 100) + 1))}},-</td>
+								<td>kr {{$item['unit_price']}},-</td>
 							</tr>
 						@endforeach
 					</tbody>
