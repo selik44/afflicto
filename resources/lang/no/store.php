@@ -6,9 +6,12 @@ return [
 	'help' => 'Hjelp',
 	'account' => 'Konto',
 	'my account' => 'Min Konto',
+	'my orders' => 'Mine Bestillinger',
+	'order' => 'Bestilling',
 	'log in' => 'Logg inn',
 	'log out' => 'Logg ut',
 	'register' => 'Registrer',
+	'status' => 'Status',
 	'cart' => 'Handlekurv',
 	'checkout' => 'Kassen',
 	'to checkout' => 'Til Kassen',
@@ -27,6 +30,7 @@ return [
 	'cart empty' => 'Handlekurven er tom.',
 	'done' => 'Ferdig',
 	'manufacturer' => 'Produsent',
+	'about' => 'Om',
 
 	'in stock' => 'På Lager',
 	'out of stock' => 'Utsolgt',
@@ -54,4 +58,25 @@ return [
 	],
 
 	'search no results' => 'Fant ingenting.',
+	'search results' => 'Du søkte på ',
+
+	'order status' => [
+		'delivered' => 'Levert',
+		'not delievered' => 'Ikke Levert',
+	],
+
+	'user' => [
+		'my account' => 'Min Konto',
+		'my orders' => 'Mine Bestillinger',
+		'settings' => 'Instillinger',
+		'settings saved' => 'Instillinger lagret.',
+	],
+
+	'crumbs' => [
+		'home' => 'Hjem',
+		'user' => 'Konto',
+		'user_settings' => 'Instillinger',
+		'user_order' => 'Bestilling',
+		'search' => 'Søk',
+	],
 ];

@@ -1,18 +1,20 @@
 @extends('front.layout')
 
 @section('title')
-	{{{$category->name}}} - Store - @parent
+	{{{$category->name}}} - @parent
 @stop
+
+
 
 @section('breadcrumbs', Breadcrumbs::render('category', $category))
 
 	<?php
-	$mostExpensive = 0;
-	foreach($products as $product) {
-		if ($product->price > $mostExpensive) {
-			$mostExpensive = ceil($product->price * $product->vatgroup->amount);
-		}
-	}
+        $mostExpensive = 0;
+        foreach($products as $product) {
+            if ($product->price > $mostExpensive) {
+                $mostExpensive = ceil($product->price * $product->vatgroup->amount);
+            }
+        }
 	?>
 
 @section('scripts')
@@ -209,7 +211,9 @@
                 <option value="none">----</option>
                 <option value="price-asc">@lang('store.sort.price ascending')</option>
                 <option value="price-desc">@lang('store.sort.price descending')</option>
-                <option value="manufacturer">@lang('store.manufacturer')</option>
+                @if(false)
+                <option value="manufacturer">@lang('store.manufacturer')</option>-->
+                @endif
             </select>
         </div>
     </div>

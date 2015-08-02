@@ -1,13 +1,11 @@
 @extends('emails.master')
 
 @section('header')
-    <h2>An account has been created for you.</h2>
+    <h2>@lang('emails.welcome.header').</h2>
 @stop
 
 @section('content')
-    <h4>Thank you for your purchase!</h4>
-    <p>For your convinience, we have created an account for you. To log in, use your email address and the following password: <code>{{$password}}</code>.</p>
-    <p>Once logged in, you can change your password on the account settings page.</p>
+    @lang('emails.welcome.message', ['password' => $password])
     <hr>
-    <p><a href="{{url('user/login')}}">Click here to log in.</a></p>
+    <p><a href="{{url('user/login')}}">@lang('emails.welcome.login')</a></p>
 @stop

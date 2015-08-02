@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>
-		{{$title}}
-	</title>
-
     <link rel="stylesheet" type="text/css" href="{{asset('css/lib.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/' .\Friluft\Store::current()->host .'.css')}}">
 </head>
@@ -13,7 +9,7 @@
 		<div class="module-header">
 			@section('header')
 				@if(isset($header))
-					{{$header}}
+                {{$header}}
 				@endif
 			@show
 		</div>

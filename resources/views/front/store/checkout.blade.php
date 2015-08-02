@@ -6,22 +6,6 @@
 
 @section('breadcrumbs', Breadcrumbs::render('store.checkout'))
 
-@section('intro')
-    <div class="checkout-navigation">
-        <a class="item {{(Request::route()->getName() == 'store.cart') ? 'current' : ''}}" href="{{route('store.cart')}}">
-            <span class="badge">1</span> <span class="title">@lang('store.cart')</span>
-        </a>
-
-        <a class="item {{(Request::route()->getName() == 'store.checkout') ? 'current' : ''}}" href="{{route('store.checkout')}}">
-            <span class="badge">2</span> <span class="title">@lang('store.checkout')</span>
-        </a>
-
-        <div class="item {{(Request::route()->getName() == 'store.success') ? 'current' : ''}}" href="#">
-            <span class="badge">3</span> <span class="title">@lang('store.done')</span>
-        </div>
-    </div>
-@stop
-
 @section('aside')
     <div class="block">
         <div class="module">
@@ -58,6 +42,10 @@
 @stop
 
 @section('article')
+    <div class="paper row" style="padding: 2rem;">
+        @include('front.partial.cart-table', ['items' => $items, 'total' => $total, 'withShipping' => true])
+    </div>
+
     {!! $snippet !!}
 @stop
 

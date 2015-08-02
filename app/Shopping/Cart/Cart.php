@@ -190,7 +190,7 @@ class Cart {
 			$model = $this->getProductModel($uid);
 
 			if ($model) {
-				return ($model->price * $model->vatgroup->amount) * $item['quantity'];
+				return $model->price * $model->vatgroup->amount * $item['quantity'];
 			}
 		}
 
@@ -206,7 +206,7 @@ class Cart {
 		foreach($this->getItems() as $item) {
 			$total += $this->getSubTotal($item['id']);
 		}
-		return round($total);
+		return $total;
 	}
 
 	public function getTotalWeight() {
@@ -240,9 +240,9 @@ class Cart {
 				'reference' => json_encode(['id' => $item['model']->id, 'options' => $item['options']]),
 				'name' => $item['model']->name,
 				'quantity' => $item['quantity'],
-				'unit_price' => (ceil($item['model']->price * $item['model']->vatgroup->amount)) * 100,
+				'unit_price' => ($item['model']->price * $item['model']->vatgroup->amount) * 100,
 				'discount_rate' => 0,
-				'tax_rate' => ($item['model']->vatgroup->amount - 1) * 100,
+				'tax_rate' => ($item['model']->vatgroup->amount - 1) * 10000,
 			];
 		}
 
@@ -272,6 +272,17 @@ class Cart {
 			'unit_price' => $shippingFee,
 			'tax_rate' => 0,
 		];
+
+		# set color options
+		$data['options']['color_button'] = '#03a1a9';
+		$data['options']['color_button_text'] = '#ffffff';
+		$data['options']['color_checkbox'] = '#03a1a9';
+		$data['options']['color_checkbox_checkmark'] = '#ffffff';
+		$data['options']['color_header'] = '#000000';
+		$data['options']['color_link'] = '#03a1a9';
+
+		# set shipping info
+		$data['options']['shipping_details'] = 'Shipping Details Here';
 
 		return $data;
 	}
@@ -323,6 +334,15 @@ class Cart {
 			'confirmation_uri' => url('success') .'?klarna_order={checkout.order.uri}',
 			'push_uri' => url('push') .'?klarna_order={checkout.order.uri}',
 		];
+
+		# prefill customer data
+		$user = \Auth::user();
+		if ($user) {
+			$data['shipping_address']['email'] = $user->email;
+			if ($user->shipping_address && isset($user->shipping_address['postal_code'])) {
+				$data['shipping_address']['postal_code'] = $user->shipping_address['postal_code'];
+			}
+		}
 
 		$order->create($data);
 

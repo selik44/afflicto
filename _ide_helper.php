@@ -11750,9 +11750,8 @@ namespace {
         }
         
         /**
-         * 
          *
-         * @static 
+         * @static
          */
         public static function getShipping(){
             return \Friluft\Shopping\Cart\Cart::getShipping();

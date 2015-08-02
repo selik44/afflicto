@@ -1,56 +1,53 @@
 @extends('front.layout')
 
 @section('title')
-    Order #{{$order->id}} - Account - @parent
+    @lang('store.order') - @lang('store.my account') - @parent
 @stop
 
-@section('breadcrumbs')
-    {!! Breadcrumbs::render('user') !!}
+@section('aside')
+    @include('front.partial.user_menu')
 @stop
 
 @section('article')
-    <h2 class="end">Order #{{$order->id}}</h2>
+    <div class="paper row" style="padding: 1rem;">
+        <h2>@lang('store.order') {{$order->created_at->format('d M Y')}}</h2>
 
-    <hr style="margin-top: 0px">
+        @if($order->status == 'delivered')
+            <p class="lead color-success">@lang('store.order status.delievered')</p>
+        @else
+            <p class="lead color-error">@lang('store.order status.not delievered')</p>
+        @endif
 
-    <div class="module order-items">
-        <header class="module-header">
-            <h6 class="end">Items</h6>
-        </header>
+        <table class="bordered">
+            <thead>
+            <tr>
+                <th>@lang('store.product')</th>
+                <th>@lang('store.quantity')</th>
+                <th>@lang('store.price')</th>
+            </tr>
+            </thead>
 
-        <article class="module-content">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                    </tr>
-                </thead>
+            <tfoot>
+            <tr>
+                <th colspan="3" style="text-align: right;"><h4>@lang('store.total'): {{$order->total_price_including_tax}},-</h4></th>
+            </tr>
+            </tfoot>
 
-                <tfoot>
-                    <tr>
-                        <th colspan="3" class="text-right">Total: {{$order->total_price_including_tax}}</th>
-                    </tr>
-                </tfoot>
-
-                <tbody>
-                    @foreach($order->items as $item)
-                        <tr>
-                            <td>
-                                @if($item['type'] == 'shiping_fee')
-                                    @lang('store.shipping.' .$item['name'])
-                                @else
-                                    {{$item['name']}}
-                                @endif
-                            </td>
-                            <td>{{$item['quantity']}}</td>
-                            <td>{{$item['total_price_including_tax']}}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </article>
+            <tbody>
+            @foreach($order->items as $item)
+                <tr>
+                    <td>
+                        @if($item['type'] == 'shiping_fee')
+                            @lang('store.shipping.' .$item['name'])
+                        @else
+                            {{$item['name']}}
+                        @endif
+                    </td>
+                    <td>{{$item['quantity']}}</td>
+                    <td>{{$item['total_price_including_tax']}},-</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
-
 @stop

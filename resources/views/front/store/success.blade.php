@@ -5,6 +5,8 @@
 @stop
 
 @section('article')
-	<h2>@lang('store.done')</h2>
-    <p class="lead">Your order has been received!</p>
+    <div class="paper" style="padding: 2rem;">
+        <h2>@lang('store.done')</h2>
+        {!! $snippet !!}
+    </div>
 @stop

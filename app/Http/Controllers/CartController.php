@@ -17,12 +17,12 @@ class CartController extends Controller {
 	 */
 	public function index()
 	{
-
 		return view('front.partial.cart-table')->with([
 			'items' => Cart::getItemsWithModels(false),
 			'total' => Cart::getTotal(),
 			'withCheckoutButton' => true,
 			'shipping' => Cart::getShipping(),
+			'withShipping' => (Input::get('withShipping', 'false') == 'true'),
 		]);
 
 		/*

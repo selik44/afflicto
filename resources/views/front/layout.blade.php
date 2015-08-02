@@ -88,7 +88,7 @@
                 @if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
 				<div class="cart-container" style="display: none;">
 					<div class="inner">
-						@include('front.partial.cart-table', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal(), 'withCheckoutButton' => true])
+						@include('front.partial.cart-table', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal(), 'withCheckoutButton' => true, 'withShipping' => true, 'shipping' => Cart::getShipping()])
 					</div>
 				</div>
 				@endif
@@ -109,13 +109,15 @@
 		<div id="breadcrumbs">
 			<div class="inner clearfix">
                 <div class="pull-left crumbs">
-				    @yield('breadcrumbs')
+                    @section('breadcrumbs')
+                        {!! Breadcrumbs::renderIfExists() !!}
+                    @show
                 </div>
 
                 <?php
                 $display = 'none';
                 $left = 800;
-                $total = Cart::getTotal();
+                $total = round(Cart::getTotal());
                 if ($total > 0) {
                     $left = 800 - $total;
                     if ($left > 0) {
@@ -221,7 +223,7 @@
 
         <div class="footer">
             <div class="end button huge primary continue" data-toggle-modal="#buy-modal">@lang('store.continue shopping')</div>
-            <a href="{{route('store.cart')}}" class="end button huge success">@lang('store.to checkout')</a>
+            <a href="{{route('store.checkout')}}" class="end button huge success">@lang('store.to checkout')</a>
         </div>
     </div>
 </div>

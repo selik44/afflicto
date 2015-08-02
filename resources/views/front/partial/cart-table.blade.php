@@ -8,7 +8,7 @@
 				<?php
 				$model = $item['model'];
 				?>
-				<tr class="item" data-id="{{$item['id']}}" data-price="{{$model->price * $model->vatgroup->amount}}">
+				<tr class="item" data-id="{{$item['id']}}" data-price="{{round($model->price * $model->vatgroup->amount)}}">
 					<td class="image" style="width: 80px;">
 						<a href="{{$item['url']}}"><img class="thumbnail" src="{{asset('images/products/' .$item['model']->images()->first()->name)}}"></a>
 					</td>
@@ -32,13 +32,13 @@
 					</td>
 
 					<td class="subtotal"  style="width: 1%;">
-						<h4 class="end"><span class="value">{{round($model->price * $model->vatgroup->amount) * $item['quantity']}}</span>,-</h4>
+						<h4 class="end"><span class="value">{{round($model->price * $model->vatgroup->amount * $item['quantity'])}}</span>,-</h4>
 					</td>
 				</tr>
 			@endforeach
 
             @if(isset($withShipping) && $withShipping)
-                <tr class="shipping" data-price="{{round($shipping['unit_price'] / 100)}}">
+                <tr class="shipping" data-price="{{$shipping['unit_price'] / 100}}">
                     <td class="icon">
                         <i class="fa fa-truck"></i>
                     </td>
@@ -46,7 +46,7 @@
                         <h3 class="end">@lang('store.shipping.shipping')</h3>
                         <p class="lead">@lang('store.shipping.' .$shipping['name'])</p>
                     </td>
-                    <td colspan="2" class="value"><h4>{{round($shipping['unit_price']) / 100}},-</h4></td>
+                    <td colspan="2" class="value"><h4>{{$shipping['unit_price'] / 100}},-</h4></td>
                 </tr>
             @endif
 			</tbody>
@@ -56,12 +56,13 @@
             <div class="total">
                 <?php
                     $t = $total;
-                    if (isset($withShipping) && $withShipping) $t += ($shipping['unit_price'] / 100);
+
+                    if (isset($withShipping) && $withShipping) $t += $shipping['unit_price'] / 100;
                 ?>
                 <h3>@lang('store.total'): <span class="value">{{$t}}</span>,-</h3>
             </div>
             @if(isset($withCheckoutButton) && $withCheckoutButton)
-                <a class="button primary large" href="{{route('store.cart')}}">@lang('store.to cart') <i class="fa fa-chevron-right"></i></a>
+                <a class="button primary large" href="{{route('store.checkout')}}">@lang('store.to checkout') <i class="fa fa-chevron-right"></i></a>
             @endif
         </div>
 	@endif
@@ -139,7 +140,9 @@
 
 				item.find('.subtotal .value').html(subTotal);
 
-                setTotal(response.total);
+                $.get(Friluft.URL + '/api/cart', {withShipping: "true"}, function(html) {
+                    container.find('.cart-table').replaceWith(html);
+                });
 
 				klarnaResume();
 			});
@@ -167,7 +170,9 @@
 					}
 				});
 
-                setTotal(response.total);
+                $.get(Friluft.URL + '/api/cart', {withShipping: "true"}, function(html) {
+                    container.find('.cart-table').replaceWith(html);
+                });
 
 				klarnaResume();
 			});

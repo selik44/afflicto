@@ -112,11 +112,16 @@ class Order extends Model {
             }
 
             $firstItem = $item['name'];
+			break;
         }
 
         if (count($this->items) > 1) {
-            $c = count($this->items) - 1;
-            return $firstItem = ' and ' .$c .' others.';
+            $c = count($this->items) - 2;
+			if ($c > 0) {
+				return $firstItem .' and ' .$c .' others.';
+			}else {
+				return $firstItem;
+			}
         }else {
             return $firstItem;
         }

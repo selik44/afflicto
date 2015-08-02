@@ -47,6 +47,11 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 
 	protected $hidden = ['password', 'remember_token'];
 
+	protected $casts = [
+		'shipping_address' => 'array',
+		'billing_address' => 'array',
+	];
+
 	public function role() {
 		return $this->belongsTo('Friluft\Role');
 	}

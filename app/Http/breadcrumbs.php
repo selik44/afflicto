@@ -1,22 +1,22 @@
 <?php
 
 Breadcrumbs::register('home', function($bc) {
-	$bc->push('Home', url('/'));
+	$bc->push(trans('store.crumbs.home'), url('/'));
 });
 
 Breadcrumbs::register('terms-and-conditions', function($bc) {
 	$bc->parent('home');
-	$bc->push('Terms & Conditions', url('/terms-and-conditions'));
+	$bc->push(trans('store.crumbs.terms and conditions'), url('/terms-and-conditions'));
 });
 
 Breadcrumbs::register('about', function($bc) {
 	$bc->parent('home');
-	$bc->push('About', url('/about'));
+	$bc->push(trans('store.crumbs.about'), url('/about'));
 });
 
 Breadcrumbs::register('contact', function($bc) {
 	$bc->parent('home');
-	$bc->push('About', url('/contact'));
+	$bc->push(trans('store.crumbs.contact'), url('/contact'));
 });
 
 Breadcrumbs::register('faq', function($bc) {
@@ -26,22 +26,23 @@ Breadcrumbs::register('faq', function($bc) {
 
 Breadcrumbs::register('search', function($bc) {
 	$bc->parent('home');
-	$bc->push('Search', url('/search'));
+	$bc->push(trans('store.crumbs.search'), url('/search'));
 });
 
 Breadcrumbs::register('user', function($bc) {
     $bc->parent('home');
-    $bc->push('User', route('user'));
+    $bc->push(trans('store.crumbs.user'), route('user'));
 });
 
-Breadcrumbs::register('user.orders', function($bc) {
+Breadcrumbs::register('user.order', function($bc) {
+	$order = Request::route()->parameter('order');
     $bc->parent('user');
-    $bc->push('Orders', route('user.orders.index'));
+    $bc->push(trans('store.crumbs.user_order'), route('user.order', ['order' => $order]));
 });
 
-Breadcrumbs::register('user.order', function($bc, $order) {
-    $bc->parent('user.orders');
-    $bc->push('Order', route('user.order', ['order' => $order]));
+Breadcrumbs::register('user.settings', function($bc) {
+	$bc->parent('user');
+	$bc->push(trans('store.crumbs.user_settings'), route('user.settings'));
 });
 
 Breadcrumbs::register('category', function($bc, $cat) {
@@ -74,18 +75,13 @@ Breadcrumbs::register('product', function($bc, $product, $category) {
 	$bc->push(e($product->name), url($path));
 });
 
-Breadcrumbs::register('store.cart', function($bc) {
-	$bc->parent('home');
-	$bc->push('Cart', route('store.cart'));
-});
-
 Breadcrumbs::register('store.checkout', function($bc) {
-	$bc->parent('store.cart');
+	$bc->parent('home');
 
-	$bc->push('Checkout', route('store.checkout'));
+	$bc->push(trans('store.crumbs.checkout'), route('store.checkout'));
 });
 
 Breadcrumbs::register('store.success', function($bc) {
-	$bc->parent('store.cart');
-	$bc->push('Success', route('cart.success'));
+	$bc->parent('home');
+	$bc->push(trans('store.crumbs.success'), route('cart.success'));
 });

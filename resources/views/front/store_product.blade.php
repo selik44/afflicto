@@ -113,9 +113,7 @@
                 </form>
 
                 <div class="summary">
-                    <p class="lead content">
-                        {!! $product->summary !!}
-                    </p>
+                    {!! $product->summary !!}
                 </div>
 			</div>
 		</div>
@@ -124,7 +122,7 @@
 			<ul id="product-tabs" class="nav tabs clearfix">
 				<li class="current"><a href="#product-info">@lang('store.product info')</a></li>
 				<li><a href="#product-relations">@lang('store.related products')</a></li>
-                <li><a href="#product-manufacturer-description">About {{$product->manufacturer->name}}</a></li>
+                <li><a href="#product-manufacturer-description">@lang('store.about') {{$product->manufacturer->name}}</a></li>
 
                 @foreach($product->producttabs as $tab)
                     <li><a href="#product-tab-{{$tab->id}}">{{$tab->title}}</a></li>

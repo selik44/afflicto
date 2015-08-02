@@ -80,20 +80,6 @@ class StoreController extends Controller {
 		abort(404);
 	}
 
-	public function cart() {
-		if (count(Cart::getItems()) <= 0) {
-			return \Redirect::back()->with('info', 'Handlekurven er tom!');
-		}
-		return view('front.store.cart')
-			->with([
-				'items' => Cart::getItemsWithModels(false),
-				'shipping' => Cart::getShipping(),
-				'total' => Cart::getTotal(),
-				'aside' => true,
-				'intro' => true,
-			]);
-	}
-
 	public function checkout() {
 		if (Cart::nothing()) return \Redirect::home()->with('error', trans('store.your cart is empty'));
 
@@ -108,6 +94,7 @@ class StoreController extends Controller {
 			->with([
 				'snippet' => $order['gui']['snippet'],
 				'items' => Cart::getItemsWithModels(false),
+				'shipping' => Cart::getShipping(),
 				'total' => Cart::getTotal(),
 				'aside' => true,
 				'intro' => true,
@@ -115,8 +102,16 @@ class StoreController extends Controller {
 	}
 
 	public function success() {
+		if ( ! Session::has('klarna_order')) return \Redirect::back()->with('error', 'Something went wrong!');
+		$order = Cart::getKlarnaOrder(Session::get('klarna_order'));
+
+		$snippet = $order['gui']['snippet'];
+
 		Cart::clear();
-		return view('front.store.success')->with('aside', true);
+		return view('front.store.success')->with([
+			'aside' => true,
+			'snippet' => $snippet,
+		]);
 	}
 
 	public function push() {
@@ -203,12 +198,17 @@ class StoreController extends Controller {
 			$password = str_random(16);
 			$user->password = bcrypt($password);
 
+			# set phone, billing address & shipping address
+			$user->phone = $order->billing_address['phone'];
+			$user->shipping_address = $order->shipping_address;
+			$user->billing_address = $order->billing_address;
+
 			# save
 			$user->save();
 
 			# welcome the user
-			Mail::send('emails.store.welcome', ['title' => 'Your New Account', 'password' => $password], function($mail) use($user) {
-				$mail->to('me@afflicto.net')->subject('Your new account at ' .Store::current()->name);
+			Mail::send('emails.store.welcome', ['header' => trans('emails.welcome.header', ['store' => Store::current()->name]), 'password' => $password], function($mail) use($user) {
+				$mail->to('me@afflicto.net')->subject(trans('emails.welcome.subject', ['store' => Store::current()->name]));
 			});
 		}
 
@@ -227,8 +227,8 @@ class StoreController extends Controller {
 		}
 
 		# notify user
-		Mail::send('emails.store.order_received', ['title' => 'Order Received', 'order' => $order], function($mail) use($user) {
-			$mail->to('me@afflicto.net')->subject('Your order at ' .Store::current()->name);
+		Mail::send('emails.store.order_received', ['title' => trans('emails.purchase.title'), 'order' => $order], function($mail) use($user) {
+			$mail->to('me@afflicto.net')->subject(trans('emails.purchase.subject', ['store' => Store::current()->name]));
 		});
 
 		return $order;

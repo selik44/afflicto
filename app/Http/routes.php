@@ -38,6 +38,8 @@ Route::group(['prefix' => 'user'], function() {
 		get('/', ['as' => 'user', 'uses' => 'UserController@index']);
 		get('orders', ['as' => 'user.orders', 'uses' => 'UserController@getOrders']);
 		get('order/{order}', ['as' => 'user.order', 'uses' => 'UserController@getOrder']);
+		get('settings', ['as' => 'user.settings', 'uses' => 'UserController@getSettings']);
+		put('settings', ['as' => 'user.settings.save', 'uses' => 'UserController@putSettings']);
 	});
 });
 
@@ -320,7 +322,6 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 
 
 # store / cart
-get('cart', ['as' => 'store.cart', 'uses' => 'StoreController@cart']);
 get('checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
 get('success', ['as' => 'store.success', 'uses' => 'StoreController@success']);
 post('push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);

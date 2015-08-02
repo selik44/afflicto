@@ -4,14 +4,10 @@
 	Search - @parent
 @stop
 
-@section('breadcrumbs')
-	{!! Breadcrumbs::render('search') !!}
-@stop
-
 @section('article')
 	<div class="search-results paper" style="padding: 1rem">
         <h1>@lang('store.search')</h1>
-        <p class="lead">Search Results For "{{Input::get('terms')}}"</p>
+        <p class="lead">@lang('store.search results') "{{Input::get('terms')}}"</p>
 
         @if(count($products) == 0 && count($categories) == 0)
         <p class="lead">
