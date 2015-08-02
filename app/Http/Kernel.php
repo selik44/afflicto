@@ -28,6 +28,7 @@ class Kernel extends HttpKernel {
 	 */
 	protected $routeMiddleware = [
 		'auth' => 'Friluft\Http\Middleware\Authenticate',
+		'auth.basic' => 'Friluft\Http\Middleware\AuthenticateBasic',
 		'admin' => 'Friluft\Http\Middleware\AuthenticateAdmin',
 		'guest' => 'Friluft\Http\Middleware\RedirectIfAuthenticated',
 	];

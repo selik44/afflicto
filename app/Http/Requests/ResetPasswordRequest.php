@@ -22,7 +22,7 @@ class ResetPasswordRequest extends Request {
 	public function rules()
 	{
 		return [
-			'password' => 'required|min:8|confirmed',
+			'password' => 'required|min:8|confirmed:password_confirmation',
 			'token' => 'required'
 		];
 	}

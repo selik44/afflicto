@@ -11,7 +11,7 @@
 		->addClass('vertical clearfix')
 		->rules([
 			'email' => 'email|required',
-			'password' => 'required',
+			'password' => 'required|min:8|confirmed:password_confirmation',
 			'password_confirmation' => 'required',
 		])
 	!!}

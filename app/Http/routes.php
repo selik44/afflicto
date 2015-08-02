@@ -60,6 +60,10 @@ get('html/product/{product}', ['as' => 'html.product', function($product) {
 	return view('front.partial.product_modal')->with('product', $product);
 }]);
 
+# proteria API
+get('api/proteria/update', ['middleware' => 'auth.basic', 'as' => 'api.proteria.update', 'uses' => 'Admin\ProteriaController@update']);
+get('api/proteria/orders', ['middleware' => 'auth.basic', 'as' => 'admin.proteria.export', 'uses' => 'Admin\ProteriaController@getExport']);
+
 /*---------------------------
 *	Admin routes
 *--------------------------*/

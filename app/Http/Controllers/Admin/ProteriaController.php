@@ -22,7 +22,7 @@ class ProteriaController extends Controller {
 				'AntKolli' => 1,
 				'HvemBetaler' => 1,	//mottaker
 				'Kolli' => [
-					'Vekt' => $order->getWeight(),
+					'Vekt' => $order->getWeight() / 1000,
 				],
 				'Mottaker' => [
 					'KundeNr' => $order->user->id,
@@ -57,6 +57,31 @@ class ProteriaController extends Controller {
 
 		# return as plain text for now
 		return \Response::make($xml->render(true), 200, ['Content-Type' => 'text/xml']);
+	}
+
+	/**
+	 * URL-eksport
+	-----------
+	For å eksportere til en url (script), gjør følgende:
+	Gå inn på Vedlikehold -> Innstillinger -> Standardverdier, velg "Eksporter til URL".
+	Skriv inn en gyldig url til et script som kan ta imot og behandle de data som blir sendt (f.eks. en php- eller en asp-fil).
+
+	Scriptet du angir der vil bli kalt hver gang du printer ut en etikett.
+	Følgende parametre blir sendt med:
+	- Sendingstype
+	- Sendingsnr
+	- Ordrenr
+	- PortoUtenMva
+	- PortoMedMva
+	 */
+	public function update() {
+		if (!Input::has('Ordernr') || Input::has('Sendingsnr')) {
+			return response('error', 400);
+		}
+		$order = Order::find(Input::get('Ordrenr'));
+
+		# update order
+		$order->save();
 	}
 
 }
