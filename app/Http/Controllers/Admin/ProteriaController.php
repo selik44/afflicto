@@ -21,6 +21,9 @@ class ProteriaController extends Controller {
 				'OrdreNr' => $order->id,
 				'AntKolli' => 1,
 				'HvemBetaler' => 1,	//mottaker
+				'Kolli' => [
+					'Vekt' => $order->getWeight(),
+				,
 				'Mottaker' => [
 					'KundeNr' => $order->user->id,
 					'Navn' => $order->billing_address['given_name'] .' ' .$order->billing_address['family_name'],
