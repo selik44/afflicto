@@ -251,15 +251,11 @@ class Product extends Model {
 
 		# variant?
 		if (is_array($variants)) {
+			$stockID = [];
 			foreach($variants as $id => $value) {
 				$variant = Variant::find($id);
 				if ($variant) {
-					$data = $variant->data;
-
-					$data['values'][$value]['stock']--;
-
-					$variant->data = $data;
-					$variant->save();
+					
 				}
 			}
 
