@@ -6,7 +6,7 @@
 
 @section('content')
     <p class="lead">
-        @lang('emails.order_confirmation.intro')
+        @lang('emails.order_confirmation.intro', ['id' => $order->id])
     </p>
     <table style="width: 100%; text-align: left;">
         <thead>
@@ -30,7 +30,7 @@
                         <td>{{$item['unit_price']}},-</td>
                     @else
                         <td>{{$item['name']}}
-                            <ul class="variants">
+                            <ul class="flat variants">
                                 <?php
                                     $model = \Friluft\Product::find($item['reference']['id']);
                                 ?>

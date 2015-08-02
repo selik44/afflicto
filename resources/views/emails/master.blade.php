@@ -26,7 +26,7 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium adipisci, aperiam at aut blanditiis distinctio dolor et facilis fuga ipsum laborum nam, natus necessitatibus porro possimus quam quidem sit!</p>
 			@show
 		</div>
-		<div class="module-footer" styl="padding: 1rem">
+		<div class="module-footer" style="padding: 1rem">
             @section('footer')
 
             @show
