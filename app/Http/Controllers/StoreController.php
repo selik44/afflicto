@@ -147,6 +147,9 @@ class StoreController extends Controller {
 		foreach($data['cart']['items'] as &$item) {
 			$item['total_price_excluding_tax'] /= 100;
 			$item['total_price_including_tax'] /= 100;
+			$item['total_tax_amount'] /= 100;
+			$item['tax_rate'] /= 100;
+			$item['unit_price'] /= 100;
 		}
 
 		# create new order
@@ -160,7 +163,7 @@ class StoreController extends Controller {
 		$order->reservation = $data['reservation'];
 		$order->total_price_excluding_tax = $data['cart']['total_price_excluding_tax'] / 100;
 		$order->total_price_including_tax = $data['cart']['total_price_including_tax'] / 100;
-		$order->total_tax_amount = $data['cart']['total_tax_amount'];
+		$order->total_tax_amount = $data['cart']['total_tax_amount'] / 100;
 		$order->billing_address = $data['billing_address'];
 		$order->shipping_address = $data['shipping_address'];
 		$order->locale = $data['locale'];
