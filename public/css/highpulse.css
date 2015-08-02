@@ -5266,7 +5266,7 @@ body {
     top: 0px;
     background-color: transparent;
     pointer-events: none;
-    z-index: 30; }
+    z-index: 5; }
 
 body.scrolled {
   padding-top: 82px; }
