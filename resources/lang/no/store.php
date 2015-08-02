@@ -31,6 +31,7 @@ return [
 	'done' => 'Ferdig',
 	'manufacturer' => 'Produsent',
 	'about' => 'Om',
+	'here' => 'her',
 
 	'in stock' => 'På Lager',
 	'out of stock' => 'Utsolgt',

@@ -1,23 +1,24 @@
 @extends('emails.master')
 
 @section('header')
-    <h2>Your order has been received.</h2>
+    <h2>@lang('emails.order_confirmation.header')</h2>
 @stop
 
 @section('content')
-    <h4>Thank you for your purchase!</h4>
-    <p>Here is a summary of your order:</p>
+    <p class="lead">
+        @lang('emails.order_confirmation.intro')
+    </p>
     <table style="width: 100%; text-align: left;">
         <thead>
             <tr>
-                <th>Product</th>
-                <th>Quantity</th>
-                <th>Price</th>
+                <th>@lang('store.products')</th>
+                <th>@lang('store.quantity')</th>
+                <th>@lang('store.price')</th>
             </tr>
         </thead>
         <tfoot>
             <tr>
-                <th colspan="2">Total</th>
+                <th colspan="2">@lang('store.total')</th>
                 <th>{{$order->total_price_including_tax}}</th>
             </tr>
         </tfoot>
@@ -25,8 +26,8 @@
             @foreach($order->items as $item)
                 <tr>
                     @if($item['type'] == 'shipping_fee')
-                        <td colspan="2">Shipping Costs</td>
-                        <td>{{$item['unit_price']}}</td>
+                        <td colspan="2">@lang('store.shipping.shipping_' .$item['name'])</td>
+                        <td>{{$item['unit_price']}},-</td>
                     @else
                         <td>{{$item['name']}}
                             <ul class="variants">
@@ -39,14 +40,14 @@
                             </ul>
                         </td>
                         <td>{{$item['quantity']}}</td>
-                        <td>{{($item['unit_price']) * $item['quantity']}}</td>
+                        <td>{{($item['unit_price']) * $item['quantity']}},-</td>
                     @endif
                 </tr>
             @endforeach
         </tbody>
     </table>
+@stop
 
-    <hr/>
-
-    <p>You can view your orders <a href="{{url('user/orders')}}">here</a>.</p>
+@section('footer')
+    @lang('emails.order_confirmation.footer') <a href="{{url('user/orders')}}">@lang('store.here')</a>.
 @stop

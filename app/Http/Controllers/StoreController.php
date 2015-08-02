@@ -210,7 +210,7 @@ class StoreController extends Controller {
 			$user->save();
 
 			# welcome the user
-			Mail::send('emails.store.welcome', ['header' => trans('emails.welcome.header', ['store' => Store::current()->name]), 'password' => $password], function($mail) use($user) {
+			Mail::send('emails.store.welcome', ['email' => $user->email, 'password' => $password], function($mail) use($user) {
 				$mail->to('me@afflicto.net')->subject(trans('emails.welcome.subject', ['store' => Store::current()->name]));
 			});
 		}
@@ -230,8 +230,8 @@ class StoreController extends Controller {
 		}
 
 		# notify user
-		Mail::send('emails.store.order_received', ['title' => trans('emails.purchase.title'), 'order' => $order], function($mail) use($user) {
-			$mail->to('me@afflicto.net')->subject(trans('emails.purchase.subject', ['store' => Store::current()->name]));
+		Mail::send('emails.store.order_confirmation', ['order' => $order], function($mail) use($user) {
+			$mail->to('me@afflicto.net')->subject(trans('emails.order_confirmation.subject', ['store' => Store::current()->name]));
 		});
 
 		return $order;

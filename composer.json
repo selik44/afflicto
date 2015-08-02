@@ -18,7 +18,8 @@
 		"klarna/php-xmlrpc": "^4.0",
 		"knplabs/knp-snappy": "^0.4.0",
         "h4cc/wkhtmltopdf-i386": "0.12.x",
-        "h4cc/wkhtmltoimage-i386": "0.12.x"
+        "h4cc/wkhtmltoimage-i386": "0.12.x",
+        "fedeisas/laravel-mail-css-inliner": "@dev"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

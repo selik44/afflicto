@@ -157,6 +157,7 @@ return [
 		'Laracasts\Utilities\JavaScript\JavascriptServiceProvider',
 		'Gentlefox\Laratables\LaratableServiceProvider',
 		'Former\FormerServiceProvider',
+		'Fedeisas\LaravelMailCssInliner\LaravelMailCssInlinerServiceProvider',
 	],
 
 	/*
