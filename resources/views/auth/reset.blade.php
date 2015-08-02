@@ -9,6 +9,7 @@
 	{!! Former::open(route('user.reset.post'))
 	    ->method('POST')
 		->addClass('vertical clearfix')
+		->rules([
 			'email' => 'email|required',
 			'password' => 'required',
 			'password_confirmation' => 'required',
