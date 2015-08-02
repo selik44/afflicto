@@ -294,6 +294,10 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 	get('orders/packlist/{orders}', ['as' => 'admin.orders.multipacklist', 'uses' => 'Admin\OrdersController@getMultiPacklist'])
 		->where('orders', '.+');
 
+	# proteria
+	get('proteria', ['as' => 'admin.proteria.index', 'uses' => 'Admin\ProteriaController@index']);
+	get('proteria/export', ['as' => 'admin.proteria.export', 'uses' => 'Admin\ProteriaController@getExport']);
+
 	# receivals
 	get('receivals', ['as' => 'admin.receivals.index', 'uses' => 'Admin\ReceivalsController@index']);
 	get('receivals/create', ['as' => 'admin.receivals.create', 'uses' => 'Admin\ReceivalsController@create']);

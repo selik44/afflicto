@@ -51,6 +51,10 @@
             'fa-plus:admin.new' => 'admin.orders.create',
         ]],
 
+        'fa-plane:admin.proteria' => ['admin.proteria.index', [
+            'fa-plane:admin.export' => 'admin.proteria.export',
+        ]],
+
         'fa-pencil:admin.design' => ['admin.slides', [
             'fa-pencil:admin.design' => 'admin.design',
             'fa-film:admin.slides' => 'admin.slides.index',
