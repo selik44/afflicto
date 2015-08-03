@@ -28,12 +28,9 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 
 # Todo:
-- variant filtering
-- merge cart and checkout steps, improve UX on cart button in header.
-- Client dashboard
-- increment quantity of item in cart when adding a product with the same options (variants)
+- mailchimp
+- improve UX on cart button in header.
 - receival
-- translate emails
 - dashboard stats & reports
 - mini-banner on top, background & text.
 - edit checkout & footer text

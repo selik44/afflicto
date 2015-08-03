@@ -158,6 +158,7 @@ return [
 		'Gentlefox\Laratables\LaratableServiceProvider',
 		'Former\FormerServiceProvider',
 		'Fedeisas\LaravelMailCssInliner\LaravelMailCssInlinerServiceProvider',
+		'Skovmand\Mailchimp\MailchimpServiceProvider',
 	],
 
 	/*
