@@ -28,8 +28,6 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 
 # Todo:
-- mailchimp
-- improve UX on cart button in header.
 - receival
 - dashboard stats & reports
 - mini-banner on top, background & text.
@@ -54,9 +52,4 @@ over 800kr: fri frakt.
 # design
 http://www.tights.no/
 gsport
-
-
-# PROTERIA FRAKT FORMAT
-12143 7 120 0 Linda Elisabeth Davidsen FURUSVINGEN 29 2164 SKOGBYGDA Norge 91375922 Linda Elisabeth Davidsen FURUSVINGEN 29 2164 SKOGBYGDA Norge Linda Elisabeth Davidsen 2015-07-27 12:52:02 Angrerettskjema sendt 300 123Concept AS 228.0000 1 elisabethamundsen@hotmail.com
-
-ordre nummer
+xxl

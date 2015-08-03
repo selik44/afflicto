@@ -92,24 +92,6 @@
 			}
 		}
 
-        function setTotal(total) {
-            total = parseInt(total);
-            container.find('.cart-table .footer .total .value').html(total);
-
-            console.log('setting total to : ' + total);
-
-            if (total < 800) {
-                var left = 800 - total;
-                if (left > 0) {
-                    $("#breadcrumbs .free-shipping-status").show().find('.value').text(left);
-                }else {
-                    $("#breadcrumbs .free-shipping-status").hide();
-                }
-            }else {
-                $("#breadcrumbs .free-shipping-status").hide();
-            }
-        };
-
 		//-------- change quantity -----------//
 		container.on('change', '.quantity input', function() {
 			if ($(this).attr('disabled')) return;
@@ -134,13 +116,17 @@
 				console.log(response);
 				self.removeAttr('disabled').removeClass('disabled');
 
+                //update total on cart-toggle
+                $("#header .cart-toggle .total").html(response.total);
+                $("#header .cart-toggle .quantity").html(response.quantity);
+
 				//update price
 				var price = parseFloat(item.attr('data-price'));
 				var subTotal = Math.round(price * quantity);
 
 				item.find('.subtotal .value').html(subTotal);
 
-                $.get(Friluft.URL + '/api/cart', {withShipping: "true"}, function(html) {
+                $.get(Friluft.URL + '/api/cart', {withShipping: "false"}, function(html) {
                     container.find('.cart-table').replaceWith(html);
                 });
 
@@ -163,14 +149,13 @@
 
 				item.slideUp(function() {
 					$(this).remove();
-
-					//is the cart empty? If so, redirect to home
-					if (container.find('.cart .item').length <= 0) {
-						//window.location.href = Friluft.URL;
-					}
 				});
 
-                $.get(Friluft.URL + '/api/cart', {withShipping: "true"}, function(html) {
+                //update cart-toggle
+                $("#header .cart-toggle .total").html(response.total);
+                $("#header .cart-toggle .quantity").html(response.quantity);
+
+                $.get(Friluft.URL + '/api/cart', {withShipping: "false"}, function(html) {
                     container.find('.cart-table').replaceWith(html);
                 });
 

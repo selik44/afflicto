@@ -45,6 +45,14 @@ class Cart {
 		return $this->session->get('shoppingcart.contents');
 	}
 
+	public function quantity() {
+		$q = 0;
+		foreach($this->getItems() as $item) {
+			$q += $item['quantity'];
+		}
+		return $q;
+	}
+
 	public function nothing() {
 		return (count($this->getItems()) <= 0);
 	}

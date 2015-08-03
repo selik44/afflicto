@@ -37,6 +37,8 @@ return [
 	'in stock' => 'På Lager',
 	'out of stock' => 'Utsolgt',
 
+	'product added to cart' => 'Produktet er lagt i kurven',
+
 	'your cart is empty' => 'Handlekurven er tom!',
 
 	'auth' => [

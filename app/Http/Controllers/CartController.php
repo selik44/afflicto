@@ -24,19 +24,6 @@ class CartController extends Controller {
 			'shipping' => Cart::getShipping(),
 			'withShipping' => (Input::get('withShipping', 'false') == 'true'),
 		]);
-
-		/*
-		# json?
-		if (Request::wantsJson()) {
-			return Cart::getItemsWithModels(false);
-		}
-
-		return view('front.cart.index')
-			->with([
-				'items' => Cart::getItemsWithModels(),
-				'total' => Cart::getTotal(),
-			]);
-		*/
 	}
 
 	/**
@@ -101,7 +88,7 @@ class CartController extends Controller {
 		Cart::updateKlarnaOrder();
 
 		# return some data
-		return ['id' => $cartid, 'total' => Cart::getTotal()];
+		return ['id' => $cartid, 'total' => Cart::getTotal(), 'quantity' => Cart::quantity()];
 	}
 
 	/**
@@ -121,13 +108,13 @@ class CartController extends Controller {
 	{
 		Cart::remove($id);
 		Cart::updateKlarnaOrder();
-		return ['total' => Cart::getTotal()];
+		return ['total' => Cart::getTotal(), 'quantity' => Cart::quantity()];
 	}
 
 	public function setQuantity($id) {
 		Cart::setQuantity($id, (int) Input::get('quantity', 0));
 		Cart::updateKlarnaOrder();
-		return ['total' => Cart::getTotal()];
+		return ['total' => Cart::getTotal(), 'quantity' => Cart::quantity()];
 	}
 
 	public function clear() {

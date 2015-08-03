@@ -86,6 +86,19 @@
 				flex: 0 1 auto
 				order: -1
 
+				.cart-toggle
+					background: $color-primary
+					color: stronger($base-background, 20%)
+					border: 1px solid $forms-border-color
+					border-radius: $base-radius
+					padding: 0.5rem 1rem
+					cursor: pointer
+					text-transform: uppercase
+					user-select: none
+
+					&.active
+						background: darken($color-primary, 10%)
+
 			ul.navigation
 				overflow-y: auto
 				flex: auto
@@ -163,6 +176,20 @@
 			border: 1px solid $base-border-color
 			border-radius: $base-radius
 			padding: 1rem
+
+		#buy-modal
+			position: absolute
+			top: 100%
+			right: 0px
+			z-index: 100
+			background: weaker($base-background, 10%)
+			box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.3)
+			border: 1px solid $base-border-color
+			border-radius: $base-radius
+			padding: 1rem
+
+			.footer
+				display: none
 
 	//----------- SMALL AND DOWN ----------//
 	@include breakpoint('sm-')

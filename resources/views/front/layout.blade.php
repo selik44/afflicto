@@ -80,15 +80,39 @@
 						</form>
 
 						@if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
-							<button data-toggle="#cart" class="cart-toggle primary end visible-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>
+							<!--<button data-toggle="#cart" class="cart-toggle primary end visible-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>-->
+                            <div class="cart-toggle visible-l-up" data-toggle="#cart">@lang('store.cart') (<span class="quantity">{{Cart::quantity()}}</span>) <span class="total">{{Cart::getTotal()}}</span>,-</div>
 						@endif
+
+                        <div id="buy-modal" style="display: none;">
+                            <h4 class="end header">@lang('store.product added to cart')</h4>
+                            <hr>
+
+                            <div class="info">
+                                <h3 class="quantity">
+                                    <span class="value">1</span> x
+                                </h3>
+
+                                <img width="100" src="http://lorempixel.com/100/100/abstract" class="thumbnail">
+
+                                <div class="description">
+                                    <h6 class="title">Title</h6>
+                                    <h4 class="price">179,-</h4>
+                                </div>
+                            </div>
+
+                            <div class="footer">
+                                <div class="end button huge primary continue" data-toggle-modal="#buy-modal">@lang('store.continue shopping')</div>
+                                <a href="{{route('store.checkout')}}" class="end button huge success">@lang('store.to checkout')</a>
+                            </div>
+                        </div>
 					</div>
 				</div>
 
                 @if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
 				<div class="cart-container" style="display: none;">
 					<div class="inner">
-						@include('front.partial.cart-table', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal(), 'withCheckoutButton' => true, 'withShipping' => true, 'shipping' => Cart::getShipping()])
+						@include('front.partial.cart-table', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal(), 'withCheckoutButton' => true, 'withShipping' => false, 'shipping' => Cart::getShipping()])
 					</div>
 				</div>
 				@endif
@@ -200,33 +224,6 @@
 <div id="menu-overlay">
 
 </div>
-
-<div id="buy-modal" class="modal fade center">
-    <div class="modal-content">
-        <h1 class="end header">@lang('store.product added to cart')</h1>
-        <hr>
-
-        <div class="info">
-            <h2 class="quantity">
-                <span class="value">1</span> x
-            </h2>
-
-            <img width="100" src="http://lorempixel.com/100/100/abstract" class="thumbnail">
-
-            <div class="description">
-                <h5 class="title">Title</h5>
-                <h3 class="price">179,-</h3>
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="footer">
-            <div class="end button huge primary continue" data-toggle-modal="#buy-modal">@lang('store.continue shopping')</div>
-            <a href="{{route('store.checkout')}}" class="end button huge success">@lang('store.to checkout')</a>
-        </div>
-    </div>
-</div>
 @stop
 
 
@@ -244,7 +241,10 @@
             m.find('.info .thumbnail').attr('src', thumbnail);
             m.find('.info .description .title').html(title);
             m.find('.info .description .price').html(price + ",-");
-            $("#buy-modal").gsModal("show");
+            m.slideDown();
+            var timeout = setTimeout(function() {
+                m.slideUp();
+            }, 2300);
         };
 
 
