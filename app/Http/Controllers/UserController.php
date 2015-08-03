@@ -4,6 +4,7 @@ use Auth;
 use Former;
 use Friluft\Http\Requests;
 use Friluft\Order;
+use Hash;
 use Input;
 
 class UserController extends Controller {
@@ -40,6 +41,10 @@ class UserController extends Controller {
 		# get user
 		$user = Auth::user();
 
+		if ( ! Auth::attempt(['email' => $user->email, 'password' => Input::get('old_password', '')], false, false)) {
+			dd('nope!');
+			return \Redirect::back()->with('error', 'Authenticated Failed!');
+		}
 		$user->email = Input::get('email');
 		$user->password = \Hash::make(Input::get('password'));
 

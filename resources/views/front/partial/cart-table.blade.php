@@ -52,7 +52,7 @@
 			</tbody>
 		</table>
 
-        <div class="footer">
+        <div class="footer clearfix">
             <div class="total">
                 <?php
                     $t = $total;

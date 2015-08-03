@@ -80,5 +80,6 @@ return [
 		'user_settings' => 'Instillinger',
 		'user_order' => 'Bestilling',
 		'search' => 'Søk',
+		'checkout' => 'Kassen',
 	],
 ];

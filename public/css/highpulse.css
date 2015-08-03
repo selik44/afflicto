@@ -4787,7 +4787,7 @@ ul.pagination {
 .cart-table table tbody tr.item .product {
   vertical-align: middle; }
 .cart-table table tbody tr.item .thumbnail {
-  width: 80px; }
+  height: 80px; }
 .cart-table table tbody tr.item .quantity .input-append input {
   max-width: 80px; }
 .cart-table table tbody tr.shipping .icon .fa {

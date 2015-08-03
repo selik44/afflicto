@@ -23,9 +23,8 @@ class SaveUserSettingsRequest extends Request {
 	{
 		return [
 			'email' => 'required|email',
-			'new_password' => 'min:8|confirmed:password_confirmation',
-			'password_confirmation' => 'required_with:password,password_confirmation',
 			'old_password' => 'required_with:password,password_confirmation',
+			'password' => 'min:8|required_with:old_password|confirmed:password_confirmation'
 		];
 	}
 

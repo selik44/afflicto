@@ -333,4 +333,5 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 get('checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
 get('success', ['as' => 'store.success', 'uses' => 'StoreController@success']);
 post('push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
+post('cart/setsubscribe/{subscribe}', ['as' => 'store.setsubscribe', 'uses' => 'StoreController@setSubscribe']);
 get('{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');

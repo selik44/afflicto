@@ -126,6 +126,8 @@ return [
 		'shipping_city' => 'By',
 		'shipping_country' => 'Land',
 		'shipping_email' => 'E-Mail Addresse',
+
+		'subscribe_to_newsletter' => 'Jeg ønsker å motta nyhetsbrev',
 	],
 
 ];

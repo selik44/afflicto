@@ -11,9 +11,19 @@ use Cart;
 use Log;
 use Input;
 use Mail;
+use Mailchimp;
 use Session;
 
 class StoreController extends Controller {
+
+	/**
+	 * @var Mailchimp
+	 */
+	private $mailchimp;
+
+	public function __construct(Mailchimp $mailchimp) {
+		$this->mailchimp = $mailchimp;
+	}
 
 	public function index($path) {
 		$path = explode('/', $path);
@@ -101,13 +111,33 @@ class StoreController extends Controller {
 			]);
 	}
 
+	public function setSubscribe($subscribe = 0) {
+		# get the klarna order
+		if (Session::has('klarna_order')) {
+			$order = Cart::getKlarnaOrder(Session::get('klarna_order'));
+		}else {
+			$order = Cart::getKlarnaOrder();
+		}
+
+		if ($subscribe == 1) {
+			return response('Enabled');
+		}else {
+			return response('Disabled');
+		}
+	}
+
 	public function success() {
 		if ( ! Session::has('klarna_order')) return \Redirect::back()->with('error', 'Something went wrong!');
+
+		# get order
 		$order = Cart::getKlarnaOrder(Session::get('klarna_order'));
 
+		# get the gui snippet
 		$snippet = $order['gui']['snippet'];
 
+		# clear the cart
 		Cart::clear();
+
 		return view('front.store.success')->with([
 			'aside' => true,
 			'snippet' => $snippet,
