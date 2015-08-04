@@ -11,5 +11,5 @@ return [
     |
     */
 
-    'apikey' => 'your-mailchimp-api-key',
+    'apikey' => '307329f5cdda4404730e430ba041f062-us6',
 ];
