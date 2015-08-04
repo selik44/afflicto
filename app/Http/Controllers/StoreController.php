@@ -112,16 +112,11 @@ class StoreController extends Controller {
 	}
 
 	public function setSubscribe($subscribe = 0) {
-		# get the klarna order
-		if (Session::has('klarna_order')) {
-			$order = Cart::getKlarnaOrder(Session::get('klarna_order'));
-		}else {
-			$order = Cart::getKlarnaOrder();
-		}
-
 		if ($subscribe == 1) {
+			Session::set('klarna_subscribe', 1);
 			return response('Enabled');
 		}else {
+			Session::forget('klarna_subscribe');
 			return response('Disabled');
 		}
 	}
@@ -131,6 +126,24 @@ class StoreController extends Controller {
 
 		# get order
 		$order = Cart::getKlarnaOrder(Session::get('klarna_order'));
+
+		# subscribe?
+		if (Session::has('klarna_subscribe')) {
+			if (\Auth::user()) {
+				$email = \Auth::user()->email;
+			}else {
+				$email = $order['billing_address']['email'];
+			}
+
+			# subscribe to newsletter
+			$this->mailchimp
+				->lists
+				->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), $email);
+
+			# clean up
+			Session::forget('klarna_subscribe');
+		}
+
 
 		# get the gui snippet
 		$snippet = $order['gui']['snippet'];
