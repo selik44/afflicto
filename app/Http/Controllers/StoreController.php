@@ -71,9 +71,11 @@ class StoreController extends Controller {
 			$variants = [];
 			foreach($products as $product) {
 				foreach($product->variants as $variant) {
-					$name = strtolower(str_replace(' ', '-', $variant->name));
-					if ( ! isset($variants[$name])) $variants[$name] = [];
-					$variants[$name] = array_unique(array_merge($variants[$name], array_column($variant->data['values'], 'name')));
+					if ($variant->filterable) {
+						$name = strtolower(str_replace(' ', '-', $variant->name));
+						if ( ! isset($variants[$name])) $variants[$name] = [];
+						$variants[$name] = array_unique(array_merge($variants[$name], array_column($variant->data['values'], 'name')));
+					}
 				}
 			}
 

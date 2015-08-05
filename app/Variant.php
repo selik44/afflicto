@@ -26,6 +26,7 @@ class Variant extends Model {
 
 	protected $casts = [
 		'data' => 'array',
+		'filterable' => 'boolean',
 	];
 
 	protected $fillable = ['name', 'data'];

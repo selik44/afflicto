@@ -70,6 +70,7 @@ class VariantsController extends Controller {
 		$variant->data = ['values' => [], 'uid' => 0];
 		$variant->name = Input::get('name');
 		$variant->admin_name = Input::get('admin_name');
+		$variant->filterable = Input::has('filterable');
 		$variant->save();
 
 		return \Redirect::route('admin.variants.index');
@@ -97,6 +98,7 @@ class VariantsController extends Controller {
 	{
 		$variant->name = Input::get('name');
 		$variant->admin_name = Input::get('admin_name');
+		$variant->filterable = (Input::has('filterable')) ? true : false;
 
 		# update current values
 		$data = $variant->data;

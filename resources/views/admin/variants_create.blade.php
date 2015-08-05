@@ -17,6 +17,8 @@
 
     {!! Former::text('name') !!}
 
+    {!! Former::checkbox('filterable') !!}
+
     {!! Former::submit(trans('admin.create'))->class('large primary') !!}
     {!! Former::close() !!}
 @stop

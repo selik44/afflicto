@@ -16,6 +16,8 @@
 
     {!! Former::text('name') !!}
 
+    {!! Former::checkbox('filterable')->value(1) !!}
+
     <div class="values-container module">
         <div class="module-header">
             <h6>Values</h6>

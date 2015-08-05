@@ -37,6 +37,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Core: implement login throttling
 - Core: Cache routes and pages. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
 - Core: rename "administrator" role to "Superadmin".
+- Variants: enable/disable filtering on each variant.
 - Add "Free Shipping" tag.
 - protect proteria API routes with permissions instead of role.
 - Images: Implement thumbnail generation and resizing for all images.
