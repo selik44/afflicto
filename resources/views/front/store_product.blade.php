@@ -231,27 +231,21 @@
         // setup stock status text
         if (parseInt($(".product-view").attr('data-variants')) > 0) {
             var stock = JSON.parse('{!! json_encode($product->variants_stock) !!}');
-            var availability = JSON.parse('{!! json_encode($product->getAvailablity()) !!}');
-
             console.log('stock is:');
             console.log(stock);
-
-            console.log('availability is:');
-            console.log(availability);
-
             var $stock = $(".product-stock");
 
             function updateStock() {
                 console.log('updating stock status');
                 //get the current stock ID
-                var stockID = [];
+                var stockID = []
                 $("form .product-variants .variant").each(function() {
                     var select = $(this).find('select');
                     stockID.push(select.val());
                 });
 
                 stockID = stockID.join('_');
-                var stockValue = parseInt(availability[stockID]);
+                var stockValue = parseInt(stock[stockID]);
 
                 if (stockValue > 0) {
                     $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").removeAttr('disabled');
