@@ -33,15 +33,13 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 # Todo
 - Core: Refactor the permissions system to use middleware parameters.
+- Core: rename "administrator" role to "Superadmin".
 - Core: Setup emailing of errors and logs
 - Core: implement login throttling
 - Core: Cache routes and pages. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
-- Core: rename "administrator" role to "Superadmin".
-- Variants: enable/disable filtering on each variant.
 - Add "Free Shipping" tag.
 - protect proteria API routes with permissions instead of role.
 - Images: Implement thumbnail generation and resizing for all images.
-- Bannere må resizes, justeres automatisk.
 - admin.products: På varer med varianter er det ønskelig at beholdningen summeres, og vises i feltet Stock.
 - front.product-view: Få inn 100% fornøydgaranti-merke.
 - front.product-view, tabs: reorder to (about > info > ...)
@@ -53,6 +51,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - rabatt popup ting
 - performance: gtmetrix.com, use cloudflare? varnish cache?
 - add iron.io queues for emails, logging and backups.
+- Compound Products
 
 Order statuses
 - ubehandlet

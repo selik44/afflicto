@@ -29,7 +29,13 @@ class ProductsController extends Controller {
 		$table = Laratable::make(Product::query(), [
 			'#' => 'id',
             'Name' => 'name',
-            'Stock' => 'stock',
+            'Stock' => ['stock', function($model) {
+				if ($model->variants->count() > 0) {
+					return array_sum($model->variants_stock);
+				}else {
+					return $model->stock;
+				}
+			}],
             'Price' => 'price',
 			'Manufacturer' => ['manufacturer_id', function($model, $column, $value) {
 				if ( ! $model->manufacturer) return 'None';
