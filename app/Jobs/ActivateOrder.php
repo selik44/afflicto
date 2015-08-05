@@ -1,4 +1,4 @@
-<?php namespace Friluft\Commands;
+<?php namespace Friluft\Jobs;
 
 use Friluft\Order;
 use Friluft\OrderEvent;

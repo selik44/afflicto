@@ -32,13 +32,13 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Pris i handlekurv/kasse skal være uten desimaler.
 
 # Todo
+- Core: Refactor the permissions system to use middleware parameters.
 - Core: Setup pretty error pages for 404, 503, 500 errors
 - Core: Setup emailing of errors and logs
-- Core: upgrade to L5.1 and refactor the permissions system to use middleware parameters.
 - Core: implement login throttling
 - Core: Cache routes and pages. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
 - Core: rename "administrator" role to "Superadmin".
-- Add "Free Shipping" tag.
+- Add "Free Shipping" tag.https://gtmetrix.com/
 - protect proteria API routes with permissions instead of role.
 - Images: Implement thumbnail generation and resizing for all images.
 - Bannere må resizes, justeres automatisk.

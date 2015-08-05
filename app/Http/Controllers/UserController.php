@@ -41,12 +41,17 @@ class UserController extends Controller {
 		# get user
 		$user = Auth::user();
 
-		if ( ! Auth::attempt(['email' => $user->email, 'password' => Input::get('old_password', '')], false, false)) {
-			dd('nope!');
-			return \Redirect::back()->with('error', 'Authenticated Failed!');
-		}
+		# update email
 		$user->email = Input::get('email');
-		$user->password = \Hash::make(Input::get('password'));
+
+		# update password?
+		if (Input::has('old_password')) {
+			if ( ! Auth::attempt(['email' => $user->email, 'password' => Input::get('old_password', '')], false, false)) {
+				return \Redirect::back()->with('error', 'Authenticated Failed!');
+			}
+
+			$user->password = \Hash::make(Input::get('password'));
+		}
 
 		# save
 		$user->save();

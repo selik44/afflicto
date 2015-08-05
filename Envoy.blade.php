@@ -13,6 +13,7 @@
     chmod -R 755 *
     chmod -R 777 storage
     chmod -R 777 public
+    chmod -R 777 bootstrap/cache
     php artisan route:cache
 @endtask
 
@@ -22,6 +23,7 @@
     chmod -R 755 *
     chmod -R 777 storage
     chmod -R 777 public
+    chmod -R 777 bootstrap/cache
     php artisan route:cache
 @endtask
 
@@ -31,5 +33,6 @@
     chmod -R 755 *
     chmod -R 777 storage
     chmod -R 777 public
+    chmod -R 777 bootstrap/cache
     php artisan route:cache
 @endtask

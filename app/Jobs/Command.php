@@ -1,4 +1,4 @@
-<?php namespace Friluft\Commands;
+<?php namespace Friluft\Jobs;
 
 abstract class Command {
 
