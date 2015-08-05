@@ -93,7 +93,7 @@
 
                     <div class="product-stock">
                         <p class="true lead color-success">
-                            <i class="fa fa-check"></i> @lang('store.in stock') (<span class="quantity"></span>)
+                            <i class="fa fa-check"></i> @lang('store.in stock')
                         </p>
 
                         <p class="false lead color-warning">
@@ -250,7 +250,7 @@
                 if (stockValue > 0) {
                     $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").removeAttr('disabled');
                     $("form .product-stock .true").show().siblings('.false').hide();
-                    $("form .product-stock .true .quantity").text(stockValue);
+                    //$("form .product-stock .true .quantity").text(stockValue);
                 }else {
                     $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").attr('disabled', 'disabled');
                     $("form .product-stock .true").hide().siblings('.false').show();

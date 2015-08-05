@@ -59,7 +59,7 @@
 
                     if (isset($withShipping) && $withShipping) $t += $shipping['unit_price'] / 100;
                 ?>
-                <h3>@lang('store.total'): <span class="value">{{$t}}</span>,-</h3>
+                <h3>@lang('store.total'): <span class="value">{{round($t)}}</span>,-</h3>
             </div>
             @if(isset($withCheckoutButton) && $withCheckoutButton)
                 <a class="button primary large" href="{{route('store.checkout')}}">@lang('store.to checkout') <i class="fa fa-chevron-right"></i></a>
