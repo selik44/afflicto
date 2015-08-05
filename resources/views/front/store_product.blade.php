@@ -93,7 +93,7 @@
 
                     <div class="product-stock">
                         <p class="true lead color-success">
-                            <i class="fa fa-check"></i> @lang('store.in stock')
+                            <i class="fa fa-check"></i> @lang('store.in stock') (<span class="quantity"></span>)
                         </p>
 
                         <p class="false lead color-warning">
@@ -193,7 +193,6 @@
 	@parent
 @stop
 
-
 @section('scripts')
 	@parent
 
@@ -229,27 +228,35 @@
             $('.product-images .thumbnails .thumbnail[data-slide="' + id + '"]').addClass('active');
         });
 
-
         // setup stock status text
         if (parseInt($(".product-view").attr('data-variants')) > 0) {
             var stock = JSON.parse('{!! json_encode($product->variants_stock) !!}');
+            var availability = JSON.parse('{!! json_encode($product->getAvailablity()) !!}');
+
+            console.log('stock is:');
+            console.log(stock);
+
+            console.log('availability is:');
+            console.log(availability);
+
             var $stock = $(".product-stock");
 
             function updateStock() {
                 console.log('updating stock status');
                 //get the current stock ID
-                var stockID = []
+                var stockID = [];
                 $("form .product-variants .variant").each(function() {
                     var select = $(this).find('select');
                     stockID.push(select.val());
                 });
 
                 stockID = stockID.join('_');
-                var stockValue = parseInt(stock[stockID]);
+                var stockValue = parseInt(availability[stockID]);
 
                 if (stockValue > 0) {
                     $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").removeAttr('disabled');
                     $("form .product-stock .true").show().siblings('.false').hide();
+                    $("form .product-stock .true .quantity").text(stockValue);
                 }else {
                     $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").attr('disabled', 'disabled');
                     $("form .product-stock .true").hide().siblings('.false').show();
@@ -330,7 +337,9 @@
                 }
             }
         };
+
         callback();
+
         $(window).bind('scroll resize', _.throttle(function() {
             callback();
         }, 50));
@@ -357,6 +366,7 @@
             $.post($(this).attr('action'), $(this).serialize(), function(response) {
                 var total = response.total;
 
+                //update free shipping status
                 var left = 800 - total;
                 if (left > 0) {
                     $("#breadcrumbs .free-shipping-status").show().find('.value').text(left);
@@ -364,6 +374,12 @@
                     $("#breadcrumbs .free-shipping-status").hide();
                 }
 
+                //update cart-toggle status
+                var quantity = response.quantity;
+                $("#header .cart-toggle .quantity").text(response.quantity);
+                $("#header .cart-toggle .total").text(response.total);
+
+                //update cart table
                 $.get(Friluft.URL + '/api/cart', function(html) {
                     cart.find('.cart-table').replaceWith(html);
                 });

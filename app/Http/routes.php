@@ -1,6 +1,9 @@
 <?php
 
 # HOME ROUTES
+get('500', function() {
+	App::abort(500);
+});
 get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 get('terms-and-conditions', ['as' => 'home.terms', 'uses' => 'HomeController@terms']);
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
@@ -215,4 +218,5 @@ get('checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']
 get('success', ['as' => 'store.success', 'uses' => 'StoreController@success']);
 post('push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
 post('cart/setsubscribe/{subscribe}', ['as' => 'store.setsubscribe', 'uses' => 'StoreController@setSubscribe']);
+get('cart/clear', ['as' => 'store.clear', 'uses' => 'StoreController@clearCart']);
 get('{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
