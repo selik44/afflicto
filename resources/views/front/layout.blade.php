@@ -120,7 +120,18 @@
 			</div>
 		</nav>
 	</header>
-	
+
+    <?php
+    $slogan_content = Friluft\Setting::whereMachine('slogan_content')->first();
+    $slogan_bg = Friluft\Setting::whereMachine('slogan_background')->first();
+    $slogan_color = Friluft\Setting::whereMachine('slogan_color')->first();
+    ?>
+    <div id="slogan" class="clearfix" style="background-color: {{$slogan_bg->value}}; color: {{$slogan_color->value}};">
+        <div class="inner clearfix">
+            {!! $slogan_content->value !!}
+        </div>
+    </div>
+
 	@if(isset($slider) && $slider)
 		<div id="slider" class="clearfix">
 			<div class="inner clearfix">
@@ -158,14 +169,6 @@
 	@endif
 	
     @include('partial.alerts')
-
-    @if(isset($intro) && $intro)
-        <div id="intro" class="clearfix">
-            <div class="inner clearfix">
-                @yield('intro')
-            </div>
-        </div>
-    @endif
 
 	<div id="page" class="clearfix">
 		<div class="inner clearfix">

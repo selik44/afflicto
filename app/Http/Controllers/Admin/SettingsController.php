@@ -1,20 +1,44 @@
 <?php namespace Friluft\Http\Controllers\Admin;
 
+use Former;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 
 use Friluft\Image;
+use Friluft\Setting;
 use Illuminate\Http\Request;
 use Input;
 
 class SettingsController extends Controller {
 
+	private $settings = [
+		'slogan_content',
+		'slogan_background',
+		'slogan_color',
+	];
+
 	public function getDesign() {
+		# background image
 		$image = Image::whereType('background')->first();
-		\Former::populate([
+
+		# populate
+		$fields = [];
+		foreach($this->settings as $setting) {
+			$setting = Setting::whereMachine($setting)->first();
+
+			Former::populate([
+				$setting->machine => $setting->value,
+			]);
+
+			$fields[] = $setting->getField();
+		}
+
+		Former::populate([
 			'use_background_image' => ($image) ? true : false,
 		]);
-		return view('admin.design_general');
+		return view('admin.design_general')->with([
+			'fields' => $fields,
+		]);
 	}
 
 	public function putDesign() {
@@ -37,6 +61,17 @@ class SettingsController extends Controller {
 		}else if ( ! Input::has('use_background_image')) {
 			$image = Image::whereType('background')->first();
 			if ($image) $image->delete();
+		}
+
+		# save settings
+		foreach(Setting::all() as $setting) {
+			if ($setting->type == 'boolean') {
+				$setting->value = Input::has($setting->machine);
+			}else {
+				$setting->value = Input::get($setting->machine, '');
+			}
+
+			$setting->save();
 		}
 
 		return \Redirect::back()->with('success', 'Settings Saved!');

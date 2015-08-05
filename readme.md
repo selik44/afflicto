@@ -42,7 +42,6 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Images: Implement thumbnail generation and resizing for all images.
 - admin.products: På varer med varianter er det ønskelig at beholdningen summeres, og vises i feltet Stock.
 - front.product-view: Få inn 100% fornøydgaranti-merke.
-- front.product-view, tabs: reorder to (about > info > ...)
 - dashboard stats & reports
 - mini-banner on top: configurable background color and content.
 - edit checkout & footer text
