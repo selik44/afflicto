@@ -561,11 +561,10 @@
         }
 
         function updatePrice() {
-            //profit = 100
-            //inPrice = 100
             var priceValue = (getProfit() + getInPrice());
+            console.log('updating price to ' + priceValue);
             price.val(priceValue);
-
+            console.log('inc MVA: ' + (priceValue * getTaxPercent()));
             priceHelp.html(Math.round(priceValue * getTaxPercent()));
         }
 
@@ -574,7 +573,7 @@
         });
 
         price.bind('keyup', function(e) {
-            profit.val(calculateProfit());
+            profit.val(getPrice() - getInPrice());
             priceHelp.html(getPrice() * getTaxPercent());
         });
 
@@ -584,7 +583,6 @@
 
         vatgroup.bind('change', function(e) {
 	        updatePrice();
-            calculateProfit();
         });
 
         //set profit value
