@@ -120,14 +120,21 @@
 
 		<div class="paper product-bottom col-xs-12 tight">
 			<ul id="product-tabs" class="nav tabs clearfix">
-				<li class="current"><a href="#product-info">@lang('store.product info')</a></li>
-				<li><a href="#product-relations">@lang('store.related products')</a></li>
                 <li><a href="#product-manufacturer-description">@lang('store.about') {{$product->manufacturer->name}}</a></li>
-
+                <li class="current"><a href="#product-info">@lang('store.product info')</a></li>
                 @foreach($product->producttabs as $tab)
                     <li><a href="#product-tab-{{$tab->id}}">{{$tab->title}}</a></li>
                 @endforeach
+                <li><a href="#product-relations">@lang('store.related products')</a></li>
 			</ul>
+
+            <div class="tab" id="product-manufacturer-description">
+                {!! $product->manufacturer->description !!}
+            </div>
+
+            <div class="tab" id="product-info">
+                {!! $product->description !!}
+            </div>
 
             @foreach($product->producttabs as $tab)
                 <div class="tab" id="product-tab-{{$tab->id}}">
@@ -135,20 +142,12 @@
                 </div>
             @endforeach
 
-			<div class="tab" id="product-info">
-				{!! $product->description !!}
-			</div>
-
-			<div class="tab clearfix" id="product-relations">
-				<div class="products-grid">
-					@foreach($product->relations as $related)
+            <div class="tab clearfix" id="product-relations">
+                <div class="products-grid">
+                    @foreach($product->relations as $related)
                         @include('front.partial.products-block', ['product' => $related])
-					@endforeach
-				</div>
-			</div>
-
-            <div class="tab" id="product-manufacturer-description">
-                {!! $product->manufacturer->description !!}
+                    @endforeach
+                </div>
             </div>
 		</div>
 	</div>
