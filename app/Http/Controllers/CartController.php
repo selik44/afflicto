@@ -119,7 +119,7 @@ class CartController extends Controller {
 
 	public function clear() {
 		Cart::clear();
-		return response('OK');
+		return Redirect::to('/')->with('success', 'Your cart has been cleared.');
 	}
 
 }

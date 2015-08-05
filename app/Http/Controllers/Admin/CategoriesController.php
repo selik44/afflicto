@@ -158,9 +158,15 @@ class CategoriesController extends Controller {
 		return Redirect::to('admin/categories')->with('success', 'Category deleted.');
 	}
 
-
 	public function tree() {
 		return $this->view('admin.categories_tree')->with('categories', Category::root()->get());
+	}
+
+	public function tree_getProducts(Category $category) {
+		return view('admin.partial.products_list')
+			->with([
+				'category' => $category
+			]);
 	}
 
 	private function updateItem($item, $parent = null) {

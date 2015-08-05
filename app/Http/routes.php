@@ -1,18 +1,12 @@
 <?php
 
-use Friluft\Category;
-use Friluft\Product;
-use Friluft\Variant;
-
+# HOME ROUTES
 get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
-
 get('terms-and-conditions', ['as' => 'home.terms', 'uses' => 'HomeController@terms']);
+get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
-get('cart/clear', function() {
-	Cart::clear();
-});
 
-# auth
+# AUTH & USER ROUTES
 Route::group(['prefix' => 'user'], function() {
 	# login
 	get('login', ['as' => 'user.login', 'uses' => 'AuthController@get_login']);
@@ -33,7 +27,7 @@ Route::group(['prefix' => 'user'], function() {
 	get('reset/{token}', ['as' => 'user.reset', 'uses' => 'AuthController@get_reset']);
 	post('reset', ['as' => 'user.reset.post', 'uses' => 'AuthController@post_reset']);
 
-	# dashboard
+	# USER DASHBOARD
 	Route::group(['middleware' => 'auth'], function() {
 		get('/', ['as' => 'user', 'uses' => 'UserController@index']);
 		get('orders', ['as' => 'user.orders', 'uses' => 'UserController@getOrders']);
@@ -43,10 +37,8 @@ Route::group(['prefix' => 'user'], function() {
 	});
 });
 
-# search
-get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
-# cart API
+# API ROUTES
 get('api/cart', ['as' => 'api.cart.index', 'uses' => 'CartController@index']);
 get('api/cart/clear', ['as' => 'api.cart.clear', 'uses' => 'CartController@clear']);
 get('api/cart/{cart}', ['as' => 'api.cart.show', 'uses' => 'CartController@show']);
@@ -54,158 +46,45 @@ post('api/cart', ['as' => 'api.cart.store', 'uses' => 'CartController@store']);
 put('api/cart/{id}/quantity', ['as' => 'api.cart.quantity', 'uses' => 'CartController@setQuantity']);
 delete('api/cart/{id}', ['as' => 'api.cart.destroy', 'uses' => 'CartController@destroy']);
 
-
-# html/ajax API
-get('html/product/{product}', ['as' => 'html.product', function($product) {
-	return view('front.partial.product_modal')->with('product', $product);
-}]);
-
-# proteria API
 get('api/proteria/update', ['middleware' => 'auth.basic', 'as' => 'api.proteria.update', 'uses' => 'Admin\ProteriaController@update']);
 get('api/proteria/orders', ['middleware' => 'auth.basic', 'as' => 'admin.proteria.export', 'uses' => 'Admin\ProteriaController@getExport']);
 
-/*---------------------------
-*	Admin routes
-*--------------------------*/
+
+# ADMIN ROUTES
 Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
-	# api
-	put('api/products/{product}/setenabled', function(Product $p) {
-		$p->enabled = Input::get('enabled');
-		$p->save();
-		return response('OK');
+
+	# API
+	Route::group(['middleware' => 'admin', 'prefix' => 'api'], function() {
+		# enable/disable product
+		put('products/{product}/setenabled', ['as' => 'admin.api.products.setEnabled', 'uses' => 'Admin\APIController@products_setEnabled']);
+
+		# get categories for product
+		get('products/{product}/categories', ['as' => 'admin.api.products.getCategories', 'uses' => 'Admin\APIController@products_getCategories']);
+
+		# sync categories
+		post('products/{product}/categories', ['as' => 'admin.api.products.syncCategories', 'uses' => 'Admin\APIController@products_syncCategories']);
+
+		# add product image
+		post('products/{product}/images', ['as' => 'admin.api.products.postImage', 'uses' => 'Admin\APIController@products_postImage']);
+
+		# update image order
+		put('products/{product}/images/order', ['as' => 'admin.api.products.setImageOrder', 'uses' => 'Admin\APIController@products_setImageOrder']);
+
+		# delete product image
+		delete('products/{product}/images', ['as' => 'admin.api.products.destroyImage', 'uses' => 'Admin\APIController@products_destroyImage']);
+
+		# add variant
+		post('products/{product}/variants', ['as' => 'admin.api.products.addVariant', 'uses' => 'Admin\APIController@products_addVariant']);
+
+		# update variant
+		put('products/{product}/variants/{variant}', ['as' => 'admin.api.products.updateVariant', 'uses' => 'Admin\APIController@products_updateVariant']);
+
+		# update variant stock
+		put('products/{product}/variants/{variant}/setstock', ['as' => 'admin.api.products.setVariantsStock', 'uses' => 'Admin\APIController@products_setVariantsStock']);
+
+		# remove variant
+		delete('products/{product}/variants/{variant}', ['as' => 'admin.api.products.removeVariant', 'uses' => 'Admin\APIController@products_removeVariant']);
 	});
-
-	# get categories
-	get('api/products/{product}/categories', function(Product $p) {
-		$cats = [];
-		foreach(Category::all() as $category) {
-			$array = $category->toArray();
-			$array['selected'] = $p->categories->contains($category);
-			$cats[] = $array;
-		}
-
-		return $cats;
-	});
-
-	# sync categories
-	post('api/products/{product}/categories', function(Product $p) {
-		$p->categories()->sync(Input::get('categories', []));
-		return response('OK');
-	});
-
-	# add image
-	post('api/products/{product}/images', function(Product $p) {
-		# get the uploaded file
-		$file = Input::file('file');
-
-		# create a new image instance
-		$image = new Friluft\Image();
-
-		$image->type = 'product';
-
-		# save, to get ID
-		$p->images()->save($image);
-
-		# set name and save again
-		$image->name = 'product_' .$p->id .'_' .$image->id .'.' .$file->getClientOriginalExtension();
-
-		# move it to the public dir
-		if ($file->move(public_path('images/products/'), $image->name)) {
-			$image->save();
-			return response('OK', 200);
-		}
-
-		$image->delete();
-
-		return response('ERROR', 500);
-	});
-
-	# update image order
-	put('api/products/{product}/images/order', function(Product $p) {
-		if (!Input::has('order')) return response('ERROR: Invalid input.', 400);
-		$order = json_decode(Input::get('order'), true);
-		foreach($order as $image) {
-			DB::table('images')
-				->where('id', '=', $image['id'])
-				->update(['order' => $image['order']]);
-		}
-		return response('OK', 200);
-	});
-
-	# delete product image
-	delete('api/products/{product}/images', function(Product $p) {
-		$id = Input::get('id');
-		DB::table('images')->delete($id);
-
-		return response('OK', 200);
-	});
-
-	# add variant
-	post('api/products/{product}/variants', function(Product $p) {
-		$variant = new Variant(Input::only('name'));
-		$data = ['values' => []];
-
-		# set values array
-		$values = Input::get('values');
-		$values = trim($values, '\r\n\t, ');
-		$values = explode(',', $values);
-
-		# loop through values array and add stock, name etc.
-		foreach($values as $value) {
-			$data['values'][$value] = ['name' => $value, 'stock' => 0];
-		}
-
-		$variant->data = $data;
-
-		$p->variants()->save($variant);
-		return response('OK');
-	});
-
-	# update variant
-	put('api/products/{product}/variants/{variant}', function(Product $p, Variant $v) {
-		# get data
-		$data = $v->data;
-
-		# set values array
-		$values = Input::get('values');
-		$values = trim($values, '\r\n\t, ');
-		$values = explode(',', $values);
-
-		# loop through values array and add stock, name etc.
-		foreach($values as $value) {
-			$data['values'][$value] = ['name' => $value, 'stock' => 0];
-		}
-
-		$v->data = $data;
-
-		# save
-		$v->save();
-		return response('OK');
-	});
-
-	# update variant stock
-	put('api/products/{product}/variants/{variant}/setstock', function(Product $p, Variant $v) {
-		$data = $v->data;
-		$data['values'][Input::get('value')]['stock'] = Input::get('stock');
-
-		$v->data = $data;
-		$v->save();
-
-		return response('OK');
-	});
-
-	# remove variant
-	delete('api/products/{product}/variants/{variant}', function(Product $product, Variant $variant) {
-		$product->variants()->detach($variant);
-		return response('OK');
-	});
-
-	get('html/category/{category}/products', ['as' => 'html.category.products', function(Category $category) {
-		return view('admin.partial.products_list')
-			->with([
-				'category' => $category
-			]);
-	}]);
 
 	# dashboard
 	get('/', ['as' => 'admin', 'uses' => 'Admin\DashboardController@index']);
@@ -257,6 +136,8 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 	# categories
 	get('categories/tree', ['as' => 'admin.categories.tree', 'uses' => 'Admin\CategoriesController@tree']);
 	put('categories/tree', ['as' => 'admin.categories.tree.update', 'uses' => 'Admin\CategoriesController@tree_update']);
+
+	get('categories/tree/{category}', ['as' => 'html.category.products', 'uses' => 'Admin\CategoriesController@tree_getProducts']);
 
 	get('categories', ['as' => 'admin.categories.index', 'uses' => 'Admin\CategoriesController@index']);
 	get('categories/create', ['as' => 'admin.categories.create', 'uses' => 'Admin\CategoriesController@create']);
@@ -329,7 +210,7 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function() {
 });
 
 
-# store / cart
+# STORE & CART ROUTES
 get('checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
 get('success', ['as' => 'store.success', 'uses' => 'StoreController@success']);
 post('push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);

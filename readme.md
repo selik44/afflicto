@@ -21,20 +21,34 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 # Architecture
 - Move complicated controller logic to commands, for extendability?
-- Move all closure routes to controllers, so we can cache routes.
 - Architecture: Requests, Events, Commands etc.
-- Caching: Implement caching, look at varnish cache? memcached?
 - improve translation organization
 
+# Bugs
+- Fix front-end for safari
+- Handlekurven viser ikke sum før man har oppdatert sida.
+- Dersom man endrer antall av et produkt i kassen, forsvinner frakten.
+- Klarna checkout må scrolles sideveis på mobil.
+- Pris i handlekurv/kasse skal være uten desimaler.
 
-# Todo:
-- receival
+# Todo
+- Core: upgrade to L5.1 and refactor the permissions system to use middleware parameters.
+- Core: implement login throttling
+- Core: Cache routes and pages. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
+- Core: rename "administrator" role to "Superadmin".
+- Add "Free Shipping" tag.
+- protect proteria API routes with permissions instead of role.
+- Images: Implement thumbnail generation and resizing for all images.
+- Bannere må resizes, justeres automatisk.
+- admin.products: På varer med varianter er det ønskelig at beholdningen summeres, og vises i feltet Stock.
+- front.product-view: Få inn 100% fornøydgaranti-merke.
+- front.product-view, tabs: reorder to (about > info > ...)
 - dashboard stats & reports
-- mini-banner on top, background & text.
+- mini-banner on top: configurable background color and content.
 - edit checkout & footer text
+- product receivals
 - related products appears when buying.
 - rabatt popup ting
-
 
 Order statuses
 - ubehandlet

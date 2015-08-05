@@ -162,7 +162,7 @@
                 category.addClass('peek');
                 var id = category.attr('data-id');
 
-                products.load(Friluft.URL + '/admin/html/category/' + id + '/products');
+                products.load(Friluft.URL + '/admin/categories/tree/' + id);
             }
         });
 
@@ -242,7 +242,7 @@
                     showList($(this));
                 });
 
-                products.load(Friluft.URL + '/admin/html/category/' + id + '/products');
+                products.load(Friluft.URL + '/admin/categories/tree/' + id);
             }
         }
 	</script>

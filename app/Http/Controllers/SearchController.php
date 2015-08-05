@@ -19,7 +19,7 @@ class SearchController extends Controller {
 					'aside' => true
 				]);
 		}
-		
+
 		return redirect('search')->with('error', 'A search term is required!');
 	}
 
