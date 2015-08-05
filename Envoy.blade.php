@@ -13,6 +13,7 @@
     chmod -R 755 *
     chmod -R 777 storage
     chmod -R 777 public
+    php artisan route:cache
 @endtask
 
 @task('staging.composer', ['on' => 'staging'])
@@ -21,6 +22,7 @@
     chmod -R 755 *
     chmod -R 777 storage
     chmod -R 777 public
+    php artisan route:cache
 @endtask
 
 @task('staging.migrate', ['on' => 'staging'])
@@ -29,4 +31,5 @@
     chmod -R 755 *
     chmod -R 777 storage
     chmod -R 777 public
+    php artisan route:cache
 @endtask

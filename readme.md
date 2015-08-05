@@ -32,6 +32,8 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Pris i handlekurv/kasse skal være uten desimaler.
 
 # Todo
+- Core: Setup pretty error pages for 404, 503, 500 errors
+- Core: Setup emailing of errors and logs
 - Core: upgrade to L5.1 and refactor the permissions system to use middleware parameters.
 - Core: implement login throttling
 - Core: Cache routes and pages. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
