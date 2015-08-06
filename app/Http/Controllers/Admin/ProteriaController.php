@@ -53,6 +53,10 @@ class ProteriaController extends Controller {
 					'Email' => $order->shipping_address['email'],
 					'Mobil' => str_replace(' ', '', $order->shipping_address['phone']),
 				],
+				'Tjenester' => [
+					'SendAutoMail' => 1,
+					'T20' => 1,
+				],
 			];
 
 			# add the entry
@@ -60,7 +64,7 @@ class ProteriaController extends Controller {
 		}
 
 		# return as plain text for now
-		return \Response::make($xml->render(false), 200, ['Content-Type' => 'text/xml; charset=ISO-8859-1', 'Charset' => 'ISO-8859-1']);
+		return \Response::make($xml->render(false), 200, ['Content-Type' => 'text/xml; charset=ISO-8859-1']);
 	}
 
 	/**

@@ -45,6 +45,8 @@
                         {!! Former::text('billing_city')->value($order->billing_address['city']) !!}
 
                         {!! Former::text('billing_country')->value($order->billing_address['country']) !!}
+
+                        {!! Former::text('billing_phone')->value($order->billing_address['phone']) !!}
 					</div>
 
                     <div class="col-m-4 tight-right">
@@ -56,6 +58,8 @@
                         {!! Former::text('shipping_city')->value($order->shipping_address['city']) !!}
 
                         {!! Former::text('shipping_country')->value($order->shipping_address['country']) !!}
+
+                        {!! Former::text('shipping_phone')->value($order->shipping_address['phone']) !!}
                     </div>
 				</div>
 			</div>
