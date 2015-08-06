@@ -1,6 +1,6 @@
 <?php namespace Friluft\Http\Controllers\Admin;
 
-use Friluft\Commands\ActivateOrder;
+use Friluft\Jobs\ActivateOrder;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Friluft\Product;
