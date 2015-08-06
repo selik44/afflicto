@@ -5,6 +5,7 @@ use Illuminate\Session\SessionManager;
 use Friluft\Product;
 use Klarna_Checkout_Order;
 use Klarna_Checkout_Connector;
+use Agent;
 
 class UnknownProductException extends Exception {}
 
@@ -289,6 +290,10 @@ class Cart {
 		$data['options']['color_header'] = '#000000';
 		$data['options']['color_link'] = '#03a1a9';
 
+		if (Agent::isMobile()) {
+			$data['options']['layout'] = 'Mobile';
+		}
+
 		# set shipping info
 		$data['options']['shipping_details'] = 'Shipping Details Here';
 
@@ -308,16 +313,6 @@ class Cart {
 
 		return $order->update($this->getKlarnaOrderData());
 	}
-
-	/*
-	 * TODO: implement these color value thingies
-	$order['options']['color_button'] = '#04C5CF';
-	$order['options']['color_button_text'] = '#FFF';
-	$order['options']['color_header'] = '#04C5CF';
-	$order['options']['color_link'] = '#04C5CF';
-	$order['options']['color_checkbox'] = '#04C5CF';
-	$order['options']['color_checkbox_checkmark'] = '#fff';
-	*/
 
 	public function getKlarnaOrder($id = null) {
 		# get specific order?

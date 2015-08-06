@@ -160,7 +160,8 @@ return [
 		'Former\FormerServiceProvider',
 		'Fedeisas\LaravelMailCssInliner\LaravelMailCssInlinerServiceProvider',
 		'Skovmand\Mailchimp\MailchimpServiceProvider',
-		'Intervention\Image\ImageServiceProvider'
+		'Intervention\Image\ImageServiceProvider',
+		'Jenssegers\Agent\AgentServiceProvider',
 	],
 
 	/*
@@ -220,6 +221,7 @@ return [
         'Laratable' => 'Gentlefox\Laratables\Facades\Laratable',
         'Former' => 'Former\Facades\Former',
 		'Img' => 'Intervention\Image\Facades\Image',
+		'Agent' => 'Jenssegers\Agent\Facades\Agent',
 	],
 
 ];
