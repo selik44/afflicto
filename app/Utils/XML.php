@@ -3,7 +3,6 @@
 namespace Friluft\Utils;
 
 class XMLNode {
-
 	public $name = 'node';
 
 	public $value = null;
@@ -77,9 +76,12 @@ class XMLNode {
 
 class XML extends XMLNode {
 
+	const ISO_8859_1 = "ISO-8859-1";
+	const UTF_8 = "UTF-8";
+
 	private $encoding = 'UTF-8';
 
-	public function __construct($name, $encoding = 'UTF-8') {
+	public function __construct($name, $encoding = self::UTF_8) {
 		$this->name = $name;
 		$this->value = null;
 		$this->encoding = $encoding;
@@ -102,6 +104,11 @@ class XML extends XMLNode {
 
 		# close root node
 		$str .= '</' .$this->name .'>';
+
+		if ($this->encoding == self::ISO_8859_1) {
+			return utf8_decode($str);
+		}
+
 		return $str;
 	}
 }

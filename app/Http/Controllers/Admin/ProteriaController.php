@@ -11,7 +11,7 @@ class ProteriaController extends Controller {
 
 	public function getExport() {
 		$orders = Order::whereStatus('ready_for_sending')->get();
-		$xml = new XML('FraktXml', 'ISO-8859-1');
+		$xml = new XML('FraktXml', XML::ISO_8859_1);
 
 		foreach($orders as $order) {
 			$shipping = $order->getShipping();
