@@ -52,7 +52,7 @@ class RolesController extends Controller {
 	{
 		$role = new Role(Input::all());
 		$role->save();
-		$role->permissions()->sync(Input::get('permissions'));
+		$role->permissions()->sync(Input::get('permissions', []));
 
 		return Redirect::route('admin.roles.index')->with('success', trans('admin.role_create_success', ['role' => $role->name]));
 	}

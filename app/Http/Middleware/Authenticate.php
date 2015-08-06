@@ -20,7 +20,7 @@ class Authenticate {
 		}
 		else
 		{
-			return redirect()->guest(route('user.login'))->with('warning', "Authentication failed.");
+			return redirect()->guest(route('user.login'))->setStatusCode(401)->with('warning', "Authentication failed.");
 		}
 	}
 

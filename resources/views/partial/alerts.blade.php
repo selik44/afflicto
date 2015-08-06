@@ -1,4 +1,4 @@
-@if(count($errors) > 0 || Session::has('error') || Session::has('success') || Session::has('info'))
+@if(count($errors) > 0 || Session::has('error') || Session::has('success') || Session::has('info') || Session::has('warning'))
     <div id="alerts">
         <div class="alerts">
             @if (count($errors) > 0)
@@ -17,6 +17,12 @@
                 <div class="alert error">
                     <h6>Error</h6>
                     <p>{{Session::pull('error')}}</p>
+                </div>
+            @elseif (Session::has('warning'))
+                <div class="alert warning">
+                    <i class="fa fa-warning"></i>
+                    <h6>Warning</h6>
+                    <p>{{Session::pull('warning')}}</p>
                 </div>
             @elseif (Session::has('success'))
                 <div class="alert success">

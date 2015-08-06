@@ -42,7 +42,7 @@ class Role extends Model {
 		if (!is_array($permissions)) return false;
 
 		# array_diff should return an empty array if we have all the permissions.
-		return !array_diff($permissions, $this->permissions->lists('machine'));
+		return !array_diff($permissions, $this->permissions->lists('machine')->toArray());
 	}
 
 }
