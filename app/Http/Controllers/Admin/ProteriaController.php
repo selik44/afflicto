@@ -45,7 +45,6 @@ class ProteriaController extends Controller {
 					'PostAdr1' => $order->billing_address['street_address'],
 					'PostNr' => $order->billing_address['postal_code'],
 					'PostSted' => $order->billing_address['city'],
-
 					'LevAdr1' => $order->shipping_address['street_address'],
 					'LevPostNr' => $order->shipping_address['postal_code'],
 					'LevPostSted' => $order->shipping_address['city'],
