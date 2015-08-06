@@ -16,8 +16,20 @@ class ProteriaController extends Controller {
 		foreach($orders as $order) {
 			$shipping = $order->getShipping();
 
+			$entry['OrdreNr'] = $order->id;
+
+			if ($shipping['name'] == 'mail') {
+				//brevpost
+				$entry['SendingsType'] = 7; //brevetikett
+				$entry['PakkeType'] = 120; //brevpost innland
+				$entry['Franko'] = 1; //Frankopåtrykk, A-post
+			}else {
+				//service pakke
+				$entry['SendingsType'] = 101; //bring parcels
+				$entry['PakkeType'] = 1100; //klimanøytral service pakke
+			}
+
 			$entry = [
-				'OrdreNr' => $order->id,
 				'AntKolli' => 1,
 				'HvemBetaler' => 1,	//mottaker
 				'Kolli' => [
@@ -39,23 +51,12 @@ class ProteriaController extends Controller {
 				],
 			];
 
-			if ($shipping['name'] == 'mail') {
-				//brevpost
-				$entry['SendingsType'] = 7; //brevetikett
-				$entry['PakkeType'] = 120; //brevpost innland
-				$entry['Franko'] = 1; //Frankopåtrykk, A-post
-			}else {
-				//service pakke
-				$entry['SendingsType'] = 101; //bring parcels
-				$entry['PakkeType'] = 1100; //klimanøytral service pakke
-			}
-
 			# add the entry
 			$xml->add('Sending', $entry);
 		}
 
 		# return as plain text for now
-		return \Response::make($xml->render(true), 200, ['Content-Type' => 'text/xml']);
+		return \Response::make($xml->render(false), 200, ['Content-Type' => 'text/xml']);
 	}
 
 	/**
