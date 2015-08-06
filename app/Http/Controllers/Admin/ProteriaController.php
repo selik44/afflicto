@@ -60,7 +60,7 @@ class ProteriaController extends Controller {
 		}
 
 		# return as plain text for now
-		return \Response::make($xml->render(false), 200, ['Content-Type' => 'text/xml', 'Charset' => 'ISO-8859-1']);
+		return \Response::make($xml->render(false), 200, ['Content-Type' => 'text/xml; charset=ISO-8859-1', 'Charset' => 'ISO-8859-1']);
 	}
 
 	/**
