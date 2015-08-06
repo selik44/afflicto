@@ -27,6 +27,7 @@ class ProteriaController extends Controller {
 				//service pakke
 				$sendingsType = 101; //bring parcels
 				$pakkeType = 1100; //klimanøytral service pakke
+				$franko = null;
 			}
 
 			$entry = [
