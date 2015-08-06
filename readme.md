@@ -30,10 +30,12 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 # Bugs
 - Fix front-end for safari
-- Dersom man endrer antall av et produkt i kassen, forsvinner frakten.
-- Klarna checkout må scrolles sideveis på mobil.
+
 
 # Todo
+- Et par ting til på ordregreiene:  mulighet til å legge igjen melding på ordren.
+  Både for kunden og for oss i admin. Og at vi kan velge  å krysse av for
+  "Send oppdatering til kunde" slik at kunden får epost når ordren er oppdatert, med meldingen som vi evt har skrevet.
 - protect proteria API routes with permissions instead of role.
 - Add "Free Shipping" tag.
 - front.product-view: Få inn 100% fornøydgaranti-merke.

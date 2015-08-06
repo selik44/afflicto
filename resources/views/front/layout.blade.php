@@ -81,7 +81,7 @@
 
 						@if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
 							<!--<button data-toggle="#cart" class="cart-toggle primary end visible-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>-->
-                            <div class="cart-toggle visible-l-up" data-toggle="#cart">@lang('store.cart') (<span class="quantity">{{Cart::quantity()}}</span>) <span class="total">{{Cart::getTotal()}}</span>,-</div>
+                            <div class="cart-toggle visible-l-up" data-toggle="#cart">@lang('store.cart') (<span class="quantity">{{Cart::quantity()}}</span>) <span class="total">{{round(Cart::getTotal())}}</span>,-</div>
 						@endif
 
                         <div id="buy-modal" style="display: none;">

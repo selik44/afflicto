@@ -374,7 +374,7 @@
                 //update cart-toggle status
                 var quantity = response.quantity;
                 $("#header .cart-toggle .quantity").text(response.quantity);
-                $("#header .cart-toggle .total").text(response.total);
+                $("#header .cart-toggle .total").text(Math.round(parseFloat(response.total)));
 
                 //update cart table
                 $.get(Friluft.URL + '/api/cart', function(html) {
