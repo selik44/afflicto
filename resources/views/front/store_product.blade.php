@@ -17,8 +17,8 @@
                     <div class="thumbnails">
                         <?php $active = 'active'; ?>
                         @foreach($product->images as $key => $image)
-                            <a class="thumbnail {{$active}}" href="#" data-slide="{{$key+1}}" style="background-image: url('{{asset('images/products/' .$image->name)}}');"></a>
-                            <?php $$active = '';?>
+                            <a class="thumbnail {{$active}}" href="#" data-slide="{{$key+1}}" style="background-image: url('{{asset('images/products/' .$image->getThumbnail())}}');"></a>
+                            <?php $active = '';?>
                         @endforeach
                     </div>
                 @endif
@@ -125,7 +125,9 @@
                 @foreach($product->producttabs as $tab)
                     <li><a href="#product-tab-{{$tab->id}}">{{$tab->title}}</a></li>
                 @endforeach
-                <li><a href="#product-relations">@lang('store.related products')</a></li>
+                @if($product->relations->count() > 0)
+                    <li><a href="#product-relations">@lang('store.related products')</a></li>
+                @endif
 			</ul>
 
             <div class="tab" id="product-manufacturer-description">
@@ -142,13 +144,15 @@
                 </div>
             @endforeach
 
-            <div class="tab clearfix" id="product-relations">
-                <div class="products-grid">
-                    @foreach($product->relations as $related)
-                        @include('front.partial.products-block', ['product' => $related])
-                    @endforeach
+            @if($product->relations->count() > 0)
+                <div class="tab clearfix" id="product-relations">
+                    <div class="products-grid">
+                        @foreach($product->relations as $related)
+                            @include('front.partial.products-block', ['product' => $related])
+                        @endforeach
+                    </div>
                 </div>
-            </div>
+            @endif
 		</div>
 	</div>
 

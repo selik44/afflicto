@@ -112,7 +112,7 @@
                 @if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
 				<div class="cart-container" style="display: none;">
 					<div class="inner">
-						@include('front.partial.cart-table', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal(), 'withCheckoutButton' => true, 'withShipping' => false, 'shipping' => Cart::getShipping()])
+						@include('front.partial.cart-table', ['items' => Cart::getItemsWithModels(false), 'total' => Cart::getTotal(), 'withCheckoutButton' => true, 'withShipping' => false, 'shipping' => Cart::getShipping(), 'withTotal' => true])
 					</div>
 				</div>
 				@endif

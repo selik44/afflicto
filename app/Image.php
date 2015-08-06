@@ -43,8 +43,7 @@ class Image extends Model {
 	 */
 	public function getThumbnail() {
 		$pathinfo = pathinfo($this->name);
-
-		return $pathinfo['dirname'] .'/' .$pathinfo['filename'] .'_thumbnail.' .$pathinfo['extension'];
+		return $pathinfo['filename'] .'_thumbnail.' .$pathinfo['extension'];
 	}
 
 }

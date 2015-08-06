@@ -13,7 +13,7 @@
 	if ($img == null) {
 		$img = '';
 	}else {
-		$img = asset('images/products/' .$img->name);
+		$img = asset('images/products/' .$img->getThumbnail());
 	}
 
 	$link = url($product->getPath());

@@ -43,7 +43,7 @@
 
 @section('article')
     <div class="paper row" style="padding: 2rem;">
-        @include('front.partial.cart-table', ['items' => $items, 'total' => $total, 'withShipping' => true])
+        @include('front.partial.cart-table', ['items' => $items, 'total' => $total, 'withShipping' => true, 'withTotal' => false])
 
         <hr>
 

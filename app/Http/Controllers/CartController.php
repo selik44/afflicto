@@ -23,6 +23,7 @@ class CartController extends Controller {
 			'withCheckoutButton' => true,
 			'shipping' => Cart::getShipping(),
 			'withShipping' => (Input::get('withShipping', 'false') == 'true'),
+			'withTotal' => (Input::get('withTotal', 'false') == 'true')
 		]);
 	}
 

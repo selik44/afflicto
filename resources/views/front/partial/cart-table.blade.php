@@ -53,6 +53,7 @@
 		</table>
 
         <div class="footer clearfix">
+            @if(!isset($withTotal) || $withTotal)
             <div class="total">
                 <?php
                     $t = $total;
@@ -61,6 +62,7 @@
                 ?>
                 <h3>@lang('store.total'): <span class="value">{{round($t)}}</span>,-</h3>
             </div>
+            @endif
             @if(isset($withCheckoutButton) && $withCheckoutButton)
                 <a class="button primary large" href="{{route('store.checkout')}}">@lang('store.to checkout') <i class="fa fa-chevron-right"></i></a>
             @endif
@@ -126,7 +128,7 @@
 
 				item.find('.subtotal .value').html(subTotal);
 
-                $.get(Friluft.URL + '/api/cart', {withShipping: "false"}, function(html) {
+                $.get(Friluft.URL + '/api/cart', {withShipping: "{{($withShipping) ? "true" : "false"}}", withTotal: "{{($withTotal) ? "true" : "false"}}"}, function(html) {
                     container.find('.cart-table').replaceWith(html);
                 });
 
@@ -155,7 +157,7 @@
                 $("#header .cart-toggle .total").html(response.total);
                 $("#header .cart-toggle .quantity").html(response.quantity);
 
-                $.get(Friluft.URL + '/api/cart', {withShipping: "false"}, function(html) {
+                $.get(Friluft.URL + '/api/cart', {withShipping: "{{($withShipping) ? "true" : "false"}}", withTotal: "{{($withTotal) ? "true" : "false"}}"}, function(html) {
                     container.find('.cart-table').replaceWith(html);
                 });
 

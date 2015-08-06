@@ -32,13 +32,10 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Fix front-end for safari
 - Dersom man endrer antall av et produkt i kassen, forsvinner frakten.
 - Klarna checkout må scrolles sideveis på mobil.
-- Pris i handlekurv/kasse skal være uten desimaler.
-- fix image drag'n'drop in admin.producs.edit
 
 # Todo
 - protect proteria API routes with permissions instead of role.
 - Add "Free Shipping" tag.
-- Images: Implement thumbnail generation and resizing for all images.
 - front.product-view: Få inn 100% fornøydgaranti-merke.
 - dashboard stats & reports
 - make checkout & footer text configurable

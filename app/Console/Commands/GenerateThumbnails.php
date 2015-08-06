@@ -10,7 +10,7 @@ class GenerateThumbnails extends Command {
 	 *
 	 * @var string
 	 */
-	protected $name = 'thumbnails:import';
+	protected $name = 'product:thumbnails';
 
 	/**
 	 * The console command description.
@@ -36,6 +36,8 @@ class GenerateThumbnails extends Command {
 				$pathinfo = pathinfo($image->name);
 				$filename = $pathinfo['filename'];
 				$extension = $pathinfo['extension'];
+
+				$image->name = $filename .'.' .$extension;
 
 				$img = \Img::make(public_path('images/products') .'/' .$image->name);
 				$img->fit(800, null, function($constraint) {
