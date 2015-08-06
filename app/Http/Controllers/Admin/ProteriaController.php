@@ -20,18 +20,21 @@ class ProteriaController extends Controller {
 
 			if ($shipping['name'] == 'mail') {
 				//brevpost
-				$entry['SendingsType'] = 7; //brevetikett
-				$entry['PakkeType'] = 120; //brevpost innland
-				$entry['Franko'] = 1; //Frankopåtrykk, A-post
+				$sendingsType = 7; //brevetikett
+				$pakkeType = 120; //brevpost innland
+				$franko = 1; //Frankopåtrykk, A-post
 			}else {
 				//service pakke
-				$entry['SendingsType'] = 101; //bring parcels
-				$entry['PakkeType'] = 1100; //klimanøytral service pakke
+				$sendingsType = 101; //bring parcels
+				$pakkeType = 1100; //klimanøytral service pakke
 			}
 
 			$entry = [
+				'SendingsType' => $sendingsType,
+				'PakkeType' => $pakkeType,
 				'AntKolli' => 1,
 				'HvemBetaler' => 1,	//mottaker
+				'Franko' => $franko,
 				'Kolli' => [
 					'Vekt' => $order->getWeight() / 1000,
 				],
