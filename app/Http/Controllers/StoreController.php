@@ -1,5 +1,6 @@
 <?php namespace Friluft\Http\Controllers;
 
+use Agent;
 use Friluft\Http\Requests;
 use Friluft\Order;
 use Friluft\Role;
