@@ -291,7 +291,7 @@ class Cart {
 		$data['options']['color_link'] = '#03a1a9';
 
 		if (Agent::isMobile()) {
-			$data['options']['layout'] = 'Mobile';
+			$data['options']['gui']['layout'] = 'Mobile';
 		}
 
 		# set shipping info
