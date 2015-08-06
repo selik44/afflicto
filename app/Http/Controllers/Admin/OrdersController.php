@@ -282,6 +282,7 @@ class OrdersController extends Controller {
 		$billing['postal_code'] = Input::get('billing_postal_code');
 		$billing['city'] = Input::get('billing_city');
 		$billing['country'] = Input::get('billing_country');
+		$billing['phone'] = Input::get('billing_phone', '');
 		$order->billing_address = $billing;
 
 
@@ -291,6 +292,7 @@ class OrdersController extends Controller {
 		$shipping['postal_code'] = Input::get('shipping_postal_code');
 		$shipping['city'] = Input::get('shipping_city');
 		$shipping['country'] = Input::get('shipping_country');
+		$shipping['phone'] = Input::get('shipping_phone', '');
 		$order->shipping_address = $shipping;
 
 		# save
