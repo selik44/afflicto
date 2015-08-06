@@ -11,7 +11,7 @@ class ProteriaController extends Controller {
 
 	public function getExport() {
 		$orders = Order::whereStatus('ready_for_sending')->get();
-		$xml = new XML('FraktXml', 'ISO-8859-1');
+		$xml = new XML('FraktXml', 'UTF-8');
 
 		foreach($orders as $order) {
 			$shipping = $order->getShipping();
@@ -60,7 +60,7 @@ class ProteriaController extends Controller {
 		}
 
 		# return as plain text for now
-		return \Response::make($xml->render(false), 200, ['Content-Type' => 'text/xml']);
+		return \Response::make($xml->render(false), 200, ['Content-Type' => 'text/xml', 'Charset' => 'UTF-8']);
 	}
 
 	/**
