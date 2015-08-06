@@ -290,6 +290,10 @@ class Cart {
 		$data['options']['color_header'] = '#000000';
 		$data['options']['color_link'] = '#03a1a9';
 
+		if (Agent::isMobile()) {
+			$data['options']['gui']['layout'] = 'mobile';
+		}
+
 		# set shipping info
 		$data['options']['shipping_details'] = 'Shipping Details Here';
 

@@ -103,10 +103,6 @@ class StoreController extends Controller {
 			$order = Cart::getKlarnaOrder();
 		}
 
-		if (Agent::isMobile()) {
-			$order['gui']['layout'] = 'mobile';
-		}
-
 		return view('front.store.checkout')
 			->with([
 				'snippet' => $order['gui']['snippet'],
