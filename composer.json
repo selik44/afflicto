@@ -20,7 +20,8 @@
         "h4cc/wkhtmltopdf-i386": "0.12.x",
         "h4cc/wkhtmltoimage-i386": "0.12.x",
         "fedeisas/laravel-mail-css-inliner": "@dev",
-        "skovmand/mailchimp-laravel": "1.*"
+        "skovmand/mailchimp-laravel": "1.*",
+		"intervention/image": "^2.3"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",

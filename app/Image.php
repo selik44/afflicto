@@ -38,4 +38,13 @@ class Image extends Model {
 		return public_path($this->name);
 	}
 
+	/**
+	 * @return string path to a thumbnail version of this image
+	 */
+	public function getThumbnail() {
+		$pathinfo = pathinfo($this->name);
+
+		return $pathinfo['dirname'] .'/' .$pathinfo['filename'] .'_thumbnail.' .$pathinfo['extension'];
+	}
+
 }

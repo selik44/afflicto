@@ -7,6 +7,8 @@ use Friluft\Image;
 use Friluft\Product;
 use Friluft\Variant;
 use Input;
+use Img;
+use Intervention\Image\Constraint;
 
 class APIController extends Controller {
 
@@ -33,29 +35,34 @@ class APIController extends Controller {
 	}
 
 	public function products_postImage(Product $p) {
-		# get the uploaded file
+		# get file
 		$file = Input::file('file');
+
+		# get path info
+		$pathinfo = pathinfo($file->getClientOriginalName());
+		$filename = $pathinfo['filename'];
+		$extension = $pathinfo['extension'];
+
+		# get Img
+		$img = Img::make($file);
+
+		# crop and scale
+		$img->fit(800, null, function($constraint) {
+			$constraint->upsize();
+		});
+
+		# save
+		$img->save(public_path('images/products') .'/' .$filename .'.' .$extension);
+
+		# save a thumbnail
+		$img->fit(200, 200)->save(public_path('images/products') .'/' .$filename .'_thumbnail.' .$extension);
 
 		# create a new image instance
 		$image = new Image();
-
 		$image->type = 'product';
-
-		# save, to get ID
+		$image->name = $filename .'.' .$extension;
 		$p->images()->save($image);
-
-		# set name and save again
-		$image->name = 'product_' .$p->id .'_' .$image->id .'.' .$file->getClientOriginalExtension();
-
-		# move it to the public dir
-		if ($file->move(public_path('images/products/'), $image->name)) {
-			$image->save();
-			return response('OK', 200);
-		}
-
-		$image->delete();
-
-		return response('ERROR', 500);
+		return response('OK', 200);
 	}
 
 	public function products_setImageOrder(Product $p) {
