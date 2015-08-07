@@ -69,8 +69,6 @@ class APIController extends Controller {
 		if (!Input::has('order')) return response('ERROR: Invalid input.', 400);
 		$order = json_decode(Input::get('order'), true);
 
-		dd($order);
-
 		foreach($order as $image) {
 			DB::table('images')
 				->where('id', '=', $image['id'])

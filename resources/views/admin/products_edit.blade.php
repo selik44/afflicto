@@ -471,7 +471,7 @@
             });
 
             console.log('tree:');
-            //console.log(tree);
+            console.log(tree);
 
             var payload = {
                 _method: 'PUT',
@@ -481,7 +481,7 @@
 
             $.post(Friluft.URL + '/admin/api/products/' + productID + '/images/order', payload, function(response) {
                 console.log('updated image order, response:');
-                //console.log(response);
+                console.log(response);
             });
         });
 
