@@ -457,10 +457,10 @@
         //persist changes of image ordering.
         $("#product-images-list").on('sortupdate', function() {
             console.log('sortupdate...');
-            var tree = [];
+            var tree = {};
             var order = 0;
 
-            console.log('tree');
+            console.log('tree:');
             console.log(tree);
 
             $(this).find('.dz-sortable').each(function() {
