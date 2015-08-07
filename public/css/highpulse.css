@@ -5319,6 +5319,15 @@ body.scrolled {
     body.scrolled #front #navigation .nav-controls .logo {
       width: 100px; }
 
+.checkout-view > .checkout-products > .grid {
+  padding: 1rem; }
+  .checkout-view > .checkout-products > .grid .product:not(:last-child) {
+    margin-bottom: 2rem; }
+.checkout-view > .cart > .paper {
+  padding: 1rem; }
+.checkout-view > .aside > .block:not(:last-child) {
+  margin-bottom: 2rem; }
+
 body, #front #footer {
   background: #252525; }
 

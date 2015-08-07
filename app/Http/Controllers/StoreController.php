@@ -109,8 +109,7 @@ class StoreController extends Controller {
 				'items' => Cart::getItemsWithModels(false),
 				'shipping' => Cart::getShipping(),
 				'total' => Cart::getTotal(),
-				'aside' => true,
-				'intro' => true,
+				'aside' => false,
 			]);
 	}
 

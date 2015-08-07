@@ -66,6 +66,7 @@
 	</footer>
 </div>
 
+@if(isset($withBuyButton) && $withBuyButton)
 <div id="add-modal-{{$product->id}}" class="modal center fade">
     <div class="modal-content">
         <form id="buy-form-{{$product->id}}" class="vertical" action="{{route('api.cart.store')}}" method="POST">
@@ -123,6 +124,7 @@
         </form>
     </div>
 </div>
+
 
 @section('scripts')
     @parent
@@ -196,3 +198,4 @@
         })(jQuery, window, document);
     </script>
 @endsection
+@endif

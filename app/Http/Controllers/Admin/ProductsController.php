@@ -427,7 +427,7 @@ class ProductsController extends Controller {
 
 		if (Input::has('column_categories') || true) {
 			$columns[trans('admin.categories')] = ['categories', function($p) use($categories) {
-				$str = '<select class="categories" multiple="multiple" name="' .$p->id .'_categories">';
+				$str = '<select class="categories" multiple="multiple" name="' .$p->id .'_categories[]">';
 				foreach($categories as $cat) {
 					if ($p->categories->contains($cat)) {
 						$str .= '<option selected value="' .$cat->id .'">' .$cat->name .'</option>';
@@ -442,7 +442,7 @@ class ProductsController extends Controller {
 
 		if (Input::has('column_tags')) {
 			$columns[trans('admin.tags')] = ['tags', function($p) use($tags) {
-				$str = '<select class="tags" multiple name="' .$p->id .'_tags">';
+				$str = '<select class="tags" multiple name="' .$p->id .'_tags[]">';
 				foreach($tags as $tag) {
 					if ($p->tags->contains($tag)) {
 						$str .= '<option selected value="' .$tag->id .'">' .$tag->label .'</option>';
