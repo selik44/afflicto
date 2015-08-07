@@ -321,7 +321,7 @@ class OrdersController extends Controller {
 
 			# notify user?
 			if (Input::has('notify_user')) {
-				\Mail::send('emails.order_updated', ['order' => $order], function($mail) use($order) {
+				\Mail::send('emails.store.order_updated', ['order' => $order], function($mail) use($order) {
 					$mail->subject(trans('emails.order_updated.subject', ['id' => $order->id]))->to($order->user->email);
 				});
 			}
