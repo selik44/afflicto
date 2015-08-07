@@ -6,12 +6,12 @@
 
 @section('content')
     <p class="lead">
-        @lang('emails.order_confirmation.header', ['id' => $order->id])
+        @lang('emails.order_confirmation.header', ['id' => $event->order->id])
     </p>
 
     <h5>Kommentar</h5>
     <p>
-        {{$event->commenter}}
+        {{$event->comment}}
     </p>
 @stop
 
