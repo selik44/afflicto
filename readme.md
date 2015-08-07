@@ -10,11 +10,9 @@ Built on Laravel 5, leveraging GentleStyle SASS Framework.
 5. php artisan db:seed
 8. To import products from MyStore API, run "php artisan mystore:import".
 
-
 ## Pushing to the staging server
 To push to the staging server, simply run "envoy run staging".
 To configure envoy, see "Envoy.blade.php" in the project root.
-
 
 # multi-store
 - views can be overriden per-store, using the view method of the Controller class. The default views are the ones used by 123friluft
@@ -31,13 +29,12 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Fix front-end for safari
 
 # Todo
-- Implement ability to add a discount as percentage on tags (for the "free shipping tag"
+- Implement ability to add a discount as percentage on tags (for the "free shipping tag") 
 - Add "Free Shipping" tag.
 - front.product-view: Få inn 100% fornøydgaranti-merke.
 - dashboard stats & reports
 - make checkout & footer text configurable
-- related products appears when buying.
-- add buy button for related products
+- related products appears when buying
 - Compound Products
 - rabatt popup ting
 - product receivals

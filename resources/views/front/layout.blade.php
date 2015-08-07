@@ -234,18 +234,18 @@
 @parent
 <script type="text/javascript">
 
-    var showBuyModal;
+    window.showBuyModa = null;
 
 	$(document).ready(function() {
         //init buy modal
-        showBuyModal = function(quantity, thumbnail, title, price) {
+        window.showBuyModal = function(quantity, thumbnail, title, price) {
             var m = $("#buy-modal");
             m.find('.info .quantity .value').html(quantity);
             m.find('.info .thumbnail').attr('src', thumbnail);
             m.find('.info .description .title').html(title);
             m.find('.info .description .price').html(price + ",-");
             m.slideDown();
-            var timeout = setTimeout(function() {
+            showBuyModalTimeout = setTimeout(function() {
                 m.slideUp();
             }, 2300);
         };

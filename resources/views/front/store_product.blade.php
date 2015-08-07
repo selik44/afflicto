@@ -49,7 +49,7 @@
                     <h3 class="price end"><strong class="value">{{ceil($product->price * $product->vatgroup->amount)}}</strong>,-</h3>
                 </header>
 
-                <form class="vertical" id="buy-form" action="{{route('api.cart.store')}}" method="POST">
+                <form class="vertical" id="buy-form-{{$product->id}}" action="{{route('api.cart.store')}}" method="POST">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                     <input type="hidden" name="product_id" value="{{$product->id}}">
 
@@ -148,7 +148,7 @@
                 <div class="tab clearfix" id="product-relations">
                     <div class="products-grid">
                         @foreach($product->relations as $related)
-                            @include('front.partial.products-block', ['product' => $related])
+                            @include('front.partial.products-block', ['product' => $related, 'withBuyButton' => true])
                         @endforeach
                     </div>
                 </div>
@@ -156,7 +156,7 @@
 		</div>
 	</div>
 
-    <div id="add-modal" class="modal center fade">
+    <div id="add-modal-{{$product->id}}" class="modal center fade">
         <div class="modal-content">
             <div class="variants">
                 @foreach($product->variants as $variant)
@@ -171,7 +171,7 @@
                 @endforeach
             </div>
 
-            <button class="large primary buy" data-toggle-modal="#add-modal" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+            <button class="large primary buy" data-toggle-modal="#add-modal-{{$product->id}}" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
         </div>
     </div>
 @stop
@@ -200,187 +200,189 @@
 	@parent
 
 	<script type="text/javascript">
-        var slider = $(".product-images .slider");
-        var thumbnails = $(".product-images .thumbnails");
+        (function($, window, document, undefined) {
+            var slider = $(".product-view .product-images .slider");
+            var thumbnails = $(".product-view .product-images .thumbnails");
 
-        var alwaysAllowOrders = <?= ($product->manufacturer->always_allow_orders) ? "true" : "false" ?>;
+            var alwaysAllowOrders = <?= ($product->manufacturer->always_allow_orders) ? "true" : "false" ?>;
 
-		slider.friluftSlider({
-			delay: 4000,
-			transitionSpeed: 400,
-            slideLinks: false,
-		});
+            slider.friluftSlider({
+                delay: 4000,
+                transitionSpeed: 400,
+                slideLinks: false,
+            });
 
-        $(".product-images .thumbnails .thumbnail").click(function(e) {
-            e.preventDefault();
-            var id = $(this).attr('data-slide');
-            slider.friluftSlider("goTo", id);
-            slider.friluftSlider("stop");
-            $(".product-images .thumbnails .thumbnail.active").removeClass('active');
-            $(this).addClass('active');
+            $(".product-view .product-top .product-images .thumbnails .thumbnail").click(function(e) {
+                e.preventDefault();
+                var id = $(this).attr('data-slide');
+                slider.friluftSlider("goTo", id);
+                slider.friluftSlider("stop");
+                $(".product-view .product-top .product-images .thumbnails .thumbnail.active").removeClass('active');
+                $(this).addClass('active');
 
-            return false;
-        });
+                return false;
+            });
 
 
-        slider.on('slider.next', function() {
-            var id = slider.data('friluftSlider').currentIndex;
+            slider.on('slider.next', function() {
+                var id = slider.data('friluftSlider').currentIndex;
 
-            $('.product-images .thumbnails .thumbnail.active').removeClass('active');
+                $('.product-view .product-top .product-images .thumbnails .thumbnail.active').removeClass('active');
 
-            $('.product-images .thumbnails .thumbnail[data-slide="' + id + '"]').addClass('active');
-        });
+                $('.product-images .thumbnails .thumbnail[data-slide="' + id + '"]').addClass('active');
+            });
 
-        // setup stock status text
-        if (parseInt($(".product-view").attr('data-variants')) > 0) {
-            var stock = JSON.parse('{!! json_encode($product->variants_stock) !!}');
-            console.log('stock is:');
-            console.log(stock);
-            var $stock = $(".product-stock");
+            // setup stock status text
+            if (parseInt($(".product-view").attr('data-variants')) > 0) {
+                var stock = JSON.parse('{!! json_encode($product->variants_stock) !!}');
+                console.log('stock is:');
+                console.log(stock);
+                var $stock = $(".product-view .product-top .product-stock");
 
-            function updateStock() {
-                console.log('updating stock status');
-                //get the current stock ID
-                var stockID = []
-                $("form .product-variants .variant").each(function() {
-                    var select = $(this).find('select');
-                    stockID.push(select.val());
-                });
+                function updateStock() {
+                    console.log('updating stock status');
+                    //get the current stock ID
+                    var stockID = []
+                    $(".product-view .product-top form .product-variants .variant").each(function() {
+                        var select = $(this).find('select');
+                        stockID.push(select.val());
+                    });
 
-                stockID = stockID.join('_');
-                var stockValue = parseInt(stock[stockID]);
+                    stockID = stockID.join('_');
+                    var stockValue = parseInt(stock[stockID]);
 
-                if (stockValue > 0) {
-                    $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").removeAttr('disabled');
-                    $("form .product-stock .true").show().siblings('.false').hide();
-                    //$("form .product-stock .true .quantity").text(stockValue);
-                }else {
-                    $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").attr('disabled', 'disabled');
-                    $("form .product-stock .true").hide().siblings('.false').show();
+                    if (stockValue > 0) {
+                        $(".product-view form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").removeAttr('disabled');
+                        $(".product-view form .product-stock .true").show().siblings('.false').hide();
+                        //$("form .product-stock .true .quantity").text(stockValue);
+                    }else {
+                        $(".product-view form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").attr('disabled', 'disabled');
+                        $(".product-view form .product-stock .true").hide().siblings('.false').show();
+                    }
                 }
-            }
 
-            updateStock();
-
-            //listen for change event on the variant form fields
-            $("form .product-variants .variant select").change(function() {
                 updateStock();
+
+                //listen for change event on the variant form fields
+                $(".product-view form .product-variants .variant select").change(function() {
+                    updateStock();
+                });
+            }else {
+                var stockNumber = parseInt($(".product-view").attr('data-stock'));
+                if (stockNumber > 0) {
+                    $(".product-view form .product-stock .true").show().siblings('.false').hide();
+                    $(".product-view form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").removeAttr('disabled');
+                }else {
+                    $(".product-view form .product-stock .true").hide().siblings('.false').show();
+                    $(".product-view form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").attr('disabled', 'disabled');
+                }
+            }
+
+
+            // setup add modal
+            var addModal = $("#add-modal-{{$product->id}}");
+            addModal.find('button.buy').click(function() {
+                console.log('#add-modal-{{$product->id}} button.buy CLICKED!');
+                $('#buy-form-{{$product->id}}').trigger('submit');
             });
-        }else {
-            var stockNumber = parseInt($(".product-view").attr('data-stock'));
-            if (stockNumber > 0) {
-                $("form .product-stock .true").show().siblings('.false').hide();
-                $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").removeAttr('disabled');
-            }else {
-                $("form .product-stock .true").hide().siblings('.false').show();
-                $("form button.buy, button.toggle-add-modal, button.toggle-add-modal-dummy").attr('disabled', 'disabled');
-            }
-        }
 
-
-        // setup add modal
-        var addModal = $("#add-modal");
-        addModal.find('button.buy').click(function() {
-            console.log('#add-modal button.buy CLICKED!');
-            $("#buy-form").trigger('submit');
-        });
-
-        $("form .toggle-add-modal").click(function(e) {
-            e.preventDefault();
-            if ($('.product-info .product-variants').children().length > 0) {
-                //has variants
-                addModal.gsModal('show');
-            }else {
-                $("#buy-form").trigger('submit');
-            }
-        });
-
-        //stick the buy button to bottom on mobile
-        var callback = function() {
-            var btn = $(".product-top form .toggle-add-modal");
-            var dummy = $(".product-top form .toggle-add-modal-dummy");
-
-            if (btn.hasClass('fixed')) {
-                if ( ! dummy.is(':in-viewport')) {
-                    btn.addClass('fixed');
-                    $("#footer").css('padding-bottom', (btn.outerHeight() + 24) + 'px');
-                    dummy.css({
-                        display: 'block',
-                        visibility: 'hidden',
-                    });
+            $(".product-view .product-top form .toggle-add-modal").click(function(e) {
+                e.preventDefault();
+                if ($('.product-view .product-info .product-variants').children().length > 0) {
+                    //has variants
+                    addModal.gsModal('show');
                 }else {
-                    btn.removeClass('fixed');
-                    $("#footer").css('padding-bottom', '0');
-                    dummy.css({
-                        display: 'none',
-                        visibility: 'auto',
-                    });
+                    $("#buy-form-{{$product->id}}").trigger('submit');
                 }
-            }else {
-                if ( ! btn.is(':in-viewport')) {
-                    btn.addClass('fixed');
-                    $("#footer").css('padding-bottom', (btn.outerHeight() + 24) + 'px');
-                    dummy.css({
-                        display: 'block',
-                        visibility: 'hidden',
-                    });
+            });
+
+            //stick the buy button to bottom on mobile
+            var callback = function() {
+                var btn = $(".product-view .product-top form .toggle-add-modal");
+                var dummy = $(".product-view .product-top form .toggle-add-modal-dummy");
+
+                if (btn.hasClass('fixed')) {
+                    if ( ! dummy.is(':in-viewport')) {
+                        btn.addClass('fixed');
+                        $("#footer").css('padding-bottom', (btn.outerHeight() + 24) + 'px');
+                        dummy.css({
+                            display: 'block',
+                            visibility: 'hidden',
+                        });
+                    }else {
+                        btn.removeClass('fixed');
+                        $("#footer").css('padding-bottom', '0');
+                        dummy.css({
+                            display: 'none',
+                            visibility: 'auto',
+                        });
+                    }
                 }else {
-                    btn.removeClass('fixed');
-                    $("#footer").css('padding-bottom', '0');
-                    dummy.css({
-                        display: 'none',
-                        visibility: 'auto',
-                    });
+                    if ( ! btn.is(':in-viewport')) {
+                        btn.addClass('fixed');
+                        $("#footer").css('padding-bottom', (btn.outerHeight() + 24) + 'px');
+                        dummy.css({
+                            display: 'block',
+                            visibility: 'hidden',
+                        });
+                    }else {
+                        btn.removeClass('fixed');
+                        $("#footer").css('padding-bottom', '0');
+                        dummy.css({
+                            display: 'none',
+                            visibility: 'auto',
+                        });
+                    }
                 }
-            }
-        };
+            };
 
-        callback();
-
-        $(window).bind('scroll resize', _.throttle(function() {
             callback();
-        }, 50));
 
-        // setup buy event
-        var form = $("#buy-form");
-        var cart = $("#header .cart-container");
-        form.on('submit', function(e) {
-            e.preventDefault();
-            $(this).serialize();
+            $(window).bind('scroll resize', _.throttle(function() {
+                callback();
+            }, 50));
 
-            // show buy modal
-            var thumbnail = $(this).parents('.product-view').find('.product-images .slider .slide').first().css('background-image');
-            thumbnail = thumbnail.replace('url(', '');
-            thumbnail = thumbnail.replace(')', '');
+            // setup buy event
+            var form = $("#buy-form-{{$product->id}}");
 
-            var title = $(this).parents('.product-view').find('.header .title .manufacturer .title').text();
+            var cart = $("#header .cart-container");
+            form.on('submit', function(e) {
+                e.preventDefault();
 
-            var price = $(this).parents('.product-view').find('.header .price .value').first().text();
+                // show buy modal
+                var thumbnail = $(this).parents('.product-view').find('.product-images .slider .slide').first().css('background-image');
+                thumbnail = thumbnail.replace('url(', '');
+                thumbnail = thumbnail.replace(')', '');
 
-            showBuyModal(1, thumbnail, title, price);
+                var title = $(this).parents('.product-view').find('.header .title .manufacturer .title').text();
 
-            //post form via ajax
-            $.post($(this).attr('action'), $(this).serialize(), function(response) {
-                var total = Math.round(parseFloat(response.total));
+                var price = $(this).parents('.product-view').find('.header .price .value').first().text();
 
-                //update free shipping status
-                var left = 800 - total;
-                if (left > 0) {
-                    $("#breadcrumbs .free-shipping-status").show().find('.value').text(left);
-                }else {
-                    $("#breadcrumbs .free-shipping-status").hide();
-                }
+                showBuyModal(1, thumbnail, title, price);
 
-                //update cart-toggle status
-                var quantity = response.quantity;
-                $("#header .cart-toggle .quantity").text(response.quantity);
-                $("#header .cart-toggle .total").text(Math.round(parseFloat(response.total)));
+                //post form via ajax
+                $.post($(this).attr('action'), $(this).serialize(), function(response) {
+                    var total = Math.round(parseFloat(response.total));
 
-                //update cart table
-                $.get(Friluft.URL + '/api/cart', function(html) {
-                    cart.find('.cart-table').replaceWith(html);
+                    //update free shipping status
+                    var left = 800 - total;
+                    if (left > 0) {
+                        $("#breadcrumbs .free-shipping-status").show().find('.value').text(left);
+                    }else {
+                        $("#breadcrumbs .free-shipping-status").hide();
+                    }
+
+                    //update cart-toggle status
+                    var quantity = response.quantity;
+                    $("#header .cart-toggle .quantity").text(response.quantity);
+                    $("#header .cart-toggle .total").text(Math.round(parseFloat(response.total)));
+
+                    //update cart table
+                    $.get(Friluft.URL + '/api/cart', function(html) {
+                        cart.find('.cart-table').replaceWith(html);
+                    });
                 });
             });
-        });
+        })($, window, document);
 	</script>
 @stop
