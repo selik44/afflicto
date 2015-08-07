@@ -456,8 +456,12 @@
 
         //persist changes of image ordering.
         $("#product-images-list").on('sortupdate', function() {
+            console.log('sortupdate...');
             var tree = [];
             var order = 0;
+
+            console.log('tree');
+            console.log(tree);
 
             $("#product-images-list .dz-sortable").each(function() {
                 var id = $(this).attr('data-id');

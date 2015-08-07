@@ -147,6 +147,9 @@ class StoreController extends Controller {
 			Session::forget('klarna_subscribe');
 		}
 
+		if (Agent::isMobile()) {
+			$data['options']['gui']['layout'] = 'mobile';
+		}
 
 		# get the gui snippet
 		$snippet = $order['gui']['snippet'];
