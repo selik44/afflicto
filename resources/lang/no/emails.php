@@ -16,4 +16,10 @@ return [
 		'footer' => 'Du kan se bestillingene dine',
 	],
 
+	'order_updated' => [
+		'subject' => 'Ordre #:id har blitt oppdatert',
+		'header' => 'En av dine bestillinger har blitt oppdatert.',
+		'footer' => 'Du kan se bestillingene dine',
+	],
+
 ];

@@ -120,8 +120,8 @@
 
 		<div class="paper product-bottom col-xs-12 tight">
 			<ul id="product-tabs" class="nav tabs clearfix">
-                <li><a href="#product-manufacturer-description">@lang('store.about') {{$product->manufacturer->name}}</a></li>
-                <li class="current"><a href="#product-info">@lang('store.product info')</a></li>
+                <li class="current"><a href="#product-manufacturer-description">@lang('store.about') {{$product->manufacturer->name}}</a></li>
+                <li><a href="#product-info">@lang('store.product info')</a></li>
                 @foreach($product->producttabs as $tab)
                     <li><a href="#product-tab-{{$tab->id}}">{{$tab->title}}</a></li>
                 @endforeach

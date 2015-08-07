@@ -192,7 +192,7 @@
 				<h6 class="end">Status</h6>
 			</header>
 			<div class="module-content">
-
+                <div class="col-xs-6">
 				{!! Former::select('status')->options([
 					'unprocessed' => 'Ubehandlet',
 					'written_out' => 'Skrevet ut',
@@ -202,6 +202,12 @@
 					'processed' => 'Behandlet',
 					'unused' => 'Restordre',
 				], $order->status) !!}
+                </div>
+
+                <div class="col-xs-6">
+                    {!! Former::textarea('message') !!}
+                    {!! Former::checkbox('notify_user') !!}
+                </div>
 			</div>
 		</div>
 

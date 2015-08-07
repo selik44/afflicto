@@ -3,6 +3,7 @@
 use Friluft\Jobs\ActivateOrder;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
+use Friluft\OrderEvent;
 use Friluft\Product;
 use Friluft\Order;
 use Friluft\User;
@@ -308,6 +309,23 @@ class OrdersController extends Controller {
             }catch(\Exception $e) {
                 return Redirect::back()->with('error', $e->getMessage());
             }
+		}
+
+		# create a message?
+		if (Input::has('message')) {
+			dd('y');
+			# create a new orderevent
+			$event = new OrderEvent();
+			$event->comment = Input::get('message');
+			$event->order()->associate($order);
+			$event->save();
+
+			# notify user?
+			if (Input::has('notify_user')) {
+				\Mail::send('emails.order_updated', ['order' => $order], function($mail) use($order) {
+					$mail->subject(trans('emails.order_updated.subject', ['id' => $order->id]))->to($order->user->email);
+				});
+			}
 		}
 
 		return Redirect::back()->with('success', 'Order updated');
