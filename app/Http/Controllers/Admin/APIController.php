@@ -46,16 +46,16 @@ class APIController extends Controller {
 		# get Img
 		$img = Img::make($file);
 
-		# crop and scale
-		$img->fit(800, null, function($constraint) {
+		# resize
+		$img->resize(800, null, function($constraint) {
 			$constraint->upsize();
-		});
-
-		# save
-		$img->save(public_path('images/products') .'/' .$filename .'.' .$extension);
+			$constraint->aspectRatio();
+		})->save(public_path('images/products') .'/' .$filename .'.' .$extension);
 
 		# save a thumbnail
-		$img->fit(200, 200)->save(public_path('images/products') .'/' .$filename .'_thumbnail.' .$extension);
+		$img->resize(200, null, function(Constraint $constraint) {
+			$constraint->aspectRatio();
+		})->save(public_path('images/products') .'/' .$filename .'_thumbnail.' .$extension);
 
 		# create a new image instance
 		$image = new Image();

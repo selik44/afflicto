@@ -27,16 +27,13 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Implement login throttling
 - Cache routes and views. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
 
-
 # Bugs
 - Fix front-end for safari
-
 
 # Todo
 - Et par ting til på ordregreiene:  mulighet til å legge igjen melding på ordren.
   Både for kunden og for oss i admin. Og at vi kan velge  å krysse av for
   "Send oppdatering til kunde" slik at kunden får epost når ordren er oppdatert, med meldingen som vi evt har skrevet.
-- protect proteria API routes with permissions instead of role.
 - Add "Free Shipping" tag.
 - front.product-view: Få inn 100% fornøydgaranti-merke.
 - dashboard stats & reports

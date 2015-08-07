@@ -361,7 +361,7 @@
 
             //post form via ajax
             $.post($(this).attr('action'), $(this).serialize(), function(response) {
-                var total = response.total;
+                var total = Math.round(parseFloat(response.total));
 
                 //update free shipping status
                 var left = 800 - total;
