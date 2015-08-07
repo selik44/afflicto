@@ -5462,9 +5462,11 @@ iframe {
         #front #page > .inner {
           -webkit-flex-wrap: wrap;
               -ms-flex-wrap: wrap;
-                  flex-wrap: wrap;
-          padding-left: 1rem;
-          padding-right: 1rem; } }
+                  flex-wrap: wrap; } }
+      @media (max-width: 420px) {
+        #front #page > .inner {
+          padding-left: 0;
+          padding-right: 0; } }
       #front #page > .inner #aside {
         -webkit-box-flex: 0;
         -webkit-flex: 0 0 260px;

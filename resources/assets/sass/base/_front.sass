@@ -123,8 +123,10 @@ iframe
 
 			@include breakpoint('m-')
 				flex-wrap: wrap
-				padding-left: 1rem
-				padding-right: 1rem
+
+			@include breakpoint('xs')
+				padding-left: 0
+				padding-right: 0
 
 			#aside
 				flex: 0 0 260px
