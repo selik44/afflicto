@@ -133,7 +133,7 @@
         (function($, window, document, undefined) {
             var block = $("#product-{{$product->id}}");
             var form = $("#buy-form-{{$product->id}}");
-            var cart = $("#header .cart-container");
+            var cart = $("#cart-table").parent();
             var addModal = $("#add-modal-{{$product->id}}");
 
             //buy on desktop
@@ -158,6 +158,7 @@
 
             // setup buy event
             form.on('submit', function(e) {
+                klarnaSuspend();
                 console.log('Submitting buy now');
                 e.preventDefault();
                 $(this).serialize();
@@ -171,6 +172,7 @@
                 var price = block.find('.header .price .value').first().text();
 
                 //post form via ajax
+                klarnaSuspend();
                 $.post($(this).attr('action'), $(this).serialize(), function(response) {
                     showBuyModal(1, thumbnail, title, price);
 
@@ -190,9 +192,13 @@
                     $("#header .cart-toggle .total").text(Math.round(parseFloat(response.total)));
 
                     //update cart table
-                    $.get(Friluft.URL + '/api/cart', function(html) {
+                    var withShipping = "false";
+                    if (cart.find('tr.shipping').length > 0) withShipping = "true";
+                    $.get(Friluft.URL + '/api/cart', {withShipping: withShipping}, function(html) {
                         cart.find('.cart-table').replaceWith(html);
                     });
+                }).done(function() {
+                    klarnaResume();
                 });
             });
         })(jQuery, window, document);

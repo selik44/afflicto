@@ -80,6 +80,10 @@
 
     <script type="text/javascript">
         (function() {
+
+            //hide the buy modal
+            $("#buy-modal").remove();
+
             $(document).ready(function() {
                 $("#klarna-checkout-container").css('overflow-x', 'visible');
             });

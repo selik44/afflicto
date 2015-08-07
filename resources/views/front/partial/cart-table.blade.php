@@ -1,4 +1,4 @@
-<div class="cart-table">
+<div class="cart-table" id="cart-table">
 	@if(count($items) == 0)
 		<p class="lead text-center empty-message">@lang('store.cart empty')</p>
 	@else
@@ -73,7 +73,7 @@
 @section('scripts')
 @parent
 	<script>
-		var cart = $(".cart-table");
+		var cart = $("#cart-table");
         var container = cart.parent();
 
 		function klarnaSuspend() {
@@ -119,7 +119,7 @@
 				self.removeAttr('disabled').removeClass('disabled');
 
                 //update total on cart-toggle
-                $("#header .cart-toggle .total").html(response.total);
+                $("#header .cart-toggle .total").html(Math.round(parseFloat(response.total)));
                 $("#header .cart-toggle .quantity").html(response.quantity);
 
 				//update price
@@ -154,7 +154,7 @@
 				});
 
                 //update cart-toggle
-                $("#header .cart-toggle .total").html(response.total);
+                $("#header .cart-toggle .total").html(Math.round(parseFloat(response.total)));
                 $("#header .cart-toggle .quantity").html(response.quantity);
 
                 $.get(Friluft.URL + '/api/cart', {withShipping: "{{($withShipping) ? "true" : "false"}}", withTotal: "{{($withTotal) ? "true" : "false"}}"}, function(html) {
