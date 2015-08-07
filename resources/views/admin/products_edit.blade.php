@@ -463,7 +463,7 @@
             console.log('tree');
             console.log(tree);
 
-            $("#product-images-list .dz-sortable").each(function() {
+            $(this).find('.dz-sortable').each(function() {
                 var id = $(this).attr('data-id');
                 console.log(id + ' => ' + order);
                 tree[id] = {id: id, order: order};
