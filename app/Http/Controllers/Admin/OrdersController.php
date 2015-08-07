@@ -313,7 +313,6 @@ class OrdersController extends Controller {
 
 		# create a message?
 		if (Input::has('message')) {
-			dd('y');
 			# create a new orderevent
 			$event = new OrderEvent();
 			$event->comment = Input::get('message');
