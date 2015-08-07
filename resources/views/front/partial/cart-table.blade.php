@@ -9,7 +9,7 @@
 				$model = $item['model'];
 				?>
 				<tr class="item" data-id="{{$item['id']}}" data-price="{{round($model->price * $model->vatgroup->amount)}}">
-					<td class="image" style="width: 80px;">
+					<td class="image hidden-xs" style="width: 80px;">
 						<a href="{{$item['url']}}"><img class="thumbnail" src="{{asset('images/products/' .$item['model']->images()->first()->name)}}"></a>
 					</td>
 
@@ -39,7 +39,7 @@
 
             @if(isset($withShipping) && $withShipping)
                 <tr class="shipping" data-price="{{$shipping['unit_price'] / 100}}">
-                    <td class="icon">
+                    <td class="icon hidden-xs">
                         <i class="fa fa-truck"></i>
                     </td>
                     <td>

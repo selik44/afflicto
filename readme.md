@@ -31,17 +31,15 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Fix front-end for safari
 
 # Todo
-- Et par ting til på ordregreiene:  mulighet til å legge igjen melding på ordren.
-  Både for kunden og for oss i admin. Og at vi kan velge  å krysse av for
-  "Send oppdatering til kunde" slik at kunden får epost når ordren er oppdatert, med meldingen som vi evt har skrevet.
+- Implement ability to add a discount as percentage on tags (for the "free shipping tag"
 - Add "Free Shipping" tag.
 - front.product-view: Få inn 100% fornøydgaranti-merke.
 - dashboard stats & reports
 - make checkout & footer text configurable
 - related products appears when buying.
 - add buy button for related products
-- rabatt popup ting
 - Compound Products
+- rabatt popup ting
 - product receivals
 
 Order statuses

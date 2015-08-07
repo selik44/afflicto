@@ -128,6 +128,8 @@ return [
 		'shipping_email' => 'E-Mail Addresse',
 
 		'subscribe_to_newsletter' => 'Jeg ønsker å motta nyhetsbrev',
+		'notify_user' => 'Varsle kunden',
+		'message' => 'Melding',
 	],
 
 ];
