@@ -114,7 +114,7 @@ class OrdersController extends Controller {
 		#$table->destroyable(true, url('admin/orders/{id}'));
 		$table->selectable(true);
 		$table->sortable(true, [
-			'status','updated_at','user','activated',
+			'status','updated_at','user','activated','created_at',
 		]);
 
 		$table->filterable(true);
