@@ -21,7 +21,7 @@
         </div>
 
         <div class="row products clearfix paper">
-            <h4>Populære</h4>
+            <h4 class="end">Populære</h4>
             <div class="products-grid">
             @foreach($popular as $product)
                 @include('front.partial.products-block', ['product' => $product])
@@ -52,7 +52,7 @@
         </div>
 
         <div class="row products clearfix paper">
-            <h4>Nyheter</h4>
+            <h4 class="end">Nyheter</h4>
             <div class="products-grid">
             @foreach($news as $product)
                 @include('front.partial.products-block', ['product' => $product])
