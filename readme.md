@@ -29,8 +29,6 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Fix front-end for safari
 
 # Todo
-- Implement ability to add a discount as percentage on tags (for the "free shipping tag") 
-- Add "Free Shipping" tag.
 - front.product-view: Få inn 100% fornøydgaranti-merke.
 - dashboard stats & reports
 - make checkout & footer text configurable
