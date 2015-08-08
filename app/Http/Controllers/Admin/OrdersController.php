@@ -70,7 +70,11 @@ class OrdersController extends Controller {
 								}
 							}
 							$stockID = implode('_', $stockID);
-							$stock = $product->variants_stock[$stockID];
+							if (!isset($product->variants_stock[$stockID])) {
+								$stock = 0;
+							}else {
+								$stock = $product->variants_stock[$stockID];
+							}
 						}
 						$variantString = rtrim($variantString, ', ');
 
