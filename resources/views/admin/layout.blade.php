@@ -8,7 +8,7 @@
 	<div id="admin">
 		<header id="header">
 			@section('header')
-				<ul class="nav end">
+				<ul id="nav-top" class="nav end">
                     <li>
                         <a href="/">View Site</a>
                     </li>
@@ -20,14 +20,12 @@
                         @endif
                     @endforeach
 				</ul>
+
+                <div id="nav" class="clearfix">
+                    @include('admin.partial.nav')
+                </div>
 			@show
 		</header>
-		
-		<aside id="aside">
-			@section('aside')
-				@include('admin.partial.nav')
-			@show
-		</aside>
 		
 		<div id="page">
 			<div class="inner">

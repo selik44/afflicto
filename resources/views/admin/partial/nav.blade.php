@@ -1,4 +1,4 @@
-<ul id="navigation" class="nav vertical fancy">
+<ul class="nav clearfix">
 <?php
 
 	$nav = Friluft\Utils\Navigation::make([
@@ -55,9 +55,8 @@
             'fa-plane:admin.export' => 'admin.proteria.export',
         ]],
 
-        'fa-pencil:admin.design' => ['admin.slides', [
+        'fa-image:admin.design' => ['admin.slides', [
             'fa-pencil:admin.design' => 'admin.design',
-            'fa-image:admin.tiles' => 'admin.tiles.index',
             'fa-film:admin.slides' => 'admin.slides.index',
             'fa-image:admin.banners' => 'admin.banners.index',
         ]],

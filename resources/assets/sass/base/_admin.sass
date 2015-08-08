@@ -1,89 +1,84 @@
-// SETTINGS
-$sidebarWidth: 200px
-$headerHeight: 40px
-
-$header-color: $base-color
-$aside-color: weaker($base-background, 5%)
-$border-color: weaker($base-border-color, 7%)
-
 html,body, #admin
 	height: 100%
 
 #admin
 	#header
-		height: $headerHeight
 		width: 100%
 		position: fixed
 		top: 0px
-		z-index: 10
-		background: $header-color
-		border-bottom: 1px solid $border-color
-		padding: 0.25rem
+		z-index: 20
+		background: $base-color
+		border-bottom: 1px solid darken($base-color, 10%)
+		padding: 0
 
-	#aside
-		height: 100%
-		width: $sidebarWidth
-		position: fixed
-		z-index: 5
-		padding-top: $headerHeight
-		top: 0px
-		left: 0px
-		background: $aside-color
-		border-right: 1px solid $border-color
+		#nav-top
 
-		#navigation
-			> li > a
-				padding: 1.2rem
-			li
-				a
-					i
-						font-size: 1.4rem
-						margin-right: 0.5rem
+		#nav
+			background: $color-primary
+			color: $base-color
 
-			//submenus
-			> li > ul
-				display: none
+			.nav
+				margin: 0
+				display: flex
+				flex-direction: row
+				align-items: center
+				align-content: center
+				justify-content: center
+				justify-items: center
+
 				li
-					a
-						i
-							font-size: 1.0rem
+					flex: auto
 
+					a
+						padding: 1rem
+						background: $color-primary
+
+						&:hover
+							text-decoration: none
+							background: darken($color-primary, 10%)
+
+					&:hover
+						ul
+							display: block
+
+					&.current
+						a
+							background: darken($color-primary, 10%)
+
+				> li
+					position: relative
+
+					a
+						color: $base-background
+
+					ul
+						margin: 0
+						padding: 0
+						position: absolute
+						top: 100%
+						z-index: 20
+						width: 100%
+						display: none
+
+						li
+							clear: both
+							width: 100%
+
+							a
+								width: 100%
+			@include breakpoint('m-')
+				ul li
+					text-align: center
+					.label
+						display: none
 
 	#page
 		background: $base-background
-		width: 100%
-		height: 100%
-		position: absolute
-		top: 0px
-		left: 0px
-		padding-bottom: 20px
+		padding-top: 80px
 
 		> .inner
-			padding-left: $sidebarWidth + 20px
-			padding-top: $headerHeight + 20px
-			padding-right: 20px
-			padding-bottom: 20px
+			padding: 2rem
 
-		.footer-height-fix
-			height: 53px
-			width: 100%
-			@extend .row
-
-	#footer
-		position: fixed
-		z-index: 4
-		width: 100%
-		bottom: 0px
-		left: 0px
-		background: $aside-color
-		border-top: 1px solid weaker($base-border-color, 10%)
-
-		> .inner
-			padding-left: $sidebarWidth + 10px
-			padding-right: 10px
-			padding-top: 10px
-			padding-bottom: 10px
-	
 	.categories-tree
 		//------ROOT------//
 		> ul.sortable
@@ -225,7 +220,7 @@ html,body, #admin
 				opacity: 1
 
 			&.active:hover i
-				color: lighter($color-primary, 10%)
+				color: lighten($color-primary, 10%)
 
 
 		//base table style

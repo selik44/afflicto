@@ -94,7 +94,7 @@ class Navigation {
 				if ($icon != null) $str .= '<i class="fa ' .$icon .'"></i> ';
 
 				# label
-				$str .= trans($label);
+				$str .= '<span class="label">' .trans($label) .'</span>';
 			$str .= '</a>';
 
 			# render children, if any.
