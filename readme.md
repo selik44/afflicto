@@ -29,6 +29,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Fix front-end for safari
 
 # Todo
+- improve email design and readability (especially order update email)
 - front.product-view: Få inn 100% fornøydgaranti-merke.
 - dashboard stats & reports
 - make checkout & footer text configurable

@@ -233,13 +233,13 @@ class OrdersController extends Controller {
 		$order->purchase_currency = 'nok';
 
 		# set total
-		$order->total_price_including_tax = ceil($order->getTotal());
+		$order->total_price_including_tax = $order->getTotal();
 
 		$total = 0;
 		foreach($order->items as $item) {
 			$total += $item['total_price_excluding_tax'];
 		}
-		$order->total_price_excluding_tax = ceil($total);
+		$order->total_price_excluding_tax = $total;
 
 		# total tax amount
 		$tax = 0;
@@ -272,7 +272,7 @@ class OrdersController extends Controller {
 			->with([
 				'order' => $order,
 				'items' => $items,
-				'users' => User::all()
+				'users' => User::all(),
 			]);
 	}
 
@@ -336,13 +336,16 @@ class OrdersController extends Controller {
 
 	public function products_edit(Order $order) {
 		if ($order->activated) return Response::back()->with('error', 'That order has been activated and cannot be changed!');
-		return view('admin.orders_products_edit')->with(['order' => $order]);
+		return view('admin.orders_products_edit')->with([
+			'order' => $order,
+			'products' => Product::all(),
+		]);
 	}
 
 	public function products_update(Order $order) {
 		if ($order->activated) return Response::back()->with('error', 'That order has been activated and cannot be changed!');
 		$items = [];
-		foreach(json_decode(Input::get('items', []), true) as $item) {
+		foreach(Input::get('items', []) as $item) {
 
 			if ($item['type'] == 'shipping_fee') {
 				$items[] = $item;
@@ -353,8 +356,11 @@ class OrdersController extends Controller {
 
 			# get total tax amount
 			$total = $product->price * $product->quantity * $product->vatgroup->amount;
-			$taxAmount = abs($total - ($total * 1.25));
-			$taxAmount *= 100;
+			$taxAmount = abs($total - ($total * $product->vatgroup->amount));
+
+			if (!isset($item['reference']['options'])) {
+				$item['reference']['options'] = ['variants' => []];
+			}
 
 			$items[] = [
 				'discount_rate' => 0,
@@ -362,19 +368,34 @@ class OrdersController extends Controller {
 				'quantity' => (int) $item['quantity'],
 				'reference' => $item['reference'],
 				'type' => 'physical',
-				'tax_rate' => abs((1 - $product->vatgroup->amount) * 100),
-				'total_price_excluding_tax' => ($product->price * $product->quantity) * 100,
-				'total_price_including_tax' => ($product->price * $product->quantity) * 100 * $product->vatgroup->amount,
+				'tax_rate' => abs((1 - $product->vatgroup->amount)),
+				'total_price_excluding_tax' => ($product->price * $product->quantity),
+				'total_price_including_tax' => ($product->price * $product->quantity) * $product->vatgroup->amount,
 				'total_tax_amount' => $taxAmount,
-				'unit_price' => $product->price * $product->vatgroup->amount * 100,
+				'unit_price' => $product->price * $product->vatgroup->amount,
 			];
 		}
 		$order->items = $items;
 
-		dd($order->items);
-		#$order->save();
+		# set total
+		$order->total_price_including_tax = $order->getTotal();
 
-		return Redirect::to(route('admin.orders.edit', $order))->with('success', 'Order Updated!');
+		$total = 0;
+		foreach($order->items as $item) {
+			$total += $item['total_price_excluding_tax'];
+		}
+		$order->total_price_excluding_tax = $total;
+
+		# total tax amount
+		$tax = 0;
+		foreach($order->items as $item) {
+			$tax += $item['total_price_including_tax'] - $item['total_price_excluding_tax'];
+		}
+		$order->total_tax_amount = $tax;
+
+		$order->save();
+
+		return response('OK');
 	}
 
     /**

@@ -17,7 +17,6 @@
 		<div id="orderdata" class="module">
             <div class="module-header clearfix">
                 <h6 class="end pull-left">@lang('admin.user')'</h6>
-                <button class="pull-right primary edit large"><i class="fa fa-pencil"></i> @lang('admin.edit')</button>
             </div>
 			<div class="module-content">
 				<div class="col-xs-12 tight">

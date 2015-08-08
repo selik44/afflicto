@@ -8,8 +8,12 @@
     <h2 class="end">Order #{{$order->id}} - Edit</h2>
     <hr>
 
-    <h4 class="end">Products</h4>
-    <table class="table bordered striped">
+    <div class="row end">
+        <h4 class="pull-left end">Products</h4>
+        <button id="add-button" class="pull-right large add primary" data-toggle-modal="#add-modal"><i class="fa fa-plus"></i> Add</button>
+    </div>
+
+    <table id="products" class="table bordered striped">
         <thead>
         <tr>
             <th>Product</th>
@@ -19,6 +23,24 @@
         </tr>
         </thead>
         <tbody>
+
+        <tr id="item-template" class="item">
+            <td class="product">
+                <span class="name"></span>
+            </td>
+            <td class="variants">
+
+            </td>
+            <td class="quantity">
+                <input type="text" value="1">
+            </td>
+            <td>
+                <div class="button-group pull-right remove">
+                    <button class="remove small error"><i class="fa fa-close"></i> Remove</button>
+                </div>
+            </td>
+        </tr>
+
         @foreach($order->items as $id => $item)
             <?php
                 if ($item['type'] == 'shipping_fee') continue;
@@ -34,9 +56,9 @@
                 data-type="physical"
             >
                 <td class="product">
-                    <a href="{{url($model->getPath())}}" target="_blank">
+                    <span class="name">
                      {{$model->name}}
-                    </a>
+                    </span>
                 </td>
                 <td class="options">
                     <div class="variants">
@@ -77,7 +99,7 @@
         $shipping = $order->getShipping();
         $types = ['mail', 'service-pack'];
     ?>
-    <table class="shipping">
+    <table id="shipping" class="shipping">
         <thead>
         <tr>
             <th>Type</th>
@@ -111,14 +133,94 @@
     <hr>
 
     <button class="success large save">Save</button>
+
+    <div class="modal fade" id="add-modal" style="overflow: visible;width: 400px;">
+        <div class="modal-header">
+            Add Product
+        </div>
+
+        <div class="modal-content" style="overflow: visible;">
+            <select class="product">
+                @foreach($products as $product)
+                    <option value="{{$product->id}}" data-id="{{$product->id}}">{{$product->name}}</option>
+                @endforeach
+            </select>
+            <hr>
+            <div class="product-options">
+                @foreach($products as $product)
+                    <div style="display: none;" class="options variants" data-product="{{$product->id}}">
+                        @foreach($product->variants as $variant)
+                            <div class="variant" data-id="{{$variant->id}}">
+                            <label>{{$variant->name}}
+                                <select data-id="{{$variant->id}}">
+                                    @foreach($variant->data['values'] as $value)
+                                        <option value="{{$value['name']}}">{{$value['name']}}</option>
+                                    @endforeach
+                                </select>
+                            </label>
+                            </div>
+                        @endforeach
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <div class="button-group">
+                <button class="primary add"><i class="fa fa-plus"></i> Add</button>
+                <button class="cancel" data-toggle-modal="#add-modal">Cancel</button>
+            </div>
+        </div>
+    </div>
 @stop
 
 @section('scripts')
     @parent
     <script>
-
         var orderID = {{$order->id}};
 
+        var itemTemplate = $("#item-template").detach();
+
+        //setup chosen on product selector
+        $("#add-modal select.product").chosen({width: '100%'});
+
+        //set visible product options
+        $("#add-modal select.product").change(function() {
+            $("#add-modal .product-options .options.visible").hide();
+            var id = $(this).val();
+            $("#add-modal .product-options .options[data-product='" + id + "']").show().addClass('visible');
+        });
+
+        //ADD PRODUCT
+        $("#add-modal .modal-footer .add").click(function() {
+            var id = $("#add-modal select.product").val();
+            var name = $("#add-modal select option[data-id='" + id + "']").text();
+            var options = {variants: {}};
+
+            $("#add-modal .product-options .options.visible .variant").each(function() {
+                var variantID = $(this).attr('data-id');
+                var value = $(this).val();
+                options.variants[variantID] = value;
+            });
+
+            var item = {id: id, name: name, options: options};
+
+            var el = itemTemplate.clone();
+
+            el.attr('data-product', item.id);
+            el.attr('data-name', item.name);
+            el.attr('data-type', 'physical');
+            el.find('.product .name').text(item.name);
+            el.find('.quantity input').val(1);
+            el.find('.variants').append($("#add-modal .product-options .options.visible .variant"));
+
+            $("#products tbody").append(el);
+            el.show();
+
+            $("#add-modal").gsModal('hide');
+        });
+
+        //SAVE
         $("button.save").click(function() {
             var items = [];
 
@@ -163,12 +265,14 @@
             };
 
             shipping.name = $(".shipping .type select").val();
-            shipping.total_price_excluding_tax = parseInt($(".shipping .price input").val()) * 100;
-            shipping.total_price_including_tax = parseInt($(".shipping .price input").val()) * 100;
+            shipping.total_price_excluding_tax = parseInt($(".shipping .price input").val());
+            shipping.total_price_including_tax = parseInt($(".shipping .price input").val());
 
             items.push(shipping);
 
-            $.post(Friluft.URL + '/orders/' + orderID + '/edit/products', {items: items, _token: Friluft.token, _method: 'PUT'}, function(response) {
+            console.log(items);
+
+            $.post(Friluft.URL + '/admin/orders/' + orderID + '/edit/products', {items: items, _token: Friluft.token, _method: 'PUT'}, function(response) {
                 console.log('response: ');
                 console.log(response);
             });
