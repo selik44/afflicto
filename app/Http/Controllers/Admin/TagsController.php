@@ -1,5 +1,6 @@
 <?php namespace Friluft\Http\Controllers\Admin;
 
+use Former;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 
@@ -620,13 +621,24 @@ class TagsController extends Controller {
 			'Icon' => ['icon', function($model, $column, $value) {
 				return '<i class="' .$value .'"></i>';
 			}],
+			'type' => ['type', function($model, $column, $value) {
+				if ($model->type == null) return 'Custom';
+				return $model->type;
+			}],
 			'Color' => ['color', function($model, $column, $value) {
 				return '<span style="padding: 0.4rem; background: ' .$model->color .';">' .$model->color .'</span>';
+			}],
+			'Visible' => ['visible', function($model, $column, $value) {
+				if ($model->visible) return '<span class="color-success"><i class="fa fa-check"></i></span>';
+				return '<span class="color-error"><i class="fa fa-close"></i></span>';
 			}],
 		]);
 
 		$table->editable(true, url('admin/tags/{id}/edit'));
 		$table->destroyable(true, url('admin/tags/{id}'));
+		$table->sortable(true, [
+			'label','icon','type','color'
+		]);
 
 		return $this->view('admin.tags_index')
 			->with([
@@ -656,6 +668,7 @@ class TagsController extends Controller {
 		$tag->label = Input::get('label');
 		$tag->icon = Input::get('icon', null);
 		$tag->color = Input::get('color', null);
+		$tag->visible = Input::has('visible');
 		$tag->save();
 
 		return Redirect::back()->with('success', 'Tag created!');
@@ -680,6 +693,8 @@ class TagsController extends Controller {
 	 */
 	public function edit(Tag $tag)
 	{
+		Former::populate($tag);
+
 		return view('admin.tags_edit')->with([
 			'tag' => $tag,
 			'icons' => $this->icons,
@@ -697,6 +712,7 @@ class TagsController extends Controller {
 		$tag->label = Input::get('label');
 		$tag->icon = Input::get('icon');
 		$tag->color = Input::get('color');
+		$tag->visible = Input::has('visible');
 		$tag->save();
 
 		return Redirect::route('admin.tags.index');

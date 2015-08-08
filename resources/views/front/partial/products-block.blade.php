@@ -30,9 +30,9 @@
             <div class="overlay">
                 <div class="tags">
                     @foreach($product->tags as $tag)
-                        @unless($tag->type !== null)
+                        @if($tag->visible)
                         <span class="tag" style="background-color: {{$tag->color}};"><i class="{{$tag->icon}}"></i> {{$tag->label}}</span>
-                        @endunless
+                        @endif
                     @endforeach
                 </div>
             </div>

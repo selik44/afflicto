@@ -32,6 +32,8 @@
             <input type="color" name="color" value="{{$tag->color}}">
         </label>
 
+        {!! Former::checkbox('visible') !!}
+
         <hr>
 
         <input type="submit" class="large success" name="save" value="Save">

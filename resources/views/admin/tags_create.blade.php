@@ -25,6 +25,8 @@
             <input type="color" name="color">
         </label>
 
+        {!! Former::checkbox('visible') !!}
+
 		<div class="footer-height-fix"></div>
 
 		<footer id="footer">

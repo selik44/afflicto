@@ -273,6 +273,15 @@ class Cart {
 			$shippingFee = 0;
 		}
 
+		# look for an item with free shipping tag
+		foreach($this->getItemsWithModels(false) as $item) {
+			foreach($item['model']->tags as $tag) {
+				if ($tag->type == 'free_shipping') {
+					$shippingFee = 0;
+				}
+			}
+		}
+
 		$data['cart']['items'][] = [
 			'type' => 'shipping_fee',
 			'reference' => 'SHIPPING',

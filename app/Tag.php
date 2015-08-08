@@ -25,6 +25,10 @@ class Tag extends Model {
 
 	protected $table = 'tags';
 
+	protected $casts = [
+		'visible' => 'boolean',
+	];
+
 	public function products() {
 		return $this->belongsToMany('Friluft\Product');
 	}
