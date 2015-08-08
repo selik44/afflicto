@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div class="col-xs-3 col-m-4 col-l-3 col-xl-2 tight-right aside">
+        <div class="visible-m-up col-m-4 col-l-3 col-xl-2 tight-right aside">
             <div class="block">
                 <div class="module">
                     <div class="module-header">
