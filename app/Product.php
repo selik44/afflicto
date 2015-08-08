@@ -249,18 +249,25 @@ class Product extends Model {
 	public function sell($amount = 1, $variants = null) {
 		$this->sales += $amount;
 
-		# variant?
-		if (is_array($variants)) {
+		if ($this->variants->count() == 0) {
+			$this->stock -= $amount;
+		}else if ($this->variants->count() > 0) {
 			$stockID = [];
 			foreach($variants as $id => $value) {
+				# get id of the value
 				$variant = Variant::find($id);
-				if ($variant) {
-					
+				foreach($variant->data['values'] as $val) {
+					if ($val['name'] == $value) {
+						$stockID[] = $val['id'];
+					}
 				}
 			}
 
-		}else {
-			$this->stock -= $amount;
+			$stockID = implode('_', $stockID);
+
+			$stock = $this->variants_stock;
+			$stock[$stockID] -= $amount;
+			$this->variants_stock = $stock;
 		}
 
 		$this->save();

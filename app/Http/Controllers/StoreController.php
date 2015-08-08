@@ -274,7 +274,6 @@ class StoreController extends Controller {
 			$product = Product::find($item['reference']['id']);
 			if ( ! $product) continue;
 			$product->sell($item['quantity'], $item['reference']['options']['variants']);
-			$product->save();
 		}
 
 		# notify user
