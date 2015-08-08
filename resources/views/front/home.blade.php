@@ -1,67 +1,124 @@
 @extends('front.layout')
 
-@section('breadcrumbs')
-@stop
-
-@section('slider')
-    <div class="left">
-        <div class="slider">
-            <div class="container">
-                @foreach(\Friluft\Image::whereType('slideshow')->orderBy('order', 'asc')->get() as $slide)
-                    <a href="{{$slide->data['link']}}" style="background-image: url('{{asset('/images/' .$slide->name)}}');" class="slide">
-                        @if($slide->data)
-                            <div class="elements" style="padding: 1rem">
-                                @foreach($slide->data['elements'] as $el)
-                                    <div class="element"
-                                         data-start="{!! $el['start'] !!}"
-                                         data-end="{!! $el['end'] !!}"
-                                         data-offset-x="{!! $el['offsetX'] !!}"
-                                         data-offset-y="{!! $el['offsetY'] !!}"
-                                         data-delay="{!! $el['delay'] !!}"
-                                         data-type="{!! $el['type'] !!}"
-                                         data-speed="{!! $el['speed'] !!}"
-                                    >
-                                        {!! $el['content'] !!}
-                                    </div>
-                                @endforeach
-                            </div>
-                        @endif
-                    </a>
-                @endforeach
-            </div>
-        </div>
-    </div>
-
-    <div class="right">
-        @if(isset($images['top_right']))
-            <a href="{{$images['top_right']->data['link']}}" class="image" style="background-image: url('{{asset('images/' .$images['top_right']->name)}}');">
-            </a>
-        @endif
-
-        @if(isset($images['bottom_right']))
-            <a href="{{$images['bottom_right']->data['link']}}" class="image" style="background-image: url('{{asset('images/' .$images['bottom_right']->name)}}');">
-            </a>
-        @endif
-    </div>
-@stop
-
-
-@section('scripts')
-	@parent
-
-	<script>
-		$("#slider .slider").friluftSlider({
-			delay: 4000,
-			transitionSpeed: 600,
-			autoHeight: true,
-			heightRatio: 7 / 16,
-            useElements: true,
-		});
-	</script>
-@stop
-
+@section('breadcrumbs', '')
 
 @section('article')
+    <?php
+        $tile = function($image) {
+            $str = '<a class="tile" href="' .$image['data']['link'] .'">';
+            $str .= '<img src="' .asset('images/' .$image->name) .'">';
+            $str .= '</a>';
+            return $str;
+        };
+    ?>
+    <div id="home" class="clearfix">
+        <div class="row top clearfix paper">
+            @include('front.partial.slider')
+            <div class="tiles">
+                {!! $tile($images['top_1']) !!}
+                {!! $tile($images['top_2']) !!}
+            </div>
+        </div>
+
+        <div class="row products clearfix paper">
+            <h4>Populære</h4>
+            <div class="products-grid">
+            @foreach($popular as $product)
+                @include('front.partial.products-block', ['product' => $product])
+            @endforeach
+            </div>
+        </div>
+
+        <div class="row tiles middle clearfix paper">
+            <div class="left">
+                <div class="top">
+                    {!! $tile($images['middle_top_left']) !!}
+                </div>
+                <div class="bottom">
+                    {!! $tile($images['middle_bottom_left_1']) !!}
+                    {!! $tile($images['middle_bottom_left_2']) !!}
+                </div>
+            </div>
+
+            <div class="right">
+                <div class="top">
+                    {!! $tile($images['middle_top_right']) !!}
+                </div>
+                <div class="bottom">
+                    {!! $tile($images['middle_bottom_right_1']) !!}
+                    {!! $tile($images['middle_bottom_right_2']) !!}
+                </div>
+            </div>
+        </div>
+
+        <div class="row products clearfix paper">
+            <h4>Nyheter</h4>
+            <div class="products-grid">
+            @foreach($news as $product)
+                @include('front.partial.products-block', ['product' => $product])
+            @endforeach
+            </div>
+        </div>
+
+        <div class="row tiles bottom clearfix paper">
+            <div class="left">
+                {!! $tile($images['bottom_left']) !!}
+            </div>
+            <div class="right">
+                {!! $tile($images['bottom_right_1']) !!}
+                {!! $tile($images['bottom_right_2']) !!}
+            </div>
+        </div>
+
+        <div class="row tiles paper">
+            {!! $tile($images['bottom']) !!}
+        </div>
+    </div>
+@stop
+
+@section('scripts')
+    @parent
+
+    <script>
+        var home = $("#home");
+
+        home.find('.slider').friluftSlider({
+            delay: 4000,
+            transitionSpeed: 600,
+            autoHeight: true,
+            heightRatio: 7 / 16,
+            useElements: true,
+        });
+
+        // initialize isotope
+        imagesLoaded(document.querySelector('.products-grid'), function() {
+            $(".products-grid").isotope({
+                itemSelector: '.product',
+                layoutMode: 'fitRows',
+                getSortData: {
+                    price: '[data-price] parseInt',
+                    manufacturer: '[data-manufacturer]',
+                }
+            });
+        });
+    </script>
+@stop
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section('articleasd')
 	<div class="products-popular paper clearfix" style="padding: 2rem;">
         <h2 class="end">@lang('store.popular products')</h2>
 

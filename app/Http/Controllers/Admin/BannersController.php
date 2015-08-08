@@ -10,16 +10,31 @@ use Input;
 class BannersController extends Controller {
 
 	public static $spots = [
-		//'top_left',
-		'top_right',
-		//'bottom_left',
-		'bottom_right',
+		'top_1',
+		'top_2',
+		'middle_top_left',
+		'middle_top_right',
+		'middle_bottom_left_1',
+		'middle_bottom_left_2',
+		'middle_bottom_right_1',
+		'middle_bottom_right_2',
+		'bottom_left',
+		'bottom_right_1',
+		'bottom_right_2',
+		'bottom',
 	];
 
 	public static function getImages() {
 		$images = [];
 		foreach(self::$spots as $spot) {
-			$images[$spot] = Image::whereType('banners_' .$spot)->first();
+			$img = Image::whereType('banners_' .$spot)->first();
+			if (!$img) {
+				$img = Image::create([
+					'type' => 'banners_' .$spot,
+				]);
+				$img->save();
+			}
+			$images[$spot] = $img;
 		}
 
 		return $images;

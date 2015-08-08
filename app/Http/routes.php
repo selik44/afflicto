@@ -207,6 +207,10 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	# banners
 	get('design/banners', ['as' => 'admin.banners.index', 'uses' => 'Admin\BannersController@index', 'middleware' => 'perms:design.edit']);
 	put('design/banners', ['as' => 'admin.banners.update', 'uses' => 'Admin\BannersController@update', 'middleware' => 'perms:design.edit']);
+
+	# tiles
+	get('design/tiles', ['as' => 'admin.tiles.index', 'uses' => 'Admin\TilesController@index', 'middleware' => 'perms:tiles.edit']);
+	put('design/tiles', ['as' => 'admin.tiles.update', 'uses' => 'Admin\TilesController@update', 'middleware' => 'perms:tiles.edit']);
 });
 
 

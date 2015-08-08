@@ -26,6 +26,10 @@ class Image extends Model {
 	public $timestamps = false;
 	protected $table = 'images';
 
+	protected $fillable = [
+		'type',
+	];
+
 	protected $casts = [
 		'data' => 'array',
 	];

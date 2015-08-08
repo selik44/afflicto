@@ -1,0 +1,58 @@
+#home
+	.row
+		margin: 1rem 0
+
+		&:first-child
+			margin-top: 0
+
+		&:last-child
+			margin-bottom: 0
+
+	.tile
+		padding: 2px
+		img
+			width: 100%
+
+	.top
+		.slider
+			float: left
+			width: 70%
+
+		.tiles
+			float: left
+			width: 30%
+
+			.tile
+				img
+					width: 100%
+
+	.middle
+		> .left, > .right
+			float: left
+			width: 50%
+
+		> .left
+			> .bottom
+				.tile
+					float: left
+					width: 50%
+		> .right
+			> .bottom
+				.tile
+					float: left
+					width: 50%
+
+	.bottom
+		.left, .right
+			float: left
+			width: 50%
+
+	.row.products
+		padding: 1rem
+
+		.products-grid
+			.product
+				width: 25%
+
+				@include breakpoint('m-')
+					width: 50%
