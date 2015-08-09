@@ -219,9 +219,15 @@ class StoreController extends Controller {
 		$order->purchase_currency = $data['purchase_currency'];
 
 		$email = $data['billing_address']['email'];
+		$user = null;
 
-
-		$user = \Auth::user();
+		$custom = json_decode($data['orderid1'], true);
+		if (isset($custom['user_id'])) {
+			$user = User::find($custom['user_id']);
+			$email = $user->email;
+		}else {
+			$user = User::whereEmail($email)->first();
+		}
 
 		# create a new user automatically?
 		if ( ! $user) {

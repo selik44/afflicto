@@ -350,6 +350,8 @@ class Cart {
 			'push_uri' => url('push') .'?klarna_order={checkout.order.uri}',
 		];
 
+		$custom = [];
+
 		# prefill customer data
 		$user = \Auth::user();
 		if ($user) {
@@ -357,7 +359,10 @@ class Cart {
 			if ($user->shipping_address && isset($user->shipping_address['postal_code'])) {
 				$data['shipping_address']['postal_code'] = $user->shipping_address['postal_code'];
 			}
+			$custom['user_id'] = $user->id;
 		}
+
+		$data['orderid1'] = json_encode($custom);
 
 		$order->create($data);
 
