@@ -19,9 +19,11 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 # Core
 - leverage iron.io queues for emails, logging and backups.
+- add sweetalert library (https://laracasts.com/series/build-project-flyer-with-me/episodes/9)
+- implement cloudflare
+- look at gtmetrix.com, use caching library? varnish?
 - improve translation organization
-- performance: gtmetrix.com, use cloudflare? varnish cache?
-- email errors
+- setup email errors
 - Implement login throttling
 - Cache routes and views. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
 
