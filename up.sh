@@ -2,4 +2,4 @@
 
 git add .
 git commit -m "y"
-git push && envoy run staging.pull
+git push && envoy run --server=staging

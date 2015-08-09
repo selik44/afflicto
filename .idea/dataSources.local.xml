@@ -9,5 +9,11 @@
       <user-name>root</user-name>
       <user-password>dfc1dfcbdfc1dfcf</user-password>
     </data-source>
+    <data-source name="Production" uuid="bfa688e5-fe62-4dfa-815d-439cb24218f5">
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <schema-pattern>friluft.*</schema-pattern>
+      <default-schemas>friluft.*</default-schemas>
+    </data-source>
   </component>
 </project>

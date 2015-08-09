@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="1719302381">
+  <component name="DataSourceManagerImpl" format="xml" hash="1980967263">
     <data-source source="LOCAL" name="Staging" uuid="bc0d4b35-8296-42b1-b50f-cbae24601911">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
@@ -23,6 +23,20 @@
       <driver-properties>
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
+      </driver-properties>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Production" uuid="bfa688e5-fe62-4dfa-815d-439cb24218f5">
+      <driver-ref>mysql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://247sport.tk:3306/friluft</jdbc-url>
+      <driver-properties>
+        <property name="zeroDateTimeBehavior" value="convertToNull" />
+        <property name="tinyInt1isBit" value="false" />
+        <property name="characterEncoding" value="utf8" />
+        <property name="characterSetResults" value="utf8" />
+        <property name="yearIsDateType" value="false" />
       </driver-properties>
       <libraries />
     </data-source>
