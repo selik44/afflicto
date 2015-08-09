@@ -124,7 +124,7 @@ class StoreController extends Controller {
 	}
 
 	public function success() {
-		if ( ! Session::has('klarna_order')) return \Redirect::route('home')->with('error', 'Something went wrong!');
+		if ( ! Session::has('klarna_order')) return \Redirect::route('home');
 
 		# get order
 		$order = Cart::getKlarnaOrder(Session::get('klarna_order'));
