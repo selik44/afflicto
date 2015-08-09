@@ -124,7 +124,7 @@ class StoreController extends Controller {
 	}
 
 	public function success() {
-		if ( ! Session::has('klarna_order')) return \Redirect::back()->with('error', 'Something went wrong!');
+		if ( ! Session::has('klarna_order')) return \Redirect::route('home')->with('error', 'Something went wrong!');
 
 		# get order
 		$order = Cart::getKlarnaOrder(Session::get('klarna_order'));
@@ -219,10 +219,12 @@ class StoreController extends Controller {
 		$order->purchase_currency = $data['purchase_currency'];
 
 		$email = $data['billing_address']['email'];
-		$user = User::where('email', '=', $email)->first();
+
+
+		$user = \Auth::user();
 
 		# create a new user automatically?
-		if (!$user) {
+		if ( ! $user) {
 			$user = new User();
 			$user->role()->associate(Role::where('machine', '=', 'regular')->first());
 			$user->email = $email;
@@ -273,7 +275,8 @@ class StoreController extends Controller {
 			if ($item['type'] == 'shipping_fee') continue;
 			$product = Product::find($item['reference']['id']);
 			if ( ! $product) continue;
-			$product->sell($item['quantity'], $item['reference']['options']['variants']);
+			$product->sell($item['quantity'], $item['reference']['options']['variants'			$product->save();
+();
 		}
 
 		# notify user
