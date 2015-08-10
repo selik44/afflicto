@@ -60,9 +60,9 @@
             </thead>
 
             <tbody>
-            @foreach($order->orderevents as $event)
+            @foreach($order->orderEvents as $event)
                 <tr>
-                    <td>{{$event->when->diffForHumans()}}</td>
+                    <td>{{$event->created_at->diffForHumans()}}</td>
                     <td>{{$event->comment}}</td>
                 </tr>
             @endforeach

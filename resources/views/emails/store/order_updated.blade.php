@@ -5,11 +5,7 @@
 @stop
 
 @section('content')
-    <p class="lead">
-        @lang('emails.order_confirmation.header', ['id' => $event->order->id])
-    </p>
-
-    <h5>Kommentar</h5>
+    <h5>Kommentar: </h5>
     <p>
         {{$event->comment}}
     </p>

@@ -23,6 +23,10 @@ class OrderEvent extends Model {
 
     public $timestamps = true;
 
+	protected $dates = [
+		'created_at',
+	];
+
     public function order() {
         return $this->belongsTo('Friluft\Order');
     }
