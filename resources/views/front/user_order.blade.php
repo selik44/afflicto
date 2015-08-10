@@ -11,6 +11,7 @@
 @section('article')
     <div class="paper row" style="padding: 1rem;">
         <h2>@lang('store.order') {{$order->created_at->format('d M Y')}}</h2>
+        <small>Ordrenummer: #{{$order->id}}</small>
 
         @if($order->status == 'delivered')
             <p class="lead color-success">@lang('store.order status.delievered')</p>
