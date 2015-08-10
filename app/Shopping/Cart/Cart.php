@@ -362,7 +362,7 @@ class Cart {
 			$custom['user_id'] = $user->id;
 		}
 
-		$data['orderid1'] = json_encode($custom);
+		$data['merchant_reference'] = ['orderid1' => json_encode($custom)];
 
 		$order->create($data);
 
