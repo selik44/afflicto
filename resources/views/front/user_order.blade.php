@@ -49,5 +49,25 @@
             @endforeach
             </tbody>
         </table>
+
+        <h5>Oppdateringer</h5>
+        <table class="updates bordered">
+            <thead>
+            <tr>
+                <th>Når</th>
+                <th>Kommentar</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            @foreach($order->orderEvents as $event)
+                <tr>
+                    <td>{{$event->when->diffForHumans()}}</td>
+                    <td>{{$event->comment}}</td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
     </div>
 @stop
+
