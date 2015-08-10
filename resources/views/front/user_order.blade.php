@@ -60,7 +60,7 @@
             </thead>
 
             <tbody>
-            @foreach($order->orderEvents as $event)
+            @foreach($order->orderevents as $event)
                 <tr>
                     <td>{{$event->when->diffForHumans()}}</td>
                     <td>{{$event->comment}}</td>
