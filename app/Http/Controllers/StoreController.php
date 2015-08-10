@@ -221,7 +221,7 @@ class StoreController extends Controller {
 		$email = $data['billing_address']['email'];
 		$user = null;
 
-		$custom = json_decode($data['merchant_reference']['orderid1'], true);
+		$custom = json_decode($data['merchant_reference']['orderid2'], true);
 		if (isset($custom['user_id'])) {
 			$user = User::find($custom['user_id']);
 			$email = $user->email;

@@ -307,7 +307,7 @@ class Cart {
 		$data['options']['color_link'] = '#03a1a9';
 
 		# set shipping info
-		$data['options']['shipping_details'] = 'Shipping Details Here';
+		$data['options']['shipping_details'] = trans('store.shipping.' .$shippingType);
 
 		return $data;
 	}
@@ -362,7 +362,7 @@ class Cart {
 			$custom['user_id'] = $user->id;
 		}
 
-		$data['merchant_reference'] = ['orderid1' => json_encode($custom)];
+		$data['merchant_reference'] = ['orderid2' => json_encode($custom)];
 
 		$order->create($data);
 
