@@ -522,7 +522,7 @@ class ProductsController extends Controller {
 
 		return $this->view('admin.products_multiedit')
 			->with([
-				'table' => $table->build(),
+				'table' => $table->render(),
 				'pagination' => $table->paginator->render(),
 				'filters' => $table->buildFilters()->addClass('inline')->filters,
 				'categories' => $categories,
