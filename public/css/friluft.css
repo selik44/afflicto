@@ -5356,6 +5356,9 @@ body.scrolled {
 #home .middle > .right > .bottom .tile {
   float: left;
   width: 50%; }
+@media (max-width: 680px) {
+  #home .middle .left > .bottom, #home .middle .right > .bottom {
+    display: none; } }
 #home .bottom .left, #home .bottom .right {
   float: left;
   width: 50%; }

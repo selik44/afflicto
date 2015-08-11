@@ -30,9 +30,8 @@ class GenerateThumbnails extends Command {
 		foreach($iterator as $file) {
 			if ($file->isDot() || $file->isDir()) continue;
 
-			# is this already a thumbnail? if so, delete it.
+			# is this already a thumbnail? if so, disregard it
 			if (preg_match('/_thumbnail\.[a-zA-Z0-9]+$/', $file->getFilename()) === 1) {
-				unlink($file->getRealPath());
 				continue;
 			}
 			$this->comment('reading ' .$file->getFilename());

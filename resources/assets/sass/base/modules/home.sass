@@ -41,6 +41,10 @@
 					float: left
 					width: 50%
 
+		@include breakpoint('sm-')
+			.left > .bottom, .right > .bottom
+				display: none
+
 	.bottom
 		.left, .right
 			float: left
