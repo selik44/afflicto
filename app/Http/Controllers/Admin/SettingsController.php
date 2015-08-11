@@ -6,7 +6,6 @@ use Friluft\Http\Controllers\Controller;
 
 use Friluft\Image;
 use Friluft\Setting;
-use Illuminate\Http\Request;
 use Input;
 
 class SettingsController extends Controller {
