@@ -153,7 +153,7 @@ class Category extends Model {
 		$classes = array_unique($classes);
 
 		$dropdown = '';
-		if ($dropdownIcon && $this->children()->count() > 0) {
+		if ($dropdownIcon && $this->children->count() > 0) {
 			$dropdown = $this->renderDropdownIcon();
 		}
 

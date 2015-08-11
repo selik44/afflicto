@@ -5438,6 +5438,9 @@ iframe {
       margin: 0;
       padding-bottom: 0;
       text-align: center; }
+  @media (max-width: 680px) {
+    #front #slogan:not(.home) {
+      display: none; } }
   #front #page {
     border-bottom: 1px solid #f7f7f7;
     padding: 3rem 0; }

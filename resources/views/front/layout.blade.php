@@ -69,7 +69,7 @@
 					<ul class="nav vertical fancy end navigation">
 						@include('front.partial.navigation_' .\Friluft\Store::current()->machine)
 					</ul>
-					
+
 					<div class="nav-extra">
 						<form class="inline" id="search" action="{{route('search')}}" method="GET">
                             <div class="input-append">
@@ -121,20 +121,7 @@
 		</nav>
 	</header>
 
-    <?php
-    $slogan1 = Friluft\Setting::whereMachine('slogan_1_content')->first()->value;
-    $slogan2 = Friluft\Setting::whereMachine('slogan_2_content')->first()->value;
-    $slogan3 = Friluft\Setting::whereMachine('slogan_3_content')->first()->value;
-    $slogan_bg = Friluft\Setting::whereMachine('slogan_background')->first();
-    $slogan_color = Friluft\Setting::whereMachine('slogan_color')->first();
-    ?>
-    <div id="slogan" class="clearfix" style="background-color: {{$slogan_bg->value}}; color: {{$slogan_color->value}};">
-        <div class="inner clearfix">
-            <div class="col-xs-4"><i class="fa fa-check"></i> {{$slogan1}}</div>
-            <div class="col-xs-4"><i class="fa fa-check"></i> {{$slogan2}}</div>
-            <div class="col-xs-4"><i class="fa fa-check"></i> {{$slogan3}}</div>
-        </div>
-    </div>
+    @include('front.partial.slogan')
 
 	@if(isset($slider) && $slider)
 		<div id="slider" class="clearfix">
@@ -171,7 +158,7 @@
 			</div>
 		</div>
 	@endif
-	
+
     @include('partial.alerts')
 
 	<div id="page" class="clearfix">

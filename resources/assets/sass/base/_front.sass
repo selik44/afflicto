@@ -72,6 +72,10 @@ iframe
 				padding-bottom: 0
 				text-align: center
 
+		&:not(.home)
+			@include breakpoint('sm-')
+				display: none
+
 	#page
 		border-bottom: 1px solid stronger($base-border-color, 10%)
 		padding: 3rem 0

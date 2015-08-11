@@ -2,6 +2,7 @@
 
 use Auth;
 use Former;
+use Friluft\Category;
 use Friluft\Http\Requests;
 use Friluft\Order;
 use Hash;
@@ -11,6 +12,9 @@ class UserController extends Controller {
 
 	public function index()
 	{
+		$view = view('front.user')->with('aside', false);
+		$view->render();
+		return 'lol';
         return view('front.user')->with('aside', true);
 	}
 
