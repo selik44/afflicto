@@ -176,6 +176,7 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	get('orders/{order}/packlist', ['as' => 'admin.orders.packlist', 'uses' => 'Admin\OrdersController@packlist', 'middleware' => 'perms:orders.view']);
 	get('orders/packlist/{orders}', ['as' => 'admin.orders.multipacklist', 'uses' => 'Admin\OrdersController@getMultiPacklist', 'middleware' => 'perms:orders.view'])
 		->where('orders', '.+');
+	get('orders/status/{orders}/{status}', ['as' => 'admin.orders.status', 'uses' => 'Admin\OrdersController@update_status', 'middleware' => 'perms:orders.edit']);
 
 	# proteria
 	get('proteria', ['as' => 'admin.proteria.index', 'uses' => 'Admin\ProteriaController@index']);

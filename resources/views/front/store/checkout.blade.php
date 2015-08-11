@@ -28,7 +28,7 @@
 
                 <label class="checkbox-container end" style="float: left; width: 100%;" for="subscribe_to_newsletter">@lang('validation.attributes.subscribe_to_newsletter')
                     <div class="checkbox">
-                        {!! Former::checkbox('subscribe_to_newsletter')->label(null) !!}
+                        {!! Former::checkbox('subscribe_to_newsletter')->check()->label(null) !!}
                         <span></span>
                     </div>
                 </label>

@@ -398,6 +398,19 @@ class OrdersController extends Controller {
 		return response('OK');
 	}
 
+	public function update_status($orders, $status) {
+		$orders = explode(',', $orders);
+		foreach($orders as $id) {
+			$order = Order::find($id);
+			if ($order) {
+				$order->status = $status;
+				$order->save();
+			}
+		}
+
+		return Redirect::back()->with('success', 'orders updated!');
+	}
+
     /**
      * Generates a multi-page PDF of multiple packlists.
      * @param $orders
