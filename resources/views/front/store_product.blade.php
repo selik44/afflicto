@@ -120,23 +120,34 @@
 
 		<div class="paper product-bottom col-xs-12 tight">
 			<ul id="product-tabs" class="nav tabs clearfix">
-                <li class="current"><a href="#product-manufacturer-description">@lang('store.about') {{$product->manufacturer->name}}</a></li>
-                <li><a href="#product-info">@lang('store.product info')</a></li>
+                @if(mb_strlen(trim(strip_tags($product->manufacturer->description))) > 3)
+                    <li><a href="#product-manufacturer-description">@lang('store.about') {{$product->manufacturer->name}}</a></li>
+                @endif
+
+                @if(mb_strlen($product->description) > 3)
+                    <li><a href="#product-info">@lang('store.product info')</a></li>
+                @endif
+
                 @foreach($product->producttabs as $tab)
                     <li><a href="#product-tab-{{$tab->id}}">{{$tab->title}}</a></li>
                 @endforeach
+
                 @if($product->relations->count() > 0)
                     <li><a href="#product-relations">@lang('store.related products')</a></li>
                 @endif
 			</ul>
 
+            @if(mb_strlen(trim(strip_tags($product->manufacturer->description))) > 3)
             <div class="tab" id="product-manufacturer-description">
                 {!! $product->manufacturer->description !!}
             </div>
+            @endif
 
+            @if(mb_strlen($product->description) > 3)
             <div class="tab" id="product-info">
                 {!! $product->description !!}
             </div>
+            @endif
 
             @foreach($product->producttabs as $tab)
                 <div class="tab" id="product-tab-{{$tab->id}}">
@@ -206,11 +217,17 @@
 
             var alwaysAllowOrders = <?= ($product->manufacturer->always_allow_orders) ? "true" : "false" ?>;
 
+            //set active product tab
+            var tab = $("#product-tabs li").first();
+            tab = $(tab.find('a').attr('href'));
+            $("#product-tabs").gsTabs("show", tab);
+
             slider.friluftSlider({
                 delay: 4000,
                 transitionSpeed: 400,
                 slideLinks: false,
             });
+
 
             $(".product-view .product-top .product-images .thumbnails .thumbnail").click(function(e) {
                 e.preventDefault();

@@ -20,7 +20,7 @@ return [
 	'add to cart' => 'Legg i Kurven',
 	'popular products' => 'Populære Produkter',
 	'products' => 'Produkter',
-	'product info' => 'Informasjon',
+	'product info' => 'Teknisk Informasjon',
 	'related products' => 'Relaterte Produkter',
 	'home' => 'Hjem',
 	'login' => 'Logg in',
