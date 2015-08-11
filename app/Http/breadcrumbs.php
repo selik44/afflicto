@@ -4,24 +4,9 @@ Breadcrumbs::register('home', function($bc) {
 	$bc->push(trans('store.crumbs.home'), url('/'));
 });
 
-Breadcrumbs::register('terms-and-conditions', function($bc) {
+Breadcrumbs::register('page', function($bc, $page) {
 	$bc->parent('home');
-	$bc->push(trans('store.crumbs.terms and conditions'), url('/terms-and-conditions'));
-});
-
-Breadcrumbs::register('about', function($bc) {
-	$bc->parent('home');
-	$bc->push(trans('store.crumbs.about'), url('/about'));
-});
-
-Breadcrumbs::register('contact', function($bc) {
-	$bc->parent('home');
-	$bc->push(trans('store.crumbs.contact'), url('/contact'));
-});
-
-Breadcrumbs::register('faq', function($bc) {
-	$bc->parent('home');
-	$bc->push('FAQ', url('/faq'));
+	$bc->push($page->title, url($page->slug));
 });
 
 Breadcrumbs::register('search', function($bc) {

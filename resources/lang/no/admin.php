@@ -47,6 +47,9 @@ return [
 	'tag' => 'Merknad',
 	'variants' => 'Varianter',
 	'variant' => 'Variant',
+	'proteria' => 'Proteria',
+	'page' => 'Side',
+	'pages' => 'Sider',
 
 	'billing address' => 'Faktura Addresse',
 	'shipping address' => 'Sendings Addresse',

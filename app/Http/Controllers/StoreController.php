@@ -3,6 +3,7 @@
 use Agent;
 use Friluft\Http\Requests;
 use Friluft\Order;
+use Friluft\Page;
 use Friluft\Role;
 use Friluft\User;
 use Friluft\Category;
@@ -27,6 +28,15 @@ class StoreController extends Controller {
 	}
 
 	public function index($path) {
+		$page = Page::whereSlug($path)->first();
+		if ($page) {
+			return view('front.page')
+				->with([
+					'page' => $page,
+					'aside' => $page['options']['sidebar']
+				]);
+		}
+
 		$path = explode('/', $path);
 		$tree = [];
 		$parent_id = null;

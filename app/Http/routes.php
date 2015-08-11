@@ -2,9 +2,7 @@
 
 # HOME ROUTES
 get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
-get('terms-and-conditions', ['as' => 'home.terms', 'uses' => 'HomeController@terms']);
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
-
 
 # AUTH & USER ROUTES
 Route::group(['prefix' => 'user'], function() {
@@ -190,6 +188,14 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	put('receivals/{receival}', ['as' => 'admin.receivals.update', 'uses' => 'Admin\ReceivalsController@update', 'middleware' => 'perms:receivals.edit']);
 	post('receivals', ['as' => 'admin.receivals.store', 'uses' => 'Admin\ReceivalsController@store', 'middleware' => 'perms:receivals.create']);
 	delete('receivals/{receival}', ['as' => 'admin.receivals.delete', 'uses' => 'Admin\ReceivalsController@store', 'middleware' => 'perms:receivals.delete']);
+
+	# pages
+	get('pages', ['as' => 'admin.pages.index', 'uses' => 'Admin\PagesController@index', 'middleware' => 'perms:pages.view']);
+	get('pages/create', ['as' => 'admin.pages.create', 'uses' => 'Admin\PagesController@create', 'middleware' => 'perms:pages.create']);
+	post('pages', ['as' => 'admin.pages.store', 'uses' => 'Admin\PagesController@store', 'middleware' => 'perms:pages.create']);
+	get('pages/{page}/edit', ['as' => 'admin.pages.edit', 'uses' => 'Admin\PagesController@edit', 'middleware' => 'perms:pages.edit']);
+	put('pages/{page}', ['as' => 'admin.pages.update', 'uses' => 'Admin\PagesController@update', 'middleware' => 'perms:pages.edit']);
+	delete('pages/{page}', ['as' => 'admin.pages.destroy', 'uses' => 'Admin\PagesController@destroy', 'middleware' => 'perms:pages.delete']);
 
 	# design
 	get('design', ['as' => 'admin.slides', 'uses' => 'Admin\SlidesController@index', 'middleware' => 'perms:design.edit']);

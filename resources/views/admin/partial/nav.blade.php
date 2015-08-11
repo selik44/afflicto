@@ -55,6 +55,11 @@
             'fa-plane:admin.export' => 'admin.proteria.export',
         ]],
 
+        'fa-file-text:admin.pages' => ['admin.pages.index', [
+            'fa-file-text:admin.all' => 'admin.pages.index',
+            'fa-plus:admin.new' => 'admin.pages.create',
+        ]],
+
         'fa-image:admin.design' => ['admin.slides', [
             'fa-pencil:admin.design' => 'admin.design',
             'fa-film:admin.slides' => 'admin.slides.index',
