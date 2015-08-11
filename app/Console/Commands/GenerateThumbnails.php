@@ -39,17 +39,22 @@ class GenerateThumbnails extends Command {
 
 				$image->name = $filename .'.' .$extension;
 
-				$img = \Img::make(public_path('images/products') .'/' .$image->name);
-				$img->resize(800, null, function($constraint) {
-					$constraint->upsize();
-					$constraint->aspectRatio();
-				})->save();
+				try {
+					$img = \Img::make(public_path('images/products') . '/' . $image->name);
+					$img->resize(800, null, function ($constraint) {
+						$constraint->upsize();
+						$constraint->aspectRatio();
+					})->save();
 
-				# generate thumbnail
-				$img->resize(null, 200, function($constraint) {
-					$constraint->upsize();
-					$constraint->aspectRatio();
-				})->save(public_path('images/products') .'/' .$filename .'_thumbnail.' .$extension);
+
+					# generate thumbnail
+					$img->resize(null, 200, function ($constraint) {
+						$constraint->upsize();
+						$constraint->aspectRatio();
+					})->save(public_path('images/products') . '/' . $filename . '_thumbnail.' . $extension);
+				}catch(\Exception $e) {
+					$this->comment("Error: " .$e->getMessage());
+				}
 			}
 		}
 	}
