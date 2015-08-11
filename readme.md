@@ -27,11 +27,10 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Implement login throttling
 - Cache routes and views. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
 
-# Bugs
-- Fix front-end for safari
-
 # Todo
 - improve email design and readability (especially order update email)
+- newsletter checked by default
+- update order status on multiple orders
 - front.product-view: Få inn 100% fornøydgaranti-merke.
 - dashboard stats & reports
 - make checkout & footer text configurable

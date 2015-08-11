@@ -94,6 +94,7 @@
                                 }
                                 $stockID = implode('_', $stockID);
                                 $stock = $product->variants_stock[$stockID];
+                                $stock += $item['quantity'];
                             }
                             $variantString = rtrim($variantString, ', ');
 						}

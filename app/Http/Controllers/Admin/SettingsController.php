@@ -15,6 +15,12 @@ class SettingsController extends Controller {
 		'slogan_content',
 		'slogan_background',
 		'slogan_color',
+		'footer_1_content',
+		'footer_2_content',
+		'footer_3_content',
+		'checkout_1_content',
+		'checkout_2_content',
+		'checkout_3_content',
 	];
 
 	public function getDesign() {

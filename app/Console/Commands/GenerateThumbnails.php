@@ -46,7 +46,7 @@ class GenerateThumbnails extends Command {
 				})->save();
 
 				# generate thumbnail
-				$img->resize(200, null, function($constraint) {
+				$img->resize(null, 200, function($constraint) {
 					$constraint->upsize();
 					$constraint->aspectRatio();
 				})->save(public_path('images/products') .'/' .$filename .'_thumbnail.' .$extension);

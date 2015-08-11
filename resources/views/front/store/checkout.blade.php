@@ -44,7 +44,7 @@
                         <h5><i class="fa fa-fighter-jet"></i> &nbsp;&nbsp; Rask Levering</h5>
                     </div>
                     <div class="module-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur, quae?</p>
+                        {!! Friluft\Setting::whereMachine('checkout_1_content')->first()->value !!}
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                         <h5><i class="fa fa-check-square-o"></i> &nbsp;&nbsp; Trygg Betaling</h5>
                     </div>
                     <div class="module-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing.</p>
+                        {!! Friluft\Setting::whereMachine('checkout_2_content')->first()->value !!}
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                         <h5><i class="fa fa-calendar"></i> &nbsp;&nbsp; 30 Dagers Åpent Kjøp</h5>
                     </div>
                     <div class="module-content">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A eaque earum neque sapiente sit voluptatum?</p>
+                        {!! Friluft\Setting::whereMachine('checkout_3_content')->first()->value !!}
                     </div>
                 </div>
             </div>

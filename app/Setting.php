@@ -11,6 +11,10 @@ class Setting extends Model
 
 	public $timestamps = false;
 
+	protected $fillable = [
+		'category','type','machine'
+	];
+
 	public function getValueAttribute() {
 		$v = $this->attributes['value'];
 		switch($this->type) {

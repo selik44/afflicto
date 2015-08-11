@@ -196,27 +196,24 @@
 		<div class="inner tower">
 			<div class="clearfix">
 				@section('footer')
-					<div class="col-m-5 col-sm-6">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, sit quam autem, quae blanditiis, omnis totam exercitationem in incidunt eum voluptatibus laborum. Blanditiis quae, incidunt accusantium! Deserunt quidem vel, ipsam amet eveniet nesciunt placeat iusto quis, magnam temporibus saepe cum.</p>
-					</div>
-					<div class="col-m-4 col-sm-3 col-xs-6">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Possimus accusamus error eos tempora earum quaerat. Architecto reiciendis error perspiciatis consectetur accusamus nisi voluptatum distinctio veniam nam, sequi labore eaque. Laudantium.</p>
-					</div>
-					<div class="col-m-3 col-sm-3 col-xs-6">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim adipisci similique alias debitis, soluta mollitia, nobis sequi tempora sit temporibus.</p>
-					</div>
+                    <div class="col-m-4">
+                        {!! Friluft\Setting::whereMachine('footer_1_content')->first()->value !!}
+                    </div>
+                    <div class="col-m-4">
+                        {!! Friluft\Setting::whereMachine('footer_2_content')->first()->value !!}
+                    </div>
+                    <div class="col-m-4">
+                        {!! Friluft\Setting::whereMachine('footer_3_content')->first()->value !!}
+                    </div>
 				@show
 			</div>
 
 			<div class="inner copyright tower">
-				<div class="col-xs-4 text-left">
-					<small class="muted">Page rendered in {{round((microtime(true) - LARAVEL_START) * 1000)}}ms</small>
-				</div>
-				<div class="col-xs-4 text-center">
+				<div class="col-xs-6 text-left">
 					<small class="muted">COPYRIGHT &copy; 2015 - {{\Friluft\Store::current()->name}}</small>
 				</div>
-				<div class="col-xs-4 text-right">
-					<small class="muted">Multi-Store CMS & Design By <a href="#">Gentle Fox Studios</a></small>
+				<div class="col-xs-6 text-right">
+					<small class="muted">Multi-Store CMS & Design By <a href="http://gentlefox.net" target="_BLANK">Gentle Fox Studios</a></small>
 				</div>
 			</div>
 		</div>
