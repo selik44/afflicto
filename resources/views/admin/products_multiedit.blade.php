@@ -8,6 +8,7 @@
     <style>
         table select, table input, table textarea {
             width: 100%;
+            min-width: 100px;
         }
 
         table textarea {

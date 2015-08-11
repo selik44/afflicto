@@ -30,12 +30,12 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 # Todo
 - make products smaller on related + checkout
 - favicon
-- fix auto-check laratable on admin.orders.index
+- cart button on mobile
 - improve layout on checkout (smaller product grid)
 - persistent buy button on related products + checkout
-- hide unused tabs on product view (manufacturer etc)
+
 - auto scroll bug on ckeditor
-- google analytics
+- fix auto-check laratable on admin.orders.index
 - dashboard stats & reports
 - related products appears when buying
 - Compound Products
