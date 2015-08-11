@@ -5434,8 +5434,10 @@ iframe {
     max-width: 1440px;
     padding: 1rem;
     font-size: 1.1rem; }
-    #front #slogan > .inner > *:first-child {
-      margin: 0; }
+    #front #slogan > .inner > * {
+      margin: 0;
+      padding-bottom: 0;
+      text-align: center; }
   #front #page {
     border-bottom: 1px solid #1a1a1a;
     padding: 3rem 0; }

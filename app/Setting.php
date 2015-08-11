@@ -52,8 +52,10 @@ class Setting extends Model
 		$m = $this->machine;
 		if ($this->type == 'boolean') {
 			return Former::checkbox($m)->value('1');
-		}else if ($this->type == 'html') {
-			return Former::textarea($m)->value($this->attributes['value'])->class('wysiwyg');
+		}else if ($this->type == 'html' || $this->type == 'text') {
+			$field = Former::textarea($m)->value($this->attributes['value']);
+			if ($this->type == 'html') $field->class('wysiwyg');
+			return $field;
 		}else if ($this->type == 'array') {
 			return Former::textfield($m)->value($this->attributes['value']);
 		}else if ($this->type == 'color') {

@@ -122,13 +122,17 @@
 	</header>
 
     <?php
-    $slogan_content = Friluft\Setting::whereMachine('slogan_content')->first();
+    $slogan1 = Friluft\Setting::whereMachine('slogan_1_content')->first()->value;
+    $slogan2 = Friluft\Setting::whereMachine('slogan_2_content')->first()->value;
+    $slogan3 = Friluft\Setting::whereMachine('slogan_3_content')->first()->value;
     $slogan_bg = Friluft\Setting::whereMachine('slogan_background')->first();
     $slogan_color = Friluft\Setting::whereMachine('slogan_color')->first();
     ?>
     <div id="slogan" class="clearfix" style="background-color: {{$slogan_bg->value}}; color: {{$slogan_color->value}};">
         <div class="inner clearfix">
-            {!! $slogan_content->value !!}
+            <div class="col-xs-4"><i class="fa fa-check"></i> {{$slogan1}}</div>
+            <div class="col-xs-4"><i class="fa fa-check"></i> {{$slogan2}}</div>
+            <div class="col-xs-4"><i class="fa fa-check"></i> {{$slogan3}}</div>
         </div>
     </div>
 

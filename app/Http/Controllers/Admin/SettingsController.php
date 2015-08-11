@@ -12,9 +12,11 @@ use Input;
 class SettingsController extends Controller {
 
 	private $settings = [
-		'slogan_content',
 		'slogan_background',
 		'slogan_color',
+		'slogan_1_content',
+		'slogan_2_content',
+		'slogan_3_content',
 		'footer_1_content',
 		'footer_2_content',
 		'footer_3_content',
