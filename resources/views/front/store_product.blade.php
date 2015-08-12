@@ -270,6 +270,18 @@
                 callback();
             }, 50));
 
+            $("#buy-form-{{$product->id}} button.buy").click(function(e) {
+                e.preventDefault();
+
+                var variants = parseInt($('.product-view').attr('data-variants'));
+                if (variants > 0 && $(window).width() <= 680) {
+                    //toggle modal
+                    $("#add-modal-{{$product->id}}").gsModal('show');
+                }else {
+                    $(this).parents('form').trigger('submit');
+                }
+            });
+
             // setup buy event on both forms
             var form = $("#buy-form-{{$product->id}}, #add-modal-{{$product->id}} form");
 
@@ -288,14 +300,15 @@
 
                 $("#add-modal-{{$product->id}}").gsModal('hide');
 
-                setTimeout(function() {
-                    $("#product-tabs").gsTabs('switch', "#product-relations");
+                if ($("#product-relations").length > 0) {
+                    setTimeout(function() {
+                        $("#product-tabs").gsTabs('switch', "#product-relations");
 
-                    $("body").animate({
-                        scrollTop: $("#product-relations").offset().top
-                    }, 2000);
-                }, 300);
-
+                        $("body").animate({
+                            scrollTop: $("#product-relations").offset().top
+                        }, 2000);
+                    }, 300);
+                }
 
                 //post form via ajax
                 $.post($(this).attr('action'), $(this).serialize(), function(response) {

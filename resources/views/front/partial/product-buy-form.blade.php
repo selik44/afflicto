@@ -72,7 +72,7 @@
         </p>
     </div>
 
-    <button {{$disabled}}class="huge primary buy" data-toggle-modal="#add-modal-{{$product->id}}" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+    <button {{$disabled}}class="huge primary buy" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
 </form>
 
 @section('scripts')
@@ -81,8 +81,7 @@
         (function($, window, document, undefined) {
             var form = $("#{{$id}}");
             var alwaysAllowOrders = <?= ($product->manufacturer && $product->manufacturer->always_allow_orders) ? "true" : "false" ?>;
-            var buyButton = $('#buy-{{$product->id}}');
-            var buySmall = $('#buy-small-{{$product->id}}');
+            var buyButton = form.find('button.buy');
 
             if (parseInt(form.attr('data-variants')) > 0) {
                 var stock = JSON.parse('{!! json_encode($product->variants_stock) !!}');
