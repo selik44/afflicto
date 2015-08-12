@@ -595,8 +595,6 @@ class ProductsController extends Controller {
 				}
 
 				$p->variants_stock = $stock;
-			}else {
-				$p->stock = Input::get($id .'_stock');
 			}
 
 			$p->save();
