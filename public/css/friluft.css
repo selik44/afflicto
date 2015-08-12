@@ -5327,6 +5327,9 @@ body.scrolled {
 .checkout-view > .aside > .block:not(:last-child) {
   margin-bottom: 2rem; }
 
+#route-home #front #page {
+  padding: 0; }
+
 #home .row {
   margin: 0; }
 #home .tile {

@@ -20,7 +20,7 @@
 	@show
 	
 </head>
-<body>
+<body id="route-{{Request::route()->getName()}}">
 	
 	@yield('body')
 
