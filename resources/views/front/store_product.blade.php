@@ -95,7 +95,7 @@
                     <li><a href="#product-manufacturer-description">@lang('store.about') {{$product->manufacturer->name}}</a></li>
                 @endif
 
-                @if(mb_strlen($product->description) > 3)
+                    @if(mb_strlen(trim(strip_tags($product->description))) > 0)
                     <li><a href="#product-info">@lang('store.product info')</a></li>
                 @endif
 
@@ -108,13 +108,13 @@
                 @endif
 			</ul>
 
-            @if(mb_strlen(trim(strip_tags($product->manufacturer->description))) > 3)
+            @if(mb_strlen(trim(strip_tags($product->manufacturer->description))) > 0)
             <div class="tab" id="product-manufacturer-description">
                 {!! $product->manufacturer->description !!}
             </div>
             @endif
 
-            @if(mb_strlen($product->description) > 3)
+            @if(mb_strlen(trim(strip_tags($product->description))) > 0)
             <div class="tab" id="product-info">
                 {!! $product->description !!}
             </div>

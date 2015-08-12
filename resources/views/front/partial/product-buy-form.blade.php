@@ -72,7 +72,7 @@
         </p>
     </div>
 
-    <button {{$disabled}}class="huge primary buy" data-toggle-modal="#buy-modal-{{$product->id}}" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+    <button {{$disabled}}class="huge primary buy" data-toggle-modal="#add-modal-{{$product->id}}" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
 </form>
 
 @section('scripts')

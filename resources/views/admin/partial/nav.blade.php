@@ -5,59 +5,48 @@
 		'fa-dashboard:admin.dashboard' => 'admin.dashboard',
 
         'fa-users:admin.users' => ['admin.users.index', [
-             'fa-user:admin.all' => 'admin.users.index',
-            'fa-plus:admin.new' => 'admin.users.create',
-        ]],
-
-        'fa-key:admin.roles' => ['admin.roles.index', [
-            'fa-key:admin.all' => 'admin.roles.index',
-            'fa-plus:admin.new' => 'admin.roles.create',
-        ]],
-
-        'fa-leaf:admin.manufacturers' => ['admin.manufacturers.index', [
-            'fa-leaf:admin.all' => 'admin.manufacturers.index',
-            'fa-plus:admin.add' => 'admin.manufacturers.create',
-        ]],
-
-        'fa-adjust:admin.variants' => ['admin.variants.index', [
-            'fa-adjust:admin.all' => 'admin.variants.index',
-            'fa-plus:admin.add' => 'admin.variants.create',
-        ]],
-
-		'fa-dropbox:admin.products' => ['admin.products.index', [
-			'fa-leaf:admin.all' => 'admin.products.index',
-            'fa-edit:admin.quick edit' => 'admin.products.quick-edit',
-			'fa-plus:admin.add' => 'admin.products.create',
-		]],
-
-		'fa-bars:admin.categories' => ['admin.categories.index', [
-			'fa-bars:admin.all' => 'admin.categories.index',
-			'fa-sitemap:admin.tree view' => 'admin.categories.tree',
-			'fa-plus:admin.create' => 'admin.categories.create',
-		]],
-
-		'fa-tag:admin.tags' => ['admin.tags.index', [
-			'fa-tag:admin.all' => 'admin.tags.index',
-			'fa-plus:admin.add' => 'admin.tags.create',
-		]],
-
-		'fa-plus:admin.receivals' => ['admin.receivals.index', [
-			'fa-list:admin.all' => 'admin.receivals.index',
-			'fa-plus:admin.new' => 'admin.receivals.create',
-		]],
-
-		'fa-shopping-cart:admin.orders' => ['admin.orders.index', [
-            'fa-shopping-cart:admin.all' => 'admin.orders.index',
-            'fa-plus:admin.new' => 'admin.orders.create',
-        ]],
-
-        'fa-plane:admin.proteria' => ['admin.proteria.index', [
-            'fa-plane:admin.export' => 'admin.proteria.export',
+             'fa-user:admin.users' => 'admin.users.index',
+            'fa-plus:admin.new user' => 'admin.users.create',
+            'divider',
+            'fa-key:admin.roles' => 'admin.roles.index',
+            'fa-plus:admin.new role' => 'admin.roles.create',
         ]],
 
         'fa-file-text:admin.pages' => ['admin.pages.index', [
             'fa-file-text:admin.all' => 'admin.pages.index',
             'fa-plus:admin.new' => 'admin.pages.create',
+        ]],
+
+        'fa-dropbox:admin.products' => ['admin.products.index', [
+            'fa-leaf:admin.products' => 'admin.products.index',
+            'fa-edit:admin.quick edit' => 'admin.products.quick-edit',
+            'fa-plus:admin.add product' => 'admin.products.create',
+            'divider',
+            'fa-adjust:admin.variants' => 'admin.variants.index',
+            'fa-plus:admin.new variant' => 'admin.variants.create',
+            'divider',
+            'fa-tag:admin.tags' => 'admin.tags.index',
+            'fa-plus:admin.new tag' => 'admin.tags.create',
+        ]],
+
+        'fa-bars:admin.categories' => ['admin.categories.index', [
+            'fa-bars:admin.all' => 'admin.categories.index',
+            'fa-sitemap:admin.tree view' => 'admin.categories.tree',
+            'fa-plus:admin.create' => 'admin.categories.create',
+        ]],
+
+        'fa-leaf:admin.manufacturers' => ['admin.manufacturers.index', [
+            'fa-plus:admin.manufacturers' => 'admin.manufacturers.index',
+            'fa-plus:admin.add manufacturer' => 'admin.manufacturers.create',
+        ]],
+
+		'fa-shopping-cart:admin.orders' => ['admin.orders.index', [
+            'fa-shopping-cart:admin.orders' => 'admin.orders.index',
+            'fa-plus:admin.new order' => 'admin.orders.create',
+            'fa-plane:admin.export to proteria' => 'admin.proteria.export',
+            'divider',
+            'fa-list:admin.receivals' => 'admin.receivals.index',
+            'fa-plus:admin.new receival' => 'admin.receivals.create',
         ]],
 
         'fa-image:admin.design' => ['admin.slides', [

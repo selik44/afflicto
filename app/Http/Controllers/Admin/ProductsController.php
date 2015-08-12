@@ -15,7 +15,6 @@ use Session;
 use Input;
 use Laratable;
 use Redirect;
-use Carbon\Carbon;
 use DB;
 use Former;
 
@@ -38,7 +37,7 @@ class ProductsController extends Controller {
 			}],
             'Price' => 'price',
 			'Manufacturer' => ['manufacturer_id', function($model, $column, $value) {
-				if ( ! $model->manufacturer) return 'None';
+				if ( ! $model->manufacturer) return '<span class="color-error">None</span>';
 				return $model->manufacturer->name;
 			}],
             'Categories' => ['categories', function($model, $column, $value) {
@@ -57,7 +56,7 @@ class ProductsController extends Controller {
 			'Tags' => ['_tags', function($model, $column, $value) {
 				$tags = [];
 				foreach($model->tags as $tag) {
-					$tags[] = $tag->name;
+					$tags[] = $tag->label;
 				}
 
 				return implode(', ', $tags);

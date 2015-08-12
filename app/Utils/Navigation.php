@@ -39,6 +39,7 @@ class Navigation {
 	 * Render a single item from the $items array.
 	 */
 	public function renderItem($label, $data) {
+		if ($data == 'divider') return '<li class="divider"></li>';
 		$exploded = explode(':', $label);
 		$icon = null;
 		if (count($exploded) > 1) {
@@ -55,7 +56,6 @@ class Navigation {
 
 		# active?
 		$route = \Route::getRoutes()->getByName($path);
-
 
 		$config = 'access.' .str_replace('.', '_', trim($path, '.'));
 		# do we have access to it?
