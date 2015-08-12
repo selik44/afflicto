@@ -577,8 +577,6 @@ class ProductsController extends Controller {
 								$stockID = $rootValue['id'] .'_' .$value['id'];
 								if (Input::has($id .'_variant-' .$stockID)) {
 									$stock[$stockID] = Input::get($id .'_variant-' .$stockID, 0);
-								}else {
-									$stock[$stockID] = 0;
 								}
 							}
 						}
@@ -587,9 +585,7 @@ class ProductsController extends Controller {
 					foreach($rootVariant->data['values'] as $value) {
 						$stockID = $value['id'];
 						if (Input::has($id .'_variant-' .$stockID)) {
-							$stock[$stockID] = Input::get($id .'_variant-' . $stockID);
-						}else {
-							$stock[$stockID] = 0;
+							$stock[$stockID] = Input::get($id .'_variant-' . $stockID, 0);
 						}
 					}
 				}
