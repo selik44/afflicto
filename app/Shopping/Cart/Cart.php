@@ -22,7 +22,7 @@ class Cart {
 
 	/**
 	 * Creates a new cart instance to manage the shopping cart. Cart contents are stored in the session.
-	 * @param Illuminate\Session\Store So we can store our cart between requests
+	 * @param \Illuminate\Session\Store So we can store our cart between requests
 	 */
 	public function __construct(SessionManager $session) {
 		$this->session = $session;
