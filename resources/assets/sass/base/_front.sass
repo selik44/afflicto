@@ -78,7 +78,7 @@ iframe
 
 	#page
 		border-bottom: 1px solid stronger($base-border-color, 10%)
-		padding: 3rem 0
+		padding: 0
 
 		> .inner
 			display: flex
@@ -95,6 +95,7 @@ iframe
 
 			#aside
 				flex: 0 0 260px
+				padding: 3rem 0
 				padding-right: 2rem
 				@include breakpoint('m-')
 					display: none
@@ -218,6 +219,11 @@ ul.nav.tabs
 
 .category-banner
 	width: 100%
+	padding-top: 3rem
+
 	img
 		width: 100%
 		display: block
+
+	@include breakpoint('m-')
+		padding-top: 0

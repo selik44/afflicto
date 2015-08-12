@@ -534,7 +534,18 @@ class ProductsController extends Controller {
 
 	public function putMultiedit() {
 		$cols = [
-			'name','slug','inprice','price','articlenumber','barcode','weight','description','summary','enabled','manufacturer_id','stock'
+			'name' => '',
+			'slug' => '',
+			'inprice' => 0,
+			'price' => 0,
+			'articlenumber' => 0,
+			'barcode' => 0,
+			'weight' => 0,
+			'description' => '',
+			'summary' => '',
+			'enabled' => false,
+			'manufacturer_id' => null,
+			'stock' => 0
 		];
 
 		$columns = explode(',', Input::get('columns', ''));
@@ -545,9 +556,9 @@ class ProductsController extends Controller {
 			# are we editing this one?
 			if ( ! Input::has($id .'_enabled')) continue;
 
-			foreach($cols as $col) {
-				if (Input::has($id .'_' .$col)) {
-					$p->{$col} = Input::get($id .'_' .$col);
+			foreach($cols as $col => $default) {
+				if (Input::has($id .'_' .$col) || in_array($col, $columns)) {
+					$p->{$col} = Input::get($id .'_' .$col, $default);
 				}
 			}
 
