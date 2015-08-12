@@ -85,23 +85,25 @@
 						&:not(:last-child)
 							margin-bottom: 1rem
 
-				.buy
-					padding: 1.6rem 2.4rem
-					font-size: 1.4rem
-					width: 100%
+			.buy, .buy-small, .toggle-add-modal
+				padding: 1.6rem 2.4rem
+				font-size: 1.4rem
+				width: 100%
 
-					i.fa
-						margin-right: 1rem
+				i.fa
+					margin-right: 1rem
 
-				.toggle-add-modal
+			.buy
+				@include breakpoint('m-')
 					display: none
 
-					&.fixed
-						position: fixed
-						bottom: 0px
-						width: 100%
-						z-index: 200
-						left: 0px
+			.toggle-add-modal
+				&.fixed
+					position: fixed
+					bottom: 0px
+					width: 100%
+					z-index: 200
+					left: 0px
 
 			.summary
 				font-size: 1.3rem
@@ -130,8 +132,21 @@
 					float: left
 					width: 50%
 
-					@include breakpoint('xl')
+					.preview
+						height: 150px
+
+					.header
+						.name
+							font-size: 1rem
+
+						.price
+							font-size: 1.2rem
+
+					@include breakpoint('l')
 						width: 33%
+
+					@include breakpoint('xl')
+						width: 25%
 
 
 	@include breakpoint('sm-')
