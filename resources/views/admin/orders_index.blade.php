@@ -80,6 +80,24 @@
 		//quickly select all or none
 		selectAll.change(function() {
 			selectRows.prop('checked', $(this).prop('checked'));
+
+            //is anything checked?
+            var numChecked = 0;
+            selectRows.each(function() {
+                console.log('checking select row');
+                if ($(this).prop('checked')) {
+                    numChecked++;
+                }
+            });
+
+            //is anything checked?
+            if (numChecked > 0) {
+                //enable actions
+                actions.find('input, button').removeAttr('disabled');
+            }else {
+                //disable actions
+                actions.find('input, button').attr('disabled', 'disabled');
+            }
 		});
 
 		//change select state of a single row
