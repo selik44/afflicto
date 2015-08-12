@@ -61,7 +61,7 @@
 	</header>
 
     @if(isset($withBuyButton) && $withBuyButton)
-        <button class="primary buy" data-toggle-modal="#add-modal-{{$product->id}}">@lang('store.add to cart')</button>
+        <button {{$disabled}}class="primary buy" data-toggle-modal="#add-modal-{{$product->id}}">@lang('store.add to cart')</button>
     @endif
 </div>
 
