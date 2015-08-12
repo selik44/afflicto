@@ -4709,9 +4709,6 @@ ul.pagination {
         width: 100%; }
         .product-view .product-top .product-info .buy i.fa, .product-view .product-top .product-info .buy-small i.fa, .product-view .product-top .product-info .toggle-add-modal i.fa {
           margin-right: 1rem; }
-      @media (max-width: 960px) {
-        .product-view .product-top .product-info .buy {
-          display: none; } }
       .product-view .product-top .product-info .toggle-add-modal.fixed {
         position: fixed;
         bottom: 0px;
@@ -4757,8 +4754,6 @@ ul.pagination {
         .product-view .product-top .product-info > .manufacturer {
           max-width: 340px; }
         .product-view .product-top .product-info > form .product-variants {
-          display: none; }
-        .product-view .product-top .product-info > form .buy {
           display: none; }
         .product-view .product-top .product-info > form .toggle-add-modal {
           display: block; }

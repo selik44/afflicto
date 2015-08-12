@@ -83,5 +83,6 @@ return [
 		'user_order' => 'Bestilling',
 		'search' => 'Søk',
 		'checkout' => 'Kassen',
+		'success' => 'Ferdig',
 	],
 ];

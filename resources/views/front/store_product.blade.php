@@ -81,7 +81,6 @@
                 ?>
                 @include('front.partial.product-buy-form', ['product' => $product])
 
-                <button {{$disabled}}class="huge primary toggle-add-modal hidden-m-up" data-toggle-modal="#add-modal-{{$product->id}}" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
                 <button {{$disabled}}class="huge primary toggle-add-modal-dummy" style="display: none;" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
 
                 <div class="summary">
@@ -226,8 +225,8 @@
 
             //stick the buy button to bottom on mobile
             var callback = function() {
-                var btn = $(".product-view .product-top .toggle-add-modal");
-                var dummy = $(".product-view .product-top .toggle-add-modal-dummy");
+                var btn = $(".product-view .product-top button.buy");
+                var dummy = $(".product-view .product-top button.toggle-add-modal-dummy");
 
                 if (btn.hasClass('fixed')) {
                     if ( ! dummy.is(':in-viewport')) {
@@ -281,6 +280,8 @@
                     $(this).parents('form').trigger('submit');
                 }
             });
+
+
 
             // setup buy event on both forms
             var form = $("#buy-form-{{$product->id}}, #add-modal-{{$product->id}} form");
