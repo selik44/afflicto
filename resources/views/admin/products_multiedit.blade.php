@@ -59,6 +59,7 @@
     </div>
 
     {!! Former::open()->id("products-form")->method('PUT')->action(route('admin.products.quick-edit.save')) !!}
+    {!! Former::hidden('columns')->value($columns) !!}
     {!! $table !!}
     <br>
     {!! $pagination !!}

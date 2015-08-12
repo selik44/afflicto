@@ -528,6 +528,7 @@ class ProductsController extends Controller {
 				'categories' => $categories,
 				'manufacturers' => $manufacturers,
 				'tags' => $tags,
+				'columns' => implode(',', array_column($columns, 0)),
 			]);
 	}
 
@@ -535,6 +536,8 @@ class ProductsController extends Controller {
 		$cols = [
 			'name','slug','inprice','price','articlenumber','barcode','weight','description','summary','enabled','manufacturer_id','stock'
 		];
+
+		$columns = explode(',', Input::get('columns', ''));
 
 		foreach(Product::all() as $p) {
 			$id = $p->id;
@@ -563,7 +566,7 @@ class ProductsController extends Controller {
 			$p->enabled = (Input::get($id .'_enabled', 'off') == 'on') ? true : false;
 
 			# update variant stock?
-			if (count($p->variants) > 0) {
+			if (count($p->variants) > 0 && in_array('stock', $columns)) {
 				$stock = [];
 
 				$rootVariant = $p->variants[0];
