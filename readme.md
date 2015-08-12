@@ -28,16 +28,9 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Cache routes and views. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
 
 # Todo
-- make products smaller on related + checkout
-- favicon
 - cart button on mobile
-- improve layout on checkout (smaller product grid)
-- persistent buy button on related products + checkout
-
 - auto scroll bug on ckeditor
-- fix auto-check laratable on admin.orders.index
 - dashboard stats & reports
-- related products appears when buying
 - Compound Products
 - rabatt popup ting
 - product receivals

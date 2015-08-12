@@ -64,9 +64,6 @@
 				flex: 0 1 auto
 				transition: all $base-transition-duration
 
-			.cart-toggle-top
-				flex: 0 1 auto
-
 		.nav-contents
 			transition: all $base-transition-duration * 2 ease-in-out
 			height: 100%
@@ -85,19 +82,6 @@
 			.nav-extra
 				flex: 0 1 auto
 				order: -1
-
-				.cart-toggle
-					background: $color-primary
-					color: stronger($base-background, 20%)
-					border: 1px solid $forms-border-color
-					border-radius: $base-radius
-					padding: 0.5rem 1rem
-					cursor: pointer
-					text-transform: uppercase
-					user-select: none
-
-					&.active
-						background: darken($color-primary, 10%)
 
 			ul.navigation
 				overflow-y: auto
@@ -164,6 +148,20 @@
 									background: weaker($base-background, 17%)
 									width: 100%
 									padding-left: 3rem
+
+		.cart-toggle
+			background: $color-primary
+			color: stronger($base-background, 20%)
+			border: 1px solid $forms-border-color
+			border-radius: $base-radius
+			padding: 1rem 1rem
+			cursor: pointer
+			text-transform: uppercase
+			user-select: none
+
+			&.active
+				background: darken($color-primary, 10%)
+
 		.cart-container
 			position: absolute
 			top: 100%

@@ -63,7 +63,11 @@
                         <img src="{{url('images/' .\Friluft\Store::current()->machine .'.png')}}">
                     </a>
 
-                    <button class="cart-toggle primary end hidden-l-up"><i class="fa fa-shopping-cart"></i> <span class="text">Cart</span></button>
+                    @if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
+                        <div class="cart-toggle hidden-l-up" data-toggle="#cart"><i class="fa fa-shopping-cart"></i>  (<span class="quantity">{{Cart::quantity()}}</span>) <span class="total">{{round(Cart::getTotal())}}</span>,-</div>
+                    @endif
+
+                    <!--<button class="cart-toggle primary end hidden-l-up"><i class="fa fa-shopping-cart"></i> <span class="text">Cart</span></button>-->
                 </div>
 				<div class="nav-contents">
 					<ul class="nav vertical fancy end navigation">
@@ -81,7 +85,7 @@
 
 						@if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
 							<!--<button data-toggle="#cart" class="cart-toggle primary end visible-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>-->
-                            <div class="cart-toggle visible-l-up" data-toggle="#cart">@lang('store.cart') (<span class="quantity">{{Cart::quantity()}}</span>) <span class="total">{{round(Cart::getTotal())}}</span>,-</div>
+                            <div class="cart-toggle visible-l-up" data-toggle="#cart"><i class="fa fa-shopping-cart"></i> (<span class="quantity">{{Cart::quantity()}}</span>) <span class="total">{{round(Cart::getTotal())}}</span>,-</div>
 						@endif
 
                         <div id="buy-modal" style="display: none;">
