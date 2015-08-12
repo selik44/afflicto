@@ -5621,7 +5621,6 @@ ul.nav.tabs {
       padding-top: 0; } }
 
 html, body, #admin {
-  height: 100%;
   background: white; }
 
 #admin #header {
