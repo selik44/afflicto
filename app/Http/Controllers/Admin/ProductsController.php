@@ -7,7 +7,6 @@ use Friluft\Manufacturer;
 use Friluft\Product;
 use Friluft\Producttab;
 use Friluft\Tag;
-use Friluft\Taxgroup;
 use Friluft\Variant;
 use Friluft\Vatgroup;
 use Request;

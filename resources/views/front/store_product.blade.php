@@ -40,6 +40,7 @@
                         @endforeach
                     </div>
                 @endif
+
 				<div class="slider contain">
 					<div class="container">
 					@foreach($product->images as $key => $image)
@@ -48,6 +49,12 @@
 					</div>
 				</div>
 			</div>
+
+            <div id="slider-modal" class="modal fade">
+                <a href="#slider-modal" data-toggle-modal="#slider-modal">
+
+                </a>
+            </div>
 
 			<div class="product-info paper">
                 @if($product->manufacturer)
@@ -91,7 +98,7 @@
 
 		<div class="paper product-bottom col-xs-12 tight">
 			<ul id="product-tabs" class="nav tabs clearfix">
-                @if(mb_strlen(trim(strip_tags($product->manufacturer->description))) > 3)
+                @if($product->manufacturer && mb_strlen(trim(strip_tags($product->manufacturer->description))) > 3)
                     <li><a href="#product-manufacturer-description">@lang('store.about') {{$product->manufacturer->name}}</a></li>
                 @endif
 
@@ -108,7 +115,7 @@
                 @endif
 			</ul>
 
-            @if(mb_strlen(trim(strip_tags($product->manufacturer->description))) > 0)
+            @if($product->manufacturer && mb_strlen(trim(strip_tags($product->manufacturer->description))) > 0)
             <div class="tab" id="product-manufacturer-description">
                 {!! $product->manufacturer->description !!}
             </div>
@@ -146,7 +153,7 @@
         (function($, window, document, undefined) {
             var slider = $(".product-view .product-images .slider");
             var thumbnails = $(".product-view .product-images .thumbnails");
-            var alwaysAllowOrders = <?= ($product->manufacturer->always_allow_orders) ? "true" : "false" ?>;
+            var alwaysAllowOrders = <?= ($product->manufacturer && $product->manufacturer->always_allow_orders) ? "true" : "false" ?>;
 
             //set active product tab
             var tab = $("#product-tabs li").first();
@@ -158,6 +165,8 @@
                 delay: 4000,
                 transitionSpeed: 400,
                 slideLinks: false,
+                stopOnMouseEnter: true,
+                startOnMouseLeave: true,
             });
 
             //setup thumbnails
@@ -178,6 +187,18 @@
                 $('.product-view .product-top .product-images .thumbnails .thumbnail.active').removeClass('active');
 
                 $('.product-images .thumbnails .thumbnail[data-slide="' + id + '"]').addClass('active');
+            });
+
+            //setup slider zoom modal
+            var sliderModal = $("#slider-modal");
+            slider.find('.slide').click(function() {
+                console.log('zooming');
+                var img = $(this).css('background-image');
+                img = img.replace('url(', '');
+                img = img.replace(')', '');
+                sliderModal.find('a').html("<img src='" + img + "'>");
+
+                sliderModal.gsModal('show');
             });
 
             //setup related products isotope

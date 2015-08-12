@@ -4631,6 +4631,9 @@ ul.pagination {
             -ms-flex: 1 1 auto;
                 flex: 1 1 auto;
         border: none; }
+        .product-view .product-top .product-images .slider .container .slide:hover {
+          cursor: -webkit-zoom-in;
+          cursor: zoom-in; }
     .product-view .product-top .product-info {
       position: relative;
       padding: 1rem;
@@ -4795,6 +4798,10 @@ ul.pagination {
     width: 100%; }
 #add-modal .buy {
   width: 100%; }
+
+#slider-modal a {
+  cursor: -webkit-zoom-out;
+  cursor: zoom-out; }
 
 .cart-table table tbody tr.item .product {
   vertical-align: middle; }
