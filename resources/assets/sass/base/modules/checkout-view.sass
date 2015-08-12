@@ -1,5 +1,6 @@
 .checkout-view
 	> .checkout-products
+		border-right: 1px solid $base-border-color
 		> .grid
 			padding: 1rem
 
@@ -7,6 +8,11 @@
 				&:not(:last-child)
 					margin-bottom: 2rem
 
+				.header
+					.name
+						font-size: 1rem
+					.price
+						font-size: 1.1rem
 	> .cart
 		> .paper
 			padding: 1rem
