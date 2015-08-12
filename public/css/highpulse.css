@@ -5025,7 +5025,8 @@ ul.pagination {
       -webkit-user-select: none;
          -moz-user-select: none;
           -ms-user-select: none;
-              user-select: none; }
+              user-select: none;
+      font-size: 0.9rem; }
       #header #navigation .cart-toggle.active {
         background: #59ac3b; }
     #header #navigation .cart-container {
@@ -5062,10 +5063,8 @@ ul.pagination {
     #header .logo {
       margin: 0.2rem 0.4rem;
       max-width: 120px; }
-    #header .cart-toggle {
-      font-size: 2rem; }
-      #header .cart-toggle .text {
-        display: none; } }
+    #header #navigation .cart-toggle {
+      padding: 2rem 1rem; } }
   @media (max-width: 960px) {
     #header #search .input-append input {
       -webkit-box-flex: 1;

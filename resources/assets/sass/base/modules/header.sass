@@ -158,6 +158,7 @@
 			cursor: pointer
 			text-transform: uppercase
 			user-select: none
+			font-size: 0.9rem
 
 			&.active
 				background: darken($color-primary, 10%)
@@ -199,10 +200,8 @@
 			margin: 0.2rem 0.4rem
 			max-width: 120px
 
-		.cart-toggle
-			font-size: 2rem
-			.text
-				display: none
+		#navigation .cart-toggle
+			padding: 2rem 1rem
 
 	//----------- MEDIUM AND DOWN ----------//
 	@include breakpoint('m-')
