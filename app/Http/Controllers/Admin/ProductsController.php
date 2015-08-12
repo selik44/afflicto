@@ -533,7 +533,7 @@ class ProductsController extends Controller {
 
 	public function putMultiedit() {
 		$cols = [
-			'name','slug','inprice','price','articlenumber','barcode','weight','description','summary','enabled','manufacturer_id'
+			'name','slug','inprice','price','articlenumber','barcode','weight','description','summary','enabled','manufacturer_id','stock'
 		];
 
 		foreach(Product::all() as $p) {
