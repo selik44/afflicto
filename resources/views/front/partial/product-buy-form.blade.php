@@ -81,30 +81,27 @@
         (function($, window, document, undefined) {
             var form = $("#{{$id}}");
             var alwaysAllowOrders = <?= ($product->manufacturer && $product->manufacturer->always_allow_orders) ? "true" : "false" ?>;
-            var buyButton = form.find('button.buy');
 
             if (parseInt(form.attr('data-variants')) > 0) {
                 var stock = JSON.parse('{!! json_encode($product->variants_stock) !!}');
 
-                console.log(stock);
-
                 function updateStock() {
-                    console.log('updating stock status');
                     //get the current stock ID
                     var stockID = [];
                     form.find(".product-variants .variant").each(function() {
                         var select = $(this).find('select');
                         stockID.push(select.val());
                     });
-
                     stockID = stockID.join('_');
+
                     var stockValue = parseInt(stock[stockID]);
 
                     if (stockValue > 0) {
+                        console.log('in stock');
                         form.find("button.buy").removeAttr('disabled');
                         form.find(".product-stock .true").show().siblings('.false').hide();
-                        //$("form .product-stock .true .quantity").text(stockValue);
                     }else {
+                        console.log('NOT in stock');
                         form.find("button.buy").attr('disabled', 'disabled');
                         form.find(".product-stock .true").hide().siblings('.false').show();
                     }
