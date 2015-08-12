@@ -5603,6 +5603,12 @@ ul.nav.tabs {
   #buy-modal .footer button, #buy-modal .footer .button {
     font-size: 1rem; } }
 
+.category-banner {
+  width: 100%; }
+  .category-banner img {
+    width: 100%;
+    display: block; }
+
 html, body, #admin {
   height: 100%;
   background: white; }
