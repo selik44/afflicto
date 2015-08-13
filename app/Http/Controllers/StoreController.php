@@ -10,6 +10,7 @@ use Friluft\Category;
 use Friluft\Product;
 use Friluft\Store;
 use Cart;
+use Klarna;
 use Log;
 use Input;
 use Mail;
@@ -25,6 +26,25 @@ class StoreController extends Controller {
 
 	public function __construct(Mailchimp $mailchimp) {
 		$this->mailchimp = $mailchimp;
+	}
+
+	/**
+	 * @return Klarna
+	 */
+	public function makeKlarna() {
+		$k = new Klarna();
+		$k->config(
+			env('KLARNA_MERCHANT_ID'),
+			env('KLARNA_SHARED_SECRET'),
+			\KlarnaCountry::NO,
+			\KlarnaLanguage::NB,
+			\KlarnaCurrency::NOK,
+			Klarna::BETA,
+			'json',
+			base_path('resources/pclasses.json')
+		);
+
+		return $k;
 	}
 
 	public function index($path) {
@@ -193,11 +213,10 @@ class StoreController extends Controller {
 		# save order
 		$order->save();
 
-		$data->update([
-			'merchant_reference' => [
-				'orderid1' => $order->id
-			]
-		]);
+		# update order id
+		$klarna = $this->makeKlarna();
+		$klarna->setEstoreInfo($order->id);
+		$klarna->update($order->reservation, true);
 
 		return response('OK', 200);
 	}
