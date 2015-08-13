@@ -340,7 +340,7 @@ class Cart {
 		$data['locale'] = 'nb-no';
 		$data['merchant'] = [
 			'id' => getenv('KLARNA_MERCHANT_ID'),
-			'terms_uri' => url('termsa-and-conditions'),
+			'terms_uri' => url('terms-and-conditions'),
 			'checkout_uri' => url('checkout'),
 			'confirmation_uri' => url('success') .'?klarna_order={checkout.order.uri}',
 			'push_uri' => url('push') .'?klarna_order={checkout.order.uri}',
@@ -358,12 +358,12 @@ class Cart {
 			$custom['user_id'] = $user->id;
 		}
 
-		$data['merchant_reference'] = ['orderid2' => json_encode($custom)];
+		#$data['merchant_reference'] = ['orderid2' => json_encode($custom)];
 
 		$order->create($data);
 		$order->fetch();
 
-		$this->session->put('klarna_order', $order->getLocation());
+		$this->session->put('klarna_order', $order['id']);
 
 		return $order;
 	}
