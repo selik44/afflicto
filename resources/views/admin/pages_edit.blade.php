@@ -14,7 +14,7 @@
 
     {!! Former::textarea('content')->class('wysiwyg') !!}
 
-    {!! Former::checkbox('sidebar') !!}
+    {!! Former::checkbox('sidebar')->value('sidebar') !!}
     {!! Former::submit('Save') !!}
 
     {!! Former::close() !!}

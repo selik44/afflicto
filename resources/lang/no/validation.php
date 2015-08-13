@@ -114,6 +114,10 @@ return [
 		'create account' => 'Lag Konto',
 		'create' => 'Lag',
 		'save' => 'Lagre',
+		'user_id' => 'Kundenummer',
+		'order_id' => 'Ordrenummer',
+		'phone' => 'Telefon',
+		'over_2_kg' => 'Pakken veier over 2kg',
 
 		'billing_name' => 'Navn',
 		'billing_postal_code' => 'Postkode',

@@ -5,5 +5,5 @@
 @section('article')
     <h2 class="end">{{$page->title}}</h2>
 
-    {!! $page->content !!}
+    {!! $content !!}
 @stop

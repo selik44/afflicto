@@ -1,6 +1,8 @@
 <?php namespace Friluft\Http\Controllers;
 
 use Agent;
+use Auth;
+use Former;
 use Friluft\Http\Requests;
 use Friluft\Order;
 use Friluft\Page;
@@ -50,10 +52,37 @@ class StoreController extends Controller {
 	public function index($path) {
 		$page = Page::whereSlug($path)->first();
 		if ($page) {
+			$content = $page->content;
+
+			if ($page->slug == 'kontakt') {
+				if (Auth::user()) {
+					$user = Auth::user();
+					Former::populate([
+						'name' => $user->name,
+						'user_id' => $user->id,
+						'email' => $user->email,
+						'phone' => $user->phone,
+					]);
+				}
+				$content = str_replace('{{form}}', view('front.partial.contact-form')->render(), $content);
+			}else if ($page->slug == 'retur') {
+				if (Auth::user()) {
+					$user = Auth::user();
+					Former::populate([
+						'name' => $user->name,
+						'user_id' => $user->id,
+						'email' => $user->email,
+						'phone' => $user->phone,
+					]);
+				}
+				$content = str_replace('{{form}}', view('front.partial.retur-form')->render(), $content);
+			}
+
 			return view('front.page')
 				->with([
+					'content' => $content,
 					'page' => $page,
-					'aside' => $page['options']['sidebar']
+					'aside' => ($page['options']['sidebar']) ? true : false
 				]);
 		}
 

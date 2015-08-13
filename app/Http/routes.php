@@ -4,6 +4,9 @@
 get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
+post('kontakt', ['as' => 'contact.post', 'uses' => 'HomeController@contact_post']);
+post('retur', ['as' => 'retur.post', 'uses' => 'HomeController@retur_post']);
+
 # AUTH & USER ROUTES
 Route::group(['prefix' => 'user'], function() {
 	# login
