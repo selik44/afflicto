@@ -7,7 +7,12 @@
 @section('content')
 
     @if($exception instanceof \Klarna_Checkout_ApiErrorException)
-        {{$exception->getPayload()}}
+        <h2>Payload:</h2>
+        <ul class="flat">
+        @foreach($exception->getPayload() as $key => $value)
+            <li>{{$key}} => {{var_export($value, true)}}</li>
+        @endforeach
+        </ul>
     @endif
 
     <h4>Request Input</h4>
