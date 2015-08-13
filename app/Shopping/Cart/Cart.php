@@ -363,7 +363,7 @@ class Cart {
 		$order->create($data);
 		$order->fetch();
 
-		$this->session->put('klarna_order', $order['id']);
+		$this->session->put('klarna_order', $order->getLocation());
 
 		return $order;
 	}
