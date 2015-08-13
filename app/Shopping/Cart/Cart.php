@@ -319,7 +319,7 @@ class Cart {
 			$order = $this->getKlarnaOrder();
 		}
 
-		return $order->update($this->getKlarnaOrderData());
+		$order->update($this->getKlarnaOrderData());
 	}
 
 	public function getKlarnaOrder($id = null) {
@@ -362,7 +362,7 @@ class Cart {
 
 		$order->create($data);
 
-		$this->session->put('klarna_order', $order->getLocation());
+		$this->session->put('klarna_order', $order['id']);
 
 		return $order;
 	}
