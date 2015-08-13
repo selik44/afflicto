@@ -215,7 +215,7 @@ class StoreController extends Controller {
 
 		# update order id
 		$klarna = $this->makeKlarna();
-		$klarna->setEstoreInfo($order->id);
+		$klarna->setEstoreInfo('' .$order->id);
 		$klarna->update($order->reservation, true);
 
 		return response('OK', 200);
