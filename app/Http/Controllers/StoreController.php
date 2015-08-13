@@ -181,20 +181,23 @@ class StoreController extends Controller {
 		# get order model
 		$order = Order::where('reservation', '=', $data['reservation'])->first();
 
-		# update the order with new data
-		$order->klarna_status = $data['status'];
-		$order->save();
-
+		# create the order?
 		if (!$order) {
 			Log::info("store.push: Creating order.");
 			$order = $this->createOrder(Input::get('klarna_order'));
-
-			$data->update([
-				'merchant_reference' => [
-					'orderid1' => $order->id
-				]
-			]);
 		}
+
+		# update the order with new data
+		$order->klarna_status = $data['status'];
+
+		# save order
+		$order->save();
+
+		$data->update([
+			'merchant_reference' => [
+				'orderid1' => $order->id
+			]
+		]);
 
 		return response('OK', 200);
 	}
