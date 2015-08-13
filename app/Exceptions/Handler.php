@@ -25,15 +25,10 @@ class Handler extends ExceptionHandler {
 	public function report(Exception $e)
 	{
 		if ($this->shouldReport($e)) {
-			try {
 			$input = \Request::all();
-			$input['key'] = 'value';
 			\Mail::send('emails.error', ['exception' => $e, 'input' => $input], function($m) {
 				$m->to('petter@gentlefox.net')->subject('error');
 			});
-			}catch (Exception $e) {
-				var_dump($e->getMessage());
-			}
 		}
 
 		return parent::report($e);
