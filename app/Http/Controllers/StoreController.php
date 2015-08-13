@@ -183,7 +183,7 @@ class StoreController extends Controller {
 
 		# create the order?
 		if (!$order) {
-			Log::info("store.push: Creating order.");
+			#Log::info("store.push: Creating order.");
 			$order = $this->createOrder(Input::get('klarna_order'));
 		}
 
