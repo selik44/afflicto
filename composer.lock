@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fd07202ba720156227f61818c6e05f2b",
+    "hash": "ce3cc61613c9554b1c5a99cbe5773a2e",
     "packages": [
         {
             "name": "afflicto/html",
@@ -1393,26 +1393,27 @@
         },
         {
             "name": "klarna/checkout",
-            "version": "v2.0.0",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/klarna/kco_php.git",
-                "reference": "00d5ab4cb4a84252ba506c5e60c87e8ee71f7798"
+                "reference": "00f1deed2155e525bb36d87a93c1471ba3333baf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/klarna/kco_php/zipball/00d5ab4cb4a84252ba506c5e60c87e8ee71f7798",
-                "reference": "00d5ab4cb4a84252ba506c5e60c87e8ee71f7798",
+                "url": "https://api.github.com/repos/klarna/kco_php/zipball/00f1deed2155e525bb36d87a93c1471ba3333baf",
+                "reference": "00f1deed2155e525bb36d87a93c1471ba3333baf",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.16"
+                "ext-curl": "*",
+                "php": ">=5.3.0"
             },
             "require-dev": {
-                "phpmd/phpmd": "~1.5",
-                "phpunit/phpunit": "~3.7",
+                "phpmd/phpmd": "~2.2",
+                "phpunit/phpunit": "~4.6",
                 "satooshi/php-coveralls": "~0.6",
-                "squizlabs/php_codesniffer": "~1.5"
+                "squizlabs/php_codesniffer": "~2.3"
             },
             "type": "library",
             "autoload": {
@@ -1426,7 +1427,7 @@
             ],
             "description": "Wrapper for the Klarna Checkout API",
             "homepage": "http://developers.klarna.com",
-            "time": "2015-03-18 16:04:58"
+            "time": "2015-06-11 12:26:37"
         },
         {
             "name": "klarna/php-xmlrpc",
@@ -1578,16 +1579,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.1.9",
+            "version": "v5.1.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "2f1e0b8d7c24bb783d3a8d4fe4120ef82e5da648"
+                "reference": "d47ccc8de10ccb6f328cc90f901ca5e47e077c93"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/2f1e0b8d7c24bb783d3a8d4fe4120ef82e5da648",
-                "reference": "2f1e0b8d7c24bb783d3a8d4fe4120ef82e5da648",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/d47ccc8de10ccb6f328cc90f901ca5e47e077c93",
+                "reference": "d47ccc8de10ccb6f328cc90f901ca5e47e077c93",
                 "shasum": ""
             },
             "require": {
@@ -1702,7 +1703,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2015-08-05 12:51:18"
+            "time": "2015-08-12 18:16:08"
         },
         {
             "name": "league/flysystem",
