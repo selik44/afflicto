@@ -11,6 +11,8 @@ use Friluft\Product;
 use Friluft\Store;
 use Cart;
 use Klarna;
+use Klarna_Checkout_Connector;
+use Klarna_Checkout_Order;
 use Log;
 use Input;
 use Mail;
@@ -193,6 +195,17 @@ class StoreController extends Controller {
 	}
 
 	public function push() {
+		$connector = Klarna_Checkout_Connector::create(
+			env('KLARNA_SHARED_SECRET'),
+			Klarna_Checkout_Connector::BASE_TEST_URL
+		);
+
+		$order = new Klarna_Checkout_Order($connector, Input::get('klarna_order'));
+		$order->fetch();
+		return response('OK', 200);
+	}
+
+	public function push_old() {
 		# get data
 		$data = Cart::getKlarnaOrder(Input::get('klarna_order'));
 
