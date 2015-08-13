@@ -325,13 +325,9 @@ class Cart {
 	public function getKlarnaOrder($id = null) {
 		# get specific order?
 		if ($id != null) {
-			try {
-				$order = new Klarna_Checkout_Order($this->klarnaConnector, $id);
-				$order->fetch();
-				return $order;
-			}catch(\Klarna_Checkout_ApiErrorException $e) {
-				throw new \Exception(json_encode($e->getPayload()));
-			}
+			$order = new Klarna_Checkout_Order($this->klarnaConnector, $id);
+			$order->fetch();
+			return $order;
 		}
 
 		# create klarna order
