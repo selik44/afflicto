@@ -65,7 +65,7 @@ class StoreController extends Controller {
 					]);
 				}
 				$content = str_replace('{{form}}', view('front.partial.contact-form')->render(), $content);
-			}else if ($page->slug == 'retur') {
+			}else if ($page->slug == 'bytte-og-retur') {
 				if (Auth::user()) {
 					$user = Auth::user();
 					Former::populate([
