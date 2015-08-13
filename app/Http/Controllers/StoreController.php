@@ -54,7 +54,7 @@ class StoreController extends Controller {
 		if ($page) {
 			$content = $page->content;
 
-			if ($page->slug == 'kontakt') {
+			if ($page->slug == 'kontakt-oss') {
 				if (Auth::user()) {
 					$user = Auth::user();
 					Former::populate([
