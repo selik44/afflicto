@@ -24,11 +24,14 @@ class Handler extends ExceptionHandler {
 	 */
 	public function report(Exception $e)
 	{
-		if ($this->shouldReport($e)) {
-			$input = \Request::all();
-			\Mail::send('emails.error', ['exception' => $e, 'input' => $input], function($m) {
-				$m->to('petter@gentlefox.net')->subject('error');
-			});
+		# email errors?
+		if (env('EMAIL_ERRORS')) {
+			if ($this->shouldReport($e)) {
+				$input = \Request::all();
+				\Mail::send('emails.error', ['exception' => $e, 'input' => $input], function($m) {
+					$m->to('petter@gentlefox.net')->subject('error');
+				});
+			}
 		}
 
 		return parent::report($e);

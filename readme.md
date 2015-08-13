@@ -28,8 +28,6 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Cache routes and views. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
 
 # Todo
-- cart button on mobile
-- auto scroll bug on ckeditor
 - dashboard stats & reports
 - Compound Products
 - rabatt popup ting
