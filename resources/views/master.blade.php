@@ -28,7 +28,7 @@
         $route = '';
     }
 ?>
-<body id="route-{{Request::route()->getName()}}">
+<body id="route-{{$route}}">
 	
 	@yield('body')
 
