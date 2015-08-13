@@ -174,7 +174,7 @@ class StoreController extends Controller {
 
 	public function push() {
 		# get data
-		$data = Cart::getKlarnaOrder(Input::get('klarna_order'))->marshal();
+		$data = Cart::getKlarnaOrder(Input::get('klarna_order'));
 
 		Log::info('Klarna pushed us with data:', $data);
 
