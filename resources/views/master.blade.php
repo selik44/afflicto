@@ -20,6 +20,14 @@
 	@show
 	
 </head>
+<?php
+    $route = Request::route();
+    if (is_object($route)) {
+        $route = $route->getName();
+    }else {
+        $route = '';
+    }
+?>
 <body id="route-{{Request::route()->getName()}}">
 	
 	@yield('body')
