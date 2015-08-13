@@ -213,10 +213,20 @@ class StoreController extends Controller {
 		# save order
 		$order->save();
 
+		# update klarna order with 'created' status and orderid
+		$data->update([
+			'status' => 'created',
+			'merchant_reference' => [
+				'orderid1' => '' .$order->id
+			],
+		]);
+
+		/*
 		# update order id
 		$klarna = $this->makeKlarna();
 		$klarna->setEstoreInfo('' .$order->id);
 		$klarna->update($order->reservation, true);
+		*/
 		return response('OK', 200);
 	}
 
