@@ -202,7 +202,7 @@ class StoreController extends Controller {
 		$order = Order::where('reservation', '=', $data['reservation'])->first();
 
 		# create the order?
-		if (!$order) {
+		if ( ! $order) {
 			Log::info("store.push: Creating order.");
 			$order = $this->createOrder(Input::get('klarna_order'));
 		}
@@ -214,9 +214,11 @@ class StoreController extends Controller {
 		$order->save();
 
 		# update order id
+		/*
 		$klarna = $this->makeKlarna();
 		$klarna->setEstoreInfo('' .$order->id);
 		$klarna->update($order->reservation, true);
+		*/
 
 		return response('OK', 200);
 	}
