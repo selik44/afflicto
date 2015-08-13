@@ -23,7 +23,7 @@
 <?php
     $route = Request::route();
     if (is_object($route)) {
-        $route = $route->getName();
+        $route = str_replace('.', '-', $route->getName());
     }else {
         $route = '';
     }
