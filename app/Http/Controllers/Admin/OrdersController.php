@@ -28,7 +28,7 @@ class OrdersController extends Controller {
 			\KlarnaCountry::NO,
 			\KlarnaLanguage::NB,
 			\KlarnaCurrency::NOK,
-			Klarna::BETA,
+			env('KLARNA_LIVE', false) ? Klarna::LIVE : Klarna::BETA,
 			'json',
 			base_path('resources/pclasses.json')
 		);
