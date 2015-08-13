@@ -361,6 +361,7 @@ class Cart {
 		$data['merchant_reference'] = ['orderid2' => json_encode($custom)];
 
 		$order->create($data);
+		$order->fetch();
 
 		$this->session->put('klarna_order', $order['id']);
 
