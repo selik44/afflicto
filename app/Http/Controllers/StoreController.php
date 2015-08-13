@@ -176,14 +176,14 @@ class StoreController extends Controller {
 		# get data
 		$data = Cart::getKlarnaOrder(Input::get('klarna_order'));
 
-		Log::info('Klarna pushed us with data:', $data);
+		Log::info('Klarna pushed us with data:', $data->marshal());
 
 		# get order model
 		$order = Order::where('reservation', '=', $data['reservation'])->first();
 
 		# create the order?
 		if (!$order) {
-			#Log::info("store.push: Creating order.");
+			Log::info("store.push: Creating order.");
 			$order = $this->createOrder(Input::get('klarna_order'));
 		}
 
