@@ -30,12 +30,8 @@ class Cart {
 		# make sure we have a shopping cart in the session
 		if (!$this->session->has('shoppingcart')) $this->session->put('shoppingcart', ['contents' => [], 'uid' => 0]);
 
-		# setup klarna
-		Klarna_Checkout_Order::$baseUri = getenv('KLARNA_URI');
-		Klarna_Checkout_Order::$contentType = getenv('KLARNA_CONTENT_TYPE');
-
 		# create our klarna checkout connector using the shared secret.
-		$this->klarnaConnector = Klarna_Checkout_Connector::create(getenv('KLARNA_SHARED_SECRET'));
+		$this->klarnaConnector = Klarna_Checkout_Connector::create(getenv('KLARNA_SHARED_SECRET'), Klarna_Checkout_Connector::BASE_TEST_URL);
 	}
 
 	/**
