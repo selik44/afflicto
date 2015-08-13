@@ -5,6 +5,11 @@
 @stop
 
 @section('content')
+
+    @if($exception instanceof \Klarna_Checkout_ApiErrorException)
+        {{$exception->getPayload()}}
+    @endif
+
     <h4>Request Input</h4>
     <table>
         <thead>

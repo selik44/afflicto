@@ -202,6 +202,7 @@ class StoreController extends Controller {
 
 		$order = new Klarna_Checkout_Order($connector, Input::get('klarna_order'));
 		$order->fetch();
+
 		return response('OK', 200);
 	}
 
