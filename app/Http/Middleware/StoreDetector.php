@@ -19,13 +19,17 @@ class StoreDetector {
 
 		$host = $host[1];
 
+		# get store
 		$store = Store::where('host', '=', $host)->first();
-		if ($store) {
-			Store::setCurrentStore($store);
-			return $next($request);
-		}else {
-			throw new Exception("Store not found for host: " .$host ."!", 1);
+		if ( ! $store) {
+			$store = Store::where('machine', '=', 'friluft')->first();
 		}
+
+		# set store
+		Store::setCurrentStore($store);
+
+		# continue
+		return $next($request);
 	}
 
 }

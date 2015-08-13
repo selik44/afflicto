@@ -5036,6 +5036,7 @@ ul.pagination {
       #header #navigation .cart-toggle.active {
         background: #59ac3b; }
     #header #navigation .cart-container {
+      overflow-y: scroll;
       position: absolute;
       top: 100%;
       padding: 1rem;

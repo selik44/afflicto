@@ -1,5 +1,9 @@
 <?php
 
+get('test', ['as' => 'test', function() {
+	throw new \Exception("Error");
+}]);
+
 # HOME ROUTES
 get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);

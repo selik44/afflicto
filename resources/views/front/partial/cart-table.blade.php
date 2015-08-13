@@ -164,5 +164,11 @@
 				klarnaResume();
 			});
 		});
+
+        //------------ size fix ---------//
+        $(window).resize(_.debounce(function() {
+            var max = $(window).height() - $("#header").height();
+            container.css('max-width', max);
+        }, 50));
 	</script>
 @stop
