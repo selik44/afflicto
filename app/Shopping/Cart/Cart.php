@@ -28,7 +28,7 @@ class Cart {
 		$this->session = $session;
 
 		# make sure we have a shopping cart in the session
-		if (!$this->session->has('shoppingcart')) $this->session->put('shoppingcart', ['contents' => [], 'uid' => 0]);
+		if ( ! $this->session->has('shoppingcart')) $this->session->put('shoppingcart', ['contents' => [], 'uid' => 0]);
 
 		# create our klarna checkout connector using the shared secret.
 		$this->klarnaConnector = Klarna_Checkout_Connector::create(getenv('KLARNA_SHARED_SECRET'), Klarna_Checkout_Connector::BASE_TEST_URL);
@@ -325,9 +325,13 @@ class Cart {
 	public function getKlarnaOrder($id = null) {
 		# get specific order?
 		if ($id != null) {
-			$order = new Klarna_Checkout_Order($this->klarnaConnector, $id);
-			$order->fetch();
-			return $order;
+			try {
+				$order = new Klarna_Checkout_Order($this->klarnaConnector, $id);
+				$order->fetch();
+				return $order;
+			}catch(\Klarna_Checkout_ApiErrorException $e) {
+				throw new \Exception(json_encode($e->getPayload()));
+			}
 		}
 
 		# create klarna order
@@ -340,7 +344,7 @@ class Cart {
 		$data['locale'] = 'nb-no';
 		$data['merchant'] = [
 			'id' => getenv('KLARNA_MERCHANT_ID'),
-			'terms_uri' => url('terms-and-conditions'),
+			'terms_uri' => url('termsa-and-conditions'),
 			'checkout_uri' => url('checkout'),
 			'confirmation_uri' => url('success') .'?klarna_order={checkout.order.uri}',
 			'push_uri' => url('push') .'?klarna_order={checkout.order.uri}',
