@@ -13,9 +13,8 @@
 
 		<nav id="navigation-top">
 			<ul class="inner nav end">
-
-				<li><a href="#">Help</a></li>
-				<li><a href="#">Contact</a></li>
+				<li><a href="{{url()}}/kontakt">Kontakt</a></li>
+				<li><a href="{{url()}}/bytte-og-retur">Retur & Bytte</a></li>
                 @if(Auth::user())
                     @if (Auth::user()->role->has('admin.access'))
                         <li><a href="{{route('admin.dashboard')}}">Admin</a></li>
