@@ -1,7 +1,7 @@
 @extends('emails.master')
 
 @section('header')
-    <h2>@lang('emails.welcome.header', ['store' => Store::current()->name]).</h2>
+    <h2>@lang('emails.welcome.header', ['store' => Friluft\Store::current()->name]).</h2>
 @stop
 
 @section('content')

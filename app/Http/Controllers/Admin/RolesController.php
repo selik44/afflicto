@@ -76,7 +76,7 @@ class RolesController extends Controller {
 		}
 
 		$role->name = Input::get('name', null) or $role->name;
-		$role->permissions()->sync(Input::get('permissions'));
+		$role->permissions()->sync(Input::get('permissions', []));
 		$role->save();
 
 		return Redirect::route('admin.roles.index')->with('success', trans('admin.role_update_success', ['role' => $role->name]));
