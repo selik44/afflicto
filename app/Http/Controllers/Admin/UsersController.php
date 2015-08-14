@@ -14,7 +14,7 @@ class UsersController extends Controller {
 
 	public function index()
 	{
-		$table = Laratable::make(User::query()->where(), [
+		$table = Laratable::make(User::query()->where('role-id', '!=', Role::where('machine', '=', 'admin')->first()->id), [
 			'#' => 'id',
 			'Role' => ['role_id', function($model) {
 				return '<a href="' .action('Admin\RolesController@edit', ['role' => $model->role->id]) .'">' .$model->role->name .'</a>';
