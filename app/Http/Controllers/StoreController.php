@@ -292,14 +292,18 @@ class StoreController extends Controller {
 		$email = $data['billing_address']['email'];
 		$user = null;
 
+		# get user from merchant reference?
 		if (isset($data['merchant_reference'])) {
 			$custom = json_decode($data['merchant_reference']['orderid2'], true);
 			if (isset($custom['user_id'])) {
 				$user = User::find($custom['user_id']);
 				$email = $user->email;
-			}else {
-				$user = User::whereEmail($email)->first();
 			}
+		}
+
+		# get user?
+		if ( ! $user) {
+			$user = User::whereEmail($email)->first();
 		}
 
 		# create a new user automatically?
