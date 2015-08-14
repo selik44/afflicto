@@ -1,12 +1,8 @@
 @extends('emails.master')
 
-@section('header')
-    <h3 class="end">@lang('emails.order_confirmation.header')</h3>
-@stop
-
 @section('content')
     <p class="lead">
-        @lang('emails.order_confirmation.intro', ['id' => $order->id])
+        @lang('emails.order_confirmation.message', ['order' => $order->id])
     </p>
     <table style="width: 100%; text-align: left;">
         <thead>
@@ -49,5 +45,5 @@
 @stop
 
 @section('footer')
-    @lang('emails.order_confirmation.footer') <a href="{{route('user')}}">@lang('store.here')</a>.
+    @lang('emails.order_confirmation.footer', ['id' => $order->user->id]) <a href="{{route('user')}}">@lang('store.here')</a>.
 @stop

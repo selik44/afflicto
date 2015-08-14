@@ -1,11 +1,7 @@
 @extends('emails.master')
 
-@section('header')
-    <h2>@lang('emails.welcome.header', ['store' => Friluft\Store::current()->name]).</h2>
-@stop
-
 @section('content')
-    @lang('emails.welcome.message', ['password' => $password])
+    @lang('emails.welcome.message', ['password' => $password, 'id' => $id])
     <hr>
 @stop
 

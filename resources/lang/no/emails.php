@@ -4,16 +4,14 @@ return [
 
 	'welcome' => [
 		'subject' => 'Din nye konto på :store',
-		'header' => 'Vi har laget en konto for deg på :store',
-		'message' => 'Vi har laget en konto for deg, du kan logge inn med passord ":password". Du kan endre passordet når du er logget inn.',
+		'message' => 'Vi har laget en konto for deg, du kan logge inn med passord ":password". Du kan endre passordet når du er logget inn. Ditt kundenr er :id.',
 		'login' => 'Logg inn',
 	],
 
 	'order_confirmation' => [
-		'subject' => 'Ordrebekreftelse #:id',
-		'header' => 'Vi har mottatt din bestilling!',
-		'intro' => 'Ordrenummer: :id',
-		'footer' => 'Du kan se bestillingene dine',
+		'subject' => 'Ordrebekreftelse #:order',
+		'message' => 'Vi har mottatt din bestilling, ordrenummeret er :order.',
+		'footer' => 'Ditt kundenummer er :id, Du kan se bestillingene dine',
 	],
 
 	'order_updated' => [

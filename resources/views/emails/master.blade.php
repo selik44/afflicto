@@ -16,11 +16,6 @@
         </a>
     </div>
 	<div class="module clearfix ninesixty">
-		<div class="module-header">
-			@section('header')
-                <h2>Header</h2>
-			@show
-		</div>
 		<div class="module-content">
 			@section('content')
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A accusantium adipisci, aperiam at aut blanditiis distinctio dolor et facilis fuga ipsum laborum nam, natus necessitatibus porro possimus quam quidem sit!</p>
@@ -31,6 +26,10 @@
 
             @show
 		</div>
-	</div>	
+	</div>
+    <hr>
+    <p class="small text-center">
+        {{\Friluft\Store::current()->name}}
+    </p>
 </body>
 </html>
