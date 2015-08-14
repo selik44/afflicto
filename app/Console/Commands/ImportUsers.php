@@ -4,6 +4,7 @@ namespace Friluft\Console\Commands;
 
 use DB;
 use Friluft\Role;
+use Friluft\User;
 use Illuminate\Console\Command;
 
 class ImportUsers extends Command
@@ -47,6 +48,13 @@ class ImportUsers extends Command
 
 		foreach($users as $user) {
 			$csv = str_getcsv($user);
+
+			# already exists?
+			if (User::where('email', '=', $csv[2])->count() > 0) {
+				$this->comment('skipping user, email already exists: ' .$csv[2]);
+				continue;
+			}
+
 			$user = [];
 
 			$user['id'] = $csv[0];
@@ -77,9 +85,7 @@ class ImportUsers extends Command
 
 			$password = str_random(16);
 			$user['password'] = \Hash::make($password);
-			DB::table('users')->insert($user);
+			#DB::table('users')->insert($user);
 		}
-
-		#$user= str_getcsv();
     }
 }

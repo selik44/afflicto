@@ -193,9 +193,9 @@
             slider.find('.slide').click(function() {
                 console.log('zooming');
                 var img = $(this).css('background-image');
-                img = img.replace('url(', '');
-                img = img.replace(')', '');
-                sliderModal.find('a').html("<img src=" + img + ">");
+                //img = img.replace('url(', '');
+                //img = img.replace(')', '');
+                sliderModal.find('a').css('background-image', img);
 
                 sliderModal.gsModal('show');
             });

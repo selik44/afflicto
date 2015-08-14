@@ -17,7 +17,7 @@
 </p>
 
     <p class="lead text-center">
-        Ditt nye passord:<br><br><code style="font-size: 1.2rem;">14fk692Mfa</code>
+        Ditt nye passord:<br><br><code style="font-size: 1.2rem;">{{$password}}</code>
     </p>
 @stop
 
