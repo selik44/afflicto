@@ -195,7 +195,7 @@
                 var img = $(this).css('background-image');
                 img = img.replace('url(', '');
                 img = img.replace(')', '');
-                sliderModal.find('a').html("<img src='" + img + "'>");
+                sliderModal.find('a').html("<img src=" + img + ">");
 
                 sliderModal.gsModal('show');
             });
