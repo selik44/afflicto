@@ -239,7 +239,7 @@ class Product extends Model {
 	}
 
 	public function images() {
-		return $this->hasMany('Friluft\Image');
+		return $this->hasMany('Friluft\Image')->orderBy('order', 'asc');
 	}
 
 	public function tags() {
