@@ -313,6 +313,12 @@ class StoreController extends Controller {
 			Log::debug('getting user from data.billing_addres.email...');
 			$user = User::withTrashed()->where('email', '=', $data['billing_address']['email'])->first();
 			if ($user) {
+
+				# re-activate user?
+				if ($user->deleted_at != null) {
+					$user->deleted_at = null;
+					$user->save();
+				}
 				Log::debug('got user from billing email.');
 			}else {
 				Log::debug('nope');
