@@ -1,10 +1,14 @@
 @extends('emails.master')
 
 @section('header')
-    <h5>Exception: {{$exception->getMessage()}} @ {{$exception->getFile()}} : {{$exception->getLine()}}</h5>
+
 @stop
 
 @section('content')
+    <p class="lead">
+    Exception: {{$exception->getMessage()}} @ {{$exception->getFile()}} : {{$exception->getLine()}}
+    </p>
+
     <h4>Request Input</h4>
     <table>
         <thead>
