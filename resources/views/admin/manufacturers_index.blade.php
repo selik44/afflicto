@@ -8,7 +8,7 @@
     <h3 class="title">@lang('admin.manufacturers')</h3>
 @stop
 
-@section('page')
+@section('content')
     {!! $table !!}
 @stop
 

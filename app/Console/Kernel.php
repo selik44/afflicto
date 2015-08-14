@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel {
 		'Friluft\Console\Commands\GenerateProductSummary',
 		'Friluft\Console\Commands\GenerateThumbnails',
 		'Friluft\Console\Commands\ImportImages',
+		'Friluft\Console\Commands\ImportUsers',
 	];
 
 	/**
