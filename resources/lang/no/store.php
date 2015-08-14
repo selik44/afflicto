@@ -46,6 +46,7 @@ return [
 		'create account' => 'Opprett Konto',
 		'forgot password' => 'Glemt Passord',
 		'reset password' => 'Tilbakestill Passord',
+		'new password' => 'Nytt Passord',
 	],
 
 	'shipping' => [
