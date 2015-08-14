@@ -4,6 +4,9 @@
 get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
 
+get('nyhetsbrev', ['as' => 'nyhetsbrev', 'uses' => 'HomeController@nyhetsbrev_get']);
+post('nyhetsbrev', ['as' => 'nyhetsbrev.post', 'uses' => 'HomeController@nyhetsbrev_post']);
+
 post('kontakt', ['as' => 'contact.post', 'uses' => 'HomeController@contact_post']);
 post('retur', ['as' => 'retur.post', 'uses' => 'HomeController@retur_post']);
 

@@ -82,10 +82,8 @@ class ImportUsers extends Command
 			$user['created_at'] = $created[2] .'-' .$created[1] .'-' .$created[0] .' 00:00:00';
 
 			# generate a password
-
-			$password = str_random(16);
-			$user['password'] = \Hash::make($password);
-			#DB::table('users')->insert($user);
+			$user['password'] = 'nothing';
+			DB::table('users')->insert($user);
 		}
     }
 }

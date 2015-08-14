@@ -23,22 +23,35 @@
         </tr>
 
         <tr>
-            <th>Melding</th>
-            <td>{{$input['message']}}</td>
+            <th>Årsak</th>
+            <td>
+                @if($input['cause'] == 0)
+                    Retur
+                @elseif($input['cause'] == 1)
+                    Bytte
+                @elseif($input['cause'] == 2)
+                    Reklamasjon
+                @endif
+            </td>
         </tr>
 
-        @if(isset($user_id))
+        <tr>
+            <th>Varer</th>
+            <td>{{$input['varer']}}</td>
+        </tr>
+
+        @if(isset($input['user_id']))
             <tr>
                 <th>Kundenummer</th>
-                <td><a href="{{route('admin.users.edit', $user_id)}}">{{$input['user_id']}}</a></td>
+                <td><a href="{{route('admin.users.edit', $input['user_id'])}}">{{$input['user_id']}}</a></td>
             </tr>
         @endif
 
-        @if(isset($order_id))
+        @if(isset($input['order_id']))
             <tr>
                 <th>Ordrenummer</th>
                 <td>
-                    <a href="{{route('admin.orders.edit', $order_id)}}">{{$input['order_id']}}</a>
+                    <a href="{{route('admin.orders.edit', $input['order_id'])}}">{{$input['order_id']}}</a>
                 </td>
             </tr>
         @endif
@@ -47,7 +60,7 @@
         <tr>
             <th>Over 2kg?</th>
             <td>
-                {{isset($over_2_kg) ? 'Ja' : 'Nei'}}
+                {{isset($input['over_2_kg']) ? 'Ja' : 'Nei'}}
             </td>
         </tr>
     </table>

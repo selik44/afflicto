@@ -3,6 +3,7 @@
 use Friluft\Http\Controllers\Admin\BannersController;
 use Friluft\Tag;
 use Input;
+use Mailchimp;
 
 class HomeController extends Controller {
 
@@ -23,6 +24,22 @@ class HomeController extends Controller {
 			]);
 	}
 
+	public function nyhetsbrev_get() {
+		return view('front.nyhetsbrev');
+	}
+
+	public function nyhetsbrev_post(Mailchimp $mailchimp) {
+		try {
+			$mailchimp
+				->lists
+				->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), ['email' => Input::get('email')]);
+		}catch(\Exception $e) {
+			return \Redirect::back()->with('error', 'Noe gikk galt, oppga du en riktig epost-addresse?');
+		}
+
+		return \Redirect::home()->with('success', 'Din epost er registrert i nyhetsbrevet!');
+	}
+
 	public function contact_post() {
 		$validator = \Validator::make(Input::all(), [
 			'name' => 'required',
@@ -37,14 +54,13 @@ class HomeController extends Controller {
 
 		$email = htmlentities(Input::get('email'));
 		\Mail::send('emails.store.kontakt', ['input' => Input::all()], function($mail) use($email) {
-			$mail->to('me@afflicto.net')->subject('Kontakt fra ' .$email);
+			$mail->to('kundeservice@123friluft.no')->subject('Kontakt fra ' .$email);
 		});
 
 		return \Redirect::to('/')->with('success', 'Din melding er sendt!');
 	}
 
 	public function retur_post() {
-		dd(Input::all());
 		$validator = \Validator::make(Input::all(), [
 			'name' => 'required',
 			'order_id' => 'required',
@@ -63,7 +79,7 @@ class HomeController extends Controller {
 		}
 
 		\Mail::send('emails.store.retur', ['input' => Input::all()], function($mail) use($subject) {
-			$mail->to('me@afflicto.net')->subject($subject);
+			$mail->to('kundeservice@123friluft.no')->subject($subject);
 		});
 
 		return \Redirect::to('/')->with('success', 'Din melding er sendt!');

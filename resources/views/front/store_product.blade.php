@@ -50,12 +50,6 @@
 				</div>
 			</div>
 
-            <div id="slider-modal" class="modal fade">
-                <a href="#slider-modal" data-toggle-modal="#slider-modal">
-
-                </a>
-            </div>
-
 			<div class="product-info paper">
                 @if($product->manufacturer)
                     @if($product->manufacturer->image)
@@ -93,6 +87,12 @@
             <div class="modal-content">
                 @include('front.partial.product-buy-form', ['product' => $product, 'modal' => true])
             </div>
+        </div>
+
+        <div id="slider-modal" class="modal fade">
+            <a href="#slider-modal" data-toggle-modal="#slider-modal">
+                
+            </a>
         </div>
 
 		<div class="paper product-bottom col-xs-12 tight">
