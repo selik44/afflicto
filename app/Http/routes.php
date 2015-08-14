@@ -1,9 +1,5 @@
 <?php
 
-get('test', ['as' => 'test', function() {
-	return view('emails.store.transition');
-}]);
-
 # HOME ROUTES
 get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
