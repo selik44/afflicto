@@ -70,7 +70,6 @@ class ImportUsers extends Command
 
 			$user['email'] = trim($csv[2]);
 
-
 			$created = explode('/', trim($csv[9]));
 			$user['created_at'] = $created[2] .'-' .$created[1] .'-' .$created[0] .' 00:00:00';
 
@@ -79,8 +78,6 @@ class ImportUsers extends Command
 			$password = str_random(16);
 			$user['password'] = \Hash::make($password);
 			DB::table('users')->insert($user);
-
-			# email the user
 		}
 
 		#$user= str_getcsv();

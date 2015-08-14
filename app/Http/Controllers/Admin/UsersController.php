@@ -47,7 +47,7 @@ class UsersController extends Controller {
 	}
 
 	public function customers() {
-		$table = Laratable::make(User::where('role_id', '=', Role::whereMachine('regular')->first()), [
+		$table = Laratable::make(User::where('role_id', '=', Role::whereMachine('regular')->first()->id), [
 			'#' => 'id',
 			'Role' => ['role_id', function($model) {
 				return '<a href="' .action('Admin\RolesController@edit', ['role' => $model->role->id]) .'">' .$model->role->name .'</a>';
@@ -69,7 +69,7 @@ class UsersController extends Controller {
 
 		$table->addFilter('firstname', 'username');
 
-		$table->addFilter('id', 'search')->setLabel('Kundenummer');
+		$table->addFilter('id', 'search')->setLabel('Kundenummer')->fuzzy(false);
 
 		return $this->view('admin.users_index')
 			->with([
