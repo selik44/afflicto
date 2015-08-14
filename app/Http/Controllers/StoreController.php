@@ -298,18 +298,24 @@ class StoreController extends Controller {
 		if (isset($data['merchant_reference']) && isset($data['merchant_reference']['orderid2'])) {
 			$custom = json_decode($data['merchant_reference']['orderid2'], true);
 			if (isset($custom['user_id'])) {
+				Log::debug('Finding user from ID: ' .$custom['user_id']);
 				$user = User::find($custom['user_id']);
 				if ($user) {
 					Log::debug('got user from merchant_reference. ID: ' .$user->id);
+				}else {
+					Log::debug('Nope');
 				}
 			}
 		}
 
 		# otherwise, get it from billing_address
 		if ( ! $user) {
+			Log::debug('getting user from data.billing_addres.email...');
 			$user = User::where('email', '=', $data['billing_address']['email'])->first();
 			if ($user) {
 				Log::debug('got user from billing email.');
+			}else {
+				Log::debug('nope');
 			}
 		}
 
