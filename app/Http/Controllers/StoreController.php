@@ -254,6 +254,8 @@ class StoreController extends Controller {
 	}
 
 	private function createOrder($id) {
+		Log::info('creating order. klarna_order_id: ' .$id);
+
 		# get klarna order
 		$data = Cart::getKlarnaOrder($id)->marshal();
 
@@ -289,28 +291,34 @@ class StoreController extends Controller {
 		$order->purchase_country = $data['purchase_country'];
 		$order->purchase_currency = $data['purchase_currency'];
 
-		$email = $data['billing_address']['email'];
+		#--------- get user ---------#
 		$user = null;
 
-		# get user from merchant reference?
-		if (isset($data['merchant_reference'])) {
+		# get user data from klarna order data?
+		if (isset($data['merchant_reference']) && isset($data['merchant_reference']['orderid2'])) {
 			$custom = json_decode($data['merchant_reference']['orderid2'], true);
 			if (isset($custom['user_id'])) {
 				$user = User::find($custom['user_id']);
-				$email = $user->email;
+				if ($user) {
+					Log::debug('got user from merchant_reference. ID: ' .$user->id);
+				}
 			}
 		}
 
-		# get user?
+		# otherwise, get it from billing_address
 		if ( ! $user) {
-			$user = User::whereEmail($email)->first();
+			$user = User::where('email', '=', $data['billing_address']['email'])->first();
+			if ($user) {
+				Log::debug('got user from billing email.');
+			}
 		}
 
 		# create a new user automatically?
 		if ( ! $user) {
+			Log::debug('Creating user with email: ' .$data['billing_address']['email']);
 			$user = new User();
 			$user->role()->associate(Role::where('machine', '=', 'regular')->first());
-			$user->email = $email;
+			$user->email = $data['billing_address']['email'];
 
 			# parse name
 			$name = explode(' ', $data['billing_address']['given_name']);
