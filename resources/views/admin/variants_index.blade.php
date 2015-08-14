@@ -4,13 +4,15 @@
     @lang('admin.variants') - @parent
 @stop
 
-@section('page')
-    <h2 class="end">@lang('admin.variants')</h2>
-    <hr/>
-
+@section('header')
+    <h3 class="title">@lang('admin.variants')</h3>
     {!! $filters !!}
+@stop
 
+@section('content')
     {!! $table !!}
-    <br>
+@stop
+
+@section('footer')
     {!! $pagination !!}
 @stop

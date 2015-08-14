@@ -4,7 +4,7 @@
     Multiedit - Products - @parent
 @stop
 
-@section('page')
+@section('content')
     <style>
         table select, table input, table textarea {
             width: 100%;

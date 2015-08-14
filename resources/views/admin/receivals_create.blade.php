@@ -4,10 +4,11 @@
 	@lang('admin.new') - @lang('admin.receivals') - @parent
 @stop
 
-@section('page')
-	<h2 class="end">@lang('admin.receivals') <span class="muted">@lang('admin.new') @lang('admin.receival')</span></h2>
-	<hr/>
+@section('header')
+    <h3 class="title">@lang('admin.receivals') <small>@lang('admin.new')</small></h3>
+@stop
 
+@section('content')
 	{!! Former::open()
 		->action(route('admin.receivals.store'))
 		->method('POST')

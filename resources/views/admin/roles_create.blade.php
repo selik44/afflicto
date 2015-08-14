@@ -4,18 +4,17 @@
     @lang('admin.edit') - @lang('admin.roles') - @parent
 @stop
 
-@section('page')
-    <h2 class="end">@lang('admin.roles') <span class="muted">@lang('admin.new') @lang('admin.role')</span></h2>
-    <hr/>
+@section('header')
+    <h3 class="title">@lang('admin.roles') <small>@lang('admin.new')</small></h3>
+@stop
 
+@section('content')
     {!! $form->open
     ->action(route('admin.roles.store'))
     ->method('POST')
     !!}
 
     {!! $form->name !!}
-
-    <hr/>
 
     <h4>@lang('admin.permissions')</h4>
     <table class="permissions-table bordered striped boxed">
@@ -40,14 +39,9 @@
         @endforeach
         </tbody>
     </table>
+@stop
 
-    <div class="footer-height-fix" style="height: 120px">
-    </div>
-
-    <div id="footer">
-        <div class="inner">
-            {!! Former::submit(trans('admin.create'))->class('large primary') !!}
-            {!! Former::close() !!}
-        </div>
-    </div>
+@section('footer')
+    {!! Former::submit(trans('admin.create'))->class('large primary') !!}
+    {!! Former::close() !!}
 @stop

@@ -1,7 +1,11 @@
 @extends('admin.layout')
 
 @section('title')
-	Dashboard - @parent
+	@lang('admin.dashboard') - @parent
+@stop
+
+@section('header')
+    <h2 class="title">@lang('admin.dashboard')</h2>
 @stop
 
 @section('page')

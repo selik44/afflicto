@@ -1,21 +1,16 @@
 @extends('admin.layout')
 
 @section('title')
-    Orders - @parent
+    @lang('admin.orders') - @parent
 @stop
 
-@section('page')
-    <div class="row end">
-        <h3 class="pull-left end" style="margin-right: 2rem">Orders</h3>
-        <div class="pull-left">{!! $filters !!}</div>
-    </div>
-    <hr class="small">
+@section('header')
+    <h3 class="title">@lang('admin.orders')</h3>
+    {!! $filters !!}
+@stop
 
+@section('content')
     {!! $table !!}
-    <hr class="end">
-    {!! $pagination !!}
-
-    <hr>
 
     <div id="status-modal" class="modal">
         <div class="modal-header">Status</div>
@@ -37,11 +32,14 @@
             </div>
         </div>
     </div>
+@stop
 
-	<div id="tableActions">
-		<button disabled class="packlist"><i class="fa fa-download"></i> Packlist</button>
-        <button disabled class="update-status" data-toggle-modal="#status-modal"><i class="fa fa-download"></i> Update Status</button>
-	</div>
+@section('footer')
+    <div id="tableActions" class="button-group">
+        <button disabled class="packlist large primary"><i class="fa fa-download"></i> Packlist</button>
+        <button disabled class="update-status large success" data-toggle-modal="#status-modal"><i class="fa fa-download"></i> Update Status</button>
+    </div>
+    {!! $pagination !!}
 @stop
 
 @section('scripts')

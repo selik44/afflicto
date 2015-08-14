@@ -1,19 +1,16 @@
 @extends('admin.layout')
 
 @section('title')
-	Products - @parent
+	@lang('admin.products') - @parent
 @stop
 
-@section('page')
-    <div class="row end">
-        <h3 class="pull-left end" style="margin-right: 2rem">Products</h3>
-        <div class="pull-left">{!! $filters !!}</div>
-    </div>
-    <hr class="small">
+@section('header')
+    <h3 class="title">@lang('admin.products')</h3>
+    {!! $filters !!}
+@stop
 
+@section('content')
     {!! $table !!}
-    <hr class="end">
-    {!! $pagination !!}
 
     <div id="tableActions">
         <button disabled class="large move"><i class="fa fa-plane"></i> Move</button>
@@ -66,6 +63,10 @@
         </footer>
         {!! Former::close() !!}
     </div>
+@stop
+
+@section('footer')
+    {!! $pagination !!}
 @stop
 
 @section('scripts')

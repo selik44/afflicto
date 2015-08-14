@@ -4,7 +4,10 @@
     {{$product->name}} @lang('admin.products') - @parent
 @stop
 
-@section('page')
+@section('header')
+@stop
+
+@section('content')
     {!! $form->open
         ->action(route('admin.products.update', ['product' => $product]))
         ->method('PUT')

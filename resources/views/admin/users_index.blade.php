@@ -4,14 +4,15 @@
     @lang('admin.users') - @parent
 @stop
 
-@section('page')
-    <h2>@lang('admin.users')</h2>
-    {!! $table !!}
+@section('header')
+    <h3 class="title">@lang('admin.users')</h3>
+    {!! $filters !!}
+@stop
 
-    <div class="footer-height-fix"></div>
-    <footer id="footer">
-        <div class="inner">
-            {!! $pagination !!}
-        </div>
-    </footer>
+@section('content')
+    {!! $table !!}
+@stop
+
+@section('footer')
+    {!! $pagination !!}
 @stop

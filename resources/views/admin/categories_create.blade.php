@@ -4,8 +4,11 @@
 	@lang('admin.new') @lang('admin.category') - @parent
 @stop
 
-@section('page')
-	<h2>New Category</h2>
+@section('header')
+    <h2 class="title">@lang('admin.categories') - @lang('admin.new')</h2>
+@stop
+
+@section('content')
 	<form class="vertical" action="{{url('admin/categories')}}" method="POST">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<label for="name">Name <span class="color-error">*</span>
@@ -24,19 +27,15 @@
 				@endforeach
 			</select>
 		</label>
-		
-		<div class="footer-height-fix"></div>
 
-		<footer id="footer">
-			<div class="inner">
-				<div class="button-group">
-					<input type="submit" class="primary" name="create" value="Create">
-					<input type="submit" class="secondary" name="continue" value="Create & Continue">
-				</div>
-			</div>
-		</footer>
+@stop
 
-	</form>
+@section('footer')
+        <div class="button-group">
+            <input type="submit" class="primary" name="create" value="Create">
+            <input type="submit" class="secondary" name="continue" value="Create & Continue">
+        </div>
+    </form>
 @stop
 
 @section('scripts')

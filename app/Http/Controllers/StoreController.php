@@ -310,7 +310,7 @@ class StoreController extends Controller {
 
 		# otherwise, get it from billing_address
 		if ( ! $user) {
-			Log::debug('getting user from data.billing_addres.email...');
+			Log::debug('getting user from data.billing_address.email...');
 			$user = User::withTrashed()->where('email', '=', $data['billing_address']['email'])->first();
 			if ($user) {
 

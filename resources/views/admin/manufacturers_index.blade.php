@@ -4,14 +4,14 @@
     @lang('admin.manufacturers') - @parent
 @stop
 
-@section('page')
-    <h2>@lang('admin.manufacturers')</h2>
-    {!! $table !!}
+@section('header')
+    <h3 class="title">@lang('admin.manufacturers')</h3>
+@stop
 
-    <div class="footer-height-fix"></div>
-    <footer id="footer">
-        <div class="inner">
-            {!! $pagination !!}
-        </div>
-    </footer>
+@section('page')
+    {!! $table !!}
+@stop
+
+@section('footer')
+    {!! $pagination !!}
 @stop

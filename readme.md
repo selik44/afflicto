@@ -30,7 +30,6 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 # Todo
 - copy of outgoing emails to: ordre@123friluft.no
 - make superadmin and customer roles uneditable.
-- add store name for emails. + kundenr og ordrenr.
 - dashboard stats & reports
 - Compound Products
 - rabatt popup ting

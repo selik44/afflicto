@@ -4,18 +4,17 @@
     @lang('admin.edit') - @lang('admin.roles') - @parent
 @stop
 
-@section('page')
-    <h2 class="end">@lang('admin.roles') <span class="muted">{{$role->name}}</span></h2>
-    <hr/>
+@section('header')
+    <h3 class="title">@lang('admin.roles') <small>{{$role->name}}</small></h3>
+@stop
 
+@section('content')
     {!! $form->open
     ->action(route('admin.roles.update', ['role' => $role->id]))
     ->method('PUT')
     !!}
 
     {!! $form->name !!}
-
-    <hr/>
 
     <h4>Permissions</h4>
     <table class="permissions-table bordered striped boxed">
@@ -45,14 +44,9 @@
         @endforeach
         </tbody>
     </table>
+@stop
 
-    <div class="footer-height-fix" style="height: 120px">
-    </div>
-
-    <div id="footer">
-        <div class="inner">
-            {!! Former::submit(trans('admin.save'))->class('large success') !!}
-            {!! Former::close() !!}
-        </div>
-    </div>
+@section('footer')
+    {!! Former::submit(trans('admin.save'))->class('large success') !!}
+    {!! Former::close() !!}
 @stop

@@ -4,12 +4,11 @@
 	{{$category->name}} - Categories - @parent
 @stop
 
-@section('page')
-	<h2 class="end">Categories</h2>
-	<h4 class="subtitle">{{{$category->name}}}</h4>
+@section('header')
+    <h3 class="title">@lang('admin.categories') - {{$category->name}}</h3>
+@stop
 
-	<hr>
-	
+@section('content')
 	<form class="vertical" action="{{route('admin.categories.update', $category)}}" method="POST" enctype="multipart/form-data">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<input type="hidden" name="_method" value="PUT">
@@ -41,20 +40,11 @@
             <img src="{{asset('images/' .$category->banner->name)}}" alt="Category Banner">
         @endif
         <input type="file" name="banner">
+@stop
 
-        <hr>
-
-		<div class="footer-height-fix"></div>
-
-		<footer id="footer">
-			<div class="inner">
-				<div class="button-group">
-					<input type="submit" class="primary" value="Save">
-				</div>
-			</div>
-		</footer>
-
-	</form>
+@section('footer')
+        <input type="submit" class="primary" value="Save">
+    </form>
 @stop
 
 @section('scripts')

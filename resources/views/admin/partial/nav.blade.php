@@ -5,7 +5,8 @@
 		'fa-dashboard:admin.dashboard' => 'admin.dashboard',
 
         'fa-users:admin.users' => ['admin.users.index', [
-             'fa-user:admin.users' => 'admin.users.index',
+            'fa-user:admin.customers' => 'admin.users.customers',
+            'fa-user:admin.users' => 'admin.users.index',
             'fa-plus:admin.new user' => 'admin.users.create',
             'divider',
             'fa-key:admin.roles' => 'admin.roles.index',

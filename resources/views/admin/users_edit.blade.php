@@ -4,9 +4,11 @@
     @lang('admin.edit') - @lang('admin.users') - @parent
 @stop
 
-@section('page')
-    <h2 class="end">@lang('admin.users') <small>{{$user->name}}</small></h2>
+@section('header')
+    <h3 class="title">@lang('admin.users') <small>{{$user->name}}</small></h3>
+@stop
 
+@section('content')
     {!! $form->open
         ->action(route('admin.users.update', ['user' => $user->id]))
         ->method('PUT')
@@ -27,7 +29,9 @@
 
         {!! $form->role_id !!}
     </div>
+@stop
 
+@section('footer')
     {!! Former::submit('Lagre')->class('large success') !!}
     {!! Former::close() !!}
 @stop

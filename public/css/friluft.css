@@ -5714,9 +5714,39 @@ html, body, #admin {
           min-width: 180px; } }
 #admin #page {
   background: #fff;
-  padding-top: 80px; }
-  #admin #page > .inner {
-    padding: 2rem; }
+  padding-top: 80px;
+  position: relative; }
+  #admin #page > .header {
+    float: left;
+    width: 100%;
+    padding: 1rem;
+    border-bottom: 1px solid #ddd; }
+    #admin #page > .header .title {
+      float: left;
+      margin: 0; }
+    #admin #page > .header .laratable-filters {
+      float: right;
+      margin-left: 1rem; }
+  #admin #page > .content {
+    padding: 1rem;
+    float: left;
+    clear: both;
+    width: 100%; }
+  #admin #page > .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    border-top: 1px solid #ddd;
+    background: #e6e6e6; }
+    #admin #page > .footer > .pagination {
+      float: right;
+      margin: 0; }
+      #admin #page > .footer > .pagination li.disabled {
+        opacity: 0.5; }
+      #admin #page > .footer > .pagination li.active span {
+        background: #03a1a9;
+        color: white; }
 #admin .categories-tree > ul.sortable {
   background: none !important;
   overflow: hidden;

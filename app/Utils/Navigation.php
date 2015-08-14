@@ -54,8 +54,7 @@ class Navigation {
 			$path = $data;
 		}
 
-		# active?
-		$route = \Route::getRoutes()->getByName($path);
+
 
 		$config = 'access.' .str_replace('.', '_', trim($path, '.'));
 		# do we have access to it?
@@ -65,6 +64,13 @@ class Navigation {
 			return;
 		}
 
+		$route = \Route::getRoutes()->getByName($path)->getName();
+		$active = '';
+		if ($route == Request::route()->getName()) {
+			$active = 'current';
+		}
+
+		/*
 		if ($route && Request::is($route->getPath() .'*')) {
 			$active = 'current';
 		}else if ($path == '/' && Request::is('/')) {
@@ -73,7 +79,7 @@ class Navigation {
 			$active = 'current';
 		}else {
 			$active = '';
-		}
+		}*/
 
 		# build the string
 		$str = '<li class="' .$active .'">';

@@ -36,6 +36,8 @@ return [
 	'orders' => 'Ordre',
 	'tree view' => 'Tre Visning',
 	'users' => 'Brukere',
+	'customers' => 'Kunder',
+	'custoemr' => 'Kunde',
 	'user' => 'Bruker',
 	'roles' => 'Roller',
 	'role' => 'Rolle',

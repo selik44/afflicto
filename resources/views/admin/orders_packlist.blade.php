@@ -76,7 +76,7 @@
 							# get stock and name
 							$stock = $product->stock;
 							$name = $product->name;
-							$manufacturer = $product->manufacturer->name;
+							$manufacturer = ($product->manufacturer) ? $product->manufacturer->name : '';
 
                             $variantString = '';
                             if (count($product->variants) > 0) {

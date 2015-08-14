@@ -93,6 +93,7 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 
 	# users
 	get('users', ['as' => 'admin.users.index', 'uses' => 'Admin\UsersController@index', 'middleware' => 'perms:users.view']);
+	get('users/customers', ['as' => 'admin.users.customers', 'uses' => 'Admin\UsersController@customers', 'middleware' => 'perms:users.view']);
 	get('users/create', ['as' => 'admin.users.create', 'uses' => 'Admin\UsersController@create', 'middleware' => 'perms:users.create']);
 	post('users', ['as' => 'admin.users.store', 'uses' => 'Admin\UsersController@store', 'middleware' => 'perms:users.create']);
 	get('users/{user}/edit', ['as' => 'admin.users.edit', 'uses' => 'Admin\UsersController@edit', 'middleware' => 'perms:users.edit']);

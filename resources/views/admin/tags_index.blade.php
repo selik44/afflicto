@@ -4,11 +4,14 @@
 	Tags - @parent
 @stop
 
-@section('page')
-	<h2>@lang('admin.tags')</h2>
+@section('header')
+    <h3 class="title">@lang('admin.tags')</h3>
+@stop
+
+@section('content')
 	{!! $table !!}
+@stop
 
-	<hr/>
-
-	{!! $pagination !!}
+@section('footer')
+    {!! $pagination !!}
 @stop

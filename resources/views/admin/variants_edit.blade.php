@@ -4,9 +4,11 @@
     @lang('admin.edit') - @lang('admin.variants') - @parent
 @stop
 
-@section('page')
-    <h2 class="end">@lang('admin.variants') - @lang('admin.edit')</h2>
-    <hr/>
+@section('header')
+    <h3 class="title">@lang('admin.variants') - @lang('admin.edit')</h3>
+@stop
+
+@section('content')
     {!! Former::open()
     ->action(route('admin.variants.update', ['variant' => $variant]))
     ->method('PUT')
@@ -34,9 +36,9 @@
             <a href="#" class="button add"><i class="fa fa-plus"></i> Add Value</a>
         </div>
     </div>
+@stop
 
-    <hr>
-
+@section('footer')
     {!! Former::submit(trans('admin.save'))->class('large primary') !!}
     {!! Former::close() !!}
 @stop

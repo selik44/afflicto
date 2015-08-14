@@ -1,13 +1,14 @@
 @extends('admin.layout')
 
 @section('title')
-    Design - @parent
+    @lang('admin.design') - @parent
 @stop
 
-@section('page')
-    <h2 class="end">Design</h2>
-    <hr>
+@section('header')
+    <h3 class="title">@lang('admin.design')</h3>
+@stop
 
+@section('content')
     {!! Former::open_for_files()
         ->action(route('admin.design.save'))
         ->method('PUT')
@@ -20,9 +21,10 @@
     @foreach($fields as $field)
         {!! $field !!}
     @endforeach
+@stop
 
+@section('footer')
     {!! Former::submit('save')->class('large success') !!}
-
     {!! Former::close() !!}
 @stop
 

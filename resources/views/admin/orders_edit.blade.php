@@ -4,10 +4,12 @@
 	Orders - @parent
 @stop
 
-@section('page')
-	<h2>Order #{{$order->id}}</h2>
-	<div id="orders-edit">
+@section('header')
+    <h3 class="title">@lang('admin.order') #{{$order->id}}</h3>
+@stop
 
+@section('page')
+	<div id="orders-edit">
 		{!! Former::open()
 			->method('PUT')
 			->action(route('admin.orders.update', $order))
@@ -212,12 +214,13 @@
 		</div>
 
 		<br>
-
-        <div class="button-group">
-		{!! Former::submit(trans('admin.save'))->class('success submit large') !!}
-            <a class="button large" href="{{route('admin.orders.packlist', $order)}}"><i class="fa fa-list-ol"></i> @lang('admin.pack list')</a>
-        </div>
-        {!!Former::close() !!}
-
 	</div>
+@stop
+
+@section('footer')
+    <div class="button-group">
+        {!! Former::submit(trans('admin.save'))->class('success submit large') !!}
+        <a class="button large" href="{{route('admin.orders.packlist', $order)}}"><i class="fa fa-list-ol"></i> @lang('admin.pack list')</a>
+    </div>
+    {!!Former::close() !!}
 @stop

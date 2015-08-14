@@ -1,12 +1,14 @@
 @extends('admin.layout')
 
 @section('title')
-    Users - @parent
+    @lang('admin.create') - @lang('admin.users') - @parent
 @stop
 
-@section('page')
-    <h2 class="end">@lang('admin.users') <small>@lang('admin.new') @lang('admin.user')</small></h2>
+@section('header')
+    <h3 class="title">@lang('admin.users') <small>@lang('admin.create')</small></h3>
+@stop
 
+@section('content')
     {!! $form->open !!}
 
     <div class="row right">
@@ -24,7 +26,9 @@
 
         {!! $form->role_id !!}
     </div>
+@stop
 
+@section('footer')
     {!! Former::submit('Create')->class('large primary') !!}
     {!! Former::close() !!}
 @stop

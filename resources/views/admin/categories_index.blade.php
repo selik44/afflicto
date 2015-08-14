@@ -1,15 +1,18 @@
 @extends('admin.layout')
 
 @section('title')
-	Categories - @parent
+	@lang('admin.categories') - @parent
 @stop
 
-@section('page')
-	<h2>Categories</h2>
+@section('header')
+    <h2 class="title">@lang('admin.categories')</h2>
     {!! $filters !!}
-    <hr class="small end">
+@stop
 
+@section('content')
 	{!! $table !!}
-    <hr class="end">
+@stop
+
+@section('footer')
     {!! $pagination !!}
 @stop

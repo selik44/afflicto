@@ -4,18 +4,14 @@
     @lang('admin.pages') - @parent
 @stop
 
-@section('page')
-    <h3 class="end">@lang('admin.pages')</h3>
-    <hr class="small">
-
-    {!! $table !!}
-    <hr class="end">
-    {!! $pagination !!}
+@section('header')
+    <h3 class="title">@lang('admin.page')</h3>
 @stop
 
-@section('scripts')
-    @parent
-    <script>
+@section('page')
+    {!! $table !!}
+@stop
 
-    </script>
+@section('footer')
+    {!! $pagination !!}
 @stop

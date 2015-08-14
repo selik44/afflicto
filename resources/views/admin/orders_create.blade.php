@@ -1,13 +1,14 @@
 @extends('admin.layout')
 
 @section('title')
-    Create - Orders - @parent
+    @lang('admin.create') - @lang('admin.orders') - @parent
 @stop
 
-@section('page')
-    <h2 class="end">New Order</h2>
-    <hr>
+@section('header')
+    <h2 class="title">@lang('admin.orders') <small>@lang('admin.create')</small></h2>
+@stop
 
+@section('content')
     <label for="user-select">@lang('admin.user')
     <select id="user-select">
         @foreach($users as $user)

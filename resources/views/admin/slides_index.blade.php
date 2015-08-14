@@ -4,10 +4,11 @@
     Slides - Design - @parent
 @stop
 
-@section('page')
-    <h2>Slides</h2>
-    <hr>
+@section('header')
+    <h3 class="title">@lang('admin.slides')</h3>
+@stop
 
+@section('content')
     <div class="row">
         <div class="module slide-editor" style="display: none;" data-id="">
             <header class="module-header clearfix" style="padding: 0">

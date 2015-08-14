@@ -19,7 +19,7 @@ class UsersController extends Controller {
 			'Role' => ['role_id', function($model) {
 				return '<a href="' .action('Admin\RolesController@edit', ['role' => $model->role->id]) .'">' .$model->role->name .'</a>';
 			}],
-			'Name' => ['name', function($model) {
+			'Name' => ['firstname', function($model) {
 				return e($model->firstname .' ' .$model->lastname);
 			}],
 			'Email' => 'email',
@@ -32,10 +32,50 @@ class UsersController extends Controller {
 			'firstname','lastname','email','created_at','role_id',
 		]);
 
+		$table->filterable(true);
+
+		$table->addFilter('firstname', 'username');
+
+		$table->addFilter('id', 'search')->setLabel('Kundenummer');
+
 		return $this->view('admin.users_index')
 			->with([
 				'table' => $table->render(),
 				'pagination' => $table->paginator->render(),
+				'filters' => $table->buildFilters()
+			]);
+	}
+
+	public function customers() {
+		$table = Laratable::make(User::where('role_id', '=', Role::whereMachine('regular')->first()), [
+			'#' => 'id',
+			'Role' => ['role_id', function($model) {
+				return '<a href="' .action('Admin\RolesController@edit', ['role' => $model->role->id]) .'">' .$model->role->name .'</a>';
+			}],
+			'Name' => ['firstname', function($model) {
+				return e($model->firstname .' ' .$model->lastname);
+			}],
+			'Email' => 'email',
+			'Registered' => 'created_at diffForHumans',
+		]);
+
+		$table->editable(true, url('admin/users/{id}/edit'));
+		$table->destroyable(true, url('admin/users/{id}'));
+		$table->sortable(true, [
+			'firstname','lastname','email','created_at','role_id',
+		]);
+
+		$table->filterable(true);
+
+		$table->addFilter('firstname', 'username');
+
+		$table->addFilter('id', 'search')->setLabel('Kundenummer');
+
+		return $this->view('admin.users_index')
+			->with([
+				'table' => $table->render(),
+				'pagination' => $table->paginator->render(),
+				'filters' => $table->buildFilters()
 			]);
 	}
 

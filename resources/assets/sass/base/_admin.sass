@@ -82,9 +82,47 @@ html,body, #admin
 	#page
 		background: $base-background
 		padding-top: 80px
+		position: relative
 
-		> .inner
-			padding: 2rem
+		> .header
+			float: left
+			width: 100%
+			padding: 1rem
+			border-bottom: 1px solid $base-border-color
+
+			.title
+				float: left
+				margin: 0
+
+			.laratable-filters
+				float: right
+				margin-left: 1rem
+
+
+		> .content
+			padding: 1rem
+			float: left
+			clear: both
+			width: 100%
+
+		> .footer
+			position: fixed
+			bottom: 0
+			width: 100%
+			padding: 1rem
+			border-top: 1px solid $base-border-color
+			background: weaker($base-background, 10%)
+
+			> .pagination
+				float: right
+				margin: 0
+
+				li.disabled
+					opacity: 0.5
+
+				li.active span
+					background: $color-primary
+					color: white
 
 	.categories-tree
 		//------ROOT------//

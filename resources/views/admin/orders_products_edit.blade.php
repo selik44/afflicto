@@ -1,13 +1,14 @@
 @extends('admin.layout')
 
 @section('title')
-    Orders - @parent
+    @lang('admin.products') - @lang('admin.orders') - @parent
 @stop
 
-@section('page')
-    <h2 class="end">Order #{{$order->id}} - Edit</h2>
-    <hr>
+@section('header')
+    <h3 class="title">@lang('admin.order') #{{$order->id}}</h3>
+@stop
 
+@section('content')
     <div class="row end">
         <h4 class="pull-left end">Products</h4>
         <button id="add-button" class="pull-right large add primary" data-toggle-modal="#add-modal"><i class="fa fa-plus"></i> Add</button>
@@ -130,10 +131,6 @@
         </tbody>
     </table>
 
-    <hr>
-
-    <button class="success large save">Save</button>
-
     <div class="modal fade" id="add-modal" style="overflow: visible;width: 400px;">
         <div class="modal-header">
             Add Product
@@ -172,6 +169,10 @@
             </div>
         </div>
     </div>
+@stop
+
+@section('footer')
+    <button class="success large save">@lang('admin.save')</button>
 @stop
 
 @section('scripts')

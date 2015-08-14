@@ -4,6 +4,10 @@
     @lang('admin.edit') @lang('admin.page') - @parent
 @stop
 
+@section('header')
+    <h3 class="title">@lang('admin.page') - <small>@lang('admin.edit')</small></h3>
+@stop
+
 @section('page')
     <h3 class="end">@lang('admin.edit') - @lang('admin.page')</h3>
     <hr class="small">
@@ -15,11 +19,12 @@
     {!! Former::textarea('content')->class('wysiwyg') !!}
 
     {!! Former::checkbox('sidebar')->value('sidebar') !!}
-    {!! Former::submit('Save') !!}
-
-    {!! Former::close() !!}
 @stop
 
+@section('footer')
+    {!! Former::submit('Save')->class('large success') !!}
+    {!! Former::close() !!}
+@stop
 
 @section('scripts')
     @parent

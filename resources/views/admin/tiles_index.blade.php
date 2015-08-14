@@ -1,10 +1,10 @@
 @extends('admin.layout')
 
 @section('title')
-    Tiles - Design - @parent
+    @lang('admin.tiles') - @lang('admin.design') - @parent
 @stop
 
-@section('page')
+@section('content')
     <div class="row end">
         <h3 class="pull-left end" style="margin-right: 2rem">Tiles</h3>
     </div>

@@ -1,13 +1,14 @@
 @extends('admin.layout')
 
 @section('title')
-    @lang('admin.new') @lang('admin.tag') - @parent
+    @lang('admin.edit') @lang('admin.tag') - @parent
 @stop
 
-@section('page')
-    <h2 class="end">New Tag</h2>
-    <hr>
+@section('header')
+    <h3 class="title">@lang('admin.tags') <small>@lang('admin.edit')</small></h3>
+@stop
 
+@section('content')
     <form class="vertical" action="{{route('admin.tags.update', $tag)}}" method="POST">
         <input type="hidden" name="_token" value="{{csrf_token()}}">
         <input type="hidden" name="_method" value="PUT">

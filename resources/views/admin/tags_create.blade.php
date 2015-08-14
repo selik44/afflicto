@@ -4,8 +4,11 @@
 	@lang('admin.new') @lang('admin.tag') - @parent
 @stop
 
-@section('page')
-	<h2>New Tag</h2>
+@section('header')
+    <h3 class="title">@lang('admin.tags') <small>@lang('admin.new')</small></h3>
+@stop
+
+@section('content')
 	<form class="vertical" action="{{route('admin.tags.store')}}" method="POST">
 		<input type="hidden" name="_token" value="{{csrf_token()}}">
 		<label for="label">Label <span class="color-error">*</span>

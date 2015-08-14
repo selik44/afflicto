@@ -4,10 +4,11 @@
     @lang('admin.add') - @lang('admin.manufacturers') - @parent
 @stop
 
-@section('page')
-    <h2 class="end">@lang('admin.manufacturers') <span class="muted">@lang('admin.add')</span></h2>
-    <hr/>
+@section('header')
+    <h3 class="title">@lang('admin.manufacturers') <small>@lang('admin.add')</small></h3>
+@stop
 
+@section('page')
     {!! $form->open
     ->action(route('admin.manufacturers.store'))
     ->method('POST')
@@ -22,8 +23,10 @@
     {!! $form->image !!}
 
     {!! $form->always_allow_orders !!}
+@stop
 
-    {!! Former::submit(trans('admin.add'))->class('large primary') !!}
+@section('header')
+    {!! Former::submit('add')->class('large success') !!}
     {!! Former::close() !!}
 @stop
 

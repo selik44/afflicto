@@ -4,9 +4,11 @@
     @lang('admin.new') @lang('admin.page') - @parent
 @stop
 
-@section('page')
-    <h3 class="end">@lang('admin.new') - @lang('admin.page')</h3>
-    <hr class="small">
+@section('header')
+    <h3 class="title">@lang('admin.pages') <small>@lang('admin.new')</small></h3>
+@stop
+
+@section('content')
     {!! Former::open()->method('POST')->action(route('admin.pages.store'))->class('vertical') !!}
 
     {!! Former::text('title') !!}
@@ -15,8 +17,10 @@
     {!! Former::textarea('content')->class('wysiwyg') !!}
 
     {!! Former::checkbox('sidebar') !!}
-    {!! Former::submit('Save') !!}
+@stop
 
+@section('footer')
+    {!! Former::submit('Save')->class('large') !!}
     {!! Former::close() !!}
 @stop
 
@@ -28,7 +32,6 @@
 
     <script>
         var form = $("form");
-
 
         //autoslug the title
         form.find('[name="slug"]').autoSlug({other: '[name="title"]'});

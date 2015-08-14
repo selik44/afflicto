@@ -4,9 +4,11 @@
     @lang('admin.new') @lang('admin.product') - @parent
 @stop
 
-@section('page')
-    <h2>@lang('admin.new') @lang('admin.product')</h2>
+@section('header')
+    <h3 class="title">@lang('admin.products') <small>@lang('admin.new')</small></h3>
+@stop
 
+@section('content')
     {!! $form->open !!}
     <div class="row">
         <div class="col-xs-3 col-m-2 col-l-1">
@@ -72,15 +74,11 @@
     <div class="row">
         {!! $form->summary !!}
     </div>
+@stop
 
-    <div class="footer-height-fix"></div>
-
-    <footer id="footer">
-        <div class="inner">
-            <input type="submit" name="create" value="Create" class="large primary end">
-        </div>
-    </footer>
-	{!!Former::close()!!}
+@section('footer')
+    <input type="submit" name="create" value="Create" class="large primary end">
+    {!!Former::close()!!}
 @stop
 
 @section('scripts')

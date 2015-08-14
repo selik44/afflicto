@@ -28,5 +28,6 @@ return [
 
 	'filters' => [
 		'category' => '\Friluft\Laratables\CategoryFilter',
+		'username' => '\Friluft\Laratables\UserNameFilter',
 	],
 ];

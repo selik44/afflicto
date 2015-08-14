@@ -1,16 +1,14 @@
 @extends('admin.layout')
 
-
 @section('title')
-	Tree View - Categories - @parent
+	@lang('admin.tree view') - @lang('admin.categories') - @parent
 @stop
 
+@section('header')
+    <h3 class="title">@lang('admin.categories') <small>@lang('admin.tree view')</small></h3>
+@stop
 
-@section('page')
-	<h2 class="end">Product Categories</h2>
-	<h4 class="subtitle end">Tree View</h4>
-	<hr>
-
+@section('content')
     <div class="row">
         <div class="categories-tree col-xs-6 tight-left">
             <ul class="flat sortable root">
@@ -41,19 +39,16 @@
     </div>
 
 	<div class="footer-height-fix"></div>
-
-	<footer id="footer">
-		<div class="inner">
-			<form id="categories-save-form" action="{{url('admin/categories/tree')}}" method="POST">
-				<input type="hidden" name="_token" value="{{csrf_token()}}">
-				<input type="hidden" name="_method" value="PUT">
-				<input type="hidden" name="tree">
-			</form>
-			<button class="save-tree-button">Save</button>
-		</div>
-	</footer>
 @stop
 
+@section('footer')
+    <form id="categories-save-form" action="{{url('admin/categories/tree')}}" method="POST">
+        <input type="hidden" name="_token" value="{{csrf_token()}}">
+        <input type="hidden" name="_method" value="PUT">
+        <input type="hidden" name="tree">
+    </form>
+    <button class="save-tree-button large primary">Save</button>
+@stop
 
 @section('scripts')
 	@parent
