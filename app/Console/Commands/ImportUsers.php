@@ -3,6 +3,7 @@
 namespace Friluft\Console\Commands;
 
 use DB;
+use ForceUTF8\Encoding;
 use Friluft\Role;
 use Friluft\User;
 use Illuminate\Console\Command;
@@ -41,13 +42,24 @@ class ImportUsers extends Command
 			$this->comment($file .' does not exist.');
 		}
 
-		$users = explode("\n", file_get_contents($file));
+		$str = file_get_contents($file);
+		$str = Encoding::toUTF8($str);
+
+		$users = explode("\n", $str);
 		array_shift($users);
 
 		$role = Role::where('machine', '=', 'regular')->first()->id;
 
 		foreach($users as $user) {
-			$csv = str_getcsv($user);
+			$csv = array_merge(str_getcsv($user), [
+				'','','','','','','','',''
+			]);
+
+			# no email?
+			if (strlen(trim($csv[2])) == 0) {
+				$this->comment('empty email address, skipping.');
+				continue;
+			}
 
 			# already exists?
 			if (User::where('email', '=', $csv[2])->count() > 0) {
@@ -79,7 +91,9 @@ class ImportUsers extends Command
 			$user['email'] = trim($csv[2]);
 
 			$created = explode('/', trim($csv[9]));
-			$user['created_at'] = $created[2] .'-' .$created[1] .'-' .$created[0] .' 00:00:00';
+			if (isset($created[2]) && isset($created[1]) && isset($created[0])) {
+				$user['created_at'] = $created[2] .'-' .$created[1] .'-' .$created[0] .' 00:00:00';
+			}
 
 			# generate a password
 			$user['password'] = 'nothing';

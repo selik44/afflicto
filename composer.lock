@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fd07202ba720156227f61818c6e05f2b",
+    "hash": "0b0df3068bb33c8fe60e85e4d72e1aac",
     "packages": [
         {
             "name": "afflicto/html",
@@ -2004,6 +2004,40 @@
                 "schedule"
             ],
             "time": "2015-01-11 23:07:46"
+        },
+        {
+            "name": "neitanod/forceutf8",
+            "version": "v1.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/neitanod/forceutf8.git",
+                "reference": "28d50d579179abac1f6a55b03c6d9d3f6573867c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/neitanod/forceutf8/zipball/28d50d579179abac1f6a55b03c6d9d3f6573867c",
+                "reference": "28d50d579179abac1f6a55b03c6d9d3f6573867c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ForceUTF8\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "authors": [
+                {
+                    "name": "Sebastián Grignoli",
+                    "email": "grignoli@gmail.com"
+                }
+            ],
+            "description": "PHP Class Encoding featuring popular Encoding::toUTF8() function --formerly known as forceUTF8()-- that fixes mixed encoded strings.",
+            "homepage": "https://github.com/neitanod/forceutf8",
+            "time": "2014-09-24 14:59:43"
         },
         {
             "name": "nesbot/carbon",
