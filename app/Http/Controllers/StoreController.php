@@ -231,7 +231,7 @@ class StoreController extends Controller {
 		$order = Order::where('reservation', '=', $data['reservation'])->first();
 
 		# create the order?
-		if (!$order) {
+		if ( ! $order) {
 			Log::info("store.push: Creating order.");
 			$order = $this->createOrder(Input::get('klarna_order'));
 		}
@@ -250,12 +250,6 @@ class StoreController extends Controller {
 			],
 		]);
 
-		/*
-		# update order id
-		$klarna = $this->makeKlarna();
-		$klarna->setEstoreInfo('' .$order->id);
-		$klarna->update($order->reservation, true);
-		*/
 		return response('OK', 200);
 	}
 
@@ -298,12 +292,14 @@ class StoreController extends Controller {
 		$email = $data['billing_address']['email'];
 		$user = null;
 
-		$custom = json_decode($data['merchant_reference']['orderid2'], true);
-		if (isset($custom['user_id'])) {
-			$user = User::find($custom['user_id']);
-			$email = $user->email;
-		}else {
-			$user = User::whereEmail($email)->first();
+		if (isset($data['merchant_reference'])) {
+			$custom = json_decode($data['merchant_reference']['orderid2'], true);
+			if (isset($custom['user_id'])) {
+				$user = User::find($custom['user_id']);
+				$email = $user->email;
+			}else {
+				$user = User::whereEmail($email)->first();
+			}
 		}
 
 		# create a new user automatically?

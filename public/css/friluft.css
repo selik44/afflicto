@@ -5628,6 +5628,10 @@ ul.nav.tabs {
     .category-banner {
       padding-top: 0; } }
 
+label.radio {
+  display: inline-block;
+  margin: 0.2rem 1rem; }
+
 html, body, #admin {
   background: white; }
 

@@ -44,12 +44,13 @@ class HomeController extends Controller {
 	}
 
 	public function retur_post() {
+		dd(Input::all());
 		$validator = \Validator::make(Input::all(), [
 			'name' => 'required',
 			'order_id' => 'required',
 			'email' => 'required|email',
 			'phone' => 'required',
-			'message' => 'required',
+			'varer' => 'required',
 		]);
 
 		if ($validator->fails()) {

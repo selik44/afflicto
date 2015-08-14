@@ -34,7 +34,7 @@ return [
 	"different"            => ":attribute og :other må være annerledes.",
 	"digits"               => ":attribute må ha :digits siffer.",
 	"digits_between"       => ":attribute må ha mellom :min og :max siffer.",
-	"email"                => ":attribute må være en gyldig email addresse.",
+	"email"                => ":attribute må være en gyldig e-post addresse.",
 	"filled"               => ":attribute er obligatorisk.",
 	"exists"               => "valgt :attribute er ugyldig.",
 	"image"                => ":attribute må være et bilde.",
@@ -88,7 +88,7 @@ return [
 	'attributes' => [
 		'firstname' => 'Fornavn',
 		'lastname' => 'Etternavn',
-		'email' => 'E-Mail Addresse',
+		'email' => 'E-post Addresse',
 		'name' => 'Navn',
 		'role' => 'Rolle',
 		'machine' => 'Maskin-navn',
@@ -123,17 +123,19 @@ return [
 		'billing_postal_code' => 'Postkode',
 		'billing_city' => 'By',
 		'billing_country' => 'Land',
-		'billing_email' => 'E-Mail Addresse',
+		'billing_email' => 'E-Post Addresse',
 
 		'shipping_name' => 'Navn',
 		'shipping_postal_code' => 'Postkode',
 		'shipping_city' => 'By',
 		'shipping_country' => 'Land',
-		'shipping_email' => 'E-Mail Addresse',
+		'shipping_email' => 'E-post Addresse',
 
 		'subscribe_to_newsletter' => 'Jeg ønsker å motta nyhetsbrev',
 		'notify_user' => 'Varsle kunden',
 		'message' => 'Melding',
+		'varer' => 'Hvilke varer skal returneres?',
+		'cause' => 'Årsak',
 	],
 
 ];
