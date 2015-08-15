@@ -544,7 +544,6 @@ class ProductsController extends Controller {
 			'description' => '',
 			'summary' => '',
 			'enabled' => false,
-			'manufacturer_id' => null,
 			'stock' => 0
 		];
 
@@ -560,6 +559,10 @@ class ProductsController extends Controller {
 				if (Input::has($id .'_' .$col) || in_array($col, $columns)) {
 					$p->{$col} = Input::get($id .'_' .$col, $default);
 				}
+			}
+
+			if (Input::has($id .'_manufacturer')) {
+				$p->manufacturer_id = Input::get($id .'_manufacturer');
 			}
 
 			if (Input::has($id .'_categories')) {
