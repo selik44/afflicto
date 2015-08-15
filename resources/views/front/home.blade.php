@@ -84,7 +84,7 @@
 
         home.find('.slider').friluftSlider({
             delay: 6500,
-            transitionSpeed: 600,
+            transitionSpeed: 850,
             autoHeight: true,
             heightRatio: 7 / 16,
             useElements: true,
