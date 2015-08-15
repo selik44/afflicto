@@ -8,7 +8,7 @@
     <h3 class="title">@lang('admin.order') #{{$order->id}}</h3>
 @stop
 
-@section('page')
+@section('content')
 	<div id="orders-edit">
 		{!! Former::open()
 			->method('PUT')
@@ -83,7 +83,7 @@
 						<tr>
 							<th>@lang('admin.product')</th>
 							<th>@lang('admin.quantity')</th>
-							<th>@lang('admin.subtotal')</th>
+							<th>Pris</th>
 						</tr>
 					</thead>
 
