@@ -89,7 +89,7 @@
             </div>
         </div>
 
-        <div id="slider-modal" class="modal fade">
+        <div id="slider-modal" class="modal fade" style="height: 100%">
             <a href="#slider-modal" data-toggle-modal="#slider-modal">
                 
             </a>
