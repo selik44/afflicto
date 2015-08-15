@@ -5838,29 +5838,31 @@ html, body, #admin {
 #admin .products-list .product .name {
   color: #73c555;
   cursor: pointer; }
-#admin .laratable .actions.button-group a.button, #admin .laratable .actions.button-group form {
-  float: left;
-  display: inline-block; }
-#admin .laratable tr th a.sort {
-  margin-left: 1rem; }
-  #admin .laratable tr th a.sort i {
-    color: #ddd;
-    opacity: 0.3; }
-  #admin .laratable tr th a.sort:hover i {
-    color: #ddd;
-    opacity: 0.6; }
-  #admin .laratable tr th a.sort.active i {
-    color: #73c555;
-    opacity: 1; }
-  #admin .laratable tr th a.sort.active:hover i {
-    color: #92d27b; }
-#admin .laratable tr {
-  padding-top: 1rem;
-  padding-bottom: 1rem; }
-  #admin .laratable tr td {
-    font-size: 1.1rem; }
-  #admin .laratable tr th {
-    font-weight: 700; }
+#admin .laratable {
+  clear: both; }
+  #admin .laratable .actions.button-group a.button, #admin .laratable .actions.button-group form {
+    float: left;
+    display: inline-block; }
+  #admin .laratable tr th a.sort {
+    margin-left: 1rem; }
+    #admin .laratable tr th a.sort i {
+      color: #ddd;
+      opacity: 0.3; }
+    #admin .laratable tr th a.sort:hover i {
+      color: #ddd;
+      opacity: 0.6; }
+    #admin .laratable tr th a.sort.active i {
+      color: #73c555;
+      opacity: 1; }
+    #admin .laratable tr th a.sort.active:hover i {
+      color: #92d27b; }
+  #admin .laratable tr {
+    padding-top: 1rem;
+    padding-bottom: 1rem; }
+    #admin .laratable tr td {
+      font-size: 1.1rem; }
+    #admin .laratable tr th {
+      font-weight: 700; }
 #admin .laratable-filters > .filters {
   float: left;
   margin-right: 2rem; }
