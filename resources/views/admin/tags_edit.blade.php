@@ -9,9 +9,11 @@
 @stop
 
 @section('content')
-    <form class="vertical" action="{{route('admin.tags.update', $tag)}}" method="POST">
-        <input type="hidden" name="_token" value="{{csrf_token()}}">
-        <input type="hidden" name="_method" value="PUT">
+    {!! Former::open()
+        ->method('PUT')
+        ->action(route('admin.tags.update', $tag))
+        ->class('vertical')
+     !!}
         <label for="label">Label <span class="color-error">*</span>
             <input type="text" name="label" maxlength="255" required value="{{$tag->label}}">
         </label>
@@ -33,13 +35,18 @@
             <input type="color" name="color" value="{{$tag->color}}">
         </label>
 
-        {!! Former::checkbox('visible') !!}
-
+        <label for="visible">Visible
+            @if($tag->visible)
+                <input type="checkbox" name="visible" checked="checked">
+            @else
+                <input type="checkbox" name="visible">
+            @endif
+        </label>
         <hr>
 
         <input type="submit" class="large success" name="save" value="Save">
 
-    </form>
+    {!! Former::close() !!}
 @stop
 
 @section('scripts')
