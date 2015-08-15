@@ -111,8 +111,8 @@ c(d.prototype,b.prototype),d.prototype._getElementOffset=e,d.prototype.layout=f,
         self = this;
         this.options = $.extend({}, this.defaults, options);
         this.$el = $(el);
-        this.$el.wrap('<div class="modal-wrapper"/>');
-        this.wrapper = this.$el.parent('.modal-wrapper');
+        this.$el.wrap('<div class="modal-wrapper"><div class="inner"></div></div>');
+        this.wrapper = this.$el.parents('.modal-wrapper').first();
         this.wrapper.detach().appendTo('body');
         $(document).on('click', '[data-toggle-modal="#' + this.$el.attr('id') + '"]', (function(_this) {
           return function(e) {

@@ -2304,7 +2304,6 @@ ul.pagination {
   opacity: 0;
   pointer-events: none;
   overflow: hidden;
-  max-height: 100%;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2331,19 +2330,18 @@ ul.pagination {
   @media (max-width: 680px) {
     .modal-wrapper {
       padding: 0; } }
+  .modal-wrapper > .inner {
+    float: left;
+    margin: 0 auto; }
 
 .modal {
   background-color: #fff;
   border-radius: 0px;
   border: 1px solid #ddd;
-  position: relative;
-  margin: 0 auto;
-  max-height: 100%;
-  max-width: 80%;
   -webkit-box-flex: 0;
-  -webkit-flex: 0 0 auto;
-      -ms-flex: 0 0 auto;
-          flex: 0 0 auto;
+  -webkit-flex: 0 1 auto;
+      -ms-flex: 0 1 auto;
+          flex: 0 1 auto;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -2352,7 +2350,9 @@ ul.pagination {
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
-          flex-direction: column; }
+          flex-direction: column;
+  position: relative;
+  float: left; }
   .modal > .modal-header, .modal > .modal-content, .modal > .modal-footer {
     -webkit-box-flex: 1;
     -webkit-flex: auto;
@@ -2369,9 +2369,9 @@ ul.pagination {
   .modal > .modal-content {
     overflow: auto;
     -webkit-box-flex: 1;
-    -webkit-flex: 1 0 auto;
-        -ms-flex: 1 0 auto;
-            flex: 1 0 auto; }
+    -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto; }
     .modal > .modal-content:not(.tight) {
       padding: 1.5rem; }
   .modal > .modal-footer {
