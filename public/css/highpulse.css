@@ -5366,9 +5366,9 @@ body.scrolled {
     #home .top .tiles .tile img {
       width: 100%; }
     #home .top .tiles .tile:first-child {
-      border-bottom: 2px solid white; }
+      border-bottom: 1px solid white; }
     #home .top .tiles .tile:last-child {
-      border-top: 2px solid white; }
+      border-top: 1px solid white; }
 @media (max-width: 680px) {
   #home .top .slider {
     width: 100%; }
