@@ -185,7 +185,7 @@ class ProductsController extends Controller {
 		$p->enabled = (Input::has('enabled')) ? true : false;
 		$p->weight = Input::get('weight', 0);
 		$p->inprice = Input::get('inprice', 0);
-		$p->price = Input::get('price', 0);
+		$p->price = Input::get('price_ex_tax', 0);
 		$p->manufacturer_id = Input::get('manufacturer_id');
 		$p->vatgroup_id = Input::get('vatgroup');
 		$p->categories = Input::get('categories', []);

@@ -251,7 +251,11 @@
 
             <div class="row">
                 <div class="col-xs-6 tight-left">
-                    {!! $form->price->help('Inkl MVA: <span class="value">255</span>,-') !!}
+                    <label for="price">Price
+                        <input type="text" name="price" value="{{round($product->price * $product->vatgroup->amount)}}">
+                        <input type="hidden" name="price_ex_tax" value="{{round($product->price)}}">
+                        <small class="help">Eks mva: {{$product->price}}</small>
+                    </label>
                 </div>
 
                 <div class="col-xs-6 tight-right">
@@ -537,7 +541,8 @@
         //auto-price
         var profit = form.find('[name="profit"]');
         var price = form.find('[name="price"]');
-        var priceHelp = price.parent('.controls').find('.muted .value');
+        var actualPrice = form.find('[name="price_ex_tax"]');
+        var priceHelp = price.parent('label').find('.help');
         var vatgroup = form.find('[name="vatgroup"]');
         var inprice = form.find('[name="inprice"]');
 
@@ -548,55 +553,80 @@
             return 1 + (taxPercent / 100);
         }
 
+        function getTaxPercentInverse() {
+            var taxPercent = vatgroup.siblings('.chosen-container').find('.chosen-single span').text();
+            if (/[0-9]+%/.test(taxPercent) == false) return 1;
+            taxPercent = parseInt(taxPercent.substr(0, taxPercent.length -1));
+            return 1 - (taxPercent / 100);
+        }
+
         function getProfit() {
-            return parseInt(profit.val());
+            return parseFloat(profit.val());
         }
 
         function getInPrice() {
-            return parseInt(inprice.val());
+            return parseFloat(inprice.val());
         }
 
         function getPrice() {
-            return parseInt(price.val());
+            return parseFloat(price.val());
+        }
+
+        function getPriceExcludingTax() {
+            //return getPrice() / getTaxPercent();
+            return getPrice() * getTaxPercentInverse();
+        }
+
+        function getTaxAmount() {
+            return getPrice() - getPriceExcludingTax();
         }
 
         function calculateProfit() {
-	        var profit = getPrice() - getInPrice();
-
-            profit -= ((profit * getTaxPercent()) - profit);
-
-            return Math.round(profit);
+            return getPriceExcludingTax() - getInPrice();
         }
 
-        function updatePrice() {
-            var priceValue = (getProfit() + getInPrice());
-            console.log('updating price to ' + priceValue);
-            price.val(priceValue);
-            console.log('inc MVA: ' + (priceValue * getTaxPercent()));
-            priceHelp.html(Math.round(priceValue * getTaxPercent()));
-        }
+        //calculate priceExTax when we change priceIncTax
+        price.keyup(function() {
+            //set price ex mva
+            priceHelp.html('Eks mva: ' + getPriceExcludingTax());
 
-        profit.bind('keyup', function(e) {
-            updatePrice();
+            //update profit also
+            profit.val(calculateProfit());
         });
 
-        price.bind('keyup', function(e) {
-            profit.val(getPrice() - getInPrice());
-            priceHelp.html(getPrice() * getTaxPercent());
+        //update profit when we change inprice
+        inprice.keyup(function() {
+            console.log('inprice changed');
+            profit.val(calculateProfit());
         });
 
-        inprice.bind('keyup', function(e) {
-	        updatePrice();
+        //finally, when we change MVA, we update everything else
+        vatgroup.change(function() {
+            console.log('vatgroup changed');
+            //set price ex mva
+            priceHelp.html('Eks mva: ' + getPriceExcludingTax());
+
+            //update profit also
+            profit.val(calculateProfit());
         });
 
-        vatgroup.bind('change', function(e) {
-	        updatePrice();
+        //update price (ex and inc) when we change profit
+        profit.keyup(function() {
+            console.log('profit changed.');
+            //calculate priceIncTax
+            var priceExTax = getInPrice() + getProfit();
+            price.val(priceExTax * getTaxPercent());
+            actualPrice.val(priceExTax);
+            priceHelp.html('Eks mva: ' + priceExTax);
         });
 
-        //set profit value
-        profit.val(getPrice() - getInPrice());
+        profit.val(calculateProfit());
 
-        priceHelp.html(Math.round(getPrice() * getTaxPercent()));
+        console.log('price inc mva:' + getPrice());
+        console.log('price ex mva: ' + getPriceExcludingTax());
+        console.log('mva %: ' + getTaxPercent());
+        console.log('mva amount: ' + getTaxAmount());
+        console.log('profit is: ' + calculateProfit());
 
         //autoslug the name
         form.find('[name="slug"]').autoSlug({other: '[name="name"]'});
