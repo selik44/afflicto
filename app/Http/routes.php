@@ -1,5 +1,7 @@
 <?php
 
+use Friluft\Product;
+
 # HOME ROUTES
 get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);

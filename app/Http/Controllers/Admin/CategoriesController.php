@@ -23,6 +23,9 @@ class CategoriesController extends Controller {
 			'#' => 'id',
 			'Name' => 'name',
 			'Slug' => 'slug',
+			'Discount' => ['discount', function($model) {
+				return $model->discount .'%';
+			}],
 			'Parent' => ['parent_id', function($cat) {
 				if ($cat->parent) {
 					return '<a href="' .route('admin.categories.edit', $cat->parent) .'">' .e($cat->parent->name) .'</a>';
