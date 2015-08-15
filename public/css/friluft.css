@@ -5351,17 +5351,26 @@ body.scrolled {
 #home .row {
   margin: 0; }
 #home .tile {
-  padding: 2px; }
+  display: block;
+  background: black; }
   #home .tile img {
-    width: 100%; }
+    width: 100%;
+    opacity: 0; }
 #home .top .slider {
   float: left;
-  width: 70%; }
+  width: 70%;
+  border: 0; }
 #home .top .tiles {
   float: left;
   width: 30%; }
-  #home .top .tiles .tile img {
-    width: 100%; }
+  #home .top .tiles .tile {
+    border-left: 2px solid white; }
+    #home .top .tiles .tile img {
+      width: 100%; }
+    #home .top .tiles .tile:first-child {
+      border-bottom: 2px solid white; }
+    #home .top .tiles .tile:last-child {
+      border-top: 2px solid white; }
 @media (max-width: 680px) {
   #home .top .slider {
     width: 100%; }

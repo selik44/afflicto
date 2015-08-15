@@ -230,6 +230,11 @@
 	$(document).ready(function() {
         //init buy modal
         window.showBuyModal = function(quantity, thumbnail, title, price) {
+            //unquote thumbnail
+            thumbnail = thumbnail.replace('"', '');
+            thumbnail = thumbnail.replace('\'', '');
+            thumbnail = thumbnail.replace('"', '');
+
             var m = $("#buy-modal");
             m.find('.info .quantity .value').html(quantity);
             m.find('.info .thumbnail').attr('src', thumbnail);

@@ -1,3 +1,5 @@
+$border: 2px solid white
+
 #route-home
 	#front
 		#page
@@ -8,22 +10,31 @@
 		margin: 0
 
 	.tile
-		padding: 2px
+		display: block
+		background: black
+
 		img
 			width: 100%
+			opacity: 0
 
 	.top
 		.slider
 			float: left
 			width: 70%
+			border: 0
 
 		.tiles
 			float: left
 			width: 30%
 
 			.tile
+				border-left: $border
 				img
 					width: 100%
+				&:first-child
+					border-bottom: $border
+				&:last-child
+					border-top: $border
 
 		@include breakpoint('sm-')
 			.slider
