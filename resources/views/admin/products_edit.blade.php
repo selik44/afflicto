@@ -573,8 +573,8 @@
         }
 
         function getPriceExcludingTax() {
-            //return getPrice() / getTaxPercent();
-            return getPrice() * getTaxPercentInverse();
+            return getPrice() / getTaxPercent();
+            //return getPrice() * getTaxPercentInverse();
         }
 
         function getTaxAmount() {
