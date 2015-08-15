@@ -5351,11 +5351,9 @@ body.scrolled {
 #home .row {
   margin: 0; }
 #home .tile {
-  display: block;
-  background: black; }
+  display: block; }
   #home .tile img {
-    width: 100%;
-    opacity: 0; }
+    width: 100%; }
 #home .top .slider {
   float: left;
   width: 70%;
