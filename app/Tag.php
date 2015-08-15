@@ -34,4 +34,5 @@ class Tag extends Model {
 		return $this->belongsToMany('Friluft\Product');
 	}
 
+
 }

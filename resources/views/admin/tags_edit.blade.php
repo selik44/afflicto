@@ -45,7 +45,7 @@
 
         <label for="discount">@lang('admin.discount')
             <div class="input-append">
-                <input type="text" name="discount" value="{{$tag->getDiscountPercentage()}}">
+                <input type="text" name="discount" value="{{$tag->discount}}">
                 <span class="appended">%</span>
             </div>
         </label>
