@@ -5351,24 +5351,19 @@ body.scrolled {
 #home .row {
   margin: 0; }
 #home .tile {
-  display: block; }
+  display: block;
+  border: 1px solid white; }
   #home .tile img {
     width: 100%; }
 #home .top .slider {
   float: left;
   width: 70%;
-  border: 0; }
+  border: 1px solid white; }
 #home .top .tiles {
   float: left;
   width: 30%; }
-  #home .top .tiles .tile {
-    border-left: 2px solid white; }
-    #home .top .tiles .tile img {
-      width: 100%; }
-    #home .top .tiles .tile:first-child {
-      border-bottom: 1px solid white; }
-    #home .top .tiles .tile:last-child {
-      border-top: 1px solid white; }
+  #home .top .tiles .tile img {
+    width: 100%; }
 @media (max-width: 680px) {
   #home .top .slider {
     width: 100%; }

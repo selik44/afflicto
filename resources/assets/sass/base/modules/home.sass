@@ -9,6 +9,7 @@
 
 	.tile
 		display: block
+		border: 1px solid white
 
 		img
 			width: 100%
@@ -17,20 +18,15 @@
 		.slider
 			float: left
 			width: 70%
-			border: 0
+			border: 1px solid white
 
 		.tiles
 			float: left
 			width: 30%
 
 			.tile
-				border-left: 2px solid white
 				img
 					width: 100%
-				&:first-child
-					border-bottom: 1px solid white
-				&:last-child
-					border-top: 1px solid white
 
 		@include breakpoint('sm-')
 			.slider
