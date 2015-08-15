@@ -8,7 +8,7 @@
     <h3 class="title">@lang('admin.page') - <small>@lang('admin.edit')</small></h3>
 @stop
 
-@section('page')
+@section('content')
     <h3 class="end">@lang('admin.edit') - @lang('admin.page')</h3>
     <hr class="small">
     {!! Former::open()->method('PUT')->action(route('admin.pages.update', $page->id))->class('vertical') !!}
