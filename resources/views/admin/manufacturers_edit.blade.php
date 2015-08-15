@@ -8,7 +8,7 @@
     <h3 class="title">@lang('admin.manufacturers') <small>{{$manufacturer->name}}</small></h3>
 @stop
 
-@section('page')
+@section('content')
     {!! $form->open
     ->action(route('admin.manufacturers.update', $manufacturer))
     ->method('PUT')

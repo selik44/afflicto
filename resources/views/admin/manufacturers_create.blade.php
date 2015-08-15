@@ -8,7 +8,7 @@
     <h3 class="title">@lang('admin.manufacturers') <small>@lang('admin.add')</small></h3>
 @stop
 
-@section('page')
+@section('content')
     {!! $form->open
     ->action(route('admin.manufacturers.store'))
     ->method('POST')
