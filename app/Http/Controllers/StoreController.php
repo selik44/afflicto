@@ -384,7 +384,7 @@ class StoreController extends Controller {
 
 		# notify user
 		Mail::send('emails.store.order_confirmation', ['order' => $order], function($mail) use($user, $order) {
-			$mail->to($user->email)->subject(trans('emails.order_confirmation.subject', ['id' => $order->id]));
+			$mail->to($user->email)->subject('Ordrebekreftelse: #' .$order->id);
 		});
 
 		return $order;
