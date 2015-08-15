@@ -27,6 +27,7 @@ class Tag extends Model {
 
 	protected $casts = [
 		'visible' => 'boolean',
+		'discount' => 'float',
 	];
 
 	public function products() {

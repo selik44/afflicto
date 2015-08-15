@@ -1,6 +1,7 @@
 <?php namespace Friluft;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Nicolaslopezj\Searchable\SearchableTrait;
 
 /**
@@ -33,6 +34,10 @@ class Category extends Model {
 	protected $table = 'categories';
 
 	protected $fillable = ['name', 'slug', 'parent_id'];
+
+	protected $casts = [
+		'discount' => 'float',
+	];
 
 	protected $searchable = [
 		'columns' => [
@@ -229,6 +234,14 @@ class Category extends Model {
 			$cat = $cat->parent;
 		}
 		return $banner;
+	}
+
+	public function getDiscount() {
+		$discount = $this->discount;
+
+		if ($this->parent && $this->parent->getDiscount() > $discount) $discount = $this->parent->getDiscount();
+
+		return $discount;
 	}
 
 }

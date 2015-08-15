@@ -42,6 +42,14 @@
                 <input type="checkbox" name="visible">
             @endif
         </label>
+
+        <label for="discount">@lang('admin.discount')
+            <div class="input-append">
+                <input type="text" name="discount" value="{{$category->getDiscountPercentage()}}">
+                <span class="appended">%</span>
+            </div>
+        </label>
+
         <hr>
 
         <input type="submit" class="large success" name="save" value="Save">

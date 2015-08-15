@@ -21,7 +21,7 @@
         data-id="{{$product->id}}"
         data-variants="{{count($product->variants)}}"
         data-stock="{{$product->stock}}"
-        data-price="{{ceil($product->price * $product->vatgroup->amount)}}"
+        data-price="{{round($product->getDiscountPrice() * $product->vatgroup->amount)}}"
         data-manufacturer="{{($product->manufacturer) ? $product->manufacturer->id : ''}}"
     >
 	<?php
@@ -57,7 +57,7 @@
 			<h5 class="name end">{{$product->name}}</h5>
 		</a>
 
-		<h3 class="price end"><span class="value">{{ceil($product->price * $product->vatgroup->amount)}}</span>,-</h3>
+		<h3 class="price end"><span class="value">{{round($product->getDiscountPrice() * $product->vatgroup->amount)}}</span>,-</h3>
 	</header>
 
     @if(isset($withBuyButton) && $withBuyButton)

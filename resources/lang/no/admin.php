@@ -62,6 +62,7 @@ return [
 	'new order' => 'Ny Ordre',
 	'export to proteria' => 'Exporter til Proteria',
 	'new receival' => 'Nytt Varemottak',
+	'discount' => 'Avslag',
 
 	'billing address' => 'Faktura Addresse',
 	'shipping address' => 'Sendings Addresse',

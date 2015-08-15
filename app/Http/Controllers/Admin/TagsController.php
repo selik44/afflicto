@@ -669,6 +669,8 @@ class TagsController extends Controller {
 		$tag->icon = Input::get('icon', null);
 		$tag->color = Input::get('color', null);
 		$tag->visible = Input::has('visible');
+		$tag->discount = Input::get('discount', 0);
+
 		$tag->save();
 
 		return Redirect::back()->with('success', 'Tag created!');
@@ -713,6 +715,9 @@ class TagsController extends Controller {
 		$tag->icon = Input::get('icon');
 		$tag->color = Input::get('color');
 		$tag->visible = Input::has('visible');
+		$discount = Input::get('discount', 0);
+		$tag->discount = $discount;
+
 		$tag->save();
 
 		return Redirect::route('admin.tags.index');

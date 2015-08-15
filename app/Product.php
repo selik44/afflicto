@@ -302,4 +302,23 @@ class Product extends Model {
 		return $this->manufacturer->name .' ' .$this->name;
 	}
 
+	public function getDiscount() {
+		$discount = 0;
+
+		# find the best discount!
+		foreach($this->categories as $cat) {
+			if ($cat->getDiscount() > $discount) $discount = $cat->getDiscount();
+		}
+
+		foreach($this->tags as $tag) {
+			if ($tag->discount > $discount) $discount = $tag->discount;
+		}
+
+		return $discount;
+	}
+
+	public function getDiscountPrice() {
+		return $this->price * (1 - $this->getDiscount() / 100);
+	}
+
 }

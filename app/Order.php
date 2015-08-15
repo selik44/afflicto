@@ -75,7 +75,7 @@ class Order extends Model {
 			$total += $item['total_price_including_tax'];
 		}
 
-		return ceil($total);
+		return round($total);
 	}
 
 	public function getWeight() {

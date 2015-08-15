@@ -83,6 +83,8 @@ class CategoriesController extends Controller {
 			}
 		}
 
+		$category->discount = Input::get('discount', 0);
+
 		$category->save();
 
 		if (Input::has('continue')) {
@@ -117,6 +119,8 @@ class CategoriesController extends Controller {
 	{
 		$category->name = Input::get('name');
 		$category->slug = Input::get('slug');
+		$category->discount = Input::get('discount', 0);
+
 		$parent_id = Input::get('parent_id', 'null');
 		if (is_numeric($parent_id)) $category->parent_id = $parent_id;
 

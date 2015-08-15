@@ -12,7 +12,7 @@
 				<?php
 				$model = $item['model'];
 				?>
-				<tr class="item" data-id="{{$item['id']}}" data-price="{{round($model->price * $model->vatgroup->amount)}}">
+				<tr class="item" data-id="{{$item['id']}}" data-price="{{round($model->getDiscountPrice() * $model->vatgroup->amount)}}">
 					<td class="image hidden-xs" style="width: 80px;">
 						<a href="{{$item['url']}}"><img class="thumbnail" src="{{asset('images/products/' .$item['model']->images()->first()->name)}}"></a>
 					</td>
@@ -36,7 +36,7 @@
 					</td>
 
 					<td class="subtotal"  style="width: 1%;">
-						<h4 class="end"><span class="value">{{round($model->price * $model->vatgroup->amount * $item['quantity'])}}</span>,-</h4>
+						<h4 class="end"><span class="value">{{round($model->getDiscountPrice() * $model->vatgroup->amount * $item['quantity'])}}</span>,-</h4>
 					</td>
 				</tr>
 			@endforeach

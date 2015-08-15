@@ -30,18 +30,18 @@
 
         {!! Former::checkbox('visible') !!}
 
-		<div class="footer-height-fix"></div>
+        <label for="discount">@lang('admin.discount')
+            <div class="input-append">
+                <input type="text" name="discount" value="0">
+                <span class="appended">%</span>
+            </div>
+        </label>
 
-		<footer id="footer">
-			<div class="inner">
-				<div class="button-group">
-					<input type="submit" class="primary" name="create" value="Create">
-					<input type="submit" class="secondary" name="continue" value="Create & Continue">
-				</div>
-			</div>
-		</footer>
-
-	</form>
+        <div class="button-group">
+            <input type="submit" class="primary" name="create" value="Create">
+            <input type="submit" class="secondary" name="continue" value="Create & Continue">
+        </div>
+    </form>
 @stop
 
 @section('scripts')

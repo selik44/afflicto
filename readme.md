@@ -28,7 +28,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Cache routes and views. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
 
 # Todo
-- copy of outgoing emails to: ordre@123friluft.no
+- implement cart items verification, to prevent carts containing items with invalid options.
 - make superadmin and customer roles uneditable.
 - dashboard stats & reports
 - Compound Products

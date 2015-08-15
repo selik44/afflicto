@@ -34,7 +34,9 @@ class ProductsController extends Controller {
 					return $model->stock;
 				}
 			}],
-            'Price' => 'price',
+            'Price Ink MVA' => ['price', function($model) {
+				return round($model->price * $model->vatgroup->amount);
+			}],
 			'Manufacturer' => ['manufacturer_id', function($model, $column, $value) {
 				if ( ! $model->manufacturer) return '<span class="color-error">None</span>';
 				return $model->manufacturer->name;

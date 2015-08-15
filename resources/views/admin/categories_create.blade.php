@@ -19,6 +19,14 @@
 			<input type="text" name="slug" maxlength="255" required>
 		</label>
 
+        <label for="discount">@lang('admin.discount')
+            <div class="input-append">
+                <input type="text" name="discount" value="0">
+                <span class="appended">%</span>
+            </div>
+        </label>
+        <br>
+
 		<label for="parent">Parent
 			<select id="categories-select" name="parent_id">
 				<option value="null">None</option>

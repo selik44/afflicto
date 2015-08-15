@@ -199,7 +199,7 @@ class Cart {
 			$model = $this->getProductModel($uid);
 
 			if ($model) {
-				return $model->price * $model->vatgroup->amount * $item['quantity'];
+				return $model->getDiscountPrice() * $model->vatgroup->amount * $item['quantity'];
 			}
 		}
 
@@ -250,7 +250,7 @@ class Cart {
 				'name' => $item['model']->name,
 				'quantity' => $item['quantity'],
 				'unit_price' => ($item['model']->price * $item['model']->vatgroup->amount) * 100,
-				'discount_rate' => 0,
+				'discount_rate' => (int) ($item['model']->getDiscount() * 100),
 				'tax_rate' => ($item['model']->vatgroup->amount - 1) * 10000,
 			];
 		}
