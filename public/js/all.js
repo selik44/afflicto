@@ -689,7 +689,7 @@ if ( typeof define === 'function' && define.amd ) {
             swipeStatus: this.swipeStatus,
             swipeLeft: this.swipeLeft,
             swipeRight: this.swipeRight,
-            threshold: 100,
+            threshold: 70,
             allowPageScroll: "vertical"
           });
         }

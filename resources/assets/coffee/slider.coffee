@@ -60,7 +60,7 @@
 					swipeStatus: @swipeStatus
 					swipeLeft: @swipeLeft
 					swipeRight: @swipeRight
-					threshold: 100
+					threshold: 70
 					allowPageScroll: "vertical"
 
 
