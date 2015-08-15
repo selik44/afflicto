@@ -2332,7 +2332,7 @@ ul.pagination {
       padding: 0; } }
   .modal-wrapper > .inner {
     float: left;
-    margin: 0 auto; }
+    margin: auto; }
 
 .modal {
   background-color: #181818;
