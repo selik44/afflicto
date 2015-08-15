@@ -66,7 +66,7 @@
 </div>
 
 @if(isset($withBuyButton) && $withBuyButton)
-    <div class="modal" id="add-modal-{{$product->id}}">
+    <div class="modal" id="add-modal-{{$product->id}}" style="max-width: 300px;">
         <div class="modal-content">
             @include('front.partial.product-buy-form', ['product' => $product, 'modal' => true])
         </div>

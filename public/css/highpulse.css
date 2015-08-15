@@ -2303,7 +2303,24 @@ ul.pagination {
           transition: opacity 400ms;
   opacity: 0;
   pointer-events: none;
-  overflow: hidden; }
+  overflow: hidden;
+  max-height: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-content: center;
+      -ms-flex-line-pack: center;
+          align-content: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
   .modal-wrapper.visible {
     opacity: 1;
     -webkit-transition: all 400ms;
@@ -2314,26 +2331,54 @@ ul.pagination {
   @media (max-width: 680px) {
     .modal-wrapper {
       padding: 0; } }
-  .modal-wrapper > .inner {
-    position: relative;
-    top: 25%; }
 
 .modal {
   background-color: #181818;
   border-radius: 0px;
   border: 1px solid #333;
   position: relative;
-  max-width: 50%;
-  left: 25%; }
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: 80%;
+  -webkit-box-flex: 0;
+  -webkit-flex: 0 0 auto;
+      -ms-flex: 0 0 auto;
+          flex: 0 0 auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column; }
+  .modal > .modal-header, .modal > .modal-content, .modal > .modal-footer {
+    -webkit-box-flex: 1;
+    -webkit-flex: auto;
+        -ms-flex: auto;
+            flex: auto; }
   .modal > .modal-header {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 auto;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
     padding: 1rem;
     border-bottom: 1px solid #333;
     background-color: #252525; }
   .modal > .modal-content {
-    overflow: auto; }
+    overflow: auto;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 auto;
+        -ms-flex: 1 0 auto;
+            flex: 1 0 auto; }
     .modal > .modal-content:not(.tight) {
       padding: 1.5rem; }
   .modal > .modal-footer {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+        -ms-flex: 0 1 auto;
+            flex: 0 1 auto;
     margin-top: auto;
     padding: 1rem;
     border-top: 1px solid #333; }
@@ -2343,9 +2388,7 @@ ul.pagination {
     right: 0.25rem; }
   @media (max-width: 680px) {
     .modal {
-      width: 100%;
-      max-width: 100%;
-      left: 0; } }
+      max-width: 100%; } }
 
 .component {
   padding: 2rem;
