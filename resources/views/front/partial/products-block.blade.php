@@ -79,13 +79,15 @@
             (function($, window, document, undefined) {
                 var block = $("#product-{{$product->id}}");
                 var form = $("#add-modal-{{$product->id}} form");
-                var modal = block.find('.modal');
+                var modal = $("#add-modal-{{$product->id}}");
                 var cart = $("#cart-table").parent();
 
                 console.log(form);
 
                 // setup submit event
                 form.on('submit', function(e) {
+                    //hide modal
+                    modal.gsModal('hide');
                     console.log('Submitting buy now');
                     e.preventDefault();
                     klarnaSuspend();
