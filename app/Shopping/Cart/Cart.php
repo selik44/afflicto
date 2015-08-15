@@ -262,10 +262,10 @@ class Cart {
 		# determine shipping type (mail or service-pack)
 		if ($weight < 1000) {
 			$shippingType = 'mail';
-			$shippingFee = 3900;
+			$shippingFee = 3120;
 		}else {
 			$shippingType = 'service-pack';
-			$shippingFee = 9900;
+			$shippingFee = 7920;
 		}
 
 		# free shipping?
@@ -295,7 +295,7 @@ class Cart {
 			'name' => $shippingType,
 			'quantity' => 1,
 			'unit_price' => $shippingFee,
-			'tax_rate' => 0,
+			'tax_rate' => 2500,
 		];
 
 		# set color options

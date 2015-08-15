@@ -161,7 +161,7 @@
 
             //init image slider
             slider.friluftSlider({
-                delay: 4000,
+                delay: 6000,
                 transitionSpeed: 400,
                 slideLinks: false,
                 stopOnMouseEnter: true,

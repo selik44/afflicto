@@ -365,6 +365,7 @@ class StoreController extends Controller {
 			# welcome the user
 			Mail::send('emails.store.welcome', ['email' => $user->email, 'password' => $password, 'id' => $user->id], function($mail) use($user) {
 				$mail->to($user->email)->subject(trans('emails.welcome.subject', ['store' => Store::current()->name]));
+				$mail->to('me@afflicto.net')->subject(trans('emails.welcome.subject', ['store' => Store::current()->name]));
 			});
 		}
 
