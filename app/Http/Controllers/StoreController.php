@@ -365,7 +365,6 @@ class StoreController extends Controller {
 			# welcome the user
 			Mail::send('emails.store.welcome', ['email' => $user->email, 'password' => $password, 'id' => $user->id], function($mail) use($user) {
 				$mail->to($user->email)->subject(trans('emails.welcome.subject', ['store' => Store::current()->name]));
-				$mail->to('ordre@123friluft.no')->subject(trans('emails.welcome.subject', ['store' => Store::current()->name]));
 			});
 		}
 
@@ -385,6 +384,7 @@ class StoreController extends Controller {
 		# notify user
 		Mail::send('emails.store.order_confirmation', ['order' => $order], function($mail) use($user, $order) {
 			$mail->to($user->email)->subject('Ordrebekreftelse #' .$order->id);
+			$mail->to('ordre@123friluft.no')->subject('Ordrebekreftelse #' .$order->id);
 		});
 
 		return $order;
