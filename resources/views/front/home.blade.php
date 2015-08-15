@@ -83,7 +83,7 @@
         var home = $("#home");
 
         home.find('.slider').friluftSlider({
-            delay: 5000,
+            delay: 6500,
             transitionSpeed: 600,
             autoHeight: true,
             heightRatio: 7 / 16,
