@@ -104,7 +104,7 @@ class OrdersController extends Controller {
 					<form method="POST" action="' .route('admin.orders.delete', $model) .'">
 						<input type="hidden" name="_method" value="DELETE">
 						<input type="hidden" name="_token" value="' .csrf_token() .'">
-						<button title="Delete" class="error small"><i class="fa fa-trash"></i></button>
+						<!--<button title="Delete" class="error small"><i class="fa fa-trash"></i></button>-->
 					</form>
 				</div>';
 			}],
