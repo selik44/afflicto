@@ -258,22 +258,15 @@ class Product extends Model {
 		if ($this->variants->count() == 0) {
 			$this->stock -= $amount;
 		}else if ($this->variants->count() > 0) {
-			$stockID = [];
-			foreach($variants as $id => $value) {
-				# get id of the value
-				$variant = Variant::find($id);
-				foreach($variant->data['values'] as $val) {
-					if ($val['name'] == $value) {
-						$stockID[] = $val['id'];
-					}
-				}
+			$stockID = implode('_', $variants);
+
+			if (isset($stock[$stockID])) {
+				$stock = $this->variants_stock;
+				$stock[$stockID] -= $amount;
+				$this->variants_stock = $stock;
+
+				throw new \Exception("Cannot decrement stock, invalid stock value!");
 			}
-
-			$stockID = implode('_', $stockID);
-
-			$stock = $this->variants_stock;
-			$stock[$stockID] -= $amount;
-			$this->variants_stock = $stock;
 		}
 
 		$this->save();
