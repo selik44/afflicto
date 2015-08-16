@@ -36,7 +36,7 @@
                             </ul>
                         </td>
                         <td>{{$item['quantity']}}</td>
-                        <td>{{$item['unit_price'] * $item['quantity']}},-</td>
+                        <td>{{$item['total_price_including_tax']}},-</td>
                     @endif
                 </tr>
             @endforeach
