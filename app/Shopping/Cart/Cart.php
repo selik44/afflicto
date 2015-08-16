@@ -3,6 +3,7 @@
 use Exception;
 use Illuminate\Session\SessionManager;
 use Friluft\Product;
+use Friluft\Variant;
 use Klarna_Checkout_Order;
 use Klarna_Checkout_Connector;
 use Agent;
@@ -38,9 +39,47 @@ class Cart {
 		$this->klarnaConnector = Klarna_Checkout_Connector::create(getenv('KLARNA_SHARED_SECRET'));
 
 		# verify cart contents and remove invalid items
-		#dd($this->getItems());
 		foreach($this->getItems() as $item) {
+			$product = Product::find($item['product_id']);
 
+			# remove it if it's disabled or nonexistent.
+			if ( ! $product || ! $product->enabled) {
+				$this->remove($item['id']);
+				continue;
+			}
+
+			# any variants?
+			if ($product->variants->count() > 0) {
+
+				if ( ! isset($item['options']['variants'])) {
+					$this->remove($item['id']);
+					continue;
+				}
+
+				# verify that the item has a valid option for each of the variants this product has
+				foreach ($product->variants as $variant) {
+					# not set?
+					if ( ! isset($item['options']['variants'][$variant->id])) {
+						$this->remove($item['id']);
+						continue;
+					}
+
+					# is the selected variant value not valid?
+					$selectedValue = $item['options']['variants'][$variant->id];
+
+					$isValid = false;
+					foreach($variant->data['values'] as $value) {
+						if ($value['name'] == $selectedValue) {
+							$isValid = true;
+						}
+					}
+
+					if ( ! $isValid) {
+						$this->remove($item['id']);
+						continue;
+					}
+				}
+			}
 		}
 	}
 
