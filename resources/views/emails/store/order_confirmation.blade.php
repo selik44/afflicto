@@ -23,7 +23,7 @@
                 <tr>
                     @if($item['type'] == 'shipping_fee')
                         <td colspan="2">@lang('store.shipping.' .$item['name'])</td>
-                        <td>{{$item['unit_price']}},-</td>
+                        <td>{{$item['total_price_including_tax']}},-</td>
                     @else
                         <td>{{$item['name']}}
                             <ul class="flat variants">
