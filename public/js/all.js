@@ -858,6 +858,7 @@ if ( typeof define === 'function' && define.amd ) {
       };
 
       FriluftSlider.prototype.start = function() {
+        this.stop();
         this.interval = setInterval((function(_this) {
           return function() {
             _this.next();

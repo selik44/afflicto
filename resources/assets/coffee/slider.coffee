@@ -201,6 +201,7 @@
 				@$slideLinks.find('li a[data-id="' + @currentIndex + '"]').addClass 'current'
 
 		start: ->
+			@stop()
 			@interval = setInterval =>
 				@next()
 				@slide()
