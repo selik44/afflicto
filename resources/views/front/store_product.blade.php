@@ -67,7 +67,12 @@
                     <h3 class="title end">
                         {{$product->name}}
                     </h3>
-                    <h3 class="price end"><strong class="value">{{round($product->getDiscountPrice() * $product->vatgroup->amount)}}</strong>,-</h3>
+                    <h3 class="price end">
+                        <strong class="value">{{round($product->getDiscountPrice() * $product->vatgroup->amount)}}</strong>,-
+                        @if($product->hasDiscount())
+                            <del class="discount">{{round($product->price * $product->vatgroup->amount)}},-</del>
+                        @endif
+                    </h3>
                 </header>
 
                 <?php

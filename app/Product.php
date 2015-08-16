@@ -321,4 +321,8 @@ class Product extends Model {
 		return $this->price * (1 - $this->getDiscount() / 100);
 	}
 
+	public function hasDiscount() {
+		return $this->getDiscount() > 0;
+	}
+
 }

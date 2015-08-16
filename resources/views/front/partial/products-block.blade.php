@@ -57,7 +57,12 @@
 			<h5 class="name end">{{$product->name}}</h5>
 		</a>
 
-		<h3 class="price end"><span class="value">{{round($product->getDiscountPrice() * $product->vatgroup->amount)}}</span>,-</h3>
+		<h4 class="price end discount">
+            <span class="value">{{round($product->getDiscountPrice() * $product->vatgroup->amount)}}</span>,-
+            @if($product->hasDiscount())
+                <del class="value">{{round($product->price * $product->vatgroup->amount)}},-</del>
+            @endif
+        </h4>
 	</header>
 
     @if(isset($withBuyButton) && $withBuyButton)
