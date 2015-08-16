@@ -131,8 +131,12 @@
                                             }
                                         }
                                         $stockID = implode('_', $stockID);
-                                        $stock = $product->variants_stock[$stockID];
-                                        $stock += $item['quantity'];
+                                        if ( ! isset($product->variants_stock[$stockID])) {
+                                            $stock = 'error';
+                                        }else {
+                                            $stock = $product->variants_stock[$stockID];
+                                            $stock += $item['quantity'];
+                                        }
                                     }
                                     $variantString = rtrim($variantString, ', ');
 
