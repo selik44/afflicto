@@ -121,27 +121,15 @@
                                         # get the variants we ordered
                                         $variants = $item['reference']['options']['variants'];
 
-                                        # create the string describing the variants
-                                        /*
-                                         $variants = [
-                                                '9' => 'L',
-                                                '10' => 'L',
-                                            ]
-                                         */
-                                        $stockID = [];
+                                        # add to variantString
                                         foreach($variants as $variantID => $value) {
                                             $variantModel = Friluft\Variant::find($variantID);
                                             $variantString .= $variantModel->name .': ' .$value .', ';
-                                            foreach($variantModel->data['values'] as $v) {
-                                                if ($v['name'] == $value) {
-                                                    $stockID[] = $v['id'];
-                                                    break;
-                                                }
-                                            }
                                         }
 
-                                        $stockID = implode('_', $stockID);
+                                        $stockID = implode('_', $item['reference']['options']['variants']);
 
+                                        # get stock
                                         if ( ! isset($product->variants_stock[$stockID])) {
                                             $stock = 'error, invalid stock id: ' .$stockID;
                                         }else {

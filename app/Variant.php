@@ -39,6 +39,8 @@ class Variant extends Model {
 		foreach($this->data['values'] as $value) {
 			if ($value['id'] == $id) return $value['name'];
 		}
+
+		return 'Error.';
 	}
 
 }

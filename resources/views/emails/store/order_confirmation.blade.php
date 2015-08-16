@@ -31,7 +31,7 @@
                                     $model = \Friluft\Product::find($item['reference']['id']);
                                 ?>
                                 @foreach($model->variants as $variant)
-                                    <li><strong>{{$variant->name}}:</strong> <span>{{$item['reference']['options']['variants'][$variant->id]}}</span></li>
+                                    <li><strong>{{$variant->name}}:</strong> <span>{{$variant->getValueName($item['reference']['options']['variants'][$variant->id])}}</span></li>
                                 @endforeach
                             </ul>
                         </td>
