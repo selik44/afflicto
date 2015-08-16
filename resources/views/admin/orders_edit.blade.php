@@ -39,7 +39,7 @@
 
 					<div class="col-m-4">
 						<h6 class="end">@lang('admin.billing address')</h6>
-                        {!! Former::text('billing_name')->value($order->billing_address['given_name']) !!}
+                        {!! Former::text('billing_name')->value($order->billing_address['given_name'] .' ' .$order->billing_address['family_name']) !!}
 
                         {!! Former::text('billing_street_address')->value($order->billing_address['street_address']) !!}
 
@@ -54,7 +54,7 @@
 
                     <div class="col-m-4 tight-right">
                         <h6 class="end">@lang('shipping address')</h6>
-                        {!! Former::text('shipping_name')->value($order->shipping_address['given_name']) !!}
+                        {!! Former::text('shipping_name')->value($order->shipping_address['given_name'] .' ' .$order->shipping_address['family_name']) !!}
 
                         {!! Former::text('shipping_street_address')->value($order->shipping_address['street_address']) !!}
 

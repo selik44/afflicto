@@ -26,7 +26,7 @@
 			<div class="col-xs-6">
 				<h5>Fakturaadresse</h5>
 				<address>
-					{{$order->billing_address['given_name']}}<br>
+					{{$order->billing_address['given_name']}} {{$order->billing_address['family_name}}<br>
 					{{$order->billing_address['street_address']}}, {{$order->billing_address['postal_code']}}
 					{{$order->billing_address['city']}}, {{$order->billing_address['country']}}.
 				</address>
@@ -35,7 +35,7 @@
 			<div class="col-xs-6">
 				<h5>Leveringsadresse</h5>
 				<address>
-					{{$order->shipping_address['given_name']}}<br>
+					{{$order->shipping_address['given_name']}} {{$order->shipping_address['family_name']}}<br>
 					{{$order->shipping_address['street_address']}}, {{$order->shipping_address['postal_code']}}
 					{{$order->shipping_address['city']}}, {{$order->shipping_address['country']}}.
 				</address>
