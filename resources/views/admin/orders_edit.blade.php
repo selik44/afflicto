@@ -152,7 +152,7 @@
 								<td>
 									{{$item['quantity']}}
 								</td>
-								<td>kr {{$item['unit_price']}},-</td>
+								<td>kr {{$item['total_price_including_tax']}},-</td>
 							</tr>
 						@endforeach
 					</tbody>
