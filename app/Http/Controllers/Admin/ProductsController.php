@@ -187,10 +187,14 @@ class ProductsController extends Controller {
 		$p->enabled = (Input::has('enabled')) ? true : false;
 		$p->weight = Input::get('weight', 0);
 		$p->inprice = Input::get('inprice', 0);
-		$p->price = Input::get('price', 0);
 		$p->manufacturer_id = Input::get('manufacturer_id');
 		$p->vatgroup_id = Input::get('vatgroup');
 		$p->categories = Input::get('categories', []);
+		if ($p->vatgroup->amount > 0) {
+			$p->price = Input::get('price', 0) / $p->vatgroup->amount;
+		}else {
+			$p->price = Input::get('price', 0);
+		}
 
 		# add tabs
 		for($i = 1; $i < 10; $i++) {
