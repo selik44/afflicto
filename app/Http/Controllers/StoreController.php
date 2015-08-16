@@ -107,6 +107,10 @@ class StoreController extends Controller {
 
 			$category = array_pop($tree);
 
+			if ($category == null) {
+				abort(404);
+			}
+
 			return view('front.store_product')
 				->with([
 					'category' => $category,

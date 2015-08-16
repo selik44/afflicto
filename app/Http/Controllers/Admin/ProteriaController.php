@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class ProteriaController extends Controller {
 
-	public function getExport() {
+	public function getExport(Requests\ExportProteriaRequest $request) {
 		$orders = Order::whereStatus('ready_for_sending')->get();
 		$xml = new XML('FraktXml', XML::ISO_8859_1);
 
@@ -81,7 +81,7 @@ class ProteriaController extends Controller {
 	- PortoUtenMva
 	- PortoMedMva
 	 */
-	public function update() {
+	public function update(Requests\ExportProteriaRequest $request) {
 		if (!Input::has('Ordernr') || Input::has('Sendingsnr')) {
 			return response('error', 400);
 		}

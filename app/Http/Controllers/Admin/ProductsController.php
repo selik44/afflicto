@@ -192,7 +192,6 @@ class ProductsController extends Controller {
 		$p->vatgroup_id = Input::get('vatgroup');
 		$p->categories = Input::get('categories', []);
 
-
 		# add tabs
 		for($i = 1; $i < 10; $i++) {
 			if (Input::has('tab-' .$i .'-title')) {

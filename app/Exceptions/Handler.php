@@ -28,6 +28,7 @@ class Handler extends ExceptionHandler {
 		if (env('EMAIL_ERRORS')) {
 			if ($this->shouldReport($e)) {
 				$input = \Request::all();
+
 				\Mail::send('emails.error', ['exception' => $e, 'input' => $input], function($m) {
 					$m->to('petter@gentlefox.net')->subject('error');
 				});

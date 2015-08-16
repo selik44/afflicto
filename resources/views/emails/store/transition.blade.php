@@ -9,7 +9,7 @@
 </p>
 <p>
     Dersom du tidligere har bestilt varer hos oss, vi ikke disse ordrene følge med over i det nye systemet.
-    <br>Dersom du vil sjekke en tidligere ordre er disse tilgjengelig på <a href="mystore.123friluft.no">mystore.123friluft.no</a>.
+    <br>Dersom du vil sjekke en tidligere ordre er disse tilgjengelig på <a href="http://123friluft.mystore3.no">123friluft.mystore3.no</a>.
 </p>
 
 <p>
@@ -23,6 +23,6 @@
 
 @section('footer')
     <p class="lead end">
-    <a href="{{url('user/login')}}">Logg inn på 123friluft.no</a>
+    <a class="button primary" href="{{url('user/login')}}">Logg inn</a>
     </p>
 @stop

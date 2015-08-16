@@ -1,7 +1,5 @@
 <?php
 
-use Friluft\Product;
-
 # HOME ROUTES
 get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
@@ -54,7 +52,6 @@ delete('api/cart/{id}', ['as' => 'api.cart.destroy', 'uses' => 'CartController@d
 
 get('api/proteria/update', ['middleware' => 'auth.basic', 'as' => 'api.proteria.update', 'uses' => 'Admin\ProteriaController@update']);
 get('api/proteria/orders', ['middleware' => 'auth.basic', 'as' => 'admin.proteria.export', 'uses' => 'Admin\ProteriaController@getExport']);
-
 
 # ADMIN ROUTES
 Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], function() {

@@ -36,6 +36,12 @@ class Cart {
 
 		# create our klarna checkout connector using the shared secret.
 		$this->klarnaConnector = Klarna_Checkout_Connector::create(getenv('KLARNA_SHARED_SECRET'));
+
+		# verify cart contents and remove invalid items
+		#dd($this->getItems());
+		foreach($this->getItems() as $item) {
+
+		}
 	}
 
 	/**
