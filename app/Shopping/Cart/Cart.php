@@ -339,7 +339,7 @@ class Cart {
 			'reference' => 'SHIPPING',
 			'name' => $shippingType,
 			'quantity' => 1,
-			'unit_price' => $shippingFee * 2500,
+			'unit_price' => $shippingFee * 1.25,
 			'tax_rate' => 2500,
 		];
 
