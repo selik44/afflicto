@@ -124,7 +124,7 @@
                                         # add to variantString
                                         foreach($variants as $variantID => $value) {
                                             $variantModel = Friluft\Variant::find($variantID);
-                                            $variantString .= $variantModel->name .': ' .$value .', ';
+                                            $variantString .= $variantModel->name .': ' .$variantModel->getValueName($value) .', ';
                                         }
 
                                         $stockID = implode('_', $item['reference']['options']['variants']);
