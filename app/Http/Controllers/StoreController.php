@@ -390,6 +390,10 @@ class StoreController extends Controller {
 		Mail::send('emails.store.order_confirmation', ['order' => $order], function($mail) use($user, $order) {
 			$mail->to($user->email)->subject('Ordrebekreftelse #' .$order->id);
 
+			if (env('APP_ENV') == 'staging') {
+				$mail->to('petter@gentlefox.net')->subject('Ordrebekreftelse #' .$order->id);
+			}
+
 			# live?
 			if (env('APP_ENV') == 'production') {
 				$mail->to('ordre@123friluft.no')->subject('Ordrebekreftelse #' .$order->id);
