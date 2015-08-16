@@ -26,7 +26,7 @@
 			<div class="col-xs-6">
 				<h5>Fakturaadresse</h5>
 				<address>
-					{{$order->billing_address['given_name']}} {{$order->billing_address['family_name}}<br>
+					{{$order->billing_address['given_name']}} {{$order->billing_address['family_name']}}<br>
 					{{$order->billing_address['street_address']}}, {{$order->billing_address['postal_code']}}
 					{{$order->billing_address['city']}}, {{$order->billing_address['country']}}.
 				</address>
