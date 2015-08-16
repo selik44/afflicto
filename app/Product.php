@@ -146,7 +146,13 @@ class Product extends Model {
 		return $this->getStock($options) > 0;
 	}
 
-	public function getStock($options = []) {
+	public function getStock($variants = []) {
+		if ($this->variants->count() == 0) return $this->stock;
+
+		return $this->variants_stock[implode('_', $variants)];
+	}
+
+	public function getStock_olds($options = []) {
 		if (count($this->variants) == 0) return $this->stock;
 
 		$stockID = [];

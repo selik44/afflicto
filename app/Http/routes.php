@@ -1,5 +1,9 @@
 <?php
 
+get('/getcart', ['as' => 'getcart', function() {
+	dd(Cart::getItems());
+}]);
+
 # HOME ROUTES
 get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
