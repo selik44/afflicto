@@ -50,7 +50,7 @@
                         <h3 class="end">@lang('store.shipping.shipping')</h3>
                         <p class="lead">@lang('store.shipping.' .$shipping['name'])</p>
                     </td>
-                    <td colspan="2" class="value"><h4>{{$shipping['unit_price']}},-</h4></td>
+                    <td colspan="2" class="value"><h4>{{$shipping['unit_price'] / 100}},-</h4></td>
                 </tr>
             @endif
 			</tbody>
