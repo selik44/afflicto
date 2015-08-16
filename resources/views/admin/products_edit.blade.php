@@ -252,8 +252,8 @@
             <div class="row">
                 <div class="col-xs-6 tight-left">
                     <label for="price">Price
-                        <input type="text" name="price" value="{{round($product->price * $product->vatgroup->amount)}}">
-                        <input type="hidden" name="price_ex_tax" value="{{round($product->price)}}">
+                        <input type="text" name="price" value="{{$product->price * $product->vatgroup->amount}}">
+                        <input type="hidden" name="price_ex_tax" value="{{$product->price}}">
                         <small class="help">Eks mva: {{$product->price}}</small>
                     </label>
                 </div>
