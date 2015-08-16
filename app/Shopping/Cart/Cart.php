@@ -48,9 +48,10 @@ class Cart {
 				continue;
 			}
 
-			# any variants?
+			# this product requires variants
 			if ($product->variants->count() > 0) {
 
+				# no variants specified?
 				if ( ! isset($item['options']['variants'])) {
 					$this->remove($item['id']);
 					continue;
@@ -69,7 +70,7 @@ class Cart {
 
 					$isValid = false;
 					foreach($variant->data['values'] as $value) {
-						if ($value['name'] == $selectedValue) {
+						if ($value['id'] == $selectedValue) {
 							$isValid = true;
 						}
 					}
