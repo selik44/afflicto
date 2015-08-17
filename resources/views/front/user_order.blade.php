@@ -45,11 +45,11 @@
                                 $productID = $item['reference']['id'];
                                 var_dump('id: ' .$productID);
                                 $model = Friluft\Product::withTrashed()->find($productID);
-
-                                var_dump('model:');
-                                var_dump($model);
                             ?>
                             <strong class="name">{{$item['name']}}</strong>
+                            @if( ! $model)
+                                Produktet finnes ikke.
+                            @endif
                             @if(count($model->variants) > 0)
                                 <ul class="variants flat">
                                     @foreach($item['reference']['options']['variants'] as $id => $value)
