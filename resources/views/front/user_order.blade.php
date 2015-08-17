@@ -28,14 +28,6 @@
                 </tr>
             </thead>
 
-            <tfoot>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <th class="text-right"><h5>@lang('store.total'): {{$order->total_price_including_tax}},-</h5></th>
-                </tr>
-            </tfoot>
-
             <tbody>
             @foreach($order->items as $item)
                 <tr>
@@ -63,12 +55,20 @@
                     </td>
                     <td>{{$item['total_price_including_tax']}},-</td>
                 </tr>
+
+                <tr>
+                    <td></td>
+                    <td class="text-right">@lang('store.total'): </td>
+                    <th>{$order->total_price_including_tax}},-</th>
+                </tr>
             @endforeach
             </tbody>
         </table>
 
+        <hr>
+
         <h5>Oppdateringer</h5>
-        <table class="updates bordered">
+        <table class="updates bordered boxed">
             <thead>
             <tr>
                 <th>Når</th>
