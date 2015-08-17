@@ -141,6 +141,13 @@ class Cart {
 		return $this->session->get('shoppingcart.contents.' .$uid, null);
 	}
 
+	/**
+	 * Find an item in the cart that has the given product_id and options.
+	 *
+	 * @param $product_id id of the product.
+	 * @param array $options array of options, like ['variants' => [...], ...]
+	 * @return array|null
+	 */
 	public function getItemLike($product_id, $options = []) {
 		foreach($this->getItems() as $item) {
 			if ($item['product_id'] == $product_id) {
@@ -167,24 +174,24 @@ class Cart {
 	public function add($product, $quantity = 1, $options = []) {
 		# get product
 		if (is_object($product) && $product instanceof Product) {
-			$product = $product->id;
+			$product = (int) $product->id;
 		}
 
 		$duplicate = $this->getItemLike($product, $options);
 		if ($duplicate) {
-			$this->setQuantity($duplicate['id'], $duplicate['quantity'] + $quantity);
-			return $duplicate['id'];
+			$this->setQuantity($duplicate['id'], (int) $duplicate['quantity'] + $quantity);
+			return (int) $duplicate['id'];
 		}
 
 		# get uid and increment it
-		$uid = $this->session->get('shoppingcart.uid') + 1;
+		$uid = (int) $this->session->get('shoppingcart.uid') + 1;
 		$this->session->put('shoppingcart.uid', $uid);
 
 		# store
 		$this->session->put('shoppingcart.contents.' .$uid, [
 			'product_id' => $product,
 			'id' => $uid,
-			'quantity' => $quantity,
+			'quantity' => (int) $quantity,
 			'options' => $options,
 		]);
 

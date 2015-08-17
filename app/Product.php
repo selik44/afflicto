@@ -147,34 +147,18 @@ class Product extends Model {
 	}
 
 	public function getStock($variants = []) {
+		# did we pass in an options array? if so, get the variants array from that.
+		if (isset($variants['variants'])) {
+			$variants = $variants['variants'];
+		}
+
 		if ($this->variants->count() == 0) return $this->stock;
 
-		return $this->variants_stock[implode('_', $variants)];
-	}
-
-	public function getStock_olds($options = []) {
-		if (count($this->variants) == 0) return $this->stock;
-
-		$stockID = [];
-		foreach($options as $id => $value) {
-			# get variant
-			$variant = $this->variants()->where('name', '=', $id)->first();
-			if ( ! $variant) {
-				$variant = Variant::find($id);
-			}
-			if ($variant) {
-				# get id of this value
-				foreach($variant->data['values'] as $val) {
-					if ($value == $val['name'] || $value == $val['id']) {
-						$id = $val['id'];
-					}
-				}
-				$stockID[] = $id;
-			}
+		if ( ! isset($this->variants_stock[implode('_', $variants)])) {
+			return 'Invalid stock id: ' .implode('_', $variants);
 		}
-		$stockID = implode('_', $stockID);
-		if ( ! isset($this->variants_stock[$stockID])) return -1;
-		return $this->variants_stock[$stockID];
+
+		return $this->variants_stock[implode('_', $variants)];
 	}
 
 	public function getEnabledAttribute() {
@@ -301,6 +285,10 @@ class Product extends Model {
 		return $this->manufacturer->name .' ' .$this->name;
 	}
 
+	/**
+	 * Get discount as percentage. I.E 20% returns integer 20
+	 * @return int
+	 */
 	public function getDiscount() {
 		$discount = 0;
 

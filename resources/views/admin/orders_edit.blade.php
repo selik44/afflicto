@@ -106,7 +106,7 @@
 								if ($item['type'] != 'shipping_fee') {
 									# get product ID and model
                                     $productID = $item['reference']['id'];
-                                    $product = Friluft\Product::find($productID);
+                                    $product = Friluft\Product::withTrashed()->find($productID);
 
                                     if ($product == null) {
                                         return "Invalid product data";
@@ -127,15 +127,9 @@
                                             $variantString .= $variantModel->name .': ' .$variantModel->getValueName($value) .', ';
                                         }
 
-                                        $stockID = implode('_', $item['reference']['options']['variants']);
-
-                                        # get stock
-                                        if ( ! isset($product->variants_stock[$stockID])) {
-                                            $stock = 'error, invalid stock id: ' .$stockID;
-                                        }else {
-                                            $stock = $product->variants_stock[$stockID];
-                                            $stock += $item['quantity'];
-                                        }
+                                        # get stock and add 1 to it (we want to display the actual physical stock here)
+                                        $stock = $product->getStock($item['reference']['options']);
+                                        $stock++;
                                     }
                                     $variantString = rtrim($variantString, ', ');
 
