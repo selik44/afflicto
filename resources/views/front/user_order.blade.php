@@ -43,7 +43,11 @@
                         @else
                             <?php
                                 $productID = $item['reference']['id'];
+                                var_dump('id: ' .$productID);
                                 $model = Friluft\Product::withTrashed()->find($productID);
+
+                                var_dump('model:');
+                                var_dump($model);
                             ?>
                             <strong class="name">{{$item['name']}}</strong>
                             @if(count($model->variants) > 0)
