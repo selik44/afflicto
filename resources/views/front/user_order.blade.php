@@ -36,15 +36,17 @@
 
             <tbody>
             @foreach($order->items as $item)
-                <?php
-                    $productID = $item['reference']['id'];
-                    $model = Friluft\Product::withTrashed()->find($productID);
-                ?>
                 <tr>
                     <td>
                         @if($item['type'] == 'shiping_fee')
                             @lang('store.shipping.' .$item['name'])
                         @else
+                            <?php
+                                $productID = $item['reference']['id'];
+                                echo $productID;
+                                $model = Friluft\Product::withTrashed()->find($productID);
+                                dd($model);
+                            ?>
                             <strong class="name">{{$item['name']}}</strong>
                             @if($model->variants->count() > 0)
                                 <ul class="variants flat">
