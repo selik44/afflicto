@@ -52,9 +52,7 @@
                             @endif
                         </td>
                         <td>
-                            @if($item['type'] !== 'shipping_fee)
-                                {{$item['quantity']}}
-                            @endif
+                            {{$item['quantity']}}
                         </td>
                         <td>{{$item['total_price_including_tax']}},-</td>
                     </tr>
