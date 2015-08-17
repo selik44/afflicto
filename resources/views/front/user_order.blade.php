@@ -19,7 +19,7 @@
             <p class="lead color-error">@lang('store.order status.not delievered')</p>
         @endif
 
-        <table class="bordered">
+        <table class="bordered boxed">
             <thead>
             <tr>
                 <th>@lang('store.product')</th>
