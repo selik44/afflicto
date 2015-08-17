@@ -45,7 +45,7 @@ class OrdersController extends Controller {
 					if ($item['type'] !== 'shipping_fee') {
 						# get product ID and model
 						$productID = $item['reference']['id'];
-						$product = Product::find($productID);
+						$product = Product::withTrashed()->find($productID);
 
 						if ($product == null) {
 							return "Invalid product data";
@@ -61,18 +61,16 @@ class OrdersController extends Controller {
 							$variants = $item['reference']['options']['variants'];
 
 							# create the string describing the variants
-							$stockID = [];
 							foreach($variants as $variantID => $value) {
 								$variantModel = Variant::find($variantID);
 								$variantString .= $variantModel->name .': ' .$value .', ';
 
 							}
-							$stockID = implode('_', $stockID);
-							if (!isset($product->variants_stock[$stockID])) {
-								$stock = 0;
-							}else {
-								$stock = $product->variants_stock[$stockID];
-							}
+
+							$stock = $product->getStock($item['reference']['options']);
+
+							# (we want actual, physical stock so increment that)
+							$stock++;
 						}
 						$variantString = rtrim($variantString, ', ');
 
@@ -80,6 +78,7 @@ class OrdersController extends Controller {
 
 						# color the item by stock
 						$class = 'color-success';
+
 						if ($stock < $item['quantity']) $class = 'color-error';
 
 						$str .= '<li class="' .$class .'">' .$name .$variantString .' (' .$stock .'/' .$item['quantity'] .' in stock)</li>';
