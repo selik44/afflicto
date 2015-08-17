@@ -52,7 +52,7 @@
                             @endif
                         </td>
                         <td>
-                            @if($item['type'] != 'shipping_fee)
+                            @if($item['type'] !== 'shipping_fee)
                                 {{$item['quantity']}}
                             @endif
                         </td>
