@@ -49,8 +49,7 @@
                             <strong class="name">{{$item['name']}}</strong>
                             @if( ! $model)
                                 Produktet finnes ikke.
-                            @endif
-                            @if(count($model->variants) > 0)
+                            @elseif(count($model->variants) > 0)
                                 <ul class="variants flat">
                                     @foreach($item['reference']['options']['variants'] as $id => $value)
                                         <?php $variant = Friluft\Variant::find($id); ?>
