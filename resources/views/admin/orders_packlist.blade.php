@@ -112,7 +112,7 @@
 								<div style="width: 24px; height: 24px; margin: 4px; border: 1px solid #333; border-radius: 2px;"></div>
 							</td>
 							<td>
-								<strong>{{$manufacturer}}</strong>
+								<strong>{{$product->manufacturer->name}}</strong>
 								<span>{{$name .' [' .$variantString .'] (' .$stock .' ' .trans('store.in stock') .')'}}</span>
 							</td>
 							<td>
