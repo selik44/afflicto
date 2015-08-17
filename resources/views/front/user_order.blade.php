@@ -45,7 +45,7 @@
                                 $productID = $item['reference']['id'];
                                 $model = Friluft\Product::withTrashed()->find($productID);
                             ?>
-                            <strong class="name">{{$item['name']}}</strong>
+                            <h5 class="name">{{$item['name']}}</h5>
                             @if($model->variants->count() > 0)
                                 <ul class="variants flat">
                                     @foreach($item['reference']['options']['variants'] as $id => $value)
