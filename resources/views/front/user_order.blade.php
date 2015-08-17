@@ -37,7 +37,8 @@
             <tbody>
             @foreach($order->items as $item)
                 <?php
-                    $model = $item['model'];
+                    $productID = $item['reference']['id'];
+                    $model = Friluft\Product::withTrashed()->find($productID);
                 ?>
                 <tr>
                     <td>
