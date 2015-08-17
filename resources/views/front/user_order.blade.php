@@ -30,7 +30,7 @@
 
             <tfoot>
             <tr>
-                <th colspan="3" style="text-align: right;"><h4>@lang('store.total'): {{$order->total_price_including_tax}},-</h4></th>
+                <th colspan="3" style="text-align: right;"><h5>@lang('store.total'): {{$order->total_price_including_tax}},-</h5></th>
             </tr>
             </tfoot>
 
@@ -56,7 +56,9 @@
                             @endif
                         @endif
                     </td>
-                    <td>{{$item['quantity']}}</td>
+                    <td>
+                        <h5 class="name">{{$item['quantity']}}</h5>
+                    </td>
                     <td>{{$item['total_price_including_tax']}},-</td>
                 </tr>
             @endforeach
