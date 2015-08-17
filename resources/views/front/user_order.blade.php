@@ -19,6 +19,7 @@
             <p class="lead color-error">@lang('store.order status.not delievered')</p>
         @endif
 
+        <h4>Produkter</h4>
         <table class="bordered boxed">
             <thead>
                 <tr>
@@ -29,45 +30,45 @@
             </thead>
 
             <tbody>
-            @foreach($order->items as $item)
-                <tr>
-                    <td>
-                        @if($item['type'] == 'shipping_fee')
-                            <h5 class="name">@lang('store.shipping.' .$item['name'])</h5>
-                        @else
-                            <?php
-                                $productID = $item['reference']['id'];
-                                $model = Friluft\Product::withTrashed()->find($productID);
-                            ?>
-                            <h5 class="name">{{$item['name']}}</h5>
-                            @if($model->variants->count() > 0)
-                                <ul class="variants flat">
-                                    @foreach($item['reference']['options']['variants'] as $id => $value)
-                                        <?php $variant = Friluft\Variant::find($id); ?>
-                                        <li><strong>{{$variant->name}}: </strong> <span class="value">{{$variant->getValueName($value)}}</span></li>
-                                    @endforeach
-                                </ul>
+                @foreach($order->items as $item)
+                    <tr>
+                        <td>
+                            @if($item['type'] == 'shipping_fee')
+                                <h5 class="name">@lang('store.shipping.' .$item['name'])</h5>
+                            @else
+                                <?php
+                                    $productID = $item['reference']['id'];
+                                    $model = Friluft\Product::withTrashed()->find($productID);
+                                ?>
+                                <h5 class="name end">{{$item['name']}}</h5>
+                                @if($model->variants->count() > 0)
+                                    <ul class="variants flat end" style="margin-left: 1rem;">
+                                        @foreach($item['reference']['options']['variants'] as $id => $value)
+                                            <?php $variant = Friluft\Variant::find($id); ?>
+                                            <li><strong>{{$variant->name}}: </strong> <span class="value">{{$variant->getValueName($value)}}</span></li>
+                                        @endforeach
+                                    </ul>
+                                @endif
                             @endif
-                        @endif
-                    </td>
-                    <td>
-                        {{$item['quantity']}}
-                    </td>
-                    <td>{{$item['total_price_including_tax']}},-</td>
-                </tr>
+                        </td>
+                        <td>
+                            {{$item['quantity']}}
+                        </td>
+                        <td>{{$item['total_price_including_tax']}},-</td>
+                    </tr>
+                @endforeach
 
-                <tr>
+                <tr class="total">
                     <td></td>
-                    <td class="text-right">@lang('store.total'): </td>
-                    <th>{$order->total_price_including_tax}},-</th>
+                    <td><span class="text-right">@lang('store.total'):</span></td>
+                    <th>{{$order->total_price_including_tax}},-</th>
                 </tr>
-            @endforeach
             </tbody>
         </table>
 
-        <hr>
+        <br>
 
-        <h5>Oppdateringer</h5>
+        <h4>Oppdateringer</h4>
         <table class="updates bordered boxed">
             <thead>
             <tr>
