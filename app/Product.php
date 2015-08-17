@@ -237,19 +237,18 @@ class Product extends Model {
 	}
 
 	public function sell($amount = 1, $variants = null) {
-		$this->sales += $amount;
+		$this->sales += (int) $amount;
 
 		if ($this->variants->count() == 0) {
 			$this->stock -= $amount;
 		}else if ($this->variants->count() > 0) {
+			$stock = $this->variants_stock;
 			$stockID = implode('_', $variants);
-
 			if (isset($stock[$stockID])) {
-				$stock = $this->variants_stock;
 				$stock[$stockID] -= $amount;
 				$this->variants_stock = $stock;
-
-				throw new \Exception("Cannot decrement stock, invalid stock value!");
+			}else {
+				\Log::error('Cannot decrement stock, invalid stockID! ' .$stockID);
 			}
 		}
 

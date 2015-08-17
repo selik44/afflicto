@@ -36,12 +36,22 @@
 
             <tbody>
             @foreach($order->items as $item)
+                <?php
+                    $model = $item['model'];
+                ?>
                 <tr>
                     <td>
                         @if($item['type'] == 'shiping_fee')
                             @lang('store.shipping.' .$item['name'])
                         @else
-                            {{$item['name']}}
+                            <strong class="name">{{$item['name']}}</strong>
+                            @if($model->variants->count() > 0)
+                                <ul class="variants flat">
+                                    @foreach($model->variants as $variant)
+                                        <li><strong>{{$variant->name}}: </strong> <span>{{$variant->getValueName($item['reference']['options']['variants'][$variant->id])}}</span></li>
+                                    @endforeach
+                                </ul>
+                            @endif
                         @endif
                     </td>
                     <td>{{$item['quantity']}}</td>

@@ -31,8 +31,13 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 # Todo
 - on branch "newvariants": display variant names instead of their ID's on orders.index, the packlist and the order_confirmation email.
+- on branch "newvariants": update the user.orders.show view to include variants 
 
-- make superadmin and customer roles uneditable.
+- fix the name parsing when generating a user from a klarna order
+- user.orders.show: fix shipping text and show discount
+- make discounts always round the prices.
+
+- make superadmin and customer roles uneditable to streamline UI and prevent errors.
 - dashboard stats & reports
 - Compound Products
 - rabatt popup ting
