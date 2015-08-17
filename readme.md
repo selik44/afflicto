@@ -27,9 +27,17 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Implement login throttling
 - Cache routes and views. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
 
+
+
 # Todo
-- implement cart items verification, to prevent carts containing items with invalid options.
-- make superadmin and customer roles uneditable.
+- on branch "newvariants": display variant names instead of their ID's on orders.index, the packlist and the order_confirmation email.
+- on branch "newvariants": update the user.orders.show view to include variants 
+
+- fix the name parsing when generating a user from a klarna order
+- user.orders.show: fix shipping text and show discount
+- make discounts always round the prices.
+- fix footer background
+- make superadmin and customer roles uneditable to streamline UI and prevent errors.
 - dashboard stats & reports
 - Compound Products
 - rabatt popup ting

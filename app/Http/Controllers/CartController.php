@@ -51,19 +51,13 @@ class CartController extends Controller {
 
 		# set variants
 		foreach($product->variants as $variant) {
-			$name = $variant->name;
 			if (!Input::has('variant-' .$variant->id)) {
-				return response('Variant ' .$name .' is missing!');
+				return response('Variant ' .$variant->name .' is missing!');
 			}
 
-			$id = (int) Input::get('variant-' .$variant->id);
-			foreach($variant->data['values'] as $value) {
-				if ($value['id'] == $id) {
-					$options['variants'][$variant->id] = $value['name'];
-				}
-			}
+			$options['variants'][$variant->id] = Input::get('variant-' .$variant->id);
 		}
-
+		
 		# get stock
 		$stock = $product->getStock($options['variants']);
 

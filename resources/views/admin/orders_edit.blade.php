@@ -104,9 +104,9 @@
 						@foreach($items as $id => $item)
 							<?php
 								if ($item['type'] != 'shipping_fee') {
-									# get product ID and model
+                                    # get product ID and model
                                     $productID = $item['reference']['id'];
-                                    $product = Friluft\Product::find($productID);
+                                    $product = Friluft\Product::withTrashed()->find($productID);
 
                                     if ($product == null) {
                                         return "Invalid product data";
@@ -122,32 +122,15 @@
                                         $variants = $item['reference']['options']['variants'];
 
                                         # create the string describing the variants
-                                        /*
-                                         $variants = [
-                                                '9' => 'L',
-                                                '10' => 'L',
-                                            ]
-                                         */
-                                        $stockID = [];
                                         foreach($variants as $variantID => $value) {
                                             $variantModel = Friluft\Variant::find($variantID);
-                                            $variantString .= $variantModel->name .': ' .$value .', ';
-                                            foreach($variantModel->data['values'] as $v) {
-                                                if ($v['name'] == $value) {
-                                                    $stockID[] = $v['id'];
-                                                    break;
-                                                }
-                                            }
+                                            $variantString .= $variantModel->name .': ' .$variantModel->getValueName($value) .', ';
                                         }
 
-                                        $stockID = implode('_', $stockID);
+                                        $stock = $product->getStock($item['reference']['options']);
 
-                                        if ( ! isset($product->variants_stock[$stockID])) {
-                                            $stock = 'error, invalid stock id: ' .$stockID;
-                                        }else {
-                                            $stock = $product->variants_stock[$stockID];
-                                            $stock += $item['quantity'];
-                                        }
+                                        # (we want actual, physical stock so increment that)
+                                        $stock++;
                                     }
                                     $variantString = rtrim($variantString, ', ');
 
@@ -155,6 +138,7 @@
 
                                     # color the item by stock
                                     $class = 'color-success';
+
                                     if ($stock < $item['quantity']) $class = 'color-error';
 
                                     $title = '<span class="' .$class .'">' .$name .$variantString .' (' .$stock .'/' .$item['quantity'] .' in stock)</span>';

@@ -146,29 +146,19 @@ class Product extends Model {
 		return $this->getStock($options) > 0;
 	}
 
-	public function getStock($options = []) {
-		if (count($this->variants) == 0) return $this->stock;
-
-		$stockID = [];
-		foreach($options as $id => $value) {
-			# get variant
-			$variant = $this->variants()->where('name', '=', $id)->first();
-			if ( ! $variant) {
-				$variant = Variant::find($id);
-			}
-			if ($variant) {
-				# get id of this value
-				foreach($variant->data['values'] as $val) {
-					if ($value == $val['name'] || $value == $val['id']) {
-						$id = $val['id'];
-					}
-				}
-				$stockID[] = $id;
-			}
+	public function getStock($variants = []) {
+		# did we pass in an options array? if so, get the variants array from that.
+		if (isset($variants['variants'])) {
+			$variants = $variants['variants'];
 		}
-		$stockID = implode('_', $stockID);
-		if ( ! isset($this->variants_stock[$stockID])) return -1;
-		return $this->variants_stock[$stockID];
+
+		if ($this->variants->count() == 0) return $this->stock;
+
+		if ( ! isset($this->variants_stock[implode('_', $variants)])) {
+			return 'Invalid stock id: ' .implode('_', $variants);
+		}
+
+		return $this->variants_stock[implode('_', $variants)];
 	}
 
 	public function getEnabledAttribute() {
@@ -247,27 +237,19 @@ class Product extends Model {
 	}
 
 	public function sell($amount = 1, $variants = null) {
-		$this->sales += $amount;
+		$this->sales += (int) $amount;
 
 		if ($this->variants->count() == 0) {
 			$this->stock -= $amount;
 		}else if ($this->variants->count() > 0) {
-			$stockID = [];
-			foreach($variants as $id => $value) {
-				# get id of the value
-				$variant = Variant::find($id);
-				foreach($variant->data['values'] as $val) {
-					if ($val['name'] == $value) {
-						$stockID[] = $val['id'];
-					}
-				}
-			}
-
-			$stockID = implode('_', $stockID);
-
 			$stock = $this->variants_stock;
-			$stock[$stockID] -= $amount;
-			$this->variants_stock = $stock;
+			$stockID = implode('_', $variants);
+			if (isset($stock[$stockID])) {
+				$stock[$stockID] -= $amount;
+				$this->variants_stock = $stock;
+			}else {
+				\Log::error('Cannot decrement stock, invalid stockID! ' .$stockID);
+			}
 		}
 
 		$this->save();
@@ -302,6 +284,10 @@ class Product extends Model {
 		return $this->manufacturer->name .' ' .$this->name;
 	}
 
+	/**
+	 * Get discount as percentage. I.E 20% returns integer 20
+	 * @return int
+	 */
 	public function getDiscount() {
 		$discount = 0;
 

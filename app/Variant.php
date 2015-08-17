@@ -35,4 +35,12 @@ class Variant extends Model {
 		return $this->belongsToMany('Friluft\Product')->withPivot('data');
 	}
 
+	public function getValueName($id) {
+		foreach($this->data['values'] as $value) {
+			if ($value['id'] == $id) return $value['name'];
+		}
+
+		return 'Error.';
+	}
+
 }
