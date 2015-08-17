@@ -38,18 +38,15 @@
             @foreach($order->items as $item)
                 <tr>
                     <td>
-                        @if($item['type'] == 'shiping_fee')
+                        @if($item['type'] == 'shipping_fee')
                             @lang('store.shipping.' .$item['name'])
                         @else
                             <?php
                                 $productID = $item['reference']['id'];
-                                var_dump('id: ' .$productID);
                                 $model = Friluft\Product::withTrashed()->find($productID);
                             ?>
                             <strong class="name">{{$item['name']}}</strong>
-                            @if( ! $model)
-                                Produktet finnes ikke.
-                            @elseif(count($model->variants) > 0)
+                            @if($model->variants->count() > 0)
                                 <ul class="variants flat">
                                     @foreach($item['reference']['options']['variants'] as $id => $value)
                                         <?php $variant = Friluft\Variant::find($id); ?>
