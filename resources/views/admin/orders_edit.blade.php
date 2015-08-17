@@ -104,7 +104,7 @@
 						@foreach($items as $id => $item)
 							<?php
 								if ($item['type'] != 'shipping_fee') {
-									# get product ID and model
+                                    # get product ID and model
                                     $productID = $item['reference']['id'];
                                     $product = Friluft\Product::withTrashed()->find($productID);
 
@@ -121,14 +121,16 @@
                                         # get the variants we ordered
                                         $variants = $item['reference']['options']['variants'];
 
-                                        # add to variantString
+                                        # create the string describing the variants
                                         foreach($variants as $variantID => $value) {
                                             $variantModel = Friluft\Variant::find($variantID);
-                                            $variantString .= $variantModel->name .': ' .$variantModel->getValueName($value) .', ';
+                                            $variantString .= $variantModel->name .': ' .$value .', ';
+
                                         }
 
-                                        # get stock and add 1 to it (we want to display the actual physical stock here)
                                         $stock = $product->getStock($item['reference']['options']);
+
+                                        # (we want actual, physical stock so increment that)
                                         $stock++;
                                     }
                                     $variantString = rtrim($variantString, ', ');
@@ -137,6 +139,7 @@
 
                                     # color the item by stock
                                     $class = 'color-success';
+
                                     if ($stock < $item['quantity']) $class = 'color-error';
 
                                     $title = '<span class="' .$class .'">' .$name .$variantString .' (' .$stock .'/' .$item['quantity'] .' in stock)</span>';
