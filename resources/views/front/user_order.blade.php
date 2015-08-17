@@ -43,15 +43,14 @@
                         @else
                             <?php
                                 $productID = $item['reference']['id'];
-                                echo $productID;
                                 $model = Friluft\Product::withTrashed()->find($productID);
-                                dd($model);
                             ?>
                             <strong class="name">{{$item['name']}}</strong>
                             @if($model->variants->count() > 0)
                                 <ul class="variants flat">
-                                    @foreach($model->variants as $variant)
-                                        <li><strong>{{$variant->name}}: </strong> <span>{{$variant->getValueName($item['reference']['options']['variants'][$variant->id])}}</span></li>
+                                    @foreach($item['reference']['options']['variants'] as $id => $value)
+                                        <?php $variant = Friluft\Variant::find($id); ?>
+                                        <li><strong>{{$variant->name}}: </strong> <span class="value">{{$variant->getValueName($value)}}</span></li>
                                     @endforeach
                                 </ul>
                             @endif
