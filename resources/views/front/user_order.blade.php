@@ -20,7 +20,7 @@
         @endif
 
         <h4>Produkter</h4>
-        <table class="bordered boxed">
+        <table class="bordered striped boxed">
             <thead>
                 <tr>
                     <th>@lang('store.product')</th>
@@ -69,7 +69,7 @@
         <br>
 
         <h4>Oppdateringer</h4>
-        <table class="updates bordered boxed">
+        <table class="updates bordered boxed striped">
             <thead>
             <tr>
                 <th>Når</th>
