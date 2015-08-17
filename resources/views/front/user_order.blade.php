@@ -21,17 +21,19 @@
 
         <table class="bordered boxed">
             <thead>
-            <tr>
-                <th>@lang('store.product')</th>
-                <th>@lang('store.quantity')</th>
-                <th>@lang('store.price')</th>
-            </tr>
+                <tr>
+                    <th>@lang('store.product')</th>
+                    <th>@lang('store.quantity')</th>
+                    <th>@lang('store.price')</th>
+                </tr>
             </thead>
 
             <tfoot>
-            <tr>
-                <th colspan="3" style="text-align: right;"><h5>@lang('store.total'): {{$order->total_price_including_tax}},-</h5></th>
-            </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <th class="text-right"><h5>@lang('store.total'): {{$order->total_price_including_tax}},-</h5></th>
+                </tr>
             </tfoot>
 
             <tbody>
