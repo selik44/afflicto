@@ -39,7 +39,7 @@
                 <tr>
                     <td>
                         @if($item['type'] == 'shipping_fee')
-                            @lang('store.shipping.' .$item['name'])
+                            <h5 class="name">@lang('store.shipping.' .$item['name'])</h5>
                         @else
                             <?php
                                 $productID = $item['reference']['id'];
@@ -57,7 +57,7 @@
                         @endif
                     </td>
                     <td>
-                        <h5 class="name">{{$item['quantity']}}</h5>
+                        {{$item['quantity']}}
                     </td>
                     <td>{{$item['total_price_including_tax']}},-</td>
                 </tr>
