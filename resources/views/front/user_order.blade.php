@@ -60,7 +60,7 @@
 
                 <tr class="total">
                     <td></td>
-                    <td><h5 class="pull-right">@lang('store.total'):</h5></td>
+                    <td><h5 class="end pull-right">@lang('store.total'):</h5></td>
                     <th>{{$order->total_price_including_tax}},-</th>
                 </tr>
             </tbody>
