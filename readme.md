@@ -36,7 +36,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - fix the name parsing when generating a user from a klarna order
 - user.orders.show: fix shipping text and show discount
 - make discounts always round the prices.
-
+- fix footer background
 - make superadmin and customer roles uneditable to streamline UI and prevent errors.
 - dashboard stats & reports
 - Compound Products
