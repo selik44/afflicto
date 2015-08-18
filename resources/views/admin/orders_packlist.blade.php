@@ -44,11 +44,14 @@
         .packlist {
             float: none
         }
+        .packlist:not(:last-child) {
+            page-break-after: always;
+        }
     </style>
 
     <div class="container ninesixty" style="width: 720px;">
         @foreach($orders as $key => $order)
-        <div class="row clearfix packlist" style="margin: 0; padding: 0; page-break-after: always;">
+        <div class="row clearfix packlist" style="margin: 0; padding: 0;">
             <div class="row">
                 <div class="col-xs-6">
                     <img id="logo" src="{{asset('images/friluft.png')}}" alt="logo"/>
@@ -109,17 +112,7 @@
                         </thead>
 
                         <tbody>
-                        <?php
-                            $items = $order->items;
-
-                            for($i = 0; $i < 5; $i++) {
-                                foreach($items as $it) {
-                                    $items[] = $it;
-                                }
-                            }
-
-                        ?>
-                        @foreach($items as $id => $item)
+                        @foreach($order->items as $id => $item)
                             <?php
                                 if ($item['type'] == 'shipping_fee') {
                                     continue;
