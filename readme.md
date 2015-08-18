@@ -27,12 +27,17 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Implement login throttling
 - Cache routes and views. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
 
-# Todo
+# Bugs
 - admin.products.store: fix saving manufacturers and enabled fields.
-- move summary field
+
+# SEO
 - add meta description fields for categories & products
 - add meta description settings for homepage
 - add manufacturer to title on product view
+
+# Todo
+- implement default sorting settings for laratables (admin.orders.index shoudl sort by created_at, ASC.
+- move summary field and give it .wysiwyg class
 - make superadmin and customer roles uneditable.
 - dashboard stats & reports
 - Compound Products
