@@ -7,6 +7,7 @@ use Friluft\Order;
 use Friluft\OrderEvent;
 use Friluft\Utils\XML;
 use Illuminate\Http\Request;
+use Input;
 
 class ProteriaController extends Controller {
 
