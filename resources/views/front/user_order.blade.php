@@ -14,7 +14,7 @@
         <h4>Ordrenummer: #{{$order->id}}</h4>
         
         @if($order->status == 'delivered')
-            <p class="lead color-success">@lang('store.order status.delievered')
+            <p class="lead color-success">@lang('store.order status.delivered')
                 @if($order->shipment_number)
                     &nbsp; Sendingsnr: <a target="_blank" href="http://sporing.bring.no/sporing.html?q={{$order->shipment_number}}&lang=no">{{$order->shipment_number}}</a>
                 @endif
