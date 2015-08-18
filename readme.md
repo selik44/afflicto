@@ -28,13 +28,16 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 # Bugs
 - admin.products.store: fix saving manufacturers and enabled fields.
+- fix discount rate in the orders items array (2000 should be 20 etc) 
 
 # SEO
+- research SEO
 - add meta description fields for categories & products
 - add meta description settings for homepage
 - add manufacturer to title on product view
 
 # Todo
+- implement DB backups with: chickling\Backup\BackupServiceProvider
 - user.orders.show: fix shipping text and show discount
 - make discounts always round the prices.
 - fix footer background

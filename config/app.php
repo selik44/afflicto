@@ -162,7 +162,7 @@ return [
 		'Skovmand\Mailchimp\MailchimpServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Jenssegers\Agent\AgentServiceProvider',
-		'chickling\Backup\BackupServiceProvider',
+		//'chickling\Backup\BackupServiceProvider',
 	],
 
 	/*
