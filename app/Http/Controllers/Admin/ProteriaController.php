@@ -84,7 +84,7 @@ class ProteriaController extends Controller {
 	- PortoMedMva
 	 */
 	public function update() {
-		if (!Input::has('Ordrenr') || Input::has('Sendingsnr')) {
+		if (!Input::has('Ordrenr') || !Input::has('Sendingsnr')) {
 			return response('error', 400);
 		}
 		$order = Order::find(Input::get('Ordrenr'));
