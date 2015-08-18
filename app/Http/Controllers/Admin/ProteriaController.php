@@ -84,22 +84,25 @@ class ProteriaController extends Controller {
 	- PortoMedMva
 	 */
 	public function update() {
+		# validate
 		if (!Input::has('Ordrenr') || !Input::has('Sendingsnr')) {
 			return response('error', 400);
 		}
+
+		# fetch order
 		$order = Order::find(Input::get('Ordrenr'));
 
+		# not found?
 		if ( ! $order) return response('order not found', 404);
 
+		# update
 		$order->shipment_number = Input::get('Sendingsnr');
-
-		# save
+		$order->status = 'delivered';
 		$order->save();
 
-		# create an order event
+		# add order event
 		$event = new OrderEvent();
 		$event->comment = 'Pakken er sendt (sendingsnummer: ' .$order->shipment_number .').';
-
 		$order->orderevents()->save($event);
 
 		return response('OK', 200);
