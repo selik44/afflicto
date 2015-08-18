@@ -4,12 +4,13 @@ use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 
 use Friluft\Order;
+use Friluft\OrderEvent;
 use Friluft\Utils\XML;
 use Illuminate\Http\Request;
 
 class ProteriaController extends Controller {
 
-	public function getExport(Requests\ExportProteriaRequest $request) {
+	public function getExport() {
 		$orders = Order::whereStatus('ready_for_sending')->get();
 		$xml = new XML('FraktXml', XML::ISO_8859_1);
 
@@ -81,14 +82,26 @@ class ProteriaController extends Controller {
 	- PortoUtenMva
 	- PortoMedMva
 	 */
-	public function update(Requests\ExportProteriaRequest $request) {
+	public function update() {
 		if (!Input::has('Ordernr') || Input::has('Sendingsnr')) {
 			return response('error', 400);
 		}
 		$order = Order::find(Input::get('Ordrenr'));
 
-		# update order
+		if ( ! $order) return response('order not found', 404);
+
+		$order->shipment_number = Input::get('Sendingstype');
+
+		# save
 		$order->save();
+
+		# create an order event
+		$event = new OrderEvent();
+		$event->comment = 'Pakken er sendt (sendingsnummer: ' .$order->shipment_number .').';
+
+		$order->orderevents()->save($event);
+
+		return response('OK', 200);
 	}
 
 }

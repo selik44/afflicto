@@ -12,9 +12,13 @@
     <div class="paper row" style="padding: 1rem;">
         <h2>@lang('store.order') {{$order->created_at->format('d M Y')}}</h2>
         <h4>Ordrenummer: #{{$order->id}}</h4>
-
+        
         @if($order->status == 'delivered')
-            <p class="lead color-success">@lang('store.order status.delievered')</p>
+            <p class="lead color-success">@lang('store.order status.delievered')
+                @if($order->shipment_number)
+                    &nbsp; Sendingsnr: <a target="_blank" href="http://sporing.bring.no/sporing.html?q={{$order->shipment_number}}&lang=no">{{$order->shipment_number}}</a>
+                @endif
+            </p>
         @else
             <p class="lead color-error">@lang('store.order status.not delievered')</p>
         @endif
