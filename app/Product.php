@@ -236,7 +236,7 @@ class Product extends Model {
 		return $this->belongsToMany('Friluft\Tag');
 	}
 
-	public function sell($amount = 1, $variants = null) {
+	public function sell($amount = 1, $variants = []) {
 		$this->sales += (int) $amount;
 
 		if ($this->variants->count() == 0) {
