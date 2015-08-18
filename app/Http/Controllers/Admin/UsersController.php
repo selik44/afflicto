@@ -14,7 +14,7 @@ class UsersController extends Controller {
 
 	public function index()
 	{
-		$table = Laratable::make(User::query()->where('role_id', '!=', Role::where('machine', '=', 'admin')->first()->id), [
+		$table = Laratable::make(User::query()->where('role_id', '!=', Role::where('machine', '=', 'regular')->first()->id), [
 			'#' => 'id',
 			'Role' => ['role_id', function($model) {
 				return '<a href="' .action('Admin\RolesController@edit', ['role' => $model->role->id]) .'">' .$model->role->name .'</a>';
@@ -47,7 +47,7 @@ class UsersController extends Controller {
 	}
 
 	public function customers() {
-		$table = Laratable::make(User::where('role_id', '=', Role::whereMachine('regular')->first()->id), [
+		$table = Laratable::make(User::query()->where('role_id', '!=', Role::where('machine', '=', 'admin')->first()->id), [
 			'#' => 'id',
 			'Role' => ['role_id', function($model) {
 				return '<a href="' .action('Admin\RolesController@edit', ['role' => $model->role->id]) .'">' .$model->role->name .'</a>';
