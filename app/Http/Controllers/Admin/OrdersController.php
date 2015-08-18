@@ -135,7 +135,7 @@ class OrdersController extends Controller {
 		];
 		$table->addFilter('status', 'select')->setValues($status);
 
-		$table->paginate(true);
+		$table->paginate(true, 100);
 
 		return $this->view('admin.orders_index')
 			->with([
@@ -407,31 +407,16 @@ class OrdersController extends Controller {
 		return Redirect::back()->with('success', 'orders updated!');
 	}
 
-    /**
-     * Generates a multi-page PDF of multiple packlists.
-     * @param $orders
-     * @return Response
-     */
-	public function getMultiPacklist($orders) {
-
-		# get orders
-		$orders = explode(',', $orders);
-
-		# get packlists for orders in HTML
-		$html = [];
-		foreach($orders as $id) {
-			$html[] = $this->packlist(Order::find($id))->render();
+	public function getMultiPacklist($ordersList) {
+		$orders = [];
+		foreach(explode(',', $ordersList) as $id) {
+			$orders[] = Order::find($id);
 		}
 
-		# make PDF
-		$pdf = Snappy::make();
-
-		$filename = storage_path('app/pdf/' .'packlists_' .str_random(16) .'.pdf');
-
-		$pdf->generateFromHtml($html, $filename, [], true);
-
-		# return download response
-		return Response::download(new SplFileInfo($filename), "Packlists.pdf");
+		return view('admin.orders_packlist')
+			->with([
+				'orders' => $orders,
+			]);
 	}
 
 	/**
@@ -441,18 +426,9 @@ class OrdersController extends Controller {
 	 * @return $this
 	 */
 	public function packlist(Order $order) {
-		$items = [];
-
-		foreach($order->items as $item) {
-			if ($item['type'] == 'shipping_fee') continue;
-			$item['model'] = Product::find($item['reference']['id']);
-			$items[] = $item;
-		}
-
 		return view('admin.orders_packlist')
 			->with([
-				'order' => $order,
-				'items' => $items,
+				'orders' => [$order],
 			]);
 	}
 

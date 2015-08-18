@@ -23,21 +23,25 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - implement cloudflare
 - look at gtmetrix.com, use caching library? varnish?
 - improve translation organization
-- setup email errors
 - Implement login throttling
 - Cache routes and views. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
 
+# Bugs
+- admin.products.store: fix saving manufacturers and enabled fields.
 
+# SEO
+- add meta description fields for categories & products
+- add meta description settings for homepage
+- add manufacturer to title on product view
 
 # Todo
-- on branch "newvariants": display variant names instead of their ID's on orders.index, the packlist and the order_confirmation email.
-- on branch "newvariants": update the user.orders.show view to include variants 
-
-- fix the name parsing when generating a user from a klarna order
 - user.orders.show: fix shipping text and show discount
 - make discounts always round the prices.
 - fix footer background
 - make superadmin and customer roles uneditable to streamline UI and prevent errors.
+- fix the name parsing when generating a user from a klarna order
+- implement default sorting settings for laratables (admin.orders.index shoudl sort by created_at, ASC.
+- move summary field and make it use ckeditor
 - dashboard stats & reports
 - Compound Products
 - rabatt popup ting
@@ -55,8 +59,3 @@ Shipping
 99,- service pakke sporing
 under tusen gram: 39,- brevpost
 over 800kr: fri frakt.
-
-# design
-http://www.tights.no/
-gsport
-xxl
