@@ -47,27 +47,42 @@
         .packlist:not(:last-child) {
             page-break-after: always;
         }
+
+        hr {
+            background-color: #ddd
+        }
     </style>
 
-    <div class="container ninesixty" style="width: 720px;">
+    <div class="container ninesixty" style="width: 780px;">
         @foreach($orders as $key => $order)
         <div class="row clearfix packlist" style="margin: 0; padding: 0;">
             <div class="row">
-                <div class="col-xs-6">
+                <div class="col-xs-6 tight-left">
                     <img id="logo" src="{{asset('images/friluft.png')}}" alt="logo"/>
                 </div>
 
-                <div class="col-xs-6 text-right">
+                <div class="col-xs-6 tight-right text-right">
                     123Concept AS<br>
-                    Johan Stangs Plass 2<br>
-                    1767 Halden
+                    Postboks 27<br>
+                    1751 Halden
                 </div>
+            </div>
+
+            <hr class="small">
+
+            <div class="col-xs-12 tight">
+                <ul class="inline text-center end">
+                    <li><strong>Kundenr: </strong> {{$order->user->id}}</li>
+                    <li><strong>Ordrenr: </strong> {{$order->id}}</li>
+                    <li><strong>E-Post: </strong> {{$order->user->email}}</li>
+                    <li><strong>Telefon: </strong> {{$order->user->telefon}}</li>
+                </ul>
             </div>
 
             <hr/>
 
-            <div class="row">
-                <div class="col-xs-6">
+            <div class="row tight">
+                <div class="col-xs-6 tight-left">
                     <h5>Fakturaadresse</h5>
                     <address>
                         {{$order->billing_address['given_name']}} {{$order->billing_address['family_name']}}<br>
@@ -76,7 +91,7 @@
                     </address>
                 </div>
 
-                <div class="col-xs-6">
+                <div class="col-xs-6 tight-right">
                     <h5>Leveringsadresse</h5>
                     <address>
                         {{$order->shipping_address['given_name']}} {{$order->shipping_address['family_name']}}<br>
@@ -84,23 +99,32 @@
                         {{$order->shipping_address['city']}}, {{$order->shipping_address['country']}}.
                     </address>
                 </div>
+            </div>
 
-                <hr class="small"/>
+            <hr>
 
-                <div class="col-xs-12">
-                    Kundenummer: {{$order->user->id}}<br>
-                    Ordrenummer: {{$order->id}}<br>
-                    E-Post: {{$order->user->email}}<br>
-                    Telefon: {{$order->user->phone}}
+            <div class="row tight">
+                <div class="col-xs-4 tight-left">
+                    <p class="end">
+                        Dette er ikke en faktura. Fakturaen vil bli sendt separat per e-post til {{$order->billing_address['email']}} eller via vanlig post dersom du har valt det.
+                    </p>
+                </div>
+
+                <div class="col-xs-8 tight-right">
+                    <h6>Spørsmål?</h6>
+                    <ul class="end">
+                        <li>Angående leverling og/eller varer, kontakt oss på <strong>kundeservice@123friluft.no</strong></li>
+                        <li>Angående betaling, besøk <strong>klarna.no/support</strong></li>
+                        <li>For bytte/retur gå til <strong>www.123friluft.no/bytte-og-retur</strong>.</li>
+                    </ul>
                 </div>
             </div>
 
-            <hr/>
+            <hr>
 
-            <div class="row">
-                <div class="col-xs-12">
+            <div class="row tight">
+                <div class="col-xs-12 tight">
                     <table class="bordered">
-
                         <thead>
                             <tr>
                                 <th>Pakket</th>
