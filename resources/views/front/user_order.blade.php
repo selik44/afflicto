@@ -16,7 +16,7 @@
         @if($order->status == 'delivered')
             <p class="lead color-success">@lang('store.order status.delivered').
                 @if($order->shipment_number)
-                    &nbsp; Sendingsnr: <a target="_blank" href="http://sporing.bring.no/sporing.html?q={{$order->shipment_number}}&lang=no">{{$order->shipment_number}}</a>
+                    &nbsp; Sendingsnummer: <a target="_blank" href="http://sporing.bring.no/sporing.html?q={{$order->shipment_number}}&lang=no">{{$order->shipment_number}}</a>
                 @endif
             </p>
         @else
