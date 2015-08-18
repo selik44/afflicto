@@ -139,7 +139,7 @@ class OrdersController extends Controller {
 		];
 		$table->addFilter('status', 'select')->setValues($status);
 
-		$table->paginate(true);
+		$table->paginate(true, 100);
 
 		return $this->view('admin.orders_index')
 			->with([

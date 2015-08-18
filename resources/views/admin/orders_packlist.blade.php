@@ -62,6 +62,7 @@
 							<th>Produkt</th>
 							<th>Antall</th>
 							<th>Art. Nr</th>
+                            <th>Lagerplass</th>
 						</tr>
 					</thead>
 
@@ -73,8 +74,6 @@
 							$productID = $item['reference']['id'];
 							$product = Friluft\Product::find($productID);
 
-							# get stock and name
-							$stock = $product->stock;
 							$name = $product->name;
 							$manufacturer = ($product->manufacturer) ? $product->manufacturer->name : '';
 
@@ -88,16 +87,6 @@
                                 foreach($variants as $variantID => $value) {
                                     $variantModel = Friluft\Variant::find($variantID);
                                     $variantString .= $variantModel->name .': ' .$value .', ';
-                                    foreach($variantModel->data['values'] as $v) {
-                                        if ($v['name'] == $value) $stockID[$value] = $v['id'];
-                                    }
-                                }
-                                $stockID = implode('_', $stockID);
-                                if (isset($product->variants_stock[$stockID])) {
-                                    $stock = $product->variants_stock[$stockID];
-                                    $stock += $item['quantity'];
-                                }else {
-                                    $stock = 'error';
                                 }
                             }
                             $variantString = rtrim($variantString, ', ');
@@ -109,12 +98,13 @@
 							</td>
 							<td>
 								<strong>{{$manufacturer}}</strong>
-								<span>{{$name .' [' .$variantString .'] (' .$stock .' ' .trans('store.in stock') .')'}}</span>
+								<span>{{$name .' (' .$variantString .')'}}</span>
 							</td>
 							<td>
 								{{$item['quantity']}}
 							</td>
 							<td>{{$product->articlenumber}}</td>
+                            <td>{{$product->barcode}}</td>
 						</tr>
 					@endforeach
 					</tbody>
