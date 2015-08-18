@@ -411,12 +411,24 @@ class OrdersController extends Controller {
 		return Redirect::back()->with('success', 'orders updated!');
 	}
 
+	public function getMultiPacklist($ordersList) {
+		$orders = [];
+		foreach(explode(',', $ordersList) as $id) {
+			$orders[] = Order::find($id);
+		}
+
+		return view('admin.orders_packlist')
+			->with([
+				'orders' => $orders,
+			]);
+	}
+
     /**
      * Generates a multi-page PDF of multiple packlists.
      * @param $orders
      * @return Response
      */
-	public function getMultiPacklist($orders) {
+	public function getMultiPacklist_old($orders) {
 
 		# get orders
 		$orders = explode(',', $orders);
@@ -437,7 +449,7 @@ class OrdersController extends Controller {
 		$pdf->generateFromHtml($html, $filename, [], true);
 
 		# return download response
-		return Response::download(new SplFileInfo($filename), "Packlists.pdf");
+		return Response::download($filename, "Packlists.pdf");
 	}
 
 	/**
@@ -447,18 +459,9 @@ class OrdersController extends Controller {
 	 * @return $this
 	 */
 	public function packlist(Order $order) {
-		$items = [];
-
-		foreach($order->items as $item) {
-			if ($item['type'] == 'shipping_fee') continue;
-			$item['model'] = Product::find($item['reference']['id']);
-			$items[] = $item;
-		}
-
 		return view('admin.orders_packlist')
 			->with([
-				'order' => $order,
-				'items' => $items,
+				'orders' => [$order],
 			]);
 	}
 
