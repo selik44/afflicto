@@ -30,6 +30,10 @@ class ActivateOrder extends Command implements SelfHandling {
 	{
         try {
             $result = $this->klarna->activate($this->order->reservation, null, KlarnaFlags::RSRV_SEND_BY_EMAIL);
+
+			$this->order->activated = true;
+			$this->order->save();
+
             $orderEvent = new OrderEvent();
             $orderEvent->comment = "Activated";
 
