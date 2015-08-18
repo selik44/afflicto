@@ -1,8 +1,6 @@
 @extends('master')
 
 @section('scripts')
-    @parent
-
 	<script>
 		window.print();
 	</script>
