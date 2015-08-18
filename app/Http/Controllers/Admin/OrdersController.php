@@ -432,6 +432,8 @@ class OrdersController extends Controller {
 
 		$filename = storage_path('app/pdf/' .'packlists_' .str_random(16) .'.pdf');
 
+		if (file_exists($filename)) unlink($filename);
+
 		$pdf->generateFromHtml($html, $filename, [], true);
 
 		# return download response
