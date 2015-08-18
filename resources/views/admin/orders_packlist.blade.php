@@ -4,29 +4,7 @@
     @parent
 
 	<script>
-        //force each packlist to have a height of width * 1.414 for A4 pages.
-
-        $(".packlist").each(function() {
-            var width = $(this).width();
-            var height = $(this).height();
-
-            console.log('height is: ' + height);
-            var a4 = width * 1.414;
-
-            console.log('a4 height is: ' + a4);
-
-            if (height > a4) {
-                height = Math.ceil(height / a4) * a4;
-            }else {
-                height = a4;
-            }
-
-            console.log('result: ' + height);
-
-            //$(this).css('height', height);
-        });
-
-		//window.print();
+		window.print();
 	</script>
 @stop
 
