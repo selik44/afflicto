@@ -50,7 +50,10 @@ class WelcomeUsers extends Command
 			# save the user
 			#$user->save();
 
-			\Mail::send('emails.store.transition', ['password' => $password], function($send) {
+			# get email address
+			$email = $user->email;
+
+			\Mail::send('emails.store.transition', ['password' => $password], function($send) use($email) {
 				$send->to('me@afflicto.net')->subject('Velkommen til en helt ny 123friluft.no!');
 			});
 			return true;
