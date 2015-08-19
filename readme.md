@@ -31,6 +31,8 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - fix discount rate in the orders items array (2000 should be 20 etc) 
 
 # SEO
+- fix mass activatino of orders.
+- contact proteria regarding export to URL
 - research SEO
 - add meta description fields for categories & products
 - add meta description settings for homepage
