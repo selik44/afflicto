@@ -55,7 +55,6 @@ class WelcomeUsers extends Command
 			\Mail::send('emails.store.transition', ['password' => $password], function($send) use($email) {
 				$send->to($email)->subject('Velkommen til en helt ny 123friluft.no!');
 			});
-			return true;
 		}
     }
 }
