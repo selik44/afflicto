@@ -34,7 +34,7 @@
 	<body>
 		<div class="container">
 			<div class="content">
-				<div class="title">Straks tilbake...</div>
+				<div class="title">Vi er straks tilbake...</div>
 			</div>
 		</div>
 	</body>
