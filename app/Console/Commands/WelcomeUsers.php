@@ -35,7 +35,6 @@ class WelcomeUsers extends Command
      */
     public function handle()
     {
-
 		$store = Store::whereMachine($this->argument('store'))->first();
 		Store::setCurrentStore($store);
 		
@@ -48,13 +47,13 @@ class WelcomeUsers extends Command
 			$user->password = Hash::make($password);
 
 			# save the user
-			#$user->save();
+			$user->save();
 
 			# get email address
 			$email = $user->email;
 
 			\Mail::send('emails.store.transition', ['password' => $password], function($send) use($email) {
-				$send->to('me@afflicto.net')->subject('Velkommen til en helt ny 123friluft.no!');
+				$send->to($email)->subject('Velkommen til en helt ny 123friluft.no!');
 			});
 			return true;
 		}
