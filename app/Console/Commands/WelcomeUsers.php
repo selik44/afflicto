@@ -2,6 +2,7 @@
 
 namespace Friluft\Console\Commands;
 
+use Exception;
 use Friluft\Store;
 use Friluft\User;
 use Hash;
@@ -52,9 +53,13 @@ class WelcomeUsers extends Command
 			# get email address
 			$email = $user->email;
 
-			\Mail::send('emails.store.transition', ['password' => $password], function($send) use($email) {
-				$send->to($email)->subject('Velkommen til en helt ny 123friluft.no!');
-			});
+			try {
+				\Mail::send('emails.store.transition', ['password' => $password], function ($send) use ($email) {
+					$send->to($email)->subject('Velkommen til en helt ny 123friluft.no!');
+				});
+			} catch (Exception $e) {
+				$this->comment('Error: ' .$e->getMessage());
+			}
 		}
     }
 }
