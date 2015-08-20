@@ -1,5 +1,13 @@
 @extends('master')
 
+@section('meta_description')
+    <meta name="description" content="{{\Friluft\Setting::whereMachine('meta_description')->first()->value}}">
+@stop
+
+@section('meta_keywords')
+    <meta name="keywords" content="{{\Friluft\Setting::whereMachine('meta_keywords')->first()->value}}">
+@stop
+
 @section('body')
     <?php
         $background = '';

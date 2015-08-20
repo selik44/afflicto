@@ -32,19 +32,19 @@
 	        <div class="product-tabs-row module" style="overflow: visible;">
 		        <header class="module-header clearfix">
 			        <h6 class="title pull-left">Tabs</h6>
-			        <a class="button pull-right large add-tab"><i class="fa fa-plus"></i> Add</a>
+			        <a class="button pull-right large add-tab"><i class="fa fa-plus"></i> @lang('admin.add')</a>
 		        </header>
 	            <ul class="nav tabs">
-	                <li class="current"><a href="#product-description">Description</a></li>
-	                <li><a href="#product-relations">Related Products</a></li>
+	                <li class="current"><a href="#product-description">Teknisk Informasjon</a></li>
+	                <li><a href="#product-relations">@lang('admin.related products')</a></li>
                     @foreach($product->producttabs as $tab)
                         <li><a href="#tab-{{$tab->id}}">{{$tab->title}}</a></li>
                     @endforeach
 	            </ul>
 
-	            <div id="product-description">
-	                {!! $form->description->label("") !!}
-	            </div>
+                <div id="product-description">
+                    {!! $form->description->label("")->class('wysiwyg') !!}
+                </div>
 
 	            <div id="product-relations" class="tab clearfix">
 		            <ul class="flat relations">
@@ -89,6 +89,12 @@
 	        </div>
 
             <hr/>
+
+            <div class="product-summary">
+                {!! $form->summary->class('wysiwyg') !!}
+            </div>
+
+            <hr>
 
             <div class="product-variants row">
                 <div class="module">
@@ -284,21 +290,19 @@
                 {!! $form->variants !!}
             </div>
 
-            <hr/>
+            <hr>
 
-	        <div class="row">
-                {!! $form->summary !!}
-	        </div>
+            <div class="row">
+                <h6>SEO</h6>
+
+                {!! $form->meta_description !!}
+                {!! $form->meta_keywords !!}
+            </div>
         </div>
     </div>
 
+    <input type="submit" name="save" value="Save" class="large success end">
 
-    <div class="footer-height-fix"></div>
-    <footer id="footer">
-        <div class="inner">
-            <input type="submit" name="save" value="Save" class="large success end">
-        </div>
-    </footer>
     {!!Former::close()!!}
 
     <div id="add-tab-modal" class="modal center fade">
@@ -324,7 +328,9 @@
 
 @section('scripts')
     @parent
+
     <script src="//cdn.ckeditor.com/4.4.7/standard/ckeditor.js"></script>
+
     <script type="text/javascript">
         var productID = "{{$product->id}}";
         var form = $("form");
@@ -631,7 +637,7 @@
         //autoslug the name
         form.find('[name="slug"]').autoSlug({other: '[name="name"]'});
 
-        //init ckeditor
+        //-------------- init ckeditor ------------------///
         CKEDITOR.stylesSet.add('friluft', [
             //blocks
             {name: 'Heading 3', element: 'h3'},
@@ -646,10 +652,19 @@
             {name: 'Blockquote', element: 'blockquote'},
         ]);
 
-        CKEDITOR.replace("description", {
-            language: '{{\App::getLocale()}}',
-            contentsCss: '{{asset('css/friluft.css')}}',
-            stylesSet: 'friluft',
+        $('.wysiwyg').each(function() {
+            CKEDITOR.inline(this, {
+                language: '{{\App::getLocale()}}',
+                contentsCss: '{{asset('css/friluft.css')}}',
+                stylesSet: 'friluft',
+            });
+        });
+
+        form.on('submit', function(e) {
+            $(".wysiwyg").each(function() {
+                var html = $(this).parent().find('div[contenteditable="true"]').html();
+                $(this).html(html);
+            });
         });
     </script>
 @stop

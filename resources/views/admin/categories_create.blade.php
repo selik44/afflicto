@@ -36,14 +36,19 @@
 			</select>
 		</label>
 
-@stop
+        {!! Former::textarea('meta_description')->rows(4); !!}
 
-@section('footer')
+        {!! Former::textarea('meta_keywords')->rows(4); !!}
+
         <div class="button-group">
             <input type="submit" class="primary" name="create" value="Create">
             <input type="submit" class="secondary" name="continue" value="Create & Continue">
         </div>
+
     </form>
+@stop
+
+@section('footer')
 @stop
 
 @section('scripts')

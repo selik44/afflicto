@@ -6,6 +6,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+    @section('meta_description')
+    @show
+
+    @section('meta_keywords')
+    @show
+
     <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
 	<title>
@@ -18,7 +24,7 @@
 		<link href="{{ asset('/css/lib.css')}}" rel="stylesheet">
 		<link href="{{ asset('/css/' .Friluft\Store::current()->machine .'.css') }}" rel="stylesheet">
 	@show
-	
+
 </head>
 <?php
     $route = Request::route();

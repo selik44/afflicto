@@ -81,6 +81,8 @@ class Product extends Model {
 		'enabled',
 		'vatgroup_id',
 		'manufacturer_id',
+		'meta_description',
+		'meta_keywords',
 	];
 
 	protected $casts = [

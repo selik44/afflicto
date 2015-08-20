@@ -204,10 +204,14 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	put('pages/{page}', ['as' => 'admin.pages.update', 'uses' => 'Admin\PagesController@update', 'middleware' => 'perms:pages.edit']);
 	delete('pages/{page}', ['as' => 'admin.pages.destroy', 'uses' => 'Admin\PagesController@destroy', 'middleware' => 'perms:pages.delete']);
 
+	# settings
+	get('settings', ['as' => 'admin.settings.index', 'uses' => 'Admin\SettingsController@index', 'middleware' => 'perms:settings.edit']);
+	put('settings', ['as' => 'admin.settings.update', 'uses' => 'Admin\SettingsController@update', 'middleware' => 'perms:settings.edit']);
+
 	# design
 	get('design', ['as' => 'admin.slides', 'uses' => 'Admin\SlidesController@index', 'middleware' => 'perms:design.edit']);
-	get('design/general', ['as' => 'admin.design', 'uses' => 'Admin\SettingsController@getDesign', 'middleware' => 'perms:design.edit']);
-	put('design/general', ['as' => 'admin.design.save', 'uses' => 'Admin\SettingsController@putDesign', 'middleware' => 'perms:design.edit']);
+	get('design/general', ['as' => 'admin.design', 'uses' => 'Admin\DesignController@getDesign', 'middleware' => 'perms:design.edit']);
+	put('design/general', ['as' => 'admin.design.save', 'uses' => 'Admin\DesignController@putDesign', 'middleware' => 'perms:design.edit']);
 
 	# slides
 	put('design/slides/order', ['as' => 'admin.slides.order', 'uses' => 'Admin\SlidesController@order', 'middleware' => 'perms:design.edit']);

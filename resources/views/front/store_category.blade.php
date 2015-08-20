@@ -4,7 +4,17 @@
 	{{{$category->name}}} - @parent
 @stop
 
+@if($category->meta_description)
+@section('meta_description')
+    <meta name="description" content="{{$category->meta_description}}">
+@stop
+@endif
 
+@if($category->meta_keywords)
+@section('meta_keywords')
+    <meta name="keywords" content="{{$category->meta_keywords}}">
+@stop
+@endif
 
 @section('breadcrumbs', Breadcrumbs::render('category', $category))
 

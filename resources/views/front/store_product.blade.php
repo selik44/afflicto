@@ -1,8 +1,23 @@
 @extends('front.layout')
 
 @section('title')
-	{{{$product->name}}} - {{{$product->categories->first()->name}}} - @parent
+    @if($product->manufacturer)
+        {{$product->manufacturer->name}} -
+    @endif
+	{{$product->name}} - {{$product->categories->first()->name}} - @parent
 @stop
+
+@if($product->meta_description)
+@section('meta_description')
+    <meta name="description" content="{{$product->meta_description}}">
+@stop
+@endif
+
+@if($product->meta_keywords)
+@section('meta_keywords')
+    <meta name="keywords" content="{{$product->meta_keywords}}">
+@stop
+@endif
 
 @section('breadcrumbs', Breadcrumbs::render('product', $product, $category))
 

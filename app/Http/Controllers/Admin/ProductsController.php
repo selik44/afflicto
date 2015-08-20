@@ -115,7 +115,7 @@ class ProductsController extends Controller {
 
 	public function store()
 	{
-		$p = new Product(Input::only('name', 'slug', 'inprice', 'price', 'weight', 'summary', 'articlenumber', 'barcode', 'enabled', 'stock'));
+		$p = new Product(Input::only('name', 'slug', 'inprice', 'price', 'weight', 'summary', 'articlenumber', 'barcode', 'enabled', 'stock', 'meta_description', 'meta_keywords'));
 
 		$p->categories = Input::get('categories', []);
 
@@ -182,12 +182,15 @@ class ProductsController extends Controller {
 		$p->summary = Input::get('summary');
 		$p->description = Input::get('description');
 		$p->stock = Input::get('stock', 0);
-		$p->enabled = (Input::has('enabled')) ? true : false;
+		$p->enabled = Input::has('enabled');
 		$p->weight = Input::get('weight', 0);
 		$p->inprice = Input::get('inprice', 0);
 		$p->manufacturer_id = Input::get('manufacturer_id');
 		$p->vatgroup_id = Input::get('vatgroup');
 		$p->categories = Input::get('categories', []);
+		$p->meta_description = Input::get('meta_description', null);
+		$p->meta_keywords = Input::get('meta_keywords');
+
 		if ($p->vatgroup->amount > 0) {
 			$p->price = Input::get('price', 0) / $p->vatgroup->amount;
 		}else {

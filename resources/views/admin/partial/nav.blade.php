@@ -55,6 +55,8 @@
             'fa-film:admin.slides' => 'admin.slides.index',
             'fa-image:admin.banners' => 'admin.banners.index',
         ]],
+
+        'fa-gear:admin.settings' => 'admin.settings.index',
 	]);
 
 	echo $nav->render();

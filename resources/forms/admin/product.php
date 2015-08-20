@@ -21,6 +21,8 @@ $form->open = Former::open(route('admin.products.store'))
 		'enabled' => 'boolean',
 		'barcode' => 'max:13|unique:products',
 		'articlenumber' => 'required|max:255|unique:products',
+		'meta_description' => 'max:160',
+		'meta_keywords' => 'max:250',
 	]);
 
 $form->name = Former::text('name')->class('product-name');
@@ -47,5 +49,8 @@ $form->stock = Former::text('stock');
 $form->enabled = Former::checkbox('enabled')->attr('value', 'on');
 
 $form->description = Former::textarea('description')->rows(8);
+
+$form->meta_description = Former::textarea('meta_description')->rows(4);
+$form->meta_keywords = Former::textarea('meta_keywords')->rows(4);
 
 return $form;

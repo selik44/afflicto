@@ -5919,7 +5919,8 @@ html, body, #admin {
 
 *[contenteditable="true"] {
   border: 1px solid #c4c4c4;
-  padding: 1rem; }
+  padding: 1rem;
+  background: white; }
 
 table th {
   font-weight: 700; }

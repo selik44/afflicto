@@ -29,12 +29,13 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 
 # Todo
-- admin.products.store: fix saving manufacturers and enabled fields.
 - fix discount rate in the orders items array (2000 should be 20 etc)
+
 - teknisk informasjon: friluft.tk/trening/dame/flex-compression
 
 - add meta description fields for categories & products
 - add meta description settings for homepage
+
 - move summary field and make it use ckeditor
 - add manufacturer to title on product view
 - research SEO
@@ -47,14 +48,13 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - add a nice pattern background image
 - fix footer background
 
-
-
 - dashboard stats & reports
 - Compound Products
 - rabatt popup ting
 - product receivals
 
-Order statuses
+
+#Order statuses
 - ubehandlet
 - klar til sending
 - skrevet ut
@@ -62,7 +62,7 @@ Order statuses
 - kansellert
 - restordre | ikke på lager
 
-Shipping
+#Shipping
 99,- service pakke sporing
 under tusen gram: 39,- brevpost
 over 800kr: fri frakt.

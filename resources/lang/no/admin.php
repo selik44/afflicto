@@ -63,6 +63,8 @@ return [
 	'export to proteria' => 'Exporter til Proteria',
 	'new receival' => 'Nytt Varemottak',
 	'discount' => 'Avslag',
+	'settings' => 'Instillinger',
+	'barcode' => 'Lagerplass',
 
 	'billing address' => 'Faktura Addresse',
 	'shipping address' => 'Sendings Addresse',

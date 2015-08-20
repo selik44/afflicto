@@ -1,5 +1,6 @@
 <?php namespace Friluft\Http\Controllers\Admin;
 
+use Former;
 use Friluft\Image;
 use Illuminate\Http\Request;
 use Friluft\Http\Requests;
@@ -79,6 +80,9 @@ class CategoriesController extends Controller {
 	public function store()
 	{
 		$category = new Category(Input::only('name', 'slug'));
+		$category->meta_description = Input::get('meta_description', null);
+		$category->meta_keywords = Input::get('meta_keywords', null);
+
 		if (Input::has('parent_id')) {
 			$parent_id = Input::get('parent_id');
 			if (is_numeric($parent_id)) {
@@ -105,6 +109,8 @@ class CategoriesController extends Controller {
 	 */
 	public function edit(Category $category)
 	{
+		Former::populate($category);
+
 		return view('admin.categories_edit')
 			->with([
 				'category' => $category,
@@ -123,6 +129,8 @@ class CategoriesController extends Controller {
 		$category->name = Input::get('name');
 		$category->slug = Input::get('slug');
 		$category->discount = Input::get('discount', 0);
+		$category->meta_description = Input::get('meta_description', null);
+		$category->meta_keywords = Input::get('meta_keywords', null);
 
 		$parent_id = Input::get('parent_id', 'null');
 		if (is_numeric($parent_id)) $category->parent_id = $parent_id;

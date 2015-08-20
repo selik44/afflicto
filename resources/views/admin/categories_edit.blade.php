@@ -48,6 +48,12 @@
             <img src="{{asset('images/' .$category->banner->name)}}" alt="Category Banner">
         @endif
         <input type="file" name="banner">
+
+        <hr>
+
+        <h4>SEO</h4>
+        {!! Former::textarea('meta_description')->rows(4); !!}
+        {!! Former::textarea('meta_keywords')->rows(4); !!}
 @stop
 
 @section('footer')
