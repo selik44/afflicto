@@ -119,19 +119,17 @@ class ProductsController extends Controller {
 
 		$p->categories = Input::get('categories', []);
 
-		if (Input::get('enabled', 'off') == 'on') {
-			$p->enabled = true;
-		}else {
-			$p->enabled = false;
-		}
+		$p->enabled = Input::has('enabled');
 
 		# set vatgroup
 		$vatgroup = Vatgroup::find(Input::get('vatgroup'));
 		$p->vatgroup()->associate($vatgroup);
 
 		# set manufacturer
-		$manufacturer = Manufacturer::find(Input::get('manufacturer'));
-		$p->manufacturer()->associate($manufacturer);
+		$manufacturer = Manufacturer::find(Input::get('manufacturer_id'));
+		if ($manufacturer) {
+			$p->manufacturer()->associate($manufacturer);
+		}
 
 		# save it
 		$p->save();
