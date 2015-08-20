@@ -64,7 +64,7 @@ class Navigation {
 			return;
 		}
 
-		$route = \Route::getRoutes()->getByName($path);;
+		$route = \Route::getRoutes()->getByName($path);
 		if ($route) $route = $route->getName();
 
 		$active = '';
