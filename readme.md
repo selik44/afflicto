@@ -39,8 +39,8 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - add manufacturer to title on product view
 
 # Todo
-- implement DB backups with: chickling\Backup\BackupServiceProvider
 - user.orders.show: fix shipping text and show discount
+- implement DB backups with: chickling\Backup\BackupServiceProvider
 - make discounts always round the prices.
 - fix footer background
 - make superadmin and customer roles uneditable to streamline UI and prevent errors.

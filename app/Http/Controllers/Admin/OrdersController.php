@@ -302,7 +302,7 @@ class OrdersController extends Controller {
 		$order->save();
 
 		# activate?
-		if ($order->status == 'ready_for_sending' && ! $order->activated && $order->reservation != null) {
+		if ($order->status == 'ready_for_sending' && ! $order->activated) {
             $activate = new ActivateOrder($this->klarna, $order);
             try {
                 $this->dispatch($activate);
@@ -399,8 +399,16 @@ class OrdersController extends Controller {
 		foreach($orders as $id) {
 			$order = Order::find($id);
 			if ($order) {
-				$order->status = $status;
-				$order->save();
+
+				# activate?
+				if ($status == 'ready_for_sending' && $order->activated == false) {
+					$activate = new ActivateOrder($this->klarna, $order);
+					$this->dispatch($activate);
+				}else {
+					# just update the status
+					$order->status = $status;
+					$order->save();
+				}
 			}
 		}
 
