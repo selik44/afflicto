@@ -111,7 +111,7 @@ class OrdersController extends Controller {
 		$table->selectable(true);
 		$table->sortable(true, [
 			'status','updated_at','user','activated','created_at',
-		], 'created_at', 'desc');
+		], 'created_at');
 
 		$table->filterable(true);
 
