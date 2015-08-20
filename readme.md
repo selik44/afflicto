@@ -28,7 +28,8 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 # Bugs
 - admin.products.store: fix saving manufacturers and enabled fields.
-- fix discount rate in the orders items array (2000 should be 20 etc) 
+- fix discount rate in the orders items array (2000 should be 20 etc)
+- teknisk informasjon: friluft.tk/trening/dame/flex-compression
 
 # SEO
 - fix mass activatino of orders.
