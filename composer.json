@@ -7,7 +7,7 @@
 	"require": {
 		"laravel/framework": "5.1.*",
 		"Curl/Curl": "~1.2",
-		"gentlefox/laratables": "~1.2",
+		"gentlefox/laratables": "~1.0",
 		"barryvdh/laravel-ide-helper": "~2.0",
 		"davejamesmiller/laravel-breadcrumbs": "~3.0",
 		"doctrine/dbal": "~2.5",
