@@ -134,7 +134,7 @@
                                     $stockID = [];
                                     foreach($variants as $variantID => $value) {
                                         $variantModel = Friluft\Variant::find($variantID);
-                                        $variantString .= $variantModel->name .': ' .$value .', ';
+                                        $variantString .= $variantModel->name .': ' .$variantModel->getValueName($value) .', ';
                                     }
                                 }
                                 $variantString = rtrim($variantString, ', ');
