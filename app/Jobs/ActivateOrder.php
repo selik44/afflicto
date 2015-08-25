@@ -45,7 +45,7 @@ class ActivateOrder extends Command implements SelfHandling {
                 'invoice' => $result[1],
             ];
 		} catch (\Exception $e) {
-            throw new \Exception("Cannot activate order: " .$e->getMessage());
+            throw new \Exception("Cannot activate order " .$this->order->id . ": " .$e->getMessage());
         }
 	}
 
