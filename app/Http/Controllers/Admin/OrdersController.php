@@ -401,7 +401,7 @@ class OrdersController extends Controller {
 			if ($order) {
 
 				# activate?
-				if ($status == 'ready_for_sending' && $order->activated == false) {
+				if ($status == 'ready_for_sending' && strlen($order->klarna_id) > 0) {
 					$activate = new ActivateOrder($this->klarna, $order);
 					$this->dispatch($activate);
 				}else {
