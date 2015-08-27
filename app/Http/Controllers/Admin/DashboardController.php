@@ -47,7 +47,7 @@ class DashboardController extends Controller {
 			# calculate the total profit for this day
 			$profit = 0;
 			foreach(Order::where('created_at', '>=', $min->timestamp)->where('created_at', '<=', $max->timestamp)->get() as $order) {
-				dd($order)
+				dd($order);
 				# get profit
 				foreach($order->items as $item) {
 					$product = Product::find($item['reference']['id']);
