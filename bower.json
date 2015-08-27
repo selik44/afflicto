@@ -13,20 +13,22 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.4",
-    "fontawesome": "~4.3.0"
+    "chartist": "~0.9.4",
+    "fontawesome": "~4.3.0",
+    "jquery": "~2.1.4"
   },
   "devDependencies": {
+    "chartist": "~0.9.4",
     "chosen": "~1.4.2",
-    "isotope": "~2.2.0",
-    "imagesloaded": "~3.1.8",
-    "nouislider": "~7.0.10",
-    "underscore": "~1.8.3",
-    "jquery-touchswipe": "~1.6.8",
-    "html.sortable": "~0.2.4",
     "dropzone": "~4.0.1",
     "fontIconPicker": "~2.0.0",
+    "html.sortable": "~0.2.4",
+    "imagesloaded": "~3.1.8",
+    "isotope": "~2.2.0",
+    "isotope-cells-by-row": "~1.1.2",
     "isotope-fit-columns": "~1.1.2",
-    "isotope-cells-by-row": "~1.1.2"
+    "jquery-touchswipe": "~1.6.8",
+    "nouislider": "~7.0.10",
+    "underscore": "~1.8.3"
   }
 }
