@@ -67,8 +67,8 @@ class DashboardController extends Controller {
 			'values' => json_encode($values),
 			'labels' => json_encode($labels),
 			'profit' => $profit,
-			'from' => $from->format('YYYY-MM-dd'),
-			'to' => $to->format('YYYY-MM-dd'),
+			'from' => $from->format('Y-M-d'),
+			'to' => $to->format('Y-M-d'),
 		]);
 	}
 
