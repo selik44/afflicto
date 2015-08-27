@@ -34,6 +34,7 @@ class DashboardController extends Controller {
 
 		$labels = [];
 		$values = [];
+		$totalProfit = 0;
 
 		# loop through the days of the interval
 		$current = $from->copy();
@@ -59,12 +60,13 @@ class DashboardController extends Controller {
 			}
 
 			$values[] = $profit;
+			$totalProfit += $profit;
 		}
 
-		if (Input::has('from')) dd(['values' => $values, 'labels' => $labels]);
-
 		return $this->view('admin.dashboard')->with([
-
+			'values' => $values,
+			'labels' => $labels,
+			'profit' => $profit,
 		]);
 	}
 
