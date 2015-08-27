@@ -29,7 +29,7 @@ class DashboardController extends Controller {
 			list($year, $month, $day) = explode('-', Input::get('to'));
 			$to = Carbon::createFromDate($year, $month, $day);
 		}else {
-			$to = Carbon::now()->subMonth(1)->setTime(0,0,0);
+			$to = Carbon::now();
 		}
 
 		$labels = [];
