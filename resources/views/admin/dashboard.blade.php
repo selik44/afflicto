@@ -58,11 +58,11 @@
 				<h6 class="pull-left">@lang('admin.profit')</h6>
 				<form action="{{route('admin.dashboard')}}" method="GET" class="inline pull-right">
 					<label for="from">Fra
-						<input type="date" name="from">
+						<input type="date" name="from" value="{{$from}}">
 					</label>
 
 					<label for="to">Til
-						<input type="date" name="to">
+						<input type="date" name="to" value="{{$to}}">
 					</label>
 
 					<input type="submit" class="success" value="Oppdater">

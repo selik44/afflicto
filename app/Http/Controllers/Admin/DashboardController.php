@@ -67,6 +67,8 @@ class DashboardController extends Controller {
 			'values' => json_encode($values),
 			'labels' => json_encode($labels),
 			'profit' => $profit,
+			'from' => $from->format(Carbon::ISO8601),
+			'to' => $to->format(Carbon::ISO8601),
 		]);
 	}
 
