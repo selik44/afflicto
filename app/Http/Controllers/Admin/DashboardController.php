@@ -46,8 +46,8 @@ class DashboardController extends Controller {
 
 			# calculate the total profit for this day
 			$profit = 0;
-			dd(Order::where('created_at', '>=', $min->timestamp)->where('created_at', '<=', $max->timestamp)->toSql());
-			foreach(Order::where('created_at', '>=', $min->timestamp)->where('created_at', '<=', $max->timestamp)->get() as $order) {
+			#dd(Order::where('created_at', '>=', $min->timestamp)->where('created_at', '<=', $max->format(Carbon::ISO8601))->toSql());
+			foreach(Order::where('created_at', '>=', $min->format(Carbon::ISO8601))->where('created_at', '<=', $max->format(Carbon::ISO8601))->get() as $order) {
 				dd($order);
 				# get profit
 				foreach($order->items as $item) {
