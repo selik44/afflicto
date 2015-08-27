@@ -66,7 +66,7 @@ class DashboardController extends Controller {
 		return $this->view('admin.dashboard')->with([
 			'values' => json_encode($values),
 			'labels' => json_encode($labels),
-			'profit' => $profit,
+			'profit' => $totalProfit,
 			'from' => $from->format('Y-m-d'),
 			'to' => $to->format('Y-m-d'),
 		]);
