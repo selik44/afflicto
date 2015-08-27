@@ -20,7 +20,7 @@
 			'scale-x': {
 				'label': {
 					'text': 'Date',
-					'values': JSON.parse("{{json_encode($labels)}}"),
+					'values': JSON.parse("{!! addcslashes($labels, '"') !!}"),
 				},
 			},
 			'scale-y': {
@@ -39,7 +39,7 @@
 			series: [
 				{
 					//values: [249, 2601, 635, 0, 15234/*, 520, 724, 6346, 9592, 246, 592, 4343, 49, 249, 2601, 635, 0, 15234, 520, 724, 6346, 9592, 246, 592, 4343, 49, 531, 0, 0, 0, 631*/]
-					values: JSON.parse("{{json_encode($values)}}"),
+					values: JSON.parse("{!! addcslashes($values, '"') !!}"),
 				}
 			]
 		};

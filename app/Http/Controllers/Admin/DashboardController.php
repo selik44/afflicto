@@ -37,7 +37,6 @@ class DashboardController extends Controller {
 		$totalProfit = 0;
 
 		# loop through the days of the interval
-		$current = $from->copy();
 		for($i = $from->copy(); $i->timestamp < $to->timestamp; $i->addDay()) {
 			$min = $i->copy()->setTime(0, 0, 0);
 			$max = $i->copy()->setTime(23, 59, 59);
@@ -64,8 +63,8 @@ class DashboardController extends Controller {
 		}
 
 		return $this->view('admin.dashboard')->with([
-			'values' => $values,
-			'labels' => $labels,
+			'values' => json_encode($values),
+			'labels' => json_encode($labels),
 			'profit' => $profit,
 		]);
 	}
