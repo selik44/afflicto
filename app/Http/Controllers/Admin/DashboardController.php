@@ -50,7 +50,10 @@ class DashboardController extends Controller {
 			foreach(Order::where('created_at', '>=', $min->format(Carbon::ISO8601))->where('created_at', '<=', $max->format(Carbon::ISO8601))->get() as $order) {
 				# get profit
 				foreach($order->items as $item) {
-					$product = Product::find($item['reference']['id']);
+					$product = Product::withTrashed()->find($item['reference']['id']);
+					if ( ! $product) {
+						continue;
+					}
 					$profit += $item['total_price_excluding_tax'] - $product->inprice * $item['quantity'];
 				}
 			}
