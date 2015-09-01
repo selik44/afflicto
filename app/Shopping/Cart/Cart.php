@@ -305,8 +305,8 @@ class Cart {
 			$tax += $incTax - $item['price'];
 		}
 
-		$shipping = $this->getShipping();
-		$tax += $shipping['unit_price'];
+		/*$shipping = $this->getShipping();
+		$tax += $shipping['total_price_including_tax'];*/
 
 		return $tax;
 	}

@@ -29,25 +29,15 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 
 # Todo
+- add "revenue" field on orders, to prevent it from becoming invalid if relevant product data changes in the future.
 - fix discount rate in the orders items array (2000 should be 20 etc)
-
 - teknisk informasjon: friluft.tk/trening/dame/flex-compression
-
-- add meta description fields for categories & products
-- add meta description settings for homepage
-
-- move summary field and make it use ckeditor
-- add manufacturer to title on product view
-- research SEO
-
 - make superadmin and customer roles uneditable to streamline UI and prevent errors.
 - user.orders.show: fix shipping text and show discount
 - fix the name parsing when generating a user from a klarna order
-- make discounts always round the prices.
-
+- make discounts calculate for rounded prices (inc vat)
 - add a nice pattern background image
 - fix footer background
-
 - dashboard stats & reports
 - Compound Products
 - rabatt popup ting
