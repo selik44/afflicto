@@ -24,12 +24,13 @@
 		});
 
 		@foreach($items as $item)
+			<?php $model = $item['model']; ?>
 			ga('ecommerce:addItem', {
 				id: '{{$id}}',
 				name: '{{$item['model']->name}}',
 				SKU: '{{$item['product_id']}}',
 				category: '',
-				price: '{{$item['price'] * $item['model']->vatgroup->amount}}',
+				price: '{{$model->get}}',
 				quantity: '{{$item['quantity']}}',
 			});
 		@endforeach

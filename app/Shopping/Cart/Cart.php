@@ -301,8 +301,9 @@ class Cart {
 	public function getTotalTax() {
 		$tax = 0.0;
 		foreach($this->getItemsWithModels() as $item) {
-			$incTax = $item['price'] * $item['model']->vatgroup->amount;
-			$tax += $incTax - $item['price'];
+			$model = $item['model'];
+			$incTax = $model->getDiscountPrice() * $model->vatgroup->amount;
+			$tax += $incTax - $model->getDiscountPrice();
 		}
 
 		/*$shipping = $this->getShipping();
@@ -320,7 +321,8 @@ class Cart {
 		$revenue = 0.0;
 
 		foreach($this->getItemsWithModels() as $item) {
-			$revenue += $item['price'] - $item['model']->inprice;
+			$model = $item['model'];
+			$revenue += $model->price - $model->inprice;
 		}
 
 		return $revenue;
