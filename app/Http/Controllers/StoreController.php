@@ -216,12 +216,27 @@ class StoreController extends Controller {
 		# get the gui snippet
 		$snippet = $order['gui']['snippet'];
 
+		# get the items in the cart
+		$items = Cart::getItemsWithModels();
+		$total = Cart::getTotal();
+		$weight = Cart::getTotalWeight();
+		$revenue = Cart::getRevenue();
+		$shipping = Cart::getShipping()['unit_price'];
+		$tax = Cart::getTotalTax();
+
 		# clear the cart
 		Cart::clear();
 
 		return view('front.store.success')->with([
 			'aside' => true,
 			'snippet' => $snippet,
+			'items' => $items,
+			'total' => $total,
+			'weight' => $weight,
+			'id' => Session::get('klarna_order'),
+			'revenue' => $revenue,
+			'shipping' => $shipping,
+			'tax' => $tax,
 		]);
 	}
 

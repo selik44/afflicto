@@ -293,6 +293,40 @@ class Cart {
 		throw new \Exception("No Shipping Data!");
 	}
 
+	/**
+	 * Get the total amount of tax for all items, including shipping.
+	 *
+	 * @return float
+	 */
+	public function getTotalTax() {
+		$tax = 0.0;
+		foreach($this->getItemsWithModels() as $item) {
+			if ($item['type'] !== 'physical') continue;
+			$incTax = $item['price'] * $item['model']->vatgroup->amount;
+			$tax += $incTax - $item['price'];
+		}
+
+		$shipping = $this->getShipping();
+		$tax += $shipping['unit_price'];
+
+		return $tax;
+	}
+
+	/**
+	 * Returns the total revenue this order would provide.
+	 *
+	 * @return float
+	 */
+	public function getRevenue() {
+		$revenue = 0.0;
+
+		foreach($this->getItemsWithModels() as $item) {
+			$revenue += $item['price'] - $item['model']->inprice;
+		}
+
+		return $revenue;
+	}
+
 	public function getKlarnaOrderData() {
 		$data = ['cart' => ['items' => []]];
 

@@ -1,0 +1,8 @@
+/vendor
+/node_modules
+.env
+public/images/products/*
+public/images/slides/*
+public/images/manufacturers/*
+public/images/*
+public/images/products/*

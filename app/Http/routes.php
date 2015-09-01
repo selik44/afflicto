@@ -1,5 +1,9 @@
 <?php
 
+Route::get('/test', function() {
+	dd(Cart::getItemsWithModels());
+});
+
 # HOME ROUTES
 get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
