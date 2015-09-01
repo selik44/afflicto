@@ -301,7 +301,6 @@ class Cart {
 	public function getTotalTax() {
 		$tax = 0.0;
 		foreach($this->getItemsWithModels() as $item) {
-			if ($item['type'] !== 'physical') continue;
 			$incTax = $item['price'] * $item['model']->vatgroup->amount;
 			$tax += $incTax - $item['price'];
 		}
