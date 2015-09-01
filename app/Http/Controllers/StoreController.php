@@ -223,6 +223,7 @@ class StoreController extends Controller {
 		$revenue = Cart::getRevenue();
 		$shipping = Cart::getShipping()['unit_price'] / 100;
 		$tax = Cart::getTotalTax();
+		$id = Session::get('klarna_order');
 
 		# clear the cart
 		Cart::clear();
@@ -233,7 +234,7 @@ class StoreController extends Controller {
 			'items' => $items,
 			'total' => $total,
 			'weight' => $weight,
-			'id' => Session::get('klarna_order'),
+			'id' => $id,
 			'revenue' => $revenue,
 			'shipping' => $shipping,
 			'tax' => $tax,

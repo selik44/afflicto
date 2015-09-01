@@ -30,7 +30,7 @@
 				name: '{{$item['model']->name}}',
 				SKU: '{{$item['product_id']}}',
 				category: '',
-				price: '{{$model->get}}',
+				price: '{{$model->getDiscountPrice() * $model->vatgroup->amount}}',
 				quantity: '{{$item['quantity']}}',
 			});
 		@endforeach
