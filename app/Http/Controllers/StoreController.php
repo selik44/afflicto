@@ -221,7 +221,7 @@ class StoreController extends Controller {
 		$total = Cart::getTotal();
 		$weight = Cart::getTotalWeight();
 		$revenue = Cart::getRevenue();
-		$shipping = Cart::getShipping()['unit_price'];
+		$shipping = Cart::getShipping()['unit_price'] / 100;
 		$tax = Cart::getTotalTax();
 
 		# clear the cart
