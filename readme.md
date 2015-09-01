@@ -29,6 +29,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 
 # Todo
+- send return og bytte til retur@123friluft.no
 - add "revenue" field on orders, to prevent it from becoming invalid if relevant product data changes in the future.
 - fix discount rate in the orders items array (2000 should be 20 etc)
 - teknisk informasjon: friluft.tk/trening/dame/flex-compression
