@@ -14,7 +14,7 @@
 @section('scripts')
 	@parent
 
-	<script type="text/plain">
+	<script>
 		ga('ecommerce:addTransaction', {
 			id: '{{$id}}',
 			affiliation: '{{\Friluft\Store::current()->name}}',
