@@ -79,7 +79,7 @@ class HomeController extends Controller {
 		}
 
 		\Mail::send('emails.store.retur', ['input' => Input::all()], function($mail) use($subject) {
-			$mail->to('kundeservice@123friluft.no')->subject($subject);
+			$mail->to('retur@123friluft.no')->subject($subject);
 		});
 
 		return \Redirect::to('/')->with('success', 'Din melding er sendt!');
