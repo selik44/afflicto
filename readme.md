@@ -27,9 +27,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - Cache routes and views. Clear cache on product update (use model events?) Base each cache key on md5 hash of all product ID's to reduce over-clearing of cache.
 - implement DB backups with: chickling\Backup\BackupServiceProvider
 
-
 # Todo
-- send return og bytte til retur@123friluft.no
 - add "revenue" field on orders, to prevent it from becoming invalid if relevant product data changes in the future.
 - fix discount rate in the orders items array (2000 should be 20 etc)
 - teknisk informasjon: friluft.tk/trening/dame/flex-compression
