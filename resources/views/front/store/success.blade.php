@@ -11,28 +11,26 @@
     </div>
 @stop
 
-@section('scripts')
-	@parent
+@section('ga')
+	_gaq.push(['_set', 'currencyCode', 'NOK']);
+	_gaq.push(['ecommerce:addTransaction', [
+		'{{$id}}',
+		'{{\Friluft\Store::current()->name}}',
+		'{{$revenue}}',
+		'{{$shipping}}',
+		'{{$tax}}',
+	]);
 
-	<script>
-		ga('ecommerce:addTransaction', {
-			id: '{{$id}}',
-			affiliation: '{{\Friluft\Store::current()->name}}',
-			revenue: '{{$revenue}}',
-			shipping: '{{$shipping}}',
-			tax: '{{$tax}}',
-		});
+	@foreach($items as $item)
+		<?php $model = $item['model']; ?>
 
-		@foreach($items as $item)
-			<?php $model = $item['model']; ?>
-			ga('ecommerce:addItem', {
-				id: '{{$id}}',
-				name: '{{$item['model']->name}}',
-				SKU: '{{$item['product_id']}}',
-				category: '',
-				price: '{{$model->getDiscountPrice() * $model->vatgroup->amount}}',
-				quantity: '{{$item['quantity']}}',
-			});
-		@endforeach
-	</script>
+		_gaq.push(['ecommerce:addItem',
+			'{{$id}}',
+			'{{$item['model']->name}}',
+			'{{$item['product_id']}}',
+			'',
+			'{{$model->getDiscountPrice() * $model->vatgroup->amount}}',
+			'{{$item['quantity']}}',
+		]);
+	@endforeach
 @stop
