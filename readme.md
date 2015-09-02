@@ -16,7 +16,6 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 # multi-store
 - views can be overriden per-store, using the view method of the Controller class. The default views are the ones used by 123friluft
 
-
 # Core
 - leverage iron.io queues for emails, logging and backups.
 - add sweetalert library (https://laracasts.com/series/build-project-flyer-with-me/episodes/9)
