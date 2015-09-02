@@ -13,7 +13,7 @@
 
 @section('ga')
 	_gaq.push(['_set', 'currencyCode', 'NOK']);
-	_gaq.push(['ecommerce:addTransaction', [
+	_gaq.push(['ecommerce:addTransaction',
 		'{{$id}}',
 		'{{\Friluft\Store::current()->name}}',
 		'{{$revenue}}',
