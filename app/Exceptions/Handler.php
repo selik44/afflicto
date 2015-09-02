@@ -25,7 +25,7 @@ class Handler extends ExceptionHandler {
 	public function report(Exception $e)
 	{
 		# email errors?
-		if (env('EMAIL_ERRORS')) {
+		if (env('EMAIL_ERRORS') && \App::runningInConsole()) {
 			if ($this->shouldReport($e)) {
 				$input = \Request::all();
 
