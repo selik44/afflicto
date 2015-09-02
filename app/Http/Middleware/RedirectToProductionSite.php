@@ -8,7 +8,7 @@ class RedirectToProductionSite
 {
 
     private $allowedIPAddresses = [
-		#'84.212.14.10',
+		'84.212.14.10',
 		'127.0.0.1',
     ];
 
