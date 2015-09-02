@@ -18,6 +18,7 @@ class Kernel extends HttpKernel {
 		'Friluft\Http\Middleware\VerifyCsrfToken',
 		'Friluft\Http\Middleware\LocaleDetector',
 		'Friluft\Http\Middleware\StoreDetector',
+		'Friluft\Http\Middleware\RedirectToProductionSite',
 		'Friluft\Http\Middleware\JavascriptMiddleware'
 	];
 
