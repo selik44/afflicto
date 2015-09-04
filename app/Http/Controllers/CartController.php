@@ -130,7 +130,7 @@ class CartController extends Controller {
 
 		if (Cart::setCoupon($code)) {
 			if (Cart::getCoupon()) {
-				return response('OK', 200);
+				return Cart::getCoupon();
 			}
 		}
 
