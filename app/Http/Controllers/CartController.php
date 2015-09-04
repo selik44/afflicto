@@ -129,8 +129,9 @@ class CartController extends Controller {
 		}
 
 		if (Cart::setCoupon($code)) {
-			return Cart::getCoupon();
-			return response('OK', 200);
+			if (Cart::getCoupon()) {
+				return response('OK', 200);
+			}
 		}
 
 		return response("invalid code", 200);
