@@ -318,8 +318,9 @@ class StoreController extends Controller {
 		$order->purchase_country = $data['purchase_country'];
 		$order->purchase_currency = $data['purchase_currency'];
 
-		#--------- get user ---------#
+		#--------- get user & coupon---------#
 		$user = null;
+		$coupon = null;
 
 		# get custom data
 		if (isset($data['merchant_reference']) && isset($data['merchant_reference']['orderid2'])) {
@@ -406,9 +407,10 @@ class StoreController extends Controller {
 			});
 		}
 
+		# associate user with order
 		$order->user()->associate($user);
 
-		# save it
+		# save the order
 		$order->save();
 
 		# react to sale
@@ -419,13 +421,19 @@ class StoreController extends Controller {
 			$product->sell($item['quantity'], $item['reference']['options']['variants']);
 		}
 
+		# did we use a coupon?
+		if ($order->coupon) {
+			# associate the coupon with the user
+			$user->coupons()->attach($coupon);
+		}
+
 		# notify user
 		Mail::send('emails.store.order_confirmation', ['order' => $order], function($mail) use($user, $order) {
 			$mail->to($user->email)->subject('Ordrebekreftelse #' .$order->id);
 
 			# staging?
 			if (env('APP_ENV') == 'staging') {
-				$mail->to('me@afflicto.net')->subject('staging: Ordrebekreftelse #' .$order->id);
+				$mail->to('petter@gentlefox.net')->subject('staging: Ordrebekreftelse #' .$order->id);
 			}
 
 			# live?

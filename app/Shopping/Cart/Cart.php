@@ -1,5 +1,7 @@
 <?php namespace Friluft\Shopping\Cart;
 
+use Auth;
+use DB;
 use Doctrine\DBAL\Query\QueryBuilder;
 use Exception;
 use Friluft\Coupon;
@@ -550,8 +552,14 @@ class Cart {
 		# is it valid?
 		if ($coupon->valid_until != null && $coupon->valid_until->timestamp < time()) return false;
 
-		# found it?
-		if ( ! $coupon) return false;
+		# are we logged in?
+		if (Auth::user()) {
+			# have we used it already?
+			$user = Auth::user();
+			if (DB::table('coupon_user')->where('user_id', '=', $user->id)->where('coupon_id', '=', $coupon->id)->count() > 0) {
+				return false;
+			}
+		}
 
 		# add the coupon ID to the session
 		$this->session->put('shoppingcart.coupon', $coupon->id);

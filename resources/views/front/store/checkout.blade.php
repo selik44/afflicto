@@ -45,8 +45,7 @@
 
 					<div class="info">
 						@if($coupon)
-
-							<i class="fa fa-check color-success"></i> <span class="name">{{ $coupon->name }}</span>
+							<i class="fa fa-check color-success"></i> {{ $coupon->name }}
 						@endif
 					</div>
 
@@ -64,6 +63,8 @@
                         <span></span>
                     </div>
                 </label>
+
+				<hr>
 
                 {!! $snippet !!}
             </div>
@@ -158,11 +159,14 @@
 
 					if (response == 'invalid code') {
 						//reset info and show alert
-						$(".coupon-container .info .name").text('').parent().hide();
-						$(".coupon-container .alert p").text("Beklager, koden er ikke riktig!").parent().show();
+						$(".coupon-container .info").html('').hide();
+						$(".coupon-container .alert p").html("Beklager, koden er ikke riktig!").parent().show();
+					}else if (response == 'unauthorized') {
+							$(".coupon-container .info").html('').hide();
+							$(".coupon-container .alert p").html("Du må være <a href='" + Friluft.URL + "/user/login'>logget in</a> for å kunne bruke rabattkoder.").parent().show();
 					}else {
 						//show info and hide alert
-						$(".coupon-container .info .name").text(response.name).parent().show();
+						$(".coupon-container .info").html('<i class="fa fa-check color-success"></i> ' + response.name).show();
 						$(".coupon-container .alert").hide();
 					}
 

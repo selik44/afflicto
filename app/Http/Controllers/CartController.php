@@ -1,5 +1,6 @@
 <?php namespace Friluft\Http\Controllers;
 
+use Auth;
 use Friluft\Coupon;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
@@ -119,6 +120,10 @@ class CartController extends Controller {
 	}
 
 	public function setCouponCode($code) {
+		if ( ! Auth::user()) {
+			return response('unauthorized', 200);
+		}
+
 		if (Cart::hasCoupon()) {
 			Cart::removeCoupon();
 		}
