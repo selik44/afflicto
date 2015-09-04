@@ -106,8 +106,8 @@ class CouponsController extends Controller
     {
         $coupon = new Coupon(Input::only(['admin_name', 'name', 'code', 'discount', 'enabled', 'products', 'categories', 'cumulative']));
 
-		$c->enabled = Input::has('enabled');
-		$c->cumulative = Input::has('cumulative');
+		$coupon->enabled = Input::has('enabled');
+		$coupon->cumulative = Input::has('cumulative');
 
 		# deactivate automatically?
 		if (Input::has('automatic_deactivation')) {
