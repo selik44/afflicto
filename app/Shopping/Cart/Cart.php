@@ -224,6 +224,7 @@ class Cart {
 	public function clear() {
 		$this->session->put('shoppingcart.contents', []);
 		$this->session->put('shoppingcart.uid', 0);
+		$this->session->forget('shoppingcart.coupon');
 		$this->session->forget('klarna_order');
 	}
 
