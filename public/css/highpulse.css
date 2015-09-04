@@ -1920,7 +1920,7 @@ table {
     color: white;
     border-color: #1e8449; }
 
-form.vertical select, form.vertical .chosen-container .chosen-choices, .chosen-container form.vertical .chosen-choices, form.vertical .chosen-container .chosen-single, .chosen-container form.vertical .chosen-single, form.vertical .chosen-container .chosen-drop, .chosen-container form.vertical .chosen-drop, form.vertical textarea {
+form.vertical select, form.vertical .chosen-container .chosen-choices, .chosen-container form.vertical .chosen-choices, form.vertical .chosen-container .chosen-single, .chosen-container form.vertical .chosen-single, form.vertical .chosen-container .chosen-drop, .chosen-container form.vertical .chosen-drop, form.vertical textarea, form.vertical .input-append, form.vertical .input-prepend {
   width: 100%; }
 form.vertical input:not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]) {
   width: 100%; }
@@ -2064,7 +2064,8 @@ label {
       -ms-flex-direction: row;
           flex-direction: row;
   padding: 0;
-  border: none; }
+  border: none;
+  width: 208px; }
   .input-append input:not(input[type="button"]), .input-append input:not(input[type="button"]):hover, .input-append input:not(input[type="button"]):focus, .input-prepend input:not(input[type="button"]), .input-prepend input:not(input[type="button"]):hover, .input-prepend input:not(input[type="button"]):focus {
     -webkit-box-flex: 1;
     -webkit-flex: 1 1 auto;
@@ -2072,6 +2073,13 @@ label {
             flex: 1 1 auto;
     background: none;
     outline: none; }
+  .input-append input, .input-prepend input {
+    max-width: 100%;
+    min-width: 0;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 1 auto;
+        -ms-flex: 1 1 auto;
+            flex: 1 1 auto; }
   .input-append.input-append input, .input-prepend.input-append input {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px; }
@@ -4815,11 +4823,12 @@ ul.pagination {
 .cart-table table tbody tr.item .product {
   vertical-align: middle; }
 .cart-table table tbody tr.item .thumbnail {
-  height: 80px; }
-.cart-table table tbody tr.item .quantity .input-append input {
-  max-width: 80px; }
+  height: 80px;
+  border: none; }
+.cart-table table tbody tr.item .quantity .input-append {
+  max-width: 120px; }
 .cart-table table tbody tr.shipping .icon .fa {
-  font-size: 4rem; }
+  font-size: 3.4rem; }
 .cart-table table tbody tr.shipping .value {
   text-align: right; }
 .cart-table .footer .total {

@@ -3,6 +3,7 @@
 use Agent;
 use Auth;
 use Former;
+use Friluft\Coupon;
 use Friluft\Http\Requests;
 use Friluft\Order;
 use Friluft\Page;
@@ -173,6 +174,7 @@ class StoreController extends Controller {
 				'shipping' => Cart::getShipping(),
 				'total' => Cart::getTotal(),
 				'aside' => false,
+				'coupon' => Cart::hasCoupon() ? Cart::getCoupon() : null,
 			]);
 	}
 
@@ -247,28 +249,33 @@ class StoreController extends Controller {
 
 		Log::info('Klarna pushed us with data:', $data->marshal());
 
-		# get order model
-		$order = Order::where('reservation', '=', $data['reservation'])->first();
+		# is it checkout_complete ?
+		if ($data['status'] == 'checkout_complete') {
+			# get order model
+			$order = Order::where('reservation', '=', $data['reservation'])->first();
 
-		# create the order?
-		if ( ! $order) {
-			Log::info("store.push: Creating order.");
-			$order = $this->createOrder(Input::get('klarna_order'));
+			# create the order?
+			if ( ! $order) {
+				Log::info("store.push: Creating order.");
+				$order = $this->createOrder(Input::get('klarna_order'));
+			}
+
+			# update the order with new data
+			$order->klarna_status = $data['status'];
+
+			# save order
+			$order->save();
+
+			# update klarna order with 'created' status and orderid
+			$data->update([
+				'status' => 'created',
+				'merchant_reference' => [
+					'orderid1' => '' .$order->id
+				],
+			]);
+		}else {
+			return response('OK', 200);
 		}
-
-		# update the order with new data
-		$order->klarna_status = $data['status'];
-
-		# save order
-		$order->save();
-
-		# update klarna order with 'created' status and orderid
-		$data->update([
-			'status' => 'created',
-			'merchant_reference' => [
-				'orderid1' => '' .$order->id
-			],
-		]);
 
 		return response('OK', 200);
 	}
@@ -314,9 +321,11 @@ class StoreController extends Controller {
 		#--------- get user ---------#
 		$user = null;
 
-		# get user data from klarna order data?
+		# get custom data
 		if (isset($data['merchant_reference']) && isset($data['merchant_reference']['orderid2'])) {
 			$custom = json_decode($data['merchant_reference']['orderid2'], true);
+
+			# get user data from klarna order data?
 			if (isset($custom['user_id'])) {
 				Log::debug('Finding user from ID: ' .$custom['user_id']);
 				$user = User::find($custom['user_id']);
@@ -324,6 +333,14 @@ class StoreController extends Controller {
 					Log::debug('got user from merchant_reference. ID: ' .$user->id);
 				}else {
 					Log::debug('Nope');
+				}
+			}
+
+			# associate with a coupon?
+			if (isset($custom['coupon'])) {
+				$coupon = Coupon::find($custom['coupon']);
+				if ($coupon) {
+					$order->coupon()->associate($coupon);
 				}
 			}
 		}

@@ -1,6 +1,9 @@
 <?php namespace Friluft\Shopping\Cart;
 
+use Doctrine\DBAL\Query\QueryBuilder;
 use Exception;
+use Friluft\Coupon;
+use Friluft\User;
 use Illuminate\Session\SessionManager;
 use Friluft\Product;
 use Friluft\Variant;
@@ -129,6 +132,10 @@ class Cart {
 	 * @return Array the item array
 	 */
 	public function exists($uid) {
+		return $this->session->has('shoppingcart.contents.' .$uid);
+	}
+
+	public function has($uid) {
 		return $this->session->has('shoppingcart.contents.' .$uid);
 	}
 
@@ -331,14 +338,56 @@ class Cart {
 	public function getKlarnaOrderData() {
 		$data = ['cart' => ['items' => []]];
 
+		# get the coupon, if we have one specified
+		$coupon = null;
+		if ($this->session->has('shoppingcart.coupon')) {
+			$coupon = Coupon::find($this->session->get('shoppingcart.coupon'));
+		}
+
 		# Add the products
 		foreach($this->getItemsWithModels(false) as $item) {
+			$discount = $item['model']->getDiscount();
+			if (isset($coupon)) {
+				$product = $item['model'];
+
+				# does this coupon apply for this product?
+				$relevant = false;
+				if (in_array($product->id, $coupon->products)) {
+					$relevant = true;
+				}else {
+					foreach($product->categories as $category) {
+						foreach($category->getRoot()->nestedChildren() as $cat) {
+							if (in_array($cat->id, $coupon->categories)) {
+								$relevant = true;
+							}
+						}
+					}
+				}
+
+				# is the given coupon relevant for this product?
+				if ($relevant) {
+					# if the discount is zero, we'll simply add it
+					if ($discount == 0) {
+						$discount = $coupon->discount;
+					}else {
+						# cumulative?
+						if ($coupon->cumulative) {
+							# combine the two discounts
+							$discount += $coupon->discount;
+						}else {
+							# otherwise, just get whichever is higher.
+							$discount = max($discount, $coupon->discount);
+						}
+					}
+				}
+			}
+
 			$data['cart']['items'][] = [
 				'reference' => json_encode(['id' => $item['model']->id, 'options' => $item['options']]),
 				'name' => $item['model']->name,
 				'quantity' => $item['quantity'],
 				'unit_price' => ($item['model']->price * $item['model']->vatgroup->amount) * 100,
-				'discount_rate' => (int) ($item['model']->getDiscount() * 100),
+				'discount_rate' => (int) ($discount * 100),
 				'tax_rate' => ($item['model']->vatgroup->amount - 1) * 10000,
 			];
 		}
@@ -377,6 +426,9 @@ class Cart {
 		}
 		if ($freeShipping) $shippingFee = 0;
 
+		# is there a coupon specified? if so, does it provide free shipping?
+		if ($coupon && $coupon->free_shipping) $shippingFee = 0;
+
 		$data['cart']['items'][] = [
 			'type' => 'shipping_fee',
 			'reference' => 'SHIPPING',
@@ -396,6 +448,23 @@ class Cart {
 
 		# set shipping info
 		$data['options']['shipping_details'] = trans('store.shipping.' .$shippingType);
+
+		# set coupon info?
+		if ($this->hasCoupon()) {
+			# get custom
+			if ( ! isset($data['merchant_reference'])) {
+				$data['merchant_reference'] = [];
+				$custom = [];
+			}else {
+				$custom = json_decode($data['merchant_reference']['orderid2'], true);
+			}
+
+			# set coupon
+			$custom['coupon'] = $this->session->get('shoppingcart.coupon');
+
+			# save custom again
+			$data['merchant_reference']['orderid2'] = json_encode($custom);
+		}
 
 		return $data;
 	}
@@ -438,6 +507,7 @@ class Cart {
 			'push_uri' => url('push') .'?klarna_order={checkout.order.uri}',
 		];
 
+		# ---custom data---
 		$custom = [];
 
 		# prefill customer data
@@ -450,6 +520,7 @@ class Cart {
 			$custom['user_id'] = $user->id;
 		}
 
+		# ---custom data---
 		$data['merchant_reference'] = ['orderid2' => json_encode($custom)];
 
 		$order->create($data);
@@ -457,6 +528,53 @@ class Cart {
 		$this->session->put('klarna_order', $order->getLocation());
 
 		return $order;
+	}
+
+	public function removeCoupon() {
+		if ($this->hasCoupon()) {
+			# remove coupon
+			$this->session->forget('shoppingcart.coupon');
+
+			# update the order in klarna
+			$this->updateKlarnaOrder();
+		}
+	}
+
+	public function setCoupon($code) {
+		# find an enabled code that matches the given code, is enabled and is still valid.
+		$coupon = Coupon::where('code', '=', $code)->where('enabled', '=', '1')->first();
+
+		# found it?
+		if ( ! $coupon) return false;
+
+		# is it valid?
+		if ($coupon->valid_until != null && $coupon->valid_until->timestamp < time()) return false;
+
+		# found it?
+		if ( ! $coupon) return false;
+
+		# add the coupon ID to the session
+		$this->session->put('shoppingcart.coupon', $coupon->id);
+
+		# update the order in klarna
+		$this->updateKlarnaOrder();
+
+		return true;
+	}
+
+	/**
+	 * Checks whether a coupon code is specified
+	 */
+	public function hasCoupon() {
+		return $this->session->has('shoppingcart.coupon');
+	}
+
+	/**
+	 * Get the Model for the coupon.
+	 */
+	public function getCoupon() {
+		$id = $this->session->get('shoppingcart.coupon');
+		return Coupon::find($id);
 	}
 
 }

@@ -58,6 +58,10 @@ use Friluft\Variant;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Tag[] $tags
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereCategories($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereVariantsStock($value)
+ * @property string $meta_description
+ * @property string $meta_keywords
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereMetaDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereMetaKeywords($value)
  */
 class Product extends Model {
 

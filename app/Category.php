@@ -26,6 +26,15 @@ use Nicolaslopezj\Searchable\SearchableTrait;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereParentId($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Category root()
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Category search($search, $threshold = null, $entireText = false)
+ * @property integer $banner_id
+ * @property float $discount
+ * @property string $meta_description
+ * @property string $meta_keywords
+ * @property-read \Friluft\Image $banner
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereBannerId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereDiscount($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereMetaDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereMetaKeywords($value)
  */
 class Category extends Model {
 

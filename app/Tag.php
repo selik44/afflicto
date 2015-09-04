@@ -18,6 +18,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Tag whereColor($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Tag whereEnabled($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Tag whereType($value)
+ * @property boolean $visible
+ * @property float $discount
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Tag whereVisible($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Tag whereDiscount($value)
  */
 class Tag extends Model {
 

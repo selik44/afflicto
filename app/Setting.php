@@ -5,6 +5,24 @@ namespace Friluft;
 use Former;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Friluft\Setting
+ *
+ * @property integer $id
+ * @property string $category
+ * @property string $type
+ * @property string $machine
+ * @property string $name
+ * @property string $description
+ * @property string $value
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Setting whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Setting whereCategory($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Setting whereType($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Setting whereMachine($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Setting whereName($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Setting whereDescription($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Setting whereValue($value)
+ */
 class Setting extends Model
 {
     protected $table = 'settings';

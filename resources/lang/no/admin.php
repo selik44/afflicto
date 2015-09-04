@@ -65,6 +65,8 @@ return [
 	'discount' => 'Avslag',
 	'settings' => 'Instillinger',
 	'barcode' => 'Lagerplass',
+	'coupons' => 'Rabattkoder',
+	'new coupon' => 'Ny Kode',
 
 	'billing address' => 'Faktura Addresse',
 	'shipping address' => 'Sendings Addresse',

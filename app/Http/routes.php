@@ -53,6 +53,7 @@ get('api/cart/{cart}', ['as' => 'api.cart.show', 'uses' => 'CartController@show'
 post('api/cart', ['as' => 'api.cart.store', 'uses' => 'CartController@store']);
 put('api/cart/{id}/quantity', ['as' => 'api.cart.quantity', 'uses' => 'CartController@setQuantity']);
 delete('api/cart/{id}', ['as' => 'api.cart.destroy', 'uses' => 'CartController@destroy']);
+put('api/cart/coupon/{code}', ['as' => 'api.cart.setCouponCode', 'uses' => 'CartController@setCouponCode']);
 
 get('api/proteria/update', ['as' => 'api.proteria.update', 'uses' => 'Admin\ProteriaController@update']);
 get('api/proteria/orders', ['as' => 'admin.proteria.export', 'uses' => 'Admin\ProteriaController@getExport']);
@@ -232,6 +233,14 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	# tiles
 	get('design/tiles', ['as' => 'admin.tiles.index', 'uses' => 'Admin\TilesController@index', 'middleware' => 'perms:tiles.edit']);
 	put('design/tiles', ['as' => 'admin.tiles.update', 'uses' => 'Admin\TilesController@update', 'middleware' => 'perms:tiles.edit']);
+
+	# coupons
+	get('coupons', ['as' => 'admin.coupons.index', 'uses' => 'Admin\CouponsController@index', 'middleware' => 'perms:coupons.view']);
+	get('coupons/create', ['as' => 'admin.coupons.create', 'uses' => 'Admin\CouponsController@create', 'middleware' => 'perms:coupons.create']);
+	post('coupons', ['as' => 'admin.coupons.store', 'uses' => 'Admin\CouponsController@store', 'middleware' => 'perms:coupons.create']);
+	get('coupons/{coupon}/edit', ['as' => 'admin.coupons.edit', 'uses' => 'Admin\CouponsController@edit', 'middleware' => 'perms:coupons.edit']);
+	put('coupons/{coupon}/edit', ['as' => 'admin.coupons.update', 'uses' => 'Admin\CouponsController@update', 'middleware' => 'perms:coupons.update']);
+	delete('coupons/{coupon}', ['as' => 'admin.coupons.destroy', 'uses' => 'Admin\CouponsController@destroy', 'middleware' => 'perms:coupons.delete']);
 });
 
 

@@ -5,6 +5,9 @@
 @stop
 
 @section('body')
+
+	@yield('top')
+
 	<div id="admin">
 		<header id="header">
             <ul id="nav-top" class="nav end">
@@ -40,6 +43,8 @@
             </footer>
 		</div>
 	</div>
+
+	@yield('bottom')
 @stop
 
 @section('scripts')

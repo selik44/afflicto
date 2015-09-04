@@ -27,20 +27,24 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - implement DB backups with: chickling\Backup\BackupServiceProvider
 
 # Todo
+- coupons
+- make subscribe_to_newsletter option in order by default.
+- integrate google analytics commerce
+- Compound Products
+- Set "from" address to the users email for easier replying.
+- dashboard stats & reports
+- popups
 - add "revenue" field on orders, to prevent it from becoming invalid if relevant product data changes in the future.
 - fix discount rate in the orders items array (2000 should be 20 etc)
 - teknisk informasjon: friluft.tk/trening/dame/flex-compression
-- make superadmin and customer roles uneditable to streamline UI and prevent errors.
 - user.orders.show: fix shipping text and show discount
 - fix the name parsing when generating a user from a klarna order
 - make discounts calculate for rounded prices (inc vat)
+- product receivals
+- make superadmin and customer roles uneditable to streamline UI and prevent errors.
+- add missing permissions
 - add a nice pattern background image
 - fix footer background
-- dashboard stats & reports
-- Compound Products
-- rabatt popup ting
-- product receivals
-
 
 #Order statuses
 - ubehandlet

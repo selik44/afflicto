@@ -34,6 +34,14 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereEmail($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\User wherePassword($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereRoleId($value)
+ * @property string $phone
+ * @property string $billing_address
+ * @property string $shipping_address
+ * @property-read \Friluft\Address $address
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Coupon[] $coupons
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User wherePhone($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereBillingAddress($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereShippingAddress($value)
  */
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -74,6 +82,13 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 			$this->attributes['firstname'] = $name[0];
 			$this->attributes['lastname'] = $name[1];
 		}
+	}
+
+	/**
+	 * Get the coupons this user has used.
+	 */
+	public function coupons() {
+		return $this->belongsToMany('Friluft\Coupon');
 	}
 
 }

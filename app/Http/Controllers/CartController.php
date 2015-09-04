@@ -1,5 +1,6 @@
 <?php namespace Friluft\Http\Controllers;
 
+use Friluft\Coupon;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Cart;
@@ -115,6 +116,19 @@ class CartController extends Controller {
 	public function clear() {
 		Cart::clear();
 		return Redirect::to('/')->with('success', 'Your cart has been cleared.');
+	}
+
+	public function setCouponCode($code) {
+		if (Cart::hasCoupon()) {
+			Cart::removeCoupon();
+		}
+
+		if (Cart::setCoupon($code)) {
+			return Cart::getCoupon();
+			return response('OK', 200);
+		}
+
+		return response("invalid code", 200);
 	}
 
 }

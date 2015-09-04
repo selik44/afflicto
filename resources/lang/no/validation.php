@@ -102,7 +102,7 @@ return [
 		'vatgroup' => 'MVA Gruppe',
 		'summary' => 'beskrivelse',
 		'description' => 'Teknisk Informasjon',
-		'enabled' => 'Synlig',
+		'enabled' => 'Aktiv',
 		'articlenumber' => 'Artikkelnummer',
 		'stock' => 'Lager',
 		'password' => 'Passord',
@@ -118,6 +118,12 @@ return [
 		'order_id' => 'Ordrenummer',
 		'phone' => 'Telefon',
 		'over_2_kg' => 'Pakken veier over 2kg',
+
+		'admin_name' => 'Administrativt Navn',
+		'discount' => 'Avslag',
+		'products' => 'Produkter',
+		'code' => 'Kode',
+		'cumulative' => 'Kumulativ',
 
 		'billing_name' => 'Navn',
 		'billing_postal_code' => 'Postkode',

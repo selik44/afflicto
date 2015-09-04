@@ -28,6 +28,9 @@
             'divider',
             'fa-tag:admin.tags' => 'admin.tags.index',
             'fa-plus:admin.new tag' => 'admin.tags.create',
+			'divider',
+			'fa-barcode:admin.coupons' => 'admin.coupons.index',
+			'fa-plus:admin.new coupon' => 'admin.coupons.create',
         ]],
 
         'fa-bars:admin.categories' => ['admin.categories.index', [

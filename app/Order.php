@@ -45,6 +45,11 @@ use Illuminate\Database\Eloquent\Model;
  * @property boolean $activated
  * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\OrderEvent[] $orderEvents
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereActivated($value)
+ * @property string $shipment_number
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereShipmentNumber($value)
+ * @property integer $coupon_id
+ * @property-read \Friluft\Coupon $coupon
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereCouponId($value)
  */
 class Order extends Model {
 
@@ -103,6 +108,10 @@ class Order extends Model {
     public function orderEvents() {
         return $this->hasMany('Friluft\OrderEvent');
     }
+
+	public function coupon() {
+		return $this->belongsTo('Friluft\Coupon');
+	}
 
     public function getHumanName() {
         $firstItem = null;
