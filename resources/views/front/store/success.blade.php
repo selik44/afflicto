@@ -14,7 +14,7 @@
 @section('scripts')
 	@parent
 
-	<script>
+	<script type="text/javascript">
 		ga('require', 'ecommerce');
 
 		ga('ecommerce:addTransaction', {
@@ -24,7 +24,6 @@
 			shipping: '{{$shipping}}',
 			tax: '{{$tax}}',
 			currency: 'NOK',
-
 		});
 
 		@foreach($items as $item)
