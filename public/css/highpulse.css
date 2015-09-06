@@ -5280,6 +5280,9 @@ ul.pagination {
         -webkit-order: 1;
             -ms-flex-order: 1;
                 order: 1; }
+        #header #navigation .nav-contents .nav-extra #search .input-append {
+          background: none !important;
+          background-border: none !important; }
         #header #navigation .nav-contents .nav-extra #search input[name="terms"] {
           max-width: 100px;
           -webkit-transition: 300ms all;
