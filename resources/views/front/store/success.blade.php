@@ -15,7 +15,7 @@
 	@parent
 
 	<script>
-		ga('load', 'ecommerce');
+		ga('require', 'ecommerce');
 
 		ga('ecommerce:addTransaction', {
 			id: '{{$id}}',
