@@ -318,9 +318,6 @@ class StoreController extends Controller {
 		$order->purchase_country = $data['purchase_country'];
 		$order->purchase_currency = $data['purchase_currency'];
 
-		# save it
-		$order->save();
-
 		#--------- get user & coupon---------#
 		$user = null;
 		$coupon = null;
@@ -337,17 +334,6 @@ class StoreController extends Controller {
 					Log::debug('got user from merchant_reference. ID: ' .$user->id);
 				}else {
 					Log::debug('Nope');
-				}
-			}
-
-			# associate with a coupon?
-			if (isset($custom['coupons'])) {
-				foreach($custom['coupons'] as $code) {
-					$coupon = Coupon::whereCode($code)->first();
-
-					if ($coupon) {
-						$order->coupons()->attach($coupon);
-					}
 				}
 			}
 		}
@@ -382,7 +368,7 @@ class StoreController extends Controller {
 				$firstname = '';
 				$lastname = '';
 				foreach($name as $key => $segment) {
-					if ($key >= count($name)-1) {
+					if ($key >= count($name) - 1) {
 						$lastname = $segment;
 					}else {
 						$firstname .= $segment .' ';
@@ -427,10 +413,16 @@ class StoreController extends Controller {
 			$product->sell($item['quantity'], $item['reference']['options']['variants']);
 		}
 
-		# did we use a coupon?
-		if ($order->coupon) {
-			# associate the coupon with the user
-			$user->coupons()->attach($coupon);
+		# associate with coupons
+		if (isset($custom) && isset($custom['coupons'])) {
+			foreach($custom['coupons'] as $code) {
+				$coupon = Coupon::whereCode($code)->first();
+
+				if ($coupon) {
+					$order->coupons()->attach($coupon);
+					$user->coupons()->attach($coupon);
+				}
+			}
 		}
 
 		# notify user
