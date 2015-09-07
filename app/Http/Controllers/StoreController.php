@@ -318,6 +318,9 @@ class StoreController extends Controller {
 		$order->purchase_country = $data['purchase_country'];
 		$order->purchase_currency = $data['purchase_currency'];
 
+		# save it
+		$order->save();
+
 		#--------- get user & coupon---------#
 		$user = null;
 		$coupon = null;
