@@ -15,6 +15,7 @@
 	@parent
 
 	<script type="text/javascript">
+		console.log('y');
 		ga('require', 'ecommerce');
 
 		ga('ecommerce:addTransaction', {
