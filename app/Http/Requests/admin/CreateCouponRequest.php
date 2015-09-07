@@ -32,6 +32,8 @@ class CreateCouponRequest extends Request
 			'cumulative' => 'boolean',
 			'products' => 'array',
 			'categories' => 'array',
+			'single_use' => 'boolean',
+			'roles' => 'array',
         ];
     }
 }

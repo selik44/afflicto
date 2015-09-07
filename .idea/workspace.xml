@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Shopping/Cart/Cart.php" afterPath="$PROJECT_DIR$/app/Shopping/Cart/Cart.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Coupon.php" afterPath="$PROJECT_DIR$/app/Coupon.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CouponsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CouponsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/admin/CreateCouponRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/admin/CreateCouponRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/admin/EditCouponRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/admin/EditCouponRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/coupons_create.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/coupons_create.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/coupons_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/coupons_edit.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/auth/register.blade.php" afterPath="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/no/store.php" afterPath="$PROJECT_DIR$/resources/lang/no/store.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/no/validation.php" afterPath="$PROJECT_DIR$/resources/lang/no/validation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -32,8 +43,14 @@
         <option name="myItemId" />
         <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
       </PATH_ELEMENT>
+    </PATH>
+    <PATH>
       <PATH_ELEMENT>
-        <option name="myItemId" value="Staging" />
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Local" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
@@ -43,18 +60,12 @@
         <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
       </PATH_ELEMENT>
       <PATH_ELEMENT>
-        <option name="myItemId" value="Staging" />
+        <option name="myItemId" value="Local" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
       </PATH_ELEMENT>
       <PATH_ELEMENT>
         <option name="myItemId" value="friluft" />
         <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
-      </PATH_ELEMENT>
-    </PATH>
-    <PATH>
-      <PATH_ELEMENT>
-        <option name="myItemId" />
-        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
   </component>
@@ -64,18 +75,99 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="orders_edit.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php">
+      <file leaf-file-name="Cart.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Shopping/Cart/Cart.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.67741936">
-              <caret line="168" column="22" selection-start-line="168" selection-start-column="22" selection-end-line="168" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="657" column="31" selection-start-line="657" selection-start-column="31" selection-end-line="657" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="StoreController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StoreController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="42" column="32" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CouponsController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/CouponsController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3329609">
+              <caret line="91" column="58" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="coupons_edit.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/coupons_edit.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
               <folding>
-                <marker date="1441612969578" expanded="true" signature="236:241" placeholder="..." />
-                <marker date="1441612969578" expanded="true" signature="255:291" placeholder="..." />
-                <marker date="1441612969578" expanded="true" signature="304:306" placeholder="..." />
-                <marker date="1441612969578" expanded="true" signature="7869:8139" placeholder="..." />
-                <marker date="1441612969578" expanded="true" signature="7870:8122" placeholder="..." />
+                <marker date="1441615012687" expanded="true" signature="268:273" placeholder="..." />
+                <marker date="1441615012687" expanded="true" signature="285:323" placeholder="..." />
+                <marker date="1441615012687" expanded="true" signature="334:344" placeholder="..." />
+                <marker date="1441615012687" expanded="true" signature="355:562" placeholder="..." />
+                <marker date="1441615012687" expanded="true" signature="356:561" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="friluft.coupons" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/1be997c3/b70391ad-1f84-4357-95ee-cb4cd3ded70e/friluft..coupons">
+          <provider editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+            <state>
+              <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="coupons_create.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/coupons_create.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="161" />
+              <folding>
+                <marker date="1441614730805" expanded="true" signature="213:219" placeholder="..." />
+                <marker date="1441614730805" expanded="true" signature="232:260" placeholder="..." />
+                <marker date="1441614730805" expanded="true" signature="272:282" placeholder="..." />
+                <marker date="1441614730805" expanded="true" signature="294:634" placeholder="..." />
+                <marker date="1441614730805" expanded="true" signature="295:633" placeholder="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2015_09_07_102512_coupons_add_single_use.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2015_09_07_102512_coupons_add_single_use.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Coupon.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Coupon.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="57" column="21" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -108,10 +200,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/SlidesController.php" />
-        <option value="$PROJECT_DIR$/resources/assets/sass/base/modules/slider.sass" />
-        <option value="$PROJECT_DIR$/resources/views/admin/products_multiedit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Console/Commands/GenerateProductSummary.php" />
         <option value="$PROJECT_DIR$/resources/forms/admin/product.php" />
         <option value="$PROJECT_DIR$/Envoy.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_07_27_034939_manufacturers_add_image_id.php" />
@@ -133,18 +221,12 @@
         <option value="$PROJECT_DIR$/gulpfile.coffee" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/modules/product-view.sass" />
         <option value="$PROJECT_DIR$/resources/views/front/store_product.blade.php" />
-        <option value="$PROJECT_DIR$/resources/lang/no/validation.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/admin/EditCouponRequest.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/admin/CreateCouponRequest.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_09_02_060327_create_coupons_table.php" />
         <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/modules/cart-table.sass" />
-        <option value="$PROJECT_DIR$/resources/views/admin/coupons_edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/coupons_create.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_09_04_144641_orders_add_coupon_column.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/CouponsController.php" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" />
         <option value="$PROJECT_DIR$/resources/views/front/layout.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/front/store/success.blade.php" />
@@ -153,12 +235,22 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/CartController.php" />
         <option value="$PROJECT_DIR$/resources/views/front/store/checkout.blade.php" />
         <option value="$PROJECT_DIR$/app/Category.php" />
-        <option value="$PROJECT_DIR$/app/Shopping/Cart/Cart.php" />
         <option value="$PROJECT_DIR$/app/Order.php" />
-        <option value="$PROJECT_DIR$/app/Coupon.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_09_07_071419_orders_have_many_coupons.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2015_09_07_100542_coupons_add_roles.php" />
+        <option value="$PROJECT_DIR$/app/Shopping/Cart/Cart.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2015_09_07_102512_coupons_add_single_use.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/admin/EditCouponRequest.php" />
+        <option value="$PROJECT_DIR$/app/Http/Requests/admin/CreateCouponRequest.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/coupons_create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/lang/no/validation.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/coupons_edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Coupon.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/CouponsController.php" />
+        <option value="$PROJECT_DIR$/resources/lang/no/store.php" />
+        <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
       </list>
     </option>
   </component>
@@ -652,10 +744,9 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19472617" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23687424" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32827735" sideWeight="0.47069597" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25081432" sideWeight="0.44017094" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24786325" sideWeight="0.49812266" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19543974" sideWeight="0.496337" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19501625" sideWeight="0.496337" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17697228" sideWeight="0.22853369" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.29513183" sideWeight="0.45101172" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -668,6 +759,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2660152" sideWeight="0.503663" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32827735" sideWeight="0.47069597" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3458418" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -710,108 +802,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53158706">
-          <caret line="15" column="38" selection-start-line="15" selection-start-column="38" selection-end-line="15" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/gulpfile.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49614793">
-          <caret line="14" column="28" selection-start-line="14" selection-start-column="28" selection-end-line="14" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/_front.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6733436">
-          <caret line="19" column="55" selection-start-line="19" selection-start-column="55" selection-end-line="19" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/gulp-sass/node_modules/node-sass/lib/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2881356">
-          <caret line="188" column="0" selection-start-line="188" selection-start-column="0" selection-end-line="188" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/modules/checkout-view.sass">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2015_07_27_040923_manufacturers_add_description_column.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7873652">
-          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/Facades/Facade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33281973">
-          <caret line="209" column="52" selection-start-line="209" selection-start-column="52" selection-end-line="209" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/partial/alerts.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.42736486">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Support/Collection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.105417274">
-          <caret line="541" column="39" selection-start-line="541" selection-start-column="39" selection-end-line="541" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/anahkiasen/former/src/Former/Populator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/anahkiasen/former/src/Former/Former.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33235726">
-          <caret line="219" column="60" selection-start-line="219" selection-start-column="60" selection-end-line="219" selection-end-column="60" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/partial/laratable.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/vendor/gentlefox/laratables/src/Laratable.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.35248446">
-          <caret line="254" column="74" selection-start-line="254" selection-start-column="74" selection-end-line="254" selection-end-column="74" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/sass/base/modules/cart-table.sass">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.39285713">
           <caret line="11" column="25" selection-start-line="11" selection-start-column="25" selection-end-line="11" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -850,7 +844,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -904,7 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.8518519">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -912,7 +904,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6882716">
           <caret line="360" column="48" selection-start-line="360" selection-start-column="48" selection-end-line="360" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -935,7 +926,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5753846">
           <caret line="22" column="63" selection-start-line="22" selection-start-column="63" selection-end-line="22" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -943,7 +933,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.1323077">
           <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -951,9 +940,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18615384">
           <caret line="348" column="75" selection-start-line="348" selection-start-column="75" selection-end-line="348" selection-end-column="75" />
-          <folding>
-            <marker date="1441533134090" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -961,7 +947,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.5661538">
           <caret line="16" column="5" selection-start-line="16" selection-start-column="5" selection-end-line="16" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -969,7 +954,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-1.3446153">
           <caret line="17" column="71" selection-start-line="17" selection-start-column="71" selection-end-line="17" selection-end-column="71" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -977,7 +961,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.18615384">
           <caret line="30" column="44" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -985,7 +968,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.38923076">
           <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -993,7 +975,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.92923075">
           <caret line="48" column="0" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1001,7 +982,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.35384616">
           <caret line="17" column="1" selection-start-line="17" selection-start-column="1" selection-end-line="17" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1009,7 +989,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.8846154">
           <caret line="208" column="60" selection-start-line="208" selection-start-column="60" selection-end-line="208" selection-end-column="60" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1025,9 +1004,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36307693">
           <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-          <folding>
-            <element signature="e#36#65#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1035,15 +1011,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.17692308">
           <caret line="55" column="109" selection-start-line="55" selection-start-column="109" selection-end-line="55" selection-end-column="109" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Coupon.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.85846156">
-          <caret line="118" column="53" selection-start-line="118" selection-start-column="53" selection-end-line="118" selection-end-column="53" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1063,24 +1030,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="dbDummy://dbtable:/1be997c3/bc0d4b35-8296-42b1-b50f-cbae24601911/friluft..coupons">
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/1be997c3/bc0d4b35-8296-42b1-b50f-cbae24601911/friluft..coupon_order">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -1093,7 +1046,6 @@
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
@@ -1106,15 +1058,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6216216">
           <caret line="21" column="89" selection-start-line="21" selection-start-column="89" selection-end-line="21" selection-end-column="89" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StoreController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53071254">
-          <caret line="419" column="0" selection-start-line="419" selection-start-column="0" selection-end-line="419" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1122,7 +1065,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.031941">
           <caret line="130" column="37" selection-start-line="130" selection-start-column="37" selection-end-line="130" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1130,33 +1072,170 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.9041769">
           <caret line="177" column="82" selection-start-line="177" selection-start-column="82" selection-end-line="177" selection-end-column="82" />
-          <folding>
-            <element signature="e#986#1007#0#HTML" expanded="true" />
-            <element signature="e#1178#1198#0#HTML" expanded="true" />
-            <element signature="e#1308#1326#0#HTML" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Shopping/Cart/Cart.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07862408">
-          <caret line="611" column="49" selection-start-line="611" selection-start-column="49" selection-end-line="611" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67741936">
-          <caret line="168" column="22" selection-start-line="168" selection-start-column="22" selection-end-line="168" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.48387095">
+          <caret line="183" column="56" selection-start-line="183" selection-start-column="56" selection-end-line="183" selection-end-column="56" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.83870965">
+          <caret line="52" column="7" selection-start-line="52" selection-start-column="7" selection-end-line="52" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/admin/EditCouponRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7419355">
+          <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/no/admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.516129">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/no/validation.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.516129">
+          <caret line="126" column="38" selection-start-line="126" selection-start-column="38" selection-end-line="126" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/1be997c3/bc0d4b35-8296-42b1-b50f-cbae24601911/friluft..coupons">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_09_07_100542_coupons_add_roles.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/admin/CreateCouponRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8064516">
+          <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Shopping/Cart/Cart.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="657" column="31" selection-start-line="657" selection-start-column="31" selection-end-line="657" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StoreController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="42" column="32" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Coupon.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="57" column="21" selection-start-line="57" selection-start-column="21" selection-end-line="57" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_09_07_102512_coupons_add_single_use.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/coupons_create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="41" column="4" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="161" />
           <folding>
-            <marker date="1441612969578" expanded="true" signature="236:241" placeholder="..." />
-            <marker date="1441612969578" expanded="true" signature="255:291" placeholder="..." />
-            <marker date="1441612969578" expanded="true" signature="304:306" placeholder="..." />
-            <marker date="1441612969578" expanded="true" signature="7869:8139" placeholder="..." />
-            <marker date="1441612969578" expanded="true" signature="7870:8122" placeholder="..." />
+            <marker date="1441614730805" expanded="true" signature="213:219" placeholder="..." />
+            <marker date="1441614730805" expanded="true" signature="232:260" placeholder="..." />
+            <marker date="1441614730805" expanded="true" signature="272:282" placeholder="..." />
+            <marker date="1441614730805" expanded="true" signature="294:634" placeholder="..." />
+            <marker date="1441614730805" expanded="true" signature="295:633" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/1be997c3/b70391ad-1f84-4357-95ee-cb4cd3ded70e/friluft..coupons">
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/lang/no/store.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.28044692">
+          <caret line="49" column="41" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/coupons_edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+          <folding>
+            <marker date="1441615012687" expanded="true" signature="268:273" placeholder="..." />
+            <marker date="1441615012687" expanded="true" signature="285:323" placeholder="..." />
+            <marker date="1441615012687" expanded="true" signature="334:344" placeholder="..." />
+            <marker date="1441615012687" expanded="true" signature="355:562" placeholder="..." />
+            <marker date="1441615012687" expanded="true" signature="356:561" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/auth/register.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.40893856">
+          <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+          <folding>
+            <marker date="1441616066325" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1441616066325" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1441616066325" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/CouponsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3329609">
+          <caret line="91" column="58" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
+          <folding />
         </state>
       </provider>
     </entry>

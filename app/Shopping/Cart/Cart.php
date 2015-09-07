@@ -652,10 +652,16 @@ class Cart {
 		# are we logged in?
 		if ( ! Auth::user()) return false;
 
-		# have we used it already?
 		$user = Auth::user();
-		if (DB::table('coupon_user')->where('user_id', '=', $user->id)->where('coupon_id', '=', $coupon->id)->count() > 0) {
+
+		# have we used it already?
+		if ($coupon->single_use && DB::table('coupon_user')->where('user_id', '=', $user->id)->where('coupon_id', '=', $coupon->id)->count() > 0) {
 			return false;
+		}
+
+		# role protection for this coupon?
+		if ($coupon->roles != null) {
+			if ( ! in_array($user->role, $coupon->roles)) return false;
 		}
 
 		return true;

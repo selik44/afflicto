@@ -420,7 +420,9 @@ class StoreController extends Controller {
 
 				if ($coupon) {
 					$order->coupons()->attach($coupon);
-					$user->coupons()->attach($coupon);
+
+					# is the coupon single_use? if so store this usage to prevent further use.
+					if ($coupon->single_use) $user->coupons()->attach($coupon);
 				}
 			}
 		}

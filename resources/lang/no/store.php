@@ -42,6 +42,7 @@ return [
 	'your cart is empty' => 'Handlekurven er tom!',
 
 	'auth' => [
+		'register' => 'Ny Konto',
 		'forgot your password?' => 'Glemt passordet ditt?',
 		'create account' => 'Opprett Konto',
 		'forgot password' => 'Glemt Passord',

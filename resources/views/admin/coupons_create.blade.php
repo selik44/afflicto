@@ -22,6 +22,8 @@
 			'products' => 'array',
 			'cumulative' => 'boolean',
 			'enabled' => 'boolean',
+			'single_use' => 'boolean',
+			'roles' => 'array',
 		])
 	!!}
 
@@ -36,6 +38,10 @@
 	{!! Former::select('categories')->multiple()->fromQuery($categories, 'name', 'id')->name('categories[]')->label('categories') !!}
 
 	{!! Former::select('products')->multiple()->fromQuery($products, 'name', 'id')->name('products[]')->label('products') !!}
+
+	{!! Former::select('roles')->multiple()->fromQuery($roles, 'name', 'id')->name('roles[]')->label('roles')->help('Kan denne bare brukes av visse roller?') !!}
+
+	{!! Former::checkbox('single_use') !!}
 
 	{!! Former::checkbox('cumulative')->help('Gir denne rabattkoden avslag på allerede rabatterte produkter?') !!}
 

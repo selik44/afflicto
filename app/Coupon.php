@@ -54,6 +54,8 @@ class Coupon extends Model {
 		'discount',
 		'categories',
 		'products',
+		'roles',
+		'single_use',
 	];
 
 	protected $casts = [
@@ -106,6 +108,28 @@ class Coupon extends Model {
 	public function getCategoriesAttribute() {
 		$cats = [];
 		foreach(explode(',', trim($this->attributes['categories'], ',')) as $id) {
+			if ( ! $id) continue;
+			$cats[] = $id;
+		}
+		return $cats;
+	}
+
+	public function setRolesAttribute($array) {
+		if ($array == null) return;
+
+		if (is_string($array)) {
+			$array = explode(',', $array);
+		}
+
+		$this->attributes['roles'] = ',' .implode(',', $array) .',';
+	}
+
+	/**
+	 * @return array
+	 */
+	public function getRolesAttribute() {
+		$cats = [];
+		foreach(explode(',', trim($this->attributes['roles'], ',')) as $id) {
 			if ( ! $id) continue;
 			$cats[] = $id;
 		}

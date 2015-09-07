@@ -8,6 +8,7 @@ use Former;
 use Friluft\Category;
 use Friluft\Coupon;
 use Friluft\Product;
+use Friluft\Role;
 use Illuminate\Http\Request;
 
 use Friluft\Http\Requests;
@@ -87,12 +88,10 @@ class CouponsController extends Controller
      */
     public function create()
     {
-		$categories = Category::all(['id', 'name']);
-		$products = Product::all(['id', 'name']);
-
 		return view('admin.coupons_create')->with([
-			'categories' => $categories,
-			'products' => $products,
+			'categories' => Category::all(['id', 'name']),
+			'products' => Product::all(['id', 'name']),
+			'roles' => Role::all(['id', 'name']),
 		]);
     }
 
@@ -104,10 +103,11 @@ class CouponsController extends Controller
 	 */
     public function store(Requests\admin\CreateCouponRequest $request)
     {
-        $coupon = new Coupon(Input::only(['admin_name', 'name', 'code', 'discount', 'enabled', 'products', 'categories', 'cumulative']));
+        $coupon = new Coupon(Input::only(['admin_name', 'name', 'code', 'discount', 'enabled', 'products', 'categories', 'cumulative', 'roles']));
 
 		$coupon->enabled = Input::has('enabled');
 		$coupon->cumulative = Input::has('cumulative');
+		$coupon->single_use = Input::has('single_use');
 
 		# deactivate automatically?
 		if (Input::has('automatic_deactivation')) {
@@ -128,8 +128,6 @@ class CouponsController extends Controller
 	 */
     public function edit(Coupon $c)
     {
-		#Former::populate($c);
-
 		$data = $c->toArray();
 		if (isset($c->valid_until)) {
 			$data['valid_until'] = $c->valid_until->format('Y-m-d');
@@ -140,6 +138,7 @@ class CouponsController extends Controller
 		return view('admin.coupons_edit')->with([
 			'categories' => Category::all(['id', 'name']),
 			'products' => Product::all(['id', 'name']),
+			'roles' => Role::all(['id', 'name']),
 			'coupon' => $c,
 		]);
     }
@@ -151,10 +150,11 @@ class CouponsController extends Controller
      */
     public function update(Requests\admin\EditCouponRequest $request, Coupon $c)
     {
-        $c->fill(Input::only('admin_name', 'name', 'code', 'discount', 'enabled', 'products', 'categories', 'cumulative'));
+        $c->fill(Input::only('admin_name', 'name', 'code', 'discount', 'enabled', 'products', 'categories', 'cumulative', 'roles'));
 
 		$c->enabled = Input::has('enabled');
 		$c->cumulative = Input::has('cumulative');
+		$c->single_use = Input::has('single_use');
 
 		# deactivate automatically?
 		if (Input::has('automatic_deactivation')) {

@@ -19,18 +19,17 @@
 
     <div class="row clearfix">
         <div class="col-sm-6 tight-left">
-            {!! Former::text('firstname', 'First Name') !!}
+            {!! Former::text('firstname') !!}
         </div>
         <div class="col-sm-6 tight-right">
-            {!! Former::text('lastname', 'Last Name') !!}
+            {!! Former::text('lastname') !!}
         </div>
     </div>
 
-    {!! Former::text('email', 'E-Mail Address') !!}
+    {!! Former::text('email') !!}
 
     {!! Former::password('password') !!}
-    {!! Former::password('password_confirmation', 'Confirm Password') !!}
-
+    {!! Former::password('password_confirmation') !!}
 
 	<hr>
 

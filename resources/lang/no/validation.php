@@ -124,6 +124,7 @@ return [
 		'products' => 'Produkter',
 		'code' => 'Kode',
 		'cumulative' => 'Kumulativ',
+		'single_use' => 'Engangsbruk',
 
 		'billing_name' => 'Navn',
 		'billing_postal_code' => 'Postkode',

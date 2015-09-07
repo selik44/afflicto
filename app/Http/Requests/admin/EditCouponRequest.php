@@ -32,6 +32,8 @@ class EditCouponRequest extends Request
 			'code' => 'required|max:255',
 			'products' => 'array',
 			'categories' => 'array',
+			'single_use' => 'boolean',
+			'roles' => 'array',
 		];
     }
 }
