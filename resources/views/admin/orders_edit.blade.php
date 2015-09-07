@@ -156,6 +156,17 @@
 						@endforeach
 					</tbody>
 				</table>
+
+				<hr>
+
+				<h6>Rabattkoder:</h6>
+				<div class="table bordered">
+					<ul class="flat">
+					@foreach($order->coupons as $coupon)
+						<li>{{$coupon->admin_name}}</li>
+					@endforeach
+					</ul>
+				</div>
 			</div>
 		</div>
 
