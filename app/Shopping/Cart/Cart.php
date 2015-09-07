@@ -661,7 +661,7 @@ class Cart {
 
 		# role protection for this coupon?
 		if ($coupon->roles != null) {
-			if ( ! in_array($user->role, $coupon->roles)) return false;
+			if ( ! in_array($user->role->id, $coupon->roles)) return false;
 		}
 
 		return true;
