@@ -136,6 +136,23 @@ class Category extends Model {
 		return $this->belongsTo('Friluft\Category', 'parent_id');
 	}
 
+	/**
+	 * Get parent and their parents, recursively.
+	 * @return array[Friluft\Category]
+	 */
+	public function parents() {
+		$parents = [];
+
+		$parent = $this->parent;
+
+		while($parent != null) {
+			$parents[] = $parent;
+			$parent = $parent->parent;
+		}
+
+		return $parents;
+	}
+
 	public function getPath() {
 		$slugs = [$this->slug];
 

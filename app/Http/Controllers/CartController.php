@@ -119,19 +119,17 @@ class CartController extends Controller {
 		return Redirect::to('/')->with('success', 'Your cart has been cleared.');
 	}
 
-	public function setCouponCode($code) {
+	public function addCouponCode($code) {
 		if ( ! Auth::user()) {
 			return response('unauthorized', 200);
 		}
 
-		if (Cart::hasCoupon()) {
-			Cart::removeCoupon();
+		if (Cart::hasCoupon($code)) {
+			return response('already added', 200);
 		}
 
-		if (Cart::setCoupon($code)) {
-			if (Cart::getCoupon()) {
-				return Cart::getCoupon();
-			}
+		if (Cart::addCoupon($code)) {
+			return Cart::getCoupon($code);
 		}
 
 		return response("invalid code", 200);

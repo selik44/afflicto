@@ -53,7 +53,7 @@ get('api/cart/{cart}', ['as' => 'api.cart.show', 'uses' => 'CartController@show'
 post('api/cart', ['as' => 'api.cart.store', 'uses' => 'CartController@store']);
 put('api/cart/{id}/quantity', ['as' => 'api.cart.quantity', 'uses' => 'CartController@setQuantity']);
 delete('api/cart/{id}', ['as' => 'api.cart.destroy', 'uses' => 'CartController@destroy']);
-put('api/cart/coupon/{code}', ['as' => 'api.cart.setCouponCode', 'uses' => 'CartController@setCouponCode']);
+put('api/cart/coupons/{code}', ['as' => 'api.cart.coupons.store', 'uses' => 'CartController@addCouponCode']);
 
 get('api/proteria/update', ['as' => 'api.proteria.update', 'uses' => 'Admin\ProteriaController@update']);
 get('api/proteria/orders', ['as' => 'admin.proteria.export', 'uses' => 'Admin\ProteriaController@getExport']);

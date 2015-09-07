@@ -26,16 +26,20 @@
 
 				<hr>
 
-				<div class="coupon-container">
-					<div class="code">
-						<label for="coupon_code">Rabbatkode
+				<div class="coupons-container">
+					<h5>Rabattkoder</h5>
+
+					<div class="errors alert warning" style="display: none">
+						<h6>Oops!</h6>
+						<p class="message"></p>
+					</div>
+
+					<div class="controls">
+						<label for="code">Legg til Rabattkode
 							<div class="input-append" style="width: 100%;">
-								<?php
-									$code = isset($coupon) ? $coupon->code : '';
-								?>
-								<input type="text" name="coupon_code" value="{{$code}}" placeholder="Rabattkode...">
+								<input type="text" name="code">
 								<div class="appended">
-									<button class="update primary" style="flex: auto">Oppdater</button>
+									<button class="add primary" style="flex: auto">Legg til</button>
 								</div>
 							</div>
 						</label>
@@ -43,15 +47,14 @@
 
 
 
-					<div class="info">
-						@if($coupon)
-							<i class="fa fa-check color-success"></i> {{ $coupon->name }}
-						@endif
-					</div>
-
-					<div class="alert warning" style="display: none">
-						<h6>Oops!</h6>
-						<p></p>
+					<div class="coupons">
+						<ul class="flat">
+							@foreach($coupons as $coupon)
+							<li>
+								<i class="fa fa-check color-success"></i> {{ $coupon->name }}
+							</li>
+							@endforeach
+						</ul>
 					</div>
 				</div>
 
@@ -146,28 +149,36 @@
 			});
 
 			// coupon code handling
-			$(".coupon-container button.update").click(function() {
-				var code = $(".coupon-container input").val();
+			var coupons = $('.coupons-container');
+			coupons.find('.controls button.add').click(function() {
+				var code = coupons.find('.controls input[name="code"]').val();
 				if (code.length <= 0) return false;
 
 				console.log('applying coupon code ' + code);
+
+				//hide errors
+				coupons.find('.errors').hide();
+
 				klarnaSuspend();
 
-				$.post(Friluft.URL + '/api/cart/coupon/' + code, {_method: 'PUT', _token: Friluft.token}, function(response) {
+				$.post(Friluft.URL + '/api/cart/coupons/' + code, {_method: 'PUT', _token: Friluft.token}, function(response) {
 					console.log('response: ');
 					console.log(response);
 
 					if (response == 'invalid code') {
-						//reset info and show alert
-						$(".coupon-container .info").html('').hide();
-						$(".coupon-container .alert p").html("Beklager, koden er ikke riktig!").parent().show();
+						//show error
+						coupons.find('.errors .message').html("Beklager, koden er ikke riktig!").parent().show();
 					}else if (response == 'unauthorized') {
-							$(".coupon-container .info").html('').hide();
-							$(".coupon-container .alert p").html("Du må være <a href='" + Friluft.URL + "/user/login'>logget in</a> for å kunne bruke rabattkoder.").parent().show();
-					}else {
-						//show info and hide alert
-						$(".coupon-container .info").html('<i class="fa fa-check color-success"></i> ' + response.name).show();
-						$(".coupon-container .alert").hide();
+						//show error
+						coupons.find('.errors .message').html("Du må være <a href='" + Friluft.URL + "/user/login'>logget in</a> for å kunne bruke rabattkoder.").parent().show();
+					}else if (response == 'already added') {
+						coupons.find('.errors .message').html("Den koden er allerede lagt til.").parent().show();
+					} else {
+						//hide errors
+						coupons.find('.errors .message').html('').parent().hide();
+
+						//add coupon list item
+						coupons.find('.coupons ul').append('<li><i class="fa fa-check color-success"></i> ' + response.name + '</li>');
 					}
 
 					klarnaResume();

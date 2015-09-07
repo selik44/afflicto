@@ -174,7 +174,7 @@ class StoreController extends Controller {
 				'shipping' => Cart::getShipping(),
 				'total' => Cart::getTotal(),
 				'aside' => false,
-				'coupon' => Cart::hasCoupon() ? Cart::getCoupon() : null,
+				'coupons' => Cart::getCoupons(),
 			]);
 	}
 
@@ -338,10 +338,13 @@ class StoreController extends Controller {
 			}
 
 			# associate with a coupon?
-			if (isset($custom['coupon'])) {
-				$coupon = Coupon::find($custom['coupon']);
-				if ($coupon) {
-					$order->coupon()->associate($coupon);
+			if (isset($custom['coupons'])) {
+				foreach($custom['coupons'] as $code) {
+					$coupon = Coupon::whereCode($code)->first();
+
+					if ($coupon) {
+						$order->coupons()->attach($coupon);
+					}
 				}
 			}
 		}

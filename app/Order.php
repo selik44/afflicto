@@ -50,6 +50,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $coupon_id
  * @property-read \Friluft\Coupon $coupon
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereCouponId($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Coupon[] $coupons
  */
 class Order extends Model {
 
@@ -109,8 +110,8 @@ class Order extends Model {
         return $this->hasMany('Friluft\OrderEvent');
     }
 
-	public function coupon() {
-		return $this->belongsTo('Friluft\Coupon');
+	public function coupons() {
+		return $this->belongsToMany('Friluft\Coupon');
 	}
 
     public function getHumanName() {

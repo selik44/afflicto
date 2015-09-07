@@ -37,6 +37,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Coupon whereFreeShipping($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Coupon whereCumulative($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Coupon whereEnabled($value)
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Order[] $orders
  */
 class Coupon extends Model {
 
@@ -113,6 +114,10 @@ class Coupon extends Model {
 
 	public function users() {
 		return $this->belongsToMany('Friluft\User');
+	}
+
+	public function orders() {
+		return $this->belongsToMany('Friluft\Order');
 	}
 
 }
