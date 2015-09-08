@@ -99,7 +99,7 @@ class Cart {
 		# make sure we add the coupon codes that we can use from our role
 		if (Auth::user()) {
 			$user = Auth::user();
-			$coupons = Coupon::whereRoles('like', '%,' .$user->role->id .',%')->get();
+			$coupons = Coupon::where('roles', 'like', '%,' .$user->role->id .',%')->get();
 			foreach($coupons as $coupon) {
 				# if we don't have it, add it.
 				if ( ! $this->hasCoupon($coupon->code)) {
