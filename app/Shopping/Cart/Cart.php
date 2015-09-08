@@ -96,8 +96,19 @@ class Cart {
 			}
 		}
 
-		# verify coupon codes
+		# make sure we add the coupon codes that we can use from our role
+		if (Auth::user()) {
+			$user = Auth::user();
+			$coupons = Coupon::whereRoles('like', '%,' .$user->role->id .',%')->get();
+			foreach($coupons as $coupon) {
+				# if we don't have it, add it.
+				if ( ! $this->hasCoupon($coupon->code)) {
+					$this->addCoupon($coupon->code);
+				}
+			}
+		}
 
+		# verify coupon codes
 		$coupons = $this->session->get('shoppingcart.coupons');
 		foreach($coupons as $key => $code) {
 			if ( ! $this->canUseCoupon($code)) {

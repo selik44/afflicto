@@ -67,8 +67,8 @@
       <file leaf-file-name="Cart.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Shopping/Cart/Cart.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6545454">
-              <caret line="663" column="75" selection-start-line="663" selection-start-column="75" selection-end-line="663" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.58181816">
+              <caret line="105" column="52" selection-start-line="105" selection-start-column="52" selection-end-line="105" selection-end-column="52" />
               <folding />
             </state>
           </provider>
@@ -78,7 +78,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StoreController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="42" column="32" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+              <caret line="166" column="34" selection-start-line="166" selection-start-column="34" selection-end-line="166" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -106,21 +106,6 @@
                 <marker date="1441615012687" expanded="true" signature="355:562" placeholder="..." />
                 <marker date="1441615012687" expanded="true" signature="356:561" placeholder="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="friluft.coupons" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/1be997c3/b70391ad-1f84-4357-95ee-cb4cd3ded70e/friluft..coupons">
-          <provider editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
             </state>
           </provider>
         </entry>
@@ -972,14 +957,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/_ide_helper.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3323077">
-          <caret line="10691" column="31" selection-start-line="10691" selection-start-column="31" selection-end-line="10691" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Providers/ShoppingCartProvider.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36307693">
@@ -1168,6 +1145,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/_ide_helper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12061" column="57" selection-start-line="12061" selection-start-column="57" selection-end-line="12061" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="dbDummy://dbtable:/1be997c3/b70391ad-1f84-4357-95ee-cb4cd3ded70e/friluft..coupons">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1206,15 +1191,15 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/StoreController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="42" column="32" selection-start-line="42" selection-start-column="32" selection-end-line="42" selection-end-column="32" />
+          <caret line="166" column="34" selection-start-line="166" selection-start-column="34" selection-end-line="166" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Shopping/Cart/Cart.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6545454">
-          <caret line="663" column="75" selection-start-line="663" selection-start-column="75" selection-end-line="663" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.58181816">
+          <caret line="105" column="52" selection-start-line="105" selection-start-column="52" selection-end-line="105" selection-end-column="52" />
           <folding />
         </state>
       </provider>
