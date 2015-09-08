@@ -54,7 +54,7 @@ class HomeController extends Controller {
 
 		$email = htmlentities(Input::get('email'));
 		\Mail::send('emails.store.kontakt', ['input' => Input::all()], function($mail) use($email) {
-			$mail->to('kundeservice@123friluft.no')->subject('Kontakt fra ' .$email);
+			$mail->to('kundeservice@123friluft.no')->subject('Kontakt fra ' .$email)->from($email);
 		});
 
 		return \Redirect::to('/')->with('success', 'Din melding er sendt!');
@@ -78,8 +78,9 @@ class HomeController extends Controller {
 			$subject .=' #' .Input::get('order_id');
 		}
 
-		\Mail::send('emails.store.retur', ['input' => Input::all()], function($mail) use($subject) {
-			$mail->to('retur@123friluft.no')->subject($subject);
+		$email = Input::get('email');
+		\Mail::send('emails.store.retur', ['input' => Input::all()], function($mail) use($subject, $email) {
+			$mail->to('retur@123friluft.no')->subject($subject)->from($email);
 		});
 
 		return \Redirect::to('/')->with('success', 'Din melding er sendt!');
