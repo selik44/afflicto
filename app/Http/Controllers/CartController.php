@@ -135,4 +135,11 @@ class CartController extends Controller {
 		return response("invalid code", 200);
 	}
 
+	/**
+	 * Get the amount saved
+	 */
+	public function getSaved() {
+		return Cart::getAmountSaved();
+	}
+
 }

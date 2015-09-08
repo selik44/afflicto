@@ -45,8 +45,6 @@
 						</label>
 					</div>
 
-
-
 					<div class="coupons">
 						<ul class="flat">
 							@foreach($coupons as $coupon)
@@ -56,6 +54,9 @@
 							@endforeach
 						</ul>
 					</div>
+
+					<?php $display = (count($coupons) > 0) ? 'block' : 'none'; ?>
+					<p class="lead saved" style="display: {{$display}};">Du sparer <strong class="value">{{$saved}}</strong> kroner!</p>
 				</div>
 
 				<hr>
@@ -179,6 +180,11 @@
 
 						//add coupon list item
 						coupons.find('.coupons ul').append('<li><i class="fa fa-check color-success"></i> ' + response.name + '</li>');
+
+						//update "saved"
+						$.post(Friluft.URL + '/api/cart/saved', function(response) {
+							coupons.find('.saved').show().find('.value').text(response);
+						});
 					}
 
 					klarnaResume();

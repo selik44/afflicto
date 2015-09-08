@@ -297,6 +297,20 @@ class Cart {
 		return 0;
 	}
 
+	public function getSubTotalWithoutDiscounts($uid) {
+		$item = $this->get($uid);
+
+		if ($item) {
+			$model = $this->getProductModel($uid);
+
+			if ($model) {
+				return $model->price * $model->vatgroup->amount * $item['quantity'];
+			}
+		}
+
+		return 0;
+	}
+
 	/**
 	 * Get the total price of all contents in the cart. Honors the quantity parameter.
 	 * @return float the total price.
@@ -305,6 +319,14 @@ class Cart {
 		$total = 0;
 		foreach($this->getItems() as $item) {
 			$total += $this->getSubTotal($item['id']);
+		}
+		return $total;
+	}
+
+	public function getTotalWithoutDiscounts() {
+		$total = 0;
+		foreach($this->getItems() as $item) {
+			$total += $this->getSubTotalWithoutDiscounts($item['id']);
 		}
 		return $total;
 	}
@@ -743,6 +765,21 @@ class Cart {
 		}
 
 		return $coupons;
+	}
+
+	public function getAmountSaved() {
+		$order = $this->getKlarnaOrder($this->session->get('klarna_order', null));
+		$saved = 0;
+
+		foreach($order['cart']['items'] as $item) {
+			$total = $item['unit_price'];
+			$discountFraction = $item['discount_rate'] / 100;
+			$discounted = $item['unit_price'] * (1 - ($discountFraction / 100));
+
+			$saved += $total - $discounted;
+		}
+
+		return round($saved / 100);
 	}
 
 }

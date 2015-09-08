@@ -47,13 +47,16 @@ Route::group(['prefix' => 'user'], function() {
 
 
 # API ROUTES
+
 get('api/cart', ['as' => 'api.cart.index', 'uses' => 'CartController@index']);
 get('api/cart/clear', ['as' => 'api.cart.clear', 'uses' => 'CartController@clear']);
+get('api/cart/saved', ['as' => 'api.cart.saved', 'uses' => 'CartController@getSaved']);
 get('api/cart/{cart}', ['as' => 'api.cart.show', 'uses' => 'CartController@show']);
 post('api/cart', ['as' => 'api.cart.store', 'uses' => 'CartController@store']);
 put('api/cart/{id}/quantity', ['as' => 'api.cart.quantity', 'uses' => 'CartController@setQuantity']);
 delete('api/cart/{id}', ['as' => 'api.cart.destroy', 'uses' => 'CartController@destroy']);
 put('api/cart/coupons/{code}', ['as' => 'api.cart.coupons.store', 'uses' => 'CartController@addCouponCode']);
+
 
 get('api/proteria/update', ['as' => 'api.proteria.update', 'uses' => 'Admin\ProteriaController@update']);
 get('api/proteria/orders', ['as' => 'admin.proteria.export', 'uses' => 'Admin\ProteriaController@getExport']);

@@ -175,6 +175,7 @@ class StoreController extends Controller {
 				'total' => Cart::getTotal(),
 				'aside' => false,
 				'coupons' => Cart::getCoupons(),
+				'saved' => Cart::getAmountSaved(),
 			]);
 	}
 
