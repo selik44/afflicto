@@ -52,9 +52,9 @@ class HomeController extends Controller {
 			return \Redirect::back()->withErrors($validator);
 		}
 
-		$email = htmlentities(Input::get('email'));
+		$email = Input::get('email');
 		\Mail::send('emails.store.kontakt', ['input' => Input::all()], function($mail) use($email) {
-			$mail->to('kundeservice@123friluft.no')->subject('Kontakt fra ' .$email)->from($email);
+			$mail->to('kundeservice@123friluft.no')->subject('Kundeservice')->from($email);
 		});
 
 		return \Redirect::to('/')->with('success', 'Din melding er sendt!');
@@ -73,7 +73,7 @@ class HomeController extends Controller {
 			return \Redirect::back()->withErrors($validator);
 		}
 
-		$subject = 'Return';
+		$subject = 'Retur';
 		if (Input::has('order_id')) {
 			$subject .=' #' .Input::get('order_id');
 		}
