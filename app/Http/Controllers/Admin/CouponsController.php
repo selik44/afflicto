@@ -135,6 +135,8 @@ class CouponsController extends Controller
 		}
 		Former::populate($data);
 
+		dd($data);
+
 		return view('admin.coupons_edit')->with([
 			'categories' => Category::all(['id', 'name']),
 			'products' => Product::all(['id', 'name']),

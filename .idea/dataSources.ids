@@ -3728,6 +3728,8 @@
       <column name="parent_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="banner_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="discount" sqlType="DOUBLE" precision="8" scale="2" nullable="false" jdbcType="8"/>
+      <column name="meta_description" sqlType="VARCHAR" precision="160" scale="0" nullable="false" jdbcType="12"/>
+      <column name="meta_keywords" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="categories_banner_id_foreign" columns="banner_id" ref-table="images" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="categories_parent_id_foreign" columns="parent_id" ref-table="categories" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
@@ -3745,6 +3747,48 @@
       <foreign-key name="category_product_product_id_foreign" columns="product_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
       <index name="category_product_category_id_foreign" unique="false" columns="category_id"/>
       <index name="category_product_product_id_foreign" unique="false" columns="product_id"/>
+    </table>
+    <table name="coupon_order" schema="" catalog="friluft" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="coupon_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="order_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="coupon_order_order_id_foreign" columns="order_id" ref-table="orders" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="coupon_order_coupon_id_foreign" columns="coupon_id" ref-table="coupons" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="3" deferrability="2"/>
+      <index name="coupon_order_coupon_id_foreign" unique="false" columns="coupon_id"/>
+      <index name="coupon_order_order_id_foreign" unique="false" columns="order_id"/>
+    </table>
+    <table name="coupon_user" schema="" catalog="friluft" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="user_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="coupon_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="coupon_user_coupon_id_foreign" columns="coupon_id" ref-table="coupons" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="coupon_user_user_id_foreign" columns="user_id" ref-table="users" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <index name="coupon_user_coupon_id_foreign" unique="false" columns="coupon_id"/>
+      <index name="coupon_user_user_id_foreign" unique="false" columns="user_id"/>
+    </table>
+    <table name="coupons" schema="" catalog="friluft" type="TABLE">
+      <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="deleted_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="admin_name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="name" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="code" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="discount" sqlType="DOUBLE" precision="8" scale="2" nullable="false" jdbcType="8"/>
+      <column name="categories" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="products" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
+      <column name="valid_until" sqlType="DATE" precision="10" scale="0" nullable="true" jdbcType="91"/>
+      <column name="free_shipping" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="cumulative" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="enabled" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="roles" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="single_use" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6" def="MQ=="/>
+      <primary-key name="PRIMARY" columns="id"/>
+      <exported-key name="coupon_order_coupon_id_foreign" table="coupon_order" schema="" catalog="friluft" columns="coupon_id"/>
+      <exported-key name="coupon_user_coupon_id_foreign" table="coupon_user" schema="" catalog="friluft" columns="coupon_id"/>
+      <exported-key name="orders_coupon_id_foreign" table="orders" schema="" catalog="friluft" columns="coupon_id"/>
     </table>
     <table name="images" schema="" catalog="friluft" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
@@ -3810,9 +3854,14 @@
       <column name="billing_address" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
       <column name="shipping_address" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
       <column name="klarna_status" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="shipment_number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="coupon_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="orders_coupon_id_foreign" columns="coupon_id" ref-table="coupons" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="orders_user_id_foreign" columns="user_id" ref-table="users" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="coupon_order_order_id_foreign" table="coupon_order" schema="" catalog="friluft" columns="order_id"/>
       <exported-key name="orderevents_order_id_foreign" table="orderevents" schema="" catalog="friluft" columns="order_id"/>
+      <index name="orders_coupon_id_foreign" unique="false" columns="coupon_id"/>
       <index name="orders_user_id_foreign" unique="false" columns="user_id"/>
     </table>
     <table name="pages" schema="" catalog="friluft" type="TABLE">
@@ -3898,6 +3947,8 @@
       <column name="manufacturer_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <column name="categories" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
       <column name="variants_stock" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="meta_description" sqlType="VARCHAR" precision="160" scale="0" nullable="false" jdbcType="12"/>
+      <column name="meta_keywords" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="products_manufacturer_id_foreign" columns="manufacturer_id" ref-table="manufacturers" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="products_vatgroup_id_foreign" columns="vatgroup_id" ref-table="vatgroups" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
@@ -3997,6 +4048,7 @@
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="users_role_id_foreign" columns="role_id" ref-table="roles" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="addresses_user_id_foreign" table="addresses" schema="" catalog="friluft" columns="user_id"/>
+      <exported-key name="coupon_user_user_id_foreign" table="coupon_user" schema="" catalog="friluft" columns="user_id"/>
       <exported-key name="orders_user_id_foreign" table="orders" schema="" catalog="friluft" columns="user_id"/>
       <index name="users_email_unique" unique="true" columns="email"/>
       <index name="users_role_id_index" unique="false" columns="role_id"/>
