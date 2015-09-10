@@ -128,6 +128,9 @@ class CouponsController extends Controller
 	 */
     public function edit(Coupon $c)
     {
+
+		dd($c);
+
 		$data = $c->toArray();
 		if (isset($c->valid_until)) {
 			$data['valid_until'] = $c->valid_until->format('Y-m-d');
