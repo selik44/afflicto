@@ -33,6 +33,22 @@
 
     <hr/>
 
+	<div class="row compound">
+		<label for="compound-toggle" class="checkbox-container"> Komboprodukt
+			<div class="checkbox">
+				<input id="compound-toggle" type="checkbox" name="compound-toggle" class="compound-toggle" value="yes">
+				<span></span>
+			</div>
+		</label>
+		<br>
+
+		<div class="controls" style="display: none;">
+			{!! $form->children !!}
+		</div>
+	</div>
+
+	<hr>
+
     <div class="row">
         <div class="col-xs-4">
             {!! $form->inprice !!}
@@ -88,9 +104,19 @@
 		var form = $("form");
 
         //initialize chosen
-		form.find('[name="categories[]"]').chosen().next().removeAttr('style').css('width', '100%');
-        form.find('[name="vatgroup"]').chosen().next().removeAttr('style').css('width', '100%');
-        form.find('[name="manufacturer"]').chosen().next().removeAttr('style').css('width', '100%');
+		form.find('[name="categories[]"]').chosen({width: '100%'});
+        form.find('[name="vatgroup"]').chosen({width: '100%'});
+        form.find('[name="manufacturer"]').chosen({width: '100%'});
+		form.find('[name="children[]"]').chosen({width: '100%'});
+
+		//compoun-toggle
+		form.find('#compound-toggle').change(function() {
+			if ($(this).is(':checked')) {
+				form.find('.compound .controls').slideDown();
+			}else {
+				form.find('.compound .controls').slideUp();
+			}
+		});
 
         //auto-price
         var profit = form.find('[name="profit"]');

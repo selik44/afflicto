@@ -23,6 +23,7 @@ $form->open = Former::open(route('admin.products.store'))
 		'articlenumber' => 'required|max:255|unique:products',
 		'meta_description' => 'max:160',
 		'meta_keywords' => 'max:250',
+		'children' => 'array',
 	]);
 
 $form->name = Former::text('name')->class('product-name');
@@ -52,5 +53,7 @@ $form->description = Former::textarea('description')->rows(8);
 
 $form->meta_description = Former::textarea('meta_description')->rows(4);
 $form->meta_keywords = Former::textarea('meta_keywords')->rows(4);
+
+$form->children = Former::select('children')->multiple()->fromQuery($products, 'name', 'id')->name('children[]')->label('products');
 
 return $form;

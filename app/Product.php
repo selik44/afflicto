@@ -87,6 +87,7 @@ class Product extends Model {
 		'manufacturer_id',
 		'meta_description',
 		'meta_keywords',
+		'children',
 	];
 
 	protected $casts = [
@@ -158,13 +159,39 @@ class Product extends Model {
 			$variants = $variants['variants'];
 		}
 
-		if ($this->variants->count() == 0) return $this->stock;
+		if ($this->isCompound()) {
+			$stock = null;
 
-		if ( ! isset($this->variants_stock[implode('_', $variants)])) {
-			return 'Invalid stock id: ' .implode('_', $variants);
+			foreach($this->getChildren() as $child) {
+				if ($child->variants->count() > 0) {
+					$stockID = [];
+					foreach($child->variants as $variant) {
+						if ( ! isset($variants[$variant->id])) {
+							\Log::error('Cannot get stock, missing variant option for ' .$variant->id);
+						}else {
+							$stockID[] = $variants[$variant->id];
+						}
+					}
+
+					$stockID = implode('_', $stockID);
+					$s = $child->variants_stock[$stockID];
+				}else {
+					$s = $child->stock;
+				}
+
+				if ($stock == null || $s < $stock) $stock = $s;
+			}
+
+			return $stock;
+		}else {
+			if ($this->variants->count() == 0) return $this->stock;
+
+			if ( ! isset($this->variants_stock[implode('_', $variants)])) {
+				return 'Invalid stock id: ' .implode('_', $variants);
+			}
+
+			return $this->variants_stock[implode('_', $variants)];
 		}
-
-		return $this->variants_stock[implode('_', $variants)];
 	}
 
 	public function getEnabledAttribute() {
@@ -245,16 +272,50 @@ class Product extends Model {
 	public function sell($amount = 1, $variants = []) {
 		$this->sales += (int) $amount;
 
-		if ($this->variants->count() == 0) {
-			$this->stock -= $amount;
-		}else if ($this->variants->count() > 0) {
-			$stock = $this->variants_stock;
-			$stockID = implode('_', $variants);
-			if (isset($stock[$stockID])) {
-				$stock[$stockID] -= $amount;
-				$this->variants_stock = $stock;
-			}else {
-				\Log::error('Cannot decrement stock, invalid stockID! ' .$stockID);
+		if ($this->isCompound()) {
+
+			foreach($this->getChildren() as $child) {
+				if ($child->variants->count() > 0) {
+					$stockID = [];
+					foreach($child->variants as $variant) {
+						$stockID[] = $variant->id;
+						if ( ! isset($variants[$variant->id])) {
+							\Log::error('Cannot decrement stock, missing variant option for ' .$variant->id);
+						}else {
+							$stockID[] = $variants[$variant->id];
+						}
+					}
+
+					$stockID = implode('_', $stockID);
+
+					$variants_stock = $child->variants_stock;
+
+					if ( isset($variants_stock[$stockID])) {
+						$variants_stock[$stockID] -= $amount;
+						$child->variants_stock = $variants_stock;
+						$child->save();
+					}else {
+						\Log::error('Cannot decrement stock, invalid stockID: ' .$stockID);
+					}
+
+				}else {
+					$child->stock -= $amount;
+					$child->save();
+				}
+			}
+
+		}else {
+			if ($this->variants->count() == 0) {
+				$this->stock -= $amount;
+			}else if ($this->variants->count() > 0) {
+				$stock = $this->variants_stock;
+				$stockID = implode('_', $variants);
+				if (isset($stock[$stockID])) {
+					$stock[$stockID] -= $amount;
+					$this->variants_stock = $stock;
+				}else {
+					\Log::error('Cannot decrement stock, invalid stockID! ' .$stockID);
+				}
 			}
 		}
 
@@ -315,6 +376,47 @@ class Product extends Model {
 
 	public function hasDiscount() {
 		return $this->getDiscount() > 0;
+	}
+
+	public function getChildrenAttribute() {
+		if ($this->attributes['children'] == null) return [];
+
+		$children = [];
+		foreach(explode(',', $this->attributes['children']) as $child) {
+			if ( ! $child) continue;
+			$children[] = $child;
+		}
+		return $children;
+	}
+
+	public function setChildrenAttribute($array = null) {
+		if ($array == null) {
+			$this->attributes['children'] = null;
+		}else if (is_array($array)) {
+			$this->attributes['children'] = ',' .implode(',', $array) .',';
+		}
+	}
+
+	/**
+	 * Get children as array of models.
+	 *
+	 * return [Friluft\Product]
+	 */
+	public function getChildren() {
+		$models = [];
+		foreach($this->children as $id) {
+			$models[] = Product::find($id);
+		}
+		return $models;
+	}
+
+	/**
+	 * Return whether this is a compound product. I.E, if it has any children.
+	 *
+	 * @return bool
+	 */
+	public function isCompound() {
+		return count($this->children) > 0;
 	}
 
 }

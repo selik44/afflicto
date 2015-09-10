@@ -96,76 +96,87 @@
 
             <hr>
 
-            <div class="product-variants row">
-                <div class="module">
-                    <div class="module-header clearfix">
-                        <h6 class="title">Variants</h6>
-                    </div>
+			@if( ! $product->isCompound())
+				<div class="product-variants row">
+					<div class="module">
+						<div class="module-header clearfix">
+							<h6 class="title">Variants</h6>
+						</div>
 
-                    <div class="module-content" style="padding: 0">
-                        <table class="bordered">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Stock</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
+						<div class="module-content" style="padding: 0">
+							<table class="bordered">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Stock</th>
+									</tr>
+								</thead>
+								<tbody>
+									<?php
 
-                                    $stock = $product->variants_stock;
+										$stock = $product->variants_stock;
 
-                                    if ( ! $stock) {
-                                        $stock = [];
-                                    }
+										if ( ! $stock) {
+											$stock = [];
+										}
 
 
-                                    if ( ! $product->variants->isEmpty()) {
-                                        $rootVariant = $product->variants[0];
-                                        if (count($product->variants) > 1) {
-                                            foreach($rootVariant->data['values'] as $rootValue) {
-                                                foreach($product->variants as $variant) {
-                                                    if ($rootVariant == $variant) continue;
+										if ( ! $product->variants->isEmpty()) {
+											$rootVariant = $product->variants[0];
+											if (count($product->variants) > 1) {
+												foreach($rootVariant->data['values'] as $rootValue) {
+													foreach($product->variants as $variant) {
+														if ($rootVariant == $variant) continue;
 
-                                                    foreach($variant['data']['values'] as $value) {
-                                                        $stockID = $rootValue['id'] .'_' .$value['id'];
-                                                        $s = 0;
-                                                        if (isset($stock[$stockID])) {
-                                                            $s = $stock[$stockID];
-                                                        }
+														foreach($variant['data']['values'] as $value) {
+															$stockID = $rootValue['id'] .'_' .$value['id'];
+															$s = 0;
+															if (isset($stock[$stockID])) {
+																$s = $stock[$stockID];
+															}
 
-                                                        echo '<tr>';
-                                                        echo '<td>' .$rootValue['name'] .' ' .$value['name'] .'</td>';
-                                                        echo '<td><input type="text" name="variant-' .$stockID .'" value="' .$s .'"></td>';
-                                                        echo '<tr>';
-                                                    }
-                                                }
-                                            }
-                                        }else {
-                                            foreach($rootVariant->data['values'] as $value) {
+															echo '<tr>';
+															echo '<td>' .$rootValue['name'] .' ' .$value['name'] .'</td>';
+															echo '<td><input type="text" name="variant-' .$stockID .'" value="' .$s .'"></td>';
+															echo '<tr>';
+														}
+													}
+												}
+											}else {
+												foreach($rootVariant->data['values'] as $value) {
 
-                                                $stockID = $value['id'];
+													$stockID = $value['id'];
 
-                                                $s = 0;
-                                                if (isset($stock[$stockID])) {
-                                                    $s = $stock[$stockID];
-                                                }
+													$s = 0;
+													if (isset($stock[$stockID])) {
+														$s = $stock[$stockID];
+													}
 
-                                                echo '<tr>';
-                                                echo '<td>' .$value['name'] .'</td>';
-                                                echo '<td><input type="text" name="variant-' .$value['id'] .'" value="' .$s .'"></td>';
-                                                echo '</tr>';
-                                            }
-                                        }
-                                    }
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+													echo '<tr>';
+													echo '<td>' .$value['name'] .'</td>';
+													echo '<td><input type="text" name="variant-' .$value['id'] .'" value="' .$s .'"></td>';
+													echo '</tr>';
+												}
+											}
+										}
+									?>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			@else
+				<h4>Produkter</h4>
+				<div class="product-children row">
+					<ul class="children">
+					@foreach($product->getChildren() as $child)
+						<li><a href="{{route('admin.products.edit', $child->id)}}">{{$child->name}}</a></li>
+					@endforeach
+					</ul>
+				</div>
+			@endif
 
-            <hr/>
+			<hr/>
 
             <div class="product-images row">
                 <div class="module">

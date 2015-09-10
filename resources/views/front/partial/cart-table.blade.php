@@ -20,11 +20,21 @@
 					<td class="product">
 						<h5 class="end"><a href="{{$item['url']}}">{{$model['name']}}</a></h5>
 						<ul class="variants">
-							@foreach($model->variants as $variant)
-								<li class="variant" data-id="{{$variant->id}}">
-									<strong>{{$variant->name}}</strong>: <span>{{$variant->getValueName($item['options']['variants'][$variant->id])}}</span>
-								</li>
-							@endforeach
+							@if($model->isCompound())
+								@foreach($model->getChildren() as $child)
+									@foreach($child->variants as $variant)
+										<li class="variant" data-id="{{$variant->id}}">
+											<strong>{{$variant->name}}</strong>: <span>{{$variant->getValueName($item['options']['variants'][$variant->id])}}</span>
+										</li>
+									@endforeach
+								@endforeach
+							@else
+								@foreach($model->variants as $variant)
+									<li class="variant" data-id="{{$variant->id}}">
+										<strong>{{$variant->name}}</strong>: <span>{{$variant->getValueName($item['options']['variants'][$variant->id])}}</span>
+									</li>
+								@endforeach
+							@endif
 						</ul>
 					</td>
 

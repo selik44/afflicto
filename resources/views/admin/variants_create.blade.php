@@ -8,7 +8,7 @@
     <h3 class="title">@lang('admin.variants') <small>@lang('admin.create')</small></h3>
 @stop
 
-@section('page')
+@section('content')
     {!! Former::open()
     ->action(route('admin.variants.store'))
     ->method('POST')
