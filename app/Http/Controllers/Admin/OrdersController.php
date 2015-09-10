@@ -115,6 +115,7 @@ class OrdersController extends Controller {
 
 		$table->filterable(true);
 
+		$table->addFilter('id', 'search');
 
 		$users = ['*' => 'All'];
 		foreach(User::orderBy('firstname', 'asc')->orderBy('lastname', 'asc')->get() as $user) {
