@@ -56,7 +56,7 @@ class OrdersController extends Controller {
 						$name = $product->name;
 
 						$variantString = '';
-						if (count($product->variants) > 0) {
+						if ($product->hasVariants()) {
 							# get the variants we ordered
 							$variants = $item['reference']['options']['variants'];
 

@@ -419,4 +419,19 @@ class Product extends Model {
 		return count($this->children) > 0;
 	}
 
+	/**
+	 * Check whether this product has variants OR whether it is a compound product that has children with variants.
+	 */
+	public function hasVariants() {
+		if ($this->isCompound()) {
+			foreach($this->getChildren() as $child) {
+				if ($child->variants->count() >= 0) return true;
+			}
+		}else {
+			return $this->variants->count();
+		}
+
+		return false;
+	}
+
 }

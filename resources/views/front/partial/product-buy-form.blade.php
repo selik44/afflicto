@@ -66,7 +66,7 @@
 			@foreach($product->getChildren() as $child)
 				@foreach($child->variants as $variant)
 					<div class="variant" data-id="{{$variant->id}}">
-						<label for="variant-{{$variant->id}}">{{$variant->name}}</label>
+						<label for="variant-{{$variant->id}}">{{$variant->name}} ({{$child->name}})</label>
 						<select name="variant-{{$variant->id}}" data-stock='{!! json_encode($child->variants_stock) !!}'>
 							@foreach($variant->data['values'] as $value)
 								@if($child->variants_stock[$value['id']] <= 0)

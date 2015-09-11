@@ -24,7 +24,7 @@
 								@foreach($model->getChildren() as $child)
 									@foreach($child->variants as $variant)
 										<li class="variant" data-id="{{$variant->id}}">
-											<strong>{{$variant->name}}</strong>: <span>{{$variant->getValueName($item['options']['variants'][$variant->id])}}</span>
+											<strong>{{$variant->name .' (' .$child->name .')'}}</strong>: <span>{{$variant->getValueName($item['options']['variants'][$variant->id])}}</span>
 										</li>
 									@endforeach
 								@endforeach
