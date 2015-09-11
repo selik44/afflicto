@@ -126,16 +126,21 @@
                                 $manufacturer = ($product->manufacturer) ? $product->manufacturer->name : '';
 
                                 $variantString = '';
-                                if (count($product->variants) > 0) {
-                                    # get the variants we ordered
-                                    $variants = $item['reference']['options']['variants'];
+                                if ($product->hasVariants()) {
+									# get the variants we ordered
+									$variants = $item['reference']['options']['variants'];
 
-                                    # create the string describing the variants
-                                    $stockID = [];
-                                    foreach($variants as $variantID => $value) {
-                                        $variantModel = Friluft\Variant::find($variantID);
-                                        $variantString .= $variantModel->name .': ' .$variantModel->getValueName($value) .', ';
-                                    }
+									foreach($product->getVariants() as $variant) {
+										$variantString .= $variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+									}
+
+									# create the string describing the variants
+									/*
+									foreach($variants as $variantID => $value) {
+										$variantModel = Variant::find($variantID);
+										$variantString .= $variantModel->name .': ' .$variantModel->getValueName($value) .', ';
+									}
+									*/
                                 }
                                 $variantString = rtrim($variantString, ', ');
                             ?>

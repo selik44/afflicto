@@ -434,4 +434,19 @@ class Product extends Model {
 		return false;
 	}
 
+	public function getVariants() {
+		$variants = [];
+		foreach($this->variants as $variant) {
+			$variants[$variant->id] = $variant;
+		}
+
+		foreach($this->getChildren() as $child) {
+			foreach($child->variants as $variant) {
+				$variants[$variant->id] = $variant;
+			}
+		}
+
+		return $variants;
+	}
+
 }
