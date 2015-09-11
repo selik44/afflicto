@@ -71,25 +71,27 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrdersController.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="OrdersController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="57" column="24" selection-start-line="57" selection-start-column="24" selection-end-line="73" selection-end-column="69" />
+            <state vertical-scroll-proportion="0.515873">
+              <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
               <folding>
-                <marker date="1441958712395" expanded="true" signature="2817:3273" placeholder="..." />
-                <marker date="1441958712395" expanded="true" signature="3029:3262" placeholder="..." />
+                <marker date="1441958887242" expanded="true" signature="3128:3584" placeholder="..." />
+                <marker date="1441958887242" expanded="true" signature="3340:3573" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orders_packlist.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="orders_packlist.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.3793651">
-              <caret line="130" column="90" selection-start-line="130" selection-start-column="90" selection-end-line="130" selection-end-column="90" />
-              <folding />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="132" column="36" selection-start-line="132" selection-start-column="36" selection-end-line="143" selection-end-column="37" />
+              <folding>
+                <element signature="e#5874#5965#0#HTML" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -193,8 +195,8 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/emails/store/order_confirmation.blade.php" />
         <option value="$PROJECT_DIR$/app/Product.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php" />
       </list>
     </option>
   </component>
@@ -1140,22 +1142,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="57" column="24" selection-start-line="57" selection-start-column="24" selection-end-line="73" selection-end-column="69" />
+          <caret line="132" column="36" selection-start-line="132" selection-start-column="36" selection-end-line="143" selection-end-column="37" />
           <folding>
-            <marker date="1441958712395" expanded="true" signature="2817:3273" placeholder="..." />
-            <marker date="1441958712395" expanded="true" signature="3029:3262" placeholder="..." />
+            <element signature="e#5874#5965#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3793651">
-          <caret line="130" column="90" selection-start-line="130" selection-start-column="90" selection-end-line="130" selection-end-column="90" />
-          <folding />
+        <state vertical-scroll-proportion="0.515873">
+          <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
+          <folding>
+            <marker date="1441958887242" expanded="true" signature="3128:3584" placeholder="..." />
+            <marker date="1441958887242" expanded="true" signature="3340:3573" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>

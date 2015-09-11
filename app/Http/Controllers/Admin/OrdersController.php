@@ -61,8 +61,16 @@ class OrdersController extends Controller {
 							$variants = $item['reference']['options']['variants'];
 
 							# build the string describing the variants
-							foreach($product->getVariants() as $variant) {
-								$variantString .= $variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+							if ($product->isCompound()) {
+								foreach($product->getChildren() as $child) {
+									foreach($child->varaints as $variant) {
+										$variantString .= $child->name .' ' .$variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+									}
+								}
+							}else {
+								foreach($product->getVariants() as $variant) {
+									$variantString .= $variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+								}
 							}
 
 							# get stock
