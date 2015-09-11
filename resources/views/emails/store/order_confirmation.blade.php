@@ -26,14 +26,24 @@
                         <td>{{$item['total_price_including_tax']}},-</td>
                     @else
                         <td>{{$item['name']}}
-                            <ul class="flat variants">
-                                <?php
-                                    $model = \Friluft\Product::find($item['reference']['id']);
-                                ?>
-                                @foreach($model->variants as $variant)
-                                    <li><strong>{{$variant->name}}:</strong> <span>{{$variant->getValueName($item['reference']['options']['variants'][$variant->id])}}</span></li>
-                                @endforeach
-                            </ul>
+							<?php
+								$model = \Friluft\Product::find($item['reference']['id']);
+							?>
+							@if($model->hasVariants())
+								<ul class="flat variants">
+									@if($model->isCompound())
+										@foreach($model->getChildren() as $child)
+											@foreach($child->variants as $variant)
+												<li><strong>{{$variant->name .' (' .$child->name .')'}}:</strong> <span>{{$variant->getValueName($item['reference']['options']['variants'][$variant->id]}}</span></li>
+											@endforeach
+										@endforeach
+									@else
+										@foreach($model->variants as $variant)
+											<li><strong>{{$variant->name}}:</strong> <span>{{$variant->getValueName($item['reference']['options']['variants'][$variant->id])}}</span></li>
+										@endforeach
+									@endif
+								</ul>
+							@endif
                         </td>
                         <td>{{$item['quantity']}}</td>
                         <td>{{$item['total_price_including_tax']}},-</td>
