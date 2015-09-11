@@ -71,24 +71,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OrdersController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OrdersController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.515873">
-              <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="65" column="75" selection-start-line="65" selection-start-column="75" selection-end-line="65" selection-end-column="75" />
               <folding>
-                <marker date="1441958887242" expanded="true" signature="3128:3584" placeholder="..." />
-                <marker date="1441958887242" expanded="true" signature="3340:3573" placeholder="..." />
+                <marker date="1441958918617" expanded="true" signature="3128:3584" placeholder="..." />
+                <marker date="1441958918617" expanded="true" signature="3340:3573" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orders_packlist.blade.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="orders_packlist.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="132" column="36" selection-start-line="132" selection-start-column="36" selection-end-line="143" selection-end-column="37" />
+            <state vertical-scroll-proportion="0.45238096">
+              <caret line="135" column="68" selection-start-line="135" selection-start-column="68" selection-end-line="135" selection-end-column="68" />
               <folding>
                 <element signature="e#5874#5965#0#HTML" expanded="true" />
               </folding>
@@ -195,8 +195,8 @@
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/resources/views/emails/store/order_confirmation.blade.php" />
         <option value="$PROJECT_DIR$/app/Product.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" />
       </list>
     </option>
   </component>
@@ -1142,23 +1142,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="132" column="36" selection-start-line="132" selection-start-column="36" selection-end-line="143" selection-end-column="37" />
+          <caret line="65" column="75" selection-start-line="65" selection-start-column="75" selection-end-line="65" selection-end-column="75" />
           <folding>
-            <element signature="e#5874#5965#0#HTML" expanded="true" />
+            <marker date="1441958918617" expanded="true" signature="3128:3584" placeholder="..." />
+            <marker date="1441958918617" expanded="true" signature="3340:3573" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.515873">
-          <caret line="68" column="33" selection-start-line="68" selection-start-column="33" selection-end-line="68" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.45238096">
+          <caret line="135" column="68" selection-start-line="135" selection-start-column="68" selection-end-line="135" selection-end-column="68" />
           <folding>
-            <marker date="1441958887242" expanded="true" signature="3128:3584" placeholder="..." />
-            <marker date="1441958887242" expanded="true" signature="3340:3573" placeholder="..." />
+            <element signature="e#5874#5965#0#HTML" expanded="true" />
           </folding>
         </state>
       </provider>

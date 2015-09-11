@@ -63,7 +63,7 @@ class OrdersController extends Controller {
 							# build the string describing the variants
 							if ($product->isCompound()) {
 								foreach($product->getChildren() as $child) {
-									foreach($child->varaints as $variant) {
+									foreach($child->variants as $variant) {
 										$variantString .= $child->name .' ' .$variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
 									}
 								}
