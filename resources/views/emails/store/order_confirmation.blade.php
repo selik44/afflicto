@@ -34,7 +34,7 @@
 									@if($model->isCompound())
 										@foreach($model->getChildren() as $child)
 											@foreach($child->variants as $variant)
-												<li><strong>{{$variant->name .' (' .$child->name .')'}}:</strong> <span>{{$variant->getValueName($item['reference']['options']['variants'][$variant->id]}}</span></li>
+												<li><strong>{{$variant->name .' (' .$child->name .')'}}:</strong> <span>{{$variant->getValueName($item['reference']['options']['variants'][$variant->id])}}</span></li>
 											@endforeach
 										@endforeach
 									@else
