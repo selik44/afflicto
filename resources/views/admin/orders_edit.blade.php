@@ -116,23 +116,31 @@
                                     $stock = $product->stock;
                                     $name = $product->name;
 
-                                    $variantString = '';
-                                    if (count($product->variants) > 0) {
-                                        # get the variants we ordered
-                                        $variants = $item['reference']['options']['variants'];
+									$variantString = '';
+									if ($product->hasVariants()) {
+										# get the variants we ordered
+										$variants = $item['reference']['options']['variants'];
 
-                                        # create the string describing the variants
-                                        foreach($variants as $variantID => $value) {
-                                            $variantModel = Friluft\Variant::find($variantID);
-                                            $variantString .= $variantModel->name .': ' .$variantModel->getValueName($value) .', ';
-                                        }
+										# build the string describing the variants
+										if ($product->isCompound()) {
+											foreach($product->getChildren() as $child) {
+												foreach($child->variants as $variant) {
+													$variantString .= $child->name .' ' .$variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+												}
+											}
+										}else {
+											foreach($product->getVariants() as $variant) {
+												$variantString .= $variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+											}
+										}
 
-                                        $stock = $product->getStock($item['reference']['options']);
+										# get stock
+										$stock = $product->getStock($item['reference']['options']);
 
-                                        # (we want actual, physical stock so increment that)
-                                        $stock++;
-                                    }
-                                    $variantString = rtrim($variantString, ', ');
+										# (we want actual, physical stock so increment that)
+										$stock++;
+									}
+									$variantString = rtrim($variantString, ', ');
 
                                     if (strlen($variantString) > 0) $variantString = ' [' .$variantString .']';
 

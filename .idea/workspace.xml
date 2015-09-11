@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" />
     </list>
     <ignored path="123friluft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -84,13 +83,29 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="orders_packlist.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="orders_packlist.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45238096">
-              <caret line="135" column="68" selection-start-line="135" selection-start-column="68" selection-end-line="135" selection-end-column="68" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="127" column="32" selection-start-line="127" selection-start-column="32" selection-end-line="151" selection-end-column="77" />
               <folding>
                 <element signature="e#5874#5965#0#HTML" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="orders_edit.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.45238096">
+              <caret line="129" column="45" selection-start-line="129" selection-start-column="45" selection-end-line="129" selection-end-column="45" />
+              <folding>
+                <marker date="1441959010964" expanded="true" signature="236:241" placeholder="..." />
+                <marker date="1441959010964" expanded="true" signature="255:291" placeholder="..." />
+                <marker date="1441959010964" expanded="true" signature="304:306" placeholder="..." />
+                <marker date="1441959010964" expanded="true" signature="7752:8022" placeholder="..." />
+                <marker date="1441959010964" expanded="true" signature="7753:8005" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -164,7 +179,6 @@
         <option value="$PROJECT_DIR$/app/Category.php" />
         <option value="$PROJECT_DIR$/app/Order.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_09_07_071419_orders_have_many_coupons.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_09_07_100542_coupons_add_roles.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_09_07_102512_coupons_add_single_use.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/admin/EditCouponRequest.php" />
@@ -197,6 +211,7 @@
         <option value="$PROJECT_DIR$/app/Product.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" />
       </list>
     </option>
   </component>
@@ -823,13 +838,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.48387095">
-          <caret line="183" column="56" selection-start-line="183" selection-start-column="56" selection-end-line="183" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Database/Eloquent/Model.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.83870965">
@@ -1155,10 +1163,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.45238096">
-          <caret line="135" column="68" selection-start-line="135" selection-start-column="68" selection-end-line="135" selection-end-column="68" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="127" column="32" selection-start-line="127" selection-start-column="32" selection-end-line="151" selection-end-column="77" />
           <folding>
             <element signature="e#5874#5965#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45238096">
+          <caret line="129" column="45" selection-start-line="129" selection-start-column="45" selection-end-line="129" selection-end-column="45" />
+          <folding>
+            <marker date="1441959010964" expanded="true" signature="236:241" placeholder="..." />
+            <marker date="1441959010964" expanded="true" signature="255:291" placeholder="..." />
+            <marker date="1441959010964" expanded="true" signature="304:306" placeholder="..." />
+            <marker date="1441959010964" expanded="true" signature="7752:8022" placeholder="..." />
+            <marker date="1441959010964" expanded="true" signature="7753:8005" placeholder="..." />
           </folding>
         </state>
       </provider>
