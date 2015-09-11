@@ -60,17 +60,12 @@ class OrdersController extends Controller {
 							# get the variants we ordered
 							$variants = $item['reference']['options']['variants'];
 
+							# build the string describing the variants
 							foreach($product->getVariants() as $variant) {
 								$variantString .= $variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
 							}
 
-							# create the string describing the variants
-							/*
-							foreach($variants as $variantID => $value) {
-								$variantModel = Variant::find($variantID);
-								$variantString .= $variantModel->name .': ' .$variantModel->getValueName($value) .', ';
-							}*/
-
+							# get stock
 							$stock = $product->getStock($item['reference']['options']);
 
 							# (we want actual, physical stock so increment that)
