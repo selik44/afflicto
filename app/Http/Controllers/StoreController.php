@@ -77,6 +77,16 @@ class StoreController extends Controller {
 					]);
 				}
 				$content = str_replace('{{form}}', view('front.partial.retur-form')->render(), $content);
+			}else if ($page->slug == 'samarbeid') {
+				if (Auth::user()) {
+					$user = Auth::user();
+					Former::populate([
+						'name' => $user->name,
+						'email' => $user->email,
+						'phone' => $user->phone,
+					]);
+				}
+				$content = str_replace('{{form}}', view('front.partial.partners-form')->render(), $content);
 			}
 
 			return view('front.page')

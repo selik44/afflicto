@@ -14,6 +14,8 @@ post('nyhetsbrev', ['as' => 'nyhetsbrev.post', 'uses' => 'HomeController@nyhetsb
 post('kontakt', ['as' => 'contact.post', 'uses' => 'HomeController@contact_post']);
 post('retur', ['as' => 'retur.post', 'uses' => 'HomeController@retur_post']);
 
+post('partners', ['as' => 'partners.post', 'uses' => 'HomeController@partners_post']);
+
 # AUTH & USER ROUTES
 Route::group(['prefix' => 'user'], function() {
 	# login

@@ -86,4 +86,28 @@ class HomeController extends Controller {
 		return \Redirect::to('/')->with('success', 'Din melding er sendt!');
 	}
 
+	public function partners_post() {
+		$validator = \Validator::make(Input::all(), [
+			'name' => 'required|max:255',
+			'who' => 'required|max:255',
+			'phone' => 'required',
+			'email' => 'required|email',
+			'about' => 'required',
+			'website' => 'max:255',
+			'instagram' => 'max:255',
+		]);
+
+		if ($validator->fails()) {
+			return \Redirect::back()->withErrors($validator);
+		}
+
+		$subject = 'Samarbeidsforespørsel fra ' .e(Input::get('email'));
+		$email = Input::get('email');
+		\Mail::send('emails.store.partners', ['input' => Input::all()], function($mail) use($subject, $email) {
+			$mail->to('me@afflicto.net')->subject($subject)->from($email);
+		});
+
+		return \Redirect::to('/')->with('success', 'Takk for din henvendelse!');
+	}
+
 }
