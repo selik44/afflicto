@@ -56,16 +56,24 @@ class OrdersController extends Controller {
 						$name = $product->name;
 
 						$variantString = '';
-						if (count($product->variants) > 0) {
+						if ($product->hasVariants()) {
 							# get the variants we ordered
 							$variants = $item['reference']['options']['variants'];
 
-							# create the string describing the variants
-							foreach($variants as $variantID => $value) {
-								$variantModel = Variant::find($variantID);
-								$variantString .= $variantModel->name .': ' .$variantModel->getValueName($value) .', ';
+							# build the string describing the variants
+							if ($product->isCompound()) {
+								foreach($product->getChildren() as $child) {
+									foreach($child->variants as $variant) {
+										$variantString .= $child->name .' ' .$variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+									}
+								}
+							}else {
+								foreach($product->getVariants() as $variant) {
+									$variantString .= $variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+								}
 							}
 
+							# get stock
 							$stock = $product->getStock($item['reference']['options']);
 
 							# (we want actual, physical stock so increment that)

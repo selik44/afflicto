@@ -98,24 +98,25 @@ class ProductsController extends Controller {
 
 	public function create()
 	{
-		$cats = Category::all();
-		$mfs = Manufacturer::all();
-		$vatgroups = Vatgroup::all();
-        $tags = Tag::all();
-		$variants = Variant::all();
+		$cats = Category::all(['name', 'id']);
+		$mfs = Manufacturer::all(['name', 'id']);
+		$vatgroups = Vatgroup::all(['name', 'id']);
+        $tags = Tag::all(['label', 'id']);
+		$variants = Variant::all(['admin_name', 'id']);
+		$products = Product::all(['id', 'name']);
 
 		return $this->view('admin.products_create')
 		->with([
 			'categories' => $cats,
 			'manufacturers' => $mfs,
 			'vatgroups' => $vatgroups,
-			'form' => form('admin.product', ['categories' => $cats, 'manufacturers' => $mfs, 'vatgroups' => $vatgroups, 'tags' => $tags, 'variants' => $variants]),
+			'form' => form('admin.product', ['categories' => $cats, 'manufacturers' => $mfs, 'vatgroups' => $vatgroups, 'tags' => $tags, 'variants' => $variants, 'products' => $products]),
 		]);
 	}
 
 	public function store()
 	{
-		$p = new Product(Input::only('name', 'slug', 'inprice', 'price', 'weight', 'summary', 'articlenumber', 'barcode', 'enabled', 'stock', 'meta_description', 'meta_keywords'));
+		$p = new Product(Input::only('name', 'slug', 'inprice', 'price', 'weight', 'summary', 'articlenumber', 'barcode', 'enabled', 'stock', 'meta_description', 'meta_keywords', 'children'));
 
 		$p->categories = Input::get('categories', []);
 
@@ -149,11 +150,12 @@ class ProductsController extends Controller {
 	{
 		Former::populate($product);
 
-		$cats = Category::all();
-		$mfs = Manufacturer::all();
-		$vatgroups = Vatgroup::all();
-		$tags = Tag::all();
-		$variants = Variant::all();
+		$cats = Category::all(['id', 'name']);
+		$mfs = Manufacturer::all(['id', 'name']);
+		$vatgroups = Vatgroup::all(['id', 'name']);
+		$tags = Tag::all(['id', 'label']);
+		$variants = Variant::all(['id', 'admin_name']);
+		$products = Product::all(['id', 'name']);
 
 		return $this->view('admin.products_edit')
 			->with([
@@ -168,7 +170,8 @@ class ProductsController extends Controller {
 					'manufacturers' => $mfs,
 					'vatgroups' => $vatgroups,
 					'tags' => $tags,
-					'variants' => $variants
+					'variants' => $variants,
+					'products' => $products,
 				]),
 			]);
 	}

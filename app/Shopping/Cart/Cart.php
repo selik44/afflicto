@@ -94,6 +94,42 @@ class Cart {
 					}
 				}
 			}
+
+			# is it a compound product?
+			if ($product->isCompound()) {
+				foreach($product->getChildren() as $child) {
+
+					# verify variants
+					if($child->variants->count() > 0) {
+						if ( ! isset($item['options']['variants'])) {
+							$this->remove($item['id']);
+						}else {
+
+							# verify that the item has a valid option for each of the variants this product has
+							foreach ($child->variants as $variant) {
+								# not set?
+								if ( ! isset($item['options']['variants'][$variant->id])) {
+									$this->remove($item['id']);
+								}else {
+									# is the selected variant value not valid?
+									$selectedValue = $item['options']['variants'][$variant->id];
+
+									$isValid = false;
+									foreach($variant->data['values'] as $value) {
+										if ($value['id'] == $selectedValue) {
+											$isValid = true;
+										}
+									}
+
+									if ( ! $isValid) {
+										$this->remove($item['id']);
+									}
+								}
+							}
+						}
+					}
+				}
+			}
 		}
 
 		# make sure we add the coupon codes that we can use from our role

@@ -52,16 +52,35 @@ class CartController extends Controller {
 		];
 
 		# set variants
-		foreach($product->variants as $variant) {
-			if (!Input::has('variant-' .$variant->id)) {
-				return response('Variant ' .$variant->name .' is missing!');
+
+		# is compound?
+		if ($product->isCompound()) {
+			foreach($product->getChildren() as $child) {
+				foreach($child->variants as $variant) {
+					if (!Input::has('variant-' .$variant->id)) {
+						return response('Variant ' .$variant->name .' is missing!');
+					}
+
+					$options['variants'][$variant->id] = Input::get('variant-' .$variant->id);
+				}
 			}
 
-			$options['variants'][$variant->id] = Input::get('variant-' .$variant->id);
+			# get stock
+			$stock = $product->getStock($options['variants']);
+		}else {
+			foreach($product->variants as $variant) {
+				if (!Input::has('variant-' .$variant->id)) {
+					return response('Variant ' .$variant->name .' is missing!');
+				}
+
+				$options['variants'][$variant->id] = Input::get('variant-' .$variant->id);
+			}
+
+			# get stock
+			$stock = $product->getStock($options['variants']);
 		}
-		
-		# get stock
-		$stock = $product->getStock($options['variants']);
+
+
 
 		# is quantity greater than stock?
 		$totalQuantity = $quantity;
