@@ -6,10 +6,22 @@
 @endsetup
 
 @macro('deploy')
+	down
     pull
     composer
     migrate
+	up
 @endmacro
+
+@task('down', ['on' => $servers, 'parallel' => true])
+	cd /usr/share/nginx/html
+	php artisan down --no-interaction
+@endtask
+
+@task('up', ['on' => $servers, 'parallel' => true])
+	cd /usr/share/nginx/html
+	php artisan up --no-interaction
+@endtask
 
 @task('pull', ['on' => $servers, 'parallel' => true])
     cd /usr/share/nginx/html
@@ -34,7 +46,7 @@
 
 @task('migrate', ['on' => $servers, 'parallel' => true])
     cd /usr/share/nginx/html
-    php artisan migrate
+    php artisan migrate --force
     chmod -R 755 *
     chmod -R 777 storage
     chmod -R 777 public
