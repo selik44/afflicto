@@ -104,7 +104,7 @@ class HomeController extends Controller {
 		$subject = 'Samarbeidsforespørsel fra ' .e(Input::get('email'));
 		$email = Input::get('email');
 		\Mail::send('emails.store.partners', ['input' => Input::all()], function($mail) use($subject, $email) {
-			$mail->to('me@afflicto.net')->subject($subject)->from($email);
+			$mail->to('samarbeid@123friluft.no')->subject($subject)->from($email);
 		});
 
 		return \Redirect::to('/')->with('success', 'Takk for din henvendelse!');
