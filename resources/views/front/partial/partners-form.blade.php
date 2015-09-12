@@ -21,7 +21,7 @@
 
 {!! Former::text('email') !!}
 
-{!! Former::textarea('about') !!}
+{!! Former::textarea('about')->label('Om deg/dere') !!}
 
 {!! Former::text('website') !!}
 

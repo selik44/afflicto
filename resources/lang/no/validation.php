@@ -143,6 +143,9 @@ return [
 		'message' => 'Melding',
 		'varer' => 'Hvilke varer skal returneres?',
 		'cause' => 'Årsak',
+
+		'about' => 'Om',
+		'website' => 'Nettside',
 	],
 
 ];

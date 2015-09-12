@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/partial/partners-form.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/partial/partners-form.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/no/validation.php" afterPath="$PROJECT_DIR$/resources/lang/no/validation.php" />
     </list>
     <ignored path="123friluft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,25 +41,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="readme.md" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/readme.md">
-          <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-            <state />
-          </provider>
+      <file leaf-file-name="partners-form.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/front/partial/partners-form.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.103448">
-              <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomeController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.53457">
-              <caret line="106" column="82" selection-start-line="106" selection-start-column="82" selection-end-line="106" selection-end-column="82" />
-              <folding />
+            <state vertical-scroll-proportion="0.45699832">
+              <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
+              <folding>
+                <marker date="1442060523537" expanded="true" signature="32:38" placeholder="..." />
+                <marker date="1442060523537" expanded="true" signature="53:75" placeholder="..." />
+                <marker date="1442060523537" expanded="true" signature="89:99" placeholder="..." />
+                <marker date="1442060523537" expanded="true" signature="113:319" placeholder="..." />
+                <marker date="1442060523537" expanded="true" signature="114:318" placeholder="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -112,7 +104,6 @@
         <option value="$PROJECT_DIR$/app/Http/Requests/admin/EditCouponRequest.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/admin/CreateCouponRequest.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/coupons_create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/lang/no/validation.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/coupons_edit.blade.php" />
         <option value="$PROJECT_DIR$/app/Coupon.php" />
         <option value="$PROJECT_DIR$/resources/lang/no/store.php" />
@@ -137,13 +128,14 @@
         <option value="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/resources/views/front/partial/partners-form.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" />
         <option value="$PROJECT_DIR$/resources/views/emails/store/partners.blade.php" />
         <option value="$PROJECT_DIR$/Envoy.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/front/layout.blade.php" />
         <option value="$PROJECT_DIR$/readme.md" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
+        <option value="$PROJECT_DIR$/resources/lang/no/validation.php" />
+        <option value="$PROJECT_DIR$/resources/views/front/partial/partners-form.blade.php" />
       </list>
     </option>
   </component>
@@ -789,13 +781,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/lang/no/validation.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.516129">
-          <caret line="126" column="38" selection-start-line="126" selection-start-column="38" selection-end-line="126" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2015_09_07_100542_coupons_add_roles.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1124,20 +1109,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/front/partial/partners-form.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49578413">
-          <caret line="24" column="0" selection-start-line="24" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
-          <folding>
-            <marker date="1442058747322" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442058747322" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442058747322" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442058747322" expanded="true" signature="-1:-1" placeholder="..." />
-            <marker date="1442058747322" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/emails/store/partners.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1172,22 +1143,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7284992">
+          <caret line="105" column="59" selection-start-line="105" selection-start-column="59" selection-end-line="105" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/readme.md">
       <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.103448">
-          <caret line="41" column="22" selection-start-line="41" selection-start-column="22" selection-end-line="41" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.5106383">
+          <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/HomeController.php">
+    <entry file="file://$PROJECT_DIR$/resources/lang/no/validation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.53457">
-          <caret line="106" column="82" selection-start-line="106" selection-start-column="82" selection-end-line="106" selection-end-column="82" />
+        <state vertical-scroll-proportion="0.7284992">
+          <caret line="147" column="32" selection-start-line="147" selection-start-column="32" selection-end-line="147" selection-end-column="32" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/front/partial/partners-form.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.45699832">
+          <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
+          <folding>
+            <marker date="1442060523537" expanded="true" signature="32:38" placeholder="..." />
+            <marker date="1442060523537" expanded="true" signature="53:75" placeholder="..." />
+            <marker date="1442060523537" expanded="true" signature="89:99" placeholder="..." />
+            <marker date="1442060523537" expanded="true" signature="113:319" placeholder="..." />
+            <marker date="1442060523537" expanded="true" signature="114:318" placeholder="..." />
+          </folding>
         </state>
       </provider>
     </entry>
