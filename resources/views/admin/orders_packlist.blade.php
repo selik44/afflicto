@@ -155,15 +155,39 @@
                                 <td>
                                     <div style="width: 24px; height: 24px; margin: 4px; border: 1px solid #333; border-radius: 2px;"></div>
                                 </td>
+
                                 <td>
                                     <strong>{{$manufacturer}}</strong>
                                     <span>{{$name .' (' .$variantString .')'}}</span>
                                 </td>
+
                                 <td>
                                     {{$item['quantity']}}
                                 </td>
-                                <td>{{$product->articlenumber}}</td>
-                                <td>{{$product->barcode}}</td>
+
+                                <td>
+									@if($product->isCompound())
+										<ul class="flat">
+											@foreach($product->getChildren() as $child)
+												<li>{{$child->articlenumber}}</li>
+											@endforeach
+										</ul>
+									@else
+										{{$product->articlenumber}}
+									@endif
+								</td>
+
+								<td>
+									@if($product->isCompound())
+										<ul class="flat">
+											@foreach($product->getChildren() as $child)
+												<li>{{$child->barcode}}</li>
+											@endforeach
+										</ul>
+									@else
+										{{$product->barcode}}
+									@endif
+								</td>
                             </tr>
                         @endforeach
                         </tbody>

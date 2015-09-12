@@ -113,8 +113,11 @@
 		form.find('#compound-toggle').change(function() {
 			if ($(this).is(':checked')) {
 				form.find('.compound .controls').slideDown();
+				form.find('[name="articlenumber"], [name="barcode"]').attr('disabled', 'disabled').addClass('disabled');
+				form.find('.row').first().find('.')
 			}else {
 				form.find('.compound .controls').slideUp();
+				form.find('[name="articlenumber"], [name="barcode"]').removeAttr('disabled');
 			}
 		});
 

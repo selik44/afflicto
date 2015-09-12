@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/partial/partners-form.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/partial/partners-form.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/lang/no/validation.php" afterPath="$PROJECT_DIR$/resources/lang/no/validation.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/forms/admin/product.php" afterPath="$PROJECT_DIR$/resources/forms/admin/product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/products_create.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/products_create.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,6 +36,48 @@
         <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
       </PATH_ELEMENT>
     </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Local" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Local" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="friluft" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
+    <PATH>
+      <PATH_ELEMENT>
+        <option name="myItemId" />
+        <option name="myItemType" value="com.intellij.database.view.DbRootNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="Local" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="friluft" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+      <PATH_ELEMENT>
+        <option name="myItemId" value="products" />
+        <option name="myItemType" value="com.intellij.database.view.DbNodeDescriptor" />
+      </PATH_ELEMENT>
+    </PATH>
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
@@ -41,18 +85,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="partners-form.blade.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/views/front/partial/partners-form.blade.php">
+      <file leaf-file-name="orders_packlist.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.45699832">
-              <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
-              <folding>
-                <marker date="1442060523537" expanded="true" signature="32:38" placeholder="..." />
-                <marker date="1442060523537" expanded="true" signature="53:75" placeholder="..." />
-                <marker date="1442060523537" expanded="true" signature="89:99" placeholder="..." />
-                <marker date="1442060523537" expanded="true" signature="113:319" placeholder="..." />
-                <marker date="1442060523537" expanded="true" signature="114:318" placeholder="..." />
-              </folding>
+            <state vertical-scroll-proportion="0.46543002">
+              <caret line="187" column="61" selection-start-line="187" selection-start-column="61" selection-end-line="187" selection-end-column="61" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -85,7 +123,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/gulpfile.coffee" />
         <option value="$PROJECT_DIR$/resources/assets/sass/base/modules/product-view.sass" />
         <option value="$PROJECT_DIR$/resources/views/front/store_product.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_09_02_060327_create_coupons_table.php" />
@@ -110,8 +147,6 @@
         <option value="$PROJECT_DIR$/resources/views/auth/register.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/front/store/checkout.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_09_08_104616_products_add_children.php" />
-        <option value="$PROJECT_DIR$/resources/forms/admin/product.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/products_create.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_09_08_111529_products_set_meta_fields_nullable.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/variants_create.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" />
@@ -124,7 +159,6 @@
         <option value="$PROJECT_DIR$/resources/views/emails/store/order_confirmation.blade.php" />
         <option value="$PROJECT_DIR$/app/Product.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" />
         <option value="$PROJECT_DIR$/.idea/workspace.xml" />
         <option value="$PROJECT_DIR$/app/Http/routes.php" />
@@ -136,6 +170,10 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" />
         <option value="$PROJECT_DIR$/resources/lang/no/validation.php" />
         <option value="$PROJECT_DIR$/resources/views/front/partial/partners-form.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/products_create.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2015_09_12_143321_products_change_articlenumber_nullable.php" />
+        <option value="$PROJECT_DIR$/resources/forms/admin/product.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php" />
       </list>
     </option>
   </component>
@@ -718,11 +756,11 @@
     <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1978022" sideWeight="0.37426037" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1971917" sideWeight="0.62573963" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1971917" sideWeight="0.62573963" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32892057" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19472617" sideWeight="0.5" order="13" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23626374" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23626374" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25081432" sideWeight="0.44017094" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24786325" sideWeight="0.49812266" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32719395" sideWeight="0.53174603" order="12" side_tool="true" content_ui="tabs" />
@@ -781,20 +819,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/database/migrations/2015_09_07_100542_coupons_add_roles.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="42" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/admin/CreateCouponRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.8064516">
-          <caret line="35" column="31" selection-start-line="35" selection-start-column="31" selection-end-line="35" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/lang/no/store.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.28044692">
@@ -873,39 +897,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.32857144">
           <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/1be997c3/b70391ad-1f84-4357-95ee-cb4cd3ded70e/friluft..products">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/forms/admin/product.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.39117646">
-          <caret line="40" column="138" selection-start-line="40" selection-start-column="138" selection-end-line="40" selection-end-column="138" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/products_create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="130" column="78" selection-start-line="130" selection-start-column="78" selection-end-line="130" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/products_edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.07278481">
-          <caret line="161" column="36" selection-start-line="161" selection-start-column="36" selection-end-line="161" selection-end-column="36" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -923,17 +915,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5759494">
-          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/variants_create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6186709">
           <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -985,13 +971,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67142856">
-          <caret line="135" column="83" selection-start-line="135" selection-start-column="83" selection-end-line="135" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/OrdersController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.44285715">
@@ -1003,6 +982,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.43809524">
           <caret line="24" column="74" selection-start-line="24" selection-start-column="74" selection-end-line="24" selection-end-column="74" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1024,6 +1004,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.45238096">
           <caret line="129" column="45" selection-start-line="129" selection-start-column="45" selection-end-line="129" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1067,6 +1048,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.46360582">
           <caret line="18" column="28" selection-start-line="18" selection-start-column="28" selection-end-line="18" selection-end-column="28" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1151,17 +1133,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/readme.md">
-      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5106383">
-          <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/lang/no/validation.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.7284992">
@@ -1175,12 +1146,92 @@
         <state vertical-scroll-proportion="0.45699832">
           <caret line="23" column="55" selection-start-line="23" selection-start-column="55" selection-end-line="23" selection-end-column="55" />
           <folding>
-            <marker date="1442060523537" expanded="true" signature="32:38" placeholder="..." />
-            <marker date="1442060523537" expanded="true" signature="53:75" placeholder="..." />
-            <marker date="1442060523537" expanded="true" signature="89:99" placeholder="..." />
-            <marker date="1442060523537" expanded="true" signature="113:319" placeholder="..." />
-            <marker date="1442060523537" expanded="true" signature="114:318" placeholder="..." />
+            <marker date="1442060523537" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1442060523537" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1442060523537" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1442060523537" expanded="true" signature="-1:-1" placeholder="..." />
+            <marker date="1442060523537" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/readme.md">
+      <provider editor-type-id="com.intellij.database.editor.CsvTableFileEditorProvider">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5514184">
+          <caret line="34" column="65" selection-start-line="34" selection-start-column="65" selection-end-line="34" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/products_edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38448566">
+          <caret line="169" column="50" selection-start-line="169" selection-start-column="50" selection-end-line="169" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/1be997c3/b70391ad-1f84-4357-95ee-cb4cd3ded70e/friluft..products">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_09_08_111529_products_set_meta_fields_nullable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38785836">
+          <caret line="11" column="60" selection-start-line="11" selection-start-column="60" selection-end-line="11" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/forms/admin/product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.6593592">
+          <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2015_09_12_143321_products_change_articlenumber_nullable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.26306915">
+          <caret line="16" column="60" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.30185497">
+          <caret line="122" column="44" selection-start-line="122" selection-start-column="44" selection-end-line="122" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/products_create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.15514334">
+          <caret line="109" column="65" selection-start-line="109" selection-start-column="65" selection-end-line="109" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_packlist.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46543002">
+          <caret line="187" column="61" selection-start-line="187" selection-start-column="61" selection-end-line="187" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>
