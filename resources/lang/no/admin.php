@@ -77,6 +77,9 @@ return [
 	'total tax' => 'Total MVA',
 	'pack list' => 'Plukkliste',
 
+	'reports' => 'Rapporter',
+	'new accounts' => 'nye kontoer',
+
 	'status' => [
 		'unprocessed' => 'Ubehandlet',
 		'written_out' => 'Skrevet ut',

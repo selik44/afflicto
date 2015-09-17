@@ -246,6 +246,11 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	get('coupons/{coupon}/edit', ['as' => 'admin.coupons.edit', 'uses' => 'Admin\CouponsController@edit', 'middleware' => 'perms:coupons.edit']);
 	put('coupons/{coupon}/edit', ['as' => 'admin.coupons.update', 'uses' => 'Admin\CouponsController@update', 'middleware' => 'perms:coupons.update']);
 	delete('coupons/{coupon}', ['as' => 'admin.coupons.destroy', 'uses' => 'Admin\CouponsController@destroy', 'middleware' => 'perms:coupons.delete']);
+
+	# reports
+	get('reports/profit', ['as' => 'admin.reports.profit', 'uses' => 'Admin\ReportsController@profit', 'middleware' => 'perms:reports.view']);
+	get('reports/users', ['as' => 'admin.reports.users', 'uses' => 'Admin\ReportsController@users', 'middleware' => 'perms:reports.view']);
+	get('reports/products', ['as' => 'admin.reports.products', 'uses' => 'Admin\ReportsController@products', 'middleware' => 'perms:reports.view']);
 });
 
 

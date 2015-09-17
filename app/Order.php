@@ -97,6 +97,20 @@ class Order extends Model {
 		return $weight;
 	}
 
+	public function getProfit() {
+		$profit = 0;
+		foreach($this->items as $item) {
+			if ( ! isset($item['reference']) || $item['type'] !== 'physical') continue;
+			$product = Product::withTrashed()->find($item['reference']['id']);
+			if ( ! $product) {
+				continue;
+			}
+			$profit += $item['total_price_excluding_tax'] - $product->inprice * $item['quantity'];
+		}
+
+		return $profit;
+	}
+
 	public function getShipping() {
 		foreach($this->items as $item) {
 			if ($item['type'] == 'shipping_fee') {

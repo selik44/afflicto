@@ -53,6 +53,12 @@
             'fa-plus:admin.new receival' => 'admin.receivals.create',
         ]],
 
+		'fa-table:admin.reports' => ['admin.reports.profit', [
+			'fa-money:admin.profit' => 'admin.reports.profit',
+			'fa-user:admin.new accounts' => 'admin.reports.users',
+			'fa-leaf:admin.products' => 'admin.reports.products',
+		]],
+
         'fa-image:admin.design' => ['admin.slides', [
             'fa-pencil:admin.design' => 'admin.design',
             'fa-film:admin.slides' => 'admin.slides.index',
