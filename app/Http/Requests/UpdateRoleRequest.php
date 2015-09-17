@@ -11,13 +11,7 @@ class UpdateRoleRequest extends Request {
 	 */
 	public function authorize()
 	{
-		if (!\Auth::check()) return false;
-
-		$user = \Auth::user();
-		$role = $user->role;
-		if (!$role) return false;
-
-		return false;
+		return true;
 	}
 
 	/**
