@@ -26,7 +26,7 @@
 			@foreach($orders as $order)
 				<tr>
 					<td>{{$order->id}}</td>
-					<td>{{$order->created_at->format('l F Y H:M:S')}}</td>
+					<td>{{$order->created_at->format('d F Y H:M:S')}}</td>
 					<td>{{$order->getProfit()}}</td>
 				</tr>
 			@endforeach
