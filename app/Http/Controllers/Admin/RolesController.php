@@ -24,6 +24,7 @@ class RolesController extends Controller {
 		$table = Laratable::make(Role::query(), [
 			'#' => 'id',
 			'Name' => 'name',
+			'Machine' => 'machine',
 			'Users' => ['users', function($model) {
 				return $model->users()->count();
 			}],
@@ -59,6 +60,8 @@ class RolesController extends Controller {
 
 	public function edit(Role $role)
 	{
+		if ( ! $role->editable) return Redirect::back()->with('warning', $role->machine .' kan ikke endres.');
+
 		Former::populate($role);
 
 		return $this->view('admin.roles_edit')
@@ -71,6 +74,8 @@ class RolesController extends Controller {
 
 	public function update(Requests\UpdateRoleRequest $request, Role $role)
 	{
+		if ( ! $role->editable) return Redirect::back()->with('warning', $role->machine .' kan ikke endres.');
+
 		if ($role->machine === 'admin') {
 			return Redirect::back()->with('warning', trans('validation.disallow_admin_role_edit', ['role' => $role->name]));
 		}
@@ -84,8 +89,8 @@ class RolesController extends Controller {
 
 	public function destroy(Role $role)
 	{
-		if ($role->machine == 'regular' || $role->machine == 'admin') {
-			return Redirect::back()->with('error', trans('validation.disallow_default_role_delete', ['role' => $role->name]));
+		if ( ! $role->editable) {
+			return Redirect::back()->with('warning', 'Den rollen kan ikke endres.');
 		}
 
 		$role->delete();

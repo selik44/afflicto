@@ -20,7 +20,7 @@ function permission($perms) {
 
 	$role = $user->role;
 	if ($role) {
-		if ($role->machine === 'admin') return true;
+		if ($role->machine === 'superadmin') return true;
 		return $role->has($perms);
 	}
 

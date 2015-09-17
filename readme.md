@@ -27,6 +27,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - implement DB backups with: chickling\Backup\BackupServiceProvider
 
 # Todo
+- add more dashboard reports/charts
 - popups
 - add "revenue" field on orders, to prevent it from becoming invalid if relevant product data changes in the future.
 - fix discount rate in the orders items array (2000 should be 20 etc)
@@ -35,10 +36,6 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - fix the name parsing when generating a user from a klarna order
 - make discounts calculate for rounded prices (inc vat)
 - receivals
-- make superadmin and customer roles uneditable to streamline UI and prevent errors.
-- add missing permissions
-- add a nice pattern background image
-- fix footer background
 - fix input-append css
 
 #Order statuses

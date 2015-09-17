@@ -33,7 +33,7 @@ class Role extends Model {
 
 	public function has($permissions)
 	{
-		if ($this->machine === 'admin') return true;
+		if ($this->machine === 'superadmin') return true;
 
 		# get permissions
 		if (func_num_args() > 1) $permissions = func_get_args();

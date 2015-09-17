@@ -1,9 +1,5 @@
 <?php
 
-/**
- * Set the required permissions on each named route.
- * The keys correspond to route names and values to an array or comma-delimited string of permissions.
- */
 return [
 
 	'admin' => 'admin.access',

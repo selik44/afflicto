@@ -17,8 +17,6 @@ class UpdateRoleRequest extends Request {
 		$role = $user->role;
 		if (!$role) return false;
 
-		if ($role->machine === 'admin') return true;
-
 		return false;
 	}
 
