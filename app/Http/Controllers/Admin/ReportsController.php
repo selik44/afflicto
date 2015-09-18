@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
+use Illuminate\Support\Collection;
 use Input;
 
 class ReportsController extends Controller
@@ -80,7 +81,22 @@ class ReportsController extends Controller
 		if ($category == '*') {
 			$products = Product::where('sales', '>', '0')->orderBy('sales', 'desc')->get();
 		}else {
-			$products = Product::where('sales', '>', '0')->where('categories', 'LIKE', '%,' .$category .',%')->orderBy('sales', 'desc')->get();
+			$products = [];
+			$category = Category::find($category);
+			foreach($category->nestedProducts() as $product) {
+				if ($product->sales > 0) {
+					$products[] = $product;
+				}
+			}
+
+			$products = Collection::make($products);
+			$products = $products->sort(function($a, $b) {
+				if ($a->sales == $b->sales) return 0;
+
+				if ($a->sales > $b->sales) return 1;
+
+				return -1;
+			});
 		}
 
 		return view('admin.reports_products')->with([
