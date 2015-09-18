@@ -78,7 +78,7 @@ return [
 	'pack list' => 'Plukkliste',
 
 	'reports' => 'Rapporter',
-	'new accounts' => 'nye kontoer',
+	'new accounts' => 'Nye Kontoer',
 
 	'status' => [
 		'unprocessed' => 'Ubehandlet',

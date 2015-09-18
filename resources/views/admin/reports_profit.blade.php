@@ -6,6 +6,17 @@
 
 @section('header')
 	<h3 class="title">Rapporter - Profit</h3>
+	<form action="{{route('admin.reports.profit')}}" class="inline pull-right">
+		<label for="from">Fra
+			<input type="date" name="from" placeholder="from" value="{{$from}}">
+		</label>
+
+		<label for="to">Til
+			<input type="date" name="to" placeholder="to" value="{{$to}}">
+		</label>
+
+		<input type="submit" value="Hent" class="success">
+	</form>
 @stop
 
 @section('content')
@@ -19,7 +30,7 @@
 		</thead>
 		<tfoot>
 			<tr>
-				<th>Totalt: <strong>{{$profit}}</strong></th>
+				<th colspan="3"><h4 class="pull-right">Totalt: <strong>{{$profit}},-</strong></h4></th>
 			</tr>
 		</tfoot>
 		<tbody>
@@ -27,9 +38,12 @@
 				<tr>
 					<td>{{$order->id}}</td>
 					<td>{{$order->created_at->format('d F Y H:i')}}</td>
-					<td>{{$order->getProfit()}}</td>
+					<td>{{$order->getProfit()}},-</td>
 				</tr>
 			@endforeach
 		</tbody>
 	</table>
+@stop
+
+@section('footer')
 @stop
