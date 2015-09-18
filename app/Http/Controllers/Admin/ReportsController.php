@@ -76,7 +76,7 @@ class ReportsController extends Controller
 	}
 
 	public function products() {
-		$category = Input::get('category');
+		$category = Input::get('category', '*');
 
 		if ($category == '*') {
 			$products = Product::where('sales', '>', '0')->orderBy('sales', 'desc')->get();
