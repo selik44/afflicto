@@ -93,9 +93,9 @@ class ReportsController extends Controller
 			$products = $products->sort(function($a, $b) {
 				if ($a->sales == $b->sales) return 0;
 
-				if ($a->sales > $b->sales) return 1;
+				if ($a->sales > $b->sales) return -1;
 
-				return -1;
+				return 1;
 			});
 		}
 
