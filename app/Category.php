@@ -270,4 +270,22 @@ class Category extends Model {
 		return $discount;
 	}
 
+	public function renderSelectOptions($selectedID = null) {
+		$str = '';
+
+		if ($selectedID == $this->id) {
+			$selected = 'selected="selected"';
+		}else {
+			$selected = '';
+		}
+
+		$str .= '<option ' .$selected .' value="' .$this->id .'">' .str_repeat('&nbsp;', $this->getLevel() * 4) .$this->name .'</option>';
+
+		foreach($this->children as $cat) {
+			$str .= $cat->renderSelectOptions($selectedID);
+		}
+
+		return $str;
+	}
+
 }

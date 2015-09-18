@@ -7,11 +7,11 @@
 @section('header')
 	<h3 class="title">Rapporter - Produkter</h3>
 	<form action="{{route('admin.reports.products')}}" class="inline pull-right">
-		<label for="categories">Kategorier
-			<select name="categories[]" id="categories">
+		<label for="category">Kategori
+			<select name="category" id="category">
 				<option value="*">Alle</option>
-				@foreach($categories as $cat)
-					<option value="{{$cat->id}}">{{$cat->name}}</option>
+				@foreach(\Friluft\Category::root()->get() as $cat)
+					{!! $cat->renderSelectOptions(Input::get('category')) !!}
 				@endforeach
 			</select>
 		</label>

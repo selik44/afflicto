@@ -75,7 +75,13 @@ class ReportsController extends Controller
 	}
 
 	public function products() {
-		$products = Product::where('sales', '>', '0')->orderBy('sales', 'desc')->get();
+		$category = Input::get('category');
+
+		if ($category == '*') {
+			$products = Product::where('sales', '>', '0')->orderBy('sales', 'desc')->get();
+		}else {
+			$products = Product::where('sales', '>', '0')->where('categories', 'LIKE', '%,' .$category .',%')->orderBy('sales', 'desc')->get();
+		}
 
 		return view('admin.reports_products')->with([
 			'products' => $products,
