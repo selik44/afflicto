@@ -25,17 +25,43 @@
 		<thead>
 		<tr>
 			<th>ID</th>
-			<th>Navn</th>
+			<th>Product</th>
 			<th>Salg</th>
 		</tr>
 		</thead>
 
 		<tbody>
 		@foreach($products as $product)
+			<?php
+				$model = $product['product'];
+			?>
 			<tr>
-				<td>{{$product->id}}</td>
-				<td>{{$product->name}}</td>
-				<td>{{$product->sales}}</td>
+				<td class="id">{{$model->id}}</td>
+
+				<td class="product">
+					@if($model->hasVariants())
+						<div class="module">
+							<div class="module-header">
+								<a href="#">{{$model->name}}</a>
+							</div>
+
+							<div class="module-content">
+								<table>
+								@foreach($product['variants'] as $variant)
+									<tr>
+										<th>{{$variant['string']}}</th>
+										<td>{{$variant['quantity']}}</td>
+									</tr>
+								@endforeach
+								</table>
+							</div>
+						</div>
+					@else
+						{{$model->name}}
+					@endif
+				</td>
+
+				<td class="quantity">{{$product['quantity']}}</td>
 			</tr>
 		@endforeach
 		</tbody>
@@ -43,4 +69,15 @@
 @stop
 
 @section('footer')
+@stop
+
+@section('scripts')
+	<script>
+		var table = $("table");
+		table.find('tr td.product .module .module-header a').click(function() {
+			var module = $(this).parents('module');
+			module.toggleClass('visible');
+			module.find('module-content').slideToggle();
+		});
+	</script>
 @stop
