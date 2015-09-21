@@ -133,7 +133,7 @@ class ReportsController extends Controller
 					if ( ! isset($array['variants'][$stockID])) {
 						$array['variants'][$stockID] = ['string' => $variantString, 'quantity' => $item['quantity']];
 					}else {
-						$array['variants'][$stockID] += $item['quantity'];
+						$array['variants'][$stockID]['quantity'] += $item['quantity'];
 					}
 				}
 
