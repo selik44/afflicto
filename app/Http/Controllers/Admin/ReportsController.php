@@ -150,8 +150,6 @@ class ReportsController extends Controller
 			return 1;
 		});
 
-		dd($products);
-
 		# return view
 		return view('admin.reports_products')->with([
 			'products' => $products,
