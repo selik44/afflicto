@@ -107,6 +107,8 @@ class ReportsController extends Controller
 			}
 		}
 
+		dd($products);
+
 		# sort by quantity
 		$products = $products->sort(function($a, $b) {
 			if ($a['quantity'] == $b['quantity']) return 0;
