@@ -5073,6 +5073,9 @@ ul.pagination {
       border: 1px solid #ddd;
       border-radius: 0px;
       padding: 1rem; }
+      @media (max-width: 960px) {
+        #header #navigation .cart-container {
+          height: 300px; } }
     #header #navigation #buy-modal {
       position: absolute;
       top: 100%;
