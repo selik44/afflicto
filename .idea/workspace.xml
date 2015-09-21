@@ -86,7 +86,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.22615385">
-              <caret line="92" column="58" selection-start-line="92" selection-start-column="58" selection-end-line="92" selection-end-column="58" />
+              <caret line="92" column="59" selection-start-line="92" selection-start-column="59" selection-end-line="92" selection-end-column="59" />
               <folding>
                 <element signature="e#50#68#0#PHP" expanded="true" />
               </folding>
@@ -1141,7 +1141,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.22615385">
-          <caret line="92" column="58" selection-start-line="92" selection-start-column="58" selection-end-line="92" selection-end-column="58" />
+          <caret line="92" column="59" selection-start-line="92" selection-start-column="59" selection-end-line="92" selection-end-column="59" />
           <folding>
             <element signature="e#50#68#0#PHP" expanded="true" />
           </folding>

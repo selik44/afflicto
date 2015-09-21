@@ -90,7 +90,7 @@ class ReportsController extends Controller
 				$id = $item['reference']['id'];
 				if ( ! $id) throw new \Exception("Error, invalid id: " .$id);
 
-				$model = Product::withTrashed($id)->get();
+				$model = Product::withTrashed()->find($id);
 
 				if ( ! $model) {
 					throw new \Exception("Product model not found for ID: " .$id);
