@@ -57,7 +57,7 @@
 							</div>
 						</div>
 					@else
-						{{$model->name}}
+						<h4>{{$model->name}}</h4>
 					@endif
 				</td>
 
