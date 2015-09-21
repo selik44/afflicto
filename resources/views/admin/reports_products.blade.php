@@ -40,12 +40,12 @@
 
 				<td class="product">
 					@if($model->hasVariants())
-						<div class="module">
-							<div class="module-header">
-								<a href="#">{{$model->name}}</a>
+						<div class="variants">
+							<div class="variants-header">
+								<h4><a href="#">{{$model->name}}</a></h4>
 							</div>
 
-							<div class="module-content">
+							<div class="variants-content" style="display: none;">
 								<table>
 								@foreach($product['variants'] as $variant)
 									<tr>
@@ -74,10 +74,10 @@
 @section('scripts')
 	<script>
 		var table = $("table");
-		table.find('tr td.product .module .module-header a').click(function() {
+		table.find('tr td.product .variants .variants-header a').click(function() {
 			var module = $(this).parents('module');
 			module.toggleClass('visible');
-			module.find('module-content').slideToggle();
+			module.find('variants-content').slideToggle();
 		});
 	</script>
 @stop
