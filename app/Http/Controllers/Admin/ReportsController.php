@@ -88,7 +88,7 @@ class ReportsController extends Controller
 		foreach(Order::all() as $order) {
 			foreach($order->items as $item) {
 				$id = $item['reference']['id'];
-				if ( ! $id) throw new \Exception("Error, invalid id: " .$id);
+				if ( ! $id) throw new \Exception("Error, invalid id: " .$id .' on order id ' .$order->id);
 
 				$model = Product::withTrashed()->find($id);
 
