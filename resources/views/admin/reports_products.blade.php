@@ -72,6 +72,8 @@
 @stop
 
 @section('scripts')
+	@parent
+
 	<script>
 		var table = $("table");
 		table.find('tr td.product .variants .variants-header a').click(function() {
