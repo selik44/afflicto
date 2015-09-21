@@ -88,7 +88,13 @@ class ReportsController extends Controller
 		foreach(Order::all() as $order) {
 			foreach($order->items as $item) {
 				$id = $item['reference']['id'];
-				$model = Product::find($id);
+				if ( ! $id) throw new \Exception("Error, invalid id: " .$id);
+
+				$model = Product::withTrashed($id);
+
+				if ( ! $model) {
+					throw new \Exception("Product model not found for ID: " .$id);
+				}
 
 				if ($category != '*') {
 					if ( ! $model->categories->contains($categoryModel)) {
