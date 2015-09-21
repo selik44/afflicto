@@ -120,7 +120,7 @@ class ReportsController extends Controller
 						$stockID[] = $valueID;
 					}
 
-					$stockID = explode(',', $stockID);
+					$stockID = implode(',', $stockID);
 
 					if ( ! isset($array['variants'][$stockID])) {
 						$array['variants'][$stockID] = ['string' => $variantString, 'quantity' => $item['quantity']];
