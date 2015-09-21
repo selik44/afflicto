@@ -5096,7 +5096,7 @@ ul.pagination {
           -ms-flex-align: stretch;
               align-items: stretch; }
     #header .logo {
-      margin: 0.2rem 0.4rem;
+      margin: 1.2rem 0.4rem;
       max-width: 120px; }
     #header #navigation .cart-toggle {
       padding: 2rem 1rem; } }

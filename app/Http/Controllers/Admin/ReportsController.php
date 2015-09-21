@@ -77,6 +77,54 @@ class ReportsController extends Controller
 
 	public function products() {
 		$category = Input::get('category', '*');
+		if ($category != '*')
+			$categoryModel = Category::find($category);
+		else
+			$categoryModel = null;
+
+		$products = new Collection();
+
+		foreach(Order::where('reservation', '=', 'NOT NULL') as $order) {
+			foreach($order->items as $item) {
+				$id = $item['reference']['id'];
+				$model = Product::find($id);
+
+				if ($category != '*') {
+					if ( ! $model->categories->contains($category)) {
+						continue;
+					}
+				}
+
+				# add?
+				if ( ! isset($products[$id])) {
+					$products[$id] = [
+						'product' => $model
+					];
+				}
+
+				# increment quantity
+				$products[$id]['quantity'] += $item['quantity'];
+			}
+		}
+
+		# sort by quantity
+		$products = $products->sort(function($a, $b) {
+			if ($a['quantity'] == $b['quantity']) return 0;
+
+			if ($a['quantity'] > $b['quantity']) return -1;
+
+			return 1;
+		});
+
+		# return view
+		return view('admin.reports_products')->with([
+			'products' => $products,
+			'categories' => Category::all(),
+		]);
+	}
+
+	public function products_old() {
+		$category = Input::get('category', '*');
 
 		if ($category == '*') {
 			$products = Product::where('sales', '>', '0')->orderBy('sales', 'desc')->get();
