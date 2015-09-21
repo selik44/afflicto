@@ -75,7 +75,7 @@
 	<script>
 		var table = $("table");
 		table.find('tr td.product .variants .variants-header a').click(function() {
-			var module = $(this).parents('module');
+			var module = $(this).parents('variants');
 			module.toggleClass('visible');
 			module.find('variants-content').slideToggle();
 		});
