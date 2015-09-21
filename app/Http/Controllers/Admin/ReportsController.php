@@ -142,13 +142,20 @@ class ReportsController extends Controller
 		}
 
 		# sort by quantity
-		$products = $products->sort(function($a, $b) {
+		$quantitySort = function($a, $b) {
 			if ($a['quantity'] == $b['quantity']) return 0;
 
 			if ($a['quantity'] > $b['quantity']) return -1;
 
 			return 1;
-		});
+		};
+
+		# sort products & their variants by quantity
+		$products = $products->sort($quantitySort);
+
+		foreach($products as $product) {
+			$product['variants'] = array_sort($product['variants'], $quantitySort);
+		}
 
 		# return view
 		return view('admin.reports_products')->with([
