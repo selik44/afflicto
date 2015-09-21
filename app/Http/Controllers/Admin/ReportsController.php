@@ -112,12 +112,15 @@ class ReportsController extends Controller
 				# variants?
 				if ($model->hasVariants()) {
 
-					$stockID = 0;
+					$stockID = [];
 					$variantString = [];
 					foreach($item['reference']['options']['variants'] as $variantID => $valueID) {
 						$variantModel = Variant::find($variantID);
 						$variantString[] = $variantModel->name .':' .$variantModel->getValueName($valueID);
+						$stockID[] = $valueID;
 					}
+
+					$stockID = explode(',', $stockID);
 
 					if ( ! isset($array['variants'][$stockID])) {
 						$array['variants'][$stockID] = ['string' => $variantString, 'quantity' => $item['quantity']];
@@ -138,6 +141,8 @@ class ReportsController extends Controller
 
 			return 1;
 		});
+
+		dd($products);
 
 		# return view
 		return view('admin.reports_products')->with([
