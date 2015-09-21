@@ -7,6 +7,7 @@ use Friluft\Category;
 use Friluft\Order;
 use Friluft\Product;
 use Friluft\User;
+use Friluft\Variant;
 use Illuminate\Http\Request;
 
 use Friluft\Http\Requests;
@@ -99,17 +100,35 @@ class ReportsController extends Controller
 				if ( ! isset($products[$id])) {
 					$products[$id] = [
 						'product' => $model,
-						'quantity' => $item['quantity'],
+						'quantity' => 0,
+						'variants' => [],
 					];
-				}else {
-					$array = $products[$id];
-					$array['quantity'] += $item['quantity'];
-					$products[$id] = $array;
 				}
+
+				$array = $products[$id];
+
+				$array['quantity'] += $item['quantity'];
+
+				# variants?
+				if ($model->hasVariants()) {
+
+					$stockID = 0;
+					$variantString = [];
+					foreach($item['reference']['options']['variants'] as $variantID => $valueID) {
+						$variantModel = Variant::find($variantID);
+						$variantString[] = $variantModel->name .':' .$variantModel->getValueName($valueID);
+					}
+
+					if ( ! isset($array['variants'][$stockID])) {
+						$array['variants'][$stockID] = ['string' => $variantString, 'quantity' => $item['quantity']];
+					}else {
+						$array['variants'][$stockID] += $item['quantity'];
+					}
+				}
+
+				$products[$id] = $array;
 			}
 		}
-
-		dd($products);
 
 		# sort by quantity
 		$products = $products->sort(function($a, $b) {
