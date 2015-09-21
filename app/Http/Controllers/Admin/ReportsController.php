@@ -99,12 +99,13 @@ class ReportsController extends Controller
 				if ( ! isset($products[$id])) {
 					$products[$id] = [
 						'product' => $model,
-						'quantity' => 0,
+						'quantity' => $item['quantity'],
 					];
+				}else {
+					$array = $products[$id];
+					$array['quantity'] += $item['quantity'];
+					$products[$id] = $array;
 				}
-
-				# increment quantity
-				$products[$id]['quantity'] += $item['quantity'];
 			}
 		}
 
