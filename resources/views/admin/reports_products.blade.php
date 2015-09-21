@@ -50,7 +50,7 @@
 								@foreach($product['variants'] as $variant)
 									<tr>
 										<th>{{implode(', ', $variant['string'])}}</th>
-										<td>{{implode(', ', $variant['quantity'])}}</td>
+										<td>{{$variant['quantity']}}</td>
 									</tr>
 								@endforeach
 								</table>
