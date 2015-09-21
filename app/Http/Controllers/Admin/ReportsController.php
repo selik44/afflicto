@@ -84,13 +84,13 @@ class ReportsController extends Controller
 
 		$products = new Collection();
 
-		foreach(Order::where('reservation', '=', 'NOT NULL') as $order) {
+		foreach(Order::all() as $order) {
 			foreach($order->items as $item) {
 				$id = $item['reference']['id'];
 				$model = Product::find($id);
 
 				if ($category != '*') {
-					if ( ! $model->categories->contains($category)) {
+					if ( ! $model->categories->contains($categoryModel)) {
 						continue;
 					}
 				}
@@ -98,7 +98,8 @@ class ReportsController extends Controller
 				# add?
 				if ( ! isset($products[$id])) {
 					$products[$id] = [
-						'product' => $model
+						'product' => $model,
+						'quantity' => 0,
 					];
 				}
 
