@@ -87,6 +87,8 @@ class ReportsController extends Controller
 
 		foreach(Order::all() as $order) {
 			foreach($order->items as $item) {
+				if ($item['type'] != 'physical') continue;
+
 				$id = $item['reference']['id'];
 				if ( ! $id) throw new \Exception("Error, invalid id: " .$id .' on order id ' .$order->id);
 
