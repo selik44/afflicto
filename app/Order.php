@@ -1,6 +1,7 @@
 <?php namespace Friluft;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Friluft\Order
@@ -53,6 +54,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Coupon[] $coupons
  */
 class Order extends Model {
+
+	use SoftDeletes;
 
 	protected $table = 'orders';
 
