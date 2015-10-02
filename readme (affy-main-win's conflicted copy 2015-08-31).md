@@ -29,14 +29,11 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 
 # Todo
+- receivals, stock notifications
+
 - fix discount rate in the orders items array (2000 should be 20 etc)
 
 - teknisk informasjon: friluft.tk/trening/dame/flex-compression
-
-- add meta description fields for categories & products
-- add meta description settings for homepage
-
-- move summary field and make it use ckeditor
 - add manufacturer to title on product view
 - research SEO
 

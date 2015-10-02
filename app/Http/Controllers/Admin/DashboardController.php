@@ -7,6 +7,7 @@ use Friluft\Http\Controllers\Controller;
 use Friluft\Order;
 use Friluft\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Input;
 
 class DashboardController extends Controller {
@@ -18,6 +19,9 @@ class DashboardController extends Controller {
 	 */
 	public function index()
 	{
+		#####################
+		# Profit
+		#####################
 		if (Input::has('from')) {
 			list($year, $month, $day) = explode('-', Input::get('from'));
 			$from = Carbon::createFromDate($year, $month, $day);
@@ -63,12 +67,34 @@ class DashboardController extends Controller {
 			$totalProfit += $profit;
 		}
 
+		$stock = new Collection();
+
+		# find products which are not in stock
+		$stockTreshold = 3;
+		foreach(Product::all() as $product) {
+			if ($product->hasVariants()) {
+			}else {
+				if ($product->stock <= $stockTreshold) {
+					$stock[] = ['stock' => $product->stock, 'product' => $product];
+				}
+			}
+		}
+
+		$stock = $stock->sort(function($a, $b) {
+			if ($a['stock'] == $b['stock']) return 0;
+
+			if ($a['stock'] > $b['stock']) return 1;
+
+			return -1;
+		});
+
 		return $this->view('admin.dashboard')->with([
 			'values' => json_encode($values),
 			'labels' => json_encode($labels),
 			'profit' => $totalProfit,
 			'from' => $from->format('Y-m-d'),
 			'to' => $to->format('Y-m-d'),
+			'stock' => $stock,
 		]);
 	}
 

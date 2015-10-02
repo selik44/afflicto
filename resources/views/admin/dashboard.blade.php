@@ -73,4 +73,31 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="col-xs-6">
+		<div class="module" id="stock">
+			<div class="module-header clearfix">
+				<h6 class="pull-left">Lagerstatus</h6>
+			</div>
+
+			<div class="module-content">
+				<table>
+					<tbody>
+					@foreach($stock as $item)
+						<tr
+								@if($item['stock'] <= 0)
+									class="color-error"
+								@elseif ($item['stock'] == 1)
+									class="color-warning"
+								@endif
+							>
+							<td class="name">{{$item['product']->name}}</td>
+							<td class="stock">{{$item['stock']}}</td>
+						</tr>
+					@endforeach
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 @stop
