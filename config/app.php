@@ -155,7 +155,7 @@ return [
          */
        	'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
        	'DaveJamesMiller\Breadcrumbs\ServiceProvider',
-		'Laracasts\Utilities\JavaScript\JavascriptServiceProvider',
+		'Laracasts\Utilities\JavaScript\JavaScriptServiceProvider',
 		'Gentlefox\Laratables\LaratableServiceProvider',
 		'Former\FormerServiceProvider',
 		'Fedeisas\LaravelMailCssInliner\LaravelMailCssInlinerServiceProvider',
