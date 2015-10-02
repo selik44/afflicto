@@ -25,7 +25,7 @@
     {!! $form->always_allow_orders !!}
 @stop
 
-@section('header')
+@section('footer')
     {!! Former::submit('add')->class('large success') !!}
     {!! Former::close() !!}
 @stop
