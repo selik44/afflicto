@@ -94,7 +94,7 @@
         </p>
     </div>
 
-    <button {{$disabled}}class="huge secondary buy" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
+    <button {{$disabled}}class="huge tertiary buy" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
 </form>
 
 @section('scripts')

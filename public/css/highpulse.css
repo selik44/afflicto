@@ -5044,8 +5044,6 @@ ul.pagination {
                 width: 100%;
                 padding-left: 3rem; }
     #header #navigation .cart-toggle {
-      background: #889783;
-      color: black;
       border: 1px solid #1a1a1a;
       border-radius: 0px;
       padding: 1rem 1rem;
@@ -5056,8 +5054,6 @@ ul.pagination {
           -ms-user-select: none;
               user-select: none;
       font-size: 0.9rem; }
-      #header #navigation .cart-toggle.active {
-        background: #59ac3b; }
     #header #navigation .cart-container {
       overflow-y: auto;
       position: absolute;

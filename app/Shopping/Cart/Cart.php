@@ -617,12 +617,12 @@ class Cart {
 		];
 
 		# set color options
-		$data['options']['color_button'] = '#03a1a9';
+		$data['options']['color_button'] = '#06d6fc';
 		$data['options']['color_button_text'] = '#ffffff';
-		$data['options']['color_checkbox'] = '#03a1a9';
+		$data['options']['color_checkbox'] = '#06d6fc';
 		$data['options']['color_checkbox_checkmark'] = '#ffffff';
 		$data['options']['color_header'] = '#000000';
-		$data['options']['color_link'] = '#03a1a9';
+		$data['options']['color_link'] = '#06d6fc';
 
 		# set shipping info
 		$data['options']['shipping_details'] = trans('store.shipping.' .$shippingType);

@@ -6,6 +6,14 @@
 
 @import ../base/base
 
+button.primary, .button.primary, input[type="submit"].primary
+	@include button-color($color-secondary, $base-gradient-amount)
+	color: lighten($base-background, 25%)
+
+button.tertiary, .button.tertiary, input[type="submit"].tertiary
+	@include button-color($color-tertiary, $base-gradient-amount)
+	color: lighten($base-background, 25%)
+
 #front
 	#header
 		#nav-top

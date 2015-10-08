@@ -72,7 +72,7 @@
                     </a>
 
                     @if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
-                        <div class="cart-toggle hidden-l-up" data-toggle="#cart"><i class="fa fa-shopping-cart"></i>  (<span class="quantity">{{Cart::quantity()}}</span>) <span class="total">{{round(Cart::getTotal())}}</span>,-</div>
+                        <button class="cart-toggle tertiary hidden-l-up" data-toggle="#cart"><i class="fa fa-shopping-cart"></i>  (<span class="quantity">{{Cart::quantity()}}</span>) <span class="total">{{round(Cart::getTotal())}}</span>,-</button>
                     @endif
 
                     <!--<button class="cart-toggle primary end hidden-l-up"><i class="fa fa-shopping-cart"></i> <span class="text">Cart</span></button>-->
@@ -93,7 +93,7 @@
 
 						@if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
 							<!--<button data-toggle="#cart" class="cart-toggle primary end visible-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>-->
-                            <div class="cart-toggle visible-l-up" data-toggle="#cart"><i class="fa fa-shopping-cart"></i> (<span class="quantity">{{Cart::quantity()}}</span>) <span class="total">{{round(Cart::getTotal())}}</span>,-</div>
+                            <button class="cart-toggle tertiary visible-l-up" data-toggle="#cart"><i class="fa fa-shopping-cart"></i> (<span class="quantity">{{Cart::quantity()}}</span>) <span class="total">{{round(Cart::getTotal())}}</span>,-</button>
 						@endif
 
                         <div id="buy-modal" style="display: none;">
