@@ -3,8 +3,9 @@ $base-background: #fff
 $base-border-color: #ddd
 $base-gradient-amount: 0%
 
-$color-primary: #03a1a9
-$color-secondary: desaturate($color-primary, 40%)
+//$color-primary: #03a1a9
+$color-primary: #06d6fc
+$color-secondary: #f96226
 
 $color-success: #27AE60
 $color-info: #2799AE
@@ -14,3 +15,7 @@ $color-error: #C0392B
 $table-border-color: $base-border-color
 
 $base-logo-height: 14
+
+//force buttons with secondary color to have white text
+button.secondary, input[type="submit"].secondary
+	color: lighten($base-background, 25%) !important
