@@ -4690,14 +4690,16 @@ ul.pagination {
           -webkit-flex: auto;
               -ms-flex: auto;
                   flex: auto;
-          margin-right: 1rem; }
+          margin-right: 1rem;
+          text-align: center; }
         .product-view .product-top .product-info > .header > .price {
           -webkit-box-flex: 1;
           -webkit-flex: auto;
               -ms-flex: auto;
                   flex: auto;
-          text-align: left;
-          font-size: 3rem; }
+          text-align: center;
+          font-size: 3rem;
+          margin: 1rem 0; }
           .product-view .product-top .product-info > .header > .price .discount {
             font-size: 1.6rem; }
       .product-view .product-top .product-info > form {
