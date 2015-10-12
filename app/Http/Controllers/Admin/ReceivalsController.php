@@ -3,7 +3,9 @@
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 
+use Friluft\Product;
 use Friluft\Receival;
+use Response;
 
 class ReceivalsController extends Controller {
 
@@ -34,6 +36,14 @@ class ReceivalsController extends Controller {
 				'table' => $table->render(),
 				'pagination' => $table->paginator->render(),
 			]);
+	}
+
+	public function getVariants(Product $product) {
+		if ( ! $product->hasVariants()) {
+			return Response::json(false);
+		}
+
+		return $product->variants;
 	}
 
 	/**

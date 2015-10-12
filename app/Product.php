@@ -244,6 +244,11 @@ class Product extends Model {
 		return $this->belongsToMany('Friluft\Variant')->orderBy('id', 'asc')->withPivot('data');
 	}
 
+	/**
+	 * Get this product's variants as a hierarchical array.
+	 *
+	 * @return array
+	 */
 	public function getVariantsTree() {
 		$tree = [];
 
@@ -348,7 +353,10 @@ class Product extends Model {
 	}
 
 	public function __toString() {
-		return $this->manufacturer->name .' ' .$this->name;
+		if (isset($this->manufacturer)) {
+			return $this->manufacturer->name .' ' .$this->name;
+		}
+		return $this->name;
 	}
 
 	/**

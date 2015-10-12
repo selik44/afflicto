@@ -14,24 +14,15 @@
 		->method('POST')
 	!!}
 
-	<table id="receivalsTable" class="bordered boxed">
-		<thead>
-			<tr>
-				<th>@lang('admin.product')</th>
-				<th>@lang('admin.quantity')</th>
-			</tr>
-		</thead>
-
-		<tbody>
-
-		</tbody>
-	</table>
-
 	<div class="row tower">
-		<div class="col-xs-7 tight-left">
+		<div class="col-xs-7 tight-left product">
 			{!!
 			Former::select('product')->label(null)->fromQuery(\Friluft\Product::all())
 			!!}
+
+			<div class="variant">
+
+			</div>
 		</div>
 
 		<div class="col-xs-3">
@@ -61,8 +52,12 @@
 		var form = $("form");
 		var product = form.find('[name="product"]');
 		var quantity = form.find('[name="quantity"]').css('width', '100%');
-
 		product.chosen().next().removeAttr('style').css('width', '100%');
 
+		product.change(function() {
+			var id = $(this).val();
+
+
+		});
 	</script>
 @stop

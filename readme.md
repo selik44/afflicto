@@ -27,7 +27,6 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - implement DB backups with: chickling\Backup\BackupServiceProvider
 
 # Todo
-- implement reports: profit, user registrations and product popularity
 - add more dashboard reports/charts
 - popups
 - add "revenue" field on orders, to prevent it from becoming invalid if relevant product data changes in the future.
