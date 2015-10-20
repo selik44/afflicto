@@ -143,12 +143,6 @@ class ReportsController extends Controller
 
 		# sort by quantity
 		$quantitySort = function($a, $b) {
-			if ( ! isset($a['quantity'])) {
-				dd(func_get_args());
-			}else if ( ! isset($b['quantity'])) {
-				dd(func_get_args());
-			}
-
 			if ($a['quantity'] == $b['quantity']) return 0;
 
 			if ($a['quantity'] > $b['quantity']) return -1;
@@ -167,36 +161,6 @@ class ReportsController extends Controller
 		}
 
 		# return view
-		return view('admin.reports_products')->with([
-			'products' => $products,
-			'categories' => Category::all(),
-		]);
-	}
-
-	public function products_old() {
-		$category = Input::get('category', '*');
-
-		if ($category == '*') {
-			$products = Product::where('sales', '>', '0')->orderBy('sales', 'desc')->get();
-		}else {
-			$products = [];
-			$category = Category::find($category);
-			foreach($category->nestedProducts() as $product) {
-				if ($product->sales > 0) {
-					$products[] = $product;
-				}
-			}
-
-			$products = Collection::make($products);
-			$products = $products->sort(function($a, $b) {
-				if ($a->sales == $b->sales) return 0;
-
-				if ($a->sales > $b->sales) return -1;
-
-				return 1;
-			});
-		}
-
 		return view('admin.reports_products')->with([
 			'products' => $products,
 			'categories' => Category::all(),
