@@ -140,8 +140,8 @@
       <file leaf-file-name="ReportsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.22865854">
-              <caret line="146" column="36" selection-start-line="146" selection-start-column="36" selection-end-line="146" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.6844512">
+              <caret line="165" column="49" selection-start-line="165" selection-start-column="49" selection-end-line="165" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -1285,8 +1285,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22865854">
-          <caret line="146" column="36" selection-start-line="146" selection-start-column="36" selection-end-line="146" selection-end-column="36" />
+        <state vertical-scroll-proportion="0.6844512">
+          <caret line="165" column="49" selection-start-line="165" selection-start-column="49" selection-end-line="165" selection-end-column="49" />
           <folding />
         </state>
       </provider>
