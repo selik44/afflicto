@@ -14,6 +14,19 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Receival extends Model {
 
-	//
+	public $timestamps = false;
+
+	protected $table = 'receivals';
+
+	protected $casts = [
+		'products' => 'array',
+		'received' => 'boolean',
+	];
+
+	protected $dates = ['expected_arrival'];
+
+	public function manufacturer() {
+		return $this->belongsTo('Friluft\Manufacturer');
+	}
 
 }

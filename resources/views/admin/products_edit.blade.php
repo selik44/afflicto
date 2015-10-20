@@ -120,7 +120,6 @@
 											$stock = [];
 										}
 
-
 										if ( ! $product->variants->isEmpty()) {
 											$rootVariant = $product->variants[0];
 											if (count($product->variants) > 1) {

@@ -1,10 +1,13 @@
 <?php namespace Friluft\Http\Controllers\Admin;
 
+use DB;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 
 use Friluft\Product;
 use Friluft\Receival;
+use Input;
+use Redirect;
 use Response;
 
 class ReceivalsController extends Controller {
@@ -63,7 +66,11 @@ class ReceivalsController extends Controller {
 	 */
 	public function store()
 	{
-		//
+		$receival = new Receival();
+		$receival->manufacturer_id = Input::get('manufacturer_id');
+		$receival->save();
+
+		return \Redirect::route('admin.receivals.edit', [$receival]);
 	}
 
 	/**
@@ -83,9 +90,19 @@ class ReceivalsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
+	public function edit(Receival $receival)
 	{
-		//
+		return view('admin.receivals_edit')->with([
+			'receival' => $receival,
+			'products' => Product::whereManufacturerId($receival->manufacturer_id)->get(),
+		]);
+	}
+
+	public function getLine(Receival $receival, Product $product) {
+		return view('admin.partial.receivals_line')->with([
+			'receival' => $receival,
+			'product' => $product
+		]);
 	}
 
 	/**
@@ -94,9 +111,12 @@ class ReceivalsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Receival $receival)
 	{
-		//
+		$receival->products = Input::get('products');
+		$receival->save();
+
+		return Response::json('OK');
 	}
 
 	/**
@@ -107,7 +127,8 @@ class ReceivalsController extends Controller {
 	 */
 	public function destroy($id)
 	{
-		//
+		DB::table('receivals')->delete($id);
+		return Redirect::route('admin.receivals.index')->with('success', 'Receival #' + $id + ' deleted!');
 	}
 
 }

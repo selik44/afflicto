@@ -40,6 +40,7 @@ class RouteServiceProvider extends ServiceProvider {
 		$router->model('variant', 'Friluft\Variant');
 		$router->model('page', 'Friluft\Page');
 		$router->model('coupon', 'Friluft\Coupon');
+		$router->model('receival', 'Friluft\Receival');
 
 		# Bind category and product to find models by ID or slug.
 		$router->bind('category', function($value) {

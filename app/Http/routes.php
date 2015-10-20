@@ -206,6 +206,7 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	put('receivals/{receival}', ['as' => 'admin.receivals.update', 'uses' => 'Admin\ReceivalsController@update', 'middleware' => 'perms:receivals.edit']);
 	post('receivals', ['as' => 'admin.receivals.store', 'uses' => 'Admin\ReceivalsController@store', 'middleware' => 'perms:receivals.create']);
 	delete('receivals/{receival}', ['as' => 'admin.receivals.delete', 'uses' => 'Admin\ReceivalsController@store', 'middleware' => 'perms:receivals.delete']);
+	get('receivals/line/{receival}/{product}', ['as' => 'admin.receivals.getLine', 'uses' => 'Admin\ReceivalsController@getLine', 'middleware' => 'perms:receivals.edit']);
 
 	# pages
 	get('pages', ['as' => 'admin.pages.index', 'uses' => 'Admin\PagesController@index', 'middleware' => 'perms:pages.view']);
