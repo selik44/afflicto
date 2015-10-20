@@ -153,8 +153,7 @@ class ReportsController extends Controller
 		# sort products by quantity
 		$products = $products->sort($quantitySort);
 
-		echo '<pre>';
-		var_dump($products);
+		dd($products);
 
 		# sort variants by quantity
 		foreach($products as $product) {
