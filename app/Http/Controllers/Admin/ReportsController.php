@@ -150,9 +150,12 @@ class ReportsController extends Controller
 			return 1;
 		};
 
-		# sort products & their variants by quantity
+		# sort products by quantity
 		$products = $products->sort($quantitySort);
 
+		dd($products);
+
+		# sort variants by quantity
 		foreach($products as $product) {
 			$product['variants'] = array_sort($product['variants'], $quantitySort);
 		}
