@@ -143,6 +143,12 @@ class ReportsController extends Controller
 
 		# sort by quantity
 		$quantitySort = function($a, $b) {
+			if ( ! isset($a['quantity'])) {
+				dd($a);
+			}else if ( ! isset($b['quantity'])) {
+				dd($b);
+			}
+
 			if ($a['quantity'] == $b['quantity']) return 0;
 
 			if ($a['quantity'] > $b['quantity']) return -1;
@@ -153,13 +159,9 @@ class ReportsController extends Controller
 		# sort products by quantity
 		$products = $products->sort($quantitySort);
 
-		dd($products);
-
 		# sort variants by quantity
 		foreach($products as $product) {
-			if (count($product['variants']) > 0) {
-				$product['variants'] = array_sort($product['variants'], $quantitySort);
-			}
+			$product['variants'] = array_sort($product['variants'], $quantitySort);
 		}
 
 		# return view
