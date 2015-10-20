@@ -153,11 +153,9 @@ class ReportsController extends Controller
 		# sort products by quantity
 		$products = $products->sort($quantitySort);
 
-		dd($products);
-
 		# sort variants by quantity
 		foreach($products as $product) {
-			$product['variants'] = array_sort($product['variants'], $quantitySort);
+			if (count($product['variants']) > 0) $product['variants'] = array_sort($product['variants'], $quantitySort);
 		}
 
 		# return view
