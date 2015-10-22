@@ -202,10 +202,13 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	get('receivals', ['as' => 'admin.receivals.index', 'uses' => 'Admin\ReceivalsController@index', 'middleware' => 'perms:receivals.view']);
 	get('receivals/create', ['as' => 'admin.receivals.create', 'uses' => 'Admin\ReceivalsController@create', 'middleware' => 'perms:receivals.create']);
 	get('receivals/{receival}/edit', ['as' => 'admin.receivals.edit', 'uses' => 'Admin\ReceivalsController@edit', 'middleware' => 'perms:receivals.edit']);
-	get('receivals/variants/{product}', ['as' => 'admin.receivals.variants', 'uses' => 'Admin\ReceivalsController@getVariants']);
+	get('receivals/variants/{product}', ['as' => 'admin.receivals.variants', 'uses' => 'Admin\ReceivalsController@getVariants', 'middleware' => 'receivals.edit']);
+	get('receivals/{receival}/packlist', ['as' => 'admin.receivals.packlist', 'uses' => 'Admin\ReceivalsController@getPacklist', 'middleware' => 'receivals.edit']);
+	get('receivals/{receival}/receive', ['as' => 'admin.receivals.receive', 'uses' => 'Admin\ReceivalsController@getReceive', 'middleware' => 'perms:receivals.edit']);
+	put('receivals/{receival}/receive', ['as' => 'admin.receivals.receive.store', 'uses' => 'Admin\ReceivalsController@storeReceive', 'middleware' => 'perms:receivals.edit']);
 	put('receivals/{receival}', ['as' => 'admin.receivals.update', 'uses' => 'Admin\ReceivalsController@update', 'middleware' => 'perms:receivals.edit']);
 	post('receivals', ['as' => 'admin.receivals.store', 'uses' => 'Admin\ReceivalsController@store', 'middleware' => 'perms:receivals.create']);
-	delete('receivals/{receival}', ['as' => 'admin.receivals.delete', 'uses' => 'Admin\ReceivalsController@store', 'middleware' => 'perms:receivals.delete']);
+	delete('receivals/{receival}', ['as' => 'admin.receivals.destroy', 'uses' => 'Admin\ReceivalsController@destroy', 'middleware' => 'perms:receivals.delete']);
 	get('receivals/line/{receival}/{product}', ['as' => 'admin.receivals.getLine', 'uses' => 'Admin\ReceivalsController@getLine', 'middleware' => 'perms:receivals.edit']);
 
 	# pages

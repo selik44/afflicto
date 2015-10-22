@@ -1491,6 +1491,7 @@
       <foreign-key name="manufacturers_image_id_foreign" columns="image_id" ref-table="images" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
       <exported-key name="images_manufacturer_id_foreign" table="images" schema="" catalog="friluft" columns="manufacturer_id"/>
       <exported-key name="products_manufacturer_id_foreign" table="products" schema="" catalog="friluft" columns="manufacturer_id"/>
+      <exported-key name="receivals_manufacturer_id_foreign" table="receivals" schema="" catalog="friluft" columns="manufacturer_id"/>
       <index name="manufacturers_image_id_foreign" unique="false" columns="image_id"/>
     </table>
     <table name="migrations" schema="" catalog="friluft" type="TABLE">
@@ -1648,7 +1649,16 @@
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>
       <column name="products" sqlType="TEXT" precision="65535" scale="0" nullable="false" jdbcType="-1"/>
       <column name="when" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="manufacturer_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="received" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="expected_arrival" sqlType="DATETIME" precision="19" scale="0" nullable="false" jdbcType="93"/>
+      <column name="rest" sqlType="TINYINT" precision="3" scale="0" nullable="false" jdbcType="-6"/>
+      <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
+      <column name="deleted_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <primary-key name="PRIMARY" columns="id"/>
+      <foreign-key name="receivals_manufacturer_id_foreign" columns="manufacturer_id" ref-table="manufacturers" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="receivals_manufacturer_id_foreign" unique="false" columns="manufacturer_id"/>
     </table>
     <table name="roles" schema="" catalog="friluft" type="TABLE">
       <column name="id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4" autoIncrement="true"/>

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ReceivalsAddRestBoolean extends Migration
+class ReceivalsAddTimestamps extends Migration
 {
     /**
      * Run the migrations.
@@ -12,8 +12,8 @@ class ReceivalsAddRestBoolean extends Migration
      */
     public function up()
     {
-		Schema::table('receivals', function(Blueprint $t) {
-			$t->boolean('rest');
+        Schema::table('receivals', function(Blueprint $t) {
+			$t->timestamps();
 		});
     }
 
@@ -25,7 +25,7 @@ class ReceivalsAddRestBoolean extends Migration
     public function down()
     {
 		Schema::table('receivals', function(Blueprint $t) {
-			$t->dropColumn('rest');
+			$t->dropTimestamps();
 		});
     }
 }

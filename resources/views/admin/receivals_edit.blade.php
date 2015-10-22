@@ -9,6 +9,14 @@
 @stop
 
 @section('content')
+	<div id="settings">
+		<label for="expected_arrival">Forventet Ankomst
+			<input type="date" class="expected-arrival" value="{{$receival->expected_arrival->format('Y-m-d')}}">
+		</label>
+	</div>
+
+	<hr>
+
 	<div id="add-form">
 		<h4>@lang('admin.add')</h4>
 		<div class="row">
@@ -31,7 +39,10 @@
 	<h4>@lang('admin.products')</h4>
 	<table id="products-table" class="bordered">
 		@foreach($receival->products as $product)
-
+			<?php
+				$model = \Friluft\Product::find($product['id']);
+			?>
+			@include('admin.partial.receivals_line', ['receival' => $receival, 'product' => $model, 'current' => $product])
 		@endforeach
 	</table>
 
@@ -54,6 +65,12 @@
 		addButton.click(function() {
 			var productID = parseInt(addForm.find('.product select').val());
 			if (productID == -1) {
+				return false;
+			}
+
+			var exists = false;
+			if (productsTable.find('tr.product[data-id="' + productID + '"]').length >= 1) {
+				console.log('already added!');
 				return false;
 			}
 
@@ -104,6 +121,7 @@
 				_method: 'PUT',
 				_token: Friluft.token,
 				products: products,
+				expected_arrival: $("#settings input.expected-arrival").val(),
 			}, function(response) {
 				console.log('Response:');
 				console.log(response);

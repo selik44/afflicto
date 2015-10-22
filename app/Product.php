@@ -442,6 +442,11 @@ class Product extends Model {
 		return false;
 	}
 
+	/**
+	 * Returns an array of all the variants on this product as well as child products.
+	 *
+	 * @return array
+	 */
 	public function getVariants() {
 		$variants = [];
 		foreach($this->variants as $variant) {
@@ -455,6 +460,67 @@ class Product extends Model {
 		}
 
 		return $variants;
+	}
+
+	/**
+	 * Get an array of variant choices based on combinations of the variants on the given product.
+	 * @param Product $product
+	 * @return array [[id => '', name => '', stock => '', 'variants' => []], [id => ''...]...]
+	 */
+	public function getVariantChoices() {
+		if ( ! $this->hasVariants()) {
+			return [];
+		}
+
+		$choices = [];
+
+		# only 1 variant or multiple?
+		if ($this->variants->count() == 1) {
+			# get the first variant
+			$variant = $this->variants->first();
+
+			# loop through the values and generate the choice
+			foreach($variant->data['values'] as $value) {
+				$stockID = $value['id'];
+				$name = $value['name'];
+				$stock = (isset($this->variants_stock[$stockID])) ? $this->variants_stock[$stockID] : 0;
+
+				$choices[$stockID] = [
+					'id' => $stockID,
+					'name' => $name,
+					'stock' => $stock,
+					'variants' => [
+						$variant,
+					],
+				];
+			}
+		}else {
+
+			$rootVariant = $this->variants->first();
+			foreach($rootVariant->data['values'] as $rootValue) {
+				foreach ($this->variants as $variant) {
+					if ($rootVariant == $variant) continue;
+
+					foreach ($variant['data']['values'] as $value) {
+						$stockID = $rootValue['id'] . '_' . $value['id'];
+						$name = $rootValue['name'] .' ' .$value['name'];
+						$stock = (isset($this->variants_stock[$stockID])) ? $this->variants_stock[$stockID] : 0;
+
+						$choices[] = [
+							'id' => $stockID,
+							'name' => $name,
+							'stock' => $stock,
+							'variants' => [
+								$rootVariant,
+								$variant,
+							],
+						];
+					}
+				}
+			}
+		}
+
+		return $choices;
 	}
 
 }

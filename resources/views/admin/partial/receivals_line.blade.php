@@ -23,10 +23,17 @@
 									$s = $stock[$stockID];
 								}
 
+								$v = 0;
+								if (isset($current)) {
+									if (isset($current['order'][$stockID])) {
+										$v = $current['order'][$stockID];
+									}
+								}
+
 								echo '<tr class="variant-' .$stockID .'" data-stock-id="' .$stockID .'">';
 									echo '<td class="name">' .$rootValue['name'] .' ' .$value['name'] .'</td>';
 									echo '<td class="stock"><input type="text" value="' .$s .'"></td>';
-									echo '<td class="order"><input type="text" value="0"></td>';
+									echo '<td class="order"><input type="text" value="' .$v .'"></td>';
 								echo '<tr>';
 							}
 						}
@@ -45,16 +52,35 @@
 						if (isset($stock[$stockID])) {
 							$s = $stock[$stockID];
 						}
+
+						$v = 0;
+						if (isset($current)) {
+							if (isset($current['order'][$stockID])) {
+								$v = $current['order'][$stockID];
+							}
+						}
+
 						echo '<tr class="variant variant-' .$value['id'] .'" data-stock-id="' .$stockID .'">';
 							echo '<td class="name">' .$value['name'] .'</td>';
 							echo '<td class="stock">' .$s .'</td>';
-							echo '<td class="quantity"><input type="text" value="0"></td>';
+							echo '<td class="quantity"><input type="text" value="' .$v .'"></td>';
 						echo '</tr>';
 					}
 				}
 				?>
 			</table>
 		@else
+
+			<?php
+				# order amount
+				$v = 0;
+				if (isset($current)) {
+					if (isset($current['order'])) {
+						$v = $current['order'];
+					}
+				}
+			?>
+
 			<table>
 				<tr>
 					<th>Lager</th>
@@ -64,7 +90,7 @@
 				<tr>
 					<td>{{$product->stock}}</td>
 					<td class="quantity">
-						<input type="text" value="0">
+						<input type="text" value="{{$v}}">
 					</td>
 				</tr>
 			</table>

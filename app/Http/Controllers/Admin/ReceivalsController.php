@@ -7,6 +7,7 @@ use Friluft\Http\Controllers\Controller;
 use Friluft\Product;
 use Friluft\Receival;
 use Input;
+use Laratable;
 use Redirect;
 use Response;
 
@@ -21,20 +22,37 @@ class ReceivalsController extends Controller {
 	{
 		$table = Laratable::make(Receival::query(), [
 			'#' => 'id',
-			'Products' => ['products', function($model, $column, $value) {
-				$str = '';
-				return $str;
+			'manufacturer' => 'manufacturer->name',
+			'Ordresum' => ['_ordersum', function($model) {
+				return $model->getSum() .',-';
 			}],
-			'When' => 'when diffForHumans',
+			'Date' => 'expected_arrival diffForHumans',
+			'Rest' => ['rest', function($model) {
+				return ($model->rest) ? '<span class="color-success">Ja</span>' : '<span class="color-error">Nei</span>';
+			}],
+			'Motatt' => ['received', function($model) {
+				return ($model->received) ? '<span class="color-success">Ja</span>' : '<span class="color-error">Nei</span>';
+			}],
+			'Oppdatert' => 'updated_at diffForHumans',
+			'' => ['_actions', function($model) {
+				return '<div class="button-group actions">
+					<a class="button small primary" title="Edit" href="' .route('admin.receivals.edit', $model) .'"><i class="fa fa-search"></i> Edit</a>
+					<a class="button small" title="Packlist" href="' .route('admin.receivals.packlist', $model) .'"><i class="fa fa-download"></i> Packlist</a>
+					<a class="button small success" title="Mottak" href="' .route('admin.receivals.receive', $model) .'"><i class="fa fa-check"></i> Mottak</a>
+					<form method="POST" action="' .route('admin.orders.delete', $model) .'">
+						<input type="hidden" name="_method" value="DELETE">
+						<input type="hidden" name="_token" value="' .csrf_token() .'">
+						<button title="Delete" class="error small"><i class="fa fa-trash"></i> Trash</button>
+					</form>
+				</div>';
+			}],
 		]);
 
-		$table->editable(true, url('admin/receivals/{id}/edit'));
-		$table->destroyable(true, url('admin/receivals/{id}'));
 		$table->sortable(true, [
-			'name','price','stock','enabled','updated_at'
+			'id','expected_arrival','rest','received',
 		]);
 
-		return $this->view('admin.products_index')
+		return $this->view('admin.receivals_index')
 			->with([
 				'table' => $table->render(),
 				'pagination' => $table->paginator->render(),
@@ -74,17 +92,6 @@ class ReceivalsController extends Controller {
 	}
 
 	/**
-	 * Display the specified resource.
-	 *
-	 * @param  int  $id
-	 * @return Response
-	 */
-	public function show($id)
-	{
-		//
-	}
-
-	/**
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param  int  $id
@@ -105,6 +112,21 @@ class ReceivalsController extends Controller {
 		]);
 	}
 
+	public function getPacklist(Receival $receival) {
+		return view('admin.receivals_packlist')->with([
+			'receivals' => [$receival],
+		]);
+	}
+
+	public function getReceive(Receival $receival) {
+
+		if ($receival->received) return Redirect::back()->with('error', 'Det varemottaket har allerede blitt mottatt.');
+
+		return view('admin.receivals_receive')->with([
+			'receival' => $receival,
+		]);
+	}
+
 	/**
 	 * Update the specified resource in storage.
 	 *
@@ -114,8 +136,8 @@ class ReceivalsController extends Controller {
 	public function update(Receival $receival)
 	{
 		$receival->products = Input::get('products');
+		$receival->expected_arrival = Input::get('expected_arrival');
 		$receival->save();
-
 		return Response::json('OK');
 	}
 
@@ -125,10 +147,10 @@ class ReceivalsController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy(Receival $r)
 	{
-		DB::table('receivals')->delete($id);
-		return Redirect::route('admin.receivals.index')->with('success', 'Receival #' + $id + ' deleted!');
+		$r->delete();
+		return Redirect::route('admin.receivals.index')->with('success', 'Receival #' + $r->id + ' deleted!');
 	}
 
 }

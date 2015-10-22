@@ -99,7 +99,7 @@ class Category extends Model {
 
 		$path = $this->getPath();
 
-		$collection = ($includeDisabled) ? $this->products : $this->products()->enabled()->get();
+		$collection = ($includeDisabled) ? $this->products()->orderBy('id', 'desc') : $this->products()->enabled()->orderBy('id', 'desc')->get();
 
 		foreach($collection as $p) {
 			# help the model with calculating it's path
