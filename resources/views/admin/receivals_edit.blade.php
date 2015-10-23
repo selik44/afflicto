@@ -5,7 +5,14 @@
 @stop
 
 @section('header')
-	<h3 class="title">@lang('admin.receivals') #{{$receival->id}} for {{$receival->manufacturer->name}}</h3>
+	<h3 class="title">
+		@if($receival->rest)
+			Rest-varemottak
+		@else
+			Varemottak
+		@endif
+		#{{$receival->id}} for {{$receival->manufacturer->name}}
+	</h3>
 @stop
 
 @section('content')

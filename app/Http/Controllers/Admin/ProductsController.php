@@ -35,7 +35,7 @@ class ProductsController extends Controller {
 				}
 			}],
             'Price Ink MVA' => ['price', function($model) {
-				return round($model->price * $model->vatgroup->amount);
+				return number_format(round($model->price * $model->vatgroup->amount), 0);
 			}],
 			'Manufacturer' => ['manufacturer_id', function($model, $column, $value) {
 				if ( ! $model->manufacturer) return '<span class="color-error">None</span>';

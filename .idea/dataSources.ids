@@ -1656,6 +1656,7 @@
       <column name="created_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <column name="updated_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="JzAwMDAtMDAtMDAgMDA6MDA6MDAn"/>
       <column name="deleted_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="arrived_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <primary-key name="PRIMARY" columns="id"/>
       <foreign-key name="receivals_manufacturer_id_foreign" columns="manufacturer_id" ref-table="manufacturers" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <index name="receivals_manufacturer_id_foreign" unique="false" columns="manufacturer_id"/>

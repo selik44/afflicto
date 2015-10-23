@@ -6,6 +6,7 @@ use Friluft\Http\Controllers\Controller;
 
 use Friluft\Product;
 use Friluft\Receival;
+use Illuminate\Support\Str;
 use Input;
 use Laratable;
 use Redirect;
@@ -24,14 +25,14 @@ class ReceivalsController extends Controller {
 			'#' => 'id',
 			'manufacturer' => 'manufacturer->name',
 			'Ordresum' => ['_ordersum', function($model) {
-				return $model->getSum() .',-';
+				return number_format($model->getSum()) .',-';
 			}],
-			'Date' => 'expected_arrival diffForHumans',
+			'Forventet Ankomst' => 'expected_arrival diffForHumans',
 			'Rest' => ['rest', function($model) {
-				return ($model->rest) ? '<span class="color-success">Ja</span>' : '<span class="color-error">Nei</span>';
+				return ($model->parent != null) ? '<span class="color-success">For #' .$model->parent->id .'</span>' : '<span class="color-error">Nei</span>';
 			}],
 			'Motatt' => ['received', function($model) {
-				return ($model->received) ? '<span class="color-success">Ja</span>' : '<span class="color-error">Nei</span>';
+				return ($model->received) ? '<span class="color-success">' .$model->arrived_at->diffForHumans() .'</span>' : '<span class="color-error">Nei</span>';
 			}],
 			'Oppdatert' => 'updated_at diffForHumans',
 			'' => ['_actions', function($model) {
@@ -39,7 +40,7 @@ class ReceivalsController extends Controller {
 					<a class="button small primary" title="Edit" href="' .route('admin.receivals.edit', $model) .'"><i class="fa fa-search"></i> Edit</a>
 					<a class="button small" title="Packlist" href="' .route('admin.receivals.packlist', $model) .'"><i class="fa fa-download"></i> Packlist</a>
 					<a class="button small success" title="Mottak" href="' .route('admin.receivals.receive', $model) .'"><i class="fa fa-check"></i> Mottak</a>
-					<form method="POST" action="' .route('admin.orders.delete', $model) .'">
+					<form method="POST" action="' .route('admin.receivals.destroy', $model) .'">
 						<input type="hidden" name="_method" value="DELETE">
 						<input type="hidden" name="_token" value="' .csrf_token() .'">
 						<button title="Delete" class="error small"><i class="fa fa-trash"></i> Trash</button>
@@ -88,7 +89,7 @@ class ReceivalsController extends Controller {
 		$receival->manufacturer_id = Input::get('manufacturer_id');
 		$receival->save();
 
-		return \Redirect::route('admin.receivals.edit', [$receival]);
+		return Redirect::route('admin.receivals.edit', [$receival]);
 	}
 
 	/**
@@ -101,7 +102,7 @@ class ReceivalsController extends Controller {
 	{
 		return view('admin.receivals_edit')->with([
 			'receival' => $receival,
-			'products' => Product::whereManufacturerId($receival->manufacturer_id)->get(),
+			'products' => Product::whereManufacturerId($receival->manufacturer_id)->withoutCompounds()->get(),
 		]);
 	}
 
@@ -125,6 +126,24 @@ class ReceivalsController extends Controller {
 		return view('admin.receivals_receive')->with([
 			'receival' => $receival,
 		]);
+	}
+
+	public function putReceive(Receival $receival) {
+		# prevent applying several times
+		if ($receival->received) return Redirect::back()->with('error', 'Det varemottaket har allerede blitt utført.');
+
+		# update the receival with the received numbers and save it
+		$receival->receive(Input::all());
+		$receival->save();
+
+		# generate a "rest" based on the difference.
+		$rest = $receival->generateRest();
+
+		if ($rest != null) {
+			return Redirect::route('admin.receivals.edit', $rest)->with('warning', 'De manglende enhetene har blitt samlet til dette rest-varemottaket.');
+		}else {
+			return Redirect::route('admin.receivals.index')->with('success', 'Varemottaket er utført.');
+		}
 	}
 
 	/**

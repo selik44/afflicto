@@ -121,6 +121,10 @@ class Product extends Model {
 		return $query->where('enabled', '=', '1');
 	}
 
+	public function scopeWithoutCompounds($query) {
+		return $query->where('children', '=', null);
+	}
+
 	public function getFormattedWeight() {
 		$w = $this->weight;
 		if ($w > 1000) {
