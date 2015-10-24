@@ -33,11 +33,9 @@
                         <label for="variant-{{$variant->id}}">{{$variant->name}}</label>
                         <select name="variant-{{$variant->id}}">
                             @foreach($variant->data['values'] as $value)
-                                @if($product->variants_stock[$value['id']] <= 0)
+                                @if($product->variants_stock[$value['id']] <= 0 && $product->getExpectedArrival() == null)
                                     <option disabled="disabled" value="{{$value['id']}}">
                                         {{$value['name']}}
-                                        @if ($product->manufacturer)
-                                        @endif
                                     </option>
                                 @else
                                     <option value="{{$value['id']}}">{{$value['name']}}</option>
@@ -69,7 +67,7 @@
 						<label for="variant-{{$variant->id}}">{{$variant->name}} ({{$child->name}})</label>
 						<select name="variant-{{$variant->id}}" data-stock='{!! json_encode($child->variants_stock) !!}'>
 							@foreach($variant->data['values'] as $value)
-								@if($child->variants_stock[$value['id']] <= 0)
+								@if($child->variants_stock[$value['id']] <= 0 && $product->getExpectedArrival() == null)
 									<option disabled="disabled" value="{{$value['id']}}">
 										{{$value['name']}}
 									</option>
@@ -84,14 +82,24 @@
 		</div>
 	@endif
 
-    <div class="product-stock">
-        <p class="true lead color-success">
-            <i class="fa fa-check"></i> @lang('store.in stock')
+    <div class="product-availability">
+        <p class="bad lead color-error">
+			<i class="fa fa-exclamation-triangle"></i> @lang('store.out of stock')
         </p>
 
-        <p class="false lead color-warning">
-            <i class="fa fa-exclamation-triangle"></i> @lang('store.out of stock')
-        </p>
+		<?php
+			$arrival = $product->getExpectedArrival();
+		?>
+		@if($arrival != null)
+			<p class="warning lead color-warning">
+				<i class="fa fa-question"></i> Forventet ankomst: om {{\Friluft\Utils\LocalizedCarbon::diffForHumans($arrival, null, true)}}.
+			</p>
+		@endif
+
+
+		<p class="good lead color-success">
+			<i class="fa fa-check"></i> @lang('store.in stock')
+		</p>
     </div>
 
     <button {{$disabled}}class="huge tertiary buy" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
@@ -102,14 +110,37 @@
     <script>
         (function($, window, document, undefined) {
             var form = $("#{{$id}}");
-            var alwaysAllowOrders = <?= ($product->manufacturer && $product->manufacturer->always_allow_orders) ? "true" : "false" ?>;
+			var availability = <?= $product->getAvailability() ?>;
 
 			var updateStock;
+
+			var enableBuy = function(enable) {
+				if (enable) {
+					form.find("button.buy").removeAttr('disabled');
+				}else {
+					form.find("button.buy").attr('disabled');
+				}
+			};
+
+			var setAvailability = function(num) {
+				var n = parseInt(num);
+				if (num == 0) {
+					//bad
+					form.find('.product-availability .bad').show().siblings().hide();
+				}else if (num == 1) {
+					//warning
+					form.find('.product-availability .warning').show().siblings().hide();
+				}else {
+					//good
+					form.find('.product-availability .good').show().siblings().hide();
+				}
+			}
 
             if (parseInt(form.attr('data-variants')) > 0) {
 				var stock = JSON.parse('{!! json_encode($product->variants_stock) !!}');
 
 				updateStock = function() {
+					console.log('updating stock for variants...');
 					//get the current stock ID
 					var stockID = [];
 					form.find(".product-variants .variant").each(function() {
@@ -121,13 +152,19 @@
 					var stockValue = parseInt(stock[stockID]);
 
 					if (stockValue > 0) {
-						console.log('in stock');
-						form.find("button.buy").removeAttr('disabled');
-						form.find(".product-stock .true").show().siblings('.false').hide();
+						//in stock
+						enableBuy(true);
+						setAvailability(2);
 					}else {
-						console.log('NOT in stock');
-						form.find("button.buy").attr('disabled', 'disabled');
-						form.find(".product-stock .true").hide().siblings('.false').show();
+						console.log('not in stock!');
+						console.log('availability is ' + availability);
+						if (availability > 0) {
+							enableBuy(true);
+							setAvailability(1);
+						}else {
+							enableBuy(false);
+							setAvailability(0);
+						}
 					}
 				};
 
@@ -175,14 +212,12 @@
 				});
 
 			}else {
-                var stockNumber = parseInt(form.attr('data-stock'));
-                if (stockNumber > 0) {
-                    form.find(".product-stock .true").show().siblings('.false').hide();
-                    form.find("button.buy").removeAttr('disabled');
-                }else {
-                    form.find(".product-stock .true").hide().siblings('.false').show();
-                    form.find("button.buy").attr('disabled', 'disabled');
-                }
+                setAvailability(availability);
+				if (availability > 0) {
+					enableBuy(true);
+				}else {
+					enableBuy(false);
+				}
             }
         })(jQuery, window, document);
     </script>

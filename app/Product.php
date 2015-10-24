@@ -187,7 +187,7 @@ class Product extends Model {
 
 		$expected = null;
 
-		foreach(Receival::where('received', '=', '0')->get() as $receival) {
+		foreach(Receival::where('received', '=', '0')->where('expected_arrival', '>', Carbon::now()->format(Carbon::ISO8601))->get() as $receival) {
 			# does this receival contain this product?
 			foreach($receival->products as $product) {
 				if ($product['id'] == $this->id) {

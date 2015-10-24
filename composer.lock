@@ -964,11 +964,11 @@
         },
         {
             "name": "gentlefox/laratables",
-            "version": "1.3.2",
+            "version": "1.3.4",
             "source": {
                 "type": "git",
                 "url": "https://afflicto@bitbucket.org/gentlefox/laratables.git",
-                "reference": "916dd9ef616efd7039f277f32557a4d537bbb5a7"
+                "reference": "bbeb9b00d975c67961eb5ccdf30e5aeea6e147d0"
             },
             "require": {
                 "afflicto/html": "~1.3.0"
@@ -989,7 +989,7 @@
                 }
             ],
             "description": "Datatables for Laravel",
-            "time": "2015-10-24 19:14:05"
+            "time": "2015-10-24 20:39:32"
         },
         {
             "name": "guzzlehttp/psr7",

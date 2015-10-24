@@ -27,7 +27,7 @@ class ManufacturersController extends Controller {
 				if ($model->prepurchase_enabled) {
 					return 'maks ' .$model->prepurchase_days .' dager';
 				}else {
-					return '<span class="color-error">Ikke aktivert.</span>';
+					return '<span class="color-error">Deaktivert</span>';
 				}
 			}],
 		]);
