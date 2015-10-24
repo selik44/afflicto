@@ -16,6 +16,14 @@
 			</select>
 		</label>
 
+		<label for="from">Fra
+			<input type="date" name="from" placeholder="from" value="{{$from}}">
+		</label>
+
+		<label for="to">Til
+			<input type="date" name="to" placeholder="to" value="{{$to}}">
+		</label>
+
 		<input type="submit" value="Hent" class="success">
 	</form>
 @stop

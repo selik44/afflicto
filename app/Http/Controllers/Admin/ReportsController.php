@@ -77,6 +77,24 @@ class ReportsController extends Controller
 	}
 
 	public function products() {
+		# get from and to dates
+		if (Input::has('from')) {
+			list($year, $month, $day) = explode('-', Input::get('from'));
+			$from = Carbon::createFromDate($year, $month, $day);
+		}else {
+			$from = Carbon::now()->subMonth(1)->setTime(0,0,0);
+		}
+
+		if (Input::has('to')) {
+			list($year, $month, $day) = explode('-', Input::get('to'));
+			$to = Carbon::createFromDate($year, $month, $day);
+		}else {
+			$to = Carbon::now();
+		}
+
+		$min = $from->copy()->setTime(0, 0, 0);
+		$max = $to->copy()->setTime(23, 59, 59);
+
 		$category = Input::get('category', '*');
 		if ($category != '*')
 			$categoryModel = Category::find($category);
@@ -85,7 +103,7 @@ class ReportsController extends Controller
 
 		$products = new Collection();
 
-		foreach(Order::all() as $order) {
+		foreach(Order::where('created_at', '>=', $min->format(Carbon::ISO8601))->where('created_at', '<=', $max->format(Carbon::ISO8601))->get() as $order) {
 			foreach($order->items as $item) {
 				if ($item['type'] != 'physical') continue;
 
@@ -164,6 +182,8 @@ class ReportsController extends Controller
 		return view('admin.reports_products')->with([
 			'products' => $products,
 			'categories' => Category::all(),
+			'from' => $from->format('Y-m-d'),
+			'to' => $to->format('Y-m-d'),
 		]);
 	}
 
