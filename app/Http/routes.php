@@ -225,7 +225,6 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	# delete
 	delete('receivals/{receival}', ['as' => 'admin.receivals.destroy', 'uses' => 'Admin\ReceivalsController@destroy', 'middleware' => 'perms:receivals.delete']);
 
-
 	# pages
 	get('pages', ['as' => 'admin.pages.index', 'uses' => 'Admin\PagesController@index', 'middleware' => 'perms:pages.view']);
 	get('pages/create', ['as' => 'admin.pages.create', 'uses' => 'Admin\PagesController@create', 'middleware' => 'perms:pages.create']);

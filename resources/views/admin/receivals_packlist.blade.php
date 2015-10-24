@@ -33,23 +33,28 @@
 		@foreach($receivals as $key => $receival)
 			<div class="row clearfix packlist" style="margin: 0; padding: 0;">
 				<div class="row">
-					<div class="col-xs-6 tight-left">
+					<div class="col-xs-4 tight-left">
 						<img id="logo" src="{{asset('images/friluft.png')}}" alt="logo"/>
 					</div>
 
-					<div class="col-xs-6 tight-right text-right">
-						123Concept AS<br>
-						Postboks 27<br>
-						1751 Halden
+					<div class="col-xs-4">
+						<h5>Buyer</h5>
+						<ul class="flat">
+							<li><strong>Name: </strong>{{$user->name}}</li>
+							<li><strong>Email: </strong>{{$user->email}}</li>
+						</ul>
 					</div>
-				</div>
 
-				<hr class="small">
-
-				<div class="col-xs-12 tight">
-					<ul class="inline text-center end">
-						<li>...</li>
-					</ul>
+					<div class="col-xs-4 tight-right text-right">
+						<h5>Address</h5>
+						<address>
+							<ul class="flat">
+								<li>123Concept AS</li>
+								<li>Postboks 27</li>
+								<li>1751 Halden, Norway</li>
+							</ul>
+						</address>
+					</div>
 				</div>
 
 				<hr/>

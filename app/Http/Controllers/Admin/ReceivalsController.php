@@ -116,6 +116,7 @@ class ReceivalsController extends Controller {
 	public function getPacklist(Receival $receival) {
 		return view('admin.receivals_packlist')->with([
 			'receivals' => [$receival],
+			'user' => \Auth::user(),
 		]);
 	}
 

@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Product.php" afterPath="$PROJECT_DIR$/app/Product.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Receival.php" afterPath="$PROJECT_DIR$/app/Receival.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ReceivalsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ReceivalsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/readme.md" afterPath="$PROJECT_DIR$/readme.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/receivals_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/receivals_edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/receivals_receive.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/receivals_receive.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/receivals_packlist.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/receivals_packlist.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -102,16 +94,16 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReceivalsController.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ReceivalsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ReceivalsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.65363127">
-              <caret line="43" column="75" selection-start-line="43" selection-start-column="75" selection-end-line="43" selection-end-column="75" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="118" column="36" selection-start-line="118" selection-start-column="36" selection-end-line="118" selection-end-column="36" />
               <folding>
                 <element signature="e#49#56#0#PHP" expanded="true" />
-                <marker date="1445608341154" expanded="true" signature="1210:1403" placeholder="..." />
-                <marker date="1445608341154" expanded="true" signature="1210:1964" placeholder="..." />
-                <marker date="1445608341154" expanded="true" signature="1721:1953" placeholder="..." />
+                <marker date="1445692580030" expanded="true" signature="1210:1403" placeholder="..." />
+                <marker date="1445692580030" expanded="true" signature="1210:1964" placeholder="..." />
+                <marker date="1445692580030" expanded="true" signature="1721:1953" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -122,6 +114,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="117" column="65" selection-start-line="117" selection-start-column="65" selection-end-line="117" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="receivals_packlist.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/admin/receivals_packlist.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.2932961">
+              <caret line="40" column="38" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
               <folding />
             </state>
           </provider>
@@ -191,7 +193,6 @@
         <option value="dbtable:/1be997c3/b70391ad-1f84-4357-95ee-cb4cd3ded70e/friluft..receivals" />
         <option value="$PROJECT_DIR$/resources/views/admin/partial/receivals_line.blade.php" />
         <option value="$PROJECT_DIR$/app/Utils/VariantManager.php" />
-        <option value="$PROJECT_DIR$/resources/views/admin/receivals_packlist.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_10_21_165458_receivals_add_timestamps.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_10_21_170058_receivals_add_soft_deletes.php" />
         <option value="$PROJECT_DIR$/app/Category.php" />
@@ -201,11 +202,12 @@
         <option value="$PROJECT_DIR$/resources/views/admin/receivals_receive.blade.php" />
         <option value="$PROJECT_DIR$/app/Product.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/receivals_edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_10_23_153654_receivals_add_arrived_at_timestamp.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_10_23_153846_receivals_add_receival_id.php" />
         <option value="$PROJECT_DIR$/app/Receival.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ReceivalsController.php" />
+        <option value="$PROJECT_DIR$/resources/views/admin/receivals_packlist.blade.php" />
       </list>
     </option>
   </component>
@@ -1148,14 +1150,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/admin/receivals_packlist.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="63" column="59" selection-start-line="63" selection-start-column="59" selection-end-line="63" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/receivals_receive.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1165,14 +1159,6 @@
             <marker date="1445515183992" expanded="true" signature="-1:-1" placeholder="..." />
             <marker date="1445515183992" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="225" column="161" selection-start-line="225" selection-start-column="161" selection-end-line="225" selection-end-column="161" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1200,14 +1186,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Receival.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="117" column="65" selection-start-line="117" selection-start-column="65" selection-end-line="117" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="dbDummy://dbtable:/1be997c3/b70391ad-1f84-4357-95ee-cb4cd3ded70e/friluft..receivals">
       <provider editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1221,16 +1199,40 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="225" column="161" selection-start-line="225" selection-start-column="161" selection-end-line="225" selection-end-column="161" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ReceivalsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.65363127">
-          <caret line="43" column="75" selection-start-line="43" selection-start-column="75" selection-end-line="43" selection-end-column="75" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="118" column="36" selection-start-line="118" selection-start-column="36" selection-end-line="118" selection-end-column="36" />
           <folding>
             <element signature="e#49#56#0#PHP" expanded="true" />
-            <marker date="1445608341154" expanded="true" signature="1210:1403" placeholder="..." />
-            <marker date="1445608341154" expanded="true" signature="1210:1964" placeholder="..." />
-            <marker date="1445608341154" expanded="true" signature="1721:1953" placeholder="..." />
+            <marker date="1445692580030" expanded="true" signature="1210:1403" placeholder="..." />
+            <marker date="1445692580030" expanded="true" signature="1210:1964" placeholder="..." />
+            <marker date="1445692580030" expanded="true" signature="1721:1953" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Receival.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="117" column="65" selection-start-line="117" selection-start-column="65" selection-end-line="117" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/admin/receivals_packlist.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2932961">
+          <caret line="40" column="38" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
+          <folding />
         </state>
       </provider>
     </entry>
