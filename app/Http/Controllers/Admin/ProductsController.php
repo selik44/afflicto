@@ -514,13 +514,12 @@ class ProductsController extends Controller {
 
 		$table->filterable(true);
 
+		# manufacturer filter
 		$mfs = ['*' => 'Any'];
 		foreach($manufacturers as $mf) {
 			$mfs[$mf->id] = $mf->name;
 		}
 		$table->addFilter('manufacturer_id', 'select')->setValues($mfs);
-
-		$table->addFilter('categories', 'category')->setLabel("Categories");
 
 		$enabledColumns = [];
 		$table->appendQueryParams(Input::only('column_name', 'column_slug', 'column_inprice', 'column_price', 'column_articlenumber', 'column_barcode', 'clumn_weight', 'column_description', 'column_summary', 'column_stock', 'column_tags', 'column_variants'));

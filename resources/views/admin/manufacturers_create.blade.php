@@ -22,7 +22,9 @@
 
     {!! $form->image !!}
 
-    {!! $form->always_allow_orders !!}
+    {!! $form->prepurchase_enabled !!}
+
+	{!! $form->prepurchase_days !!}
 @stop
 
 @section('footer')

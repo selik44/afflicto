@@ -26,3 +26,7 @@ function permission($perms) {
 
 	return false;
 }
+
+function numberFormat($number) {
+	return str_replace(',', '.', number_format($number));
+}

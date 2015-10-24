@@ -17,6 +17,8 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - views can be overriden per-store, using the view method of the Controller class. The default views are the ones used by 123friluft
 
 # Core
+- improve localization
+- improve laratables with ability to easily add more transformers and better translation
 - leverage iron.io queues for emails, logging and backups.
 - add sweetalert library (https://laracasts.com/series/build-project-flyer-with-me/episodes/9)
 - implement cloudflare

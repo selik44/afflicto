@@ -1,7 +1,6 @@
 <?php namespace Friluft\Http\Controllers\Admin;
 
 use App;
-use Former\Facades\Former;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Friluft\Image;
@@ -11,6 +10,7 @@ use Input;
 use Redirect;
 use Friluft\Manufacturer;
 use DB;
+use Former;
 
 class ManufacturersController extends Controller {
 
@@ -23,6 +23,13 @@ class ManufacturersController extends Controller {
 		$table = Laratable::make($query, [
 			'#' => 'id',
 			'Name' => 'name',
+			'Forhåndsbestilling' => ['prepurchase_days', function($model) {
+				if ($model->prepurchase_enabled) {
+					return 'maks ' .$model->prepurchase_days .' dager';
+				}else {
+					return '<span class="color-error">Ikke aktivert.</span>';
+				}
+			}],
 		]);
 
 		$table->sortable(true, ['id', 'name']);
@@ -46,7 +53,11 @@ class ManufacturersController extends Controller {
 	public function store(Requests\CreateManufacturerRequest $request)
 	{
 		$mf = new Manufacturer(Input::only('name', 'slug', 'description'));
-		$mf->always_allow_orders = Input::has('always_allow_orders') ? true : false;
+		$mf->always_allow_orders = Input::has('always_allow_orders');
+		$mf->prepurchase_enabled = Input::has('prepurchase_enabled');
+		if ($mf->prepurchase_enabled) {
+			$mf->prepurchase_days = Input::get('prepurchase_days');
+		}
 		$mf->save();
 
 		if (Input::hasFile('logo')) {
@@ -83,7 +94,10 @@ class ManufacturersController extends Controller {
 		$mf->name = Input::get('name');
 		$mf->slug = Input::get('slug');
 		$mf->description = Input::get('description', null);
-		$mf->always_allow_orders = (Input::has('always_allow_orders')) ? true : false;
+		$mf->prepurchase_enabled = Input::has('prepurchase_enabled');
+		if ($mf->prepurchase_enabled) {
+			$mf->prepurchase_days = Input::get('prepurchase_days');
+		}
 
 		if (Input::hasFile('logo')) {
 			$file = Input::file('logo');

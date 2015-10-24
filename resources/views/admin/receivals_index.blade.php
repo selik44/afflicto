@@ -6,6 +6,7 @@
 
 @section('header')
 	<h3 class="title">@lang('admin.receivals')</h3>
+	{!! $filters !!}
 @stop
 
 @section('content')

@@ -203,6 +203,7 @@ class Product extends Model {
 	}
 
 	/**
+	 * Get the availability status of this product (and all their variants)
 	 * @return int AVAILABILITY_BAD, AVAILABILITY_WARNING or AVAILABILITY_GOOD.
 	 */
 	public function getAvailability() {
@@ -211,17 +212,21 @@ class Product extends Model {
 			return static::AVAILABILITY_GOOD;
 		}
 
-		# not arriving soon?
-		$expectedArrival = $this->getExpectedArrival();
-		if ($expectedArrival == null) {
-			return static::AVAILABILITY_BAD;
-		}
+		# is this product part of a manufacturer that has prepurchase enabled?
+		if ($this->manufacturer != null && $this->manufacturer->prepurchase_enabled) {
 
-		# arriving within a week?
-		$soon = new Carbon();
-		$soon->addWeek(1);
-		if ($expectedArrival->getTimestamp() <= $soon->getTimestamp()) {
-			return static::AVAILABILITY_WARNING;
+			# any receivals that contain this product?
+			$expectedArrival = $this->getExpectedArrival();
+			if ($expectedArrival == null) {
+				return static::AVAILABILITY_BAD;
+			}
+
+			# is it arriving soon enough?
+			$soon = new Carbon();
+			$soon->addDays($this->manufacturer->prepurchase_days);
+			if ($expectedArrival->getTimestamp() <= $soon->getTimestamp()) {
+				return static::AVAILABILITY_WARNING;
+			}
 		}
 
 		# nope

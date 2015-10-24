@@ -4,8 +4,11 @@ use DB;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 
+use Friluft\Manufacturer;
 use Friluft\Product;
 use Friluft\Receival;
+use Friluft\Utils\LocalizedCarbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Str;
 use Input;
 use Laratable;
@@ -25,9 +28,11 @@ class ReceivalsController extends Controller {
 			'#' => 'id',
 			'manufacturer' => 'manufacturer->name',
 			'Ordresum' => ['_ordersum', function($model) {
-				return number_format($model->getSum()) .',-';
+				return numberFormat($model->getSum()) .',-';
 			}],
-			'Forventet Ankomst' => 'expected_arrival diffForHumans',
+			'Forventet Ankomst' => ['expected_arrival', function($model) {
+				return LocalizedCarbon::diffForHumans($model->expected_arrival, null, true);
+			}],
 			'Rest' => ['rest', function($model) {
 				return ($model->parent != null) ? '<span class="color-success">For #' .$model->parent->id .'</span>' : '<span class="color-error">Nei</span>';
 			}],
@@ -49,14 +54,62 @@ class ReceivalsController extends Controller {
 			}],
 		]);
 
+		# set sortable
 		$table->sortable(true, [
-			'id','expected_arrival','rest','received',
+			'id','expected_arrival','rest','received','updated_at',
 		]);
+
+		# set filterable
+		$table->filterable(true);
+
+		#------------ add manufacturers filter------------
+
+		# get all the manufacturers who appear in any receivals
+		$manufacturers = new Collection();
+		foreach(Receival::all(['manufacturer_id']) as $receival) {
+			$id = $receival['manufacturer_id'];
+			if ( ! isset($manufacturers[$id])) {
+				$manufacturers[$id] = Manufacturer::whereId($id)->get(['id', 'name'])->first();
+			}
+		}
+
+		# sort by name
+		$manufacturers = $manufacturers->sortBy('name');
+
+		# create the filter
+		$mfs = ['*' => 'Any'];
+		foreach($manufacturers as $mf) {
+			$mfs[$mf->id] = $mf->name;
+		}
+		$mfFilter = $table->addFilter('manufacturer_id', 'select');
+		$mfFilter->setValues($mfs);
+		$mfFilter->setLabel("Produsent");
+
+		# add "rest" filter
+		$restFilter = $table->addFilter('id', 'boolean');
+		$restFilter->setLabels('Ja', 'Nei', 'Alle');
+		$restFilter->setLabel('Rest');
+		$restFilter->setFilterFunction(function($filter, $query) {
+			$value = $filter->getValue();
+			if ($value != 'any') {
+				if ($value == '1') {
+					$query->whereNotNull('receival_id');
+				}else {
+					$query->whereNull('receival_id');
+				}
+			}
+		});
+
+		# add "received" filter
+		$receivedFilter = $table->addFilter('received', 'boolean');
+		$receivedFilter->setLabels('Ja', 'Nei', 'Alle');
+		$receivedFilter->setLabel('Mottatt');
 
 		return $this->view('admin.receivals_index')
 			->with([
 				'table' => $table->render(),
 				'pagination' => $table->paginator->render(),
+				'filters' => $table->buildFilters()->addClass('inline'),
 			]);
 	}
 

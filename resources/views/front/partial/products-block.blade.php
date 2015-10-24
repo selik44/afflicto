@@ -89,10 +89,10 @@
 		</a>
 
 		<h4 class="price end discount">
-            <span class="value">{{round($product->getDiscountPrice() * $product->vatgroup->amount)}}</span>,-
+            <span class="value">{{numberFormat(round($product->getDiscountPrice() * $product->vatgroup->amount))}}</span>,-
             @if($product->hasDiscount())
                 <br>
-                <del class="value">{{round($product->price * $product->vatgroup->amount)}},-</del>
+                <del class="value">{{numberFormat(round($product->price * $product->vatgroup->amount))}},-</del>
             @endif
         </h4>
 	</header>

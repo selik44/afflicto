@@ -32,18 +32,19 @@ class Manufacturer extends Model {
 	use SearchableTrait;
 
 	public $timestamps = false;
+
 	protected $table = 'manufacturers';
 
-	protected $fillable = ['name','slug'];
+	protected $fillable = ['name', 'slug', 'prepurchase_enabled', 'prepurchase_days'];
 
 	protected $casts = [
-		'always_allow_orders' => 'boolean'
+		'prepurchase_days' => 'integer',
 	];
 
 	protected $searchable = [
 		'columns' => [
 			'name' => 15,
-			'slug' => 10,
+			'slug' => 15,
 		],
 	];
 
