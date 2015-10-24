@@ -95,6 +95,7 @@ class ReportsController extends Controller
 		$min = $from->copy()->setTime(0, 0, 0);
 		$max = $to->copy()->setTime(23, 59, 59);
 
+		# get categories
 		$category = Input::get('category', '*');
 		if ($category != '*')
 			$categoryModel = Category::find($category);

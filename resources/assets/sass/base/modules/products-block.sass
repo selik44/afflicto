@@ -1,4 +1,5 @@
 .products-block
+
 	> .preview
 		position: relative
 		display: block
@@ -52,6 +53,15 @@
 						left: 0px
 						bottom: 0px
 
+				.tag.tag-availability
+					&.availability-bad
+						background: $color-error
+						color: white
+
+					&.availability-warning
+						background: $color-warning
+						color: white
+
 	> .header
 		position: relative
 		display: flex
@@ -61,13 +71,13 @@
 		padding-top: 1rem
 
 		.title
-			color: $base-color
 			display: block
 			flex: auto
 			padding-right: 1rem
 
 			&:hover
 				text-decoration: none
+
 				.manufacturer, .name
 					color: $color-primary
 
@@ -78,29 +88,9 @@
 
 			&.discount
 				clear: both
+
 				del
 					font-size: 1.2rem
-
-
-	> .footer
-		display: none
-		transition: all $base-transition-duration
-		opacity: 0
-		margin-top: 1rem
-		text-align: center
-
-		.divider
-			margin: 0
-			margin-bottom: 1rem
-			background-color: weaker($base-background, 25%)
-
-		a
-			font-size: 3rem
-			color: $base-color
-			padding: 0 1rem
-
-			&:hover
-				color: $color-primary
 
 	&:hover
 		> .preview
@@ -110,3 +100,12 @@
 
 		> .footer
 			opacity: 0.7
+
+	// availability-color
+	&.availability-bad
+		.header .title .name
+			//color: $color-error
+
+	&.availability-warning
+		.header .title .name
+			color: $color-warning

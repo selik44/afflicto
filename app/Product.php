@@ -1,5 +1,6 @@
 <?php namespace Friluft;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Collection;
@@ -64,6 +65,10 @@ use Friluft\Variant;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereMetaKeywords($value)
  */
 class Product extends Model {
+
+	const AVAILABILITY_BAD = 0;
+	const AVAILABILITY_WARNING = 1;
+	const AVAILABILITY_GOOD = 2;
 
 	use SearchableTrait, SoftDeletes;
 
@@ -155,6 +160,72 @@ class Product extends Model {
 
 	public function isInStock($options = []) {
 		return $this->getStock($options) > 0;
+	}
+
+	public function getTotalStock() {
+		$total = 0;
+
+		if ($this->hasVariants()) {
+			foreach($this->variants_stock as $stock) {
+				$total += $stock;
+			}
+		}else {
+			$total = $this->stock;
+		}
+
+		return $total;
+	}
+
+	/**
+	 * Get the expected arrival of new units
+	 *
+	 * @return Carbon|null
+	 */
+	public function getExpectedArrival($options = []) {
+		$soon = new Carbon();
+		$soon->addWeek(1);
+
+		$expected = null;
+
+		foreach(Receival::where('received', '=', '0')->get() as $receival) {
+			# does this receival contain this product?
+			foreach($receival->products as $product) {
+				if ($product['id'] == $this->id) {
+					if ($expected == null || $receival->expected_arrival->getTimestamp() < $expected) {
+						$expected = $receival->expected_arrival->copy();
+					}
+					continue;
+				}
+			}
+		}
+
+		return $expected;
+	}
+
+	/**
+	 * @return int AVAILABILITY_BAD, AVAILABILITY_WARNING or AVAILABILITY_GOOD.
+	 */
+	public function getAvailability() {
+		# in stock?
+		if ($this->getTotalStock() >= 1) {
+			return static::AVAILABILITY_GOOD;
+		}
+
+		# not arriving soon?
+		$expectedArrival = $this->getExpectedArrival();
+		if ($expectedArrival == null) {
+			return static::AVAILABILITY_BAD;
+		}
+
+		# arriving within a week?
+		$soon = new Carbon();
+		$soon->addWeek(1);
+		if ($expectedArrival->getTimestamp() <= $soon->getTimestamp()) {
+			return static::AVAILABILITY_WARNING;
+		}
+
+		# nope
+		return static::AVAILABILITY_BAD;
 	}
 
 	public function getStock($variants = []) {

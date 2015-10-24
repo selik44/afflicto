@@ -13,11 +13,21 @@
                 $disabled = 'disabled="disabled" ';
             }
         }
+
+		# get availability
+		$availability = $product->getAvailability();
+		if ($availability == \Friluft\Product::AVAILABILITY_BAD) {
+			$availabilityClass = 'availability-bad';
+		}else if ($availability == \Friluft\Product::AVAILABILITY_WARNING) {
+			$availabilityClass = 'availability-warning';
+		}else {
+			$availabilityClass = 'availability-good';
+		}
 ?>
 
 <div
         id="product-{{$product->id}}"
-        class="product products-block"
+        class="product products-block {{$availabilityClass}}"
         data-id="{{$product->id}}"
         data-variants="{{count($product->variants)}}"
         data-stock="{{$product->stock}}"
@@ -44,6 +54,27 @@
                         <span class="tag" style="background-color: {{$tag->color}};"><i class="{{$tag->icon}}"></i> {{$tag->label}}</span>
                         @endif
                     @endforeach
+
+					@if($availability == \Friluft\Product::AVAILABILITY_WARNING) {
+						<span class="tag tag-availability availability-warning"><i class="fa fa-question"></i>
+							<?php
+								/*
+								$str = strtolower($product->getExpectedArrival()->diffForHumans(\Carbon\Carbon::now(), true));
+								$str = str_replace('days', 'dager', $str);
+								$str = str_replace('day', 'dag', $str);
+								$str = str_replace('weeks', 'uker', $str);
+								$str = str_replace('week', 'uke', $str);
+								$str = str_replace('months', 'måneder', $str);
+								$str = str_replace('month', 'måned', $str);
+								echo 'Kommer om ' .$str;
+								*/
+
+								echo 'Kommer ' .trans('carbon.in') .' ' .\Friluft\Utils\LocalizedCarbon::diffForHumans($product->getExpectedArrival(), null, true);
+							?>
+						</span>
+					@elseif($availability == \Friluft\Product::AVAILABILITY_BAD) {
+						<!--<span class="tag tag-availability availability-bad"><i class="fa fa-warning"></i>Utsolgt</span>-->
+					@endif
                 </div>
             </div>
         </a>
