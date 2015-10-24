@@ -45,4 +45,29 @@ class Variant extends Model {
 		return 'Error.';
 	}
 
+	public function save(array $options = [])
+	{
+		$ret = parent::save($options);
+
+		# make sure all the products that have this variant have a valid stock for all the choices.
+		foreach($this->products as $product) {
+			# get stock
+			$stock = $product->variants_stock;
+
+			# loop through all the variant choices
+			foreach($product->getVariantChoices() as $choice) {
+				if ( ! isset($stock[$choice['id']])) {
+					$stock[$choice['id']] = 0;
+				}
+			}
+
+			# set the stock & save
+			$product->variants_stock = $stock;
+			$product->save();
+		}
+
+		return $ret;
+	}
+
+
 }
