@@ -29,7 +29,7 @@
         id="product-{{$product->id}}"
         class="product products-block {{$availabilityClass}}"
         data-id="{{$product->id}}"
-        data-variants="{{count($product->variants)}}"
+        data-variants="{{count($product->getVariants())}}"
         data-stock="{{$product->stock}}"
         data-price="{{round($product->getDiscountPrice() * $product->vatgroup->amount)}}"
         data-manufacturer="{{($product->manufacturer) ? $product->manufacturer->id : ''}}"
@@ -56,21 +56,8 @@
                     @endforeach
 
 					@if($availability == \Friluft\Product::AVAILABILITY_WARNING) {
-						<span class="tag tag-availability availability-warning"><i class="fa fa-question"></i>
-							<?php
-								/*
-								$str = strtolower($product->getExpectedArrival()->diffForHumans(\Carbon\Carbon::now(), true));
-								$str = str_replace('days', 'dager', $str);
-								$str = str_replace('day', 'dag', $str);
-								$str = str_replace('weeks', 'uker', $str);
-								$str = str_replace('week', 'uke', $str);
-								$str = str_replace('months', 'måneder', $str);
-								$str = str_replace('month', 'måned', $str);
-								echo 'Kommer om ' .$str;
-								*/
-
-								echo 'Kommer ' .trans('carbon.in') .' ' .\Friluft\Utils\LocalizedCarbon::diffForHumans($product->getExpectedArrival(), null, true);
-							?>
+						<span class="tag tag-availability availability-warning">
+							<i class="fa fa-question"></i> {{'kommer ' .trans('carbon.in') .' ' .\Friluft\Utils\LocalizedCarbon::diffForHumans($product->getExpectedArrival(), null, true)}}
 						</span>
 					@elseif($availability == \Friluft\Product::AVAILABILITY_BAD) {
 						<!--<span class="tag tag-availability availability-bad"><i class="fa fa-warning"></i>Utsolgt</span>-->

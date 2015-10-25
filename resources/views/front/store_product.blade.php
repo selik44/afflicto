@@ -43,7 +43,7 @@
 
 @section('article')
 
-	<div class="product-view" data-id="{{$product->id}}" data-variants="{{count($product->variants)}}" data-stock="{{$product->stock}}">
+	<div class="product-view" data-id="{{$product->id}}" data-variants="{{count($product->getVariants())}}" data-stock="{{$product->stock}}">
 		<div class="product-top">
 			<div class="product-images col-l-8 col-m-7 col-m-12 tight-left clearfix">
                 @if(count($product->images) > 1)
