@@ -115,10 +115,11 @@
 			var updateStock;
 
 			var enableBuy = function(enable) {
+
 				if (enable) {
 					form.find("button.buy").removeAttr('disabled');
 				}else {
-					form.find("button.buy").attr('disabled');
+					form.find("button.buy").attr('disabled', 'disabled');
 				}
 			};
 

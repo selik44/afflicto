@@ -66,8 +66,19 @@ use Friluft\Variant;
  */
 class Product extends Model {
 
+	/**
+	 * There aren't any left and one should not be able to prepurchase.
+	 */
 	const AVAILABILITY_BAD = 0;
+
+	/**
+	 * There aren't any left, but they're coming soon and can be prepurchased.
+	 */
 	const AVAILABILITY_WARNING = 1;
+
+	/**
+	 * In stock, all good.
+	 */
 	const AVAILABILITY_GOOD = 2;
 
 	use SearchableTrait, SoftDeletes;
@@ -246,22 +257,33 @@ class Product extends Model {
 
 			return $availability;
 
-		}else if ($this->getTotalStock() >= 1) {
+		}else if ( ! $this->hasVariants() && $this->getTotalStock() > 0) {
 			return static::AVAILABILITY_GOOD;
+		}else {
 
-		} else if ($this->manufacturer != null && $this->manufacturer->prepurchase_enabled) {
-
-			# any receivals that contain this product?
-			$expectedArrival = $this->getExpectedArrival();
-			if ($expectedArrival == null) {
-				return static::AVAILABILITY_BAD;
+			# get the worst stock from variants_stock
+			$worstStock = null;
+			foreach($this->variants_stock as $stock) {
+				if ($stock < $worstStock || $worstStock == null) $worstStock = $stock;
 			}
 
-			# is it arriving soon enough?
-			$soon = new Carbon();
-			$soon->addDays($this->manufacturer->prepurchase_days);
-			if ($expectedArrival->getTimestamp() <= $soon->getTimestamp()) {
-				return static::AVAILABILITY_WARNING;
+			# good? otherwise, check if a receival exists and perpurchase is possible.
+			if ($worstStock > 0) {
+				static::AVAILABILITY_GOOD;
+			}else if ($this->manufacturer != null && $this->manufacturer->prepurchase_enabled) {
+
+				# any receivals that contain this product?
+				$expectedArrival = $this->getExpectedArrival();
+				if ($expectedArrival == null) {
+					return static::AVAILABILITY_BAD;
+				}
+
+				# is it arriving soon enough?
+				$soon = new Carbon();
+				$soon->addDays($this->manufacturer->prepurchase_days);
+				if ($expectedArrival->getTimestamp() <= $soon->getTimestamp()) {
+					return static::AVAILABILITY_WARNING;
+				}
 			}
 		}
 
