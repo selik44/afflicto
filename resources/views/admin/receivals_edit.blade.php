@@ -109,8 +109,9 @@
 
 					//add all the variants
 					$(this).find('td.options tr.variant').each(function() {
-						var id = parseInt($(this).attr('data-stock-id'));
-						product.order[id] = parseInt($(this).find('td.quantity input').val());
+						var id = $(this).attr('data-stock-id');
+						var quantity = parseInt($(this).find('td.quantity input').val());
+						product.order[id] = quantity;
 					});
 				}else {
 					//order some amount of this non-variant product

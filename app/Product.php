@@ -227,7 +227,7 @@ class Product extends Model {
 				# does this receival contain this product?
 				foreach($receival->products as $product) {
 					if ($product['id'] == $this->id) {
-						if ($expected == null || $receival->expected_arrival->getTimestamp() < $expected) {
+						if ($expected == null || $receival->expected_arrival->getTimestamp() < $expected->getTimestamp()) {
 							$expected = $receival->expected_arrival->copy();
 						}
 						continue;
@@ -263,12 +263,14 @@ class Product extends Model {
 
 			# get the worst stock from variants_stock
 			$worstStock = null;
-			foreach($this->variants_stock as $stock) {
-				if ($stock < $worstStock || $worstStock == null) $worstStock = $stock;
+			if (is_array($this->variants_stock)) {
+				foreach($this->variants_stock as $stock) {
+					if ($stock < $worstStock || $worstStock == null) $worstStock = $stock;
+				}
 			}
 
 			# good? otherwise, check if a receival exists and perpurchase is possible.
-			if ($worstStock > 0) {
+			if ($worstStock != null && $worstStock > 0) {
 				static::AVAILABILITY_GOOD;
 			}else if ($this->manufacturer != null && $this->manufacturer->prepurchase_enabled) {
 

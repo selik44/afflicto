@@ -30,10 +30,10 @@
 									}
 								}
 
-								echo '<tr class="variant-' .$stockID .'" data-stock-id="' .$stockID .'">';
+								echo '<tr class="variant" data-stock-id="' .$stockID .'">';
 									echo '<td class="name">' .$rootValue['name'] .' ' .$value['name'] .'</td>';
-									echo '<td class="stock"><input type="text" value="' .$s .'"></td>';
-									echo '<td class="order"><input type="text" value="' .$v .'"></td>';
+									echo '<td class="stock">' .$s .'</td>';
+									echo '<td class="quantity"><input type="text" value="' .$v .'"></td>';
 								echo '<tr>';
 							}
 						}
