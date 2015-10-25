@@ -165,9 +165,19 @@ class Product extends Model {
 	public function getTotalStock() {
 		$total = 0;
 
-		if ($this->hasVariants()) {
-			foreach($this->variants_stock as $stock) {
-				$total += $stock;
+		# is this a compound product?
+		if ($this->isCompound()) {
+
+			foreach($this->getChildren() as $child) {
+				$total += $child->getTotalStock();
+			}
+
+		}else if ($this->hasVariants()) {
+			$stock = $this->variants_stock;
+			if ($stock) {
+				foreach($this->variants_stock as $stock) {
+					$total += $stock;
+				}
 			}
 		}else {
 			$total = $this->stock;
