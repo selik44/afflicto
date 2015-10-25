@@ -196,12 +196,19 @@
 
 					if (inStock) {
 						console.log('in stock');
-						form.find("button.buy").removeAttr('disabled');
+						enableBuy(true);
+						setAvailability(2);
 						form.find(".product-stock .true").show().siblings('.false').hide();
 					}else {
-						console.log('NOT in stock');
-						form.find("button.buy").attr('disabled', 'disabled');
-						form.find(".product-stock .true").hide().siblings('.false').show();
+						console.log('not in stock!');
+						console.log('availability is ' + availability);
+						if (availability > 0) {
+							enableBuy(true);
+							setAvailability(1);
+						}else {
+							enableBuy(false);
+							setAvailability(0);
+						}
 					}
 				};
 

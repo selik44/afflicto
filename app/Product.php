@@ -167,11 +167,9 @@ class Product extends Model {
 
 		# is this a compound product?
 		if ($this->isCompound()) {
-
 			foreach($this->getChildren() as $child) {
 				$total += $child->getTotalStock();
 			}
-
 		}else if ($this->hasVariants()) {
 			$stock = $this->variants_stock;
 			if ($stock) {
@@ -192,24 +190,42 @@ class Product extends Model {
 	 * @return Carbon|null
 	 */
 	public function getExpectedArrival($options = []) {
-		$soon = new Carbon();
-		$soon->addWeek(1);
+		if ($this->isCompound()) {
 
-		$expected = null;
+			$expected = null;
 
-		foreach(Receival::where('received', '=', '0')->where('expected_arrival', '>', Carbon::now()->format(Carbon::ISO8601))->get() as $receival) {
-			# does this receival contain this product?
-			foreach($receival->products as $product) {
-				if ($product['id'] == $this->id) {
-					if ($expected == null || $receival->expected_arrival->getTimestamp() < $expected) {
-						$expected = $receival->expected_arrival->copy();
-					}
-					continue;
+			foreach($this->getChildren() as $child) {
+				$childExpected = $child->getExpectedArrival();
+				if ($childExpected == null) {
+					return null;
+				}else if ($expected == null) {
+					$expected = $childExpected->copy();
+				}else if ($childExpected->getTimestamp() > $expected->getTimestamp()) {
+					$expected = $childExpected->copy();
 				}
 			}
-		}
 
-		return $expected;
+			return $expected;
+		}else {
+			$soon = new Carbon();
+			$soon->addWeek(1);
+
+			$expected = null;
+
+			foreach(Receival::where('received', '=', '0')->where('expected_arrival', '>', Carbon::now()->format(Carbon::ISO8601))->get() as $receival) {
+				# does this receival contain this product?
+				foreach($receival->products as $product) {
+					if ($product['id'] == $this->id) {
+						if ($expected == null || $receival->expected_arrival->getTimestamp() < $expected) {
+							$expected = $receival->expected_arrival->copy();
+						}
+						continue;
+					}
+				}
+			}
+
+			return $expected;
+		}
 	}
 
 	/**
@@ -217,13 +233,23 @@ class Product extends Model {
 	 * @return int AVAILABILITY_BAD, AVAILABILITY_WARNING or AVAILABILITY_GOOD.
 	 */
 	public function getAvailability() {
-		# in stock?
-		if ($this->getTotalStock() >= 1) {
-			return static::AVAILABILITY_GOOD;
-		}
+		# is this a compound product?
+		if ($this->isCompound()) {
+			$availability = static::AVAILABILITY_GOOD;
 
-		# is this product part of a manufacturer that has prepurchase enabled?
-		if ($this->manufacturer != null && $this->manufacturer->prepurchase_enabled) {
+			foreach($this->getChildren() as $child) {
+				$childAvailability = $child->getAvailability();
+				if ($childAvailability < $availability) {
+					$availability = $childAvailability;
+				}
+			}
+
+			return $availability;
+
+		}else if ($this->getTotalStock() >= 1) {
+			return static::AVAILABILITY_GOOD;
+
+		} else if ($this->manufacturer != null && $this->manufacturer->prepurchase_enabled) {
 
 			# any receivals that contain this product?
 			$expectedArrival = $this->getExpectedArrival();
