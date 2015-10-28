@@ -232,9 +232,10 @@
 
 @section('scripts')
 @parent
+
 <script type="text/javascript">
 
-    window.showBuyModa = null;
+    window.showBuyModal = null;
 
 	$(document).ready(function() {
         //init buy modal

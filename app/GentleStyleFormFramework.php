@@ -1,4 +1,6 @@
-<?php namespace Friluft;
+<?php
+
+namespace Friluft;
 
 use Former\Traits\Field;
 use Former\Traits\Framework;
@@ -160,7 +162,7 @@ class GentleStyleFormFramework extends Framework implements \Former\Interfaces\F
 			$item = $item->__toString();
 		}
 
-		return Element::create('span', $item)->addClass('add-on');
+		return Element::create('span', $item)->addClass('addon');
 	}
 
 	/**

@@ -28,7 +28,7 @@ use Friluft\Variant;
  * @property integer $sales
  * @property integer $vatgroup_id
  * @property integer $manufacturer_id
- * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Category[] $categories
+ * @property \Illuminate\Database\Eloquent\Collection|\Friluft\Category[] $categories
  * @property-read \Friluft\Vatgroup $vatgroup
  * @property-read \Friluft\Manufacturer $manufacturer
  * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Product[] $relations

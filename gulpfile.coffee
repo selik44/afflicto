@@ -31,8 +31,10 @@ gulp.task 'styles', ->
 gulp.task 'scripts', ->
 	jsFiles = gulp
 		.src [
-			'resources/assets/vendor/jquery/dist/jquery.min.js'
 			'resources/assets/vendor/underscore/underscore-min.js'
+			'resources/assets/vendor/jquery/dist/jquery.min.js'
+			'node_modules/backbone/backbone-min.js'
+			'node_modules/backbone-relational/backbone-relational.js'
 			'resources/assets/vendor/jquery-touchswipe/jquery.touchSwipe.min.js'
 			'resources/assets/vendor/isotope/dist/isotope.pkgd.min.js'
 			'resources/assets/vendor/isotope-packery/packery-mode.pkgd.min.js'
@@ -41,8 +43,8 @@ gulp.task 'scripts', ->
 			'resources/assets/vendor/imagesloaded/imagesloaded.pkgd.min.js'
 			'resources/assets/vendor/nouislider/distribute/jquery.nouislider.all.min.js'
 			'resources/assets/vendor/chosen/chosen.jquery.min.js'
-		  'resources/assets/vendor/html.sortable/dist/html.sortable.min.js'
-		  'resources/assets/vendor/dropzone/dist/min/dropzone.min.js'
+		  	'resources/assets/vendor/html.sortable/dist/html.sortable.min.js'
+		  	'resources/assets/vendor/dropzone/dist/min/dropzone.min.js'
 			'resources/assets/vendor/fontIconPicker/jquery.fonticonpicker.min.js'
 			'resources/assets/js/viewport.jquery.js'
 			'node_modules/@afflicto/gentlestyle/dist/gentlestyle.js'
@@ -59,12 +61,18 @@ gulp.task 'scripts', ->
 
 	jsFiles
 		.pipe order [
+				'underscore-min.js'
+				'backbone-min.js'
+				'backbone-relational.js'
 				'jquery.min.js'
 				'isotope.pkgd.min.js'
 				'chosen.jquery.min.js'
 				'gentlestyle.js'
 				'autoslug.coffee'
 				'slider.coffee'
+				'model.coffee'
+				'friluft.coffee'
+				'coffee/**/*.coffee'
 			]
 		.pipe concat 'all.js'
 		.pipe gulp.dest 'public/js'
@@ -73,7 +81,6 @@ gulp.task 'scripts', ->
 # WATCH
 gulp.task 'watch', ->
 	gulp.watch ['resources/assets/sass/**/*.sass', 'resources/assets/coffee/**/*.coffee'], ['styles', 'scripts']
-	
 
 
 # DEFAULT

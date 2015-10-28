@@ -40,6 +40,13 @@
 
 	@section('scripts')
 		<script src="{{ asset('/js/all.js') }}"></script>
+		<script>
+			$.ajaxSetup({
+				headers: {
+					'X-CSRF-Token': Friluft.token,
+				}
+			});
+		</script>
 	@show
 
 </body>

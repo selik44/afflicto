@@ -29,6 +29,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - implement DB backups with: chickling\Backup\BackupServiceProvider
 
 # Todo
+- allow invisible and filterable tags.
 - gentlestyle: fix table.bordered to not style child tables.
 - show product stock/availability in front end.
 - implement "always_allow_orders" and "always_allow_orders_receival_only"
