@@ -70,9 +70,10 @@ class OrdersController extends Controller {
 							}else {
 								foreach($product->getVariants() as $variant) {
 									if ( ! isset($variants[$variant->id])) {
-										return 'Error for item with product id "' .$product->id .'". item does not contain variant ' .$variant->id .'<br>';
+										$variantString .= 'Error for item with product id "' .$product->id .'". item does not contain variant ' .$variant->id .'<br>';
+									}else {
+										$variantString .= $variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
 									}
-									$variantString .= $variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
 								}
 							}
 
