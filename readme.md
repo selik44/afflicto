@@ -29,15 +29,12 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - implement DB backups with: chickling\Backup\BackupServiceProvider
 
 # Todo
+- størrelse kart
 - gentlestyle: fix table.bordered to not style child tables.
-- show product stock/availability in front end.
-- implement "always_allow_orders" and "always_allow_orders_receival_only"
 - fetch product images of child products for compound products automatically.
-- add more dashboard reports/charts
 - implement popups
 - add "revenue" field on orders, to prevent it from becoming invalid if relevant product data changes in the future.
 - fix discount rate in the orders items array (2000 should be 20 etc)
-- teknisk informasjon: friluft.tk/trening/dame/flex-compression
 - user.orders.show: fix shipping text and show discount
 - fix the name parsing when generating a user from a klarna order
 - make discounts calculate for rounded prices (inc vat)

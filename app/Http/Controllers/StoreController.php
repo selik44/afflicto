@@ -216,7 +216,7 @@ class StoreController extends Controller {
 			# subscribe to newsletter
 			$this->mailchimp
 				->lists
-				->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), ['email' => $email]);
+				->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), ['email' => $email], null, null, false);
 
 			# clean up
 			Session::forget('klarna_subscribe');

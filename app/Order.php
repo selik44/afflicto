@@ -154,4 +154,9 @@ class Order extends Model {
         }
     }
 
+	public function save(array $options = []) {
+		$this->profit = $this->getProfit();
+		parent::save($options);
+	}
+
 }
