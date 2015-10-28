@@ -100,7 +100,7 @@ class Order extends Model {
 		return $weight;
 	}
 
-	public function getProfit() {
+	public function calculateProfit() {
 		$profit = 0;
 		foreach($this->items as $item) {
 			if ( ! isset($item['reference']) || $item['type'] !== 'physical') continue;
@@ -155,7 +155,7 @@ class Order extends Model {
     }
 
 	public function save(array $options = []) {
-		$this->profit = $this->getProfit();
+		$this->profit = $this->calculateProfit();
 		parent::save($options);
 	}
 

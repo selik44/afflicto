@@ -39,7 +39,7 @@ class ReportsController extends Controller
 
 		$profit = 0;
 		foreach($orders as $order) {
-			$profit += $order->getProfit();
+			$profit += $order->profit;
 		}
 
 		return view('admin.reports_profit')->with([

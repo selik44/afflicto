@@ -38,7 +38,7 @@
 				<tr>
 					<td>{{$order->id}}</td>
 					<td>{{$order->created_at->format('d F Y H:i')}}</td>
-					<td>{{$order->getProfit()}},-</td>
+					<td>{{$order->profit}},-</td>
 				</tr>
 			@endforeach
 		</tbody>

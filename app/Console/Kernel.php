@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel {
 		'Friluft\Console\Commands\ImportImages',
 		'Friluft\Console\Commands\ImportUsers',
 		'Friluft\Console\Commands\WelcomeUsers',
+		'Friluft\Console\Commands\SaveProfit',
 	];
 
 	/**
