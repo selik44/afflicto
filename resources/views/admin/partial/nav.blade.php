@@ -57,6 +57,8 @@
 			'fa-money:admin.profit' => 'admin.reports.profit',
 			'fa-user:admin.new accounts' => 'admin.reports.users',
 			'fa-leaf:admin.products' => 'admin.reports.products',
+			'divider',
+			'fa-list:admin.export products' => 'admin.export.products',
 		]],
 
         'fa-image:admin.design' => ['admin.slides', [

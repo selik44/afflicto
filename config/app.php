@@ -162,6 +162,7 @@ return [
 		'Skovmand\Mailchimp\MailchimpServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Jenssegers\Agent\AgentServiceProvider',
+		'Maatwebsite\Excel\ExcelServiceProvider',
 		//'chickling\Backup\BackupServiceProvider',
 	],
 
@@ -223,6 +224,7 @@ return [
         'Former' => 'Former\Facades\Former',
 		'Img' => 'Intervention\Image\Facades\Image',
 		'Agent' => 'Jenssegers\Agent\Facades\Agent',
+		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 	],
 
 ];

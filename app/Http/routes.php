@@ -270,6 +270,9 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	get('reports/profit', ['as' => 'admin.reports.profit', 'uses' => 'Admin\ReportsController@profit', 'middleware' => 'perms:reports.view']);
 	get('reports/users', ['as' => 'admin.reports.users', 'uses' => 'Admin\ReportsController@users', 'middleware' => 'perms:reports.view']);
 	get('reports/products', ['as' => 'admin.reports.products', 'uses' => 'Admin\ReportsController@products', 'middleware' => 'perms:reports.view']);
+
+	# exports
+	get('export/products', ['as' => 'admin.export.products', 'uses' => 'Admin\ExportController@products']);
 });
 
 

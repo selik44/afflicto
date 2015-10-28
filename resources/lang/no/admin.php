@@ -68,6 +68,8 @@ return [
 	'coupons' => 'Rabattkoder',
 	'new coupon' => 'Ny Kode',
 
+	'export products' => 'Eksporter Produkter til Excel',
+
 	'billing address' => 'Faktura Addresse',
 	'shipping address' => 'Sendings Addresse',
 	'activated' => 'Aktivert',
