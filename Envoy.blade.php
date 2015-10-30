@@ -36,7 +36,7 @@
 
 @task('composer', ['on' => $servers, 'parallel' => true])
     cd /usr/share/nginx/html
-    composer update -n
+    composer update --no-interaction
     chmod -R 755 *
     chmod -R 777 storage
     chmod -R 777 public

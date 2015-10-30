@@ -103,7 +103,7 @@
 
 				@if($product->sizemap)
 					<div class="sizemap">
-						<a href="#" data-toggle-modal="#sizemap-modal">Størrelse-kart</a>
+						<a href="#" data-toggle-modal="#sizemap-modal">Størrelsekart</a>
 					</div>
 
 					<div class="modal fade" id="sizemap-modal">

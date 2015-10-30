@@ -1,15 +1,15 @@
 @extends('admin.layout')
 
 @section('title')
-	@lang('admin.new') - @lang('admin.receivals') - @parent
+	@lang('admin.edit receival') - @parent
 @stop
 
 @section('header')
 	<h3 class="title">
 		@if($receival->rest)
-			Rest-varemottak
+			Rest-varebestilling
 		@else
-			Varemottak
+			Varebestilling
 		@endif
 		#{{$receival->id}} for {{$receival->manufacturer->name}}
 	</h3>

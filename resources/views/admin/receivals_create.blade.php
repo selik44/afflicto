@@ -1,11 +1,11 @@
 @extends('admin.layout')
 
 @section('title')
-	@lang('admin.new') - @lang('admin.receivals') - @parent
+	@lang('admin.new receival') - @parent
 @stop
 
 @section('header')
-    <h3 class="title">@lang('admin.receivals') <small>@lang('admin.new')</small></h3>
+    <h3 class="title">@lang('admin.new receival')</h3>
 @stop
 
 @section('content')
