@@ -30,7 +30,6 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 
 # Todo
 - total value of products, sorted by manufacturer
-- størrelse kart
 - gentlestyle: fix table.bordered to not style child tables.
 - fetch product images of child products for compound products automatically.
 - implement popups

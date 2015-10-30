@@ -82,6 +82,20 @@
 		</div>
 	@endif
 
+	@if($product->sizemap)
+		<div class="sizemap">
+			<a href="#" data-toggle-modal="#sizemap-modal">Størrelsekart</a>
+		</div>
+
+		<div class="modal fade" id="sizemap-modal">
+			<div class="modal-content">
+				<a href="#" data-toggle-modal="#sizemap-modal">
+					<img src="{{asset('images/sizemaps/' .$product->sizemap->image)}}" alt="Størrelse-kart">
+				</a>
+			</div>
+		</div>
+	@endif
+
     <div class="product-availability">
         <p class="bad lead color-error">
 			<i class="fa fa-exclamation-triangle"></i> @lang('store.out of stock')

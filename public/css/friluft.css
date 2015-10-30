@@ -4704,9 +4704,11 @@ ul.pagination {
             -ms-flex-direction: column;
                 flex-direction: column; }
         .product-view .product-top .product-info > form .product-variants {
-          margin-bottom: 2rem; }
+          margin-bottom: 1rem; }
           .product-view .product-top .product-info > form .product-variants .variant:not(:last-child) {
             margin-bottom: 1rem; }
+        .product-view .product-top .product-info > form .sizemap {
+          margin-bottom: 1rem; }
       .product-view .product-top .product-info .buy, .product-view .product-top .product-info .buy-small, .product-view .product-top .product-info .toggle-add-modal {
         padding: 1.6rem 2.4rem;
         font-size: 1.4rem;
