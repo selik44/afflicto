@@ -84,7 +84,7 @@
 
 	@if($product->sizemap)
 		<div class="sizemap">
-			<a href="#" data-toggle-modal="#sizemap-modal">Størrelsekart</a>
+			<a href="#" class="toggle">Størrelsekart</a>
 		</div>
 
 		<div class="modal fade" id="sizemap-modal">
@@ -125,8 +125,19 @@
         (function($, window, document, undefined) {
             var form = $("#{{$id}}");
 			var availability = <?= $product->getAvailability() ?>;
-
 			var updateStock;
+
+			var sizemapModal = $("#sizemap-modal");
+			$(".sizemap .toggle").click(function() {
+				if ($(this).hasClass('active')) {
+					$("#sizemap-modal").gsModal("hide");
+					$(this).removeClass('active');
+				}else {
+					$("#sizemap-modal").gsModal("show");
+					$(this).addClass('active');
+				}
+
+			});
 
 			var enableBuy = function(enable) {
 
