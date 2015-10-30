@@ -93,7 +93,7 @@
                 <?php
                     $disabled = '';
                 ?>
-                @include('front.partial.product-buy-form', ['product' => $product])
+                @include('front.partial.product-buy-form', ['product' => $product, 'withSizemap' => true])
 
                 <button {{$disabled}}class="huge primary toggle-add-modal-dummy" style="display: none;" type="submit" name="BUY"><i class="fa fa-cart-plus"></i> @lang('store.add to cart')</button>
 

@@ -1,4 +1,5 @@
 <?php
+
     $disabled = '';
 
     if ($product->variants->count() == 0 && ! $product->isCompound()) {
@@ -82,16 +83,14 @@
 		</div>
 	@endif
 
-	@if($product->sizemap)
+	@if($product->sizemap && isset($withSizemap) && $withSizemap)
 		<div class="sizemap">
-			<a href="#" class="toggle">Størrelsekart</a>
+			<a href="#" data-toggle-modal="#sizemap-modal">Størrelsekart</a>
 		</div>
 
 		<div class="modal fade" id="sizemap-modal">
 			<div class="modal-content">
-				<a href="#" data-toggle-modal="#sizemap-modal">
-					<img src="{{asset('images/sizemaps/' .$product->sizemap->image)}}" alt="Størrelse-kart">
-				</a>
+				<img src="{{asset('images/sizemaps/' .$product->sizemap->image)}}" alt="Størrelse-kart">
 			</div>
 		</div>
 	@endif
@@ -126,18 +125,6 @@
             var form = $("#{{$id}}");
 			var availability = <?= $product->getAvailability() ?>;
 			var updateStock;
-
-			var sizemapModal = $("#sizemap-modal");
-			$(".sizemap .toggle").click(function() {
-				if ($(this).hasClass('active')) {
-					$("#sizemap-modal").gsModal("hide");
-					$(this).removeClass('active');
-				}else {
-					$("#sizemap-modal").gsModal("show");
-					$(this).addClass('active');
-				}
-
-			});
 
 			var enableBuy = function(enable) {
 
