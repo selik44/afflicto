@@ -6,6 +6,7 @@ use Friluft\Category;
 use Friluft\Manufacturer;
 use Friluft\Product;
 use Friluft\Producttab;
+use Friluft\Sizemap;
 use Friluft\Tag;
 use Friluft\Variant;
 use Friluft\Vatgroup;
@@ -132,6 +133,12 @@ class ProductsController extends Controller {
 			$p->manufacturer()->associate($manufacturer);
 		}
 
+		# set sizemap
+		$sizemap = Sizemap::find(Input::get('sizemap_id'));
+		if ($sizemap) {
+			$p->sizemap()->associate($sizemap);
+		}
+
 		# save it
 		$p->save();
 
@@ -156,6 +163,7 @@ class ProductsController extends Controller {
 		$tags = Tag::all(['id', 'label']);
 		$variants = Variant::all(['id', 'admin_name']);
 		$products = Product::all(['id', 'name']);
+		$sizemaps = Sizemap::all(['id', 'name']);
 
 		return $this->view('admin.products_edit')
 			->with([
@@ -168,6 +176,7 @@ class ProductsController extends Controller {
 					'product' => $product,
 					'categories' => $cats,
 					'manufacturers' => $mfs,
+					'sizemaps' => $sizemaps,
 					'vatgroups' => $vatgroups,
 					'tags' => $tags,
 					'variants' => $variants,
@@ -193,6 +202,17 @@ class ProductsController extends Controller {
 		$p->categories = Input::get('categories', []);
 		$p->meta_description = Input::get('meta_description', null);
 		$p->meta_keywords = Input::get('meta_keywords');
+
+		# set sizemap
+		$sizemap = Input::get('sizemap_id');
+		if (is_numeric($sizemap)) {
+			$sizemap = Sizemap::find(Input::get('sizemap_id'));
+			if ($sizemap) {
+				$p->sizemap()->associate($sizemap);
+			}
+		}else {
+			$p->sizemap()->dissociate();
+		}
 
 		if ($p->vatgroup->amount > 0) {
 			$p->price = Input::get('price', 0) / $p->vatgroup->amount;

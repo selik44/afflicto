@@ -298,6 +298,7 @@
                 {!! $form->categories !!}
 	            {!! $form->tags !!}
                 {!! $form->variants !!}
+				{!! $form->sizemap !!}
             </div>
 
             <hr>
@@ -350,6 +351,16 @@
 
         //init chosen for relations select
         relations.find('select[name="relations"]').chosen().next().removeAttr('style').css('width', '100%');
+
+		//init chosen for sizemaps
+		var sizemap = form.find("select[name='sizemap_id']");
+		@if($product->sizemap == null)
+			sizemap.prepend("<option selected value=''></option>");
+		@else
+			sizemap.prepend("<option value=''></option>");
+		@endif
+
+		sizemap.chosen({width: '100%', allow_single_deselect: true});
 
         //add relation
         $(document).on('click', '#product-relations button.add-relation', function(e) {

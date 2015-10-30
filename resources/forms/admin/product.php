@@ -8,7 +8,8 @@ $form->open = Former::open(route('admin.products.store'))
 	->rules([
 		'name' => 'required|max:255',
 		'slug' => 'required|max:255|slug|unique:products',
-		'manufacturer' => 'required|integer',
+		'manufacturer_id' => 'required|integer',
+		'sizemap_id' => 'integer',
 		'categories' => 'array',
 		'variants' => 'array',
 		'tags' => 'array',
@@ -34,6 +35,7 @@ $form->articlenumber = Former::text('articlenumber');
 $form->barcode = Former::text('barcode')->label(trans('admin.barcode'));
 
 $form->manufacturer = Former::select('manufacturer_id')->label(trans('admin.manufacturer'))->fromQuery($manufacturers, 'name', 'id');
+$form->sizemap = Former::select('sizemap_id')->label('Størrelse-kart')->fromQuery($sizemaps, 'name', 'id');
 $form->summary = Former::textarea('summary');
 
 $form->categories = Former::select('categories')->multiple()->fromQuery($categories, 'name', 'id')->name('categories[]')->label('categories');

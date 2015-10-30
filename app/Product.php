@@ -28,13 +28,13 @@ use Friluft\Variant;
  * @property integer $sales
  * @property integer $vatgroup_id
  * @property integer $manufacturer_id
- * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Category[] $categories
- * @property-read \Friluft\Vatgroup $vatgroup
- * @property-read \Friluft\Manufacturer $manufacturer
- * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Product[] $relations
- * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Variant[] $variants
- * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Producttab[] $producttabs
- * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Image[] $images
+ * @property \Illuminate\Database\Eloquent\Collection|\Friluft\Category[] $categories
+ * @property \Friluft\Vatgroup $vatgroup
+ * @property \Friluft\Manufacturer $manufacturer
+ * @property \Illuminate\Database\Eloquent\Collection|\Friluft\Product[] $relations
+ * @property \Illuminate\Database\Eloquent\Collection|\Friluft\Variant[] $variants
+ * @property \Illuminate\Database\Eloquent\Collection|\Friluft\Producttab[] $producttabs
+ * @property \Illuminate\Database\Eloquent\Collection|\Friluft\Image[] $images
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereCreatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereUpdatedAt($value)
@@ -382,6 +382,10 @@ class Product extends Model {
 
 	public function variants() {
 		return $this->belongsToMany('Friluft\Variant')->orderBy('id', 'asc')->withPivot('data');
+	}
+
+	public function sizemap() {
+		return $this->belongsTo('Friluft\Sizemap');
 	}
 
 	/**

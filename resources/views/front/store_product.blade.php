@@ -100,6 +100,20 @@
                 <div class="summary">
                     {!! $product->summary !!}
                 </div>
+
+				@if($product->sizemap)
+					<div class="sizemap">
+						<a href="#" data-toggle-modal="#sizemap-modal">Størrelse-kart</a>
+					</div>
+
+					<div class="modal fade" id="sizemap-modal">
+						<div class="modal-content">
+							<a href="#" data-toggle-modal="#sizemap-modal">
+								<img src="{{asset('images/sizemaps/' .$product->sizemap->image)}}" alt="Størrelse-kart">
+							</a>
+						</div>
+					</div>
+				@endif
 			</div>
 		</div>
 
@@ -110,9 +124,7 @@
         </div>
 
         <div id="slider-modal" class="modal fade" style="height: 100%">
-            <a href="#slider-modal" data-toggle-modal="#slider-modal">
-                
-            </a>
+            <a href="#slider-modal" data-toggle-modal="#slider-modal"></a>
         </div>
 
 		<div class="paper product-bottom col-xs-12 tight">

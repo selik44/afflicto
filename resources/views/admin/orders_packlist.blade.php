@@ -139,7 +139,11 @@
 										}
 									}else {
 										foreach($product->getVariants() as $variant) {
-											$variantString .= $variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+											if (isset($variants[$variant->id])) {
+												$variantString .= $variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+											}else {
+												$variantString .= 'Error, invalid variant id ' .$variant->id .' is undefined.';
+											}
 										}
 									}
 

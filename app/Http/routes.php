@@ -178,6 +178,14 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	post('manufacturers', ['as' => 'admin.manufacturers.store', 'uses' => 'Admin\ManufacturersController@store', 'middleware' => 'perms:manufacturers.create']);
 	delete('manufacturers/{manufacturer}', ['as' => 'admin.manufacturers.delete', 'uses' => 'Admin\ManufacturersController@destroy', 'middleware' => 'perms:manufacturers.delete']);
 
+	# sizemaps
+	get('sizemaps', ['as' => 'admin.sizemaps.index', 'uses' => 'Admin\SizemapsController@index', 'middleware' => 'perms:sizemaps.view']);
+	get('sizemaps/create', ['as' => 'admin.sizemaps.create', 'uses' => 'Admin\SizemapsController@create', 'middleware' => 'perms:sizemaps.create']);
+	post('sizemaps', ['as' => 'admin.sizemaps.store', 'uses' => 'Admin\SizemapsController@store', 'middleware' => 'perms:sizemaps.create']);
+	get('sizemaps/{sizemap}/edit', ['as' => 'admin.sizemaps.edit', 'uses' => 'Admin\SizemapsController@edit', 'middleware' => 'perms:sizemaps.edit']);
+	put('sizemaps/{sizemap}', ['as' => 'admin.sizemaps.update', 'uses' => 'Admin\SizemapsController@update', 'middleware' => 'perms:sizemaps.edit']);
+	delete('sizemaps/{sizemap}', ['as' => 'admin.sizemaps.delete', 'uses' => 'Admin\SizemapsController@destroy', 'middleware' => 'perms:sizemaps.delete']);
+
 	# orders
 	get('orders', ['as' => 'admin.orders.index', 'uses' => 'Admin\OrdersController@index', 'middleware' => 'perms:orders.view']);
 	get('orders/create', ['as' => 'admin.orders.create', 'uses' => 'Admin\OrdersController@create', 'middleware' => 'perms:orders.create']);
