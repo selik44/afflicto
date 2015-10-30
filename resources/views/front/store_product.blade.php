@@ -186,6 +186,10 @@
                 startOnMouseLeave: true,
             });
 
+			$(document).ready(function() {
+				slider.friluftSlider('reLayout');
+			});
+
             //setup thumbnails
             $(".product-view .product-top .product-images .thumbnails .thumbnail").click(function(e) {
                 e.preventDefault();
