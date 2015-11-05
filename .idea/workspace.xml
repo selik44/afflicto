@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.ids" afterPath="$PROJECT_DIR$/.idea/dataSources.ids" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Receival.php" afterPath="$PROJECT_DIR$/app/Receival.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="123friluft.iws" />
@@ -58,11 +55,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="orders_edit.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="orders_edit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.71118015">
-              <caret line="139" column="102" selection-start-line="139" selection-start-column="102" selection-end-line="139" selection-end-column="102" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
               <folding>
                 <element signature="e#6425#6446#0#HTML" expanded="true" />
                 <marker date="1446699407132" expanded="true" signature="236:241" placeholder="..." />
@@ -71,6 +68,16 @@
                 <marker date="1446699407132" expanded="true" signature="8073:8343" placeholder="..." />
                 <marker date="1446699407132" expanded="true" signature="8074:8326" placeholder="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Receival.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Receival.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3809524">
+              <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -113,7 +120,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Variant.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ManufacturersController.php" />
         <option value="$PROJECT_DIR$/database/migrations/2015_10_25_020227_products_modify_articlenumber_to_varchar.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/partial/receivals_line.blade.php" />
@@ -164,6 +170,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductsController.php" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/bfa688e5-fe62-4dfa-815d-439cb24218f5/console.sql" />
         <option value="$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Receival.php" />
       </list>
     </option>
   </component>
@@ -725,13 +732,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/DashboardController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5758514">
-          <caret line="58" column="38" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Console/Commands/SaveProfit.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6052632">
@@ -965,6 +965,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="1.1964957">
           <caret line="55" column="6" selection-start-line="55" selection-start-column="6" selection-end-line="55" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1109,8 +1110,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/orders_edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.71118015">
-          <caret line="139" column="102" selection-start-line="139" selection-start-column="102" selection-end-line="139" selection-end-column="102" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
           <folding>
             <element signature="e#6425#6446#0#HTML" expanded="true" />
             <marker date="1446699407132" expanded="true" signature="236:241" placeholder="..." />
@@ -1119,6 +1120,14 @@
             <marker date="1446699407132" expanded="true" signature="8073:8343" placeholder="..." />
             <marker date="1446699407132" expanded="true" signature="8074:8326" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Receival.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3809524">
+          <caret line="57" column="12" selection-start-line="57" selection-start-column="12" selection-end-line="57" selection-end-column="12" />
+          <folding />
         </state>
       </provider>
     </entry>

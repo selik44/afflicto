@@ -52,7 +52,10 @@ class Receival extends Model {
 	public function getSum() {
 		$sum = 0;
 		foreach($this->products as $product) {
-			$model = Product::find($product['id']);
+			# get the model
+			$model = Product::withTrashed()->find($product['id']);
+			if ( ! $model) continue;
+
 			if ($model->hasVariants()) {
 				$count = 0;
 				foreach($product['order'] as $v) {
