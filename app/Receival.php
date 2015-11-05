@@ -74,7 +74,7 @@ class Receival extends Model {
 	public function getProductsWithModels() {
 		$products = $this->products;
 		foreach($products as &$product) {
-			$product['model'] = Product::find($product['id']);
+			$product['model'] = Product::withTrashed()->find($product['id']);
 		}
 		return $products;
 	}
@@ -88,7 +88,10 @@ class Receival extends Model {
 		#------ set received ------#
 		$products = $this->products;
 		foreach($products as &$product) {
-			$model = Product::find($product['id']);
+			$model = Product::withTrashed()->find($product['id']);
+
+			# skip models that don't exist.
+			if ( ! $model) continue;
 
 			# has variants?
 			if ($model->hasVariants()) {
@@ -111,7 +114,9 @@ class Receival extends Model {
 
 		#------ update stock ------#
 		foreach($this->products as $product) {
-			$model = Product::find($product['id']);
+			$model = Product::withTrashed()->find($product['id']);
+
+			if ( ! $model) continue;
 
 			if ($model->hasVariants()) {
 				# get stock
@@ -119,7 +124,6 @@ class Receival extends Model {
 
 				# loop through all the variant choices
 				foreach($model->getVariantChoices() as $choice) {
-
 					$stock[$choice['id']] += $product['received'][$choice['id']];
 				}
 
@@ -143,7 +147,9 @@ class Receival extends Model {
 		$totalMissing = 0;
 
 		foreach($rest as $key => $item) {
-			$model = Product::find($item['id']);
+			$model = Product::withTrashed()->find($item['id']);
+
+			if ( ! $model) continue;
 
 			# get missing
 			$missing = 0;
