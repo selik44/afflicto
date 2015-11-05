@@ -14,6 +14,7 @@ class OrdersFixVariantsFormat extends Migration
      */
     public function up()
     {
+	    return;
 		foreach(Order::all() as $order) {
 			$items = $order->items;
 			foreach($items as &$item) {

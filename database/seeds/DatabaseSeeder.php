@@ -98,14 +98,14 @@ class DatabaseSeeder extends Seeder {
 				'lastname' => 'Thowsen',
 				'email' => 'me@afflicto.net',
 				'password' => bcrypt(env('USER_PASSWORD')),
-				'role_id' => Role::where('machine', '=', 'admin')->first()->id,
+				'role_id' => Role::where('machine', '=', 'superadmin')->first()->id,
 			],
 			[
 				'firstname' => 'David',
 				'lastname' => 'Thowsen',
 				'email' => 'david@123friluft.no',
 				'password' => bcrypt(str_random(20)),
-				'role_id' => Role::where('machine', '=', 'admin')->first()->id,
+				'role_id' => Role::where('machine', '=', 'superadmin')->first()->id,
 			]
 		]);
 

@@ -105,13 +105,14 @@ class ProductsController extends Controller {
         $tags = Tag::all(['label', 'id']);
 		$variants = Variant::all(['admin_name', 'id']);
 		$products = Product::all(['id', 'name']);
+		$sizemaps = Sizemap::all(['id', 'name']);
 
 		return $this->view('admin.products_create')
 		->with([
 			'categories' => $cats,
 			'manufacturers' => $mfs,
 			'vatgroups' => $vatgroups,
-			'form' => form('admin.product', ['categories' => $cats, 'manufacturers' => $mfs, 'vatgroups' => $vatgroups, 'tags' => $tags, 'variants' => $variants, 'products' => $products]),
+			'form' => form('admin.product', ['categories' => $cats, 'manufacturers' => $mfs, 'vatgroups' => $vatgroups, 'tags' => $tags, 'variants' => $variants, 'products' => $products, 'sizemaps' => $sizemaps]),
 		]);
 	}
 
