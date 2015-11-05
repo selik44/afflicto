@@ -13,12 +13,12 @@
 <div id="slogan" class="clearfix {{$route}}" style="background-color: {{$slogan_bg->value}}; color: {{$slogan_color->value}};">
     <div class="inner clearfix">
         @if($route == 'home')
-            <div class="col-xs-12">{{$slogan}}</div>
+            <div class="col-xs-12">{!! $slogan !!}</div>
         @else
-            <div class="col-xs-3"><i class="fa fa-check"></i> {{$slogan1}}</div>
-            <div class="col-xs-3"><i class="fa fa-check"></i> {{$slogan2}}</div>
-            <div class="col-xs-3"><i class="fa fa-check"></i> {{$slogan3}}</div>
-            <div class="col-xs-3"><i class="fa fa-check"></i> {{$slogan4}}</div>
+            <div class="col-xs-3"><i class="fa fa-check"></i> {!! $slogan1 !!}</div>
+            <div class="col-xs-3"><i class="fa fa-check"></i> {!! $slogan2 !!}</div>
+            <div class="col-xs-3"><i class="fa fa-check"></i> {!! $slogan3 !!}</div>
+            <div class="col-xs-3"><i class="fa fa-check"></i> {!! $slogan4 !!}</div>
         @endif
     </div>
 </div>

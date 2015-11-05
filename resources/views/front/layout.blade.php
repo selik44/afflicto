@@ -87,7 +87,7 @@
                             <div class="input-append">
                                 <input required maxlength="100" type="search" name="terms" placeholder="@lang('store.search')...">
                                 <!--<input type="submit" value="Search" class="primary appended">-->
-                                <button class="primary appended"><i class="fa fa-search"></i></button>
+                                <button class="primary addon"><i class="fa fa-search"></i></button>
                             </div>
 						</form>
 

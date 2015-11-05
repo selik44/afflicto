@@ -327,12 +327,12 @@ blockquote {
 
 sub {
   position: relative;
-  bottom: 0px;
+  bottom: 0.5rem;
   font-size: 0.8em; }
 
 sup {
   position: relative;
-  top: 0px;
+  top: -0.5rem;
   font-size: 0.8em; }
 
 * {
@@ -2065,7 +2065,7 @@ label {
           flex-direction: row;
   padding: 0;
   border: none;
-  width: 208px; }
+  width: 160px; }
   .input-append input:not(input[type="button"]), .input-append input:not(input[type="button"]):hover, .input-append input:not(input[type="button"]):focus, .input-prepend input:not(input[type="button"]), .input-prepend input:not(input[type="button"]):hover, .input-prepend input:not(input[type="button"]):focus {
     -webkit-box-flex: 1;
     -webkit-flex: 1 1 auto;
@@ -2075,7 +2075,6 @@ label {
     outline: none; }
   .input-append input, .input-prepend input {
     max-width: 100%;
-    min-width: 0;
     -webkit-box-flex: 1;
     -webkit-flex: 1 1 auto;
         -ms-flex: 1 1 auto;
@@ -2086,28 +2085,32 @@ label {
   .input-append.input-prepend input, .input-prepend.input-prepend input {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px; }
-  .input-append .appended, .input-append .prepended, .input-prepend .appended, .input-prepend .prepended {
+  .input-append .addon, .input-prepend .addon {
     -webkit-box-flex: 0;
     -webkit-flex: 0 1 auto;
         -ms-flex: 0 1 auto;
             flex: 0 1 auto;
     border-radius: 0px; }
-  .input-append span.appended, .input-append span.prepended, .input-prepend span.appended, .input-prepend span.prepended {
+  .input-append span.addon, .input-prepend span.addon {
     padding: 0.6rem;
     background: #121212;
     border: 1px solid #1a1a1a; }
-  .input-append span.prepended, .input-prepend span.prepended {
-    border-right: 0px; }
-  .input-append span.appended, .input-prepend span.appended {
-    border-left: 0px; }
-  .input-append .appended, .input-prepend .appended {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-right: 0; }
-  .input-append .prepended, .input-prepend .prepended {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-left: 0; }
+
+.input-prepend span.addon {
+  border-right: 0px; }
+
+.input-append span.addon {
+  border-left: 0px; }
+
+.input-append .addon {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-right: 0; }
+
+.input-prepend .addon {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-left: 0; }
 
 .tab {
   border: 1px solid #404040;
@@ -5036,9 +5039,6 @@ ul.pagination {
                 width: 100%;
                 padding-left: 3rem; }
     #header #navigation .cart-toggle {
-      border: 1px solid #1a1a1a;
-      border-radius: 0px;
-      padding: 1rem 1rem;
       cursor: pointer;
       text-transform: uppercase;
       -webkit-user-select: none;
@@ -5273,15 +5273,6 @@ ul.pagination {
         -webkit-order: 1;
             -ms-flex-order: 1;
                 order: 1; }
-        #header #navigation .nav-contents .nav-extra #search .input-append {
-          background: none !important;
-          background-border: none !important; }
-        #header #navigation .nav-contents .nav-extra #search input[name="terms"] {
-          max-width: 100px;
-          -webkit-transition: 300ms all;
-                  transition: 300ms all; }
-          #header #navigation .nav-contents .nav-extra #search input[name="terms"]:focus {
-            max-width: 140px; }
         #header #navigation .nav-contents .nav-extra .cart-toggle {
           margin-left: 1rem; } }
   @media (min-width: 1281px) {
@@ -5335,7 +5326,7 @@ body.scrolled {
     border-bottom: 1px solid #333;
     box-shadow: 0px 0px 2rem 0px rgba(0, 0, 0, 0.5); }
     body.scrolled #front #navigation .nav-controls .logo {
-      width: 100px; }
+      width: 140px; }
 
 .checkout-view > .checkout-products {
   padding: 3rem 0;

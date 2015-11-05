@@ -122,8 +122,6 @@
 							background: $color-primary
 							color: $base-background
 
-
-
 				//second level
 				.nav-dropdown
 					background: weaker($base-background, 10%)
@@ -138,7 +136,7 @@
 							> li
 								display: flex
 								flex-direction: row
-								flex-wrap:  wrap
+								flex-wrap: wrap
 								border: none
 
 								> a:not(.navitem-dropdown-toggle)
@@ -155,9 +153,6 @@
 		.cart-toggle
 			//background: $color-tertiary
 			//color: stronger($base-background, 20%)
-			border: 1px solid $forms-border-color
-			border-radius: $base-radius
-			padding: 1rem 1rem
 			cursor: pointer
 			text-transform: uppercase
 			user-select: none
@@ -174,7 +169,7 @@
 			z-index: 100
 			width: 100%
 			background: weaker($base-background, 10%)
-			box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.3)
+			box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.3)
 			border: 1px solid $base-border-color
 			border-radius: $base-radius
 			padding: 1rem
@@ -188,7 +183,7 @@
 			right: 0px
 			z-index: 100
 			background: weaker($base-background, 10%)
-			box-shadow: 0px 8px 8px 0px rgba(0,0,0,0.3)
+			box-shadow: 0px 8px 8px 0px rgba(0, 0, 0, 0.3)
 			border: 1px solid $base-border-color
 			border-radius: $base-radius
 			padding: 1rem
@@ -239,7 +234,7 @@
 				max-width: $base-width
 				margin: 0 auto
 				padding: 1rem
-				//justify-content: space-between
+			//justify-content: space-between
 
 			.nav-controls
 				padding: 0
@@ -263,7 +258,7 @@
 					overflow: hidden
 					display: flex
 					flex-direction: row
-					justify-content:  center
+					justify-content: center
 					align-items: center
 
 					.navitem-dropdown-toggle
@@ -300,7 +295,7 @@
 							top: 100%
 							left: 0px
 							background: weaker($base-background, 5%)
-							box-shadow: 0px 8px 4px 0px rgba(0,0,0,0.5)
+							box-shadow: 0px 8px 4px 0px rgba(0, 0, 0, 0.5)
 
 							> .inner
 								margin: 0 auto
@@ -308,7 +303,7 @@
 								padding: 0
 								display: flex
 								flex-direction: row
-								flex-wrap:  wrap
+								flex-wrap: wrap
 								justify-content: flex-start
 								align-items: stretch
 
@@ -352,16 +347,6 @@
 					order: 1
 
 					#search
-						.input-append
-							background: none !important
-					  		border: none !important
-
-						input[name="terms"]
-							max-width: 100px
-							transition: $base-transition-duration all
-
-							&:focus
-								max-width: 140px
 
 					.cart-toggle
 						margin-left: 1rem
@@ -385,7 +370,6 @@
 									&:nth-child(4n)
 										border-right: none
 
-
 //----------- TOGGLED ------------//
 body
 	transition: left $base-transition-duration * 2 ease-in-out
@@ -397,7 +381,7 @@ body
 		position: absolute
 
 		#menu-overlay
-			background-color: rgba(0,0,0,0.5)
+			background-color: rgba(0, 0, 0, 0.5)
 			pointer-events: auto
 
 	#menu-overlay
@@ -407,10 +391,9 @@ body
 		height: 100%
 		right: 0px
 		top: 0px
-		background-color: rgba(0,0,0,0)
+		background-color: rgba(0, 0, 0, 0)
 		pointer-events: none
 		z-index: 5
-
 
 //----------- SCROLLED ------------//
 body.scrolled
@@ -424,8 +407,8 @@ body.scrolled
 			left: 0px
 			width: 100%
 			border-bottom: 1px solid $base-border-color
-			box-shadow: 0px 0px 2rem 0px rgba(0,0,0,0.5)
+			box-shadow: 0px 0px 2rem 0px rgba(0, 0, 0, 0.5)
 
 			.nav-controls
 				.logo
-					width: 100px
+					width: 140px
