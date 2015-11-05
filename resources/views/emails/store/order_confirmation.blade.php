@@ -34,12 +34,20 @@
 									@if($model->isCompound())
 										@foreach($model->getChildren() as $child)
 											@foreach($child->variants as $variant)
-												<li><strong>{{$variant->name .' (' .$child->name .')'}}:</strong> <span>{{$variant->getValueName($item['reference']['options']['variants'][$variant->id])}}</span></li>
+												@if(isset($item['reference']['options']['variants'][$variant->id]))
+													<li><strong>{{$variant->name .' (' .$child->name .')'}}:</strong> <span>{{$variant->getValueName($item['reference']['options']['variants'][$variant->id])}}</span></li>
+												@else
+													<li><strong>{{$variant->name .' (' .$child->name .')'}}:</strong> <span>Undefined</span></li>
+												@endif
 											@endforeach
 										@endforeach
 									@else
 										@foreach($model->variants as $variant)
-											<li><strong>{{$variant->name}}:</strong> <span>{{$variant->getValueName($item['reference']['options']['variants'][$variant->id])}}</span></li>
+											@if(isset($item['reference']['options']['variants'][$variant->id]))
+												<li><strong>{{$variant->name}}:</strong> <span>{{$variant->getValueName($item['reference']['options']['variants'][$variant->id])}}</span></li>
+											@else
+												<li><strong>{{$variant->name}}:</strong> <span>Undefined</span></li>
+											@endif
 										@endforeach
 									@endif
 								</ul>
