@@ -125,12 +125,20 @@
 										if ($product->isCompound()) {
 											foreach($product->getChildren() as $child) {
 												foreach($child->variants as $variant) {
-													$variantString .= $child->name .' ' .$variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+													if (isset($variants[$variant->id])) {
+														$variantString .= $child->name .' ' .$variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+													}else {
+														$variantString .= $child->name .' ' .$variant->name .': Undefined, ';
+													}
 												}
 											}
 										}else {
 											foreach($product->getVariants() as $variant) {
-												$variantString .= $variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+												if (isset($variants[$variant->id])) {
+													$variantString .= $variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+												}else {
+													$variantString .= $variant->name .': undefined, ';
+												}
 											}
 										}
 
