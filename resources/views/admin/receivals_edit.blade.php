@@ -47,9 +47,11 @@
 	<table id="products-table" class="bordered">
 		@foreach($receival->products as $product)
 			<?php
-				$model = \Friluft\Product::find($product['id']);
+				$model = \Friluft\Product::withTrashed()->find($product['id']);
 			?>
-			@include('admin.partial.receivals_line', ['receival' => $receival, 'product' => $model, 'current' => $product])
+			@if($model)
+				@include('admin.partial.receivals_line', ['receival' => $receival, 'product' => $model, 'current' => $product])
+			@endif
 		@endforeach
 	</table>
 
