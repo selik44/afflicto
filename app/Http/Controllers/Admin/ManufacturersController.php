@@ -53,7 +53,6 @@ class ManufacturersController extends Controller {
 	public function store(Requests\CreateManufacturerRequest $request)
 	{
 		$mf = new Manufacturer(Input::only('name', 'slug', 'description'));
-		$mf->always_allow_orders = Input::has('always_allow_orders');
 		$mf->prepurchase_enabled = Input::has('prepurchase_enabled');
 		if ($mf->prepurchase_enabled) {
 			$mf->prepurchase_days = Input::get('prepurchase_days');
