@@ -22,13 +22,16 @@ class ExportController extends Controller
 		return Excel::create('products', function(LaravelExcelWriter $excel) {
 			$excel->setTitle('123Friluft Export - Produkter');
 			$excel->sheet('Produkter', function(\PHPExcel_Worksheet $sheet) {
-				$products = Product::query()->where('enabled', '=', '1')->get(['name', 'articlenumber', 'barcode']);
+				$products = Product::query()->where('enabled', '=', '1')->get();
 
-				$sheet->row(1, ['Navn', 'Art. Nummer', 'Lagerplass']);
+				$sheet->row(1, ['Navn', 'Art. Nummer', 'Lagerplass', 'Innkjøpspris', 'Stock']);
 
 				$i = 2;
 				foreach($products as $product) {
-					$sheet->row($i, [$product->name, $product->articlenumber, $product->barcode]);
+					/**
+					 * @var Product $product
+					 */
+					$sheet->row($i, [$product->name, $product->articlenumber, $product->barcode, $product->inprice, $product->getTotalStock()]);
 					$i++;
 				}
 			});
