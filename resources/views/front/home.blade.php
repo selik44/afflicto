@@ -5,7 +5,8 @@
 @section('article')
     <?php
         $tile = function($image) {
-            $str = '<a class="tile" href="' .$image['data']['link'] .'">';
+	        if (!$image->name) return;
+            $str = '<a class="tile" href="' .$image->data['link'] .'">';
             $str .= '<img src="' .asset('images/' .$image->name) .'">';
             $str .= '</a>';
             return $str;
