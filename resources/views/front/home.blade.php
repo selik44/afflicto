@@ -70,6 +70,27 @@
             </div>
         </div>
 
+	    <div class="row tiles bottom2 clearfix paper">
+		    <div class="left">
+			    <div class="top">
+				    {!! $tile($images['bottom_2_top_left']) !!}
+			    </div>
+			    <div class="bottom">
+				    {!! $tile($images['bottom_2_1']) !!}
+				    {!! $tile($images['bottom_2_2']) !!}
+			    </div>
+		    </div>
+		    <div class="right">
+			    <div class="top">
+				    {!! $tile($images['bottom_2_top_right']) !!}
+			    </div>
+			    <div class="bottom">
+				    {!! $tile($images['bottom_2_3']) !!}
+				    {!! $tile($images['bottom_2_4']) !!}
+			    </div>
+		    </div>
+	    </div>
+
         <div class="row tiles paper">
             {!! $tile($images['bottom']) !!}
         </div>

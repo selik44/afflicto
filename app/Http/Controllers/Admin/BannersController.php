@@ -12,15 +12,26 @@ class BannersController extends Controller {
 	public static $spots = [
 		'top_1',
 		'top_2',
+
 		'middle_top_left',
 		'middle_top_right',
+
 		'middle_bottom_left_1',
 		'middle_bottom_left_2',
 		'middle_bottom_right_1',
 		'middle_bottom_right_2',
+
 		'bottom_left',
 		'bottom_right_1',
 		'bottom_right_2',
+
+		'bottom_2_top_left',
+		'bottom_2_top_right',
+		'bottom_2_1',
+		'bottom_2_2',
+		'bottom_2_3',
+		'bottom_2_4',
+
 		'bottom',
 	];
 

@@ -1417,8 +1417,8 @@
       <column name="category_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="product_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="category_product_product_id_foreign" columns="product_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
       <foreign-key name="category_product_category_id_foreign" columns="category_id" ref-table="categories" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
+      <foreign-key name="category_product_product_id_foreign" columns="product_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="0" deferrability="2"/>
       <index name="category_product_category_id_foreign" unique="false" columns="category_id"/>
       <index name="category_product_product_id_foreign" unique="false" columns="product_id"/>
     </table>
@@ -1427,8 +1427,8 @@
       <column name="coupon_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="order_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="coupon_order_order_id_foreign" columns="order_id" ref-table="orders" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <foreign-key name="coupon_order_coupon_id_foreign" columns="coupon_id" ref-table="coupons" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="0" delete-rule="3" deferrability="2"/>
+      <foreign-key name="coupon_order_order_id_foreign" columns="order_id" ref-table="orders" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <index name="coupon_order_coupon_id_foreign" unique="false" columns="coupon_id"/>
       <index name="coupon_order_order_id_foreign" unique="false" columns="order_id"/>
     </table>
@@ -1562,8 +1562,8 @@
       <column name="permission_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="role_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="permission_role_role_id_foreign" columns="role_id" ref-table="roles" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <foreign-key name="permission_role_permission_id_foreign" columns="permission_id" ref-table="permissions" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="permission_role_role_id_foreign" columns="role_id" ref-table="roles" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <index name="permission_role_permission_id_index" unique="false" columns="permission_id"/>
       <index name="permission_role_role_id_index" unique="false" columns="role_id"/>
     </table>
@@ -1580,16 +1580,16 @@
       <column name="product_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="relation_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="product_relation_relation_id_foreign" columns="relation_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <foreign-key name="product_relation_product_id_foreign" columns="product_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="product_relation_relation_id_foreign" columns="relation_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <index name="product_relation_product_id_index" unique="false" columns="product_id"/>
       <index name="product_relation_relation_id_index" unique="false" columns="relation_id"/>
     </table>
     <table name="product_tag" schema="" catalog="friluft" type="TABLE">
       <column name="product_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
       <column name="tag_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="false" jdbcType="4"/>
-      <foreign-key name="product_tag_tag_id_foreign" columns="tag_id" ref-table="tags" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <foreign-key name="product_tag_product_id_foreign" columns="product_id" ref-table="products" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
+      <foreign-key name="product_tag_tag_id_foreign" columns="tag_id" ref-table="tags" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="0" deferrability="2"/>
       <index name="product_tag_product_id_index" unique="false" columns="product_id"/>
       <index name="product_tag_tag_id_index" unique="false" columns="tag_id"/>
     </table>
@@ -1630,13 +1630,13 @@
       <column name="children" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
       <column name="sizemap_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="products_sizemap_id_foreign" columns="sizemap_id" ref-table="sizemaps" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="products_manufacturer_id_foreign" columns="manufacturer_id" ref-table="manufacturers" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="products_sizemap_id_foreign" columns="sizemap_id" ref-table="sizemaps" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="products_vatgroup_id_foreign" columns="vatgroup_id" ref-table="vatgroups" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="category_product_product_id_foreign" table="category_product" schema="" catalog="friluft" columns="product_id"/>
       <exported-key name="images_product_id_foreign" table="images" schema="" catalog="friluft" columns="product_id"/>
-      <exported-key name="product_relation_relation_id_foreign" table="product_relation" schema="" catalog="friluft" columns="relation_id"/>
       <exported-key name="product_relation_product_id_foreign" table="product_relation" schema="" catalog="friluft" columns="product_id"/>
+      <exported-key name="product_relation_relation_id_foreign" table="product_relation" schema="" catalog="friluft" columns="relation_id"/>
       <exported-key name="product_tag_product_id_foreign" table="product_tag" schema="" catalog="friluft" columns="product_id"/>
       <exported-key name="product_variant_product_id_foreign" table="product_variant" schema="" catalog="friluft" columns="product_id"/>
       <exported-key name="producttabs_product_id_foreign" table="producttabs" schema="" catalog="friluft" columns="product_id"/>
@@ -1668,8 +1668,8 @@
       <column name="arrived_at" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
       <column name="receival_id" sqlType="INT UNSIGNED" precision="10" scale="0" nullable="true" jdbcType="4"/>
       <primary-key name="PRIMARY" columns="id"/>
-      <foreign-key name="receivals_receival_id_foreign" columns="receival_id" ref-table="receivals" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <foreign-key name="receivals_manufacturer_id_foreign" columns="manufacturer_id" ref-table="manufacturers" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="receivals_receival_id_foreign" columns="receival_id" ref-table="receivals" ref-schema="" ref-catalog="friluft" ref-columns="id" update-rule="3" delete-rule="3" deferrability="2"/>
       <exported-key name="receivals_receival_id_foreign" table="receivals" schema="" catalog="friluft" columns="receival_id"/>
       <index name="receivals_manufacturer_id_foreign" unique="false" columns="manufacturer_id"/>
       <index name="receivals_receival_id_index" unique="false" columns="receival_id"/>

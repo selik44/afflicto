@@ -5372,17 +5372,17 @@ body.scrolled {
     width: 100%; }
   #home .top .tiles {
     display: none; } }
-#home .middle > .left, #home .middle > .right {
+#home .middle > .left, #home .middle > .right, #home .bottom2 > .left, #home .bottom2 > .right {
   float: left;
   width: 50%; }
-#home .middle > .left > .bottom .tile {
+#home .middle > .left > .bottom .tile, #home .bottom2 > .left > .bottom .tile {
   float: left;
   width: 50%; }
-#home .middle > .right > .bottom .tile {
+#home .middle > .right > .bottom .tile, #home .bottom2 > .right > .bottom .tile {
   float: left;
   width: 50%; }
 @media (max-width: 680px) {
-  #home .middle .left > .bottom, #home .middle .right > .bottom {
+  #home .middle .left > .bottom, #home .middle .right > .bottom, #home .bottom2 .left > .bottom, #home .bottom2 .right > .bottom {
     display: none; } }
 #home .bottom .left, #home .bottom .right {
   float: left;

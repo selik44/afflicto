@@ -29,14 +29,11 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - implement DB backups with: chickling\Backup\BackupServiceProvider
 
 # Todo
-- inprice and total stock for excel exports
 - total value of products, sorted by manufacturer
 - gentlestyle: fix table.bordered to not style child tables.
 - fetch product images of child products for compound products automatically.
 - implement popups
-- add "revenue" field on orders, to prevent it from becoming invalid if relevant product data changes in the future.
 - fix discount rate in the orders items array (2000 should be 20 etc)
-- user.orders.show: fix shipping text and show discount
 - fix the name parsing when generating a user from a klarna order
 - make discounts calculate for rounded prices (inc vat)
 - fix input-append css
