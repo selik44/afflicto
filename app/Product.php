@@ -322,7 +322,7 @@ class Product extends Model {
 				if ($stock == null || $s < $stock) $stock = $s;
 			}
 
-			return $stock;
+			return (int) $stock;
 		}else {
 			if ($this->variants->count() == 0) return $this->stock;
 
@@ -330,7 +330,7 @@ class Product extends Model {
 				return 'Invalid stock id: ' .implode('_', $variants);
 			}
 
-			return $this->variants_stock[implode('_', $variants)];
+			return (int) $this->variants_stock[implode('_', $variants)];
 		}
 	}
 

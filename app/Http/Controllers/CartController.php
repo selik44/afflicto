@@ -138,13 +138,13 @@ class CartController extends Controller {
 		$product = Product::find($item['product_id']);
 
 		# get total quantity
-		$totalQuantity = (int) Input::get('quantity', 0) + $item['quantity'];
+		$quantity = (int) Input::get('quantity', 0);
 
 		# get total stock with the options we have set
 		$totalStock = $product->getStock($item['options']);
 
-		if ($totalQuantity > $totalStock) {
-			return ['error' => 'Not enough stock.'];
+		if ($quantity > $totalStock) {
+			return ['error' => 'Not enough in stock. Current, actuall quantity: ' .$item['quantity'] .' and stock: ' .$totalStock];
 		}
 
 		Cart::setQuantity($id, (int) Input::get('quantity', 0));
