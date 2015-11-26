@@ -139,6 +139,9 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	post('products', ['as' => 'admin.products.store', 'uses' => 'Admin\ProductsController@store','middleware' => 'perms:products.create']);
 	delete('products/{product}', ['as' => 'admin.products.delete', 'uses' => 'Admin\ProductsController@destroy', 'middleware' => 'perms:products.delete']);
 
+	# clone
+	get('products/clone/{product}', ['as' => 'admin.products.clone', 'uses' => 'Admin\ProductsController@cloneProduct', 'middleware' => 'perms:products.create']);
+
 	# variants
 	get('variants', ['as' => 'admin.variants.index', 'uses' => 'Admin\VariantsController@index', 'middleware' => 'perms:variants.view']);
 	get('variants/create', ['as' => 'admin.variants.create', 'uses' => 'Admin\VariantsController@create', 'middleware' => 'perms:variants.create']);

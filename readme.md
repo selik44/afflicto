@@ -29,6 +29,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - implement DB backups with: chickling\Backup\BackupServiceProvider
 
 # Todo
+- tags: discount, max quantity, max per user. editable menu
 - total value of products, sorted by manufacturer
 - gentlestyle: fix table.bordered to not style child tables.
 - fetch product images of child products for compound products automatically.

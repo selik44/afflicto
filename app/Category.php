@@ -91,7 +91,7 @@ class Category extends Model {
 
 	/**
 	 * Get all the products in this category, plus all categories in child categories.
-	 * @param  boolean $disabled Whether to include disabled products.
+	 * @param bool $includeDisabled
 	 * @return Array array of Project models.
 	 */
 	public function nestedProducts($includeDisabled = false) {
@@ -99,7 +99,9 @@ class Category extends Model {
 
 		$path = $this->getPath();
 
-		$collection = ($includeDisabled) ? $this->products()->orderBy('id', 'desc') : $this->products()->enabled()->orderBy('id', 'desc')->get();
+		$collection = $this->products();
+		if ( ! $includeDisabled) $collection->enabled();
+		$collection = $collection->get();
 
 		foreach($collection as $p) {
 			# help the model with calculating it's path

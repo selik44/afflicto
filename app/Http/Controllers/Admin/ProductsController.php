@@ -3,6 +3,7 @@
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Friluft\Category;
+use Friluft\Image;
 use Friluft\Manufacturer;
 use Friluft\Product;
 use Friluft\Producttab;
@@ -67,6 +68,9 @@ class ProductsController extends Controller {
                 return ($model->enabled) ? '<span class="color-success">Yes</span>' : '<span class="color-error">no</span>';
             }],
 			'Updated' => 'updated_at diffForHumans',
+			'' => ['_clone', function($model) {
+				return '<a title="Kopier" href="' .route('admin.products.clone', $model->id) .'" class="button "><i class="fa fa-copy"></i></a>';
+			}],
 		]);
 
 		$table->editable(true, url('admin/products/{id}/edit'));
@@ -114,6 +118,42 @@ class ProductsController extends Controller {
 			'vatgroups' => $vatgroups,
 			'form' => form('admin.product', ['categories' => $cats, 'manufacturers' => $mfs, 'vatgroups' => $vatgroups, 'tags' => $tags, 'variants' => $variants, 'products' => $products, 'sizemaps' => $sizemaps]),
 		]);
+	}
+
+	public function cloneProduct(Product $product)
+	{
+		/* @var Product $clone */
+		$clone = $product->replicate();
+
+		$clone->name = 'Kopi av ' .$clone->name;
+
+		# reset categories
+		$clone->categories = [];
+
+		# disable
+		$clone->enabled = false;
+
+		# save it
+		$clone->save();
+
+		# clone images
+		foreach($product->images as $image) {
+			$img = new Image();
+			$img->name = $image->name;
+			$clone->images()->save($img);
+		}
+
+		# set tags
+		foreach($product->tags as $tag) {
+			$clone->tags()->attach($tag->id);
+		}
+
+		# set variants
+		foreach($product->variants as $variant) {
+			$clone->variants()->attach($variant);
+		}
+
+		return Redirect::route('admin.products.edit', $clone->id);
 	}
 
 	public function store()
