@@ -219,7 +219,7 @@ class StoreController extends Controller {
 					->lists
 					->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), ['email' => $email], null, null, false);
 			}catch (\Exception $e) {
-
+				Log::error('Cannot subscribe to newsletter: ' .$e->getMessage());
 			}
 
 			# clean up

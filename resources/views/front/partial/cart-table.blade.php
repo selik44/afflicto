@@ -38,7 +38,7 @@
 						</ul>
 					</td>
 
-					<td class="quantity" style="width: 1%;">
+					<td class="quantity">
 						<div class="input-append">
 							<input type="number" min="1" name="quantity" value="{{$item['quantity']}}">
 							<button title="Remove" class="error remove appended"><i class="fa fa-close"></i></button>

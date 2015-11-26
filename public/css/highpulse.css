@@ -4820,8 +4820,10 @@ ul.pagination {
 .cart-table table tbody tr.item .thumbnail {
   height: 80px;
   border: none; }
-.cart-table table tbody tr.item .quantity .input-append {
-  max-width: 120px; }
+.cart-table table tbody tr.item .quantity {
+  width: 140px; }
+  .cart-table table tbody tr.item .quantity .input-append {
+    width: 80px; }
 .cart-table table tbody tr.shipping .icon .fa {
   font-size: 3.4rem; }
 .cart-table table tbody tr.shipping .value {

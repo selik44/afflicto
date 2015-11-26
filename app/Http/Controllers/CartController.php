@@ -51,8 +51,6 @@ class CartController extends Controller {
 			'variants' => []
 		];
 
-		# set variants
-
 		# is compound?
 		if ($product->isCompound()) {
 			foreach($product->getChildren() as $child) {
@@ -128,6 +126,27 @@ class CartController extends Controller {
 	}
 
 	public function setQuantity($id) {
+		# get product
+		if ( ! Cart::has($id)) {
+			return ['error' => 'unknown cart ID ' .$id];
+		}
+
+		# get the item
+		$item = Cart::get($id);
+
+		# get the product model
+		$product = Product::find($item['product_id']);
+
+		# get total quantity
+		$totalQuantity = (int) Input::get('quantity', 0) + $item['quantity'];
+
+		# get total stock with the options we have set
+		$totalStock = $product->getStock($item['options']);
+
+		if ($totalQuantity > $totalStock) {
+			return ['error' => 'Not enough stock.'];
+		}
+
 		Cart::setQuantity($id, (int) Input::get('quantity', 0));
 		Cart::updateKlarnaOrder();
 		return ['total' => Cart::getTotal(), 'quantity' => Cart::quantity()];
