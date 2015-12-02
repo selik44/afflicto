@@ -341,7 +341,7 @@ class OrdersController extends Controller {
 	}
 
 	public function products_edit(Order $order) {
-		if ($order->activated) return Response::back()->with('error', 'That order has been activated and cannot be changed!');
+		if ($order->activated) return Redirect::back()->with('error', 'That order has been activated and cannot be changed!');
 		return view('admin.orders_products_edit')->with([
 			'order' => $order,
 			'products' => Product::all(),
