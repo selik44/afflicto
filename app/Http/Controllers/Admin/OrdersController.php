@@ -7,14 +7,11 @@ use Friluft\OrderEvent;
 use Friluft\Product;
 use Friluft\Order;
 use Friluft\User;
-use Friluft\Variant;
 use Illuminate\Support\Facades\Redirect;
 use Input;
 use Klarna;
 use Laratable;
-use Snappy;
 use Response;
-use SplFileInfo;
 
 class OrdersController extends Controller {
 
@@ -352,7 +349,7 @@ class OrdersController extends Controller {
 	}
 
 	public function products_update(Order $order) {
-		if ($order->activated) return Response::back()->with('error', 'That order has been activated and cannot be changed!');
+		if ($order->activated) return Redirect::back()->with('error', 'That order has been activated and cannot be changed!');
 		$items = [];
 		foreach(Input::get('items', []) as $item) {
 
