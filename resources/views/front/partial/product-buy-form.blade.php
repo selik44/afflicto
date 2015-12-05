@@ -105,7 +105,7 @@
 		?>
 		@if($arrival != null)
 			<p class="warning lead color-warning">
-				<i class="fa fa-question"></i> Forventet ankomst: om {{\Friluft\Utils\LocalizedCarbon::diffForHumans($arrival, null, true)}}.
+				Forventet ankomst: om {{\Friluft\Utils\LocalizedCarbon::diffForHumans($arrival, null, true)}}.
 			</p>
 		@endif
 
