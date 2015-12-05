@@ -69,9 +69,9 @@
                                 <select name="variant-{{$variant->id}}" data-id="{{$variant->id}}">
                                     @foreach($variant->data['values'] as $value)
                                         @if($options['variants'][$variant->id] == $value['name'])
-                                            <option selected="selected" value="{{$value['name']}}">{{$value['name']}}</option>
+                                            <option selected="selected" value="{{$value['id']}}">{{$value['name']}}</option>
                                         @else
-                                            <option value="{{$value['name']}}">{{$value['name']}}</option>
+                                            <option value="{{$value['id']}}">{{$value['name']}}</option>
                                         @endif
                                     @endforeach
                                 </select>
@@ -151,7 +151,7 @@
                             <label>{{$variant->name}}
                                 <select data-id="{{$variant->id}}">
                                     @foreach($variant->data['values'] as $value)
-                                        <option value="{{$value['name']}}">{{$value['name']}}</option>
+                                        <option value="{{$value['id']}}">{{$value['name']}}</option>
                                     @endforeach
                                 </select>
                             </label>
@@ -200,8 +200,8 @@
 
             $("#add-modal .product-options .options.visible .variant").each(function() {
                 var variantID = $(this).attr('data-id');
-                var value = $(this).val();
-                options.variants[variantID] = value;
+                var id = $(this).val();
+                options.variants[variantID] = id;
             });
 
             var item = {id: id, name: name, options: options};
@@ -248,8 +248,8 @@
                 //set variants
                 $(this).find('.variants .variant').each(function() {
                     var variant_id = $(this).find('select').attr('data-id');
-                    var value = $(this).find('select').val();
-                    item.reference.options.variants[variant_id] = value;
+                    var id = $(this).find('select').val();
+                    item.reference.options.variants[variant_id] = id;
                 });
 
                 items.push(item);

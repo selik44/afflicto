@@ -284,7 +284,7 @@ class Product extends Model {
 				$soon = new Carbon();
 				$soon->addDays($this->manufacturer->prepurchase_days);
 				if ($expectedArrival->getTimestamp() <= $soon->getTimestamp()) {
-					return static::AVAILABILITY_WARNING;
+					return static::AVAILABILITY_GOOD; # changed from warning to good
 				}
 			}
 		}
