@@ -78,8 +78,6 @@ class CartController extends Controller {
 			$stock = $product->getStock($options['variants']);
 		}
 
-
-
 		# is quantity greater than stock?
 		$totalQuantity = $quantity;
 
@@ -88,9 +86,7 @@ class CartController extends Controller {
 		if ($duplicate) $totalQuantity += $duplicate['quantity'];
 
 		if ($totalQuantity > $stock) {
-			# allow always order?
-			$manufacturer = $product->manufacturer;
-			if ( ! $manufacturer || ! $manufacturer->always_allow_orders) {
+			if ($product->getAvailability() == Product::AVAILABILITY_BAD) {
 				return response('Not enough in stock', 400);
 			}
 		}
@@ -144,7 +140,9 @@ class CartController extends Controller {
 		$totalStock = $product->getStock($item['options']);
 
 		if ($quantity > $totalStock) {
-			return ['error' => 'Not enough in stock. Current, actuall quantity: ' .$item['quantity'] .' and stock: ' .$totalStock];
+			if ($product->getAvailability() == Product::AVAILABILITY_BAD) {
+				return ['error' => 'Not enough in stock. Current, actuall quantity: ' .$item['quantity'] .' and stock: ' .$totalStock];
+			}
 		}
 
 		Cart::setQuantity($id, (int) Input::get('quantity', 0));
