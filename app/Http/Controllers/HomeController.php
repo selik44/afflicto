@@ -16,7 +16,7 @@ class HomeController extends Controller {
 
 		return $this->view('front.home')
 			->with([
-				'slider' => true,
+				'slider' => true,g
 				'breadcrumbs' => false,
 				'images' => $images,
 				'popular' => $popular,
