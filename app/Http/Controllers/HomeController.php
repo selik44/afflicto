@@ -9,8 +9,8 @@ class HomeController extends Controller {
 
 	public function index()
 	{
-		$popular = Tag::whereType('popular')->first()->products()->orderByRaw('RAND()')->take(4)->get();
-		$news = Tag::whereType('news')->first()->products()->orderByRaw('RAND()')->take(4)->get();
+		$popular = Tag::whereType('popular')->first()->products()->where('enabled', '=', '1')->orderByRaw('RAND()')->take(4)->get();
+		$news = Tag::whereType('news')->first()->products()->where('enabled', '=', '1')->orderByRaw('RAND()')->take(4)->get();
 
 		$images = BannersController::getImages();
 
