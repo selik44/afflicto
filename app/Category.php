@@ -87,7 +87,7 @@ class Category extends Model {
 	}
 
 	public function products() {
-		return Product::where('categories', 'LIKE', '%,' .$this->id .',%')->orderBy('order', 'asc');
+		return Product::where('categories', 'LIKE', '%,' .$this->id .',%');#->orderBy('order', 'asc');
 	}
 
 	/**
@@ -119,9 +119,7 @@ class Category extends Model {
 
 		$collection = new Collection($array);
 
-		$collection->sortBy('order');
-
-		return $array;
+		return $collection->sortBy('order');
 	}
 
 	public function nestedChildren() {
