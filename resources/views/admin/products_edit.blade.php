@@ -255,6 +255,12 @@
 
             <hr/>
 
+	        <div class="row">
+		        {!! $form->order->label('Rekkefølge') !!}
+	        </div>
+
+	        <hr>
+
             <div class="row">
                 <div class="col-xs-6 tight-left">
                     {!! $form->inprice !!}

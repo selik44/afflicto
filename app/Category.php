@@ -1,5 +1,6 @@
 <?php namespace Friluft;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Nicolaslopezj\Searchable\SearchableTrait;
@@ -86,7 +87,7 @@ class Category extends Model {
 	}
 
 	public function products() {
-		return Product::where('categories', 'LIKE', '%,' .$this->id .',%');
+		return Product::where('categories', 'LIKE', '%,' .$this->id .',%')->orderBy('order', 'asc');
 	}
 
 	/**
@@ -115,6 +116,10 @@ class Category extends Model {
 				$array[$p->id] = $p;
 			}
 		}
+
+		$collection = new Collection($array);
+
+		$collection->sortBy('order');
 
 		return $array;
 	}

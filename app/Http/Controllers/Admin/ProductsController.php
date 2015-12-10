@@ -243,6 +243,7 @@ class ProductsController extends Controller {
 		$p->categories = Input::get('categories', []);
 		$p->meta_description = Input::get('meta_description', null);
 		$p->meta_keywords = Input::get('meta_keywords');
+		$p->order = Input::get('order', 0);
 
 		# set sizemap
 		$sizemap = Input::get('sizemap_id');

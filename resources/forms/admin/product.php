@@ -58,4 +58,6 @@ $form->meta_keywords = Former::textarea('meta_keywords')->rows(4);
 
 $form->children = Former::select('children')->multiple()->fromQuery($products, 'name', 'id')->name('children[]')->label('products');
 
+$form->order = Former::text('order');
+
 return $form;
