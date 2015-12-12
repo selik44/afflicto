@@ -13,7 +13,6 @@
         <property name="characterSetResults" value="utf8" />
         <property name="tinyInt1isBit" value="false" />
       </driver-properties>
-      <libraries />
     </data-source>
     <data-source source="LOCAL" name="Local" uuid="b70391ad-1f84-4357-95ee-cb4cd3ded70e">
       <driver-ref>mysql</driver-ref>
@@ -24,7 +23,6 @@
         <property name="zeroDateTimeBehavior" value="convertToNull" />
         <property name="tinyInt1isBit" value="false" />
       </driver-properties>
-      <libraries />
     </data-source>
     <data-source source="LOCAL" name="Production" uuid="bfa688e5-fe62-4dfa-815d-439cb24218f5">
       <driver-ref>mysql</driver-ref>
@@ -38,7 +36,6 @@
         <property name="characterSetResults" value="utf8" />
         <property name="yearIsDateType" value="false" />
       </driver-properties>
-      <libraries />
     </data-source>
   </component>
 </project>
