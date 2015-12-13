@@ -554,6 +554,12 @@ class ProductsController extends Controller {
 			}];
 		}
 
+		if (Input::has('column_order')) {
+			$columns['Rekkefølge'] = ['order', function($p) {
+				return '<input type="text" class="order" name="' .$p->id .'_order" value="' .$p->order .'">';
+			}];
+		}
+
 		$columns[trans('admin.enabled')] = ['enabled', function($p) {
 			$str = '<label class="checkbox-container" for="' .$p->id .'_enabled" style="float: left; margin-right: 1rem;">' .trans('admin.enabled') .'
 				<div class="checkbox">';
@@ -612,7 +618,8 @@ class ProductsController extends Controller {
 			'description' => '',
 			'summary' => '',
 			'enabled' => false,
-			'stock' => 0
+			'stock' => 0,
+			'order' => 0,
 		];
 
 		$columns = explode(',', Input::get('columns', ''));

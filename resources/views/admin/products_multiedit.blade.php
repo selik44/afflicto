@@ -36,7 +36,7 @@
             <div class="columns clearfix">
                 <?php
                     $cols = [
-                        'name','slug','inprice','price','articlenumber','barcode','weight','description','summary','stock','tags','variants'
+                        'name','slug','inprice','price','articlenumber','barcode','weight','description','summary','stock','tags','variants','order'
                     ];
                 ?>
                 @foreach($cols as $col)
