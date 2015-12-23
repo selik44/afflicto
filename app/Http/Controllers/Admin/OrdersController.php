@@ -358,6 +358,7 @@ class OrdersController extends Controller {
 		foreach(Input::get('items', []) as $item) {
 
 			if ($item['type'] == 'shipping_fee') {
+				$item['tax_rate'] = 25;
 				$items[] = $item;
 				continue;
 			}
@@ -365,12 +366,13 @@ class OrdersController extends Controller {
 			$product = Product::find($item['reference']['id']);
 
 			# get total tax amount
-			$total = $product->price * $product->quantity * $product->vatgroup->amount;
+			$total = $item['price'] * $item['quantity'] * $product->vatgroup->amount;
 			$taxAmount = abs($total - ($total * $product->vatgroup->amount));
 
 			if (!isset($item['reference']['options'])) {
 				$item['reference']['options'] = ['variants' => []];
 			}
+
 
 			$items[] = [
 				'discount_rate' => 0,
@@ -379,10 +381,10 @@ class OrdersController extends Controller {
 				'reference' => $item['reference'],
 				'type' => 'physical',
 				'tax_rate' => abs((1 - $product->vatgroup->amount)),
-				'total_price_excluding_tax' => ($product->price * $product->quantity),
-				'total_price_including_tax' => ($product->price * $product->quantity) * $product->vatgroup->amount,
+				'total_price_excluding_tax' => ($item['price'] * $item['quantity']),
+				'total_price_including_tax' => ($item['price'] * $item['quantity']) * $product->vatgroup->amount,
 				'total_tax_amount' => $taxAmount,
-				'unit_price' => $product->price * $product->vatgroup->amount,
+				'unit_price' => $item['price'] * $product->vatgroup->amount,
 			];
 		}
 		$order->items = $items;

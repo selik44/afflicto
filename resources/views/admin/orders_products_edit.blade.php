@@ -17,9 +17,10 @@
     <table id="products" class="table bordered striped">
         <thead>
         <tr>
-            <th>Product</th>
-            <th>Options</th>
-            <th>Quantity</th>
+            <th>Produkt</th>
+            <th>Valg</th>
+            <th>Antall</th>
+	        <th>Pris per Enhet (Eksl. mva)</th>
             <th></th>
         </tr>
         </thead>
@@ -35,6 +36,9 @@
             <td class="quantity">
                 <input type="text" value="1">
             </td>
+	        <td class="price">
+		        <input type="text" value="0" name="price">
+	        </td>
             <td>
                 <div class="button-group pull-right remove">
                     <button class="remove small error"><i class="fa fa-close"></i> Remove</button>
@@ -68,7 +72,7 @@
                             <label for="variant-{{$variant->id}}">{{$variant->name}}
                                 <select name="variant-{{$variant->id}}" data-id="{{$variant->id}}">
                                     @foreach($variant->data['values'] as $value)
-                                        @if($options['variants'][$variant->id] == $value['name'])
+                                        @if($options['variants'][$variant->id] == $value['id'])g
                                             <option selected="selected" value="{{$value['id']}}">{{$value['name']}}</option>
                                         @else
                                             <option value="{{$value['id']}}">{{$value['name']}}</option>
@@ -83,6 +87,9 @@
                 <td class="quantity">
                     <input style="max-width: 80px;" type="text" name="quantity" value="{{$item['quantity']}}">
                 </td>
+	            <td class="price">
+		            <input type="text" name="price" value="{{$item['total_price_excluding_tax'] / $item['quantity']}}">
+	            </td>
                 <td class="actions">
                     <div class="pull-right button-group">
                         <button class="small remove error"><i class="fa fa-close"></i> Remove</button>
@@ -104,7 +111,7 @@
         <thead>
         <tr>
             <th>Type</th>
-            <th>@lang('store.price')</th>
+            <th>@lang('store.price') (Inkl. mva)</th>
         </tr>
         </thead>
         <tbody>
@@ -122,9 +129,9 @@
             </td>
             <td class="price">
                 <div class="input-append input-prepend">
-                    <span class="prepended">Kr</span>
+                    <span class="addon">Kr</span>
                     <input style="max-width: 100px;" type="text" value="{{$shipping['total_price_including_tax']}}">
-                    <span class="appended">,-</span>
+                    <span class="addon">,-</span>
                 </div>
             </td>
         </tr>
@@ -139,7 +146,7 @@
         <div class="modal-content" style="overflow: visible;">
             <select class="product">
                 @foreach($products as $product)
-                    <option value="{{$product->id}}" data-id="{{$product->id}}">{{$product->name}}</option>
+                    <option value="{{$product->id}}" data-id="{{$product->id}}" data-price="{{$product->getDiscountPrice() * $product->vatgroup->amount}}">{{$product->name}}</option>
                 @endforeach
             </select>
             <hr>
@@ -196,6 +203,7 @@
         $("#add-modal .modal-footer .add").click(function() {
             var id = $("#add-modal select.product").val();
             var name = $("#add-modal select option[data-id='" + id + "']").text();
+	        var price = $("#add-modal select option[data-id='" + id + "']").attr('data-price');
             var options = {variants: {}};
 
             $("#add-modal .product-options .options.visible .variant").each(function() {
@@ -204,7 +212,7 @@
                 options.variants[variantID] = id;
             });
 
-            var item = {id: id, name: name, options: options};
+            var item = {id: id, name: name, options: options, price: price};
 
             var el = itemTemplate.clone();
 
@@ -213,12 +221,18 @@
             el.attr('data-type', 'physical');
             el.find('.product .name').text(item.name);
             el.find('.quantity input').val(1);
+	        el.find('.price input').val(item.price);
             el.find('.variants').append($("#add-modal .product-options .options.visible .variant"));
 
             $("#products tbody").append(el);
             el.show();
 
             $("#add-modal").gsModal('hide');
+        });
+
+        //REMOVE PRODUCT
+        $("#products .item button.remove").click(function() {
+	        $(this).parents('.item').remove();
         });
 
         //SAVE
@@ -231,6 +245,7 @@
                     discount_rate: 0,
                     name: "",
                     quantity: 1,
+	                price: 0,
                     reference: {
                         id: null,
                         options: {
@@ -244,6 +259,7 @@
                 item.reference.id = $(this).attr('data-product');
                 item.name = $(this).attr('data-name');
                 item.quantity = parseInt($(this).find('.quantity input').val());
+	            item.price = parseFloat($(this).find('.price input').val());
 
                 //set variants
                 $(this).find('.variants .variant').each(function() {
@@ -266,8 +282,9 @@
             };
 
             shipping.name = $(".shipping .type select").val();
-            shipping.total_price_excluding_tax = parseInt($(".shipping .price input").val());
-            shipping.total_price_including_tax = parseInt($(".shipping .price input").val());
+	        var shippingAmount = parseInt($("#shipping .price input").val());
+            shipping.total_price_excluding_tax = shippingAmount / 1.25;
+            shipping.total_price_including_tax = shippingAmount;
 
             items.push(shipping);
 

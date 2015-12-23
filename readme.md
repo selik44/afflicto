@@ -5,8 +5,8 @@ Built on Laravel 5, leveraging GentleStyle SASS Framework.
 1. "git clone"
 2. "cp .env.example .env" and fill in the blanks.
 3. "composer install --no-scripts"
-4. php artisan migrate
-5. php artisan db:seed
+4. "php artisan migrate"
+5. "php artisan db:seed"
 8. To import products from MyStore API, run "php artisan mystore:import".
 
 ## Pushing to the staging server
@@ -14,7 +14,7 @@ To push to the staging server, simply run "envoy run staging".
 To configure envoy, see "Envoy.blade.php" in the project root.
 
 # multi-store
-- views can be overriden per-store, using the view method of the Controller class. The default views are the ones used by 123friluft
+- views can be overridden per-store, using the view method of the Controller class. The default views are the ones used by 123friluft
 
 # Core
 - improve localization
@@ -34,7 +34,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - gentlestyle: fix table.bordered to not style child tables.
 - fetch product images of child products for compound products automatically.
 - implement popups
-- fix discount rate in the orders items array (2000 should be 20 etc)
+- fix discount rate in the orders items array (2000 should be 20)
 - fix the name parsing when generating a user from a klarna order
 - make discounts calculate for rounded prices (inc vat)
 - fix input-append css
