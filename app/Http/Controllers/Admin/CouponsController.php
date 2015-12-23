@@ -7,10 +7,10 @@ use DB;
 use Former;
 use Friluft\Category;
 use Friluft\Coupon;
+use Friluft\Http\Requests\Admin\CreateCouponRequest;
+use Friluft\Http\Requests\admin\EditCouponRequest;
 use Friluft\Product;
 use Friluft\Role;
-use Illuminate\Http\Request;
-
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Input;
@@ -98,10 +98,10 @@ class CouponsController extends Controller
 	/**
 	 * Store a newly created resource in storage.
 	 *
-	 * @param Requests\admin\CreateCouponRequest $request
+	 * @param CreateCouponRequest $request
 	 * @return Response
 	 */
-    public function store(Requests\admin\CreateCouponRequest $request)
+    public function store(CreateCouponRequest $request)
     {
         $coupon = new Coupon(Input::only(['admin_name', 'name', 'code', 'discount', 'enabled', 'products', 'categories', 'cumulative', 'roles']));
 
@@ -121,9 +121,9 @@ class CouponsController extends Controller
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param Requests\admin\EditCouponRequest $request
 	 * @param Coupon $c
 	 * @return Response
+	 * @internal param EditCouponRequest $request
 	 * @internal param int $id
 	 */
     public function edit(Coupon $c)
@@ -143,12 +143,14 @@ class CouponsController extends Controller
 		]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @return Response
-     */
-    public function update(Requests\admin\EditCouponRequest $request, Coupon $c)
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param EditCouponRequest $request
+	 * @param Coupon $c
+	 * @return Response
+	 */
+    public function update(EditCouponRequest $request, Coupon $c)
     {
         $c->fill(Input::only('admin_name', 'name', 'code', 'discount', 'enabled', 'products', 'categories', 'cumulative', 'roles'));
 
@@ -169,12 +171,14 @@ class CouponsController extends Controller
 		return \Redirect::route('admin.coupons.index')->with('success', 'Coupon code updated!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return Response
-     */
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param Coupon $c
+	 * @return Response
+	 * @throws \Exception
+	 * @internal param int $id
+	 */
     public function destroy(Coupon $c)
     {
 		$c->delete();

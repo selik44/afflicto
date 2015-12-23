@@ -1,6 +1,6 @@
 <?php
 
-namespace Friluft\Http\Requests\admin;
+namespace Friluft\Http\Requests\Admin;
 
 use Friluft\Http\Requests\Request;
 
