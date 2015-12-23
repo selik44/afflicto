@@ -61,7 +61,11 @@ class OrdersController extends Controller {
 							if ($product->isCompound()) {
 								foreach($product->getChildren() as $child) {
 									foreach($child->variants as $variant) {
-										$variantString .= $child->name .' ' .$variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+										if ( ! isset($variants[$variant->id])) {
+											$variantString .= 'Error for item with product id "' .$product->id .'". item does not contain variant ' .$variant->id .'<br>';
+										}else {
+											$variantString .= $child->name .' ' .$variant->name .': ' .$variant->getValueName($variants[$variant->id]) .', ';
+										}
 									}
 								}
 							}else {
