@@ -67,21 +67,42 @@
                 </td>
                 <td class="options">
                     <div class="variants">
-                    @foreach($model->variants as $variant)
-                        <div class="variant" data-id="{{$variant->id}}">
-                            <label for="variant-{{$variant->id}}">{{$variant->name}}
-                                <select name="variant-{{$variant->id}}" data-id="{{$variant->id}}">
-                                    @foreach($variant->data['values'] as $value)
-                                        @if($options['variants'][$variant->id] == $value['id'])g
-                                            <option selected="selected" value="{{$value['id']}}">{{$value['name']}}</option>
-                                        @else
-                                            <option value="{{$value['id']}}">{{$value['name']}}</option>
-                                        @endif
-                                    @endforeach
-                                </select>
-                            </label>
-                        </div>
-                    @endforeach
+                        @if($model->isCompound())
+							@foreach($model->children as $child)
+								<?php $child = \Friluft\Product::find($child); ?>
+								@foreach($child->variants as $variant)
+									<div class="variant" data-id="{{$variant->id}}">
+										<label for="variant-{{$variant->id}}">{{$variant->name}} ({{$child->name}})
+											<select name="variant-{{$variant->id}}" data-id="{{$variant->id}}">
+												@foreach($variant->data['values'] as $value)
+													@if($options['variants'][$variant->id] == $value['id'])g
+													<option selected="selected" value="{{$value['id']}}">{{$value['name']}}</option>
+													@else
+														<option value="{{$value['id']}}">{{$value['name']}}</option>
+													@endif
+												@endforeach
+											</select>
+										</label>
+									</div>
+								@endforeach
+							@endforeach
+                        @else
+		                    @foreach($model->variants as $variant)
+		                        <div class="variant" data-id="{{$variant->id}}">
+		                            <label for="variant-{{$variant->id}}">{{$variant->name}}
+		                                <select name="variant-{{$variant->id}}" data-id="{{$variant->id}}">
+		                                    @foreach($variant->data['values'] as $value)
+		                                        @if($options['variants'][$variant->id] == $value['id'])g
+		                                            <option selected="selected" value="{{$value['id']}}">{{$value['name']}}</option>
+		                                        @else
+		                                            <option value="{{$value['id']}}">{{$value['name']}}</option>
+		                                        @endif
+		                                    @endforeach
+		                                </select>
+		                            </label>
+		                        </div>
+		                    @endforeach
+	                    @endif
                     </div>
                 </td>
                 <td class="quantity">
@@ -153,17 +174,35 @@
             <div class="product-options">
                 @foreach($products as $product)
                     <div style="display: none;" class="options variants" data-product="{{$product->id}}">
-                        @foreach($product->variants as $variant)
-                            <div class="variant" data-id="{{$variant->id}}">
-                            <label>{{$variant->name}}
-                                <select data-id="{{$variant->id}}">
-                                    @foreach($variant->data['values'] as $value)
-                                        <option value="{{$value['id']}}">{{$value['name']}}</option>
-                                    @endforeach
-                                </select>
-                            </label>
-                            </div>
-                        @endforeach
+	                    @if($product->isCompound())
+							@foreach($product->children as $child)
+								<?php $child = \Friluft\Product::find($child); ?>
+			                    @foreach($child->variants as $variant)
+				                    <div class="variant" data-id="{{$variant->id}}">
+					                    <label>{{$variant->name}} ({{$child->name}})
+						                    <select data-id="{{$variant->id}}">
+							                    @foreach($variant->data['values'] as $value)
+								                    <option value="{{$value['id']}}">{{$value['name']}}</option>
+							                    @endforeach
+						                    </select>
+					                    </label>
+				                    </div>
+			                    @endforeach
+							@endforeach
+						@else
+		                    @foreach($product->variants as $variant)
+			                    <div class="variant" data-id="{{$variant->id}}">
+				                    <label>{{$variant->name}}
+					                    <select data-id="{{$variant->id}}">
+						                    @foreach($variant->data['values'] as $value)
+							                    <option value="{{$value['id']}}">{{$value['name']}}</option>
+						                    @endforeach
+					                    </select>
+				                    </label>
+			                    </div>
+		                    @endforeach
+						@endif
+
                     </div>
                 @endforeach
             </div>
