@@ -34,6 +34,8 @@ class CouponsController extends Controller
 			'Categories' => ['categories', function($model) {
 				$str = '';
 
+				var_dump($model->categories);
+
 				foreach($model->categories as $cat) {
 					$cat = Category::find($cat);
 					$str .= $cat->name .', ';

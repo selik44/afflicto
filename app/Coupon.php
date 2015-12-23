@@ -108,6 +108,7 @@ class Coupon extends Model {
 	public function getCategoriesAttribute() {
 		$cats = [];
 		foreach(explode(',', trim($this->attributes['categories'], ',')) as $id) {
+			$id = trim($id);
 			if ( ! $id) continue;
 			$cats[] = $id;
 		}
