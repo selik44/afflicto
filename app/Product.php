@@ -314,7 +314,7 @@ class Product extends Model {
 					}
 
 					$stockID = implode('_', $stockID);
-					$s = $child->variants_stock[$stockID];
+					$s = (isset($child->variants_stock[$stockID])) ? $child->variants_stock[$stockID] : 0;
 				}else {
 					$s = $child->stock;
 				}
