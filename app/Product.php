@@ -428,7 +428,6 @@ class Product extends Model {
 				if ($child->variants->count() > 0) {
 					$stockID = [];
 					foreach($child->variants as $variant) {
-						$stockID[] = $variant->id;
 						if ( ! isset($variants[$variant->id])) {
 							\Log::error('Cannot decrement stock, missing variant option for ' .$variant->id);
 						}else {
