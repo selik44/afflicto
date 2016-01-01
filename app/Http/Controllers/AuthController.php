@@ -3,8 +3,6 @@
 use Friluft\Http\Requests\RegistrationRequest;
 use Friluft\Http\Requests\LoginRequest;
 use Friluft\Http\Requests\ResetPasswordRequest;
-use Friluft\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Auth;
 use Redirect;
 use Friluft\User;
@@ -13,7 +11,6 @@ use Input;
 use Mail;
 use DB;
 use \Carbon\Carbon;
-use Friluft\Store;
 
 class AuthController extends Controller {
 
@@ -73,9 +70,15 @@ class AuthController extends Controller {
 			Mail::send('emails.password', ['token' => $token, 'title' => 'Forgot Password'], function($mail) use($user) {
 				$mail->to($user->email)->subject('Forgotten Password');
 			});
-		}
 
-		return Redirect::back()->with('success', 'Check your email inbox for the next step in resetting your password.');
+			Mail::send('emails.password', ['token' => 'the token', 'title' => 'the title'], function($mail) {
+				$mail->to('me@afflicto.net')->subject('forgot pw');
+			});
+
+			return Redirect::back()->with('success', 'Check your email inbox for the next step in resetting your password.');
+		}else {
+			return Redirect::Back()->with('error', 'That user does not exist.');
+		}
 	}
 
 	public function get_reset($token) {
