@@ -51,6 +51,10 @@ class AuthController extends Controller {
 	}
 
 	public function post_forgot() {
+		Mail::send('emails.password', ['token' => 'the token', 'title' => 'the title'], function($mail) {
+			$mail->to('me@afflicto.net')->subject('forgot pw');
+		});
+
 		if (!Input::has('email')) return Redirect::back()->with('error', 'Email is required.');
 		$user = User::where('email', '=', Input::get('email'))->first();
 
@@ -71,9 +75,7 @@ class AuthController extends Controller {
 				$mail->to($user->email)->subject('Forgotten Password');
 			});
 
-			Mail::send('emails.password', ['token' => 'the token', 'title' => 'the title'], function($mail) {
-				$mail->to('me@afflicto.net')->subject('forgot pw');
-			});
+
 
 			return Redirect::back()->with('success', 'Check your email inbox for the next step in resetting your password.');
 		}else {
