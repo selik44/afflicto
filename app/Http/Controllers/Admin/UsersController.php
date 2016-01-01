@@ -140,7 +140,7 @@ class UsersController extends Controller {
 			# are we setting a role other than 'regular'?
 			# if so, check that the user is an admin.
 			if ($role->machine !== 'regular') {
-				if (Auth::user()->role->machine !== 'admin') {
+				if (Auth::user()->role->machine !== 'superadmin') {
 					# nope!
 					return Redirect::back()->withInput()->with('error', trans('validation.disallowed_role_grant'));
 				}
