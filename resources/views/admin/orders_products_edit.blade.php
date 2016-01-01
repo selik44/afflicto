@@ -75,7 +75,7 @@
 										<label for="variant-{{$variant->id}}">{{$variant->name}} ({{$child->name}})
 											<select name="variant-{{$variant->id}}" data-id="{{$variant->id}}">
 												@foreach($variant->data['values'] as $value)
-													@if($options['variants'][$variant->id] == $value['id'])g
+													@if($options['variants'][$variant->id] == $value['id'])
 													<option selected="selected" value="{{$value['id']}}">{{$value['name']}}</option>
 													@else
 														<option value="{{$value['id']}}">{{$value['name']}}</option>
