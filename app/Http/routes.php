@@ -1,5 +1,10 @@
 <?php
 
+get('/test', function() {
+	$kombo = \Friluft\Product::whereName('Test Kombo')->first();
+	$kombo->getAvailability();
+});
+
 # HOME ROUTES
 get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
 get('search', ['as' => 'search', 'uses' => 'SearchController@index']);

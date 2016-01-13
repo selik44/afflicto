@@ -269,9 +269,9 @@ class Product extends Model {
 				}
 			}
 
-			# good? otherwise, check if a receival exists and perpurchase is possible.
+			# good? otherwise, check if a receival exists and pre-purchase is possible.
 			if ($worstStock != null && $worstStock > 0) {
-				static::AVAILABILITY_GOOD;
+				return static::AVAILABILITY_GOOD;
 			}else if ($this->manufacturer != null && $this->manufacturer->prepurchase_enabled) {
 
 				# any receivals that contain this product?
@@ -284,7 +284,7 @@ class Product extends Model {
 				$soon = new Carbon();
 				$soon->addDays($this->manufacturer->prepurchase_days);
 				if ($expectedArrival->getTimestamp() <= $soon->getTimestamp()) {
-					return static::AVAILABILITY_GOOD; # changed from warning to good
+					return static::AVAILABILITY_WARNING; # undo changed from warning to good
 				}
 			}
 		}
