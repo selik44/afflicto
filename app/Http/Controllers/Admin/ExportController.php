@@ -31,6 +31,12 @@ class ExportController extends Controller
 					/**
 					 * @var Product $product
 					 */
+
+					# skip products
+					#   - that aren't in stock
+					#   - kombo's
+					if ($product->getTotalStock() <= 0 || $product->isCompound()) continue;
+
 					$manufacturer = $product->manufacturer ? $product->manufacturer->name : '';
 					$sheet->row($i, [$manufacturer, $product->name, $product->articlenumber, $product->barcode, $product->inprice, $product->getTotalStock()]);
 					$i++;
