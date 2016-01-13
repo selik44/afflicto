@@ -24,14 +24,15 @@ class ExportController extends Controller
 			$excel->sheet('Produkter', function(\PHPExcel_Worksheet $sheet) {
 				$products = Product::query()->get();
 
-				$sheet->row(1, ['Navn', 'Art. Nummer', 'Lagerplass', 'Innkjøpspris', 'Stock']);
+				$sheet->row(1, ['Produsent', 'Navn', 'Art. Nummer', 'Lagerplass', 'Innkjøpspris', 'Stock']);
 
 				$i = 2;
 				foreach($products as $product) {
 					/**
 					 * @var Product $product
 					 */
-					$sheet->row($i, [$product->name, $product->articlenumber, $product->barcode, $product->inprice, $product->getTotalStock()]);
+					$manufacturer = $product->manufacturer ? $product->manufacturer->name : '';
+					$sheet->row($i, [$manufacturer, $product->name, $product->articlenumber, $product->barcode, $product->inprice, $product->getTotalStock()]);
 					$i++;
 				}
 			});

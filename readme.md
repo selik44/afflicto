@@ -38,6 +38,7 @@ To configure envoy, see "Envoy.blade.php" in the project root.
 - fix the name parsing when generating a user from a klarna order
 - make discounts calculate for rounded prices (inc vat)
 - fix input-append css
+- products can have status updates by admins
 
 #Order statuses
 - ubehandlet
