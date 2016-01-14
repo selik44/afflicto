@@ -56,9 +56,11 @@
                     @endforeach
 
 					@if($availability == \Friluft\Product::AVAILABILITY_WARNING)
+						<!--
 						<span class="tag tag-availability availability-warning">
-							{{'kommer ' .trans('carbon.in') .' ' .\Friluft\Utils\LocalizedCarbon::diffForHumans($product->getExpectedArrival(), null, true)}}
+							{{/*'kommer ' .trans('carbon.in') .' ' .\Friluft\Utils\LocalizedCarbon::diffForHumans($product->getExpectedArrival(), null, true)*/}}
 						</span>
+						-->
 					@elseif($availability == \Friluft\Product::AVAILABILITY_BAD)
 						<!--<span class="tag tag-availability availability-bad"><i class="fa fa-warning"></i>Utsolgt</span>-->
 					@endif
