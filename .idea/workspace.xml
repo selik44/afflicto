@@ -56,8 +56,8 @@
           <file leaf-file-name="ReportsController.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.78656125">
-                  <caret line="233" column="136" selection-start-line="233" selection-start-column="136" selection-end-line="233" selection-end-column="136" />
+                <state vertical-scroll-proportion="0.5731225">
+                  <caret line="227" column="91" selection-start-line="227" selection-start-column="91" selection-end-line="227" selection-end-column="91" />
                   <folding />
                 </state>
               </provider>
@@ -92,9 +92,11 @@
           <file leaf-file-name="reports_products.blade.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/views/admin/reports_products.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.44466403">
-                  <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
-                  <folding />
+                <state vertical-scroll-proportion="0.5869565">
+                  <caret line="57" column="74" selection-start-line="57" selection-start-column="74" selection-end-line="57" selection-end-column="74" />
+                  <folding>
+                    <element signature="e#1284#1306#0#HTML" expanded="true" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -1157,16 +1159,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/admin/reports_products.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44466403">
-          <caret line="49" column="46" selection-start-line="49" selection-start-column="46" selection-end-line="49" selection-end-column="46" />
-          <folding />
+        <state vertical-scroll-proportion="0.5869565">
+          <caret line="57" column="74" selection-start-line="57" selection-start-column="74" selection-end-line="57" selection-end-column="74" />
+          <folding>
+            <element signature="e#1284#1306#0#HTML" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ReportsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.78656125">
-          <caret line="233" column="136" selection-start-line="233" selection-start-column="136" selection-end-line="233" selection-end-column="136" />
+        <state vertical-scroll-proportion="0.5731225">
+          <caret line="227" column="91" selection-start-line="227" selection-start-column="91" selection-end-line="227" selection-end-column="91" />
           <folding />
         </state>
       </provider>
