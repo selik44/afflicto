@@ -3,6 +3,7 @@
 namespace Friluft\Http\Controllers\Admin;
 
 use Carbon\Carbon;
+use Excel;
 use Friluft\Category;
 use Friluft\Order;
 use Friluft\Product;
@@ -14,6 +15,7 @@ use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
 use Input;
+use Maatwebsite\Excel\Writers\LaravelExcelWriter;
 
 class ReportsController extends Controller
 {
@@ -76,7 +78,15 @@ class ReportsController extends Controller
 		]);
 	}
 
-	public function products() {
+
+	/**
+	 * Get a collection of products with data about sold entities
+	 *
+	 * @return Collection
+	 * @throws \Exception
+	 */
+	private function getProducts()
+	{
 		# get from and to dates
 		if (Input::has('from')) {
 			list($year, $month, $day) = explode('-', Input::get('from'));
@@ -179,13 +189,51 @@ class ReportsController extends Controller
 			$product['variants'] = $c->toArray();
 		}
 
+		# return collection of products
+		return $products;
+	}
+
+	public function products() {
+		$products = $this->getProducts();
+
 		# return view
 		return view('admin.reports_products')->with([
 			'products' => $products,
 			'categories' => Category::all(),
-			'from' => $from->format('Y-m-d'),
-			'to' => $to->format('Y-m-d'),
+			'from' => Input::get('from'),
+			'to' => Input::get('to'),
 		]);
+	}
+
+	public function exportProducts()
+	{
+		return Excel::create('products', function(LaravelExcelWriter $excel) {
+			$excel->setTitle('123Friluft Export - Produkter');
+			$excel->sheet('Produkter', function(\PHPExcel_Worksheet $sheet) {
+				$products = $this->getProducts();
+
+				$sheet->row(1, ['Produsent', 'Navn', 'Art. Nummer', 'Lagerplass', 'Innkjøpspris', 'Stock', 'Solgt']);
+
+				$i = 2;
+				foreach($products as $p) {
+					$product = $p['product'];
+					$quantity = $p['quantity'];
+					/**
+					 * @var Product $product
+					 */
+
+					# skip products
+					#   - that aren't in stock
+					#   - kombo's
+					#if ($product->getTotalStock() <= 0 || $product->isCompound()) continue;
+					$manufacturer = $product->manufacturer ? $product->manufacturer->name : '';
+
+					$sheet->row($i, [$manufacturer, $product->name, $product->articlenumber, $product->barcode, $product->inprice, $product->getTotalStock(), $quantity]);
+					$i++;
+				}
+
+			});
+		})->download();
 	}
 
 }
