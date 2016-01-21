@@ -215,9 +215,8 @@ class ReportsController extends Controller
 				$sheet->row(1, ['Produsent', 'Navn', 'Art. Nummer', 'Lagerplass', 'Innkjøpspris', 'Stock', 'Solgt']);
 
 				$i = 2;
-				foreach($products as $p) {
-					$product = $p['product'];
-					$quantity = $p['quantity'];
+				foreach($products as $product) {
+					$model = $product['product'];
 					/**
 					 * @var Product $product
 					 */
@@ -226,9 +225,16 @@ class ReportsController extends Controller
 					#   - that aren't in stock
 					#   - kombo's
 					#if ($product->getTotalStock() <= 0 || $product->isCompound()) continue;
-					$manufacturer = $product->manufacturer ? $product->manufacturer->name : '';
+					$manufacturer = $product->manufacturer ? $model->manufacturer->name : '';
 
-					$sheet->row($i, [$manufacturer, $product->name, $product->articlenumber, $product->barcode, $product->inprice, $product->getTotalStock(), $quantity]);
+					$sheet->row($i, [$manufacturer, $model->name, $model->articlenumber, $model->barcode, $model->inprice, $model->getTotalStock(), $product['quantity']]);
+
+					if ($model->hasVariants()) {
+						foreach($product['variants'] as $variant) {
+							$sheet->row(++$i, ['', '--' .implode(', ', $variant['string']), '', '', '', 'stock', $variant['quantity']]);
+						}
+					}
+
 					$i++;
 				}
 
