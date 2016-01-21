@@ -231,7 +231,7 @@ class ReportsController extends Controller
 
 					if ($model->hasVariants()) {
 						foreach($product['variants'] as $variant) {
-							$sheet->row(++$i, ['', '--' .implode(', ', $variant['string']), '', '', '', 'stock', $variant['quantity']]);
+							$sheet->row(++$i, ['', '--' .implode(', ', $variant['string']), 'N/A', 'N/A', 'N/A', '', $variant['quantity']]);
 						}
 					}
 
