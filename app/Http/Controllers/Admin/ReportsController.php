@@ -231,7 +231,7 @@ class ReportsController extends Controller
 					#if ($product->getTotalStock() <= 0 || $product->isCompound()) continue;
 					$manufacturer = $model->manufacturer ? $model->manufacturer->name : '';
 
-					$sheet->row($i, [$manufacturer, $model->name, $model->articlenumber, $model->barcode, $model->inprice, $model->getTotalStock(), $product['quantity']]);
+					$sheet->row($i, [$manufacturer, trim($model->name), $model->articlenumber, $model->barcode, $model->inprice, $model->getTotalStock(), $product['quantity']]);
 
 					if ($model->hasVariants()) {
 						foreach($product['variants'] as $variant) {
