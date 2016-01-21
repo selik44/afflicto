@@ -24,7 +24,10 @@
 			<input type="date" name="to" placeholder="to" value="{{$to}}">
 		</label>
 
-		<input type="submit" value="Hent" class="success">
+		<div class="button-group">
+			<input type="submit" value="Hent" class="success">
+			<input type="submit" name="export" value="Excel" class="success">
+		</div>
 	</form>
 @stop
 

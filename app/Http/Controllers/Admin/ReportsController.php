@@ -194,15 +194,19 @@ class ReportsController extends Controller
 	}
 
 	public function products() {
-		$products = $this->getProducts();
+		if (Input::has('export')) {
 
-		# return view
-		return view('admin.reports_products')->with([
-			'products' => $products,
-			'categories' => Category::all(),
-			'from' => Input::get('from'),
-			'to' => Input::get('to'),
-		]);
+			return $this->exportProducts();
+
+		}else {
+			# return view
+			return view('admin.reports_products')->with([
+				'products' => $this->getProducts(),
+				'categories' => Category::all(),
+				'from' => Input::get('from'),
+				'to' => Input::get('to'),
+			]);
+		}
 	}
 
 	public function exportProducts()
