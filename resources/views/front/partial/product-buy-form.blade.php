@@ -85,7 +85,7 @@
 
 	@if($product->sizemap && isset($withSizemap) && $withSizemap)
 		<h4 class="sizemap">
-			<a href="#" data-toggle-modal="#sizemap-modal">Finn Riktig Størrelse</a>
+			<a href="#" data-toggle-modal="#sizemap-modal" class="button large">Finn Riktig Størrelse</a>
 		</h4>
 
 		<div class="modal fade" id="sizemap-modal">

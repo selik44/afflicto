@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="Added PackList and stuff&#10;">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/partial/product-buy-form.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/partial/product-buy-form.blade.php" />
     </list>
     <ignored path="123friluft.iws" />
@@ -46,7 +45,7 @@
         <entry file="file://$PROJECT_DIR$/resources/views/front/store_product.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="95" column="94" selection-start-line="95" selection-start-column="94" selection-end-line="95" selection-end-column="94" />
+              <caret line="107" column="100" selection-start-line="107" selection-start-column="100" selection-end-line="107" selection-end-column="100" />
               <folding>
                 <element signature="e#1712#1799#0#HTML" expanded="true" />
                 <element signature="e#2079#2156#0#HTML" expanded="true" />
@@ -62,8 +61,8 @@
       <file leaf-file-name="product-buy-form.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/front/partial/product-buy-form.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.64426875">
-              <caret line="87" column="40" selection-start-line="87" selection-start-column="40" selection-end-line="87" selection-end-column="40" />
+            <state vertical-scroll-proportion="0.47826087">
+              <caret line="92" column="104" selection-start-line="92" selection-start-column="104" selection-end-line="92" selection-end-column="104" />
               <folding />
             </state>
           </provider>
@@ -1119,7 +1118,7 @@
         <state vertical-scroll-proportion="0.5513834">
           <caret line="31" column="44" selection-start-line="31" selection-start-column="44" selection-end-line="31" selection-end-column="44" />
           <folding>
-            <element signature="e#50#70#0#PHP" expanded="true" />
+            <element signature="e#50#70#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1129,21 +1128,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/front/store_product.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="94" selection-start-line="95" selection-start-column="94" selection-end-line="95" selection-end-column="94" />
-          <folding>
-            <element signature="e#1712#1799#0#HTML" expanded="true" />
-            <element signature="e#2079#2156#0#HTML" expanded="true" />
-            <element signature="e#2451#2497#0#HTML" expanded="true" />
-            <element signature="e#2811#2857#0#HTML" expanded="true" />
-            <element signature="e#3838#3860#0#HTML" expanded="true" />
-            <element signature="e#4373#4393#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1157,10 +1141,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/front/store_product.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="107" column="100" selection-start-line="107" selection-start-column="100" selection-end-line="107" selection-end-column="100" />
+          <folding>
+            <element signature="e#1712#1799#0#HTML" expanded="true" />
+            <element signature="e#2079#2156#0#HTML" expanded="true" />
+            <element signature="e#2451#2497#0#HTML" expanded="true" />
+            <element signature="e#2811#2857#0#HTML" expanded="true" />
+            <element signature="e#3838#3860#0#HTML" expanded="true" />
+            <element signature="e#4373#4393#0#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/front/partial/product-buy-form.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.64426875">
-          <caret line="87" column="40" selection-start-line="87" selection-start-column="40" selection-end-line="87" selection-end-column="40" />
+        <state vertical-scroll-proportion="0.47826087">
+          <caret line="92" column="104" selection-start-line="92" selection-start-column="104" selection-end-line="92" selection-end-column="104" />
           <folding />
         </state>
       </provider>
