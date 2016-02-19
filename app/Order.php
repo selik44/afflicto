@@ -94,7 +94,7 @@ class Order extends Model {
 
 		foreach($this->items as $item) {
 			if ($item['type'] == 'shipping_fee') continue;
-			$model = Product::find($item['reference']['id']);
+			$model = Product::withTrashed()->find($item['reference']['id']);
 			$weight += $model->weight * $item['quantity'];
 		}
 		return $weight;

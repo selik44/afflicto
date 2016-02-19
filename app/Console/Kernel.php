@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel {
 		'Friluft\Console\Commands\ImportUsers',
 		'Friluft\Console\Commands\WelcomeUsers',
 		'Friluft\Console\Commands\SaveProfit',
+		'Friluft\Console\Commands\NukeDatabase',
 	];
 
 	/**

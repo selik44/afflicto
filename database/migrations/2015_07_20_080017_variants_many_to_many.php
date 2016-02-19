@@ -31,8 +31,8 @@ class VariantsManyToMany extends Migration {
 
 		# remove the variant_id from the variants table
 		Schema::table('variants', function(Blueprint $t) {
-			$t->dropIndex('variants_product_id_index');
 			$t->dropForeign('variants_product_id_foreign');
+			$t->dropIndex('variants_product_id_index');
 			$t->dropColumn('product_id');
 		});
 

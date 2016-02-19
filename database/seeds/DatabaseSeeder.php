@@ -96,7 +96,7 @@ class DatabaseSeeder extends Seeder {
 			[
 				'firstname' => 'Petter',
 				'lastname' => 'Thowsen',
-				'email' => 'me@afflicto.net',
+				'email' => 'petter@gentlefox.net',
 				'password' => bcrypt(env('USER_PASSWORD')),
 				'role_id' => Role::where('machine', '=', 'superadmin')->first()->id,
 			],

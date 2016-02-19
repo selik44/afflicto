@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="9c2a5107-a784-40ae-ade6-184ff7774f89" name="vagrant" url="http://friluft.dev">
+        <fileTransfer host="192.168.10.10" port="22" privateKey="D:\storage\dev\homestead\.vagrant\machines\default\virtualbox\private_key" rootFolder="/home/vagrant" accessType="SFTP" username="vagrant" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
