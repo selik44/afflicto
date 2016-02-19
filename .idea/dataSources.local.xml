@@ -6,8 +6,7 @@
       <user-name>root</user-name>
     </data-source>
     <data-source name="Local" uuid="b70391ad-1f84-4357-95ee-cb4cd3ded70e">
-      <secret-storage>master_key</secret-storage>
-      <user-name>homestead</user-name>
+      <user-name>root</user-name>
     </data-source>
     <data-source name="Production" uuid="bfa688e5-fe62-4dfa-815d-439cb24218f5">
       <secret-storage>master_key</secret-storage>
