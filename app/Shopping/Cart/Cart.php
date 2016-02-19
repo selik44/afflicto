@@ -580,7 +580,7 @@ class Cart {
 		}
 
 		# free shipping?
-		if ($total >= 800) {
+		if ($total >= 1000) {
 			$shippingFee = 0;
 		}
 
