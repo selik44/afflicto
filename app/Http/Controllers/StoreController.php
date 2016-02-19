@@ -66,18 +66,7 @@ class StoreController extends Controller {
 					]);
 				}
 				$content = str_replace('{{form}}', view('front.partial.contact-form')->render(), $content);
-			}else if ($page->slug == 'bytte-og-retur') {
-				if (Auth::user()) {
-					$user = Auth::user();
-					Former::populate([
-						'name' => $user->name,
-						'user_id' => $user->id,
-						'email' => $user->email,
-						'phone' => $user->phone,
-					]);
-				}
-				$content = str_replace('{{form}}', view('front.partial.retur-form')->render(), $content);
-			}else if ($page->slug == 'samarbeid') {
+			}else if ($page->slug == 'konkurranser') {
 				if (Auth::user()) {
 					$user = Auth::user();
 					Former::populate([
