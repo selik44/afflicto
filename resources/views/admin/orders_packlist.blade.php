@@ -120,7 +120,7 @@
 
                                 # get product ID and model
                                 $productID = $item['reference']['id'];
-                                $product = Friluft\Product::find($productID);
+                                $product = Friluft\Product::withTrashed()->find($productID);
 
                                 $name = $product->name;
                                 $manufacturer = ($product->manufacturer) ? $product->manufacturer->name : '';
