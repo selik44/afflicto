@@ -54,38 +54,18 @@ class StoreController extends Controller {
 		$page = Page::whereSlug($path)->first();
 		if ($page) {
 			$content = $page->content;
+			$aside = $page['options']['sidebar'] ? true : false;
+
+			if (Auth::user()) {
+				$user = Auth::user();
+				Former::populate($user);
+			}
 
 			if ($page->slug == 'kontakt-oss') {
-				if (Auth::user()) {
-					$user = Auth::user();
-					Former::populate([
-						'name' => $user->name,
-						'user_id' => $user->id,
-						'email' => $user->email,
-						'phone' => $user->phone,
-					]);
-				}
 				$content = str_replace('{{form}}', view('front.partial.contact-form')->render(), $content);
 			}else if ($page->slug == 'bytte-og-retur') {
-				if (Auth::user()) {
-					$user = Auth::user();
-					Former::populate([
-						'name' => $user->name,
-						'user_id' => $user->id,
-						'email' => $user->email,
-						'phone' => $user->phone,
-					]);
-				}
 				$content = str_replace('{{form}}', view('front.partial.retur-form')->render(), $content);
 			}else if ($page->slug == 'samarbeid') {
-				if (Auth::user()) {
-					$user = Auth::user();
-					Former::populate([
-						'name' => $user->name,
-						'email' => $user->email,
-						'phone' => $user->phone,
-					]);
-				}
 				$content = str_replace('{{form}}', view('front.partial.partners-form')->render(), $content);
 			}
 
@@ -93,7 +73,7 @@ class StoreController extends Controller {
 				->with([
 					'content' => $content,
 					'page' => $page,
-					'aside' => ($page['options']['sidebar']) ? true : false
+					'aside' => $aside
 				]);
 		}
 

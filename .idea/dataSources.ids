@@ -2790,7 +2790,7 @@
       </foreign-key>
       <foreign-key id="57" parent="3" name="categories_parent_id_foreign">
         <columns>parent_id</columns>
-        <ref-key>PRIMARY</ref-key>
+        <ref-key>~.addresses.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
@@ -3657,7 +3657,7 @@
       </foreign-key>
       <foreign-key id="263" parent="22" name="receivals_receival_id_foreign">
         <columns>receival_id</columns>
-        <ref-key>PRIMARY</ref-key>
+        <ref-key>~.addresses.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>

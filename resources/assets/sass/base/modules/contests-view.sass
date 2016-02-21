@@ -1,0 +1,25 @@
+.contests-view
+
+	.left
+		border-right: 1px solid $base-border-color
+
+	.right
+		border-left: 1px solid $base-border-color
+
+	.left, .right
+		> .grid
+			padding: 1rem
+
+			.product
+				&:not(:last-child)
+					margin-bottom: 2rem
+
+				.header
+					.name
+						font-size: 1rem
+					.price
+						font-size: 1.1rem
+
+	.grid
+		.products-block
+			margin-bottom: 2rem

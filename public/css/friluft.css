@@ -5350,6 +5350,21 @@ body.scrolled {
   .checkout-view > .aside > .block:not(:last-child) {
     margin-bottom: 2rem; }
 
+.contests-view .left {
+  border-right: 1px solid #ddd; }
+.contests-view .right {
+  border-left: 1px solid #ddd; }
+.contests-view .left > .grid, .contests-view .right > .grid {
+  padding: 1rem; }
+  .contests-view .left > .grid .product:not(:last-child), .contests-view .right > .grid .product:not(:last-child) {
+    margin-bottom: 2rem; }
+  .contests-view .left > .grid .product .header .name, .contests-view .right > .grid .product .header .name {
+    font-size: 1rem; }
+  .contests-view .left > .grid .product .header .price, .contests-view .right > .grid .product .header .price {
+    font-size: 1.1rem; }
+.contests-view .grid .products-block {
+  margin-bottom: 2rem; }
+
 #route-home #front #page {
   padding: 0; }
 
@@ -5524,7 +5539,7 @@ iframe {
           #front #page > .inner #article > .inner {
             padding-left: 0rem; } }
   #front .paper {
-    background-color: rgba(255, 255, 255, 0.85); }
+    background-color: rgba(255, 255, 255, 0.6); }
     #front .paper .white {
       background-color: white; }
   #front hr {
@@ -5646,8 +5661,9 @@ label.radio {
   display: inline-block;
   margin: 0.2rem 1rem; }
 
-html, body, #admin {
-  background: white; }
+#admin {
+  background: white;
+  height: 100%; }
 
 #admin #header {
   width: 100%;

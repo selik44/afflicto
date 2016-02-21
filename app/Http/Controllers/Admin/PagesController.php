@@ -46,12 +46,11 @@ class PagesController extends Controller
         return view('admin.pages_create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
+	/**
+	 * Store a newly created resource in storage.
+	 * @return Response
+	 * @internal param Request $request
+	 */
     public function store()
     {
         $page = new Page(Input::only(['title', 'slug', 'content']));
@@ -80,13 +79,14 @@ class PagesController extends Controller
 		]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  Request  $request
-     * @param  int  $id
-     * @return Response
-     */
+	/**
+	 * Update the specified resource in storage.
+	 *
+	 * @param Page $page
+	 * @return Response
+	 * @internal param Request $request
+	 * @internal param int $id
+	 */
     public function update(Page $page)
     {
 		$options = $page->options;
