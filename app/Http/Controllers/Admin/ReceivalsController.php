@@ -148,8 +148,9 @@ class ReceivalsController extends Controller {
 	/**
 	 * Show the form for editing the specified resource.
 	 *
-	 * @param  int  $id
+	 * @param Receival $receival
 	 * @return Response
+	 * @internal param int $id
 	 */
 	public function edit(Receival $receival)
 	{
