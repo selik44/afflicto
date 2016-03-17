@@ -32,6 +32,7 @@ class Kernel extends HttpKernel {
 		'auth.basic' => 'Friluft\Http\Middleware\AuthenticateBasic',
 		'perms' => 'Friluft\Http\Middleware\Permissions',
 		'guest' => 'Friluft\Http\Middleware\RedirectIfAuthenticated',
+		'popup' => 'Friluft\Http\Middleware\Popup',
 	];
 
 }

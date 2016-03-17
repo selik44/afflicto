@@ -31,25 +31,6 @@ class StoreController extends Controller {
 		$this->mailchimp = $mailchimp;
 	}
 
-	/**
-	 * @return Klarna
-	 */
-	public function makeKlarna() {
-		$k = new Klarna();
-		$k->config(
-			env('KLARNA_MERCHANT_ID'),
-			env('KLARNA_SHARED_SECRET'),
-			\KlarnaCountry::NO,
-			\KlarnaLanguage::NB,
-			\KlarnaCurrency::NOK,
-			Klarna::BETA,
-			'json',
-			base_path('resources/pclasses.json')
-		);
-
-		return $k;
-	}
-
 	public function index($path) {
 		$page = Page::whereSlug($path)->first();
 		if ($page) {
@@ -61,13 +42,34 @@ class StoreController extends Controller {
 				Former::populate($user);
 			}
 
+			//parse code
+			$matches = [];
+			preg_match_all("/{{ *(?P<function>[a-z_0-9]+)( +((\"[^\"]+\")|([0-9]+)))?}}/", $content, $matches);
+			if($matches) {
+				foreach($matches[0] as $key => $match) {
+					$function = $matches['function'][$key];
+					$replacement = "";
+
+					//------------ parse include statements -------------//
+					if ($function == 'include') {
+						$view = trim($matches[4][$key], ' "');
+						$replacement = view('front.partial.' .$view)->render();
+					}
+
+					$content = str_replace($match, $replacement, $content);
+				}
+			}
+
+			/*
 			if ($page->slug == 'kontakt-oss') {
 				$content = str_replace('{{form}}', view('front.partial.contact-form')->render(), $content);
 			}else if ($page->slug == 'bytte-og-retur') {
 				$content = str_replace('{{form}}', view('front.partial.retur-form')->render(), $content);
 			}else if ($page->slug == 'samarbeid') {
 				$content = str_replace('{{form}}', view('front.partial.partners-form')->render(), $content);
-			}
+			}else if ($page->slug == 'konkurranser') {
+				//$content = str_replace('{{newsletter}}', view('front.partial.newsletter-form')->render(), $content);
+			}*/
 
 			return view('front.page')
 				->with([

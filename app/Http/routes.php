@@ -1,51 +1,6 @@
 <?php
 
-# HOME ROUTES
-get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
-get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
-
-get('nyhetsbrev', ['as' => 'nyhetsbrev', 'uses' => 'HomeController@nyhetsbrev_get']);
-post('nyhetsbrev', ['as' => 'nyhetsbrev.post', 'uses' => 'HomeController@nyhetsbrev_post']);
-
-post('kontakt', ['as' => 'contact.post', 'uses' => 'HomeController@contact_post']);
-post('retur', ['as' => 'retur.post', 'uses' => 'HomeController@retur_post']);
-
-post('partners', ['as' => 'partners.post', 'uses' => 'HomeController@partners_post']);
-
-# AUTH & USER ROUTES
-Route::group(['prefix' => 'user'], function() {
-	# login
-	get('login', ['as' => 'user.login', 'uses' => 'AuthController@get_login']);
-	post('login', ['as' => 'user.login.post', 'uses' => 'AuthController@post_login']);
-
-	# logout
-	get('logout', ['as' => 'user.logout', 'uses' => 'AuthController@get_logout']);
-
-	# register
-	get('register', ['as' => 'user.register', 'uses' => 'AuthController@get_register']);
-	post('register', ['as' => 'user.register.post', 'uses' => 'AuthController@post_register']);
-
-	# forgot
-	get('forgot', ['as' => 'user.forgot', 'uses' => 'AuthController@get_forgot']);
-	post('forgot', ['as' => 'user.forgot.post', 'uses' => 'AuthController@post_forgot']);
-
-	# reset
-	get('reset/{token}', ['as' => 'user.reset', 'uses' => 'AuthController@get_reset']);
-	post('reset', ['as' => 'user.reset.post', 'uses' => 'AuthController@post_reset']);
-
-	# USER DASHBOARD
-	Route::group(['middleware' => 'auth'], function() {
-		get('/', ['as' => 'user', 'uses' => 'UserController@index']);
-		get('orders', ['as' => 'user.orders', 'uses' => 'UserController@getOrders']);
-		get('order/{order}', ['as' => 'user.order', 'uses' => 'UserController@getOrder']);
-		get('settings', ['as' => 'user.settings', 'uses' => 'UserController@getSettings']);
-		put('settings', ['as' => 'user.settings.save', 'uses' => 'UserController@putSettings']);
-	});
-});
-
-
 # API ROUTES
-
 get('api/cart', ['as' => 'api.cart.index', 'uses' => 'CartController@index']);
 get('api/cart/clear', ['as' => 'api.cart.clear', 'uses' => 'CartController@clear']);
 get('api/cart/saved', ['as' => 'api.cart.saved', 'uses' => 'CartController@getSaved']);
@@ -55,6 +10,9 @@ put('api/cart/{id}/quantity', ['as' => 'api.cart.quantity', 'uses' => 'CartContr
 delete('api/cart/{id}', ['as' => 'api.cart.destroy', 'uses' => 'CartController@destroy']);
 put('api/cart/coupons/{code}', ['as' => 'api.cart.coupons.store', 'uses' => 'CartController@addCouponCode']);
 
+# newsletter API
+post('api/newsletter', ['as' => 'api.newsletter.register', 'uses' => 'NewsletterController@register']);
+delete('api/newsletter', ['as' => 'api.newsletter.remove', 'uses' => 'NewsletterController@remove']);
 
 get('api/proteria/update', ['as' => 'api.proteria.update', 'uses' => 'Admin\ProteriaController@update']);
 get('api/proteria/orders', ['as' => 'admin.proteria.export', 'uses' => 'Admin\ProteriaController@getExport']);
@@ -284,11 +242,56 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	get('export/products', ['as' => 'admin.export.products', 'uses' => 'Admin\ExportController@products']);
 });
 
+# AUTH & USER ROUTES
+Route::group(['prefix' => 'user'], function() {
+	# login
+	get('login', ['as' => 'user.login', 'uses' => 'AuthController@get_login']);
+	post('login', ['as' => 'user.login.post', 'uses' => 'AuthController@post_login']);
 
-# STORE & CART ROUTES
-get('checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
-get('success', ['as' => 'store.success', 'uses' => 'StoreController@success']);
-post('push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
-post('cart/setsubscribe/{subscribe}', ['as' => 'store.setsubscribe', 'uses' => 'StoreController@setSubscribe']);
-get('cart/clear', ['as' => 'store.clear', 'uses' => 'StoreController@clearCart']);
-get('{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
+	# logout
+	get('logout', ['as' => 'user.logout', 'uses' => 'AuthController@get_logout']);
+
+	# register
+	get('register', ['as' => 'user.register', 'uses' => 'AuthController@get_register']);
+	post('register', ['as' => 'user.register.post', 'uses' => 'AuthController@post_register']);
+
+	# forgot
+	get('forgot', ['as' => 'user.forgot', 'uses' => 'AuthController@get_forgot']);
+	post('forgot', ['as' => 'user.forgot.post', 'uses' => 'AuthController@post_forgot']);
+
+	# reset
+	get('reset/{token}', ['as' => 'user.reset', 'uses' => 'AuthController@get_reset']);
+	post('reset', ['as' => 'user.reset.post', 'uses' => 'AuthController@post_reset']);
+
+	# USER DASHBOARD
+	Route::group(['middleware' => 'auth'], function() {
+		get('/', ['as' => 'user', 'uses' => 'UserController@index']);
+		get('orders', ['as' => 'user.orders', 'uses' => 'UserController@getOrders']);
+		get('order/{order}', ['as' => 'user.order', 'uses' => 'UserController@getOrder']);
+		get('settings', ['as' => 'user.settings', 'uses' => 'UserController@getSettings']);
+		put('settings', ['as' => 'user.settings.save', 'uses' => 'UserController@putSettings']);
+	});
+});
+
+# newsletter routes
+post('nyhetsbrev', ['as' => 'nyhetsbrev.post', 'uses' => 'HomeController@nyhetsbrev_post']);
+
+# HOME, STORE & CART ROUTES
+Route::group(['middleware' => 'popup'], function() {
+	# HOME ROUTES
+	get('/', ['as' => 'home', 'uses' => 'HomeController@index']);
+	get('search', ['as' => 'search', 'uses' => 'SearchController@index']);
+
+	post('kontakt', ['as' => 'contact.post', 'uses' => 'HomeController@contact_post']);
+	post('retur', ['as' => 'retur.post', 'uses' => 'HomeController@retur_post']);
+
+	post('partners', ['as' => 'partners.post', 'uses' => 'HomeController@partners_post']);
+
+	# store / cart routes
+	get('checkout', ['as' => 'store.checkout', 'uses' => 'StoreController@checkout']);
+	get('success', ['as' => 'store.success', 'uses' => 'StoreController@success']);
+	post('push', ['as' => 'store.checkout.push', 'uses' => 'StoreController@push']);
+	post('cart/setsubscribe/{subscribe}', ['as' => 'store.setsubscribe', 'uses' => 'StoreController@setSubscribe']);
+	get('cart/clear', ['as' => 'store.clear', 'uses' => 'StoreController@clearCart']);
+	get('{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
+});

@@ -24,10 +24,6 @@ class HomeController extends Controller {
 			]);
 	}
 
-	public function nyhetsbrev_get() {
-		return view('front.nyhetsbrev');
-	}
-
 	public function nyhetsbrev_post(Mailchimp $mailchimp) {
 		try {
 			$mailchimp

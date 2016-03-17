@@ -1,5 +1,5 @@
 ﻿/**
- * Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+ * Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -12,6 +12,20 @@
 // If you don't have plugins that depend on this file, you can simply ignore it.
 // Otherwise it is strongly recommended to customize this file to match your
 // website requirements and design properly.
+
+CKEDITOR.stylesSet.add('friluft', [
+    //blocks
+    {name: 'Heading 3', element: 'h3'},
+    {name: 'Heading 4', element: 'h4'},
+    {name: 'Heading 5', element: 'h5'},
+    {name: 'Heading 6', element: 'h6'},
+    {name: 'Lead Paragraph', element: 'p', attributes: {'class': 'lead'}},
+    {name: 'Paragraph', element: 'p'},
+    {name: 'Small Paragraph', element: 'p', attributes: {'class': 'small'}},
+    {name: 'Muted Paragraph', element: 'p', attributes: {'class': 'muted'}},
+    {name: 'Small & Muted Paragraph', element: 'p', attributes: {'class': 'muted small'}},
+    {name: 'Blockquote', element: 'blockquote'},
+]);
 
 CKEDITOR.stylesSet.add( 'default', [
 	/* Block Styles */

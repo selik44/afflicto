@@ -23,6 +23,8 @@
 			<ul class="inner nav end">
 				<li><a href="{{url()}}/kontakt-oss">Kontakt</a></li>
 				<li><a href="{{url()}}/konkurranser">Konkurranser</a></li>
+				<li><a href="{{url()}}/nyhetsbrev">Nyhetsbrev</a></li>
+				<li><span class="divider" style="width: 2rem"></span></li>
                 @if(Auth::user())
                     @if (Auth::user()->role->has('admin.access'))
                         <li><a href="{{route('admin.dashboard')}}">Admin</a></li>
@@ -226,6 +228,11 @@
 <div id="menu-overlay">
 
 </div>
+
+@if(Session::has('popup_newsletter'))
+	@include('front.partial.popup')
+@endif
+
 @stop
 
 
@@ -233,7 +240,7 @@
 @parent
 <script type="text/javascript">
 
-    window.showBuyModa = null;
+    window.showBuyModal = null;
 
 	$(document).ready(function() {
         //init buy modal
