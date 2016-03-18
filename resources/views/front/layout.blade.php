@@ -75,8 +75,6 @@
                     @if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
                         <button class="cart-toggle tertiary hidden-l-up" data-toggle="#cart"><i class="fa fa-shopping-cart"></i>  (<span class="quantity">{{Cart::quantity()}}</span>) <span class="total">{{round(Cart::getTotal())}}</span>,-</button>
                     @endif
-
-                    <!--<button class="cart-toggle primary end hidden-l-up"><i class="fa fa-shopping-cart"></i> <span class="text">Cart</span></button>-->
                 </div>
 				<div class="nav-contents">
 					<ul class="nav vertical fancy end navigation">
@@ -87,13 +85,11 @@
 						<form class="inline" id="search" action="{{route('search')}}" method="GET">
                             <div class="input-append">
                                 <input required maxlength="100" type="search" name="terms" placeholder="@lang('store.search')...">
-                                <!--<input type="submit" value="Search" class="primary appended">-->
                                 <button class="primary addon"><i class="fa fa-search"></i></button>
                             </div>
 						</form>
 
 						@if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
-							<!--<button data-toggle="#cart" class="cart-toggle primary end visible-l-up"><i class="fa fa-shopping-cart"></i> Cart</button>-->
                             <button class="cart-toggle tertiary visible-l-up" data-toggle="#cart"><i class="fa fa-shopping-cart"></i> (<span class="quantity">{{Cart::quantity()}}</span>) <span class="total">{{round(Cart::getTotal())}}</span>,-</button>
 						@endif
 
