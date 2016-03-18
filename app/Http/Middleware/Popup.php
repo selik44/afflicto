@@ -25,7 +25,7 @@ class Popup
     public function handle(Request $request, Closure $next)
     {
 	    # have we seen the popup before?
-	    if ($request->cookie(self::CookieName, 'false') == 'false' || true) {
+	    if ($request->cookie(self::CookieName, 'false') == 'false') {
 		    /**
 		     * @var CookieJar $cookieJar
 		     */
