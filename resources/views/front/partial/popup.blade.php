@@ -2,7 +2,7 @@
 	<a href="#" data-toggle-modal="#newsletter-popup" class="modal-dismiss"><i class="fa fa-close"></i></a>
 
 	<div class="modal-content">
-		@include('front.partial.newsletter-form')
+		{!! page('nyhetsbrev') !!}
 
 		<div class="alert end" style="display: none; margin-top: 1rem;">
 			<p class="message"></p>
@@ -18,6 +18,13 @@
 			modal.gsModal("show");
 
 			var form = modal.find('form');
+
+			//clean up the content
+			modal.find('.modal-content').children().each(function(index, child) {
+				if ($(child).html().length == 0) {
+					$(child).remove();
+				}
+			});
 
 			var alert = modal.find('.alert').detach();
 			alert.hide();

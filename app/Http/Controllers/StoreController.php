@@ -19,6 +19,7 @@ use Input;
 use Mail;
 use Mailchimp;
 use Session;
+use Pages;
 
 class StoreController extends Controller {
 
@@ -34,49 +35,7 @@ class StoreController extends Controller {
 	public function index($path) {
 		$page = Page::whereSlug($path)->first();
 		if ($page) {
-			$content = $page->content;
-			$aside = $page['options']['sidebar'] ? true : false;
-
-			if (Auth::user()) {
-				$user = Auth::user();
-				Former::populate($user);
-			}
-
-			//parse code
-			$matches = [];
-			preg_match_all("/{{ *(?P<function>[a-z_0-9]+)( +((\"[^\"]+\")|([0-9]+)))?}}/", $content, $matches);
-			if($matches) {
-				foreach($matches[0] as $key => $match) {
-					$function = $matches['function'][$key];
-					$replacement = "";
-
-					//------------ parse include statements -------------//
-					if ($function == 'include') {
-						$view = trim($matches[4][$key], ' "');
-						$replacement = view('front.partial.' .$view)->render();
-					}
-
-					$content = str_replace($match, $replacement, $content);
-				}
-			}
-
-			/*
-			if ($page->slug == 'kontakt-oss') {
-				$content = str_replace('{{form}}', view('front.partial.contact-form')->render(), $content);
-			}else if ($page->slug == 'bytte-og-retur') {
-				$content = str_replace('{{form}}', view('front.partial.retur-form')->render(), $content);
-			}else if ($page->slug == 'samarbeid') {
-				$content = str_replace('{{form}}', view('front.partial.partners-form')->render(), $content);
-			}else if ($page->slug == 'konkurranser') {
-				//$content = str_replace('{{newsletter}}', view('front.partial.newsletter-form')->render(), $content);
-			}*/
-
-			return view('front.page')
-				->with([
-					'content' => $content,
-					'page' => $page,
-					'aside' => $aside
-				]);
+			return Pages::view($page);
 		}
 
 		$path = explode('/', $path);

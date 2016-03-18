@@ -8,13 +8,6 @@
 			<input type="submit" value="Meld meg på!" class="large primary">
 			<input type="hidden" name="_token" value="{!! csrf_token() !!}">
 		</form>
-
-		<p class="message end color-error"></p>
-	</div>
-
-	<div class="footer">
-		<p>Vi trekker 3 heldige vinnere som får gavekort på henholdsvis 2500kr, 1500kr og 1000kr. Vinner trekkes 01.Mai 2016 og offentligjøres på
-			<a href="http://www.123friluft.no/konkurranser">www.123friluft.no/konkurranser</a>.<br><small>Er du allerede nyhetsbrevmottaker er du med i trekningen.</small></p>
 	</div>
 
 	<div class="image"></div>

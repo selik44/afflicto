@@ -30,3 +30,16 @@ function permission($perms) {
 function numberFormat($number) {
 	return str_replace(',', '.', number_format($number));
 }
+
+/**
+ * @param string|\Friluft\Page $page
+ * @return string
+ */
+function page($page) {
+	if (is_string($page)) {
+		$page = \Friluft\Page::whereSlug($page)->first();
+		if ( ! $page) return '';
+	}
+
+	return Pages::compile($page);
+}
