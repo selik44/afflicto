@@ -13,11 +13,11 @@ use Friluft\Category;
 use Friluft\Product;
 use Friluft\Store;
 use Cart;
+use Gentlefox\Mailchimp\Mailchimp;
 use Klarna;
 use Log;
 use Input;
 use Mail;
-use Mailchimp;
 use Session;
 use Pages;
 
@@ -156,9 +156,7 @@ class StoreController extends Controller {
 
 			# subscribe to newsletter
 			try {
-				$this->mailchimp
-					->lists
-					->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), ['email' => $email], null, null, false);
+				$this->mailchimp->lists()->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), $email);
 			}catch (\Exception $e) {
 				Log::error('Cannot subscribe to newsletter: ' .$e->getMessage());
 			}

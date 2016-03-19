@@ -160,10 +160,12 @@ return [
 		'Gentlefox\Laratables\LaratableServiceProvider',
 		'Former\FormerServiceProvider',
 		'Fedeisas\LaravelMailCssInliner\LaravelMailCssInlinerServiceProvider',
-		'Skovmand\Mailchimp\MailchimpServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Jenssegers\Agent\AgentServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
+		'Gentlefox\Mailchimp\MailchimpServiceProvider',
+
+
 		//'chickling\Backup\BackupServiceProvider',
 	],
 

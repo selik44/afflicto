@@ -2,8 +2,8 @@
 
 use Friluft\Http\Controllers\Admin\BannersController;
 use Friluft\Tag;
+use Gentlefox\Mailchimp\Mailchimp;
 use Input;
-use Mailchimp;
 
 class HomeController extends Controller {
 
@@ -26,9 +26,7 @@ class HomeController extends Controller {
 
 	public function nyhetsbrev_post(Mailchimp $mailchimp) {
 		try {
-			$mailchimp
-				->lists
-				->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), ['email' => Input::get('email')]);
+			$mailchimp->lists()->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), Input::get('email'));
 		}catch(\Exception $e) {
 			return \Redirect::back()->with('error', 'Noe gikk galt, oppga du en riktig epost-addresse?');
 		}
