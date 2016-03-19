@@ -25,12 +25,7 @@ class HomeController extends Controller {
 	}
 
 	public function nyhetsbrev_post(Mailchimp $mailchimp) {
-		try {
-			$mailchimp->lists()->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), Input::get('email'));
-		}catch(\Exception $e) {
-			return \Redirect::back()->with('error', 'Noe gikk galt, oppga du en riktig epost-addresse?');
-		}
-
+		$mailchimp->lists()->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), Input::get('email'));
 		return \Redirect::home()->with('success', 'Din epost er registrert i nyhetsbrevet!');
 	}
 
