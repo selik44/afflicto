@@ -149,6 +149,7 @@ return [
 		'Friluft\Providers\HelpersProvider',
 		'Friluft\Providers\ValidatorsProvider',
 		'Friluft\Providers\SnappyProvider',
+		'Friluft\Providers\PagesProvider',
 
         /*
          * Libs
@@ -159,10 +160,12 @@ return [
 		'Gentlefox\Laratables\LaratableServiceProvider',
 		'Former\FormerServiceProvider',
 		'Fedeisas\LaravelMailCssInliner\LaravelMailCssInlinerServiceProvider',
-		'Skovmand\Mailchimp\MailchimpServiceProvider',
 		'Intervention\Image\ImageServiceProvider',
 		'Jenssegers\Agent\AgentServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
+		'Gentlefox\Mailchimp\MailchimpServiceProvider',
+
+
 		//'chickling\Backup\BackupServiceProvider',
 	],
 
@@ -216,6 +219,7 @@ return [
         'Datatable' => 'Friluft\Utils\Datatable',
         'Cart' => 'Friluft\Shopping\Facades\Cart',
 		'Snappy' => 'Friluft\PDF\Facades\Snappy',
+		'Pages' => 'Friluft\Page\Pages',
 
         //libs
         'Breadcrumbs' => 'DaveJamesMiller\Breadcrumbs\Facade',

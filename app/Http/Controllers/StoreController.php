@@ -13,12 +13,13 @@ use Friluft\Category;
 use Friluft\Product;
 use Friluft\Store;
 use Cart;
+use Gentlefox\Mailchimp\Mailchimp;
 use Klarna;
 use Log;
 use Input;
 use Mail;
-use Mailchimp;
 use Session;
+use Pages;
 
 class StoreController extends Controller {
 
@@ -31,50 +32,10 @@ class StoreController extends Controller {
 		$this->mailchimp = $mailchimp;
 	}
 
-	/**
-	 * @return Klarna
-	 */
-	public function makeKlarna() {
-		$k = new Klarna();
-		$k->config(
-			env('KLARNA_MERCHANT_ID'),
-			env('KLARNA_SHARED_SECRET'),
-			\KlarnaCountry::NO,
-			\KlarnaLanguage::NB,
-			\KlarnaCurrency::NOK,
-			Klarna::BETA,
-			'json',
-			base_path('resources/pclasses.json')
-		);
-
-		return $k;
-	}
-
 	public function index($path) {
 		$page = Page::whereSlug($path)->first();
 		if ($page) {
-			$content = $page->content;
-			$aside = $page['options']['sidebar'] ? true : false;
-
-			if (Auth::user()) {
-				$user = Auth::user();
-				Former::populate($user);
-			}
-
-			if ($page->slug == 'kontakt-oss') {
-				$content = str_replace('{{form}}', view('front.partial.contact-form')->render(), $content);
-			}else if ($page->slug == 'bytte-og-retur') {
-				$content = str_replace('{{form}}', view('front.partial.retur-form')->render(), $content);
-			}else if ($page->slug == 'samarbeid') {
-				$content = str_replace('{{form}}', view('front.partial.partners-form')->render(), $content);
-			}
-
-			return view('front.page')
-				->with([
-					'content' => $content,
-					'page' => $page,
-					'aside' => $aside
-				]);
+			return Pages::view($page);
 		}
 
 		$path = explode('/', $path);
@@ -195,9 +156,7 @@ class StoreController extends Controller {
 
 			# subscribe to newsletter
 			try {
-				$this->mailchimp
-					->lists
-					->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), ['email' => $email], null, null, false);
+				$this->mailchimp->lists()->subscribe(env('MAILCHIMP_NEWSLETTER_ID'), $email);
 			}catch (\Exception $e) {
 				Log::error('Cannot subscribe to newsletter: ' .$e->getMessage());
 			}

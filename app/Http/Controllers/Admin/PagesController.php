@@ -59,6 +59,14 @@ class PagesController extends Controller
 			'sidebar' => Input::has('sidebar'),
 		];
 
+	    $matches = [];
+
+	    # trim
+	    $page->content = trim($page->content);
+
+
+
+
 		$page->save();
 
 		return \Redirect::route('admin.pages.index')->with('success', 'Page created!');
