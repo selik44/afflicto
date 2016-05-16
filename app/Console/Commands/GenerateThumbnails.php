@@ -34,7 +34,9 @@ class GenerateThumbnails extends Command {
 			if (preg_match('/_thumbnail\.[a-zA-Z0-9]+$/', $file->getFilename()) === 1) {
 				continue;
 			}
-			$this->comment('reading ' .$file->getFilename());
+
+			$this->comment('Processing "' .$file->getFilename() .'"...');
+
 			try {
 				$img = \Img::make($file);
 				$img->resize(800, null, function ($constraint) {
@@ -46,7 +48,7 @@ class GenerateThumbnails extends Command {
 				$thumbnail = $info->getPath() .'/' .$info->getBasename('.' .$info->getExtension()) .'_thumbnail.' .$info->getExtension();
 
 				# generate thumbnail
-				$img->resize(null, 200, function ($constraint) {
+				$img->resize(null, 280, function ($constraint) {
 					$constraint->upsize();
 					$constraint->aspectRatio();
 				})->save($thumbnail);
