@@ -5,6 +5,7 @@ use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Friluft\Image;
 use Friluft\Product;
+use Friluft\Producttab;
 use Friluft\Variant;
 use Input;
 use Img;
@@ -140,4 +141,8 @@ class APIController extends Controller {
 		return response('OK');
 	}
 
+	public function products_destroyTab(Producttab $tab) {
+		$tab->delete();
+		return response('OK', 200);
+	}
 }

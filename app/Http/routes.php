@@ -51,6 +51,9 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 
 		# remove variant
 		delete('products/{product}/variants/{variant}', ['as' => 'admin.api.products.removeVariant', 'uses' => 'Admin\APIController@products_removeVariant', 'middleware' => 'perms:products.edit']);
+
+		# remove tab
+		delete('products/tabs/{producttab}', ['as' => 'admin.api.products.removeTab', 'uses' => 'Admin\APIController@products_destroyTab', 'middleware' => 'perms:products.edit']);
 	});
 
 	# dashboard

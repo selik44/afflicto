@@ -459,7 +459,7 @@
                 _token: Friluft.token,
             };
 
-            $.post(Friluft.URL + '/admin/products/tabs/' + dbId, payload, function(response) {
+            $.post(Friluft.URL + '/admin/api/products/tabs/' + dbId, payload, function(response) {
                 console.log('tab deleted.');
                 tab.remove();
                 link.remove();

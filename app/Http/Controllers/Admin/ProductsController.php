@@ -337,11 +337,6 @@ class ProductsController extends Controller {
 		return response('OK');
 	}
 
-	public function destroyTab(Producttab $tab) {
-		$tab->delete();
-		return response('OK', 200);
-	}
-
 	/**
 	 * "Move" several products to a given set of categories
 	 *
