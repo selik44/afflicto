@@ -4964,14 +4964,12 @@ ul.pagination {
           -ms-flex-pack: justify;
               justify-content: space-between; }
       #header #navigation .nav-controls .nav-toggle {
-        float: left;
         -webkit-box-flex: 0;
             -ms-flex: 0 0 auto;
                 flex: 0 0 auto;
         font-size: 2rem;
         margin-right: 1rem; }
       #header #navigation .nav-controls .logo {
-        float: left;
         -webkit-box-flex: 0;
             -ms-flex: 0 1 auto;
                 flex: 0 1 auto;
@@ -4979,6 +4977,9 @@ ul.pagination {
         transition: all 300ms; }
         #header #navigation .nav-controls .logo img {
           width: 100%; }
+          @media (max-width: 680px) {
+            #header #navigation .nav-controls .logo img {
+              max-width: 135px !important; } }
     #header #navigation .nav-contents {
       -webkit-transition: all 600ms ease-in-out;
       transition: all 600ms ease-in-out;
@@ -5078,7 +5079,6 @@ ul.pagination {
                 width: 100%;
                 padding-left: 3rem; }
     #header #navigation .cart-toggle {
-      float: left;
       cursor: pointer;
       text-transform: uppercase;
       -webkit-user-select: none;
