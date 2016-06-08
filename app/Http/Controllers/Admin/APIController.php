@@ -54,7 +54,7 @@ class APIController extends Controller {
 		})->save(public_path('images/products') .'/' .$filename .'.' .$extension);
 
 		# save a thumbnail
-		$img->resize(null, 200, function(Constraint $constraint) {
+		$img->resize(null, 280, function(Constraint $constraint) {
 			$constraint->aspectRatio();
 		})->save(public_path('images/products') .'/' .$filename .'_thumbnail.' .$extension);
 
