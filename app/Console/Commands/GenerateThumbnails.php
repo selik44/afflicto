@@ -48,7 +48,7 @@ class GenerateThumbnails extends Command {
 				$thumbnail = $info->getPath() .'/' .$info->getBasename('.' .$info->getExtension()) .'_thumbnail.' .$info->getExtension();
 
 				# generate thumbnail
-				$img->resize(null, 280, function ($constraint) {
+				$img->resize(null, 400, function ($constraint) {
 					$constraint->upsize();
 					$constraint->aspectRatio();
 				})->save($thumbnail);
