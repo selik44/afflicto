@@ -100,7 +100,7 @@
             <div class="block">
                 <div class="module">
                     <div class="module-header">
-                        <h5><i class="fa fa-calendar"></i> &nbsp;&nbsp; 30 Dagers Åpent Kjøp</h5>
+                        <h5><i class="fa fa-calendar"></i> &nbsp;&nbsp; 365 Dagers Åpent Kjøp</h5>
                     </div>
                     <div class="module-content">
                         {!! Friluft\Setting::whereMachine('checkout_3_content')->first()->value !!}
