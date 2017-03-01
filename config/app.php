@@ -163,7 +163,8 @@ return [
 		'Intervention\Image\ImageServiceProvider',
 		'Jenssegers\Agent\AgentServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
-		'Gentlefox\Mailchimp\MailchimpServiceProvider',
+         Spatie\Newsletter\NewsletterServiceProvider::class,
+		// 'Gentlefox\Mailchimp\MailchimpServiceProvider',
 
 
 		//'chickling\Backup\BackupServiceProvider',
@@ -214,6 +215,7 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
+        'Newsletter' => Spatie\Newsletter\NewsletterFacade::class,
 
 		//friluft
         'Datatable' => 'Friluft\Utils\Datatable',

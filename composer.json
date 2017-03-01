@@ -8,7 +8,7 @@
 		"laravel/framework": "5.1.*",
 		"Curl/Curl": "~1.2",
 		"gentlefox/laratables": "~1.0",
-		"barryvdh/laravel-ide-helper": "~2.0",
+		"barryvdh/laravel-ide-helper": "^2.3",
 		"davejamesmiller/laravel-breadcrumbs": "~3.0",
 		"doctrine/dbal": "~2.5",
 		"nicolaslopezj/searchable": "~1.5",
@@ -24,7 +24,7 @@
 		"jenssegers/agent": "^2.1",
 		"neitanod/forceutf8": "^1.4",
 	  	"maatwebsite/excel": "~2.0",
-		"gentlefox/mailchimp": "^1.0"
+		"spatie/laravel-newsletter": "^3.4"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.0",
@@ -38,10 +38,6 @@
       {
       	"type": "vcs",
       	"url": "https://afflicto@bitbucket.org/gentlefox/laratables.git"
-      },
-      {
-        "type": "vcs",
-        "url": "https://afflicto@bitbucket.org/gentlefox/mailchimp.git"
       },
       {
       	"type": "vcs",

@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Role whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Role whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Role whereMachine($value)
+ * @mixin \Eloquent
  */
 class Role extends Model {
 

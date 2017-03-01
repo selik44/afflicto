@@ -2,18 +2,32 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="Staging" uuid="bc0d4b35-8296-42b1-b50f-cbae24601911">
+      <database-info product="MySQL" version="5.5.44-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
     </data-source>
     <data-source name="Local" uuid="b70391ad-1f84-4357-95ee-cb4cd3ded70e">
+      <database-info product="MySQL" version="5.6.28-0ubuntu0.15.10.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
       <user-name>root</user-name>
       <user-password>dfc1dfcbdfc1dfcf</user-password>
     </data-source>
     <data-source name="Production" uuid="bfa688e5-fe62-4dfa-815d-439cb24218f5">
+      <database-info product="MySQL" version="5.5.47-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
-      <schema-pattern>friluft.*</schema-pattern>
-      <default-schemas>friluft.*</default-schemas>
+      <resolve-scope>friluft:*</resolve-scope>
       <ssh-properties>
         <enabled>false</enabled>
         <proxy-host>123friluft.no</proxy-host>
@@ -22,6 +36,16 @@
         <user>root</user>
         <use-password>false</use-password>
       </ssh-properties>
+    </data-source>
+    <data-source name="friluft@188.166.13.229" uuid="52350c2f-7db2-49eb-8046-720c441a2f6b">
+      <database-info product="MySQL" version="5.5.49-0ubuntu0.14.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+        <extra-name-characters>#@</extra-name-characters>
+        <identifier-quote-string>`</identifier-quote-string>
+      </database-info>
+      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+      <secret-storage>master_key</secret-storage>
+      <user-name>root</user-name>
+      <resolve-scope>friluft:</resolve-scope>
     </data-source>
   </component>
 </project>

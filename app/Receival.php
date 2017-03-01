@@ -15,6 +15,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Receival whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Receival whereProducts($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Receival whereWhen($value)
+ * @property-read \Friluft\Receival $children
+ * @property-read \Friluft\Manufacturer $manufacturer
+ * @property-read \Friluft\Receival $parent
+ * @mixin \Eloquent
  */
 class Receival extends Model {
 

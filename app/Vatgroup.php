@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Vatgroup whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Vatgroup whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Vatgroup whereAmount($value)
+ * @mixin \Eloquent
  */
 class Vatgroup extends Model {
 

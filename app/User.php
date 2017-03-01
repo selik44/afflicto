@@ -42,6 +42,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\User wherePhone($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereBillingAddress($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereShippingAddress($value)
+ * @mixin \Eloquent
  */
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 

@@ -1,7 +1,6 @@
 {
   "private": true,
   "devDependencies": {
-    "@afflicto/gentlestyle": "^2.4.13",
     "event-stream": "^3.3.2",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
