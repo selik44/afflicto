@@ -7,7 +7,7 @@ public/images/manufacturers/*
 public/images/*
 public/images/products/*
 public/robots.txt
-/.idea
+.idea/*
 .idea/workspace.xml
 .phpstorm.meta.php
 .env
