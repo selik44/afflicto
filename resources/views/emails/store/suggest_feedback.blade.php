@@ -1,0 +1,1 @@
+<a href="http://nettbutikk.darinx.biz/?hash=dfh4j5k3j46h54klj6h">put comment</a>

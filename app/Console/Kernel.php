@@ -2,6 +2,7 @@
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Mail;
 
 class Kernel extends ConsoleKernel {
 
@@ -20,18 +21,29 @@ class Kernel extends ConsoleKernel {
 		'Friluft\Console\Commands\WelcomeUsers',
 		'Friluft\Console\Commands\SaveProfit',
 		'Friluft\Console\Commands\NukeDatabase',
+        'Friluft\Console\Commands\ReviewNotification'
 	];
 
 	/**
 	 * Define the application's command schedule.
 	 *
-	 * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
+	 * @param  \Illuminate\Console\Scheduling\Sc hedule  $schedule
 	 * @return void
 	 */
 	protected function schedule(Schedule $schedule)
 	{
 		$schedule->command('inspire')
-				 ->hourly();
+				 ->daily();
+
+		$schedule->command('reviewnotification')->everyMinute();
+
+        /*$schedule->call(function () {
+            Mail::send('emails.store.suggest_feedback', [], function($mail) {
+                $mail->to('dudselik44@gmail.com')->subject('Ordrebekreftelse #');
+
+            });
+        })->everyMinute();*/
+
 	}
 
 }

@@ -1,14 +1,18 @@
 <?php namespace Friluft\Http\Controllers\Admin;
 
 use Friluft\Http\Controllers\Controller;
+use Friluft\Http\Controllers\StoreController;
 use Friluft\Http\Requests\CreateUserRequest;
+use Friluft\Product;
 use Friluft\Role;
 use Friluft\User;
+use Friluft\Review;
 use Illuminate\Support\Facades\Auth;
 use Laratable;
 use Former;
 use Input;
 use Redirect;
+use Symfony\Component\DomCrawler\Form;
 
 class UsersController extends Controller {
 
@@ -156,8 +160,79 @@ class UsersController extends Controller {
 
 	public function destroy(User $user)
 	{
+
 		$user->delete();
 		return Redirect::route('admin.users.index')->with('success', e($user->name) .' deleted.');
 	}
+
+	public function destroyReview($id)
+    {
+
+        $review = Review::where('id', '=', $id)->first();
+        Review::where('id', '=', $id)->first()->delete();
+
+	    return Redirect::route('admin.users.reviews')->with('success', e($review->comment) .' deleted.');
+
+    }
+
+
+
+    public function approveReview($review)
+    {
+
+        $review = Review::findOrFail($review);
+        $review->approve();
+
+        return redirect()->back()->with('review_approved', true);
+
+    }
+
+	public function review(){
+
+
+	    $review = Review::all();
+
+        $table = Laratable::make(Review::query(), [
+            '#' => 'id',
+            'user_id' => 'user_id',
+            'product_id' => 'product_id',
+            'product_name' => ['product_name', function($model) {
+
+                return  Product::where('id', '=', $model->product_id)->first()->name;
+        }],
+            'comment' => 'comment',
+            'rating' => 'rating',
+            'approved' => 'approved',
+            'created_at' => 'created_at',
+            'updated_at' => 'updated_at',
+            'confirm' => ['product_name', function($model) {
+
+                return '<form action="'.route('admin.review.approve' , $model->id).'" method="post">
+                            <input type="hidden" name="_token" value="'. csrf_token() .'">
+                            <input type="hidden" name="approved" value="1">
+                            <button type="submit">Approve</button>
+                         </form>';
+
+            }],
+        ]);
+
+
+        $table->editable(true, url('admin/users/reviews/{id}/edit'));
+        $table->destroyable(true, url('admin/users/reviews/{id}'));
+
+
+        $table->sortable(true, [
+            'user_id','product_id', 'created_at','updated_at', 'rating', 'approved'
+        ]);
+
+
+        return view('admin.user_reviews')
+            ->with([
+                'review' => $review,
+                'table' => $table->render(),
+                'pagination' => $table->paginator->render(),
+        ]);
+
+    }
 
 }

@@ -11,6 +11,7 @@
             'divider',
             'fa-key:admin.roles' => 'admin.roles.index',
             'fa-plus:admin.new role' => 'admin.roles.create',
+			'fa-comment-o:admin.users review' => 'admin.users.reviews',
         ]],
 
         'fa-dropbox:admin.products' => ['admin.products.index', [

@@ -20,6 +20,7 @@ get('api/proteria/orders', ['as' => 'admin.proteria.export', 'uses' => 'Admin\Pr
 # ADMIN ROUTES
 Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], function() {
 
+
 	# API
 	Route::group(['prefix' => 'api'], function() {
 		# enable/disable product
@@ -60,6 +61,11 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	get('/', ['as' => 'admin', 'uses' => 'Admin\DashboardController@index']);
 	get('dashboard', ['as' => 'admin.dashboard', 'uses' => 'Admin\DashboardController@index', 'middleware' => 'perms:admin.dashboard.view']);
 
+
+    #reviews
+    get('users/reviews', ['as' => 'admin.users.reviews', 'uses' => 'Admin\UsersController@review']);
+    post('users/reviews/{review}', ['as' => 'admin.review.approve', 'uses' => 'Admin\UsersController@approveReview']);
+    delete('users/reviews/{review}', ['as' => 'admin.review.delete', 'uses' => 'Admin\UsersController@destroyReview', 'middleware' => 'perms:review.delete']);
 	# users
 	get('users', ['as' => 'admin.users.index', 'uses' => 'Admin\UsersController@index', 'middleware' => 'perms:users.view']);
 	get('users/customers', ['as' => 'admin.users.customers', 'uses' => 'Admin\UsersController@customers', 'middleware' => 'perms:users.view']);
@@ -69,6 +75,7 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 	get('users/{user}', ['as' => 'admin.users.show', 'uses' => 'Admin\UsersController@show', 'middleware' => 'perms:users.view']);
 	put('users/{user}', ['as' => 'admin.users.update', 'uses' => 'Admin\UsersController@update', 'middleware' => 'perms:users.edit']);
 	delete('users/{user}', ['as' => 'admin.users.delete', 'uses' => 'Admin\UsersController@destroy', 'middleware' => 'perms:users.delete']);
+
 
 	# roles
 	get('roles', ['as' => 'admin.roles.index', 'uses' => 'Admin\RolesController@index', 'middleware' => 'perms:roles.view']);
@@ -243,6 +250,7 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 
 	# exports
 	get('export/products', ['as' => 'admin.export.products', 'uses' => 'Admin\ExportController@products']);
+
 });
 
 # AUTH & USER ROUTES
@@ -297,4 +305,5 @@ Route::group(['middleware' => 'popup'], function() {
 	post('cart/setsubscribe/{subscribe}', ['as' => 'store.setsubscribe', 'uses' => 'StoreController@setSubscribe']);
 	get('cart/clear', ['as' => 'store.clear', 'uses' => 'StoreController@clearCart']);
 	get('{path}', ['as' => 'store', 'uses' => 'StoreController@index'])->where('path', '[a-z0-9/-]+');
+    post('{path}', ['as' => 'store.reviews', 'uses' => 'StoreController@review'])->where('path', '[a-z0-9/-]+');
 });

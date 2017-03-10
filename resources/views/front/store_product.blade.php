@@ -1,5 +1,22 @@
 @extends('front.layout')
 
+
+@section('styles')
+    <style type="text/css">
+        /* Enhance the look of the textarea expanding animation */
+        .animated {
+            -webkit-transition: height 0.2s;
+            -moz-transition: height 0.2s;
+            transition: height 0.2s;
+        }
+        .stars {
+            margin: 20px 0;
+            font-size: 24px;
+            color: #d17581;
+        }
+    </style>
+@stop
+
 @section('title')
     @if($product->manufacturer)
         {{$product->manufacturer->name}} -
@@ -127,6 +144,11 @@
                     <li><a href="#product-tab-{{$tab->id}}">{{$tab->title}}</a></li>
                 @endforeach
 
+
+                {{--@foreach($product->producttabs as $tab)--}}
+                    <li><a href="#product-tab-reviews">Reviews</a></li>
+                {{--@endforeach--}}
+
                 @if($product->relations->count() > 0)
                     <li><a href="#product-relations">@lang('store.related products')</a></li>
                 @endif
@@ -149,6 +171,87 @@
                     {!! $tab->body !!}
                 </div>
             @endforeach
+
+            {{--@foreach($product->reviews as $review)--}}
+                {{--<div class="tab" id="product-tab-reviews">--}}
+                    {{--{!! $tab->body !!}--}}
+                {{--</div>--}}
+            {{--@endforeach--}}
+
+
+
+            {{--                    {{ dd($reviews) }}--}}
+
+
+            {{--@foreach($reviews as $review)--}}
+            <div class="tab" id="product-tab-reviews">
+                <div class="row">
+                    <div class="col-md-9">
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{--@if(Session::get('errors'))--}}
+                                        {{--<div class="alert alert-danger">--}}
+                                            {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>--}}
+                                            {{--<h5>There were errors while submitting this review:</h5>--}}
+                                            {{--@foreach($errors->all('<li>:message</li>') as $message)--}}
+                                                {{--{{$message}}--}}
+                                            {{--@endforeach--}}
+                                        {{--</div>--}}
+                                    {{--@endif--}}
+                                    @if(Session::has('review_posted'))
+                                        <div class="alert alert-success">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            <h5>Your review has been posted!</h5>
+                                        </div>
+                                    @endif
+                                    @if(Session::has('review_removed'))
+                                        <div class="alert alert-success">
+                                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                            <h5>Your review has been removed!</h5>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <a href="#reviews-anchor" id="open-review-box" class="btn btn-success btn-green">Leave a Review</a>
+                            </div>
+                            <div class="row" id="post-review-box" style="display:block;">
+                                <div class="col-md-12">
+                                    {!! Form::open() !!}
+                                    {!! Form::hidden('rating', null, array('id'=>'ratings-hidden')) !!}
+                                    {!! Form::textarea('comment', null, array('rows'=>'5','id'=>'new-review','class'=>'form-control animated','placeholder'=>'Enter your review here...')) !!}
+                                    <div class="text-right">
+                                        <div class="stars starrr" data-rating="{{Input::old('rating',0)}}"></div>
+                                        <a href="#" class="btn btn-danger btn-sm" id="close-review-box" style="display:none; margin-right:10px;"> <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                                        <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                    </div>
+                                    {!!  Form::close() !!}
+                                </div>
+                            </div>
+
+                            @foreach($reviews as $review)
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        @for ($i=1; $i <= 5 ; $i++)
+                                            <span class="glyphicon glyphicon-star{{ ($i <= $review->rating) ? '' : '-empty'}}"></span>
+                                        @endfor
+
+                                        {{ $review->user ? $review->user->name : 'Anonymous'}} <span class="pull-right">{{$review->timeago}}</span>
+
+                                        <p>{{$review->comment}}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+
+
+                    </div>
+
+                </div>
+            </div>
+
+
 
             @if($product->relations->count() > 0)
                 <div class="tab clearfix" id="product-relations">
