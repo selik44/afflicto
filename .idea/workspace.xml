@@ -1,25 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="admin review confirmation">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Console/Commands/ReviewNotification.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Review.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/ValidatorReviews.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/expanding.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/public/js/star.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/admin/user_reviews.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/emails/store/suggest_feedback.blade.php" />
+    <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Commands/Inspire.php" afterPath="$PROJECT_DIR$/app/Console/Commands/Inspire.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Console/Kernel.php" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/UsersController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/StoreController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Product.php" afterPath="$PROJECT_DIR$/app/Product.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/partial/nav.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/partial/nav.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/front/store_product.blade.php" afterPath="$PROJECT_DIR$/resources/views/front/store_product.blade.php" />
     </list>
     <ignored path="123friluft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -976,7 +959,7 @@
       <workItem from="1488790046296" duration="21397000" />
       <workItem from="1488963681899" duration="24240000" />
       <workItem from="1489050109136" duration="23691000" />
-      <workItem from="1489086415786" duration="14393000" />
+      <workItem from="1489086415786" duration="14496000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some stuff">
       <created>1432880737272</created>
@@ -1202,11 +1185,18 @@
       <option name="project" value="LOCAL" />
       <updated>1488993302659</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="admin review confirmation">
+      <created>1489152967685</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1489152967685</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="133442000" />
+    <option name="totallyTimeSpent" value="133545000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
