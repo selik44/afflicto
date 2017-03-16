@@ -400,6 +400,23 @@ class Product extends Model {
 
 
 
+    public function lastUserOrders($id){
+
+//        $reviews = Review::with('order')
+//                ->where('product_id', '=', 2507)
+//                ->where('user_id', '=', 1)
+//                ->get();
+
+        $reviews = Order::with('user')
+                    ->where('user_id', '=', $id)
+                    ->get();
+
+
+        return $reviews;
+
+    }
+
+
     public function recalculateRating($rating)
     {
         $reviews = $this->reviews()->notSpam()->approved();
@@ -409,6 +426,12 @@ class Product extends Model {
         $this->save();
     }
 
+
+    public static function productInfo($productName){
+
+        return Product::where('name', '=', $productName)->get();
+
+    }
 
     /* Reviews */
 

@@ -3,6 +3,7 @@
 use DB;
 use Mail;
 use Illuminate\Console\Command;
+use Friluft\Order;
 
 
 class ReviewNotification extends Command {
@@ -21,13 +22,22 @@ class ReviewNotification extends Command {
 
     public function handle() {
 
-        $orders = DB::table('orders')->select();
+//        $orders = DB::table('orders')->select();
+
+        $orders = Order::OfferFeedback();
 
         foreach($orders as $order)
         {
+
+            $email = $order->user->email;
+
+            $send = Order::find($order->id);
+            $send->requestReviewTime();
+
+
             # notify user
-            Mail::send('emails.store.suggest_feedback', ['order' => 'hi'], function($mail) {
-                $mail->to('dudselik44@gmail.com')->subject('Ordrebekreftelse #');
+            Mail::send('emails.store.suggest_feedback', ['order' => $order], function($mail) use($email){
+                $mail->to($email)->subject('Ordrebekreftelse #');
 
             });
         }

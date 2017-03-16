@@ -77,6 +77,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 		return $this->attributes['firstname'] .' ' .$this->attributes['lastname'];
 	}
 
+
+    public function reviews()
+    {
+        return $this->hasMany('Friluft\Review');
+    }
+
 	public function setNameAttribute($value) {
 		$name = explode(' ', $value, 1);
 		if (count($name) > 1) {

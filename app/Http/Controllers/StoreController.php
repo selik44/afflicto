@@ -13,6 +13,8 @@ use Friluft\Category;
 use Friluft\Product;
 use Friluft\Store;
 use Friluft\Review;
+use Friluft\OfferFeedback;
+use Illuminate\Support\Facades\DB;
 use Redirect;
 use Validator;
 //use Friluft\Validator;
@@ -26,6 +28,7 @@ use Mail;
 use Session;
 use Pages;
 use Spatie\Newsletter\Newsletter;
+
 
 class StoreController extends Controller {
 
@@ -70,6 +73,9 @@ class StoreController extends Controller {
 
             $reviews = $product->reviews()->with('user')->approved()->notSpam()->orderBy('created_at','desc')->paginate(100);
 
+            $orders = Order::OfferFeedback();
+
+
 			$category = array_pop($tree);
 
 			if ($category == null) {
@@ -81,7 +87,8 @@ class StoreController extends Controller {
 					'category' => $category,
 					'product' => $product,
 					'aside' => true,
-                    'reviews' => $reviews
+                    'reviews' => $reviews,
+                    'orders' => $orders,
 				]);
 		}else if ($last instanceof Category) {
 			#--- category ---#
@@ -161,17 +168,31 @@ class StoreController extends Controller {
 	public function review($path){
 
         $input = Input::all();
-        // instantiate Rating model
+        $user = Auth::user();
         $review = new Review;
         $product = $this->curentProduct($path);
+//        $productName = $product->lastUserOrders($user->id)->last()->getHumanName();
+//        $orderProduct = Product::productInfo($productName);
 
-
-
-        # notify user
-//        Mail::send('emails.store.suggest_feedback', ['order' => 'hi'], function($mail) {
-//            $mail->to('dudselik44@gmail.com')->subject('Ordrebekreftelse #');
-
-//        });
+//        $couponeSender = Order::sendCoupone();
+//        $requestSend = Order::RequestDate($user->id);
+//
+//
+//        if(count($requestSend) > 0){
+//
+//              foreach ($requestSend as $request){
+//
+//                  $order = Order::findOrFail($request->id);
+//                  $order->couponeActivated();
+//
+//                  #send coupone
+//                  Mail::send('emails.store.suggest_feedback', ['order' => 'hi'], function($mail) {
+//                      $mail->to('dudselik44@gmail.com')->subject('Ordrebekreftelse #');
+//
+//                  });
+//
+//              }
+//        }
 
         // Validate that the user's input corresponds to the rules specified in the review model
         /** @var ValidatorReviews $validator */
@@ -179,7 +200,6 @@ class StoreController extends Controller {
         // If input passes validation - store the review in DB, otherwise return to product page with error message
 
         if (count($validator->errors()) < 1) {
-
 
             $review->storeReviewForProduct($product->id, $input['comment'], $input['rating']);
             return redirect()->back()->with('review_posted', true);
@@ -194,32 +214,9 @@ class StoreController extends Controller {
     }
 
 
-    public function theWeeksNotification(){
-
-
-        # notify user
-        Mail::send('emails.store.suggest_feedback', ['order' => 'hi'], function($mail) {
-            $mail->to('duseli44@gmail.com')->subject('Ordrebekreftelse #');
-
-        });
-
-    }
-
 
 	public function checkout() {
 		if (Cart::nothing()) return \Redirect::home()->with('error', trans('store.your cart is empty'));
-
-
-
-		/* my test code for email send with coupon */
-
-        # notify user
-//        Mail::send('emails.store.suggest_feedback', ['order' => 'hi'], function($mail){
-//            $mail->to('selik44@mail.ru')->subject('Ordrebekreftelse #');
-//
-//        });
-
-        /* my test code for email send with coupon */
 
 		# get the klarna order
 		if (Session::has('klarna_order')) {

@@ -3,6 +3,7 @@
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Mail;
+use Friluft\Order;
 
 class Kernel extends ConsoleKernel {
 
@@ -37,12 +38,23 @@ class Kernel extends ConsoleKernel {
 
 		$schedule->command('reviewnotification')->everyMinute();
 
-        /*$schedule->call(function () {
-            Mail::send('emails.store.suggest_feedback', [], function($mail) {
-                $mail->to('dudselik44@gmail.com')->subject('Ordrebekreftelse #');
 
-            });
-        })->everyMinute();*/
+
+
+//        $schedule->call(function () {
+//
+//
+//            $orders = Order::orders();
+//
+//            foreach($orders as $order) {
+//
+//                Mail::send('emails.store.suggest_feedback', $order, function ($mail) {
+//                    $mail->to('dudselik44@gmail.com')->subject('Ordrebekreftelse #');
+//
+//                });
+//
+//            }
+//        })->everyMinute();
 
 	}
 

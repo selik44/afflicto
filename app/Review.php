@@ -86,8 +86,15 @@ class Review extends Model{
 
         return $query->where('comment', '!=', null);
 
+    }
+
+    public function userReviews(){
+
+        $userReviews = $this->where('user_id', '=', 1);
+        return $userReviews;
 
     }
+
 
 
 }

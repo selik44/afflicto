@@ -7,14 +7,17 @@ use Friluft\Product;
 use Friluft\Role;
 use Friluft\User;
 use Friluft\Review;
+use Friluft\Order;
+use Friluft\Coupon;
 use Illuminate\Support\Facades\Auth;
 use Laratable;
 use Former;
 use Input;
 use Redirect;
+use Mail;
 use Symfony\Component\DomCrawler\Form;
 
-class UsersController extends Controller {
+class UsersController extends Controller{
 
 	public function index()
 	{
@@ -114,6 +117,10 @@ class UsersController extends Controller {
 		return Redirect::back()->with('success', 'User created!');
 	}
 
+
+
+
+
 	public function show($id)
 	{
 		return 'Not implemented.';
@@ -177,11 +184,66 @@ class UsersController extends Controller {
 
 
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param CreateCouponRequest $request
+     * @return Response
+     */
+    public function createCoupone()
+    {
+
+        $code = csrf_token();
+
+        $data = array(
+
+            'admin_name' => 'admin',
+            'name' => 'admin',
+            'code' => $code,
+            'discount' => 5,
+            'enabled' => 1,
+            'cumulative' => 0,
+            'roles' => null,
+            'single_use' => 1
+
+        );
+
+        $coupon = new Coupon($data);
+
+        $coupon->save();
+
+        return $code;
+
+    }
+
+
     public function approveReview($review)
     {
 
         $review = Review::findOrFail($review);
         $review->approve();
+
+
+        $requestSend = Order::RequestDate($review->user_id);
+        $code = $this->createCoupone();
+
+        if(count($requestSend) > 0){
+
+            foreach ($requestSend as $request){
+
+                $email = $request->user->email;
+
+                $order = Order::findOrFail($request->id);
+                $order->couponeActivated();
+
+                #send coupone
+                Mail::send('emails.store.feedback_review', ['coupone' => $code], function($mail) use($email){
+                    $mail->to($email)->subject('Discount coupone');
+
+                });
+
+            }
+        }
 
         return redirect()->back()->with('review_approved', true);
 

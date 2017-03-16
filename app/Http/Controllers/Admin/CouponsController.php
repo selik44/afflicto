@@ -105,9 +105,6 @@ class CouponsController extends Controller
     {
         $coupon = new Coupon(Input::only(['admin_name', 'name', 'code', 'discount', 'enabled', 'products', 'categories', 'cumulative', 'roles']));
 
-		$coupon->enabled = Input::has('enabled');
-		$coupon->cumulative = Input::has('cumulative');
-		$coupon->single_use = Input::has('single_use');
 
 		# deactivate automatically?
 		if (Input::has('automatic_deactivation')) {
@@ -115,6 +112,7 @@ class CouponsController extends Controller
 		}
 
 		$coupon->save();
+
 		return \Redirect::route('admin.coupons.index')->with('success', 'Coupon created!');
     }
 
