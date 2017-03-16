@@ -151,10 +151,10 @@
 
                 <?php
                 $display = 'none';
-                $left = 1000;
+                $left = 1400;
                 $total = round(Cart::getTotal());
                 if ($total > 0) {
-                    $left = 1000 - $total;
+                    $left = 1400 - $total;
                     if ($left > 0) {
                         $display = 'block';
                     }

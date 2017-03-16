@@ -338,7 +338,7 @@
                     var total = Math.round(parseFloat(response.total));
 
                     //update free shipping status
-                    var left = 1000 - total;
+                    var left = 1400 - total;
                     if (left > 0) {
                         $("#breadcrumbs .free-shipping-status").show().find('.value').text(left);
                     }else {

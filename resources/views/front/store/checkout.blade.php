@@ -100,7 +100,7 @@
             <div class="block">
                 <div class="module">
                     <div class="module-header">
-                        <h5><i class="fa fa-calendar"></i> &nbsp;&nbsp; 30 Dagers Åpent Kjøp</h5>
+                        <h5><i class="fa fa-calendar"></i> &nbsp;&nbsp; 365 Dagers Åpent Kjøp</h5>
                     </div>
                     <div class="module-content">
                         {!! Friluft\Setting::whereMachine('checkout_3_content')->first()->value !!}
@@ -181,8 +181,8 @@
 						//add coupon list item
 						coupons.find('.coupons ul').append('<li><i class="fa fa-check color-success"></i> ' + response.name + '</li>');
 
-						//update "saved"
-						$.post(Friluft.URL + '/api/cart/saved', function(response) {
+						//update the "saved" status that shows how much we saved by using the coupon.
+						$.get(Friluft.URL + '/api/cart/saved', function(response) {
 							coupons.find('.saved').show().find('.value').text(response);
 						});
 					}
