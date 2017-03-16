@@ -8,7 +8,7 @@ use Former;
 use Friluft\Category;
 use Friluft\Coupon;
 use Friluft\Http\Requests\Admin\CreateCouponRequest;
-use Friluft\Http\Requests\admin\EditCouponRequest;
+use Friluft\Http\Requests\Admin\EditCouponRequest;
 use Friluft\Product;
 use Friluft\Role;
 use Friluft\Http\Requests;
@@ -122,8 +122,8 @@ class CouponsController extends Controller
 	 * Show the form for editing the specified resource.
 	 *
 	 * @param Coupon $c
-	 * @return Response
-	 * @internal param EditCouponRequest $request
+	 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @internal param EditCouponRequest $request
 	 * @internal param int $id
 	 */
     public function edit(Coupon $c)
@@ -148,8 +148,8 @@ class CouponsController extends Controller
 	 *
 	 * @param EditCouponRequest $request
 	 * @param Coupon $c
-	 * @return Response
-	 */
+	 * @return \Illuminate\Http\RedirectResponse
+     */
     public function update(EditCouponRequest $request, Coupon $c)
     {
         $c->fill(Input::only('admin_name', 'name', 'code', 'discount', 'enabled', 'products', 'categories', 'cumulative', 'roles'));
