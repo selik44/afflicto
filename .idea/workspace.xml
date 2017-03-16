@@ -2,54 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/php.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Envoy.blade.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/123friluft.iml" afterPath="$PROJECT_DIR$/.idea/123friluft.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/CouponsController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/CouponsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap/cache/.gitignore" afterPath="$PROJECT_DIR$/bootstrap/cache/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/coffee/automachine.coffee" afterPath="$PROJECT_DIR$/resources/assets/coffee/automachine.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/coffee/autoslug.coffee" afterPath="$PROJECT_DIR$/resources/assets/coffee/autoslug.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/coffee/slider.coffee" afterPath="$PROJECT_DIR$/resources/assets/coffee/slider.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/js/viewport.jquery.js" afterPath="$PROJECT_DIR$/resources/assets/js/viewport.jquery.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_admin.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_admin.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_front.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_settings.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_settings.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/_splash.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/_splash.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/base.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/base.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/cart-table.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/cart-table.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/checkout-view.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/checkout-view.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/chosen.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/chosen.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/contests-view.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/contests-view.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/dropzone.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/dropzone.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/header.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/home.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/home.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/newsletter-form.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/newsletter-form.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/nouislider.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/nouislider.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/product-view.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/product-view.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/products-block.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/products-block.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/products-grid.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/products-grid.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/base/modules/slider.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/base/modules/slider.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/friluft/friluft.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/friluft/friluft.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/friluft/settings.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/friluft/settings.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/highpulse/highpulse.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/highpulse/highpulse.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/sass/highpulse/settings.sass" afterPath="$PROJECT_DIR$/resources/assets/sass/highpulse/settings.sass" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/chartist/.bower.json" afterPath="$PROJECT_DIR$/resources/assets/vendor/chartist/.bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/chartist/CHANGELOG.md" afterPath="$PROJECT_DIR$/resources/assets/vendor/chartist/CHANGELOG.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/chartist/CODINGSTYLE.md" afterPath="$PROJECT_DIR$/resources/assets/vendor/chartist/CODINGSTYLE.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/chartist/CONTRIBUTING.md" afterPath="$PROJECT_DIR$/resources/assets/vendor/chartist/CONTRIBUTING.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/chartist/LICENSE" afterPath="$PROJECT_DIR$/resources/assets/vendor/chartist/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/vendor/chartist/README.md" afterPath="$PROJECT_DIR$/resources/assets/vendor/chartist/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/layout.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/app/.gitignore" afterPath="$PROJECT_DIR$/storage/app/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/ (affy-main-win's conflicted copy 2015-08-31).gitignore" afterPath="$PROJECT_DIR$/storage/framework/ (affy-main-win's conflicted copy 2015-08-31).gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/.gitignore" afterPath="$PROJECT_DIR$/storage/framework/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/cache/.gitignore" afterPath="$PROJECT_DIR$/storage/framework/cache/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/sessions/.gitignore" afterPath="$PROJECT_DIR$/storage/framework/sessions/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/framework/views/.gitignore" afterPath="$PROJECT_DIR$/storage/framework/views/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/storage/logs/.gitignore" afterPath="$PROJECT_DIR$/storage/logs/.gitignore" />
     </list>
     <ignored path="123friluft.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -96,7 +50,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="288" column="81" lean-forward="true" selection-start-line="288" selection-start-column="81" selection-end-line="288" selection-end-column="81" />
+              <caret line="288" column="81" lean-forward="false" selection-start-line="288" selection-start-column="81" selection-end-line="288" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -105,9 +59,11 @@
       <file leaf-file-name="CouponsController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/CouponsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="10" column="50" lean-forward="true" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
-              <folding />
+            <state relative-caret-position="638">
+              <caret line="91" column="58" lean-forward="false" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
+              <folding>
+                <element signature="e#50#68#0#PHP" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -116,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Requests/Admin/EditCouponRequest.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="116">
-              <caret line="4" column="34" lean-forward="true" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+              <caret line="4" column="34" lean-forward="false" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -721,7 +677,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1430489401430</updated>
-      <workItem from="1489649593180" duration="2856000" />
+      <workItem from="1489649593180" duration="3457000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some stuff">
       <created>1432880737272</created>
@@ -923,11 +879,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2856000" />
+    <option name="totallyTimeSpent" value="3457000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="2078" height="1407" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17492567" sideWeight="0.32921812" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2598116" sideWeight="0.42765114" order="14" side_tool="false" content_ui="tabs" />
@@ -938,7 +894,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3199033" sideWeight="0.41037157" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4277865" sideWeight="0.58572847" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24746038" sideWeight="0.49812266" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2598116" sideWeight="0.57234883" order="12" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29356357" sideWeight="0.57234883" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17697228" sideWeight="0.22853369" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2548291" sideWeight="0.3689557" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29513183" sideWeight="0.45101172" order="9" side_tool="false" content_ui="tabs" />
@@ -985,13 +941,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/PagesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="66" column="0" lean-forward="false" selection-start-line="66" selection-start-column="0" selection-end-line="66" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/front/partial/popup.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1367,7 +1316,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
-          <caret line="288" column="81" lean-forward="true" selection-start-line="288" selection-start-column="81" selection-end-line="288" selection-end-column="81" />
+          <caret line="288" column="81" lean-forward="false" selection-start-line="288" selection-start-column="81" selection-end-line="288" selection-end-column="81" />
           <folding />
         </state>
       </provider>
@@ -1375,16 +1324,26 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Requests/Admin/EditCouponRequest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
-          <caret line="4" column="34" lean-forward="true" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+          <caret line="4" column="34" lean-forward="false" selection-start-line="4" selection-start-column="34" selection-end-line="4" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/up.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="116">
+          <caret line="4" column="43" lean-forward="true" selection-start-line="4" selection-start-column="43" selection-end-line="4" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/CouponsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="10" column="50" lean-forward="true" selection-start-line="10" selection-start-column="50" selection-end-line="10" selection-end-column="50" />
-          <folding />
+        <state relative-caret-position="638">
+          <caret line="91" column="58" lean-forward="false" selection-start-line="91" selection-start-column="58" selection-end-line="91" selection-end-column="58" />
+          <folding>
+            <element signature="e#50#68#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
