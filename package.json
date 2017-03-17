@@ -2,15 +2,14 @@
   "private": true,
   "devDependencies": {
     "@afflicto/gentlestyle": "^2.4.13",
-    "event-stream": "^3.3.2",
+    "event-stream": "^3.3.4",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.0",
-    "gulp-coffee": "^2.3.1",
-    "gulp-concat": "^2.6.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-coffee": "^2.3.4",
+    "gulp-concat": "^2.6.1",
     "gulp-order": "^1.1.1",
-    "gulp-sass": "^2.2.0",
-    "gulp-util": "^3.0.7",
-    "jquery": "^2.1.4",
-    "laravel-elixir": "^5.0.0"
+    "gulp-sass": "^3.1.0",
+    "gulp-util": "^3.0.8",
+    "jquery": "^3.2.0"
   }
 }
