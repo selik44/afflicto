@@ -15,8 +15,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property string $name
  * @property string $code
  * @property float $discount
- * @property string $categories
- * @property string $products
+ * @property-read array $categories
+ * @property-read array $products
  * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\User[] $users
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Coupon whereId($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Coupon whereCreatedAt($value)
