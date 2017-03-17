@@ -12,14 +12,23 @@ use Friluft\User;
 use Friluft\Category;
 use Friluft\Product;
 use Friluft\Store;
+use Friluft\Review;
+use Friluft\OfferFeedback;
+use Illuminate\Support\Facades\DB;
+use Redirect;
+use Validator;
+//use Friluft\Validator;
 use Cart;
-use Gentlefox\Mailchimp\Mailchimp;
+//use Gentlefox\Mailchimp\Mailchimp;
+use Friluft\ValidatorReviews;
 use Klarna;
 use Log;
 use Input;
 use Mail;
 use Session;
 use Pages;
+use Spatie\Newsletter\Newsletter;
+
 
 class StoreController extends Controller {
 
@@ -28,12 +37,14 @@ class StoreController extends Controller {
 	 */
 	private $mailchimp;
 
-	public function __construct(Mailchimp $mailchimp) {
+	public function __construct(Newsletter $mailchimp) {
 		$this->mailchimp = $mailchimp;
 	}
 
 	public function index($path) {
+
 		$page = Page::whereSlug($path)->first();
+
 		if ($page) {
 			return Pages::view($page);
 		}
@@ -42,6 +53,7 @@ class StoreController extends Controller {
 		$tree = [];
 		$parent_id = null;
 		$product = null;
+
 		foreach($path as $slug) {
 			$cat = Category::whereParentId($parent_id)->whereSlug($slug)->first();
 			if ($cat) {
@@ -56,6 +68,13 @@ class StoreController extends Controller {
 		if ($last instanceof Product) {
 			#--- product ---#
 			$product = $last;
+			$product->reviews;
+
+
+            $reviews = $product->reviews()->with('user')->approved()->notSpam()->orderBy('created_at','desc')->paginate(100);
+
+            $orders = Order::OfferFeedback();
+
 
 			$category = array_pop($tree);
 
@@ -67,7 +86,9 @@ class StoreController extends Controller {
 				->with([
 					'category' => $category,
 					'product' => $product,
-					'aside' => true
+					'aside' => true,
+                    'reviews' => $reviews,
+                    'orders' => $orders,
 				]);
 		}else if ($last instanceof Category) {
 			#--- category ---#
@@ -107,6 +128,92 @@ class StoreController extends Controller {
 
 		abort(404);
 	}
+
+
+
+	public function curentProduct($path){
+
+        $path = explode('/', $path);
+        $tree = [];
+        $parent_id = null;
+        $product = null;
+
+        foreach($path as $slug) {
+            $cat = Category::whereParentId($parent_id)->whereSlug($slug)->first();
+            if ($cat) {
+                $tree[] = $cat;
+                $parent_id = $cat->id;
+            }else {
+                $tree[] = Product::where('categories', 'LIKE', '%' .$parent_id .'%')->whereSlug($slug)->first();
+            }
+        }
+
+        $last = array_pop($tree);
+        if ($last instanceof Product) {
+            #--- product ---#
+            $product = $last;
+        }
+
+        return $product;
+    }
+
+
+
+    /**
+     * @param $path
+     * @return mixed
+     */
+
+
+	public function review($path){
+
+        $input = Input::all();
+        $user = Auth::user();
+        $review = new Review;
+        $product = $this->curentProduct($path);
+//        $productName = $product->lastUserOrders($user->id)->last()->getHumanName();
+//        $orderProduct = Product::productInfo($productName);
+
+//        $couponeSender = Order::sendCoupone();
+//        $requestSend = Order::RequestDate($user->id);
+//
+//
+//        if(count($requestSend) > 0){
+//
+//              foreach ($requestSend as $request){
+//
+//                  $order = Order::findOrFail($request->id);
+//                  $order->couponeActivated();
+//
+//                  #send coupone
+//                  Mail::send('emails.store.suggest_feedback', ['order' => 'hi'], function($mail) {
+//                      $mail->to('dudselik44@gmail.com')->subject('Ordrebekreftelse #');
+//
+//                  });
+//
+//              }
+//        }
+
+        // Validate that the user's input corresponds to the rules specified in the review model
+        /** @var ValidatorReviews $validator */
+        $validator = ValidatorReviews::make( $input, $review->getCreateRules());
+        // If input passes validation - store the review in DB, otherwise return to product page with error message
+
+        if (count($validator->errors()) < 1) {
+
+            $review->storeReviewForProduct($product->id, $input['comment'], $input['rating']);
+            return redirect()->back()->with('review_posted', true);
+
+        }else{
+
+            $v = $validator->errors()->add('field', 'Something is wrong with this field!');
+            return redirect()->back()->withErrors($v, $this->errorBag());
+
+        }
+
+    }
+
+
 
 	public function checkout() {
 		if (Cart::nothing()) return \Redirect::home()->with('error', trans('store.your cart is empty'));
@@ -395,6 +502,14 @@ class StoreController extends Controller {
 				$mail->to('ordre@123friluft.no')->subject('Ordrebekreftelse #' .$order->id);
 			}
 		});
+
+
+        # notify user
+//        Mail::send('emails.store.suggest_feedback', ['order' => $order], function($mail) use($user, $order) {
+//            $mail->to($user->email)->subject('Ordrebekreftelse #' .$order->id);
+//
+//        });
+
 
 		return $order;
 	}
