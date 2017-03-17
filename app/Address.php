@@ -18,6 +18,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Address whereStreet($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Address wherePostcode($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Address whereUserId($value)
+ * @mixin \Eloquent
  */
 class Address extends Model {
 
