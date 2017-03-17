@@ -5,7 +5,7 @@
     <style type="text/css">
         <?php
             echo file_get_contents(public_path('css/lib.css'));
-            echo file_get_contents(public_path('css/' .\Friluft\Store::current()->machine .'.css'));
+            echo file_get_contents(public_path('css/friluft.css'));
         ?>
     </style>
 </head>

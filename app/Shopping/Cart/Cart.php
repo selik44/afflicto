@@ -812,7 +812,7 @@ class Cart {
 			$discountFraction = $item['discount_rate'] / 100;
 			$discounted = $item['unit_price'] * (1 - ($discountFraction / 100));
 
-			$saved += $total - $discounted;
+			$saved += ($total - $discounted) * $item['quantity'];
 		}
 
 		return round($saved / 100);
