@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9c820746-9728-44ee-9717-003ceb9082f0" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Shopping/Cart/Cart.php" afterPath="$PROJECT_DIR$/app/Shopping/Cart/Cart.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/envoy.blade.php" afterPath="$PROJECT_DIR$/envoy.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/emails/master.blade.php" afterPath="$PROJECT_DIR$/resources/views/emails/master.blade.php" />
     </list>
     <ignored path="123friluft.iws" />
@@ -81,9 +78,14 @@
       <file leaf-file-name="master.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/emails/master.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="203">
-              <caret line="7" column="67" lean-forward="true" selection-start-line="7" selection-start-column="67" selection-end-line="7" selection-end-column="67" />
-              <folding />
+            <state relative-caret-position="622">
+              <caret line="45" column="7" lean-forward="true" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
+              <folding>
+                <marker date="1489717224839" expanded="true" signature="896:940" ph="..." />
+                <marker date="1489717224839" expanded="true" signature="927:940" ph="..." />
+                <marker date="1489717224839" expanded="true" signature="1256:1278" ph="..." />
+                <marker date="1489717224839" expanded="true" signature="1366:1398" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -614,7 +616,7 @@
       <option name="presentableId" value="Default" />
       <updated>1430489401430</updated>
       <workItem from="1489649593180" duration="3457000" />
-      <workItem from="1489668108550" duration="3716000" />
+      <workItem from="1489668108550" duration="3957000" />
     </task>
     <task id="LOCAL-00001" summary="fixed some stuff">
       <created>1432880737272</created>
@@ -816,7 +818,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7173000" />
+    <option name="totallyTimeSpent" value="7414000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="2078" height="1407" extended-state="0" />
@@ -1309,9 +1311,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/emails/master.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="7" column="67" lean-forward="true" selection-start-line="7" selection-start-column="67" selection-end-line="7" selection-end-column="67" />
-          <folding />
+        <state relative-caret-position="622">
+          <caret line="45" column="7" lean-forward="true" selection-start-line="45" selection-start-column="7" selection-end-line="45" selection-end-column="7" />
+          <folding>
+            <marker date="1489717224839" expanded="true" signature="896:940" ph="..." />
+            <marker date="1489717224839" expanded="true" signature="927:940" ph="..." />
+            <marker date="1489717224839" expanded="true" signature="1256:1278" ph="..." />
+            <marker date="1489717224839" expanded="true" signature="1366:1398" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
