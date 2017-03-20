@@ -1,6 +1,6 @@
 {
   "name": "isotope",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "description": "Filter and sort magical layouts",
   "main": "js/isotope.js",
   "dependencies": {
@@ -33,13 +33,13 @@
     "changelog.md"
   ],
   "homepage": "https://github.com/metafizzy/isotope",
-  "_release": "2.2.1",
+  "_release": "2.2.2",
   "_resolution": {
     "type": "version",
-    "tag": "v2.2.1",
-    "commit": "437597ba5ff618c78b6ae57c6333d58ec68e2210"
+    "tag": "v2.2.2",
+    "commit": "512c449e9086e1c118819916137b8b8c9620e905"
   },
-  "_source": "git://github.com/metafizzy/isotope.git",
+  "_source": "https://github.com/metafizzy/isotope.git",
   "_target": "~2.2.0",
   "_originalSource": "isotope"
 }

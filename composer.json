@@ -7,7 +7,10 @@
 	"require": {
 		"laravel/framework": "5.1.*",
 		"Curl/Curl": "~1.2",
-		"gentlefox/laratables": "~1.0",
+        "afflicto/neatdatatables": "dev-master",
+        "afflicto/html": "dev-master as 1.3.0",
+        "gentlefox/laratables": "dev-master",
+        "gentlefox/mailchimp": "dev-master",
 		"barryvdh/laravel-ide-helper": "^2.3",
 		"davejamesmiller/laravel-breadcrumbs": "~3.0",
 		"doctrine/dbal": "~2.5",
@@ -24,7 +27,6 @@
 		"jenssegers/agent": "^2.1",
 		"neitanod/forceutf8": "^1.4",
 	  	"maatwebsite/excel": "~2.0",
-		"spatie/laravel-newsletter": "^3.4",
 		"laravelcollective/html": "5.1.*"
 	},
 	"require-dev": {
@@ -32,18 +34,22 @@
 		"phpspec/phpspec": "~2.1"
 	},
 	"repositories": [
-      {
-        "type": "vcs",
-        "url": "https://afflicto@bitbucket.org/afflicto/neatdatatables.git"
-      },
-      {
-      	"type": "vcs",
-      	"url": "https://afflicto@bitbucket.org/gentlefox/laratables.git"
-      },
-      {
-      	"type": "vcs",
-      	"url": "https://afflicto@bitbucket.org/afflicto/html.git"
-      }
+        {
+            "type": "vcs",
+            "url": "https://afflicto@bitbucket.org/afflicto/neatdatatables.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://afflicto@bitbucket.org/afflicto/html.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://afflicto@bitbucket.org/gentlefox/laratables.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@bitbucket.org:darin-x/gentlefox-mailchimp.git"
+        }
     ],
 	"autoload": {
 		"classmap": [

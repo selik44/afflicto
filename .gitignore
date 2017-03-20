@@ -5,3 +5,6 @@ public/images/*
 public/robots.txt
 .idea/
 .phpstorm.meta.php
+/composer.lock
+resources/assets/vendor/
+/_ide_helper.php

@@ -69,7 +69,7 @@
                     <button class="nav-toggle hidden-l-up end"><i class="fa fa-bars"></i></button>
 
                     <a href="{{url()}}" class="logo">
-                        <img src="{{url('images/' .\Friluft\Store::current()->machine .'.png')}}">
+                        <img src="{{ \Friluft\Store::current() ? url('images/' .\Friluft\Store::current()->machine .'.png') : "" }}">
                     </a>
 
                     @if(\Request::route()->getName() != 'store.cart' && \Request::route()->getName() != 'store.checkout' && \Request::route()->getName() != 'store.success')
@@ -78,7 +78,9 @@
                 </div>
 				<div class="nav-contents">
 					<ul class="nav vertical fancy end navigation">
-						@include('front.partial.navigation_' .\Friluft\Store::current()->machine)
+						@if(\Friluft\Store::current() )
+							@include('front.partial.navigation_' .\Friluft\Store::current()->machine)
+						@endif
 					</ul>
 
 					<div class="nav-extra">

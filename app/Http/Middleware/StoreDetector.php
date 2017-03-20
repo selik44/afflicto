@@ -17,7 +17,7 @@ class StoreDetector {
 			)
 		);
 
-		$host = $host[1];
+		$host = $host[0];
 
 		# get store
 		$store = Store::where('host', '=', $host)->first();

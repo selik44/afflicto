@@ -22,7 +22,7 @@
 	
 	@section('head')
 		<link href="{{ asset('/css/lib.css')}}" rel="stylesheet">
-		<link href="{{ asset('/css/' .Friluft\Store::current()->machine .'.css') }}" rel="stylesheet">
+		<link href="{{ \Friluft\Store::current() ? asset('/css/' .Friluft\Store::current()->machine .'.css') : "" }}" rel="stylesheet">
 	@show
 
 </head>

@@ -19,7 +19,7 @@ use Redirect;
 use Validator;
 //use Friluft\Validator;
 use Cart;
-//use Gentlefox\Mailchimp\Mailchimp;
+use Gentlefox\Mailchimp\Mailchimp;
 use Friluft\ValidatorReviews;
 use Klarna;
 use Log;
@@ -27,7 +27,6 @@ use Input;
 use Mail;
 use Session;
 use Pages;
-use Spatie\Newsletter\Newsletter;
 
 
 class StoreController extends Controller {
@@ -37,7 +36,7 @@ class StoreController extends Controller {
 	 */
 	private $mailchimp;
 
-	public function __construct(Newsletter $mailchimp) {
+	public function __construct(Mailchimp $mailchimp) {
 		$this->mailchimp = $mailchimp;
 	}
 

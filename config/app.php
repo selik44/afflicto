@@ -163,9 +163,8 @@ return [
 		'Intervention\Image\ImageServiceProvider',
 		'Jenssegers\Agent\AgentServiceProvider',
 		'Maatwebsite\Excel\ExcelServiceProvider',
-         Spatie\Newsletter\NewsletterServiceProvider::class,
          Collective\Html\HtmlServiceProvider::class,
-		// 'Gentlefox\Mailchimp\MailchimpServiceProvider',
+         Gentlefox\Mailchimp\MailchimpServiceProvider::class,
 
 
 		//'chickling\Backup\BackupServiceProvider',
@@ -216,7 +215,6 @@ return [
 		'URL'       => 'Illuminate\Support\Facades\URL',
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
-        'Newsletter' => Spatie\Newsletter\NewsletterFacade::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
 

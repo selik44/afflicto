@@ -5,14 +5,14 @@
     <style type="text/css">
         <?php
             echo file_get_contents(public_path('css/lib.css'));
-            echo file_get_contents(public_path('css/' .\Friluft\Store::current()->machine .'.css'));
+            echo  \Friluft\Store::current() ? file_get_contents(public_path('css/' .\Friluft\Store::current()->machine .'.css')) : "";
         ?>
     </style>
 </head>
 <body>
     <div class="text-center tower">
         <a href="{{url()}}" class="logo">
-            <img style="max-width: 250px;" src="{{url('images/' .\Friluft\Store::current()->machine .'.png')}}">
+            <img style="max-width: 250px;" src="{{ \Friluft\Store::current() ? url('images/' .\Friluft\Store::current()->machine .'.png') : "" }}">
         </a>
     </div>
 	<div class="module clearfix ninesixty">
@@ -29,7 +29,7 @@
 	</div>
     <hr>
     <p class="small text-center">
-        {{\Friluft\Store::current()->name}}
+        {{ \Friluft\Store::current() ? \Friluft\Store::current()->name : ""}}
     </p>
 </body>
 </html>
