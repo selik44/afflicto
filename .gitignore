@@ -3,5 +3,5 @@
 .env
 public/images/*
 public/robots.txt
-/.idea
+.idea/
 .phpstorm.meta.php
