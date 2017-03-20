@@ -1,4 +1,4 @@
-@servers(['staging' => 'root@188.166.86.110', 'production' => 'root@178.62.200.93'])
+@servers(['staging' => 'root@128.199.47.34', 'production' => 'root@178.62.200.93'])
 
 @setup
     $servers = ['staging', 'production'];
@@ -6,21 +6,21 @@
 @endsetup
 
 @macro('deploy')
-	down
+    down
     pull
     composer
     migrate
-	up
+    up
 @endmacro
 
 @task('down', ['on' => $servers, 'parallel' => true])
-	cd /usr/share/nginx/html
-	php artisan down --no-interaction
+    cd /usr/share/nginx/html
+    php artisan down --no-interaction
 @endtask
 
 @task('up', ['on' => $servers, 'parallel' => true])
-	cd /usr/share/nginx/html
-	php artisan up --no-interaction
+    cd /usr/share/nginx/html
+    php artisan up --no-interaction
 @endtask
 
 @task('pull', ['on' => $servers, 'parallel' => true])

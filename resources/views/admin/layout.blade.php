@@ -59,6 +59,10 @@
             }, 50));
 
             content.css('margin-bottom', footer.outerHeight() + 'px');
+
+            @if(env('APP_ENV') === 'local')
+                $("#nav-top").append('<li><a href="#">----------------------------------------------------LOCAL-------------------------------------------------</a></li>');
+            @endif
         })(jQuery, window, document);
     </script>
 @stop

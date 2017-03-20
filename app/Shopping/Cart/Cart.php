@@ -432,11 +432,14 @@ class Cart {
 	 * @return bool
 	 */
 	private function isCouponRelevantForProduct(Coupon $coupon, Product $product) {
-		# check if this product is in the coupon specifically...
-		if (in_array($product->id, $coupon->products)) {
+	    # first, we check if the coupon doesn't specify any categories or products.
+        # if so, it's a global coupon.
+        if (count($coupon->products) == 0 && count($coupon->categories) == 0) {
+            return true;
+        } else if (in_array($product->id, $coupon->products)) {
+            # check if this product is in the coupon specifically...
 			return true;
-		}
-		else {
+		}else {
 			# check the categories...
 			foreach($product->categories as $category) {
 				if (in_array($category->id, $coupon->categories)) {
@@ -812,7 +815,7 @@ class Cart {
 			$discountFraction = $item['discount_rate'] / 100;
 			$discounted = $item['unit_price'] * (1 - ($discountFraction / 100));
 
-			$saved += $total - $discounted;
+			$saved += ($total - $discounted) * $item['quantity'];
 		}
 
 		return round($saved / 100);

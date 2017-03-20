@@ -181,8 +181,8 @@
 						//add coupon list item
 						coupons.find('.coupons ul').append('<li><i class="fa fa-check color-success"></i> ' + response.name + '</li>');
 
-						//update "saved"
-						$.post(Friluft.URL + '/api/cart/saved', function(response) {
+						//update the "saved" status that shows how much we saved by using the coupon.
+						$.get(Friluft.URL + '/api/cart/saved', function(response) {
 							coupons.find('.saved').show().find('.value').text(response);
 						});
 					}
