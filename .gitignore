@@ -8,3 +8,6 @@ public/robots.txt
 /composer.lock
 resources/assets/vendor/
 /_ide_helper.php
+/friluft_products.sql
+/friluft_category_product.sql
+/friluft_categories.sql
