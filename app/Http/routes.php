@@ -63,10 +63,14 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 
 
     #reviews
-    get('users/reviews-new', ['as' => 'admin.users.reviews-new', 'uses' => 'Admin\UsersController@reviewsNewIndex']);
-    get('users/reviews', ['as' => 'admin.users.reviews', 'uses' => 'Admin\UsersController@reviewsIndex']);
-    post('users/reviews/{review}', ['as' => 'admin.review.approve', 'uses' => 'Admin\UsersController@approveReview']);
-    delete('users/reviews/{review}', ['as' => 'admin.review.delete', 'uses' => 'Admin\UsersController@destroyReview', 'middleware' => 'perms:review.delete']);
+    get('reviews/', ['as' => 'admin.reviews.index', 'uses' => 'Admin\ReviewsController@index']);
+    get('reviews/new', ['as' => 'admin.reviews.index-new', 'uses' => 'Admin\ReviewsController@indexNew']);
+    get('reviews/{id}', ['as' => 'admin.reviews.show', 'uses' => 'Admin\ReviewsController@show']);
+    get('reviews/{id}/edit', ['as' => 'admin.reviews.edit', 'uses' => 'Admin\ReviewsController@edit']);
+    post('reviews/{id}/approve', ['as' => 'admin.reviews.approve', 'uses' => 'Admin\ReviewsController@approveReview']);
+    patch('reviews/{id}/edit', ['as' => 'admin.reviews.update', 'uses' => 'Admin\ReviewsController@update']);
+    delete('reviews/{id}', ['as' => 'admin.reviews.delete', 'uses' => 'Admin\ReviewsController@destroy', 'middleware' => 'perms:review.delete']);
+
 	# users
 	get('users', ['as' => 'admin.users.index', 'uses' => 'Admin\UsersController@index', 'middleware' => 'perms:users.view']);
 	get('users/customers', ['as' => 'admin.users.customers', 'uses' => 'Admin\UsersController@customers', 'middleware' => 'perms:users.view']);

@@ -20,8 +20,8 @@
 			'divider',
 			'fa-barcode:admin.coupons' => 'admin.coupons.index',
 			'fa-plus:admin.new coupon' => 'admin.coupons.create',
-			'fa-check:admin.users review-new' => 'admin.users.reviews-new',
-			'fa-plus:admin.users review' => 'admin.users.reviews',
+			'fa-check:admin.reviews.index-new' => 'admin.reviews.index-new',
+			'fa-plus:admin.reviews.index' => 'admin.reviews.index',
         ]],
 
         'fa-bars:admin.categories' => ['admin.categories.index', [

@@ -45,6 +45,17 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @mixin \Eloquent
  */
 class Review extends Model{
+    
+    protected $table = 'reviews';
+    
+    protected $fillable = [
+        'product_id',
+        'user_id',
+        'rating',
+        'comment',
+        'approved',
+        'spam'
+    ];
 
 
     public function getCreateRules()
@@ -66,10 +77,12 @@ class Review extends Model{
     {
         return $this->belongsTo(Product::class);
     }
-    public function order()
-    {
-        return $this->belongsTo('Friluft\Order');
-    }
+    
+    // public function order()
+    // {
+    //     return $this->belongsTo('Friluft\Order');
+    // }
+    
     // Scopes
     public function scopeApproved($query)
     {

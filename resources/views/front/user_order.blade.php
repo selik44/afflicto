@@ -30,6 +30,7 @@
                     <th>@lang('store.product')</th>
                     <th>@lang('store.quantity')</th>
                     <th>@lang('store.price')</th>
+                    <th>@lang('store.reviews')</th>
                 </tr>
             </thead>
 
@@ -59,6 +60,13 @@
                             {{$item['quantity']}}
                         </td>
                         <td>{{$item['total_price_including_tax']}},-</td>
+                        <td>
+                            @if($model->id == $item['reference']['id'])
+                                <a class="button" href="{{ route('user.order.edit') }}">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                            @endif
+                        </td>
                     </tr>
                 @endforeach
 
@@ -66,6 +74,7 @@
                     <td></td>
                     <td><h5 class="end pull-right">@lang('store.total'):</h5></td>
                     <th>{{$order->total_price_including_tax}},-</th>
+                    <td></td>
                 </tr>
             </tbody>
         </table>
