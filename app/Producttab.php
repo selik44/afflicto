@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Producttab whereTitle($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Producttab whereBody($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Producttab whereOrder($value)
+ * @mixin \Eloquent
  */
 class Producttab extends Model {
 

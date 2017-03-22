@@ -249,11 +249,7 @@ class UsersController extends Controller{
 
     }
 
-	public function review(){
-
-
-	    $review = Review::all();
-
+	public function reviewsIndex(){
         $table = Laratable::make(Review::query(), [
             '#' => 'id',
             'user_id' => 'user_id',
@@ -290,11 +286,53 @@ class UsersController extends Controller{
 
         return view('admin.user_reviews')
             ->with([
-                'review' => $review,
                 'table' => $table->render(),
                 'pagination' => $table->paginator->render(),
         ]);
 
+    }
+    
+    public function reviewsNewIndex(){
+        $table = Laratable::make(Review::where('approved', '=', 0), [
+            '#' => 'id',
+            'user_id' => 'user_id',
+            'product_id' => 'product_id',
+            'product_name' => ['product_name', function($model) {
+                
+                return  Product::where('id', '=', $model->product_id)->first()->name;
+            }],
+            'comment' => 'comment',
+            'rating' => 'rating',
+            'approved' => 'approved',
+            'created_at' => 'created_at',
+            'updated_at' => 'updated_at',
+            'confirm' => ['product_name', function($model) {
+                
+                return '<form action="'.route('admin.review.approve' , $model->id).'" method="post">
+                            <input type="hidden" name="_token" value="'. csrf_token() .'">
+                            <input type="hidden" name="approved" value="1">
+                            <button type="submit">Approve</button>
+                         </form>';
+                
+            }],
+        ]);
+        
+        
+        $table->editable(true, url('admin/users/reviews/{id}/edit'));
+        $table->destroyable(true, url('admin/users/reviews/{id}'));
+        
+        
+        $table->sortable(true, [
+            'user_id','product_id', 'created_at','updated_at', 'rating', 'approved'
+        ]);
+        
+        
+        return view('admin.user_reviews')
+            ->with([
+                'table' => $table->render(),
+                'pagination' => $table->paginator->render(),
+            ]);
+        
     }
 
 }

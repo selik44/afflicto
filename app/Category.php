@@ -36,6 +36,8 @@ use Nicolaslopezj\Searchable\SearchableTrait;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereDiscount($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereMetaDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Category whereMetaKeywords($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Category searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
+ * @mixin \Eloquent
  */
 class Category extends Model {
 

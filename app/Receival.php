@@ -19,6 +19,22 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @property-read \Friluft\Manufacturer $manufacturer
  * @property-read \Friluft\Receival $parent
  * @mixin \Eloquent
+ * @property int $manufacturer_id
+ * @property \Carbon\Carbon $expected_arrival
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property \Carbon\Carbon $deleted_at
+ * @property \Carbon\Carbon $arrived_at
+ * @property int $receival_id
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Receival whereArrivedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Receival whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Receival whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Receival whereExpectedArrival($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Receival whereManufacturerId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Receival whereReceivalId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Receival whereReceived($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Receival whereRest($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Receival whereUpdatedAt($value)
  */
 class Receival extends Model {
 

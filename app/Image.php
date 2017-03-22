@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property integer $manufacturer_id
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Image whereManufacturerId($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Image whereData($value)
+ * @mixin \Eloquent
  */
 class Image extends Model {
 

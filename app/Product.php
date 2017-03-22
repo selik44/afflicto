@@ -63,6 +63,21 @@ use Friluft\Variant;
  * @property string $meta_keywords
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereMetaDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereMetaKeywords($value)
+ * @property string $children
+ * @property int $sizemap_id
+ * @property int $order
+ * @property float $rating_cache
+ * @property int $rating_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Review[] $reviews
+ * @property-read \Friluft\Sizemap $sizemap
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereChildren($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereOrder($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereRatingCache($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereRatingCount($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product whereSizemapId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Product withoutCompounds()
+ * @mixin \Eloquent
  */
 class Product extends Model {
 

@@ -10,8 +10,7 @@
             'fa-plus:admin.new user' => 'admin.users.create',
             'divider',
             'fa-key:admin.roles' => 'admin.roles.index',
-            'fa-plus:admin.new role' => 'admin.roles.create',
-			'fa-comment-o:admin.users review' => 'admin.users.reviews',
+            'fa-plus:admin.new role' => 'admin.roles.create'
         ]],
 
         'fa-dropbox:admin.products' => ['admin.products.index', [
@@ -21,6 +20,8 @@
 			'divider',
 			'fa-barcode:admin.coupons' => 'admin.coupons.index',
 			'fa-plus:admin.new coupon' => 'admin.coupons.create',
+			'fa-check:admin.users review-new' => 'admin.users.reviews-new',
+			'fa-plus:admin.users review' => 'admin.users.reviews',
         ]],
 
         'fa-bars:admin.categories' => ['admin.categories.index', [

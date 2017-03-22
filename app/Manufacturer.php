@@ -25,6 +25,12 @@ use Nicolaslopezj\Searchable\SearchableTrait;
  * @property integer $banner_id
  * @property-read \Friluft\Image $banner
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer whereBannerId($value)
+ * @property bool $prepurchase_enabled
+ * @property int $prepurchase_days
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer searchRestricted($search, $restriction, $threshold = null, $entireText = false, $entireTextOnly = false)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer wherePrepurchaseDays($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Manufacturer wherePrepurchaseEnabled($value)
+ * @mixin \Eloquent
  */
 class Manufacturer extends Model {
 

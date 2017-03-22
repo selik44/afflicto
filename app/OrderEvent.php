@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\OrderEvent whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\OrderEvent whereComment($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\OrderEvent whereOrderId($value)
+ * @mixin \Eloquent
  */
 class OrderEvent extends Model {
 

@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Role whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Role whereMachine($value)
  * @mixin \Eloquent
+ * @property bool $editable
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Role whereEditable($value)
  */
 class Role extends Model {
 

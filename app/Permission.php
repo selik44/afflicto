@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Permission whereMachine($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Permission whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Permission whereDescription($value)
+ * @mixin \Eloquent
  */
 class Permission extends Model {
 

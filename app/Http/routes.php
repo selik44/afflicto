@@ -63,7 +63,8 @@ Route::group(['middleware' => 'perms:admin.access', 'prefix' => 'admin'], functi
 
 
     #reviews
-    get('users/reviews', ['as' => 'admin.users.reviews', 'uses' => 'Admin\UsersController@review']);
+    get('users/reviews-new', ['as' => 'admin.users.reviews-new', 'uses' => 'Admin\UsersController@reviewsNewIndex']);
+    get('users/reviews', ['as' => 'admin.users.reviews', 'uses' => 'Admin\UsersController@reviewsIndex']);
     post('users/reviews/{review}', ['as' => 'admin.review.approve', 'uses' => 'Admin\UsersController@approveReview']);
     delete('users/reviews/{review}', ['as' => 'admin.review.delete', 'uses' => 'Admin\UsersController@destroyReview', 'middleware' => 'perms:review.delete']);
 	# users

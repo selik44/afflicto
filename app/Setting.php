@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Setting whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Setting whereDescription($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Setting whereValue($value)
+ * @mixin \Eloquent
  */
 class Setting extends Model
 {

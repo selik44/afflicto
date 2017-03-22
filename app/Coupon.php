@@ -38,6 +38,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Coupon whereCumulative($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Coupon whereEnabled($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Order[] $orders
+ * @property array $roles
+ * @property bool $single_use
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Coupon whereRoles($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Coupon whereSingleUse($value)
+ * @mixin \Eloquent
  */
 class Coupon extends Model {
 

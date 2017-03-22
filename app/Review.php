@@ -14,6 +14,36 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 
+/**
+ * Friluft\Review
+ *
+ * @property int $id
+ * @property int $product_id
+ * @property int $user_id
+ * @property int $rating
+ * @property string $comment
+ * @property bool $approved
+ * @property bool $spam
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ * @property-read mixed $timeago
+ * @property-read \Friluft\Order $order
+ * @property-read \Friluft\Product $product
+ * @property-read \Friluft\User $user
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Review approved()
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Review notSpam()
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Review spam()
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Review whereApproved($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Review whereComment($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Review whereCreatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Review whereId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Review whereProductId($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Review whereRating($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Review whereSpam($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Review whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Review whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Review extends Model{
 
 
@@ -34,7 +64,7 @@ class Review extends Model{
     }
     public function product()
     {
-        return $this->belongsTo('Product');
+        return $this->belongsTo(Product::class);
     }
     public function order()
     {

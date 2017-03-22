@@ -54,6 +54,15 @@ use DB;
  * @property-read \Friluft\Coupon $coupon
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereCouponId($value)
  * @property-read \Illuminate\Database\Eloquent\Collection|\Friluft\Coupon[] $coupons
+ * @property string $deleted_at
+ * @property int $profit
+ * @property string $request_review_date
+ * @property bool $send_coupone
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereDeletedAt($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereProfit($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereRequestReviewDate($value)
+ * @method static \Illuminate\Database\Query\Builder|\Friluft\Order whereSendCoupone($value)
+ * @mixin \Eloquent
  */
 class Order extends Model {
 

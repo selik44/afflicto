@@ -21,6 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Tile whereHeight($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Tile whereOptions($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Tile whereOrder($value)
+ * @mixin \Eloquent
  */
 class Tile extends Model
 {
