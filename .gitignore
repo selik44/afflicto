@@ -1,7 +1,7 @@
 /vendor
 /node_modules
 .env
-public/images/*
+public/images/*/*
 public/robots.txt
 .idea/
 .phpstorm.meta.php
