@@ -27,9 +27,7 @@ class ReviewsController extends Controller
             Review::with('product')->where('approved', '=', 0) :
             Review::with('product'), [
             'admin.reviews.index.id' => 'id',
-            'admin.reviews.index.user' => ['user_name', function($model) {
-                return isset($model->user) ? $model->user->name : "";
-            }],
+            'admin.reviews.index.user' => 'user->name',
             'admin.reviews.index.product' => 'product->name',
             'admin.reviews.index.manufacturer' => ['product->manufacturer_id', function($model){
                 return isset($model->product) && isset($model->product->manufacturer) ? $model->product->manufacturer->name : "";
@@ -64,10 +62,10 @@ class ReviewsController extends Controller
         $filters = $table->buildFilters();
     
         $table->sortable(true, [
-            'user_id',
-            'product->id',
+            'user',
+            'product',
+            'approved',
             'created_at',
-            'approved'
         ]);
     
     
