@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Friluft\Http\Requests;
 use Friluft\Http\Controllers\Controller;
 use Laratable;
+use Mail;
 
 class ReviewsController extends Controller
 {
@@ -166,6 +167,15 @@ class ReviewsController extends Controller
         //
     }
     
+    /**
+     * Approve single review
+     *
+     * deprecated
+     *
+     * @param $review
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function approveReview($review)
     {
         
@@ -198,5 +208,17 @@ class ReviewsController extends Controller
         
     }
     
-    
+    public function bulkUpdate(Request $request)
+    {
+        $input = $request->all();
+        $reviews = Review::whereIn('id', $input['reviews'])->get();
+        
+        if (!$reviews->isEmpty()) {
+            foreach ($reviews as $review) {
+                $review->approved = $input['bulk-status'];
+                $review->save();
+            }
+        }
+        return redirect()->back();
+    }
 }
