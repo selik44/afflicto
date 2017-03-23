@@ -10,6 +10,7 @@
 @stop
 
 @section('content')
+    {!! $filters !!}
     {!! $table !!}
 @stop
 

@@ -2,6 +2,9 @@
 
 namespace Friluft\Http\Controllers\Admin;
 
+use Friluft\Laratables\SearchRelationsFilter;
+use Friluft\Laratables\SelectRelationsFilter;
+use Friluft\Manufacturer;
 use Friluft\Order;
 use Friluft\Product;
 use Friluft\Review;
@@ -17,45 +20,60 @@ class ReviewsController extends Controller
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index()
+    public function index($new = false)
     {
-        $table = Laratable::make(Review::query(), [
-            '#' => 'id',
-            'user_id' => 'user_id',
-            'product_id' => 'product_id',
-            'product_name' => ['product_name', function($model) {
-            
-                return  Product::where('id', '=', $model->product_id)->first()->name;
+        $table = Laratable::make( $new ?
+            Review::with('product')->where('approved', '=', 0) :
+            Review::with('product'), [
+            'admin.reviews.index.id' => 'id',
+            'admin.reviews.index.user' => ['user_name', function($model) {
+                return isset($model->user) ? $model->user->name : "";
             }],
-            'comment' => 'comment',
-            'rating' => 'rating',
-            'approved' => 'approved',
-            'created_at' => 'created_at',
-            'updated_at' => 'updated_at',
-            'confirm' => ['product_name', function($model) {
-            
-                return '<form action="'.route('admin.reviews.approve' , $model->id).'" method="post">
-                            <input type="hidden" name="_token" value="'. csrf_token() .'">
-                            <input type="hidden" name="approved" value="1">
-                            <button type="submit">Approve</button>
-                         </form>';
+            'admin.reviews.index.product' => 'product->name',
+            'admin.reviews.index.manufacturer' => ['product->manufacturer_id', function($model){
+                return isset($model->product) && isset($model->product->manufacturer) ? $model->product->manufacturer->name : "";
+            }],
+            'admin.reviews.index.status' => 'approved',
+            'admin.reviews.index.activated' => ['activated', function($model){
+                return $model->approved;
+            }],
+            'admin.reviews.index.created_at' => ['created_at', function ($model){
+                return $model->created_at->diffForHumans();
+            }],
+            'admin.reviews.index.search' => ['search', function($model) {
+                return '<a href="'.route('admin.reviews.show', $model->id).'"><i class="fa fa-search"></i></a>';
             
             }],
         ]);
     
     
-        $table->editable(true, url('admin/reviews/{id}/edit'));
-        $table->destroyable(true, url('admin/reviews/{id}'));
-    
+        $table->selectable(true);
+        $table->filterable(true);
+        // $table->setQuery(Review::with('product'));
+        $table->registerFilter('product', SearchRelationsFilter::class);
+        $table->registerFilter('manufacturer', SelectRelationsFilter::class);
+        $table->registerFilter('approved', SelectRelationsFilter::class);
+        $table->addFilter('product', 'product' );
+        $table->addFilter('product->manufacturer_id', 'manufacturer');
+        $manufacturers['*'] = 'all';
+        $manufacturers = $manufacturers + Manufacturer::all()->sortBy('name')->pluck('name', 'id')->all();
+        $table->filters[1]['instance']->setValues($manufacturers);
+        $table->addFilter('approved', 'approved' );
+        $table->filters[2]['instance']->setValues(['*' => 'all', '0' => 'no', '1' => 'yes']);
+        $filters = $table->buildFilters();
     
         $table->sortable(true, [
-            'user_id','product_id', 'created_at','updated_at', 'rating', 'approved'
+            'user_id',
+            'product->id',
+            'created_at',
+            'approved'
         ]);
     
     
         return view('admin.reviews_index')
             ->with([
                 'table' => $table->render(),
+                'filters' => $filters,
                 'pagination' => $table->paginator->render(),
             ]);
     }
@@ -67,46 +85,7 @@ class ReviewsController extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function indexNew(){
-        $table = Laratable::make(Review::where('approved', '=', 0), [
-            '#' => 'id',
-            'user_id' => 'user_id',
-            'product_id' => 'product_id',
-            'product_name' => ['product_name', function($model) {
-                
-                return  Product::where('id', '=', $model->product_id)->first()->name;
-            }],
-            'comment' => 'comment',
-            'rating' => 'rating',
-            'approved' => 'approved',
-            'created_at' => 'created_at',
-            'updated_at' => 'updated_at',
-            'confirm' => ['product_name', function($model) {
-                
-                return '<form action="'.route('admin.reviews.approve' , $model->id).'" method="post">
-                            <input type="hidden" name="_token" value="'. csrf_token() .'">
-                            <input type="hidden" name="approved" value="1">
-                            <button type="submit">Approve</button>
-                         </form>';
-                
-            }],
-        ]);
-        
-        
-        $table->editable(true, url('admin/reviews/{id}/edit'));
-        $table->destroyable(true, url('admin/reviews/{id}'));
-        
-        
-        $table->sortable(true, [
-            'user_id','product_id', 'created_at','updated_at', 'rating', 'approved'
-        ]);
-        
-        
-        return view('admin.reviews_index')
-            ->with([
-                'table' => $table->render(),
-                'pagination' => $table->paginator->render(),
-            ]);
-        
+        return $this->index(true);
     }
 
     /**
@@ -153,6 +132,8 @@ class ReviewsController extends Controller
     public function edit($id)
     {
         $review = Review::findOrFail($id);
+        $review->load('user', 'product');
+        
         return view('admin.reviews_edit')->with(compact('review'));
     }
 
