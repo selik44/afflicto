@@ -133,22 +133,6 @@
             <a href="#slider-modal" data-toggle-modal="#slider-modal"></a>
         </div>
 
-        {{---------------------------------------------------------------alex fix---------------------------------------------------------------------}}
-        @if(Session::has('review_posted'))
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5>Your review has been posted!</h5>
-            </div>
-        @endif
-
-
-        @if(Session::has('review_removed'))
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h5>Your review has been removed!</h5>
-            </div>
-        @endif
-        {{---------------------------------------------------------------alex fix---------------------------------------------------------------------}}
         <div class="paper product-bottom col-xs-12 tight">
             <ul id="product-tabs" class="nav tabs clearfix">
                 @if($product->manufacturer && mb_strlen(trim(strip_tags($product->manufacturer->description))) > 3)
@@ -162,11 +146,6 @@
                 @foreach($product->producttabs as $tab)
                     <li><a href="#product-tab-{{$tab->id}}">{{$tab->title}}</a></li>
                 @endforeach
-
-
-                {{--@foreach($product->producttabs as $tab)--}}
-                <li><a href="#product-tab-reviews">Reviews</a></li>
-                {{--@endforeach--}}
 
                 @if($product->relations->count() > 0)
                     <li><a href="#product-relations">@lang('store.related products')</a></li>
@@ -191,99 +170,6 @@
                 </div>
             @endforeach
 
-            {{--@foreach($product->reviews as $review)--}}
-            {{--<div class="tab" id="product-tab-reviews">--}}
-            {{--{!! $tab->body !!}--}}
-            {{--</div>--}}
-            {{--@endforeach--}}
-
-
-
-            {{--                    {{ dd($reviews) }}--}}
-
-
-            {{--@foreach($reviews as $review)--}}
-
-
-            <div class="tab" id="product-tab-reviews">
-                <div class="row">
-                    <div class="col-md-9">
-                        {{---------------------------------------------------------------alex fix---------------------------------------------------------------------}}
-                        <div class="row">
-                            <div class="col-md-12">
-                                {{--@if(Session::get('errors'))--}}
-                                {{--<div class="alert alert-danger">--}}
-                                {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>--}}
-                                {{--<h5>There were errors while submitting this review:</h5>--}}
-                                {{--@foreach($errors->all('<li>:message</li>') as $message)--}}
-                                {{--{{$message}}--}}
-                                {{--@endforeach--}}
-                                {{--</div>--}}
-                                {{--@endif--}}
-                                {{--@if(Session::has('review_posted'))--}}
-                                {{--<div class="alert alert-success">--}}
-                                {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>--}}
-                                {{--<h5>Your review has been posted!</h5>--}}
-                                {{--</div>--}}
-
-                                {{--@endif--}}
-
-                                {{--@if(Session::has('review_removed'))--}}
-                                {{--<div class="alert alert-success">--}}
-                                {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>--}}
-                                {{--<h5>Your review has been removed!</h5>--}}
-                                {{--</div>--}}
-                                {{--@endif--}}
-                            </div>
-                        </div>
-                        @if(Auth::user())
-                        <div class="text-right">
-                            <a href="#reviews-anchor" id="open-review-box" class="btn btn-success btn-green">Leave a Review</a>
-                        </div>
-                        @else
-                            <div class="col-md-12">
-                                <p><strong>Please log in to leave comments</strong></p>
-                            </div>
-                        @endif
-                        <div class="row" id="post-review-box" >
-                            <div class="col-md-12">
-                                {!! Form::open() !!}
-                                {!! Form::hidden('rating', null, array('id'=>'ratings-hidden')) !!}
-                                {!! Form::textarea('comment', null, array('rows'=>'5', 'id'=>'new-review','class'=>'form-control animated','placeholder'=>'Enter your review here...')) !!}
-                                <div class="text-right">
-                                    <div class="stars starrr" data-rating="{{Input::old('rating',0)}}"></div>
-                                    <a href="#reviews-anchor" class="btn btn-danger btn-sm" id="close-review-box"  style="margin-right:10px;">Cancel</a>
-                                    <a href="#reviews-anchor" class="btn btn-danger btn-sm" id="save-review-box" onclick="$(this).closest('form').submit()">Save</a>
-
-                                    {{--<button class="btn btn-success btn-lg" type="submit">Save</button>--}}
-
-                                </div>
-                                {!!  Form::close() !!}
-                            </div>
-                        </div>
-
-                        @foreach($reviews as $review)
-                            <hr>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    @for ($i=1; $i <= 5 ; $i++)
-                                        <span class="glyphicon glyphicon-star{{ ($i <= $review->rating) ? '' : '-empty'}}"></span>
-                                    @endfor
-
-                                    {{ $review->user ? $review->user->name : 'Anonymous'}} <span class="pull-right">{{$review->timeago}}</span>
-
-                                    <p>{{$review->comment}}</p>
-                                </div>
-                            </div>
-                        @endforeach
-                        {{---------------------------------------------------------------alex fix---------------------------------------------------------------------}}
-
-                    </div>
-
-                </div>
-            </div>
-
-
 
             @if($product->relations->count() > 0)
                 <div class="tab clearfix" id="product-relations">
@@ -294,6 +180,20 @@
                     </div>
                 </div>
             @endif
+        </div>
+
+        <div>
+            @foreach($product->reviewsApproved->sortBy('created_at')->take(10) as $review)
+                {{ $review->user->name }}
+                <br>
+                <br>
+                {{ $review }}
+                <br>
+                <br>
+                {{ $review->created_at->format('d M Y') }}
+                <br>
+
+            @endforeach
         </div>
     </div>
 @stop

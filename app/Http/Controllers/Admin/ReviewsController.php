@@ -33,9 +33,6 @@ class ReviewsController extends Controller
                 return isset($model->product) && isset($model->product->manufacturer) ? $model->product->manufacturer->name : "";
             }],
             'admin.reviews.index.status' => 'approved',
-            'admin.reviews.index.activated' => ['activated', function($model){
-                return $model->approved;
-            }],
             'admin.reviews.index.created_at' => ['created_at', function ($model){
                 return $model->created_at->diffForHumans();
             }],

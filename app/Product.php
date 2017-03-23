@@ -403,17 +403,25 @@ class Product extends Model {
 	public function sizemap() {
 		return $this->belongsTo('Friluft\Sizemap');
 	}
-
-
-
-	/* Reviews */
-
+    
+    /**
+     * Reviews relation
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function reviews()
     {
-        return $this->hasMany('Friluft\Review');
+        return $this->hasMany(Review::class);
     }
 
-
+    /**
+     * Approved Reviews
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function reviewsApproved(){
+        return $this->reviews()->where('approved', '=', 1)->where('spam', '=', '0');
+    }
 
     public function lastUserOrders($id){
 

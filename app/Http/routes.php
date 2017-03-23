@@ -284,6 +284,8 @@ Route::group(['prefix' => 'user'], function() {
 		get('/', ['as' => 'user', 'uses' => 'UserController@index']);
 		get('orders', ['as' => 'user.orders', 'uses' => 'UserController@getOrders']);
 		get('order/{order}', ['as' => 'user.order', 'uses' => 'UserController@getOrder']);
+        get('order/{order}/{product}/review', ['as' => 'product.reviews.show', 'uses' => 'StoreController@review']);
+        post('order/{order}/{product}/review', ['as' => 'product.reviews.show', 'uses' => 'StoreController@reviewUpdate']);
 		get('settings', ['as' => 'user.settings', 'uses' => 'UserController@getSettings']);
 		put('settings', ['as' => 'user.settings.save', 'uses' => 'UserController@putSettings']);
 	});
