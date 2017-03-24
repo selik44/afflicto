@@ -202,7 +202,7 @@
 
                         </div>
                         <div class="col-xs-4 stars">
-                            <form method="POST" action="" >
+
                                 <fieldset class="rating">
                                     <input type="radio" id="star5" name="rating" value="5" /><label class = "full" for="star5" title="Awesome - 5 stars"></label>
                                     <input type="radio" id="star4half" name="rating" value="4 and a half" /><label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
@@ -216,7 +216,7 @@
                                     <input type="radio" id="starhalf" name="rating" value="half" /><label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
                                 </fieldset>
 
-                            </form>
+
                         </div>
 
                         <div class="col-xs-12 review-title">
