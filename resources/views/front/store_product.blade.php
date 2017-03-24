@@ -61,7 +61,7 @@
 @stop
 
 @section('article')
-{{--{{ dd($test) }}--}}
+    {{--{{ dd($test) }}--}}
     <div class="product-view" data-id="{{$product->id}}" data-variants="{{count($product->getVariants())}}" data-stock="{{$product->stock}}">
         <div class="product-top">
             <div class="product-images col-l-8 col-m-7 col-m-12 tight-left clearfix">
@@ -133,7 +133,7 @@
             <a href="#slider-modal" data-toggle-modal="#slider-modal"></a>
         </div>
 
-        <div class="paper product-bottom col-xs-12 tight">
+        <div class="paper product-bottom col-xs-7 tight">
             <ul id="product-tabs" class="nav tabs clearfix">
                 @if($product->manufacturer && mb_strlen(trim(strip_tags($product->manufacturer->description))) > 3)
                     <li><a href="#product-manufacturer-description">@lang('store.about') {{$product->manufacturer->name}}</a></li>
@@ -169,7 +169,7 @@
                     {!! $tab->body !!}
                 </div>
             @endforeach
-
+            .
 
             @if($product->relations->count() > 0)
                 <div class="tab clearfix" id="product-relations">
@@ -181,20 +181,61 @@
                 </div>
             @endif
         </div>
-
-        <div>
+        {{--*****************--}}
+        <div class="paper product-bottom col-xs-4 tight prod-rew" >
+            <ul id="product-tabs" class="nav tabs clearfix">
+                <li class="current">
+                    <a href="#product-info">Productomtaler</a>
+                </li>
+            </ul>
             @foreach($product->reviewsApproved->sortBy('created_at')->take(10) as $review)
-                {{ $review->user->name }}
-                <br>
-                <br>
-                {{ $review }}
-                <br>
-                <br>
-                {{ $review->created_at->format('d M Y') }}
-                <br>
+                <div class="tab" id="product-info">
+                    <div class="row">
+                        <div class="col-xs-9 review-user">
+                            <span class="user-name">{{ $review->user->name }}</span>
+                            <span class="result-user-approved">
+                                   -
+                                @if(true)
+                                    {{ trans('user.approved') }}
+                                @endif
+                               </span>
 
+                        </div>
+                        <div class="col-xs-3 stars">
+                            <span class="stars">
+                                ******
+                            </span>
+                        </div>
+
+                        <div class="col-xs-12 review-title">
+                            {{ $review->title }} Title rewie
+                        </div>
+                        <div class="col-xs-12 review-comment">
+                            <div class="cont">
+                                {{ $review->comment }}
+                            </div>
+                        </div>
+                        <div class="col-xs-12 review-date">
+                            {{--<div class="row">--}}
+                                <div class="col-xs-6 col-date">
+                                    {{ $review->created_at->format('d M Y') }}
+                                </div>
+                                <div class="col-xs-6 col-read-more">
+                                    <span>Ream More...</span>
+                                </div>
+                            {{--</div>--}}
+
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
             @endforeach
+
         </div>
+        <div class="clearfix"></div>
+
+
+        {{--*****************--}}
     </div>
 @stop
 
