@@ -62,7 +62,7 @@
                         <td>{{$item['total_price_including_tax']}},-</td>
                         <td>
                             @if($model->id == $item['reference']['id'])
-                                <a class="button" href="{{ route('user.order.edit') }}">
+                                <a class="button" href="{{ route('product.reviews.show', [$order->id, $model->id]) }}">
                                     <i class="fa fa-pencil"></i>
                                 </a>
                             @endif

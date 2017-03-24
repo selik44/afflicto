@@ -5,6 +5,7 @@ use Auth;
 use Former;
 use Friluft\Coupon;
 use Friluft\Http\Requests;
+use Friluft\Http\Requests\UpdateReviewRequest;
 use Friluft\Order;
 use Friluft\Page;
 use Friluft\Role;
@@ -14,6 +15,7 @@ use Friluft\Product;
 use Friluft\Store;
 use Friluft\Review;
 use Friluft\OfferFeedback;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Redirect;
 use Validator;
@@ -67,13 +69,8 @@ class StoreController extends Controller {
 		if ($last instanceof Product) {
 			#--- product ---#
 			$product = $last;
-			$product->reviews;
-
-
-            $reviews = $product->reviews()->with('user')->approved()->notSpam()->orderBy('created_at','desc')->paginate(100);
 
             $orders = Order::OfferFeedback();
-
 
 			$category = array_pop($tree);
 
@@ -86,7 +83,6 @@ class StoreController extends Controller {
 					'category' => $category,
 					'product' => $product,
 					'aside' => true,
-                    'reviews' => $reviews,
                     'orders' => $orders,
 				]);
 		}else if ($last instanceof Category) {
@@ -156,60 +152,39 @@ class StoreController extends Controller {
         return $product;
     }
 
-
-
     /**
-     * @param $path
-     * @return mixed
+     * Edit review page for product
+     * User can left only one review for product
+     *
+     * @param $product
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Http\RedirectResponse|\Illuminate\View\View
      */
-
-
-	public function review($path){
-
-        $input = Input::all();
+    public function review($order, $product)
+    {
+        /** @var User $user */
         $user = Auth::user();
-        $review = new Review;
-        $product = $this->curentProduct($path);
-//        $productName = $product->lastUserOrders($user->id)->last()->getHumanName();
-//        $orderProduct = Product::productInfo($productName);
-
-//        $couponeSender = Order::sendCoupone();
-//        $requestSend = Order::RequestDate($user->id);
-//
-//
-//        if(count($requestSend) > 0){
-//
-//              foreach ($requestSend as $request){
-//
-//                  $order = Order::findOrFail($request->id);
-//                  $order->couponeActivated();
-//
-//                  #send coupone
-//                  Mail::send('emails.store.suggest_feedback', ['order' => 'hi'], function($mail) {
-//                      $mail->to('dudselik44@gmail.com')->subject('Ordrebekreftelse #');
-//
-//                  });
-//
-//              }
-//        }
-
-        // Validate that the user's input corresponds to the rules specified in the review model
-        /** @var ValidatorReviews $validator */
-        $validator = ValidatorReviews::make( $input, $review->getCreateRules());
-        // If input passes validation - store the review in DB, otherwise return to product page with error message
-
-        if (count($validator->errors()) < 1) {
-
-            $review->storeReviewForProduct($product->id, $input['comment'], $input['rating']);
-            return redirect()->back()->with('review_posted', true);
-
-        }else{
-
-            $v = $validator->errors()->add('field', 'Something is wrong with this field!');
-            return redirect()->back()->withErrors($v, $this->errorBag());
-
+        if(!$user){
+            return redirect()->back();
         }
-
+        $review = Review::where('product_id', '=', $product->id)->where('user_id', '=', $user->id)->first();
+        return view('front.user_order_edit')->with(compact('order', 'review', 'product', 'user'));
+    }
+    
+    public function reviewUpdate($order, $product, UpdateReviewRequest $request){
+        /** @var User $user */
+        $user = Auth::user();
+        if(!$user){
+            return redirect()->back();
+        }
+        
+        $input = $request->all();
+        
+        $review = Review::updateOrCreate([
+            'product_id' => $product->id,
+            'user_id'   => $user->id
+        ], $input);
+        return view('front.user_order_edit')->with(compact('order', 'review', 'product', 'user'));
     }
 
 

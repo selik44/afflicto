@@ -53,26 +53,27 @@ class Review extends Model{
         'user_id',
         'rating',
         'comment',
+        'title',
         'approved',
         'spam'
     ];
 
-
-    public function getCreateRules()
-    {
-        return array(
-            'comment'=>'required|min:10',
-//            'rating'=>'required|integer|between:1,5'
-        );
-    }
-
-
-
-    // Relationships
+    public static $rules = [
+        'title' => 'required|min:2',
+        'comment'=>'required|min:10',
+    ];
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
-        return $this->belongsTo('Friluft\User');
+        return $this->belongsTo(User::class);
     }
+    
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function product()
     {
         return $this->belongsTo(Product::class);
