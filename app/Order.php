@@ -1,7 +1,9 @@
 <?php namespace Friluft;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use DB;
 
 /**
  * Friluft\Order
@@ -72,7 +74,7 @@ class Order extends Model {
 	];
 
 	public function user() {
-		return $this->belongsTo('Friluft\User');
+		return $this->belongsTo(User::class);
 	}
 
 	public function getTotal() {
@@ -158,5 +160,64 @@ class Order extends Model {
 		$this->profit = $this->calculateProfit();
 		parent::save($options);
 	}
+
+
+	public static function OfferFeedback(){
+
+
+        $min = Carbon::today()->subWeeks(2)->addDays(1);
+        $max = Carbon::today()->subWeeks(2);
+
+
+        $orders = Order::with('user')->where('created_at', '<=', $min)
+            ->where('created_at', '>=', $max)
+            ->where('send_coupone', '!=', 1)
+            ->get();
+
+        return $orders;
+    }
+
+
+    public function requestReviewTime(){
+
+        $timeRequest = Carbon::today();
+
+        $this->request_review_date = $timeRequest;
+        $this->save();
+
+    }
+
+
+    public static function RequestDate($id){
+
+        $requestDate = Order::with('user')
+            ->where('request_review_date', '!=', '')
+            ->where('request_review_date', '<=', Carbon::today()->addWeek(3))
+            ->where('send_coupone', '=', 0)
+            ->where('user_id', '=', $id)
+            ->get();
+
+        return $requestDate;
+
+    }
+
+    public static function sendCoupone(){
+
+        $startDay = Carbon::today()->subMonth(2);
+
+        $couponeSend = Order::with('user')->where('send_coupone', '=', 0)
+            ->where('created_at', '>=', $startDay)
+            ->get();
+
+        return $couponeSend;
+
+    }
+
+    public function couponeActivated(){
+
+        $this->send_coupone = 1;
+        $this->save();
+
+    }
 
 }

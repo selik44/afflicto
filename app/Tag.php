@@ -22,6 +22,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property float $discount
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Tag whereVisible($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Tag whereDiscount($value)
+ * @mixin \Eloquent
  */
 class Tag extends Model {
 

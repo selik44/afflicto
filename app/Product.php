@@ -389,6 +389,52 @@ class Product extends Model {
 		return $this->belongsTo('Friluft\Sizemap');
 	}
 
+
+
+	/* Reviews */
+
+    public function reviews()
+    {
+        return $this->hasMany('Friluft\Review');
+    }
+
+
+
+    public function lastUserOrders($id){
+
+//        $reviews = Review::with('order')
+//                ->where('product_id', '=', 2507)
+//                ->where('user_id', '=', 1)
+//                ->get();
+
+        $reviews = Order::with('user')
+                    ->where('user_id', '=', $id)
+                    ->get();
+
+
+        return $reviews;
+
+    }
+
+
+    public function recalculateRating($rating)
+    {
+        $reviews = $this->reviews()->notSpam()->approved();
+        $avgRating = $reviews->avg('rating');
+        $this->rating_cache = round($avgRating,1);
+        $this->rating_count = $reviews->count();
+        $this->save();
+    }
+
+
+    public static function productInfo($productName){
+
+        return Product::where('name', '=', $productName)->get();
+
+    }
+
+    /* Reviews */
+
 	/**
 	 * Get this product's variants as a hierarchical array.
 	 *
@@ -666,5 +712,6 @@ class Product extends Model {
 
 		return $choices;
 	}
+
 
 }

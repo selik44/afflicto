@@ -42,6 +42,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\User wherePhone($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereBillingAddress($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\User whereShippingAddress($value)
+ * @mixin \Eloquent
  */
 class User extends Model implements AuthenticatableContract, CanResetPasswordContract {
 
@@ -75,6 +76,12 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	public function getNameAttribute() {
 		return $this->attributes['firstname'] .' ' .$this->attributes['lastname'];
 	}
+
+
+    public function reviews()
+    {
+        return $this->hasMany('Friluft\Review');
+    }
 
 	public function setNameAttribute($value) {
 		$name = explode(' ', $value, 1);

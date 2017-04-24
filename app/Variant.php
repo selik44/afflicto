@@ -19,6 +19,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Variant whereAdminName($value)
  * @property boolean $filterable
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Variant whereFilterable($value)
+ * @mixin \Eloquent
  */
 class Variant extends Model {
 

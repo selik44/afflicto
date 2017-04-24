@@ -17,6 +17,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Page whereSlug($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Page whereContent($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Page whereOptions($value)
+ * @mixin \Eloquent
  */
 class Page extends Model
 {

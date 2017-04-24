@@ -13,6 +13,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Store whereMachine($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Store whereName($value)
  * @method static \Illuminate\Database\Query\Builder|\Friluft\Store whereHost($value)
+ * @mixin \Eloquent
  */
 class Store extends Model {
 
