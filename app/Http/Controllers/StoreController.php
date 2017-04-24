@@ -17,9 +17,7 @@ use Friluft\OfferFeedback;
 use Illuminate\Support\Facades\DB;
 use Redirect;
 use Validator;
-//use Friluft\Validator;
 use Cart;
-//use Gentlefox\Mailchimp\Mailchimp;
 use Friluft\ValidatorReviews;
 use Klarna;
 use Log;
@@ -171,28 +169,6 @@ class StoreController extends Controller {
         $user = Auth::user();
         $review = new Review;
         $product = $this->curentProduct($path);
-//        $productName = $product->lastUserOrders($user->id)->last()->getHumanName();
-//        $orderProduct = Product::productInfo($productName);
-
-//        $couponeSender = Order::sendCoupone();
-//        $requestSend = Order::RequestDate($user->id);
-//
-//
-//        if(count($requestSend) > 0){
-//
-//              foreach ($requestSend as $request){
-//
-//                  $order = Order::findOrFail($request->id);
-//                  $order->couponeActivated();
-//
-//                  #send coupone
-//                  Mail::send('emails.store.suggest_feedback', ['order' => 'hi'], function($mail) {
-//                      $mail->to('dudselik44@gmail.com')->subject('Ordrebekreftelse #');
-//
-//                  });
-//
-//              }
-//        }
 
         // Validate that the user's input corresponds to the rules specified in the review model
         /** @var ValidatorReviews $validator */
@@ -502,14 +478,6 @@ class StoreController extends Controller {
 				$mail->to('ordre@123friluft.no')->subject('Ordrebekreftelse #' .$order->id);
 			}
 		});
-
-
-        # notify user
-//        Mail::send('emails.store.suggest_feedback', ['order' => $order], function($mail) use($user, $order) {
-//            $mail->to($user->email)->subject('Ordrebekreftelse #' .$order->id);
-//
-//        });
-
 
 		return $order;
 	}

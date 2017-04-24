@@ -22,8 +22,6 @@ class ReviewNotification extends Command {
 
     public function handle() {
 
-//        $orders = DB::table('orders')->select();
-
         $orders = Order::OfferFeedback();
 
         foreach($orders as $order)

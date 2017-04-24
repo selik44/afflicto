@@ -208,32 +208,9 @@
             <div class="tab" id="product-tab-reviews">
                 <div class="row">
                     <div class="col-md-9">
-                        {{---------------------------------------------------------------alex fix---------------------------------------------------------------------}}
+                       
                         <div class="row">
                             <div class="col-md-12">
-                                {{--@if(Session::get('errors'))--}}
-                                {{--<div class="alert alert-danger">--}}
-                                {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>--}}
-                                {{--<h5>There were errors while submitting this review:</h5>--}}
-                                {{--@foreach($errors->all('<li>:message</li>') as $message)--}}
-                                {{--{{$message}}--}}
-                                {{--@endforeach--}}
-                                {{--</div>--}}
-                                {{--@endif--}}
-                                {{--@if(Session::has('review_posted'))--}}
-                                {{--<div class="alert alert-success">--}}
-                                {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>--}}
-                                {{--<h5>Your review has been posted!</h5>--}}
-                                {{--</div>--}}
-
-                                {{--@endif--}}
-
-                                {{--@if(Session::has('review_removed'))--}}
-                                {{--<div class="alert alert-success">--}}
-                                {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>--}}
-                                {{--<h5>Your review has been removed!</h5>--}}
-                                {{--</div>--}}
-                                {{--@endif--}}
                             </div>
                         </div>
                         @if(Auth::user())
@@ -276,7 +253,7 @@
                                 </div>
                             </div>
                         @endforeach
-                        {{---------------------------------------------------------------alex fix---------------------------------------------------------------------}}
+                      
 
                     </div>
 

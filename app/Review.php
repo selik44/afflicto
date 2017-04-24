@@ -21,7 +21,6 @@ class Review extends Model{
     {
         return array(
             'comment'=>'required|min:10',
-//            'rating'=>'required|integer|between:1,5'
         );
     }
 
@@ -68,8 +67,6 @@ class Review extends Model{
         $this->rating = $rating;
         $this->approved = 0;
         $product->reviews()->save($this);
-        // recalculate ratings for the specified product
-        //$product->recalculateRating($rating);
     }
 
 
